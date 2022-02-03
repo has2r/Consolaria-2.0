@@ -1,0 +1,3 @@
+displayName = Consolaria (1.4 Beta)
+author = Hastur, Mr.Pigeon, Drunken Cat, Synoxsis 
+version = 0.1

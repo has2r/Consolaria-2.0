@@ -3,6 +3,7 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using Consolaria.Content.NPCs.Lepus;
 using Microsoft.Xna.Framework;
+using Terraria.GameContent.Creative;
 
 namespace Consolaria.Content.Items.BossDrops.Lepus
 {
@@ -11,6 +12,7 @@ namespace Consolaria.Content.Items.BossDrops.Lepus
         public override void SetStaticDefaults() {
             DisplayName.SetDefault("Ostara's Gift");
             Tooltip.SetDefault("Enemies have a chance of leaving chocolate eggs on death" + "\nBroken eggs drop some life hearts and mana stars");
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
         public override void SetDefaults() {

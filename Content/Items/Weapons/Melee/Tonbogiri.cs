@@ -18,8 +18,7 @@ namespace Consolaria.Content.Items.Weapons.Melee
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
-        public override void SetDefaults()
-        {
+        public override void SetDefaults() {
             int width = 56; int height = width;
             Item.Size = new Vector2(width, height);
 
@@ -33,7 +32,7 @@ namespace Consolaria.Content.Items.Weapons.Melee
             Item.shootSpeed = 40f;
 
             Item.useStyle = ItemUseStyleID.Shoot;
-            Item.knockBack = 6f;
+            Item.knockBack = 2f;
 
             Item.value = Item.buyPrice(gold: 5, silver: 30);
             Item.rare = ItemRarityID.Lime;

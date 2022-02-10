@@ -35,13 +35,14 @@ namespace Consolaria.Content.Items.Weapons.Magic
             Item.autoReuse = true;
 
             Item.shoot = ProjectileID.PurpleLaser;
-            Item.shootSpeed = 20f;
+            Item.shootSpeed = 18f;
         }
 
         public override bool AltFunctionUse(Player player) => true;
 
         public override bool Shoot(Player player, ProjectileSource_Item_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
             if (player.altFunctionUse == 2) {
+                Item.autoReuse = true;
                 Item.useAnimation = 2;
                 Item.useTime = 2;
                 int z = Projectile.NewProjectile(source, position.X, position.Y, velocity.X + Main.rand.Next(-8, 8), velocity.Y + Main.rand.Next(-8, 8), type, damage, knockback, player.whoAmI);
@@ -54,7 +55,7 @@ namespace Consolaria.Content.Items.Weapons.Magic
                 Item.useAnimation = 16;
                 Item.useTime = 16;
                 int a = Projectile.NewProjectile(source, position.X, position.Y, velocity.X, velocity.Y, type, damage, knockback, player.whoAmI);
-                Main.projectile[a].penetrate = 8;
+                Main.projectile[a].penetrate = 3;
                 Main.projectile[a].hostile = false;
                 Main.projectile[a].friendly = true;
             }

@@ -33,7 +33,7 @@ namespace Consolaria.Content.Items.Weapons.Ranged
 			Item.knockBack = 2.5f;
 			Item.useAmmo = AmmoID.Arrow;
 
-			Item.value = Item.buyPrice(gold: 5, silver: 55);
+			Item.value = Item.sellPrice(gold: 5, silver: 55);
 			Item.rare = ItemRarityID.Lime;
 
 			Item.UseSound = SoundID.Item70;

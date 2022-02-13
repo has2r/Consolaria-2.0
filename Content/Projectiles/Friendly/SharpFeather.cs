@@ -15,6 +15,8 @@ namespace Consolaria.Content.Projectiles.Friendly
             Projectile.Size = new Vector2(width, height);
 
             AIType = ProjectileID.HarpyFeather;
+            Projectile.DamageType = DamageClass.Magic;
+
             Projectile.hostile = false;
             Projectile.friendly = true;
             Projectile.tileCollide = true;

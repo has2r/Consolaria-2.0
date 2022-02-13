@@ -14,8 +14,7 @@ namespace Consolaria.Content.Projectiles.Friendly
             ProjectileID.Sets.TrailingMode[Projectile.type] = 2;
         }
 
-        public override void SetDefaults()
-        {
+        public override void SetDefaults() {
             int width = 5; int height = width;
             Projectile.Size = new Vector2(width, height);
 

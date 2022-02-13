@@ -40,7 +40,7 @@ namespace Consolaria.Content.Items.Weapons.Ranged
 		public override Vector2? HoldoutOffset()
 		 => new Vector2(-8, 0);
 		
-		public override bool AltFunctionUse(Player player) {
+		/*public override bool AltFunctionUse(Player player) {
 			if (player.velocity.Y == 0) return true;
 			else return false;		
 		}
@@ -74,6 +74,6 @@ namespace Consolaria.Content.Items.Weapons.Ranged
 				Projectile.NewProjectile(source, position, velocity, type, damage, knockback, player.whoAmI);
 			}
 			return false;
-		}
+		}*/
 	}
 }

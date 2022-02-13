@@ -87,7 +87,7 @@ namespace Consolaria.Content.Projectiles.Friendly
                     float diffX = Math.Abs((float)x - Projectile.position.X / 16f);
                     float diffY = Math.Abs((float)y - Projectile.position.Y / 16f);
                     double distance = Math.Sqrt((diffX * diffX + diffY * diffY));
-                    if (distance < explosionRadius && Main.tile[x, y] != null && Main.tile[x, y].wall == 0) {
+                    if (distance < explosionRadius && Main.tile[x, y] != null && Main.tile[x, y].WallType == 0) {
                         canKillWalls = true;
                         break;
                     }
@@ -102,24 +102,24 @@ namespace Consolaria.Content.Projectiles.Friendly
                     double distanceToTile = Math.Sqrt((diffX * diffX + diffY * diffY));
                     if (distanceToTile < explosionRadius) {
                         bool canKillTile = true;
-                        if (Main.tile[i, j] != null && Main.tile[i, j].IsActive) {
+                        if (Main.tile[i, j] != null && Main.tile[i, j].HasTile) {
                             canKillTile = true;
-                            if (Main.tileDungeon[Main.tile[i, j].type] || Main.tile[i, j].type == 88 || Main.tile[i, j].type == 21 || Main.tile[i, j].type == 26 || Main.tile[i, j].type == 107 || Main.tile[i, j].type == 108 || Main.tile[i, j].type == 111 || Main.tile[i, j].type == 226 || Main.tile[i, j].type == 237 || Main.tile[i, j].type == 221 || Main.tile[i, j].type == 222 || Main.tile[i, j].type == 223 || Main.tile[i, j].type == 211 || Main.tile[i, j].type == 404) 
+                            if (Main.tileDungeon[Main.tile[i, j].TileType] || Main.tile[i, j].TileType == 88 || Main.tile[i, j].TileType == 21 || Main.tile[i, j].TileType == 26 || Main.tile[i, j].TileType == 107 || Main.tile[i, j].TileType == 108 || Main.tile[i, j].TileType == 111 || Main.tile[i, j].TileType == 226 || Main.tile[i, j].TileType == 237 || Main.tile[i, j].TileType == 221 || Main.tile[i, j].TileType == 222 || Main.tile[i, j].TileType == 223 || Main.tile[i, j].TileType == 211 || Main.tile[i, j].TileType == 404) 
                                 canKillTile = false;                       
-                            if (!Main.hardMode && Main.tile[i, j].type == 58) canKillTile = false;                        
+                            if (!Main.hardMode && Main.tile[i, j].TileType == 58) canKillTile = false;                        
                             if (!TileLoader.CanExplode(i, j)) canKillTile = false;                           
                             if (canKillTile) {
                                 WorldGen.KillTile(i, j, false, false, false);
-                                if (!Main.tile[i, j].IsActive && Main.netMode != NetmodeID.SinglePlayer)
+                                if (!Main.tile[i, j].HasTile && Main.netMode != NetmodeID.SinglePlayer)
                                     NetMessage.SendData(17, -1, -1, null, 0, (float)i, (float)j, 0f, 0, 0, 0);                             
                             }
                         }
                         if (canKillTile) {
                             for (int x = i - 1; x <= i + 1; x++) {
                                 for (int y = j - 1; y <= j + 1; y++) {
-                                    if (Main.tile[x, y] != null && Main.tile[x, y].wall > 0 && canKillWalls && WallLoader.CanExplode(x, y, Main.tile[x, y].wall)) {
+                                    if (Main.tile[x, y] != null && Main.tile[x, y].WallType > 0 && canKillWalls && WallLoader.CanExplode(x, y, Main.tile[x, y].WallType)) {
                                         WorldGen.KillWall(x, y, false);
-                                        if (Main.tile[x, y].wall == 0 && Main.netMode != NetmodeID.SinglePlayer)
+                                        if (Main.tile[x, y].WallType == 0 && Main.netMode != NetmodeID.SinglePlayer)
                                             NetMessage.SendData(17, -1, -1, null, 2, (float)x, (float)y, 0f, 0, 0, 0);                                      
                                     }
                                 }

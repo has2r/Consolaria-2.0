@@ -5,7 +5,7 @@ using Terraria.ObjectData;
 
 namespace Consolaria.Content.Tiles
 {
-    public class LepusTrophy : ModTile
+    public class TurkorTrophy : ModTile
     {
         public override void SetStaticDefaults() {
             Main.tileFrameImportant[Type] = true;
@@ -16,14 +16,15 @@ namespace Consolaria.Content.Tiles
             TileObjectData.addTile(Type);
 
             DustType = 7;
+
             ModTranslation name = CreateMapEntryName();
             name.SetDefault("Trophy");
             AddMapEntry(new Color(120, 85, 60), name);
         }
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY) {
-            if (frameX == 0) 
-                Item.NewItem(i * 16, j * 16, 48, 48, ModContent.ItemType<Items.BossDrops.Lepus.LepusTrophy>());   
+            if (frameX == 0)
+                Item.NewItem(i * 16, j * 16, 48, 48, ModContent.ItemType<Items.BossDrops.Turkor.TurkorTrophy>());       
         }
     }
 }

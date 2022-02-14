@@ -67,9 +67,8 @@ namespace Consolaria.Content.NPCs.Lepus
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
-            // Sets the description of this NPC that is listed in the bestiary
             bestiaryEntry.Info.AddRange(new List<IBestiaryInfoElement> {
-                new MoonLordPortraitBackgroundProviderBestiaryInfoElement(), //Plain black background
+                new MoonLordPortraitBackgroundProviderBestiaryInfoElement(),
 				new FlavorTextBestiaryInfoElement("A hare of incredible size, capable of producing weak copies of itself as quickly as chewing the unfortunate Terrarian with its huge teeth.")
             });
         }
@@ -243,6 +242,9 @@ namespace Consolaria.Content.NPCs.Lepus
             }
         }
 
+        public override void OnKill()
+            => NPC.SetEventFlagCleared(ref DownedBossSystem.downedLepus, -1);
+
         public override void BossLoot(ref string name, ref int potionType) {
             if (NPC.CountNPCS(ModContent.NPCType<Lepus>()) == 1) 
                 potionType = ItemID.LesserHealingPotion;  
@@ -250,25 +252,19 @@ namespace Consolaria.Content.NPCs.Lepus
         }
 
         public override void ModifyNPCLoot(NPCLoot npcLoot) {
-            if (NPC.CountNPCS(ModContent.NPCType<Lepus>()) <= 1) {
-                if (!DownedBossSystem.downedLepus){
-                    DownedBossSystem.downedLepus = true;
-                    if (Main.netMode == NetmodeID.Server)
-                        NetMessage.SendData(MessageID.WorldData);
-                }          
-
-                Conditions.NotExpert _notExpert = new Conditions.NotExpert();
+            if (NPC.CountNPCS(ModContent.NPCType<Lepus>()) == 1) {         
+                Conditions.NotExpert notExpert = new Conditions.NotExpert();
                 npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<LepusBag>()));
                 //npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<LepusRelic>()));
                 //npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<LepusPet>()));
-                npcLoot.Add(ItemDropRule.ByCondition(_notExpert, ModContent.ItemType<SuspiciousLookingEgg>()));
+                npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<SuspiciousLookingEgg>()));
                 //npcLoot.Add(ItemDropRule.ByCondition(_notExpert, ModContent.ItemType<OstaraHat>(), 3));
                 //npcLoot.Add(ItemDropRule.ByCondition(_notExpert, ModContent.ItemType<OstaraChainmail>(), 3));
                 //npcLoot.Add(ItemDropRule.ByCondition(_notExpert, ModContent.ItemType<OstaraBoots>(), 3));
-                npcLoot.Add(ItemDropRule.ByCondition(_notExpert, ModContent.ItemType<EggCannon>(), 2));
-                npcLoot.Add(ItemDropRule.ByCondition(_notExpert, ModContent.ItemType<LepusMask>(), 7));
-                npcLoot.Add(ItemDropRule.ByCondition(_notExpert, ModContent.ItemType<LepusTrophy>(), 10));
-                npcLoot.Add(ItemDropRule.ByCondition(_notExpert, ItemID.BunnyHood, 10));
+                npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<EggCannon>(), 2));
+                npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<LepusMask>(), 7));
+                npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<LepusTrophy>(), 10));
+                npcLoot.Add(ItemDropRule.ByCondition(notExpert, ItemID.BunnyHood, 10));
             }
         }
     }

@@ -6,6 +6,16 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.Audio;
 using Consolaria.Content.Projectiles.Enemies;
+using Terraria.GameContent.Bestiary;
+using System.Collections.Generic;
+using Terraria.DataStructures;
+using Consolaria.Common;
+using Terraria.GameContent.ItemDropRules;
+using Consolaria.Content.Items.BossDrops.Turkor;
+using Consolaria.Content.Items.Weapons.Magic;
+using Consolaria.Content.Items.Weapons.Melee;
+using Consolaria.Content.Items.Weapons.Summon;
+using Consolaria.Content.Items.Weapons.Ranged;
 
 namespace Consolaria.Content.NPCs.Turkor
 {
@@ -14,7 +24,24 @@ namespace Consolaria.Content.NPCs.Turkor
 		public override void SetStaticDefaults() {
 			DisplayName.SetDefault("Turkor the Ungrateful");
 			Main.npcFrameCount[Type] = 3;
+
 			NPCID.Sets.MPAllowedEnemies[Type] = true;
+			NPCID.Sets.BossBestiaryPriority.Add(Type);
+
+			NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData {
+				SpecificallyImmuneTo = new int[] {
+					BuffID.Poisoned,
+					BuffID.Confused 
+				}
+			};
+			NPCID.Sets.DebuffImmunitySets.Add(Type, debuffData);
+
+			NPCID.Sets.NPCBestiaryDrawModifiers drawModifiers = new NPCID.Sets.NPCBestiaryDrawModifiers(0) {
+				CustomTexturePath = "Consolaria/Assets/Textures/Bestiary/Turkor",
+				PortraitScale = 0.6f, 
+				PortraitPositionYOverride = 0f,
+			};
+			NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, drawModifiers);
 		}
 
 		public override void SetDefaults() {
@@ -34,10 +61,15 @@ namespace Consolaria.Content.NPCs.Turkor
 			NPC.DeathSound = SoundID.NPCDeath5;
 
 			NPC.boss = true;
+			NPC.npcSlots = 10f;
 
 			NPC.lavaImmune = true;
 			NPC.noTileCollide = false;
 			NPC.noGravity = false;
+
+			NPC.SpawnWithHigherTime(30);
+
+			//BossBag = ModContent.ItemType<MinionBossBag>();
 
 			if (!Main.dedServ) Music = MusicLoader.GetMusicSlot(Mod, "Assets/Music/Turkor");
 		}
@@ -48,6 +80,12 @@ namespace Consolaria.Content.NPCs.Turkor
 			NPC.defense = (int)(NPC.defense + numPlayers);
 		}
 
+		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
+			bestiaryEntry.Info.AddRange(new List<IBestiaryInfoElement> {
+                new FlavorTextBestiaryInfoElement("Empowered by unknown thanksgiving spirits, this mutant turkey poses a great danger to those who dare to cut a piece or two from its crunchy body.")
+			});
+		}
+
 		public override void FindFrame(int frameHeight) {
 			if (!NPC.AnyNPCs(ModContent.NPCType<TurkortheUngratefulHead>())) {
 				NPC.frameCounter += 0.15f;
@@ -56,7 +94,6 @@ namespace Consolaria.Content.NPCs.Turkor
 				NPC.frame.Y = frame * frameHeight;
 			}
 		}
-
 
 		private float posBX = 0f;
 		private float posBY = 0f;
@@ -81,7 +118,6 @@ namespace Consolaria.Content.NPCs.Turkor
 			return true;
 		}
 
-
 		private void HalfCircle() {
 			SoundEngine.PlaySound(2, (int)NPC.position.X, (int)NPC.position.Y, 71);
 			ushort type = (ushort)ModContent.ProjectileType<TurkorKnife>();
@@ -92,8 +128,8 @@ namespace Consolaria.Content.NPCs.Turkor
 			Projectile.NewProjectile(NPC.GetProjectileSpawnSource(), NPC.Center.X, NPC.Center.Y, -6, -4, type, (int)(NPC.damage / 2), 1, Main.myPlayer, 0, 0);
 			for (int num623 = (int)NPC.position.X - 20; num623 < (int)NPC.position.X + NPC.width + 40; num623 += 20) {
 				for (int num624 = 0; num624 < 4; num624 = num + 1) {
-					int num625 = Dust.NewDust(new Vector2(NPC.position.X - 20f, NPC.position.Y + NPC.height), NPC.width + 20, 4, 31, 0f, 0f, 100, default(Color), 1.5f);
-					Dust dust3 = Main.dust[num625];
+					int dust = Dust.NewDust(new Vector2(NPC.position.X - 20f, NPC.position.Y + NPC.height), NPC.width + 20, 4, 31, 0f, 0f, 100, default(Color), 1.5f);
+					Dust dust3 = Main.dust[dust];
 					dust3.velocity *= 0.2f;
 					num = num624;
 				}
@@ -131,8 +167,6 @@ namespace Consolaria.Content.NPCs.Turkor
 
 		//enraged mode
 		private bool enraged = false;
-
-
 
 		public override void AI() {
 			Player player = Main.player[NPC.target];
@@ -294,6 +328,38 @@ namespace Consolaria.Content.NPCs.Turkor
 					}
 				}
 			}
+		}
+
+        public override void HitEffect(int hitDirection, double damage) {
+			if (NPC.life <= 0) {
+				Gore.NewGore(NPC.position, new Vector2(Main.rand.Next(-5, 6), Main.rand.Next(-5, 6)), ModContent.Find<ModGore>("Consolaria/TurkorMeatGore").Type);
+				Gore.NewGore(NPC.position, new Vector2(Main.rand.Next(-5, 6), Main.rand.Next(-5, 6)), ModContent.Find<ModGore>("Consolaria/TurkorMeatGore").Type);
+				Gore.NewGore(NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), ModContent.Find<ModGore>("Consolaria/TurkorFeatherGore").Type);
+				Gore.NewGore(NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), ModContent.Find<ModGore>("Consolaria/TurkorFeatherGore").Type);
+				Gore.NewGore(NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), ModContent.Find<ModGore>("Consolaria/TurkorFeatherGore").Type);
+			}
+		}
+
+		public override void OnKill()
+			=> NPC.SetEventFlagCleared(ref DownedBossSystem.downedTurkor, -1);
+
+		public override void BossLoot(ref string name, ref int potionType)
+			=> potionType = ItemID.HealingPotion;
+
+		public override void ModifyNPCLoot(NPCLoot npcLoot) {
+			Conditions.NotExpert notExpert = new Conditions.NotExpert();
+			npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<TurkorBag>()));
+			//npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<LepusRelic>()));
+			//npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<LepusPet>()));
+
+			int mainDrops = Main.rand.Next(4);
+			npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<FeatherStorm>(), mainDrops == 0 ? 1 : 0));
+			npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<GreatDrumstick>(), mainDrops == 1 ? 1 : 0));
+			npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<TurkeyStuff>(), mainDrops == 2 ? 1 : 0));
+			npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<SpicySauce>(), mainDrops == 3 ? 1 : 0, 15, 34));
+
+			npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<TurkorMask>(), 7));
+			npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<TurkorTrophy>(), 10));
 		}
 	}
 }

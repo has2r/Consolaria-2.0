@@ -25,28 +25,40 @@ namespace Consolaria.Content.NPCs.Turkor
 		private bool chase = false;
 
 		public override void SetStaticDefaults() {
-			DisplayName.SetDefault("Turkor the Ungrateful");
+			DisplayName.SetDefault("Turkor the Ungrateful Head");
 			Main.npcFrameCount[NPC.type] = 3;
+
+			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0) {
+				Hide = true 
+			};
+			NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, value);
 		}
 
-		public override void SetDefaults()
-		{
-			NPC.width = 50;
-			NPC.height = 50;
-			NPC.aiStyle = -1;
+		public override void SetDefaults() {
+			int width = 50; int height = 100;
+			NPC.Size = new Vector2(width, height);
 
-			NPC.noGravity = true;
+			NPC.aiStyle = -1;
+			NPC.netAlways = true;
+
+			NPC.BossBar = null;
+
 			NPC.damage = 40;
 			NPC.defense = 10;
 			NPC.lifeMax = 1200;
+
 			NPC.dontTakeDamage = false;
+
 			NPC.HitSound = SoundID.NPCHit7;
-			NPC.DeathSound = SoundID.NPCDeath22;
+			NPC.DeathSound = SoundLoader.GetLegacySoundSlot(Mod, "Assets/Sounds/TurkorGobble");
+
 			NPC.knockBackResist = 0f;
 			NPC.noTileCollide = true;
+
 			NPC.alpha = 255;
+
 			NPC.lavaImmune = true;
-			NPC.netAlways = true;
+			NPC.noGravity = true;
 		}
 
 		public override void ScaleExpertStats(int numPlayers, float bossLifeScale) {
@@ -82,11 +94,11 @@ namespace Consolaria.Content.NPCs.Turkor
 			NPC.direction = Main.player[NPC.target].Center.X < NPC.Center.X ? -1 : 1;
 			if (!spawn) {
 				NPC.realLife = NPC.whoAmI;
-				int a = NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, ModContent.NPCType<TurkorNeck>(), NPC.whoAmI, 0, NPC.whoAmI); //, 1, NPC.ai[1]);
-				Main.npc[a].localAI[0] = 30;
-				Main.npc[a].realLife = NPC.whoAmI;
-				Main.npc[a].ai[0] = NPC.whoAmI;
-				Main.npc[a].ai[1] = NPC.whoAmI;//new
+				int neck = NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, ModContent.NPCType<TurkorNeck>(), NPC.whoAmI, 0, NPC.whoAmI); //, 1, NPC.ai[1]);
+				Main.npc[neck].localAI[0] = 30;
+				Main.npc[neck].realLife = NPC.whoAmI;
+				Main.npc[neck].ai[0] = NPC.whoAmI;
+				Main.npc[neck].ai[1] = NPC.whoAmI;
 				spawn = true;
 			}
 			if (!Main.npc[(int)NPC.ai[1]].active) {
@@ -132,11 +144,11 @@ namespace Consolaria.Content.NPCs.Turkor
 			//attack1: charge at player
 			if (charge) {
 				if (timer <= 230) {
-					NPC.rotation = Vector2.UnitY.RotatedBy((double)(timer / 40f * 6.28318548f), default(Vector2)).Y * 0.2f;
+					NPC.rotation = Vector2.UnitY.RotatedBy((double)(timer / 40f * 6.2f), default(Vector2)).Y * 0.2f;
 				}
 				if (timer >= 230) {
 					NPC.rotation = 0;
-					if (timer <= 230) SoundEngine.PlaySound(3, (int)NPC.position.X, (int)NPC.position.Y, 10);
+					if (timer <= 230) SoundEngine.PlaySound(SoundLoader.GetLegacySoundSlot(Mod, "Assets/Sounds/TurkorDoubleGobble"), NPC.position); // SoundEngine.PlaySound(3, (int)NPC.position.X, (int)NPC.position.Y, 10);
 					
 					NPC.velocity.X *= 0.98f;
 					NPC.velocity.Y *= 0.98f;
@@ -176,7 +188,6 @@ namespace Consolaria.Content.NPCs.Turkor
 					NPC.velocity.Y *= 0.86f;
 				}
 
-				//NPC.rotation = Vector2.UnitY.RotatedBy((double)(timer / 40f * 6.28318548f), default(Vector2)).Y * 0.2f;
 				if (timer % 80 == 0 && rotatepoint >= 1.5f) {
 					SoundEngine.PlaySound(2, (int)NPC.position.X, (int)NPC.position.Y, 42);
 					for (int i = 0; i < 3; i++)
@@ -197,38 +208,61 @@ namespace Consolaria.Content.NPCs.Turkor
 			if (!charge) {
 				if (!chase) {
 					if (Main.player[NPC.target].Center.X - Main.rand.Next(-200, 201) < NPC.Center.X)
+					{
 						if (NPC.velocity.X > -6) NPC.velocity.X -= 0.08f;
+					}
 					else if (Main.player[NPC.target].Center.X - Main.rand.Next(-200, 201) > NPC.Center.X)
-							if (NPC.velocity.X < 6) NPC.velocity.X += 0.08f;				
+					{
+						if (NPC.velocity.X < 6) NPC.velocity.X += 0.08f;
+					}
 					if (Main.player[NPC.target].Center.Y - Main.rand.Next(-150, 201) < NPC.Center.Y)
+					{
 						if (NPC.velocity.Y > -6) NPC.velocity.Y -= 0.14f;
+					}
 					else if (Main.player[NPC.target].Center.Y - Main.rand.Next(-150, 201) > NPC.Center.Y)
-							if (NPC.velocity.Y < 6) NPC.velocity.Y += 0.14f;		
+					{
+						if (NPC.velocity.Y < 6) NPC.velocity.Y += 0.14f;
+					}
 				}
 				else {
 					if (Main.npc[(int)NPC.ai[1]].Center.X - Main.rand.Next(-200, 201) < NPC.Center.X)
+					{
 						if (NPC.velocity.X > -6) NPC.velocity.X -= 0.08f;
+					}
 					else if (Main.npc[(int)NPC.ai[1]].Center.X - Main.rand.Next(-200, 201) > NPC.Center.X)
-							if (NPC.velocity.X < 6) NPC.velocity.X += 0.08f;
+					{
+						if (NPC.velocity.X < 6) NPC.velocity.X += 0.08f;
+					}
 					if (Main.npc[(int)NPC.ai[1]].Center.Y - Main.rand.Next(-150, 201) < NPC.Center.Y)
-						if (NPC.velocity.Y > -6) NPC.velocity.Y -= 0.14f;	
+					{
+						if (NPC.velocity.Y > -6) NPC.velocity.Y -= 0.14f;
+					}
 					else if (Main.npc[(int)NPC.ai[1]].Center.Y - Main.rand.Next(-150, 201) > NPC.Center.Y)
-							if (NPC.velocity.Y < 6) NPC.velocity.Y += 0.14f;		
+					{
+						if (NPC.velocity.Y < 6) NPC.velocity.Y += 0.14f;
+					}
 				}
-
 				Vector2 vector101 = new Vector2(NPC.Center.X, NPC.Center.Y);
 				float num855 = Main.npc[(int)NPC.ai[1]].Center.X - vector101.X;
 				float num856 = Main.npc[(int)NPC.ai[1]].Center.Y - vector101.Y;
 				float num857 = (float)Math.Sqrt((double)(num855 * num855 + num856 * num856));
-				if (num857 > 600f) chase = true;	
+				if (num857 > 600f) chase = true;		
 				if (num857 <= 400 && chase) chase = false;	
 			}
 		}
 
 		public override void HitEffect(int hitDirection, double damage) {
 			if (NPC.life <= 0) {
+				if (NPC.life <= 0) {
+					Gore.NewGore(NPC.position, new Vector2(Main.rand.Next(-3, 4), Main.rand.Next(-3, 4)), ModContent.Find<ModGore>("Consolaria/TurkorBeakGore").Type);
+					Gore.NewGore(NPC.position, new Vector2(Main.rand.Next(-5, 6), Main.rand.Next(-5, 6)), ModContent.Find<ModGore>("Consolaria/TurkorEyeGore").Type);
+					Gore.NewGore(NPC.position, new Vector2(Main.rand.Next(-5, 6), Main.rand.Next(-5, 6)), ModContent.Find<ModGore>("Consolaria/TurkorEyeGore").Type);
+					Gore.NewGore(NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), ModContent.Find<ModGore>("Consolaria/TurkorFeatherGore").Type);
+					Gore.NewGore(NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), ModContent.Find<ModGore>("Consolaria/TurkorFeatherGore").Type);
+					Gore.NewGore(NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), ModContent.Find<ModGore>("Consolaria/TurkorFeatherGore").Type);
+				}
 				for (int k = 0; k < 10; k++) {
-					int dust_ = Dust.NewDust(NPC.position, NPC.width, NPC.height, 26, 3f * hitDirection, -3f, 0, default(Color), 2f);
+					int dust_ = Dust.NewDust(NPC.position, NPC.width, NPC.height, 26, 3f * hitDirection, -3f, 0, default, 2f);
 					Main.dust[dust_].velocity *= 0.2f;
 				}
 			}

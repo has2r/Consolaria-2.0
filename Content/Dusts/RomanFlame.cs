@@ -1,3 +1,4 @@
+using Consolaria.Common;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
@@ -14,14 +15,14 @@ namespace Consolaria.Content.Dusts
 		}
 
         public override bool MidUpdate(Dust dust) {
-			dust.GetColor(ConsolePlayer.DiscoColor);
+			dust.GetColor(UtilsPlayer.DiscoColor);
 			if (!dust.noGravity) dust.velocity.Y += 0.05f;      
             if (!dust.noLight) 
-				Lighting.AddLight(dust.position, ConsolePlayer.DiscoColor.R * 0.0025f, ConsolePlayer.DiscoColor.G * 0.0025f, ConsolePlayer.DiscoColor.B * 0.0025f);		
+				Lighting.AddLight(dust.position, UtilsPlayer.DiscoColor.R * 0.0025f, UtilsPlayer.DiscoColor.G * 0.0025f, UtilsPlayer.DiscoColor.B * 0.0025f);		
 			return false;
 		}
 
 		public override Color? GetAlpha(Dust dust, Color lightColor)
-			=> ConsolePlayer.DiscoColor;
+			=> UtilsPlayer.DiscoColor;
 	}
 }

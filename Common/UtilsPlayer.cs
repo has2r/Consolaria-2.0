@@ -4,9 +4,9 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Consolaria 
+namespace Consolaria.Common
 {
-	public class ConsolePlayer : ModPlayer 
+	public class UtilsPlayer : ModPlayer 
 	{
         public static Color DiscoColor;
 

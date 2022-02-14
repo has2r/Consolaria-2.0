@@ -1,3 +1,4 @@
+using Consolaria.Common;
 using Consolaria.Content.Items.Summons;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -13,6 +14,12 @@ namespace Consolaria.Content.NPCs.Lepus
         public override void SetStaticDefaults() {
             DisplayName.SetDefault("Diseaster Bunny");
             Main.npcFrameCount[NPC.type] = 7;
+
+            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+            { 
+                Velocity = 1f
+            };
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
         }
 
         public override void SetDefaults() {
@@ -51,11 +58,13 @@ namespace Consolaria.Content.NPCs.Lepus
 
         public override void ModifyNPCLoot(NPCLoot npcLoot) {
             if (!NPC.AnyNPCs(ModContent.NPCType<Lepus>()))
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SuspiciousLookingEgg>(), 25)); //Drop Suspicious Looking Egg with a 1 out of 25 chance.
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SuspiciousLookingEgg>(), 10)); //Drop Suspicious Looking Egg with a 1 out of 10 chance.
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo) {
-            return SpawnCondition.OverworldDaySlime.Chance * 0.2f;
+            float spawnChance = DownedBossSystem.downedLepus ? 0.05f : 0.15f;
+            if (SeasonalEvents.enabled) return SeasonalEvents.isEaster ? SpawnCondition.OverworldDaySlime.Chance * spawnChance : 0f;
+            else return SpawnCondition.OverworldDaySlime.Chance * spawnChance;
         }
     }
 }

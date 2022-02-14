@@ -6,32 +6,22 @@ namespace Consolaria
 {
     public static class Helper
     {
-        public static bool Easter;
-        public static bool Thanksgiving;
-
-        public static void CheckEaster()
-        {
+        public static bool CheckEaster() {
             DateTime now = DateTime.Now;
             int day = now.Day;
             int month = now.Month;
-
-            if (ServerConfig.Instance.SeasonsEnabled)
-            {
-                if ((day >= 1 && month == 4) || (day <= 1 && month == 5)) Easter = true;
-                else Easter = false;
-            }
+            if ((day >= 1 && month == 4) || (day <= 1 && month == 5))
+                return true;
+            return false;
         }
 
-        public static void CheckThanksgiving()
-        {
+        public static bool CheckThanksgiving() {
             DateTime now = DateTime.Now;
             int day = now.Day;
             int month = now.Month;
-            if (ServerConfig.Instance.SeasonsEnabled)
-            {
-                if ((day > 1 && month == 1) || (day <= 1 && month == 12)) Thanksgiving = true;
-                else Thanksgiving = false;
-            }
+            if ((day > 1 && month == 1) || (day <= 1 && month == 12))
+                return true;
+            return false;          
         }
 
         public static Color FadeToColor(Color first, Color second, float blendSpeed, int alpha)

@@ -24,11 +24,7 @@ namespace Consolaria.Content.Projectiles.Friendly
         }
 
         public override void Kill(int timeLeft) {
-            if (Projectile.owner == Main.myPlayer) {
-                for (int k = 0; k < 5; k++)
-                     Dust.NewDust(Projectile.position + Projectile.velocity, Projectile.width, Projectile.height, 1, Projectile.oldVelocity.X * 0.1f, Projectile.oldVelocity.Y * 0.1f);               
-                SoundEngine.PlaySound(0, Projectile.Center, 0);
-            }
+            if (Projectile.owner == Main.myPlayer) SoundEngine.PlaySound(0, Projectile.Center, 0);   
         }
     }
 }

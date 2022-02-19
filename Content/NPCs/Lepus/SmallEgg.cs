@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 using Terraria.Audio;
+using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -11,9 +12,9 @@ namespace Consolaria.Content.NPCs.Lepus
     {
         private bool _checkSpawn;
 
-        public override void SetStaticDefaults() {
-            DisplayName.SetDefault("Lepus Egg");
-        }
+        public override void SetStaticDefaults() 
+            => DisplayName.SetDefault("Lepus Egg");
+        
 
         public override void SetDefaults()
         {
@@ -33,6 +34,13 @@ namespace Consolaria.Content.NPCs.Lepus
 
             NPC.noTileCollide = false;
             NPC.friendly = false;
+        }
+
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
+            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
+                new FlavorTextBestiaryInfoElement("LepusHelper.cs")
+            });
         }
 
         public override void AI() {

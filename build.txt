@@ -1,3 +1,12 @@
 displayName = Consolaria (1.4 Beta)
-author = Hastur, Mr.Pigeon, Drunken Cat, Synoxsis 
-version = 0.1
+author = HAS2R, peege.on, Drunken Cat, Synoxsis 
+
+version = 1.0.0.0
+homepage = https://forums.terraria.org/index.php?threads/consolaria.62570/
+
+hideCode = false
+hideResources = false
+includeSource = true
+
+buildIgnore = *.csproj, *..gitattributes, *.sln, *.user, obj\*, bin\*, .vs\*, Properties\*,
+includePDB = true

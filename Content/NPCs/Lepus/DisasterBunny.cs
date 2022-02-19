@@ -2,6 +2,7 @@ using Consolaria.Common;
 using Consolaria.Content.Items.Summons;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -40,6 +41,13 @@ namespace Consolaria.Content.NPCs.Lepus
             NPC.DeathSound = SoundID.NPCDeath1;
 
             NPC.noTileCollide = false;
+        }
+
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
+            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
+                new FlavorTextBestiaryInfoElement("LepusHelper.cs")
+            });
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale) {

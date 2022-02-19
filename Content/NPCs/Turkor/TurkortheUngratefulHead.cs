@@ -5,6 +5,7 @@ using Terraria.ID;
 using Microsoft.Xna.Framework;
 using Terraria.Audio;
 using Consolaria.Content.Projectiles.Enemies;
+using Terraria.DataStructures;
 
 namespace Consolaria.Content.NPCs.Turkor
 {
@@ -27,6 +28,14 @@ namespace Consolaria.Content.NPCs.Turkor
 		public override void SetStaticDefaults() {
 			DisplayName.SetDefault("Turkor the Ungrateful Head");
 			Main.npcFrameCount[NPC.type] = 3;
+
+			NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData {
+				SpecificallyImmuneTo = new int[] {
+					BuffID.Poisoned,
+					BuffID.Confused
+				}
+			};
+			NPCID.Sets.DebuffImmunitySets.Add(Type, debuffData);
 
 			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0) {
 				Hide = true 

@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 using Terraria.Audio;
+using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -10,12 +11,11 @@ namespace Consolaria.Content.NPCs.Lepus
     public class BigEgg : ModNPC
     {
         private bool _checkSpawn;
-        private int _changeRotation = -1; //important
+        private int _changeRotation = -1; 
 
-        public override void SetStaticDefaults() {
-            DisplayName.SetDefault("Lepus Egg");
-        }
-
+        public override void SetStaticDefaults()
+            => DisplayName.SetDefault("Lepus Egg");
+        
         public override void SetDefaults() {
             int width = 44; int height = 48;
             NPC.Size = new Vector2(width, height);
@@ -33,7 +33,14 @@ namespace Consolaria.Content.NPCs.Lepus
 
             NPC.friendly = false;
             NPC.noTileCollide = false;
-       }
+        }
+
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
+            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
+                new FlavorTextBestiaryInfoElement("LepusHelper.cs")
+            });
+        }
 
         public override void AI() {
             NPC.TargetClosest(true);
@@ -65,7 +72,7 @@ namespace Consolaria.Content.NPCs.Lepus
                     NPC.localAI[1] = 0;
                     NPC.rotation = 0;
                 }
-                else NPC.rotation += 0.08f * _changeRotation;       
+                else NPC.rotation += 0.08f * _changeRotation;
             }
         }
 

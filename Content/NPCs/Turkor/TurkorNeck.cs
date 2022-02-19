@@ -11,10 +11,15 @@ namespace Consolaria.Content.NPCs.Turkor
 		private int neck = 0;
 		private bool spawn = false;
 
-		public override void SetStaticDefaults() => DisplayName.SetDefault("");
+		public override void SetStaticDefaults() {
+			DisplayName.SetDefault("");
+			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0) {
+				Hide = true
+			};
+			NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, value);
+		}
 
-		public override void SetDefaults()
-		{
+		public override void SetDefaults() {
 			NPC.lifeMax = 1;
 			NPC.knockBackResist = 0.5f;
 			NPC.width = 18;
@@ -38,12 +43,8 @@ namespace Consolaria.Content.NPCs.Turkor
 			=> new Vector2((A.X + B.X - 50) / 2f, (A.Y + B.Y + 20) / 2f);
 
         public override void HitEffect(int hitDirection, double damage) {
-			if (NPC.life <= 0 || !NPC.active) {
-				for (int k = 0; k < 5; k++) {
-					int dust_ = Dust.NewDust(NPC.position, NPC.width, NPC.height, 26, 3f * hitDirection, -3f, 0, default(Color), NPC.scale);
-					Main.dust[dust_].velocity *= 0.2f;
-				}
-			}
+			if (NPC.life <= 0 || !NPC.active) 
+				Gore.NewGore(NPC.position, new Vector2(Main.rand.Next(-1, 1), Main.rand.Next(-1, 1)), ModContent.Find<ModGore>("Consolaria/TurkorNeck").Type);	
 		}
 
 		public override void AI() {

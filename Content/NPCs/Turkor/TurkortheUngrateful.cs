@@ -69,7 +69,7 @@ namespace Consolaria.Content.NPCs.Turkor
 
 			NPC.SpawnWithHigherTime(30);
 
-			//BossBag = ModContent.ItemType<MinionBossBag>();
+			BossBag = ModContent.ItemType<TurkorBag>();
 
 			if (!Main.dedServ) Music = MusicLoader.GetMusicSlot(Mod, "Assets/Music/Turkor");
 		}
@@ -82,7 +82,8 @@ namespace Consolaria.Content.NPCs.Turkor
 
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
 			bestiaryEntry.Info.AddRange(new List<IBestiaryInfoElement> {
-                new FlavorTextBestiaryInfoElement("Empowered by unknown thanksgiving spirits, this mutant turkey poses a great danger to those who dare to cut a piece or two from its crunchy body.")
+				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
+				new FlavorTextBestiaryInfoElement("Empowered by unknown thanksgiving spirits, this mutant turkey poses a great danger to those who dare to cut a piece or two from its crunchy body.")
 			});
 		}
 

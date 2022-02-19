@@ -12,6 +12,7 @@ namespace Consolaria.Content.Items.Accessories
     public class SparklyWings : ModItem
     {
         public override void SetStaticDefaults() {
+            Tooltip.SetDefault("Allows flight and slow fall");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
             ArmorIDs.Wing.Sets.Stats[Item.wingSlot] = new WingStats(160, 7f, 2f);
         }

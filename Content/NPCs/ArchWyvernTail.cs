@@ -62,7 +62,7 @@ namespace Consolaria.Content.NPCs
 			}
 			if (NPC.position.X > Main.npc[(int)NPC.ai[1]].position.X) NPC.spriteDirection = 1;	
 			if (NPC.position.X < Main.npc[(int)NPC.ai[1]].position.X) NPC.spriteDirection = -1;		
-			Projectile.NewProjectile(NPC.GetProjectileSpawnSource(), NPC.Center.X, NPC.Center.Y, 0, 0, ModContent.ProjectileType<FireTrail>(), NPC.damage / 4, 4f, NPC.whoAmI, 0, 0);
+			Projectile.NewProjectile(NPC.GetSpawnSource_ForProjectile(), NPC.Center.X, NPC.Center.Y, 0, 0, ModContent.ProjectileType<FireTrail>(), NPC.damage / 4, 4f, NPC.whoAmI, 0, 0);
 		}
 
 		public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {

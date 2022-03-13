@@ -40,12 +40,12 @@ namespace Consolaria.Content.Items.BossDrops.Lepus
         
         public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit) {
             if (chocolateEgg && target.type != ModContent.NPCType<ChocolateEgg>() && target.life <= 0 && !NPCID.Sets.CountsAsCritter[target.type] && Main.rand.Next(2) == 0)
-                NPC.NewNPC((int)target.Center.X, (int)target.Center.Y, ModContent.NPCType<ChocolateEgg>());  
+                NPC.NewNPC(target.GetSpawnSourceForNPCFromNPCAI(),(int)target.Center.X, (int)target.Center.Y, ModContent.NPCType<ChocolateEgg>());  
         }
 
         public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit) {
             if (chocolateEgg && target.type != ModContent.NPCType<ChocolateEgg>() && target.life <= 0 && !NPCID.Sets.CountsAsCritter[target.type] && Main.rand.Next(2) == 0)
-                NPC.NewNPC((int)target.Center.X, (int)target.Center.Y, ModContent.NPCType<ChocolateEgg>());
+                NPC.NewNPC(target.GetSpawnSourceForNPCFromNPCAI(),(int)target.Center.X, (int)target.Center.Y, ModContent.NPCType<ChocolateEgg>());
         }
     }
 }

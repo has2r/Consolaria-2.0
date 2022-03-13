@@ -45,7 +45,7 @@ namespace Consolaria.Content.Items.Weapons.Ranged
 			position += new Vector2(-_velocity.Y, _velocity.X) * (-2f * player.direction);
 		}
 
-		public override bool Shoot(Player player, ProjectileSource_Item_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
+		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
 			int _randomCount = Main.rand.Next(1, 4);
 			for (int i = 0; i < _randomCount; i++) {
 				float _randomVel = Main.rand.Next(-15, 15) * 0.035f;

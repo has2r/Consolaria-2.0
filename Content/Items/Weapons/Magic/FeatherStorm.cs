@@ -41,8 +41,8 @@ namespace Consolaria.Content.Items.Weapons.Magic
             Item.shootSpeed = 8f;
         }
 
-        public override bool Shoot(Player player, ProjectileSource_Item_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
-            int numberProjectiles = 3 + Main.rand.Next(2);  
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
+        int numberProjectiles = 3 + Main.rand.Next(2);  
             for (int index = 0; index < numberProjectiles; ++index) {
                 Vector2 vector2_1 = new Vector2((float)((double)player.position.X + (double)player.width * 0.5 + (double)(Main.rand.Next(201) * -player.direction) + ((double)Main.mouseX + (double)Main.screenPosition.X - (double)player.position.X)), (float)((double)player.position.Y + (double)player.height * 0.5 - 600));   
                 vector2_1.X = (float)((vector2_1.X + player.Center.X) / 2.0) + (float)Main.rand.Next(-200, 201);

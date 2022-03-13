@@ -90,7 +90,7 @@ namespace Consolaria.Content.NPCs
 
 			shootTimer++;
 			if (shootTimer >= 50 && shootTimer % 5 == 0) {
-				Projectile.NewProjectile(NPC.GetProjectileSpawnSource(), NPC.Center.X + 5, NPC.Center.Y, NPC.velocity.X * 2f, NPC.velocity.Y * 2f, ModContent.ProjectileType<ArchFlames>(), NPC.damage / 2, 4f, 255, 0, 0);
+				Projectile.NewProjectile(NPC.GetSpawnSource_ForProjectile(), NPC.Center.X + 5, NPC.Center.Y, NPC.velocity.X * 2f, NPC.velocity.Y * 2f, ModContent.ProjectileType<ArchFlames>(), NPC.damage / 2, 4f, 255, 0, 0);
 				SoundEngine.PlaySound(SoundID.Item20, NPC.position);
 			}
 			if (shootTimer >= 70) shootTimer = 0;
@@ -113,7 +113,7 @@ namespace Consolaria.Content.NPCs
 								}
 							}
 						}
-						int num99 = NPC.NewNPC((int)(NPC.position.X + (NPC.width / 2)), (int)(NPC.position.Y + NPC.height), num98, NPC.whoAmI);
+						int num99 = NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), ((int)NPC.position.X + (NPC.width / 2)), (int)(NPC.position.Y + NPC.height), num98, NPC.whoAmI);
 						Main.npc[num99].ai[2] = NPC.whoAmI;
 						Main.npc[num99].realLife = NPC.whoAmI;
 						Main.npc[num99].ai[1] = num96;

@@ -11,6 +11,7 @@ namespace Consolaria.Content.NPCs.Lepus
     public class SmallEgg : ModNPC
     {
         private bool _checkSpawn;
+        private int timer = 0;
 
         public override void SetStaticDefaults() 
             => DisplayName.SetDefault("Lepus Egg");
@@ -38,31 +39,37 @@ namespace Consolaria.Content.NPCs.Lepus
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
-                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheHallow,
                 new FlavorTextBestiaryInfoElement("LepusHelper.cs")
             });
         }
 
-        public override void AI() {
-            NPC.TargetClosest(true);
-            if (!_checkSpawn) {
-                Vector2 vector7 = new Vector2(NPC.position.X + (NPC.width * 0.5f), NPC.position.Y + (NPC.height * 0.5f));
-                float rotation0 = (float)Math.Atan2((vector7.Y) - (Main.player[NPC.target].oldPosition.Y - (Main.player[NPC.target].height * 0.5f)), (vector7.X) - (Main.player[NPC.target].oldPosition.X + (Main.player[NPC.target].width * 0.5f)));
-                NPC.velocity.X = (float)(Math.Cos(rotation0) * 12) * -1;
-                NPC.velocity.Y = (float)(Math.Sin(rotation0) * 12) * -1;
-                _checkSpawn = true;
+        public override void AI()
+        {
+            timer++;
+            NPC.scale = (Main.mouseTextColor / 200f - 0.35f) * 0.46f + .8f;
+            for (int i = NPC.oldPos.Length - 1; i > 0; i--)
+                NPC.oldPos[i] = NPC.oldPos[i - 1];
+            NPC.oldPos[0] = NPC.position;
+            float h = 1f;
+            if (timer >= 25 && h > 0)
+            {
+                h -= 0.05f;
+                NPC.velocity *= h;
             }
+            else NPC.rotation = NPC.velocity.X / 15f;
 
-            NPC.localAI[0]++;
-            if (NPC.localAI[0] >= 360) {
+            if (timer >= 360) {             
                 int gore1 = ModContent.Find<ModGore>("Consolaria/EggShell").Type;
                 for (int i = 0; i < 1; i++) {
                     Gore.NewGore(NPC.position, new Vector2(Main.rand.Next(-1, 1), Main.rand.Next(-1, 1)), gore1);
                     Gore.NewGore(NPC.position, new Vector2(Main.rand.Next(-1, 1), Main.rand.Next(-1, 1)), gore1);
                 }
+                NPC.velocity.X = 0;
                 NPC.Transform(ModContent.NPCType<DisasterBunny>());
             }
         }
+        
 
         public override void HitEffect(int hitDirection, double damage) {
             if (NPC.life <= 0) {

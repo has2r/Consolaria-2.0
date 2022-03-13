@@ -8,5 +8,5 @@ hideCode = false
 hideResources = false
 includeSource = true
 
-buildIgnore = *.csproj, *..gitattributes, *.sln, *.user, obj\*, bin\*, .vs\*, Properties\*,
+buildIgnore = *.csproj, *..gitattributes, *.sln, *.user, obj\*, bin\*, .vs\*, Properties\*
 includePDB = true

@@ -69,8 +69,6 @@ namespace Consolaria.Content.NPCs.Turkor
 
 			NPC.SpawnWithHigherTime(30);
 
-			BossBag = ModContent.ItemType<TurkorBag>();
-
 			if (!Main.dedServ) Music = MusicLoader.GetMusicSlot(Mod, "Assets/Music/Turkor");
 		}
 
@@ -122,11 +120,11 @@ namespace Consolaria.Content.NPCs.Turkor
 		private void HalfCircle() {
 			SoundEngine.PlaySound(2, (int)NPC.position.X, (int)NPC.position.Y, 71);
 			ushort type = (ushort)ModContent.ProjectileType<TurkorKnife>();
-			Projectile.NewProjectile(NPC.GetProjectileSpawnSource(), NPC.Center.X, NPC.Center.Y, 8, 0, type, (int)(NPC.damage / 2), 1, Main.myPlayer, 0, 0);
-			Projectile.NewProjectile(NPC.GetProjectileSpawnSource(), NPC.Center.X, NPC.Center.Y, 6, -4, type, (int)(NPC.damage / 2), 1, Main.myPlayer, 0, 0);
-			Projectile.NewProjectile(NPC.GetProjectileSpawnSource(), NPC.Center.X, NPC.Center.Y, 0, -6, type, (int)(NPC.damage / 2), 1, Main.myPlayer, 0, 0);
-			Projectile.NewProjectile(NPC.GetProjectileSpawnSource(), NPC.Center.X, NPC.Center.Y, -8, 0, type, (int)(NPC.damage / 2), 1, Main.myPlayer, 0, 0);
-			Projectile.NewProjectile(NPC.GetProjectileSpawnSource(), NPC.Center.X, NPC.Center.Y, -6, -4, type, (int)(NPC.damage / 2), 1, Main.myPlayer, 0, 0);
+			Projectile.NewProjectile(NPC.GetSpawnSource_ForProjectile(), NPC.Center.X, NPC.Center.Y, 8, 0, type, (int)(NPC.damage / 2), 1, Main.myPlayer, 0, 0);
+			Projectile.NewProjectile(NPC.GetSpawnSource_ForProjectile(), NPC.Center.X, NPC.Center.Y, 6, -4, type, (int)(NPC.damage / 2), 1, Main.myPlayer, 0, 0);
+			Projectile.NewProjectile(NPC.GetSpawnSource_ForProjectile(), NPC.Center.X, NPC.Center.Y, 0, -6, type, (int)(NPC.damage / 2), 1, Main.myPlayer, 0, 0);
+			Projectile.NewProjectile(NPC.GetSpawnSource_ForProjectile(), NPC.Center.X, NPC.Center.Y, -8, 0, type, (int)(NPC.damage / 2), 1, Main.myPlayer, 0, 0);
+			Projectile.NewProjectile(NPC.GetSpawnSource_ForProjectile(), NPC.Center.X, NPC.Center.Y, -6, -4, type, (int)(NPC.damage / 2), 1, Main.myPlayer, 0, 0);
 			for (int num623 = (int)NPC.position.X - 20; num623 < (int)NPC.position.X + NPC.width + 40; num623 += 20) {
 				for (int num624 = 0; num624 < 4; num624 = num + 1) {
 					int dust = Dust.NewDust(new Vector2(NPC.position.X - 20f, NPC.position.Y + NPC.height), NPC.width + 20, 4, 31, 0f, 0f, 100, default(Color), 1.5f);
@@ -222,7 +220,7 @@ namespace Consolaria.Content.NPCs.Turkor
 			if (!headSpawned) {
 				headSpawned = true;
 				for (int i = 0; i < headNumber; ++i) {
-					turkorHead_ = NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, turkorHead);
+					turkorHead_ = NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)NPC.position.X, (int)NPC.position.Y, turkorHead);
 					NPC npc = Main.npc[turkorHead_];
 					npc.velocity.X = Main.rand.Next(-6, 7);
 					npc.velocity.Y = Main.rand.Next(-6, 7);
@@ -239,7 +237,7 @@ namespace Consolaria.Content.NPCs.Turkor
 						posX = Main.player[NPC.target].position.X;
 						posY = Main.player[NPC.target].position.Y;
 						Vector2 Velocity = Vector2.Normalize(Main.player[NPC.target].Center - NPC.Center) * 14;
-						Projectile.NewProjectile(NPC.GetProjectileSpawnSource(), NPC.Center.X, NPC.Center.Y, Velocity.X, Velocity.Y, ModContent.ProjectileType<Pointer>(), 0, 1, Main.myPlayer, 0, 0);
+						Projectile.NewProjectile(NPC.GetSpawnSource_ForProjectile(), NPC.Center.X, NPC.Center.Y, Velocity.X, Velocity.Y, ModContent.ProjectileType<Pointer>(), 0, 1, Main.myPlayer, 0, 0);
 						findplayer = true;
 					}
 					if (findplayer && timer >= 160) {
@@ -247,7 +245,7 @@ namespace Consolaria.Content.NPCs.Turkor
 						float rotation0 = (float)Math.Atan2((vector8.Y) - (posY + (Main.player[NPC.target].height * 0.5f)), (vector8.X) - (posX + (Main.player[NPC.target].width * 0.5f)));
 						if (timer % 5 == 0) {
 							SoundEngine.PlaySound(2, (int)NPC.position.X, (int)NPC.position.Y, 42);
-							int a = Projectile.NewProjectile(NPC.GetProjectileSpawnSource(), NPC.Center.X, NPC.Center.Y, 0, 0, ModContent.ProjectileType<TurkorFeather>(), (int)(NPC.damage / 2), 1, Main.myPlayer, 0, 0);
+							int a = Projectile.NewProjectile(NPC.GetSpawnSource_ForProjectile(), NPC.Center.X, NPC.Center.Y, 0, 0, ModContent.ProjectileType<TurkorFeather>(), (int)(NPC.damage / 2), 1, Main.myPlayer, 0, 0);
 							Main.projectile[a].aiStyle = -1;
 							Main.projectile[a].velocity.X = (float)(Math.Cos(rotation0) * 18) * -1 + Main.rand.Next(-3, 3);
 							Main.projectile[a].velocity.Y = (float)(Math.Sin(rotation0) * 18) * -1 + Main.rand.Next(-3, 3);

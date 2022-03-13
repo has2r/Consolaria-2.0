@@ -103,7 +103,7 @@ namespace Consolaria.Content.NPCs.Turkor
 			NPC.direction = Main.player[NPC.target].Center.X < NPC.Center.X ? -1 : 1;
 			if (!spawn) {
 				NPC.realLife = NPC.whoAmI;
-				int neck = NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, ModContent.NPCType<TurkorNeck>(), NPC.whoAmI, 0, NPC.whoAmI); //, 1, NPC.ai[1]);
+				int neck = NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)NPC.position.X, (int)NPC.position.Y, ModContent.NPCType<TurkorNeck>(), NPC.whoAmI, 0, NPC.whoAmI); //, 1, NPC.ai[1]);
 				Main.npc[neck].localAI[0] = 30;
 				Main.npc[neck].realLife = NPC.whoAmI;
 				Main.npc[neck].ai[0] = NPC.whoAmI;
@@ -200,7 +200,7 @@ namespace Consolaria.Content.NPCs.Turkor
 				if (timer % 80 == 0 && rotatepoint >= 1.5f) {
 					SoundEngine.PlaySound(2, (int)NPC.position.X, (int)NPC.position.Y, 42);
 					for (int i = 0; i < 3; i++)
-						Projectile.NewProjectile(NPC.GetProjectileSpawnSource(), NPC.Center.X, NPC.Center.Y, Main.rand.Next(0, 8) * NPC.direction, -10 + Main.rand.Next(-3, 3), ModContent.ProjectileType<TurkorFeather>(), (int)(NPC.damage / 3), 1, Main.myPlayer, 0, 0);				
+						Projectile.NewProjectile(NPC.GetSpawnSource_ForProjectile(), NPC.Center.X, NPC.Center.Y, Main.rand.Next(0, 8) * NPC.direction, -10 + Main.rand.Next(-3, 3), ModContent.ProjectileType<TurkorFeather>(), (int)(NPC.damage / 3), 1, Main.myPlayer, 0, 0);				
 					NPC.velocity.Y = 5;
 				}
 				if (timer >= 360) {

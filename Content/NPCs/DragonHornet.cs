@@ -81,7 +81,7 @@ namespace Consolaria.Content.NPCs
 			if (NPC.ai[2] >= 0f && Collision.CanHit(NPC.position, NPC.width, NPC.height, player.position, player.width, player.height)) {
 				float vel = (float)Math.Atan2((vector2.Y - vector.Y), (vector2.X - vector.X));
 				SoundEngine.PlaySound(2, (int)NPC.position.X, (int)NPC.position.Y, 17, 1f, 0f);
-				Projectile.NewProjectile(NPC.GetProjectileSpawnSource(), NPC.Center.X, NPC.Center.Y, (float)(Math.Cos(vel) * 10.0 * -1.0), (float)(Math.Sin(vel) * 10.0 * -1.0), 55, 20, 1f);
+				Projectile.NewProjectile(NPC.GetSpawnSource_ForProjectile(), NPC.Center.X, NPC.Center.Y, (float)(Math.Cos(vel) * 10.0 * -1.0), (float)(Math.Sin(vel) * 10.0 * -1.0), 55, 20, 1f);
 				NPC.ai[2] = -120f;
 				NPC.netUpdate = true;
 			}

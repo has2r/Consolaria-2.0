@@ -56,23 +56,23 @@ namespace Consolaria.Content.Items.BossDrops.Lepus
 
             if (Main.rand.Next(2) == 0)
             {
-                player.QuickSpawnItem(ModContent.ItemType<EggCannon>());
+                player.QuickSpawnItem(player.GetItemSource_OpenItem(Type), ModContent.ItemType<EggCannon>());
             }
             if (Main.rand.Next(10) == 0)
             {
-                player.QuickSpawnItem(ModContent.ItemType<LepusMask>());
+                player.QuickSpawnItem(player.GetItemSource_OpenItem(Type), ModContent.ItemType<LepusMask>());
             }
             if (Main.rand.Next(10) == 0)
             {
-                player.QuickSpawnItem(ModContent.ItemType<LepusTrophy>());
+                player.QuickSpawnItem(player.GetItemSource_OpenItem(Type), ModContent.ItemType<LepusTrophy>());
             }
             if (Main.rand.Next(10) == 0)
             {
-                player.QuickSpawnItem(ItemID.BunnyHood);
+                player.QuickSpawnItem(player.GetItemSource_OpenItem(Type), ItemID.BunnyHood);
             }
 
-            player.QuickSpawnItem(ModContent.ItemType<SuspiciousLookingEgg>());
-            player.QuickSpawnItem(ModContent.ItemType<OstarasGift>());
+            player.QuickSpawnItem(player.GetItemSource_OpenItem(Type), ModContent.ItemType<SuspiciousLookingEgg>());
+            player.QuickSpawnItem(player.GetItemSource_OpenItem(Type), ModContent.ItemType<OstarasGift>());
         }
 
         public override Color? GetAlpha(Color lightColor)

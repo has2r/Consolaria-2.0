@@ -107,7 +107,7 @@ namespace Consolaria.Content.NPCs
 			}
 
 			if (timer == 100)
-				Projectile.NewProjectile(NPC.GetProjectileSpawnSource(), NPC.Center, new Vector2(6f, -6f).RotatedBy(NPC.rotation + 180), ProjectileID.JungleSpike, (int)(NPC.damage / 2), 1, player.whoAmI);
+				Projectile.NewProjectile(NPC.GetSpawnSource_ForProjectile(), NPC.Center, new Vector2(6f, -6f).RotatedBy(NPC.rotation + 180), ProjectileID.JungleSpike, (int)(NPC.damage / 2), 1, player.whoAmI);
 			
 			if (posX < NPC.position.X)
 			{

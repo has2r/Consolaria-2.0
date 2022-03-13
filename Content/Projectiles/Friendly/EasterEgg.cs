@@ -21,10 +21,10 @@ namespace Consolaria.Content.Projectiles.Friendly
         }
 
         public override void Kill(int timeLeft) {
-            if (Main.rand.Next(100) == 0) NPC.NewNPC((int)Projectile.Center.X, (int)Projectile.Center.Y, NPCID.Bunny);
-            if (Main.rand.Next(100) == 0) NPC.NewNPC((int)Projectile.Center.X, (int)Projectile.Center.Y, NPCID.Bird);
-            if (Main.rand.Next(150) == 0) NPC.NewNPC((int)Projectile.Center.X, (int)Projectile.Center.Y, NPCID.CorruptBunny);        
-            if (Main.rand.Next(150) == 0) NPC.NewNPC((int)Projectile.Center.X, (int)Projectile.Center.Y, NPCID.CrimsonBunny);          
+            if (Main.rand.Next(100) == 0) NPC.NewNPC(null,(int)Projectile.Center.X, (int)Projectile.Center.Y, NPCID.Bunny);
+            if (Main.rand.Next(100) == 0) NPC.NewNPC(null,(int)Projectile.Center.X, (int)Projectile.Center.Y, NPCID.Bird);
+            if (Main.rand.Next(150) == 0) NPC.NewNPC(null,(int)Projectile.Center.X, (int)Projectile.Center.Y, NPCID.CorruptBunny);        
+            if (Main.rand.Next(150) == 0) NPC.NewNPC(null,(int)Projectile.Center.X, (int)Projectile.Center.Y, NPCID.CrimsonBunny);          
             
             int EasterEggGoreType = ModContent.Find<ModGore>("Consolaria/EasterEggGore").Type;
             for (int i = 0; i < 1; i++) {

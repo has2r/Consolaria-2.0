@@ -107,7 +107,7 @@ namespace Consolaria.Content.NPCs
 					vel2_ = vel_ / vel2_;
 					velX *= vel2_;
 					velY *= vel2_;
-					ushort pro = (ushort)Projectile.NewProjectile(NPC.GetProjectileSpawnSource(), shootVector.X, shootVector.Y, velX, velY, ModContent.ProjectileType<ArchScythe>(), 52, 0f, player.whoAmI);
+					ushort pro = (ushort)Projectile.NewProjectile(NPC.GetSpawnSource_ForProjectile(), shootVector.X, shootVector.Y, velX, velY, ModContent.ProjectileType<ArchScythe>(), 52, 0f, player.whoAmI);
 					Main.projectile[pro].timeLeft = 300;
 					SoundEngine.PlaySound(SoundID.Item8, NPC.position);
 				}

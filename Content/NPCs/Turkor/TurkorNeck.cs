@@ -52,7 +52,7 @@ namespace Consolaria.Content.NPCs.Turkor
 			if (!spawn && NPC.localAI[0] > 0) {
 				spawn = true;
 				NPC.realLife = NPC.whoAmI;
-				neck = NPC.NewNPC((int)NPC.Center.X, (int)NPC.Center.Y + 20, ModContent.NPCType<TurkorNeck>(), NPC.whoAmI, 0, NPC.whoAmI);
+				neck = NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)NPC.Center.X, (int)NPC.Center.Y + 20, ModContent.NPCType<TurkorNeck>(), NPC.whoAmI, 0, NPC.whoAmI);
 				Main.npc[neck].localAI[0] = NPC.localAI[0] - 1;
 				Main.npc[neck].ai[0] = NPC.whoAmI;
 				Main.npc[neck].ai[1] = Main.npc[(int)NPC.ai[1]].whoAmI;

@@ -38,7 +38,7 @@ namespace Consolaria.Content.Items.BossDrops.Ocram
         }
     }
 
-    public class RocketJumpPlayer : ModPlayer
+    internal class RocketJumpPlayer : ModPlayer
     {
         public bool ocramJump;
         public int rocketJumpDamage, rocketTimer;

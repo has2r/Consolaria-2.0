@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\HASTUR\\Documents\\My Games\\Terraria\\ModLoader\\Beta\\Mod Sources\\Consolaria\\Consolaria.csproj": {}
+    "C:\\Users\\HASTUR\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Consolaria\\Consolaria.csproj": {}
   },
   "projects": {
-    "C:\\Users\\HASTUR\\Documents\\My Games\\Terraria\\ModLoader\\Beta\\Mod Sources\\Consolaria\\Consolaria.csproj": {
+    "C:\\Users\\HASTUR\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Consolaria\\Consolaria.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\HASTUR\\Documents\\My Games\\Terraria\\ModLoader\\Beta\\Mod Sources\\Consolaria\\Consolaria.csproj",
+        "projectUniqueName": "C:\\Users\\HASTUR\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Consolaria\\Consolaria.csproj",
         "projectName": "Consolaria",
-        "projectPath": "C:\\Users\\HASTUR\\Documents\\My Games\\Terraria\\ModLoader\\Beta\\Mod Sources\\Consolaria\\Consolaria.csproj",
+        "projectPath": "C:\\Users\\HASTUR\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Consolaria\\Consolaria.csproj",
         "packagesPath": "C:\\Users\\HASTUR\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\HASTUR\\Documents\\My Games\\Terraria\\ModLoader\\Beta\\Mod Sources\\Consolaria\\obj\\",
+        "outputPath": "C:\\Users\\HASTUR\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Consolaria\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\HASTUR\\AppData\\Roaming\\NuGet\\NuGet.Config",

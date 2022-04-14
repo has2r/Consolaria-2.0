@@ -2,6 +2,7 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.GameContent.Creative;
 
 namespace Consolaria.Content.Items.Armor.Misc
 {
@@ -11,6 +12,8 @@ namespace Consolaria.Content.Items.Armor.Misc
 		public override void SetStaticDefaults() {
 			DisplayName.SetDefault("Hat of Ostara");
 			Tooltip.SetDefault("5% increased movement speed");
+
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
 		public override void SetDefaults() {

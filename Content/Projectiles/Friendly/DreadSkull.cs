@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
@@ -64,7 +65,7 @@ namespace Consolaria.Content.Projectiles.Friendly
                 if (Main.npc[_npc].CanBeChasedBy(Projectile, false) && Projectile.Distance(Main.npc[_npc].Center) < maxDetectRadius && Collision.CanHit(Projectile.Center, 1, 1, Main.npc[_npc].Center, 1, 1)) {
                     float npsPosX = Main.npc[_npc].position.X + (Main.npc[_npc].width / 2);
                     float npsPosY = Main.npc[_npc].position.Y + (Main.npc[_npc].height / 2);
-                    float dist = System.Math.Abs(Projectile.position.X + (Projectile.width / 2) - npsPosX) + System.Math.Abs(Projectile.position.Y + (Projectile.height / 2) - npsPosY);
+                    float dist = Math.Abs(Projectile.position.X + (Projectile.width / 2) - npsPosX) + Math.Abs(Projectile.position.Y + (Projectile.height / 2) - npsPosY);
                     if (dist < maxDetectRadius) {
                         maxDetectRadius = dist;
                         posX = npsPosX;
@@ -78,7 +79,7 @@ namespace Consolaria.Content.Projectiles.Friendly
             Vector2 vector2 = new Vector2(Projectile.position.X + Projectile.width * 0.5f, Projectile.position.Y + Projectile.height * 0.5f);
             float posX2 = posX - vector2.X;
             float posY2 = posY - vector2.Y;
-            float vel = (float)System.Math.Sqrt(posX2 * (double)posX2 + posY2 * posY2);
+            float vel = (float)Math.Sqrt(posX2 * (double)posX2 + posY2 * posY2);
             float vel2 = homingSpeed / vel;
             float velX = posX2 * vel2;
             float velY = posY2 * vel2;

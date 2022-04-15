@@ -12,7 +12,7 @@ namespace Consolaria.Content.Items.Armor.Magic
     {
         public override void SetStaticDefaults() {
             DisplayName.SetDefault("Phantasmal Subligar");
-            Tooltip.SetDefault("12% increased movement speed" + "\n6% increased magical damage" + "\nIncreases maximum mana by 30");
+            Tooltip.SetDefault("6% increased magic damage" + "\n12% increased movement speed" + "\nIncreases maximum mana by 30");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }

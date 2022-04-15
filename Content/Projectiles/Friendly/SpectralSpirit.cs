@@ -11,7 +11,7 @@ namespace Consolaria.Content.Projectiles.Friendly
         public override string Texture => "Consolaria/Assets/Textures/Empty";
 
         public override void SetDefaults() {
-            int width = 14; int height = width;
+            int width = 8; int height = width;
             Projectile.Size = new Vector2(width, height);
 
             Projectile.friendly = true;
@@ -27,9 +27,9 @@ namespace Consolaria.Content.Projectiles.Friendly
         public override void AI() {
             for (int dustCount = 0; dustCount < 3; ++dustCount) {
                 float dustVelX = Projectile.velocity.X / 4f * dustCount;
-                float dustVelY = Projectile.velocity.Y / 4f * dustCount;
+                float dustVelY = Projectile.velocity.Y / 3f * dustCount;
 
-                int dust_ = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.GoldFlame, 0f, 0f, 0, default, 1.25f);
+                int dust_ = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.GoldFlame, 0f, 0f, 0, default, 1.5f);
                 Main.dust[dust_].position.X = Projectile.Center.X - dustVelX;
                 Main.dust[dust_].position.Y = Projectile.Center.Y - dustVelY;
                 Main.dust[dust_].velocity *= 0.0f;
@@ -37,7 +37,7 @@ namespace Consolaria.Content.Projectiles.Friendly
                 Main.dust[dust_].noLight = true;
 
                 if (Main.rand.Next(2) == 0) {
-                    int dust2_ = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Shadowflame, 0f, 0f, 100, new Color(255, 255, 255, 200), 1.1f);
+                    int dust2_ = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Shadowflame, 0f, 0f, 100, new Color(255, 255, 255, 200), 1.35f);
                     Main.dust[dust2_].position.X = Projectile.Center.X - dustVelX;
                     Main.dust[dust2_].position.Y = Projectile.Center.Y - dustVelY;
                     Main.dust[dust2_].velocity *= 0.0f;

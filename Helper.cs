@@ -1,6 +1,7 @@
 ﻿using Terraria;
 using Microsoft.Xna.Framework;
 using System;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Consolaria
 {
@@ -31,6 +32,22 @@ namespace Consolaria
             int b = (int)(second.B * blendSpeed + first.B * (1f - blendSpeed));
             int a = alpha;
             return new Color(r, g, b, a);
+        }
+
+        public static void BasicInWorldGlowmask(this Item item, SpriteBatch spriteBatch, Texture2D glowTexture, Color color, float rotation, float scale) {
+            spriteBatch.Draw(
+                glowTexture,
+                new Vector2(
+                    item.position.X - Main.screenPosition.X + item.width * 0.5f,
+                    item.position.Y - Main.screenPosition.Y + item.height - glowTexture.Height * 0.5f
+                ),
+                new Rectangle(0, 0, glowTexture.Width, glowTexture.Height),
+                color,
+                rotation,
+                glowTexture.Size() * 0.5f,
+                scale,
+                SpriteEffects.None,
+                0f);
         }
 
         public static Vector2 RandomPositon(Vector2 pos1, Vector2 pos2)

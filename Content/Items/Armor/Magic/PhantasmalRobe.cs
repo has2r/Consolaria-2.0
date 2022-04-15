@@ -12,7 +12,7 @@ namespace Consolaria.Content.Items.Armor.Magic
     {
         public override void SetStaticDefaults() {
             DisplayName.SetDefault("Phantasmal Robe");
-            Tooltip.SetDefault("7% increased magical damage" + "\n4% increased magical critical strike chance" + "\nIncreases maximum mana by 50");
+            Tooltip.SetDefault("7% increased magic damage" + "\n4% increased magic critical strike chance" + "\nIncreases maximum mana by 50");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }

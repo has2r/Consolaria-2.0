@@ -2,6 +2,7 @@ using Consolaria.Content.Items.Materials;
 using Consolaria.Content.Projectiles.Friendly;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.Audio;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -13,7 +14,7 @@ namespace Consolaria.Content.Items.Armor.Melee
     {
         public override void SetStaticDefaults() {
             DisplayName.SetDefault("Dragon Mask");
-            Tooltip.SetDefault("10% increased melee speed and damage");
+            Tooltip.SetDefault("10% increased melee damage" + "\n10% increased melee speed");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
@@ -42,9 +43,11 @@ namespace Consolaria.Content.Items.Armor.Melee
         public override void UpdateArmorSet(Player player) {
             player.setBonus = "Creates a burst of flames after taking damage";
             player.GetModPlayer<DragonPlayer>().dragonBurst = true;
-            Lighting.AddLight((int)(player.position.X / 16.0), (int)(player.position.Y / 16.0), 0.4f, 0.4f, 0.9f);
         }
 
+        public override void UpdateVanitySet(Player player)
+            => Lighting.AddLight(player.Center, 0.4f, 0.3f, 0.9f);
+        
         public override void AddRecipes() {
             CreateRecipe()
                 .AddIngredient(ItemID.HallowedMask)
@@ -74,8 +77,9 @@ namespace Consolaria.Content.Items.Armor.Melee
                 position = new(Player.direction > 0 ? Player.Center.X + 15 : Player.Center.X - 15, Player.Center.Y - 5);
                 for (int i = 0; i < projectilesCount; i++) {
                     Vector2 perturbedSpeed = velocity.RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (projectilesCount - 1))) * 1.1f;
-                    Projectile.NewProjectile(Player.GetItemSource_Misc(-1), position, perturbedSpeed, ModContent.ProjectileType<DragonFlame>(), 50, 4.5f, Player.whoAmI);
+                    Projectile.NewProjectile(Player.GetItemSource_Misc(-1), position, perturbedSpeed, ModContent.ProjectileType<DragonFlame>(), (int)(50 * Player.GetDamage(DamageClass.Melee)), 4.5f, Player.whoAmI);
                 }
+                SoundEngine.PlaySound(SoundID.DD2_PhantomPhoenixShot, Player.Center);
             }
         }
 
@@ -86,8 +90,9 @@ namespace Consolaria.Content.Items.Armor.Melee
                 position = new(Player.direction > 0 ? Player.Center.X + 15 : Player.Center.X - 15, Player.Center.Y - 5);
                 for (int i = 0; i < projectilesCount; i++) {
                     Vector2 perturbedSpeed = velocity.RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (projectilesCount - 1))) * 1.1f;
-                    Projectile.NewProjectile(Player.GetItemSource_Misc(-1), position, perturbedSpeed, ModContent.ProjectileType<DragonFlame>(), 50, 4.5f, Player.whoAmI);
+                    Projectile.NewProjectile(Player.GetItemSource_Misc(-1), position, perturbedSpeed, ModContent.ProjectileType<DragonFlame>(), (int)(50 * Player.GetDamage(DamageClass.Melee)), 4.5f, Player.whoAmI);
                 }
+                SoundEngine.PlaySound(SoundID.DD2_PhantomPhoenixShot, Player.Center);
             }
         }
     }

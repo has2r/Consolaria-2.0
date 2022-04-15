@@ -2,6 +2,7 @@ using Consolaria.Content.Items.Materials;
 using Consolaria.Content.Projectiles.Friendly;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.Audio;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -13,7 +14,7 @@ namespace Consolaria.Content.Items.Armor.Magic
     {
         public override void SetStaticDefaults() {
             DisplayName.SetDefault("Phantasmal Headgear");
-            Tooltip.SetDefault("5% increased magical damage" + "\n5% increased magical critical strike chance" + "\nIncreases maximum mana by 70");
+            Tooltip.SetDefault("5% increased magic damage and critical strike chance" + "\nIncreases maximum mana by 70");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
@@ -41,12 +42,14 @@ namespace Consolaria.Content.Items.Armor.Magic
         public override void UpdateArmorSet(Player player) {
             player.setBonus = "Drinking a mana potion unleashes a barrage of homing spirit bolts";
             player.GetModPlayer<SpectralPlayer>().spectralGuard = true;
-            Lighting.AddLight((int)((player.position.X) / 16.0), (int)((player.position.Y) / 16.0), 0.4f, 0.4f, 0.9f);
         }
+
+        public override void UpdateVanitySet(Player player)
+            => Lighting.AddLight(player.Center, 0.5f, 0.3f, 0.7f);
 
         public override void AddRecipes() {
             CreateRecipe()
-                .AddIngredient(ItemID.HallowedMask)
+                .AddIngredient(ItemID.HallowedHeadgear)
                 .AddIngredient(ItemID.HellstoneBar, 12)
                 .AddIngredient(ItemID.SoulofMight, 10)
                 .AddIngredient<SoulofBlight>(10)
@@ -69,11 +72,13 @@ namespace Consolaria.Content.Items.Armor.Magic
             if (player.GetModPlayer<SpectralPlayer>().spectralGuard) {
                 int projectilesCount = Main.rand.Next(3, 6);
                 Vector2 velocity = new(0, -3);
-                if (item.type == ItemID.LesserManaPotion || item.type == ItemID.ManaPotion || item.type == ItemID.GreaterManaPotion || item.type == ItemID.SuperManaPotion || item.healMana > 0)
+                if (item.healMana > 0) {
                     for (int i = 0; i < projectilesCount; i++) {
-                        Vector2 position = new(player.position.X + Main.rand.Next(-50, 51), player.position.Y + Main.rand.Next(-40, 41));
-                        Projectile.NewProjectile(player.GetItemSource_Misc(-1), position.X, position.Y, velocity.X, velocity.Y, ModContent.ProjectileType<SpectralSpirit>(), 45, 2.5f, player.whoAmI);
+                        Vector2 position = new(player.position.X + Main.rand.Next(-60, 61), player.position.Y + Main.rand.Next(-40, 41));
+                        Projectile.NewProjectile(player.GetItemSource_Misc(-1), position.X, position.Y, velocity.X, velocity.Y, ModContent.ProjectileType<SpectralSpirit>(), (int)(60 * player.GetDamage(DamageClass.Magic)), 2.5f, player.whoAmI);
                     }
+                    SoundEngine.PlaySound(SoundID.DD2_BookStaffCast, player.Center);
+                }
             }
         }
     }

@@ -10,7 +10,6 @@ namespace Consolaria.Content.Projectiles.Friendly
     public class DreadSkull : ModProjectile
     {
         public override void SetStaticDefaults() {
-            DisplayName.SetDefault("Cursed Skull");
             Main.projFrames[Projectile.type] = 5;
             ProjectileID.Sets.CultistIsResistantTo[Projectile.type] = true;
         }

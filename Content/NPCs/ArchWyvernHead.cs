@@ -10,7 +10,7 @@ using Terraria.GameContent.ItemDropRules;
 using Consolaria.Content.Items.Vanity;
 using Terraria.ModLoader.Utilities;
 using Terraria.GameContent.Bestiary;
-using Consolaria.Content.Projectiles.Friendly;
+using Consolaria.Content.Projectiles.Enemies;
 
 namespace Consolaria.Content.NPCs
 {
@@ -63,11 +63,6 @@ namespace Consolaria.Content.NPCs
 
 			//Banner = NPC.type;
 			//BannerItem = mod.ItemType("ArchWyvernBanner");
-		}
-
-		public override void ScaleExpertStats(int numPlayers, float bossLifeScale) {
-			NPC.lifeMax *= 1;
-			NPC.damage *= 1;
 		}
 
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {

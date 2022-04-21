@@ -91,7 +91,7 @@ namespace Consolaria.Content.NPCs.Lepus
          => new Rectangle(0, NPC.frame.Height * (number - 1), NPC.frame.Width, NPC.frame.Height);
             
         public override void ModifyHitPlayer(Player target, ref int damage, ref bool crit)
-         => target.AddBuff(32, 120);
+            => target.AddBuff(32, 120);
 
         // old AI
         /*  public override void AI() {

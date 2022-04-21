@@ -10,14 +10,14 @@ namespace Consolaria.Content.Projectiles.Friendly
     {
         public override string Texture => "Consolaria/Assets/Textures/Empty";
 
-        private int rippleSize = 450;
+        private int rippleSize = 440;
         private int rippleCount = 10;
-        private int rippleSpeed = 50;
+        private int rippleSpeed = 60;
         private float distortStrength = 500f;
         private float step = 0f;
 
         public override void SetDefaults() {
-            int width = 180; int height = width;
+            int width = 200; int height = width;
             Projectile.Size = new Vector2(width, height);
 
             Projectile.DamageType = DamageClass.Generic;

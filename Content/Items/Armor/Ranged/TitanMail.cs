@@ -12,7 +12,7 @@ namespace Consolaria.Content.Items.Armor.Ranged
     [AutoloadEquip(EquipType.Body)]
     public class TitanMail : ModItem
     {
-        public static Asset<Texture2D> mailGlowmask;
+        private Asset<Texture2D> mailGlowmask;
         public override void Unload() => mailGlowmask = null;
         
         public override void SetStaticDefaults() {

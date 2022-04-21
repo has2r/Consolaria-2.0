@@ -38,15 +38,12 @@ namespace Consolaria.Content.Items.Armor.Melee
             => body.type == ModContent.ItemType<DragonBreastplate>() && legs.type == ModContent.ItemType<DragonGreaves>();
 
         public override void ArmorSetShadows(Player player) 
-            => player.armorEffectDrawShadow = true;
+            => player.armorEffectDrawShadowLokis = true;
 
         public override void UpdateArmorSet(Player player) {
             player.setBonus = "Creates a burst of flames after taking damage";
             player.GetModPlayer<DragonPlayer>().dragonBurst = true;
         }
-
-        public override void UpdateVanitySet(Player player)
-            => Lighting.AddLight(player.Center, 0.4f, 0.3f, 0.9f);
         
         public override void AddRecipes() {
             CreateRecipe()

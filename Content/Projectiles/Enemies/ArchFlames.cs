@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Consolaria.Content.Projectiles.Friendly
+namespace Consolaria.Content.Projectiles.Enemies
 {
     public class ArchFlames : ModProjectile
     {
@@ -11,6 +11,7 @@ namespace Consolaria.Content.Projectiles.Friendly
 
         public override void SetDefaults() {
             Projectile.CloneDefaults(ProjectileID.Flames);
+
             int width = 12; int height = width;
             Projectile.Size = new Vector2(width, height);
 

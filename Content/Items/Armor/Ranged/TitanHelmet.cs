@@ -14,7 +14,7 @@ namespace Consolaria.Content.Items.Armor.Ranged
     [AutoloadEquip(EquipType.Head)]
     public class TitanHelmet : ModItem
     {
-        public static Asset<Texture2D> helmetGlowmask;
+        private Asset<Texture2D> helmetGlowmask;
         public override void Unload() => helmetGlowmask = null;
         
 
@@ -53,7 +53,7 @@ namespace Consolaria.Content.Items.Armor.Ranged
             => body.type == ModContent.ItemType<TitanMail>() && legs.type == ModContent.ItemType<TitanLeggings>();
 
         public override void ArmorSetShadows(Player player)
-            => player.armorEffectDrawOutlines = true;
+            => player.armorEffectDrawOutlinesForbidden = true;
         
         public override void UpdateArmorSet(Player player) {
             player.setBonus = "Using ranged weapons emits strong repelling wave around you";
@@ -84,8 +84,8 @@ namespace Consolaria.Content.Items.Armor.Ranged
         public override bool? UseItem(Item item, Player player) {
             ushort projType = (ushort)ModContent.ProjectileType<TitanShockwawe>();
             if (player.GetModPlayer<TitanPlayer>().titanPower && player.ownedProjectileCounts[projType] < 1 && item.DamageType == DamageClass.Ranged && player.miscCounter % 10 == 0) {
-                Projectile.NewProjectile(player.GetItemSource_Misc(-1), player.Center, new Vector2(0, 0), projType, 3, 9f, player.whoAmI);
-                SoundEngine.PlaySound(SoundID.DD2_EtherianPortalSpawnEnemy, player.Center);
+                Projectile.NewProjectile(player.GetItemSource_Misc(-1), player.Center, new Vector2(0, 0), projType, 35, 9f, player.whoAmI);
+                SoundEngine.PlaySound(SoundLoader.GetLegacySoundSlot(Mod, "Assets/Sounds/Shockwave"), player.position);
             }
             return null;
         }

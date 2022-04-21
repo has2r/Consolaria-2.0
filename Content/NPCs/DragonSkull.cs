@@ -52,11 +52,6 @@ namespace Consolaria.Content.NPCs
 		    //BannerItem = mod.ItemType("ArchDemonBanner");
 		}
 
-		public override void ScaleExpertStats(int numPlayers, float bossLifeScale) {
-			NPC.lifeMax *= 1;
-			NPC.damage *= 1;
-		}
-
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheDungeon,

@@ -16,8 +16,7 @@ namespace Consolaria.Content.NPCs.Lepus
             DisplayName.SetDefault("Diseaster Bunny");
             Main.npcFrameCount[NPC.type] = 7;
 
-            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
-            { 
+            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0) { 
                 Velocity = 1f
             };
             NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);

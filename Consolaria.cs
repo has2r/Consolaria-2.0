@@ -1,4 +1,3 @@
-
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using ReLogic.Content;
@@ -16,7 +15,6 @@ namespace Consolaria
 
         public override void Load() {
             OcramJumpKeybind = KeybindLoader.RegisterKeybind(this, "Use  Rocketjump", Keys.LeftAlt);
-
 			if (Main.netMode != NetmodeID.Server) {
 				Filters.Scene["Shockwave"] = new Filter(new ScreenShaderData(new Ref<Effect>(Assets.Request<Effect>("Assets/Effects/Shockwave", AssetRequestMode.ImmediateLoad).Value), "Shockwave"), EffectPriority.VeryHigh);
 				Filters.Scene["Shockwave"].Load();

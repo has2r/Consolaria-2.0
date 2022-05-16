@@ -70,11 +70,11 @@ namespace Consolaria.Content.Projectiles.Friendly
             if (Main.rand.Next(2) == 0) {
                 Vector2 Velocity = Helper.VelocityToPoint(new Vector2(Projectile.Center.X, Projectile.Center.Y + 12), Main.npc[NearestNPC].Center, shootSpeed);
                 if (Projectile.localAI[0] % 35 == 0) {
-                    Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), Projectile.Center.X, Projectile.Center.Y, Velocity.X, Velocity.Y, (ushort)ModContent.ProjectileType<EternalScythe>(), Projectile.damage / 2, 4, Projectile.owner);
+                    Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center.X, Projectile.Center.Y, Velocity.X, Velocity.Y, (ushort)ModContent.ProjectileType<EternalScythe>(), Projectile.damage / 2, 4, Projectile.owner);
                     SoundEngine.PlaySound(SoundID.Item8, Projectile.Center);
                 }
                 if (Projectile.localAI[0] % 20 == 0)
-                    Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), Projectile.Center.X, Projectile.Center.Y, Velocity.X, Velocity.Y, (ushort)ModContent.ProjectileType<EternalLaser>(), Projectile.damage / 3, 1, Projectile.owner);
+                    Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center.X, Projectile.Center.Y, Velocity.X, Velocity.Y, (ushort)ModContent.ProjectileType<EternalLaser>(), Projectile.damage / 3, 1, Projectile.owner);
             }
         }
 

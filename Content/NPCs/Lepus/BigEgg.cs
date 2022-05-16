@@ -10,9 +10,8 @@ namespace Consolaria.Content.NPCs.Lepus
 {
     public class BigEgg : ModNPC
     {
-        private bool _checkSpawn;
-        private int _changeRotation = -1;
-        Vector2 offset;
+        //private bool _checkSpawn;
+        //private int _changeRotation = -1;
         private int timer = 0;
         private float speed = 18f;
 
@@ -119,7 +118,7 @@ namespace Consolaria.Content.NPCs.Lepus
             timer++;//will hatch after time
             NPC.direction = Main.npc[(int)NPC.ai[0]].direction;
             NPC.rotation = Vector2.UnitY.RotatedBy((double)(timer / 40f * 6.28318548f), default(Vector2)).Y * 0.2f;
-            Vector2 moveTo = Main.npc[(int)NPC.ai[0]].Center + offset;
+            Vector2 moveTo = Main.npc[(int)NPC.ai[0]].Center;
             moveTo.Y -= 40;
             if (NPC.direction < 0) moveTo.X -= 20;      
             else  moveTo.X += 20; 
@@ -131,8 +130,8 @@ namespace Consolaria.Content.NPCs.Lepus
                 NPC.velocity = Vector2.Zero;
                 int gore1 = ModContent.Find<ModGore>("Consolaria/EggShellBig").Type;
                 for (int i = 0; i < 1; i++) {
-                    Gore.NewGore(NPC.position, new Vector2(Main.rand.Next(-1, 1), Main.rand.Next(-1, 1)), gore1);
-                    Gore.NewGore(NPC.position, new Vector2(Main.rand.Next(-1, 1), Main.rand.Next(-1, 1)), gore1);
+                    Gore.NewGore(NPC.GetSource_FromAI(), NPC.position, new Vector2(Main.rand.Next(-1, 1), Main.rand.Next(-1, 1)), gore1);
+                    Gore.NewGore(NPC.GetSource_FromAI(), NPC.position, new Vector2(Main.rand.Next(-1, 1), Main.rand.Next(-1, 1)), gore1);
                 }
                 ushort bossType = (ushort)ModContent.NPCType<Lepus>();
                 if (NPC.CountNPCS(bossType) < 3) NPC.Transform(bossType);
@@ -144,8 +143,8 @@ namespace Consolaria.Content.NPCs.Lepus
             if (NPC.life <= 0) {
                 int _gore = ModContent.Find<ModGore>("Consolaria/EggShellBig").Type;
                 for (int i = 0; i < 1; i++) {
-                    Gore.NewGore(NPC.position, new Vector2(Main.rand.Next(-1, 1), Main.rand.Next(-1, 1)), _gore);
-                    Gore.NewGore(NPC.position, new Vector2(Main.rand.Next(-1, 1), Main.rand.Next(-1, 1)), _gore);
+                    Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-1, 1), Main.rand.Next(-1, 1)), _gore);
+                    Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-1, 1), Main.rand.Next(-1, 1)), _gore);
                 }
                 SoundEngine.PlaySound(2, (int)NPC.position.X, (int)NPC.position.Y, 10, 1f, 0f);
             }

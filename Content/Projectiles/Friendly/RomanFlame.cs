@@ -42,7 +42,7 @@ namespace Consolaria.Content.Projectiles.Friendly
                     Vector2 velocity = Projectile.velocity;
                     for (int i = 0; i < projectilesCount; i++)  {
                         Vector2 perturbedSpeed = velocity.RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (projectilesCount - 1))) * 1.1f;
-                        Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), Projectile.oldPosition, perturbedSpeed, ModContent.ProjectileType<RomanFlameMid>(), Projectile.damage, Projectile.knockBack, player.whoAmI);
+                        Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.oldPosition, perturbedSpeed, ModContent.ProjectileType<RomanFlameMid>(), Projectile.damage, Projectile.knockBack, player.whoAmI);
                     }
                 }   
 

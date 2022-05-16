@@ -76,7 +76,7 @@ namespace Consolaria.Content.NPCs
 			if (NPC.ai[2] >= 0f && Collision.CanHit(NPC.position, NPC.width, NPC.height, player.position, player.width, player.height)) {
 				float vel = (float)Math.Atan2((vector2.Y - vector.Y), (vector2.X - vector.X));
 				SoundEngine.PlaySound(2, (int)NPC.position.X, (int)NPC.position.Y, 17, 1f, 0f);
-				Projectile.NewProjectile(NPC.GetSpawnSource_ForProjectile(), NPC.Center.X, NPC.Center.Y, (float)(Math.Cos(vel) * 10.0 * -1.0), (float)(Math.Sin(vel) * 10.0 * -1.0), 55, 20, 1f);
+				Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, (float)(Math.Cos(vel) * 10.0 * -1.0), (float)(Math.Sin(vel) * 10.0 * -1.0), 55, 20, 1f);
 				NPC.ai[2] = -120f;
 				NPC.netUpdate = true;
 			}
@@ -88,8 +88,8 @@ namespace Consolaria.Content.NPCs
         public override void HitEffect(int hitDirection, double damage) {
 			Dust.NewDust(NPC.position, NPC.width, NPC.height, 185, 2.5f * hitDirection, -2.5f, 0, default(Color), 0.7f);
 			if (NPC.life <= 0) {
-				Gore.NewGore(NPC.position, new Vector2(Main.rand.Next(-5, 6), Main.rand.Next(-5, 6)), ModContent.Find<ModGore>("Consolaria/ArchdemonGore1").Type);
-				Gore.NewGore(NPC.position, new Vector2(Main.rand.Next(-5, 6), Main.rand.Next(-5, 6)), ModContent.Find<ModGore>("Consolaria/ArchdemonGore2").Type);
+				Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-5, 6), Main.rand.Next(-5, 6)), ModContent.Find<ModGore>("Consolaria/ArchdemonGore1").Type);
+				Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-5, 6), Main.rand.Next(-5, 6)), ModContent.Find<ModGore>("Consolaria/ArchdemonGore2").Type);
 				for (int i = 0; i < 20; i++)
 					Dust.NewDust(NPC.position, NPC.width, NPC.height, 185, 2.5f * hitDirection, -2.5f, 0, default(Color), 1f);		
 			}

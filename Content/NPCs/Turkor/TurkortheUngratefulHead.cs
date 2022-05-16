@@ -22,7 +22,6 @@ namespace Consolaria.Content.NPCs.Turkor
 
 		private float rotatepoint = 0;
 
-		private bool body_ = false;
 		private bool chase = false;
 
 		public override void SetStaticDefaults() {
@@ -103,7 +102,7 @@ namespace Consolaria.Content.NPCs.Turkor
 			NPC.direction = Main.player[NPC.target].Center.X < NPC.Center.X ? -1 : 1;
 			if (!spawn) {
 				NPC.realLife = NPC.whoAmI;
-				int neck = NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)NPC.position.X, (int)NPC.position.Y, ModContent.NPCType<TurkorNeck>(), NPC.whoAmI, 0, NPC.whoAmI); //, 1, NPC.ai[1]);
+				int neck = NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, ModContent.NPCType<TurkorNeck>(), NPC.whoAmI, 0, NPC.whoAmI); //, 1, NPC.ai[1]);
 				Main.npc[neck].localAI[0] = 30;
 				Main.npc[neck].realLife = NPC.whoAmI;
 				Main.npc[neck].ai[0] = NPC.whoAmI;
@@ -200,7 +199,7 @@ namespace Consolaria.Content.NPCs.Turkor
 				if (timer % 80 == 0 && rotatepoint >= 1.5f) {
 					SoundEngine.PlaySound(2, (int)NPC.position.X, (int)NPC.position.Y, 42);
 					for (int i = 0; i < 3; i++)
-						Projectile.NewProjectile(NPC.GetSpawnSource_ForProjectile(), NPC.Center.X, NPC.Center.Y, Main.rand.Next(0, 8) * NPC.direction, -10 + Main.rand.Next(-3, 3), ModContent.ProjectileType<TurkorFeather>(), (int)(NPC.damage / 3), 1, Main.myPlayer, 0, 0);				
+						Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, Main.rand.Next(0, 8) * NPC.direction, -10 + Main.rand.Next(-3, 3), ModContent.ProjectileType<TurkorFeather>(), (int)(NPC.damage / 3), 1, Main.myPlayer, 0, 0);				
 					NPC.velocity.Y = 5;
 				}
 				if (timer >= 360) {
@@ -263,12 +262,12 @@ namespace Consolaria.Content.NPCs.Turkor
 		public override void HitEffect(int hitDirection, double damage) {
 			if (NPC.life <= 0) {
 				if (NPC.life <= 0) {
-					Gore.NewGore(NPC.position, new Vector2(Main.rand.Next(-3, 4), Main.rand.Next(-3, 4)), ModContent.Find<ModGore>("Consolaria/TurkorBeakGore").Type);
-					Gore.NewGore(NPC.position, new Vector2(Main.rand.Next(-5, 6), Main.rand.Next(-5, 6)), ModContent.Find<ModGore>("Consolaria/TurkorEyeGore").Type);
-					Gore.NewGore(NPC.position, new Vector2(Main.rand.Next(-5, 6), Main.rand.Next(-5, 6)), ModContent.Find<ModGore>("Consolaria/TurkorEyeGore").Type);
-					Gore.NewGore(NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), ModContent.Find<ModGore>("Consolaria/TurkorFeatherGore").Type);
-					Gore.NewGore(NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), ModContent.Find<ModGore>("Consolaria/TurkorFeatherGore").Type);
-					Gore.NewGore(NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), ModContent.Find<ModGore>("Consolaria/TurkorFeatherGore").Type);
+					Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-3, 4), Main.rand.Next(-3, 4)), ModContent.Find<ModGore>("Consolaria/TurkorBeakGore").Type);
+					Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-5, 6), Main.rand.Next(-5, 6)), ModContent.Find<ModGore>("Consolaria/TurkorEyeGore").Type);
+					Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-5, 6), Main.rand.Next(-5, 6)), ModContent.Find<ModGore>("Consolaria/TurkorEyeGore").Type);
+					Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), ModContent.Find<ModGore>("Consolaria/TurkorFeatherGore").Type);
+					Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), ModContent.Find<ModGore>("Consolaria/TurkorFeatherGore").Type);
+					Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), ModContent.Find<ModGore>("Consolaria/TurkorFeatherGore").Type);
 				}
 				for (int k = 0; k < 10; k++) {
 					int dust_ = Dust.NewDust(NPC.position, NPC.width, NPC.height, 26, 3f * hitDirection, -3f, 0, default, 2f);

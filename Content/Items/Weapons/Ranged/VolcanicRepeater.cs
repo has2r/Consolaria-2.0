@@ -57,7 +57,7 @@ namespace Consolaria.Content.Items.Weapons.Ranged
 		public override void AddRecipes() {
 			CreateRecipe()
 				.AddIngredient(ItemID.HallowedRepeater)
-				.AddIngredient(ItemID.HellstoneBar, 15)
+				.AddRecipeGroup(RecipeGroups.Titanium, 10)
 				.AddIngredient<SoulofBlight>(15)
 				.AddTile(TileID.MythrilAnvil)
 				.Register();

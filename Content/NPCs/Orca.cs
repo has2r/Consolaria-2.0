@@ -72,10 +72,10 @@ namespace Consolaria.Content.NPCs
                 for (int k = 0; k < 20; k++)
                     Dust.NewDust(NPC.position, NPC.width, NPC.height, 5, 2.5f * hitDirection, -2.5f, 0, default(Color), 1f);
                 
-                Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("Consolaria/Gore_490").Type, 1f);
-                Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("Consolaria/Gore_491").Type, 1f);
-                Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("Consolaria/Gore_492").Type, 1f);
-                Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("Consolaria/Gore_493").Type, 1f);
+                Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity, ModContent.Find<ModGore>("Consolaria/Gore_490").Type, 1f);
+                Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity, ModContent.Find<ModGore>("Consolaria/Gore_491").Type, 1f);
+                Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity, ModContent.Find<ModGore>("Consolaria/Gore_492").Type, 1f);
+                Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity, ModContent.Find<ModGore>("Consolaria/Gore_493").Type, 1f);
             }
         }
 

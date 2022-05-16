@@ -76,14 +76,14 @@ namespace Consolaria.Content.NPCs
                         vector2.Y *= 1f + Main.rand.Next(-50, 51) * 0.005f;
                         vector2.Normalize();
                         vector2 *= 4f + Main.rand.Next(-50, 51) * 0.01f;
-                        Projectile.NewProjectile(NPC.GetSpawnSource_ForProjectile(), vector.X, vector.Y, vector2.X, vector2.Y, ModContent.ProjectileType<ShadowGel>(), 40, 0f, Main.myPlayer, 0f, 0f);
+                        Projectile.NewProjectile(NPC.GetSource_FromAI(), vector.X, vector.Y, vector2.X, vector2.Y, ModContent.ProjectileType<ShadowGel>(), 40, 0f, Main.myPlayer, 0f, 0f);
                         NPC.localAI[0] = 30f;
                     }
                 }
 
-                Gore.NewGore(NPC.position, NPC.velocity / 2f, 99, 1f);
-                Gore.NewGore(NPC.position, NPC.velocity / 2f, 99, 1f);
-                Gore.NewGore(NPC.position, NPC.velocity / 2f, 99, 1f);
+                Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity / 2f, 99, 1f);
+                Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity / 2f, 99, 1f);
+                Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity / 2f, 99, 1f);
                 for (int i = 0; i < 20; i++)
                     Dust.NewDust(NPC.position, NPC.width, NPC.height, 109, 2.5f * hitDirection, -2.5f, 0, default, 1f);    
             }
@@ -96,8 +96,8 @@ namespace Consolaria.Content.NPCs
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo) {
-            int y = spawnInfo.spawnTileY;
-            return ((spawnInfo.player.ZoneCorrupt || spawnInfo.player.ZoneCrimson)  && Main.hardMode && y < Main.rockLayer) ? SpawnCondition.Corruption.Chance * 0.33f : 0f;
+            int y = spawnInfo.SpawnTileY;
+            return ((spawnInfo.Player.ZoneCorrupt || spawnInfo.Player.ZoneCrimson)  && Main.hardMode && y < Main.rockLayer) ? SpawnCondition.Corruption.Chance * 0.33f : 0f;
         }
     }
 }

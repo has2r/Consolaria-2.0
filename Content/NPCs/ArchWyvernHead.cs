@@ -85,7 +85,7 @@ namespace Consolaria.Content.NPCs
 
 			shootTimer++;
 			if (shootTimer >= 50 && shootTimer % 5 == 0) {
-				Projectile.NewProjectile(NPC.GetSpawnSource_ForProjectile(), NPC.Center.X + 5, NPC.Center.Y, NPC.velocity.X * 2f, NPC.velocity.Y * 2f, ModContent.ProjectileType<ArchFlames>(), NPC.damage / 2, 4f, 255, 0, 0);
+				Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X + 5, NPC.Center.Y, NPC.velocity.X * 2f, NPC.velocity.Y * 2f, ModContent.ProjectileType<ArchFlames>(), NPC.damage / 2, 4f, 255, 0, 0);
 				SoundEngine.PlaySound(SoundID.Item20, NPC.position);
 			}
 			if (shootTimer >= 70) shootTimer = 0;
@@ -108,7 +108,7 @@ namespace Consolaria.Content.NPCs
 								}
 							}
 						}
-						int num99 = NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), ((int)NPC.position.X + (NPC.width / 2)), (int)(NPC.position.Y + NPC.height), num98, NPC.whoAmI);
+						int num99 = NPC.NewNPC(NPC.GetSource_FromAI(), ((int)NPC.position.X + (NPC.width / 2)), (int)(NPC.position.Y + NPC.height), num98, NPC.whoAmI);
 						Main.npc[num99].ai[2] = NPC.whoAmI;
 						Main.npc[num99].realLife = NPC.whoAmI;
 						Main.npc[num99].ai[1] = num96;
@@ -228,7 +228,8 @@ namespace Consolaria.Content.NPCs
 
 		public override void HitEffect(int hitDirection, double damage) {
 			if (NPC.life <= 0) {
-				for (int i = 0; i < 4; i++) Gore.NewGore(NPC.position, Vector2.Zero, Main.rand.Next(61, 64), 1f);	
+				for (int i = 0; i < 4; i++)
+					Gore.NewGore(NPC.GetSource_Death(), NPC.position, Vector2.Zero, Main.rand.Next(61, 64), 1f);	
 			}
 		}
 

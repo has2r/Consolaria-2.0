@@ -59,9 +59,9 @@ namespace Consolaria.Content.NPCs
         public override void HitEffect(int hitDirection, double damage) {
             Dust.NewDust(NPC.position, NPC.width, NPC.height, 185, 2.5f * (float)hitDirection, -2.5f, 0, default, 1f);
             if (NPC.life <= 0) {
-                Gore.NewGore(NPC.position, NPC.velocity / 2f, 11, 1f);
-                Gore.NewGore(NPC.position, NPC.velocity / 2f, 12, 1f);
-                Gore.NewGore(NPC.position, NPC.velocity / 2f, 13, 1f);
+                Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity / 2f, 11, 1f);
+                Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity / 2f, 12, 1f);
+                Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity / 2f, 13, 1f);
                 for (int i = 0; i < 20; i++)
                     Dust.NewDust(NPC.position, NPC.width, NPC.height, 185, 2.5f * (float)hitDirection, -2.5f, 0, default, 1f);
             }
@@ -74,6 +74,6 @@ namespace Consolaria.Content.NPCs
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
-            => (spawnInfo.player.ZoneHallow && spawnInfo.spawnTileY == Main.worldSurface) ? SpawnCondition.OverworldHallow.Chance * 0.33f : 0f;
+            => (spawnInfo.Player.ZoneHallow && spawnInfo.SpawnTileY == Main.worldSurface) ? SpawnCondition.OverworldHallow.Chance * 0.33f : 0f;
     }
 }

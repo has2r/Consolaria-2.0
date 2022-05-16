@@ -28,8 +28,8 @@ namespace Consolaria.Content.Projectiles.Friendly
             
             int EasterEggGoreType = ModContent.Find<ModGore>("Consolaria/EasterEggGore").Type;
             for (int i = 0; i < 1; i++) {
-                Gore.NewGore(Projectile.position, new Vector2(Main.rand.Next(1, 1), Main.rand.Next(1, 1)), EasterEggGoreType);
-                Gore.NewGore(Projectile.position, new Vector2(Main.rand.Next(-1, 1), Main.rand.Next(-1, 1)), EasterEggGoreType);
+                Gore.NewGore(Projectile.GetSource_Death(), Projectile.position, new Vector2(Main.rand.Next(1, 1), Main.rand.Next(1, 1)), EasterEggGoreType);
+                Gore.NewGore(Projectile.GetSource_Death(), Projectile.position, new Vector2(Main.rand.Next(-1, 1), Main.rand.Next(-1, 1)), EasterEggGoreType);
             }
         }
     }

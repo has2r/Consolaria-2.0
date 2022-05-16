@@ -62,9 +62,9 @@ namespace Consolaria.Content.NPCs
         public override void HitEffect(int hitDirection, double damage) {
 			Dust.NewDust(NPC.position, NPC.width, NPC.height, 109, 2.5f * (float)hitDirection, -2.5f, 0, default, 1f);
 			if (NPC.life <= 0) {
-				Gore.NewGore(NPC.position, NPC.velocity / 2f, 99, 1f);
-				Gore.NewGore(NPC.position, NPC.velocity / 2f, 99, 1f);
-				Gore.NewGore(NPC.position, NPC.velocity / 2f, 99, 1f);
+				Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity / 2f, 99, 1f);
+				Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity / 2f, 99, 1f);
+				Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity / 2f, 99, 1f);
 				for (int i = 0; i < 20; i++)
 					Dust.NewDust(NPC.position, NPC.width, NPC.height, 109, 2.5f * (float)hitDirection, -2.5f, 0, default, 1f);	
 			}
@@ -77,6 +77,6 @@ namespace Consolaria.Content.NPCs
 		}
 
 		public override float SpawnChance(NPCSpawnInfo spawnInfo)
-			=> ((spawnInfo.player.ZoneCorrupt || spawnInfo.player.ZoneCrimson) && spawnInfo.player.ZoneDesert && Main.hardMode) ? SpawnCondition.DarkMummy.Chance * 0.33f : 0f;	
+			=> ((spawnInfo.Player.ZoneCorrupt || spawnInfo.Player.ZoneCrimson) && spawnInfo.Player.ZoneDesert && Main.hardMode) ? SpawnCondition.DarkMummy.Chance * 0.33f : 0f;	
 	}
 }

@@ -17,7 +17,6 @@ namespace Consolaria.Content.Items.Armor.Ranged
         private Asset<Texture2D> helmetGlowmask;
         public override void Unload() => helmetGlowmask = null;
         
-
         public override void SetStaticDefaults() {
             DisplayName.SetDefault("Titan Helmet");
             Tooltip.SetDefault("15% increased ranged damage and critical strike chance" + "\n25% chance to not consume ammo");
@@ -26,7 +25,7 @@ namespace Consolaria.Content.Items.Armor.Ranged
             if (!Main.dedServ) {
                 helmetGlowmask = ModContent.Request<Texture2D>(Texture + "_Glow");
                 HeadGlowmask.RegisterData(Item.headSlot, new DrawLayerData() {
-                    Texture = ModContent.Request<Texture2D>(Texture + "_Head_Glow")
+                Texture = ModContent.Request<Texture2D>(Texture + "_Head_Glow")
                 });
             }
         }
@@ -49,8 +48,9 @@ namespace Consolaria.Content.Items.Armor.Ranged
             player.GetDamage(DamageClass.Ranged) += 0.15f;
         }
 
-        public override bool IsArmorSet(Item head, Item body, Item legs) 
-            => body.type == ModContent.ItemType<TitanMail>() && legs.type == ModContent.ItemType<TitanLeggings>();
+        public override bool IsArmorSet(Item head, Item body, Item legs)
+            => body.type == ModContent.ItemType<TitanMail>() || body.type == ModContent.ItemType<AncientTitanMail>()
+            && legs.type == ModContent.ItemType<TitanLeggings>() || legs.type == ModContent.ItemType<AncientTitanLeggings>();
 
         public override void ArmorSetShadows(Player player)
             => player.armorEffectDrawOutlinesForbidden = true;
@@ -63,7 +63,7 @@ namespace Consolaria.Content.Items.Armor.Ranged
         public override void AddRecipes() {
             CreateRecipe()
                 .AddIngredient(ItemID.HallowedHelmet)
-                .AddIngredient(ItemID.HellstoneBar, 12)
+                .AddRecipeGroup(RecipeGroups.Titanium, 10)
                 .AddIngredient(ItemID.SoulofSight, 10)
                 .AddIngredient<SoulofBlight>(10)
                 .AddTile(TileID.MythrilAnvil)
@@ -84,7 +84,7 @@ namespace Consolaria.Content.Items.Armor.Ranged
         public override bool? UseItem(Item item, Player player) {
             ushort projType = (ushort)ModContent.ProjectileType<TitanShockwawe>();
             if (player.GetModPlayer<TitanPlayer>().titanPower && player.ownedProjectileCounts[projType] < 1 && item.DamageType == DamageClass.Ranged && player.miscCounter % 10 == 0) {
-                Projectile.NewProjectile(player.GetItemSource_Misc(-1), player.Center, new Vector2(0, 0), projType, 35, 9f, player.whoAmI);
+                Projectile.NewProjectile(player.GetSource_ItemUse(item), player.Center, new Vector2(0, 0), projType, 35, 9f, player.whoAmI);
                 SoundEngine.PlaySound(SoundLoader.GetLegacySoundSlot(Mod, "Assets/Sounds/Shockwave"), player.position);
             }
             return null;

@@ -120,11 +120,11 @@ namespace Consolaria.Content.NPCs.Turkor
 		private void HalfCircle() {
 			SoundEngine.PlaySound(2, (int)NPC.position.X, (int)NPC.position.Y, 71);
 			ushort type = (ushort)ModContent.ProjectileType<TurkorKnife>();
-			Projectile.NewProjectile(NPC.GetSpawnSource_ForProjectile(), NPC.Center.X, NPC.Center.Y, 8, 0, type, (int)(NPC.damage / 2), 1, Main.myPlayer, 0, 0);
-			Projectile.NewProjectile(NPC.GetSpawnSource_ForProjectile(), NPC.Center.X, NPC.Center.Y, 6, -4, type, (int)(NPC.damage / 2), 1, Main.myPlayer, 0, 0);
-			Projectile.NewProjectile(NPC.GetSpawnSource_ForProjectile(), NPC.Center.X, NPC.Center.Y, 0, -6, type, (int)(NPC.damage / 2), 1, Main.myPlayer, 0, 0);
-			Projectile.NewProjectile(NPC.GetSpawnSource_ForProjectile(), NPC.Center.X, NPC.Center.Y, -8, 0, type, (int)(NPC.damage / 2), 1, Main.myPlayer, 0, 0);
-			Projectile.NewProjectile(NPC.GetSpawnSource_ForProjectile(), NPC.Center.X, NPC.Center.Y, -6, -4, type, (int)(NPC.damage / 2), 1, Main.myPlayer, 0, 0);
+			Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, 8, 0, type, (int)(NPC.damage / 2), 1, Main.myPlayer, 0, 0);
+			Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, 6, -4, type, (int)(NPC.damage / 2), 1, Main.myPlayer, 0, 0);
+			Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, 0, -6, type, (int)(NPC.damage / 2), 1, Main.myPlayer, 0, 0);
+			Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, -8, 0, type, (int)(NPC.damage / 2), 1, Main.myPlayer, 0, 0);
+			Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, -6, -4, type, (int)(NPC.damage / 2), 1, Main.myPlayer, 0, 0);
 			for (int num623 = (int)NPC.position.X - 20; num623 < (int)NPC.position.X + NPC.width + 40; num623 += 20) {
 				for (int num624 = 0; num624 < 4; num624 = num + 1) {
 					int dust = Dust.NewDust(new Vector2(NPC.position.X - 20f, NPC.position.Y + NPC.height), NPC.width + 20, 4, 31, 0f, 0f, 100, default(Color), 1.5f);
@@ -132,7 +132,7 @@ namespace Consolaria.Content.NPCs.Turkor
 					dust3.velocity *= 0.2f;
 					num = num624;
 				}
-				int num626 = Gore.NewGore(new Vector2((num623 - 20), NPC.position.Y + NPC.height - 8f), default(Vector2), Main.rand.Next(61, 64), 1f);
+				int num626 = Gore.NewGore(NPC.GetSource_FromAI(), new Vector2((num623 - 20), NPC.position.Y + NPC.height - 8f), default(Vector2), Main.rand.Next(61, 64), 1f);
 				Gore gore = Main.gore[num626];
 				gore.velocity *= 0.4f;
 			}
@@ -152,7 +152,6 @@ namespace Consolaria.Content.NPCs.Turkor
 		//bool onAir = false;
 		//bool Despawning = false;
 		private bool ground_ = false;
-		private bool effect = false;
 		private int num = 0;
 		private bool teleport = false;
 
@@ -220,7 +219,7 @@ namespace Consolaria.Content.NPCs.Turkor
 			if (!headSpawned) {
 				headSpawned = true;
 				for (int i = 0; i < headNumber; ++i) {
-					turkorHead_ = NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)NPC.position.X, (int)NPC.position.Y, turkorHead);
+					turkorHead_ = NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, turkorHead);
 					NPC npc = Main.npc[turkorHead_];
 					npc.velocity.X = Main.rand.Next(-6, 7);
 					npc.velocity.Y = Main.rand.Next(-6, 7);
@@ -237,7 +236,7 @@ namespace Consolaria.Content.NPCs.Turkor
 						posX = Main.player[NPC.target].position.X;
 						posY = Main.player[NPC.target].position.Y;
 						Vector2 Velocity = Vector2.Normalize(Main.player[NPC.target].Center - NPC.Center) * 14;
-						Projectile.NewProjectile(NPC.GetSpawnSource_ForProjectile(), NPC.Center.X, NPC.Center.Y, Velocity.X, Velocity.Y, ModContent.ProjectileType<Pointer>(), 0, 1, Main.myPlayer, 0, 0);
+						Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, Velocity.X, Velocity.Y, ModContent.ProjectileType<Pointer>(), 0, 1, Main.myPlayer, 0, 0);
 						findplayer = true;
 					}
 					if (findplayer && timer >= 160) {
@@ -245,7 +244,7 @@ namespace Consolaria.Content.NPCs.Turkor
 						float rotation0 = (float)Math.Atan2((vector8.Y) - (posY + (Main.player[NPC.target].height * 0.5f)), (vector8.X) - (posX + (Main.player[NPC.target].width * 0.5f)));
 						if (timer % 5 == 0) {
 							SoundEngine.PlaySound(2, (int)NPC.position.X, (int)NPC.position.Y, 42);
-							int a = Projectile.NewProjectile(NPC.GetSpawnSource_ForProjectile(), NPC.Center.X, NPC.Center.Y, 0, 0, ModContent.ProjectileType<TurkorFeather>(), (int)(NPC.damage / 2), 1, Main.myPlayer, 0, 0);
+							int a = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, 0, 0, ModContent.ProjectileType<TurkorFeather>(), (int)(NPC.damage / 2), 1, Main.myPlayer, 0, 0);
 							Main.projectile[a].aiStyle = -1;
 							Main.projectile[a].velocity.X = (float)(Math.Cos(rotation0) * 18) * -1 + Main.rand.Next(-3, 3);
 							Main.projectile[a].velocity.Y = (float)(Math.Sin(rotation0) * 18) * -1 + Main.rand.Next(-3, 3);
@@ -277,7 +276,6 @@ namespace Consolaria.Content.NPCs.Turkor
 
 				if (timer2 >= jumptimer) {
 					NPC.rotation += 0.2f;
-					effect = true;
 					NPC.noGravity = true;
 					if (timer2 <= jumptimer) {
 						HalfCircle();
@@ -309,7 +307,6 @@ namespace Consolaria.Content.NPCs.Turkor
 
 								NPC.alpha = 0;
 								NPC.rotation = 0;
-								effect = false;
 								ground_ = false;
 								if (headNumber < 3) headNumber += 1;								
 								headSpawned = false;
@@ -331,11 +328,11 @@ namespace Consolaria.Content.NPCs.Turkor
 
         public override void HitEffect(int hitDirection, double damage) {
 			if (NPC.life <= 0) {
-				Gore.NewGore(NPC.position, new Vector2(Main.rand.Next(-5, 6), Main.rand.Next(-5, 6)), ModContent.Find<ModGore>("Consolaria/TurkorMeatGore").Type);
-				Gore.NewGore(NPC.position, new Vector2(Main.rand.Next(-5, 6), Main.rand.Next(-5, 6)), ModContent.Find<ModGore>("Consolaria/TurkorMeatGore").Type);
-				Gore.NewGore(NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), ModContent.Find<ModGore>("Consolaria/TurkorFeatherGore").Type);
-				Gore.NewGore(NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), ModContent.Find<ModGore>("Consolaria/TurkorFeatherGore").Type);
-				Gore.NewGore(NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), ModContent.Find<ModGore>("Consolaria/TurkorFeatherGore").Type);
+				Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-5, 6), Main.rand.Next(-5, 6)), ModContent.Find<ModGore>("Consolaria/TurkorMeatGore").Type);
+				Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-5, 6), Main.rand.Next(-5, 6)), ModContent.Find<ModGore>("Consolaria/TurkorMeatGore").Type);
+				Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), ModContent.Find<ModGore>("Consolaria/TurkorFeatherGore").Type);
+				Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), ModContent.Find<ModGore>("Consolaria/TurkorFeatherGore").Type);
+				Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), ModContent.Find<ModGore>("Consolaria/TurkorFeatherGore").Type);
 			}
 		}
 
@@ -348,7 +345,7 @@ namespace Consolaria.Content.NPCs.Turkor
 		public override void ModifyNPCLoot(NPCLoot npcLoot) {
 			Conditions.NotExpert notExpert = new Conditions.NotExpert();
 			npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<TurkorBag>()));
-			//npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<LepusRelic>()));
+			npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<TurkorRelic>()));
 			//npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<LepusPet>()));
 
 			int mainDrops = Main.rand.Next(4);

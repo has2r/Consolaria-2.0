@@ -37,14 +37,14 @@ namespace Consolaria.Content.NPCs.Turkor
 		}
 
 		public static Vector2 CenterPoint(Vector2 A, Vector2 B)
-			=> new Vector2((A.X + B.X) / 2f, (A.Y + B.Y) / 2f);
+			=> new((A.X + B.X) / 2f, (A.Y + B.Y) / 2f);
 		
 		public static Vector2 CenterPoint1(Vector2 A, Vector2 B)
-			=> new Vector2((A.X + B.X - 50) / 2f, (A.Y + B.Y + 20) / 2f);
+			=> new((A.X + B.X - 50) / 2f, (A.Y + B.Y + 20) / 2f);
 
         public override void HitEffect(int hitDirection, double damage) {
 			if (NPC.life <= 0 || !NPC.active) 
-				Gore.NewGore(NPC.position, new Vector2(Main.rand.Next(-1, 1), Main.rand.Next(-1, 1)), ModContent.Find<ModGore>("Consolaria/TurkorNeck").Type);	
+				Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-1, 1), Main.rand.Next(-1, 1)), ModContent.Find<ModGore>("Consolaria/TurkorNeck").Type);	
 		}
 
 		public override void AI() {
@@ -52,7 +52,7 @@ namespace Consolaria.Content.NPCs.Turkor
 			if (!spawn && NPC.localAI[0] > 0) {
 				spawn = true;
 				NPC.realLife = NPC.whoAmI;
-				neck = NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)NPC.Center.X, (int)NPC.Center.Y + 20, ModContent.NPCType<TurkorNeck>(), NPC.whoAmI, 0, NPC.whoAmI);
+				neck = NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.Center.X, (int)NPC.Center.Y + 20, ModContent.NPCType<TurkorNeck>(), NPC.whoAmI, 0, NPC.whoAmI);
 				Main.npc[neck].localAI[0] = NPC.localAI[0] - 1;
 				Main.npc[neck].ai[0] = NPC.whoAmI;
 				Main.npc[neck].ai[1] = Main.npc[(int)NPC.ai[1]].whoAmI;

@@ -62,7 +62,7 @@ namespace Consolaria.Content.NPCs
 			}
 			if (NPC.position.X > Main.npc[(int)NPC.ai[1]].position.X) NPC.spriteDirection = 1;	
 			if (NPC.position.X < Main.npc[(int)NPC.ai[1]].position.X) NPC.spriteDirection = -1;		
-			Projectile.NewProjectile(NPC.GetSpawnSource_ForProjectile(), NPC.Center.X, NPC.Center.Y, 0, 0, ModContent.ProjectileType<FireTrail>(), NPC.damage / 4, 4f, NPC.whoAmI, 0, 0);
+			Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, 0, 0, ModContent.ProjectileType<FireTrail>(), NPC.damage / 4, 4f, NPC.whoAmI, 0, 0);
 		}
 
 		public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
@@ -77,7 +77,7 @@ namespace Consolaria.Content.NPCs
 		public override void HitEffect(int hitDirection, double damage) {
 			if (NPC.life <= 0) {
 				for (int i = 0; i < 4; i++)
-					Gore.NewGore(NPC.position, Vector2.Zero, Main.rand.Next(61, 64), 1f);
+					Gore.NewGore(NPC.GetSource_Death(), NPC.position, Vector2.Zero, Main.rand.Next(61, 64), 1f);
 			}
 		}
 	}

@@ -59,16 +59,6 @@ namespace Consolaria.Content.NPCs
 			});
 		}
 
-		public override void HitEffect(int hitDirection, double damage) {
-			Dust.NewDust(NPC.position, NPC.width, NPC.height, 5, 2.5f * hitDirection, -2.5f, 0, default, 0.7f);
-			if (NPC.life <= 0) {
-				Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("Consolaria/vampgore1").Type, 1f);
-				Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("Consolaria/vampgore2").Type, 1f);
-				for (int i = 0; i < 20; i++)
-					Dust.NewDust(NPC.position, NPC.width, NPC.height, 5, 2.5f * hitDirection, -2.5f, 0, default, 1f);		
-			}
-		} 
-
 		public override void AI()
 			=> Lighting.AddLight(NPC.Center, new Vector3(0.8f, 0f, 0.7f));
 		
@@ -85,6 +75,16 @@ namespace Consolaria.Content.NPCs
 					NPC.life += healLife;
 					NPC.HealEffect(healLife, true);
 				}
+			}
+		}
+
+		public override void HitEffect(int hitDirection, double damage) {
+			Dust.NewDust(NPC.position, NPC.width, NPC.height, 5, 2.5f * hitDirection, -2.5f, 0, default, 0.7f);
+			if (NPC.life <= 0) {
+				Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity, ModContent.Find<ModGore>("Consolaria/vampgore1").Type, 1f);
+				Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity, ModContent.Find<ModGore>("Consolaria/vampgore2").Type, 1f);
+				for (int i = 0; i < 20; i++)
+					Dust.NewDust(NPC.position, NPC.width, NPC.height, 5, 2.5f * hitDirection, -2.5f, 0, default, 1f);
 			}
 		}
 

@@ -31,11 +31,12 @@ namespace Consolaria.Content.Items.Armor.Melee
 
         public override void UpdateEquip(Player player) {
             player.GetDamage(DamageClass.Melee) += 0.1f;
-            player.meleeSpeed += 0.1f;
+            player.GetAttackSpeed(DamageClass.Melee) += 0.1f;
         }
 
-        public override bool IsArmorSet(Item head, Item body, Item legs) 
-            => body.type == ModContent.ItemType<DragonBreastplate>() && legs.type == ModContent.ItemType<DragonGreaves>();
+        public override bool IsArmorSet(Item head, Item body, Item legs)
+            => body.type == ModContent.ItemType<DragonBreastplate>() || body.type == ModContent.ItemType<AncientDragonBreastplate>()
+            && legs.type == ModContent.ItemType<DragonGreaves>() || legs.type == ModContent.ItemType<AncientDragonGreaves>();
 
         public override void ArmorSetShadows(Player player) 
             => player.armorEffectDrawShadowLokis = true;
@@ -48,7 +49,7 @@ namespace Consolaria.Content.Items.Armor.Melee
         public override void AddRecipes() {
             CreateRecipe()
                 .AddIngredient(ItemID.HallowedMask)
-                .AddIngredient(ItemID.HellstoneBar, 12)
+               .AddRecipeGroup(RecipeGroups.Titanium, 10)
                 .AddIngredient(ItemID.SoulofMight, 10)
                 .AddIngredient<SoulofBlight>(10)
                 .AddTile(TileID.MythrilAnvil)
@@ -56,7 +57,7 @@ namespace Consolaria.Content.Items.Armor.Melee
         }
     }
 
-    internal class DragonPlayer : ModPlayer
+    public class DragonPlayer : ModPlayer
     {
         public bool dragonBurst;
 
@@ -74,7 +75,7 @@ namespace Consolaria.Content.Items.Armor.Melee
                 position = new(Player.direction > 0 ? Player.Center.X + 15 : Player.Center.X - 15, Player.Center.Y - 5);
                 for (int i = 0; i < projectilesCount; i++) {
                     Vector2 perturbedSpeed = velocity.RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (projectilesCount - 1))) * 1.1f;
-                    Projectile.NewProjectile(Player.GetItemSource_Misc(-1), position, perturbedSpeed, ModContent.ProjectileType<DragonFlame>(), (int)(50 * Player.GetDamage(DamageClass.Melee)), 4.5f, Player.whoAmI);
+                    Projectile.NewProjectile(Player.GetSource_OnHurt(npc, null), position, perturbedSpeed, ModContent.ProjectileType<DragonFlame>(), 50, 4.5f, Player.whoAmI);
                 }
                 SoundEngine.PlaySound(SoundID.DD2_PhantomPhoenixShot, Player.Center);
             }
@@ -87,7 +88,7 @@ namespace Consolaria.Content.Items.Armor.Melee
                 position = new(Player.direction > 0 ? Player.Center.X + 15 : Player.Center.X - 15, Player.Center.Y - 5);
                 for (int i = 0; i < projectilesCount; i++) {
                     Vector2 perturbedSpeed = velocity.RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (projectilesCount - 1))) * 1.1f;
-                    Projectile.NewProjectile(Player.GetItemSource_Misc(-1), position, perturbedSpeed, ModContent.ProjectileType<DragonFlame>(), (int)(50 * Player.GetDamage(DamageClass.Melee)), 4.5f, Player.whoAmI);
+                    Projectile.NewProjectile(Player.GetSource_OnHurt(proj, null), position, perturbedSpeed, ModContent.ProjectileType<DragonFlame>(), 50, 4.5f, Player.whoAmI);
                 }
                 SoundEngine.PlaySound(SoundID.DD2_PhantomPhoenixShot, Player.Center);
             }

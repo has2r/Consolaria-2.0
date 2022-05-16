@@ -38,10 +38,10 @@ namespace Consolaria.Content.Projectiles.Friendly
                 }
 
                 SoundEngine.PlaySound(13, Projectile.Center);
-                Gore.NewGore(Projectile.position, -Projectile.oldVelocity * 0.2f, 704, 1f);
-                Gore.NewGore(Projectile.position, -Projectile.oldVelocity * 0.2f, 705, 1f);
+                Gore.NewGore(Projectile.GetSource_Death(), Projectile.position, -Projectile.oldVelocity * 0.2f, 704, 1f);
+                Gore.NewGore(Projectile.GetSource_Death(), Projectile.position, -Projectile.oldVelocity * 0.2f, 705, 1f);
 
-                Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), Projectile.Center.X, Projectile.Center.Y, Projectile.velocity.X * 0, Projectile.velocity.Y * 0, ModContent.ProjectileType<SpicyExplosion>(), (int)((double)Projectile.damage * 0.75f), Projectile.knockBack, Projectile.owner);
+                Projectile.NewProjectile(Projectile.GetSource_Death(), Projectile.Center.X, Projectile.Center.Y, Projectile.velocity.X * 0, Projectile.velocity.Y * 0, ModContent.ProjectileType<SpicyExplosion>(), (int)((double)Projectile.damage * 0.75f), Projectile.knockBack, Projectile.owner);
                 --Projectile.penetrate;
             }
         }

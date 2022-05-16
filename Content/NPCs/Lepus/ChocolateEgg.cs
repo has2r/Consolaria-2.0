@@ -54,8 +54,8 @@ namespace Consolaria.Content.NPCs.Lepus
             if (NPC.life <= 0) {
                 int chocolateEggGore = ModContent.Find<ModGore>("Consolaria/ChocolateEggGore").Type;
                 for (int i = 0; i < 1; i++) {
-                    Gore.NewGore(NPC.position, new Vector2(Main.rand.Next(-1, 1), Main.rand.Next(-1, 1)), chocolateEggGore);
-                    Gore.NewGore(NPC.position, new Vector2(Main.rand.Next(-1, 1), Main.rand.Next(-1, 1)), chocolateEggGore);
+                    Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-1, 1), Main.rand.Next(-1, 1)), chocolateEggGore);
+                    Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-1, 1), Main.rand.Next(-1, 1)), chocolateEggGore);
                 }
             }
         }

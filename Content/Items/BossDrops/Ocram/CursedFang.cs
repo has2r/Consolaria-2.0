@@ -151,7 +151,7 @@ namespace Consolaria.Content.Items.BossDrops.Ocram
                         Main.dust[dust].velocity = Player.DirectionTo(Main.dust[dust].position) * 5f;
                 }
                 for (int g = 0; g < 5; g++) {
-                    int goreIndex = Gore.NewGore(dustPos, default(Vector2), Main.rand.Next(61, 64), 1f);
+                    int goreIndex = Gore.NewGore(Player.GetSource_Misc(null), dustPos, default(Vector2), Main.rand.Next(61, 64), 1f);
                     Main.gore[goreIndex].GetAlpha(new Color(75, 0, 130, 100));
                 }
 

@@ -17,7 +17,7 @@ namespace Consolaria.Content.Items.BossDrops.Turkor
         public override int BossBagNPC => ModContent.NPCType<NPCs.Turkor.TurkortheUngrateful>();
 
         public override void SetStaticDefaults() {
-            DisplayName.SetDefault("Treasure Bag");
+            DisplayName.SetDefault("Treasure Bag (Turkor the Ungrateful)");
             Tooltip.SetDefault("{$CommonItemTooltip.RightClickToOpen}");
 
             ItemID.Sets.BossBag[Type] = true;
@@ -42,15 +42,15 @@ namespace Consolaria.Content.Items.BossDrops.Turkor
         
         public override void OpenBossBag(Player player) {
             int mainDrops = Main.rand.Next(4);
-            if (mainDrops == 0) player.QuickSpawnItem(player.GetItemSource_OpenItem(Type), ModContent.ItemType<FeatherStorm>());
-            if (mainDrops == 1) player.QuickSpawnItem(player.GetItemSource_OpenItem(Type), ModContent.ItemType<GreatDrumstick>());
-            if (mainDrops == 2) player.QuickSpawnItem(player.GetItemSource_OpenItem(Type), ModContent.ItemType<TurkeyStuff>()); 
-            if (mainDrops == 3) player.QuickSpawnItem(player.GetItemSource_OpenItem(Type), ModContent.ItemType<SpicySauce>(), Main.rand.Next(20, 39));
+            if (mainDrops == 0) player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<FeatherStorm>());
+            if (mainDrops == 1) player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<GreatDrumstick>());
+            if (mainDrops == 2) player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<TurkeyStuff>()); 
+            if (mainDrops == 3) player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<SpicySauce>(), Main.rand.Next(20, 39));
 
-            if (Main.rand.Next(10) == 0) player.QuickSpawnItem(player.GetItemSource_OpenItem(Type), ModContent.ItemType<TurkorMask>());       
-            if (Main.rand.Next(10) == 0) player.QuickSpawnItem(player.GetItemSource_OpenItem(Type), ModContent.ItemType<TurkorTrophy>());
+            if (Main.rand.Next(10) == 0) player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<TurkorMask>());       
             
-            player.QuickSpawnItem(player.GetItemSource_OpenItem(Type), ModContent.ItemType<HornoPlenty>());
+            player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<HornoPlenty>());
+            player.QuickSpawnItem(player.GetSource_OpenItem(Type), ItemID.GoldCoin, 8);
         }
 
         public override Color? GetAlpha(Color lightColor)

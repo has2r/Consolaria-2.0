@@ -11,7 +11,7 @@ namespace Consolaria.Content.Items.Armor.Summon
     public class WarlockRobe : ModItem
     {
         public override void Load()  {
-            string robeTexture = "Consolaria/Content/Items/Armor/Summon/WarlockRobe_Robe";
+            string robeTexture = "Consolaria/Content/Items/Armor/Summon/WarlockRobe_Extension";
             if (Main.netMode != NetmodeID.Server)
                 Mod.AddEquipTexture(this, EquipType.Legs, robeTexture);     
         }
@@ -46,7 +46,7 @@ namespace Consolaria.Content.Items.Armor.Summon
         public override void AddRecipes() {
             CreateRecipe()
                 .AddIngredient(ItemID.HallowedPlateMail)
-                .AddIngredient(ItemID.HellstoneBar, 15)
+                .AddRecipeGroup(RecipeGroups.Titanium, 12)
                 .AddIngredient(ItemID.SoulofNight, 15)
                 .AddIngredient<SoulofBlight>(15)
                 .AddTile(TileID.MythrilAnvil)

@@ -102,24 +102,21 @@ namespace Consolaria.Content.NPCs
 			}
 
 			if (timer == 100)
-				Projectile.NewProjectile(NPC.GetSpawnSource_ForProjectile(), NPC.Center, new Vector2(6f, -6f).RotatedBy(NPC.rotation + 180), ProjectileID.JungleSpike, (int)(NPC.damage / 2), 1, player.whoAmI);
+				Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, new Vector2(6f, -6f).RotatedBy(NPC.rotation + 180), ProjectileID.JungleSpike, (int)(NPC.damage / 2), 1, player.whoAmI);
 			
-			if (posX < NPC.position.X)
-			{
+			if (posX < NPC.position.X) {
 				if (NPC.velocity.X > -4) { NPC.velocity.X -= 0.25f; }
 			}
-			else if (posX > NPC.Center.X)
-			{
+			else if (posX > NPC.Center.X) {
 				if (NPC.velocity.X < 4) { NPC.velocity.X += 0.25f; }
 			}
-			if (posY < NPC.position.Y)
-			{
+			if (posY < NPC.position.Y) {
 				if (NPC.velocity.Y > -4) NPC.velocity.Y -= 0.25f;
 			}
-			else if (posY > NPC.Center.Y)
-			{
+			else if (posY > NPC.Center.Y) {
 				if (NPC.velocity.Y < 4) NPC.velocity.Y += 0.25f;
 			}
+
 			NPC.rotation = ((float)Math.Atan2(player.Center.Y - (double)NPC.Center.Y, player.Center.X - (double)NPC.Center.X) + 3.14f) * 1f + ((float)Math.Atan2(NPC.velocity.Y, NPC.velocity.X)) * 0.1f;
 		}
 
@@ -155,9 +152,9 @@ namespace Consolaria.Content.NPCs
 				for (int j = 0; j < 20; ++j)
 					Dust.NewDust(NPC.position + NPC.velocity, NPC.width, NPC.height, 5, 0f, 2f);
 
-				Gore.NewGore(NPC.position, new Vector2(Main.rand.Next(-5, 6), Main.rand.Next(-5, 6)), ModContent.Find<ModGore>("Consolaria/DSnatcherGore1").Type);
+				Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-5, 6), Main.rand.Next(-5, 6)), ModContent.Find<ModGore>("Consolaria/DSnatcherGore1").Type);
 				for (int i = 0; i < 2; ++i)
-					Gore.NewGore(NPC.position, new Vector2(Main.rand.Next(-5, 6), Main.rand.Next(-5, 6)), ModContent.Find<ModGore>("Consolaria/DSnatcherGore2").Type);	
+					Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-5, 6), Main.rand.Next(-5, 6)), ModContent.Find<ModGore>("Consolaria/DSnatcherGore2").Type);	
 			}
 		}
 

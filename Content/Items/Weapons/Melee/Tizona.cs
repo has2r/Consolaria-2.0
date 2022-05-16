@@ -42,13 +42,13 @@ namespace Consolaria.Content.Items.Weapons.Melee
 				Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, DustID.Shadowflame, 0, 0, 100, default, 0.9f);
 		}
 
-		public override void AddRecipes() {
+		/*public override void AddRecipes() {
 			CreateRecipe()
 				.AddIngredient(ItemID.Excalibur)
 				.AddIngredient(ItemID.HellstoneBar, 15)
 				.AddIngredient<SoulofBlight>(15)
 				.AddTile(TileID.MythrilAnvil)
 				.Register();
-		}
+		}*/
 	}
 }

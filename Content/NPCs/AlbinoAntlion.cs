@@ -73,7 +73,7 @@ namespace Consolaria.Content.NPCs
 		public override void HitEffect(int hitDirection, double damage) {
 			Dust.NewDust(NPC.position, NPC.width, NPC.height, 185, 2.5f * hitDirection, -2.5f, 0, default(Color), 0.7f);
 			if (NPC.life <= 0) {
-				Gore.NewGore(NPC.position, new Vector2(Main.rand.Next(-5, 6), Main.rand.Next(-5, 6)), ModContent.Find<ModGore>("Consolaria/AlbinoAntlionGore").Type);
+				Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-5, 6), Main.rand.Next(-5, 6)), ModContent.Find<ModGore>("Consolaria/AlbinoAntlionGore").Type);
 				for (int i = 0; i < 20; i++)
 					Dust.NewDust(NPC.position, NPC.width, NPC.height, 59, 2.5f * hitDirection, -2.5f, 0, default(Color), 1f);		
 			}

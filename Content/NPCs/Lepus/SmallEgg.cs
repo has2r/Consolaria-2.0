@@ -10,7 +10,6 @@ namespace Consolaria.Content.NPCs.Lepus
 {
     public class SmallEgg : ModNPC
     {
-        private bool _checkSpawn;
         private int timer = 0;
 
         public override void SetStaticDefaults() 
@@ -62,8 +61,8 @@ namespace Consolaria.Content.NPCs.Lepus
             if (timer >= 360) {             
                 int gore1 = ModContent.Find<ModGore>("Consolaria/EggShell").Type;
                 for (int i = 0; i < 1; i++) {
-                    Gore.NewGore(NPC.position, new Vector2(Main.rand.Next(-1, 1), Main.rand.Next(-1, 1)), gore1);
-                    Gore.NewGore(NPC.position, new Vector2(Main.rand.Next(-1, 1), Main.rand.Next(-1, 1)), gore1);
+                    Gore.NewGore(NPC.GetSource_FromAI(), NPC.position, new Vector2(Main.rand.Next(-1, 1), Main.rand.Next(-1, 1)), gore1);
+                    Gore.NewGore(NPC.GetSource_FromAI(), NPC.position, new Vector2(Main.rand.Next(-1, 1), Main.rand.Next(-1, 1)), gore1);
                 }
                 NPC.velocity.X = 0;
                 NPC.Transform(ModContent.NPCType<DisasterBunny>());
@@ -75,8 +74,8 @@ namespace Consolaria.Content.NPCs.Lepus
             if (NPC.life <= 0) {
                 int gore1 = ModContent.Find<ModGore>("Consolaria/EggShell").Type;
                 for (int i = 0; i < 1; i++) {
-                    Gore.NewGore(NPC.position, new Vector2(Main.rand.Next(-1, 1), Main.rand.Next(-1, 1)), gore1);
-                    Gore.NewGore(NPC.position, new Vector2(Main.rand.Next(-1, 1), Main.rand.Next(-1, 1)), gore1);
+                    Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-1, 1), Main.rand.Next(-1, 1)), gore1);
+                    Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-1, 1), Main.rand.Next(-1, 1)), gore1);
                 }
                 SoundEngine.PlaySound(2, (int)NPC.position.X, (int)NPC.position.Y, 10, 1f, 0f);
             }

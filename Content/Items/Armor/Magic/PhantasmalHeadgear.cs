@@ -36,8 +36,9 @@ namespace Consolaria.Content.Items.Armor.Magic
             player.GetDamage(DamageClass.Magic) += 0.05f;
         }
 
-        public override bool IsArmorSet(Item head, Item body, Item legs) 
-            => body.type == ModContent.ItemType<PhantasmalRobe>() && legs.type == ModContent.ItemType<PhantasmalSubligar>();
+        public override bool IsArmorSet(Item head, Item body, Item legs)
+           => body.type == ModContent.ItemType<PhantasmalRobe>() || body.type == ModContent.ItemType<AncientPhantasmalRobe>()
+           && legs.type == ModContent.ItemType<PhantasmalSubligar>() || legs.type == ModContent.ItemType<AncientPhantasmalSubligar>();
 
         public override void UpdateArmorSet(Player player) {
             player.setBonus = "Drinking a mana potion unleashes a barrage of homing spirit bolts";
@@ -50,15 +51,15 @@ namespace Consolaria.Content.Items.Armor.Magic
         public override void AddRecipes() {
             CreateRecipe()
                 .AddIngredient(ItemID.HallowedHeadgear)
-                .AddIngredient(ItemID.HellstoneBar, 12)
-                .AddIngredient(ItemID.SoulofMight, 10)
+                .AddRecipeGroup(RecipeGroups.Titanium, 10)
+                .AddIngredient(ItemID.SoulofFright, 10)
                 .AddIngredient<SoulofBlight>(10)
                 .AddTile(TileID.MythrilAnvil)
                 .Register();
         }
     }
 
-    internal class SpectralPlayer : ModPlayer
+    public class SpectralPlayer : ModPlayer
     {
         public bool spectralGuard;
 
@@ -75,7 +76,7 @@ namespace Consolaria.Content.Items.Armor.Magic
                 if (item.healMana > 0) {
                     for (int i = 0; i < projectilesCount; i++) {
                         Vector2 position = new(player.position.X + Main.rand.Next(-60, 61), player.position.Y + Main.rand.Next(-40, 41));
-                        Projectile.NewProjectile(player.GetItemSource_Misc(-1), position.X, position.Y, velocity.X, velocity.Y, ModContent.ProjectileType<SpectralSpirit>(), (int)(60 * player.GetDamage(DamageClass.Magic)), 2.5f, player.whoAmI);
+                        Projectile.NewProjectile(player.GetSource_ItemUse(item), position.X, position.Y, velocity.X, velocity.Y, ModContent.ProjectileType<SpectralSpirit>(), 60, 2.5f, player.whoAmI);
                     }
                     SoundEngine.PlaySound(SoundID.DD2_BookStaffCast, player.Center);
                 }

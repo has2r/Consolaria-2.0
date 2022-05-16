@@ -78,7 +78,7 @@ namespace Consolaria.Content.NPCs
             Vector2 NormalizedVec = new(0, -2f);
             NormalizedVec.Normalize();
             if (!Collision.SolidCollision(teleportTo, 16, 16)) {
-                Projectile.NewProjectile(NPC.GetSpawnSource_ForProjectile(), teleportFrom, NormalizedVec * 4f, ModContent.ProjectileType<SpectralBomb>(), 30, 4, player.whoAmI);
+                Projectile.NewProjectile(NPC.GetSource_FromAI(), teleportFrom, NormalizedVec * 4f, ModContent.ProjectileType<SpectralBomb>(), 30, 4, player.whoAmI);
                 NPC.position = teleportTo;
             }
         }
@@ -119,9 +119,7 @@ namespace Consolaria.Content.NPCs
                 npcLoot.Add(elementalDropRule);
         }
 
-        public override float SpawnChance(NPCSpawnInfo spawnInfo) {
-            int y = spawnInfo.spawnTileY;
-            return (spawnInfo.player.ZoneHallow && y < Main.rockLayer) ? SpawnCondition.EnchantedSword.Chance * 0.33f : 0f;
-        }
+        public override float SpawnChance(NPCSpawnInfo spawnInfo) 
+            => (spawnInfo.Player.ZoneHallow && spawnInfo.SpawnTileY < Main.rockLayer) ? SpawnCondition.EnchantedSword.Chance * 0.33f : 0f;    
     }
 }

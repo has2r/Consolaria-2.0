@@ -1,5 +1,8 @@
 using Terraria.ModLoader;
+using Terraria;
 using Terraria.ID;
+using Microsoft.Xna.Framework;
+using Terraria.GameContent.Creative;
 
 namespace Consolaria.Content.Items.BossDrops.Turkor
 {
@@ -8,14 +11,18 @@ namespace Consolaria.Content.Items.BossDrops.Turkor
 	{
 		public override void SetStaticDefaults() {
 			DisplayName.SetDefault("Turkor the Ungrateful Mask");
-			Tooltip.SetDefault("");
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
 		public override void SetDefaults() {
-			Item.width = 20;
-			Item.height = 24;
+			int width = 20; int height = 24;
+			Item.Size = new Vector2(width, height);
+
+			Item.value = Item.sellPrice(silver: 75);
 			Item.rare = ItemRarityID.Blue;
+
 			Item.vanity = true;
+			Item.maxStack = 1;
 		}
 	}
 }

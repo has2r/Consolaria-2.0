@@ -13,7 +13,7 @@ namespace Consolaria.Content.Items.Weapons.Melee
     {
         public override void SetStaticDefaults() {
             DisplayName.SetDefault("Tonbogiri");
-            Tooltip.SetDefault("A legendary Japanese spear coated in venom");
+            Tooltip.SetDefault("'A legendary Japanese spear coated in venom'");
             ItemID.Sets.SkipsInitialUseSound[Item.type] = true;
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
@@ -55,7 +55,7 @@ namespace Consolaria.Content.Items.Weapons.Melee
         public override void AddRecipes() {
             CreateRecipe()
                 .AddIngredient(ItemID.Gungnir)
-                .AddIngredient(ItemID.HellstoneBar, 15)
+                .AddRecipeGroup(RecipeGroups.Titanium, 10)
                 .AddIngredient<SoulofBlight>(15)
                 .AddTile(TileID.MythrilAnvil)
                 .Register();

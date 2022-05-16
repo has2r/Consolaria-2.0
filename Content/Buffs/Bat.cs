@@ -18,7 +18,7 @@ namespace Consolaria.Content.Buffs
 			sbyte type = (sbyte)ModContent.ProjectileType<Projectiles.Friendly.Pets.Bat>();
 			//var entitySource = player.GetSource_Buff(buffIndex);
 			if (player.whoAmI == Main.myPlayer && player.ownedProjectileCounts[type] <= 0)
-				Projectile.NewProjectile(player.GetProjectileSource_Buff(buffIndex), player.Center, Vector2.Zero, type, 0, 0f, player.whoAmI);	
+				Projectile.NewProjectile(player.GetSource_Buff(buffIndex), player.Center, Vector2.Zero, type, 0, 0f, player.whoAmI);	
 		}
 	}
 }

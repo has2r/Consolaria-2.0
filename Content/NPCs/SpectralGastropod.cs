@@ -80,7 +80,7 @@ namespace Consolaria.Content.NPCs
 			if (Main.netMode != NetmodeID.MultiplayerClient && NPC.ai[3] == 32f && !player.npcTypeNoAggro[NPC.type] && !player.dead) {
 				SoundEngine.PlaySound(SoundID.Item29, NPC.position);
 				float vel = (float)Math.Atan2((vector2.Y - vector.Y), (vector2.X - vector.X));
-				Projectile.NewProjectile(NPC.GetSpawnSource_ForProjectile(), NPC.Center.X, NPC.Center.Y, (float)(Math.Cos(vel) * 12 * -1.0), (float)(Math.Sin(vel) * 12 * -1.0), ModContent.ProjectileType<SpectrallBall>(), 60, 2f, player.whoAmI);
+				Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, (float)(Math.Cos(vel) * 12 * -1.0), (float)(Math.Sin(vel) * 12 * -1.0), ModContent.ProjectileType<SpectrallBall>(), 60, 2f, player.whoAmI);
 				NPC.netUpdate = true;
 			}
 
@@ -105,9 +105,9 @@ namespace Consolaria.Content.NPCs
 		public override void HitEffect(int hitDirection, double damage) {
 			Dust.NewDust(NPC.position, NPC.width, NPC.height, 185, 2.5f * (float)hitDirection, -2.5f, 0, default, 0.7f);
 			if (NPC.life <= 0) {
-				Gore.NewGore(NPC.position, NPC.velocity / 2, 11, 1f);
-				Gore.NewGore(NPC.position, NPC.velocity / 2, 12, 1f);
-				Gore.NewGore(NPC.position, NPC.velocity / 2, 13, 1f);
+				Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity / 2, 11, 1f);
+				Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity / 2, 12, 1f);
+				Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity / 2, 13, 1f);
 				for (int i = 0; i < 20; i++)
 					Dust.NewDust(NPC.position, NPC.width, NPC.height, 185, 2.5f * (float)hitDirection, -2.5f, 0, default, 1f);	
 			}
@@ -123,6 +123,6 @@ namespace Consolaria.Content.NPCs
 		}
 
 		public override float SpawnChance(NPCSpawnInfo spawnInfo)
-			=> (spawnInfo.player.ZoneHallow && spawnInfo.spawnTileY == Main.worldSurface) ? SpawnCondition.OverworldHallow.Chance * 0.33f : 0f;
+			=> (spawnInfo.Player.ZoneHallow && spawnInfo.SpawnTileY == Main.worldSurface) ? SpawnCondition.OverworldHallow.Chance * 0.33f : 0f;
 	}
 }

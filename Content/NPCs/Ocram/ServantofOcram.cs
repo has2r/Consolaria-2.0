@@ -64,7 +64,7 @@ namespace Consolaria.Content.NPCs.Ocram
 
             bestiaryEntry.Info.AddRange(new List<IBestiaryInfoElement> {
                 BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Times.NightTime,
-                new FlavorTextBestiaryInfoElement("A minion protecting his boss from taking damage by sacrificing itself. If none are alive, the boss is exposed to damage.")
+                new FlavorTextBestiaryInfoElement("Evil creatures newly birthed from the Ocram, brought forth to protect their master by any means necessary.")
             });
         }
 
@@ -79,15 +79,17 @@ namespace Consolaria.Content.NPCs.Ocram
             return false;
         }
 
-        public override void AI()
-            => NPC.position += NPC.velocity * 1.1f;
+        public override void AI() {
+            if (Despawn()) return;
+            NPC.position += NPC.velocity * 1.1f;
+        }
         
         public override void HitEffect(int hitDirection, double damage) {
             for (int i = 0; i < 3; i++)
                 Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Shadowflame, hitDirection, -1f, 0, default, 1f);
             
             if (NPC.life <= 0) {
-                Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("Consolaria/Servant_Gore").Type, 1f);
+                Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity, ModContent.Find<ModGore>("Consolaria/Servant_Gore").Type, 1f);
                 for (int j = 0; j < 12; j++)
                     Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Shadowflame, hitDirection, -1f, 0, default, 1f);               
             }
@@ -95,7 +97,7 @@ namespace Consolaria.Content.NPCs.Ocram
 
         public override void OnKill() {
             if (Main.rand.Next(2) == 0)
-                Item.NewItem(null, (int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ItemID.Heart);  
+                Item.NewItem(NPC.GetSource_Death(), (int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ItemID.Heart);  
         }
     }
 }

@@ -1,5 +1,8 @@
 using Terraria.ModLoader;
+using Terraria;
 using Terraria.ID;
+using Microsoft.Xna.Framework;
+using Terraria.GameContent.Creative;
 
 namespace Consolaria.Content.Items.BossDrops.Lepus
 {
@@ -7,22 +10,19 @@ namespace Consolaria.Content.Items.BossDrops.Lepus
     {
         public override void SetStaticDefaults() {
             DisplayName.SetDefault("Lepus Trophy");
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
         public override void SetDefaults() {
-            Item.width = 32;
-            Item.height = 32;
+            int width = 32; int height = 40;
+            Item.Size = new Vector2(width, height);
+
+            Item.DefaultToPlaceableTile(ModContent.TileType<Tiles.LepusTrophy>());
+
             Item.maxStack = 99;
-            Item.useTurn = true;
-            Item.autoReuse = true;
-            Item.useAnimation = 15;
-            Item.useTime = 15;
-            Item.useStyle = ItemUseStyleID.Swing;
-            Item.consumable = true;
-            Item.scale = 0.5f;
-            Item.value = 10000;
-            Item.createTile = ModContent.TileType<Tiles.LepusTrophy>();
-            Item.placeStyle = 0;
+
+            Item.rare = ItemRarityID.Blue;
+            Item.value = Item.buyPrice(gold: 1);
         }
     }
 }

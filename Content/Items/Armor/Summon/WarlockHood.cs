@@ -33,8 +33,9 @@ namespace Consolaria.Content.Items.Armor.Summon
             player.GetDamage(DamageClass.Summon) += 0.09f;
         }
 
-        public override bool IsArmorSet(Item head, Item body, Item legs) 
-            => body.type == ModContent.ItemType<WarlockRobe>() && legs.type == ModContent.ItemType<WarlockLeggings>();
+        public override bool IsArmorSet(Item head, Item body, Item legs)
+           => body.type == ModContent.ItemType<WarlockRobe>() || body.type == ModContent.ItemType<AncientWarlockRobe>()
+           && legs.type == ModContent.ItemType<WarlockLeggings>() || legs.type == ModContent.ItemType<AncientWarlockLeggings>();
 
         public override void UpdateArmorSet(Player player) {
             player.setBonus = "Killing enemies minions healing the player for a small amount of life";
@@ -47,7 +48,7 @@ namespace Consolaria.Content.Items.Armor.Summon
         public override void AddRecipes() {
             CreateRecipe()
                 .AddIngredient(ItemID.HallowedHood)
-                .AddIngredient(ItemID.HellstoneBar, 12)
+                .AddRecipeGroup(RecipeGroups.Titanium, 10)
                 .AddIngredient(ItemID.SoulofNight, 10)
                 .AddIngredient<SoulofBlight>(10)
                 .AddTile(TileID.MythrilAnvil)
@@ -55,7 +56,7 @@ namespace Consolaria.Content.Items.Armor.Summon
         }
     }
 
-    internal class WarlockPlayer : ModPlayer
+    public class WarlockPlayer : ModPlayer
     {
         public bool necroHealing;
 

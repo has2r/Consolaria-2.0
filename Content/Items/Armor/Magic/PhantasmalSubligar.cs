@@ -37,7 +37,7 @@ namespace Consolaria.Content.Items.Armor.Magic
         public override void AddRecipes() {
             CreateRecipe()
                 .AddIngredient(ItemID.HallowedGreaves)
-                .AddIngredient(ItemID.HellstoneBar, 12)
+                .AddRecipeGroup(RecipeGroups.Titanium, 10)
                 .AddIngredient(ItemID.SoulofFright, 10)
                 .AddIngredient<SoulofBlight>(10)
                 .AddTile(TileID.MythrilAnvil)

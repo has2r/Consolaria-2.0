@@ -19,8 +19,8 @@ namespace Consolaria.Content.NPCs.Lepus
     [AutoloadBossHead]
     public class Lepus : ModNPC
     {
-        private int _jumpHeight;
-        private int _animationTimer = 0;
+       //private int _jumpHeight;
+       //private int _animationTimer = 0;
 
         private int attacknum = 0;
         private int frame = 4;
@@ -377,7 +377,7 @@ namespace Consolaria.Content.NPCs.Lepus
                             for (int m = 0; m < 6; m++) {
                                 Vector2 vector2 = new Vector2(13f, 0f);
                                 vector2 = vector2.RotatedBy((double)((float)(-(float)m) * 6.28318548f / 10f), Vector2.Zero);
-                                int npc = NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)NPC.Center.X, (int)NPC.Center.Y, ModContent.NPCType<SmallEgg>());
+                                int npc = NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.Center.X, (int)NPC.Center.Y, ModContent.NPCType<SmallEgg>());
                                 Main.npc[npc].velocity.X = vector2.X;
                                 Main.npc[npc].velocity.Y = vector2.Y;
                                 SoundEngine.PlaySound(SoundID.Item7, NPC.position);
@@ -401,7 +401,7 @@ namespace Consolaria.Content.NPCs.Lepus
                 NPC.frame = GetFrame(7);
                 SoundEngine.PlaySound(2, (int)NPC.position.X, (int)NPC.position.Y, 44, 1f, -0.6f);
                 int bigegg = 0;
-                bigegg = NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)NPC.Center.X, (int)NPC.Center.Y + 30, ModContent.NPCType<BigEgg>());
+                bigegg = NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.Center.X, (int)NPC.Center.Y + 30, ModContent.NPCType<BigEgg>());
                 Main.npc[bigegg].ai[0] = NPC.whoAmI;
             }
 
@@ -441,13 +441,13 @@ namespace Consolaria.Content.NPCs.Lepus
 
         public override void HitEffect(int hitDirection, double damage) {
             if (NPC.life <= 0) {
-                Gore.NewGore(NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), ModContent.Find<ModGore>("Consolaria/LPG1").Type);
-                Gore.NewGore(NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), ModContent.Find<ModGore>("Consolaria/LPG2").Type);
-                Gore.NewGore(NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), ModContent.Find<ModGore>("Consolaria/LPG3").Type);
-                Gore.NewGore(NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), ModContent.Find<ModGore>("Consolaria/LPG4").Type);
-                Gore.NewGore(NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), ModContent.Find<ModGore>("Consolaria/LPG5").Type);
-                Gore.NewGore(NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), ModContent.Find<ModGore>("Consolaria/LPG6").Type);
-                Gore.NewGore(NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), ModContent.Find<ModGore>("Consolaria/LPG7").Type);
+                Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), ModContent.Find<ModGore>("Consolaria/LPG1").Type);
+                Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), ModContent.Find<ModGore>("Consolaria/LPG2").Type);
+                Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), ModContent.Find<ModGore>("Consolaria/LPG3").Type);
+                Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), ModContent.Find<ModGore>("Consolaria/LPG4").Type);
+                Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), ModContent.Find<ModGore>("Consolaria/LPG5").Type);
+                Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), ModContent.Find<ModGore>("Consolaria/LPG6").Type);
+                Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), ModContent.Find<ModGore>("Consolaria/LPG7").Type);
                 SoundEngine.PlaySound(SoundID.Roar, NPC.Center, 0);
             }
         }

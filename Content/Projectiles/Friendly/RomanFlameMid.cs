@@ -41,7 +41,7 @@ namespace Consolaria.Content.Projectiles.Friendly
                     Vector2 velocity = Projectile.velocity;
                     for (int i = 0; i < projectilesCount; i++) {
                         Vector2 perturbedSpeed = new Vector2(velocity.X, velocity.Y).RotatedByRandom(MathHelper.ToRadians(180));
-                        Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), Projectile.position, perturbedSpeed, ModContent.ProjectileType<RomanFlameFinal>(), Projectile.damage, Projectile.knockBack, player.whoAmI);
+                        Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.position, perturbedSpeed, ModContent.ProjectileType<RomanFlameFinal>(), Projectile.damage, Projectile.knockBack, player.whoAmI);
                     }
                 }
 

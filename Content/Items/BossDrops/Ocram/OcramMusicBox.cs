@@ -16,7 +16,6 @@ namespace Consolaria.Content.Items.BossDrops.Ocram
 		}
 
 		public override void SetDefaults() {
-
 			int width = 24; int height = width;
 			Item.Size = new Vector2(width, height);
 

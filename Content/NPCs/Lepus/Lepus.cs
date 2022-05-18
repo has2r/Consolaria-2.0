@@ -466,13 +466,13 @@ namespace Consolaria.Content.NPCs.Lepus
                 Conditions.NotExpert notExpert = new Conditions.NotExpert();
                 npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<LepusBag>()));
                 //npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<LepusRelic>()));
-                //npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<LepusPet>()));
+                //npcLoot.Add(ItemDropRule.MasterModeDropOnAllPlayers(ModContent.ItemType<LepusPet>()));
                 npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<SuspiciousLookingEgg>()));
                 //npcLoot.Add(ItemDropRule.ByCondition(_notExpert, ModContent.ItemType<OstaraHat>(), 3));
                 //npcLoot.Add(ItemDropRule.ByCondition(_notExpert, ModContent.ItemType<OstaraChainmail>(), 3));
                 //npcLoot.Add(ItemDropRule.ByCondition(_notExpert, ModContent.ItemType<OstaraBoots>(), 3));
                 npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<EggCannon>(), 2));
-                npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<LepusMask>(), 7));
+                npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<LepusMask>(), 8));
                 npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<LepusTrophy>(), 10));
                 npcLoot.Add(ItemDropRule.ByCondition(notExpert, ItemID.BunnyHood, 10));
             }

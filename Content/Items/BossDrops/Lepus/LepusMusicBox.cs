@@ -1,5 +1,7 @@
 using Terraria.ModLoader;
+using Terraria;
 using Terraria.ID;
+using Microsoft.Xna.Framework;
 
 namespace Consolaria.Content.Items.BossDrops.Lepus
 {
@@ -11,18 +13,14 @@ namespace Consolaria.Content.Items.BossDrops.Lepus
 		}
 
 		public override void SetDefaults() {
-			Item.useStyle = ItemUseStyleID.Swing;
-			Item.useTurn = true;
-			Item.useAnimation = 15;
-			Item.useTime = 10;
-			Item.autoReuse = true;
-			Item.consumable = true;
-			Item.createTile = ModContent.TileType<Tiles.LepusMusicBox>();
-			Item.width = 24;
-			Item.height = 24;
-			Item.rare = ItemRarityID.LightRed;
-			Item.value = 100000;
+			int width = 24; int height = width;
+			Item.Size = new Vector2(width, height);
+
 			Item.accessory = true;
+
+			Item.rare = ItemRarityID.LightRed;
+			Item.value = Item.sellPrice(gold: 1);
+			Item.DefaultToPlaceableTile(ModContent.TileType<Tiles.LepusMusicBox>());
 		}
 	}
 }

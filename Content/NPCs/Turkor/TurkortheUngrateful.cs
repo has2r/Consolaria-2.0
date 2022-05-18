@@ -346,14 +346,13 @@ namespace Consolaria.Content.NPCs.Turkor
 			Conditions.NotExpert notExpert = new Conditions.NotExpert();
 			npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<TurkorBag>()));
 			npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<TurkorRelic>()));
-			//npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<LepusPet>()));
+			//npcLoot.Add(ItemDropRule.MasterModeDropOnAllPlayers(ModContent.ItemType<LepusPet>())); 4
 
-			int mainDrops = Main.rand.Next(4);
-			npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<FeatherStorm>(), mainDrops == 0 ? 1 : 0));
-			npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<GreatDrumstick>(), mainDrops == 1 ? 1 : 0));
-			npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<TurkeyStuff>(), mainDrops == 2 ? 1 : 0));
-			npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<SpicySauce>(), mainDrops == 3 ? 1 : 0, 15, 34));
+			LeadingConditionRule notExpertRule = new LeadingConditionRule(new Conditions.NotExpert());
+			notExpertRule.OnSuccess(new OneFromOptionsDropRule(1, 1, ModContent.ItemType<FeatherStorm>(), ModContent.ItemType<GreatDrumstick>(), ModContent.ItemType<TurkeyStuff>()));
+			npcLoot.Add(notExpertRule);
 
+			npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<SpicySauce>(), 2, 15, 34));
 			npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<TurkorMask>(), 7));
 			npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<TurkorTrophy>(), 10));
 		}

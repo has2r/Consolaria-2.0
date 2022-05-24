@@ -17,6 +17,20 @@ namespace Consolaria.Common
 				shop.item[nextSlot].SetDefaults(ModContent.ItemType<Content.Items.Weapons.Magic.RomanCandle>());
 				nextSlot++;
 			}
+			if (type == NPCID.TravellingMerchant && NPC.downedMechBossAny && Main.moonPhase == 4) {
+				shop.item[nextSlot].SetDefaults(ModContent.ItemType<Content.Items.Vanity.HornedGodMask>());
+				nextSlot++;
+				shop.item[nextSlot].SetDefaults(ModContent.ItemType<Content.Items.Vanity.HornedGodRobe>());
+				nextSlot++;
+				shop.item[nextSlot].SetDefaults(ModContent.ItemType<Content.Items.Vanity.HornedGodBoots>());
+				nextSlot++;
+			}
+			if (type == NPCID.Clothier && Main.moonPhase == 0) {
+				shop.item[nextSlot].SetDefaults(ModContent.ItemType<Content.Items.Vanity.ShirenShirt>());
+				nextSlot++;
+				shop.item[nextSlot].SetDefaults(ModContent.ItemType<Content.Items.Vanity.ShirenPants>());
+				nextSlot++;
+			}
 		}
 	}
 }

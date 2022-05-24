@@ -39,7 +39,7 @@ namespace Consolaria.Content.Items.Armor.Melee
             && legs.type == ModContent.ItemType<DragonGreaves>() || legs.type == ModContent.ItemType<AncientDragonGreaves>();
 
         public override void ArmorSetShadows(Player player) 
-            => player.armorEffectDrawShadowLokis = true;
+            => player.armorEffectDrawShadow = true;
 
         public override void UpdateArmorSet(Player player) {
             player.setBonus = "Creates a burst of flames after taking damage";

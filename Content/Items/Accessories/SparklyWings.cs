@@ -18,7 +18,7 @@ namespace Consolaria.Content.Items.Accessories
             ArmorIDs.Wing.Sets.Stats[Item.wingSlot] = new WingStats(160, 7f, 2f);
 
             if (!Main.dedServ) {
-                WingsLayer.RegisterData(Item.wingSlot, new DrawLayerData() {
+                WingsGlowmask.RegisterData(Item.wingSlot, new DrawLayerData() {
                     Texture = ModContent.Request<Texture2D>(Texture + "_Glow")
                 });
             }

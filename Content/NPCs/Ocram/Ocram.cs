@@ -839,7 +839,7 @@ namespace Consolaria.Content.NPCs.Ocram
             npcLoot.Add(notExpertRule);
 
             npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<SoulofBlight>(), 1, 25, 40));
-            npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<OcramMask>(), 8));
+            npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<OcramMask>(), 7));
             npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<OcramTrophy>(), 10));
         }
     }

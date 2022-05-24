@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace Consolaria
 {
-	public sealed class WingsLayer : PlayerDrawLayer
+	public sealed class WingsGlowmask : PlayerDrawLayer
 	{
 		private static Dictionary<int, DrawLayerData> WingsLayerData { get; set; }
 
@@ -29,7 +29,7 @@ namespace Consolaria
 			Player drawPlayer = drawInfo.drawPlayer;
 			if (drawPlayer.dead || drawPlayer.invis || drawPlayer.wings == -1) {
 				return false;
-			}
+			} 
 			return true;
 		}
 
@@ -43,7 +43,7 @@ namespace Consolaria
 			Texture2D texture = data.Texture.Value;
 
 			Vector2 directions = drawPlayer.Directions;
-			Vector2 offset = new Vector2(0f, 7f);
+			Vector2 offset = new(0f, 7f);
 			Vector2 position = drawInfo.Position - Main.screenPosition + new Vector2(drawPlayer.width / 2, drawPlayer.height - drawPlayer.bodyFrame.Height / 2) + offset;
 
 			int num11 = 0;
@@ -52,8 +52,8 @@ namespace Consolaria
 
 			position += new Vector2(num12 - 9, num11 + 2) * directions;
 			position = position.Floor();
-			Rectangle frame = new Rectangle(0, texture.Height / numFrames * drawPlayer.wingFrame, texture.Width, texture.Height / numFrames);
-			DrawData drawData = new DrawData(texture, position.Floor(), frame, color, drawPlayer.bodyRotation, new Vector2(texture.Width / 2, texture.Height / numFrames / 2), 1f, drawInfo.playerEffect, 0);
+			Rectangle frame = new(0, texture.Height / numFrames * drawPlayer.wingFrame, texture.Width, texture.Height / numFrames);
+			DrawData drawData = new(texture, position.Floor(), frame, color, drawPlayer.bodyRotation, new Vector2(texture.Width / 2, texture.Height / numFrames / 2), 1f, drawInfo.playerEffect, 0);
 			drawData.shader = drawInfo.cWings;	
 			drawInfo.DrawDataCache.Add(drawData);
 		}

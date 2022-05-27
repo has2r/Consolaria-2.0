@@ -1,19 +1,20 @@
-using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.GameContent.Creative;
-using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ID;
+using Terraria.GameContent.Creative;
+using Microsoft.Xna.Framework;
 
 namespace Consolaria.Content.Items.Vanity
 {
-	[AutoloadEquip(EquipType.Legs)]
+	[AutoloadEquip(EquipType.Head)]
 
-	public class HornedGodBoots : ModItem
+	public class FabulousRibbon : ModItem
 	{
 		public override void SetStaticDefaults() {
-			DisplayName.SetDefault("Horned God Boots");
-			Tooltip.SetDefault("'Remnant of an age of wonders'");
+			DisplayName.SetDefault("Fabulous Ribbon");
+			Tooltip.SetDefault("'Allows flight and slow fall'");
 
+			ArmorIDs.Head.Sets.DrawHatHair[Mod.GetEquipSlot(Name, EquipType.Head)] = true;
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
@@ -22,8 +23,9 @@ namespace Consolaria.Content.Items.Vanity
 			Item.Size = new Vector2(width, height);
 
 			Item.rare = ItemRarityID.LightRed;
-			Item.value = Item.buyPrice(gold: 20);
+			Item.value = Item.buyPrice(gold: 15);
 			Item.vanity = true;
 		}
-	}
+    }
 }
+

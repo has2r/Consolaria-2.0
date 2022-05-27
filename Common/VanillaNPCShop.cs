@@ -7,6 +7,8 @@ namespace Consolaria.Common
 	class VanillaNPCShop : GlobalNPC
 	{
         public override void SetupShop(int type, Chest shop, ref int nextSlot) {
+			Player player = Main.player[Main.myPlayer];
+
 			if (type == NPCID.Merchant) {
 				if (SeasonalEvents.isThanksgiving || !SeasonalEvents.enabled) {
 					shop.item[nextSlot].SetDefaults(ModContent.ItemType<Content.Items.Pets.TurkeyFeather>());
@@ -25,11 +27,42 @@ namespace Consolaria.Common
 				shop.item[nextSlot].SetDefaults(ModContent.ItemType<Content.Items.Vanity.HornedGodBoots>());
 				nextSlot++;
 			}
-			if (type == NPCID.Clothier && Main.moonPhase == 0) {
-				shop.item[nextSlot].SetDefaults(ModContent.ItemType<Content.Items.Vanity.ShirenShirt>());
-				nextSlot++;
-				shop.item[nextSlot].SetDefaults(ModContent.ItemType<Content.Items.Vanity.ShirenPants>());
-				nextSlot++;
+			if (type == NPCID.Clothier) {
+				if (Main.xMas) {
+					shop.item[nextSlot].SetDefaults(ModContent.ItemType<Content.Items.Vanity.FestiveTopHat>());
+					nextSlot++;
+				}
+				if (Main.moonPhase == 0) {
+					shop.item[nextSlot].SetDefaults(ModContent.ItemType<Content.Items.Vanity.ShirenShirt>());
+					nextSlot++;
+					shop.item[nextSlot].SetDefaults(ModContent.ItemType<Content.Items.Vanity.ShirenPants>());
+					nextSlot++;
+				}
+				if (Main.bloodMoon) {
+					shop.item[nextSlot].SetDefaults(ModContent.ItemType<Content.Items.Vanity.TorosHead>());
+					nextSlot++;
+					shop.item[nextSlot].SetDefaults(ModContent.ItemType<Content.Items.Vanity.TorosBody>());
+					nextSlot++;
+					shop.item[nextSlot].SetDefaults(ModContent.ItemType<Content.Items.Vanity.TorosLegs>());
+					nextSlot++;
+
+					if (player.Male) {
+						shop.item[nextSlot].SetDefaults(ModContent.ItemType<Content.Items.Vanity.GeorgesHat>());
+						nextSlot++;
+						shop.item[nextSlot].SetDefaults(ModContent.ItemType<Content.Items.Vanity.GeorgesTuxedoShirt>());
+						nextSlot++;
+						shop.item[nextSlot].SetDefaults(ModContent.ItemType<Content.Items.Vanity.GeorgesTuxedoPants>());
+						nextSlot++;
+					}
+					else {
+						shop.item[nextSlot].SetDefaults(ModContent.ItemType<Content.Items.Vanity.FabulousRibbon>());
+						nextSlot++;
+						shop.item[nextSlot].SetDefaults(ModContent.ItemType<Content.Items.Vanity.FabulousDress>());
+						nextSlot++;
+						shop.item[nextSlot].SetDefaults(ModContent.ItemType<Content.Items.Vanity.FabulousSlippers>());
+						nextSlot++;
+					}
+				}
 			}
 		}
 	}

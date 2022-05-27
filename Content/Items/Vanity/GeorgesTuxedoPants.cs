@@ -8,11 +8,11 @@ namespace Consolaria.Content.Items.Vanity
 {
 	[AutoloadEquip(EquipType.Legs)]
 
-	public class HornedGodBoots : ModItem
+	public class GeorgesTuxedoPants : ModItem
 	{
 		public override void SetStaticDefaults() {
-			DisplayName.SetDefault("Horned God Boots");
-			Tooltip.SetDefault("'Remnant of an age of wonders'");
+			DisplayName.SetDefault("Georges Tuxedo Pants");
+			Tooltip.SetDefault("'Oh myyy!'");
 
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
@@ -21,8 +21,8 @@ namespace Consolaria.Content.Items.Vanity
 			int width = 30; int height = 18;
 			Item.Size = new Vector2(width, height);
 
-			Item.rare = ItemRarityID.LightRed;
-			Item.value = Item.buyPrice(gold: 20);
+			Item.rare = ItemRarityID.White;
+			Item.value = Item.buyPrice(gold: 15);
 			Item.vanity = true;
 		}
 	}

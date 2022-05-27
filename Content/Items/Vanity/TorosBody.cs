@@ -6,14 +6,13 @@ using Terraria.ModLoader;
 
 namespace Consolaria.Content.Items.Vanity
 {
-	[AutoloadEquip(EquipType.Legs)]
+	[AutoloadEquip(EquipType.Body)]
 
-	public class HornedGodBoots : ModItem
+	public class TorosBody : ModItem
 	{
 		public override void SetStaticDefaults() {
-			DisplayName.SetDefault("Horned God Boots");
-			Tooltip.SetDefault("'Remnant of an age of wonders'");
-
+			DisplayName.SetDefault("Toro's Body");
+			ArmorIDs.Body.Sets.HidesTopSkin[Mod.GetEquipSlot(Name, EquipType.Body)] = true;
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
@@ -21,8 +20,8 @@ namespace Consolaria.Content.Items.Vanity
 			int width = 30; int height = 18;
 			Item.Size = new Vector2(width, height);
 
-			Item.rare = ItemRarityID.LightRed;
-			Item.value = Item.buyPrice(gold: 20);
+			Item.rare = ItemRarityID.White;
+			Item.value = Item.buyPrice(gold: 15);
 			Item.vanity = true;
 		}
 	}

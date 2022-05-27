@@ -1,3 +1,4 @@
+using Consolaria.Content.Items.Materials;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent.Creative;
@@ -8,12 +9,10 @@ namespace Consolaria.Content.Items.Vanity
 {
 	[AutoloadEquip(EquipType.Legs)]
 
-	public class HornedGodBoots : ModItem
+	public class MonomiLegs : ModItem
 	{
 		public override void SetStaticDefaults() {
-			DisplayName.SetDefault("Horned God Boots");
-			Tooltip.SetDefault("'Remnant of an age of wonders'");
-
+			DisplayName.SetDefault("Monomi Legs");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
@@ -21,9 +20,18 @@ namespace Consolaria.Content.Items.Vanity
 			int width = 30; int height = 18;
 			Item.Size = new Vector2(width, height);
 
-			Item.rare = ItemRarityID.LightRed;
-			Item.value = Item.buyPrice(gold: 20);
+			Item.rare = ItemRarityID.White;
+			Item.value = Item.sellPrice(silver: 15);
 			Item.vanity = true;
+		}
+
+		public override void AddRecipes() {
+			CreateRecipe()
+				.AddIngredient(ItemID.Silk, 20)
+				.AddIngredient<WhiteThread>(3)
+				.AddIngredient(ItemID.PinkThread, 3)
+				.AddTile(TileID.Loom)
+				.Register();
 		}
 	}
 }

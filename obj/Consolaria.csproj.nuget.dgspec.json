@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\HASTUR\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Consolaria\\Consolaria.csproj": {}
+    "C:\\Users\\tvg\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Consolaria-2.0-main\\Consolaria.csproj": {}
   },
   "projects": {
-    "C:\\Users\\HASTUR\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Consolaria\\Consolaria.csproj": {
+    "C:\\Users\\tvg\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Consolaria-2.0-main\\Consolaria.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\HASTUR\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Consolaria\\Consolaria.csproj",
+        "projectUniqueName": "C:\\Users\\tvg\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Consolaria-2.0-main\\Consolaria.csproj",
         "projectName": "Consolaria",
-        "projectPath": "C:\\Users\\HASTUR\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Consolaria\\Consolaria.csproj",
-        "packagesPath": "C:\\Users\\HASTUR\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\HASTUR\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Consolaria\\obj\\",
+        "projectPath": "C:\\Users\\tvg\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Consolaria-2.0-main\\Consolaria.csproj",
+        "packagesPath": "C:\\Users\\tvg\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\tvg\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Consolaria-2.0-main\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\HASTUR\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\tvg\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -55,12 +55,26 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[5.0.0, 5.0.0]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[5.0.0, 5.0.0]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[5.0.0, 5.0.0]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -1,10 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "cNfHMbOk9QAev7prpTZI/WPn/zM6jiIxsxgN4BpYXOh3Qd89xWk0d3UKGiyZBB+HrbaLS5teaj4A7GNUi3v8Yw==",
+  "dgSpecHash": "VRhzNeVOLuPIat8MZ4tkWHc9bHO2aBgkGS1u5XTxFiIbgf3AdMrGy5jwfik8BANoaTQQOY8lpnu//yGcO9su2Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\HASTUR\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Consolaria\\Consolaria.csproj",
+  "projectFilePath": "C:\\Users\\tvg\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Consolaria-2.0-main\\Consolaria.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\HASTUR\\.nuget\\packages\\tmodloader.codeassist\\0.1.3\\tmodloader.codeassist.0.1.3.nupkg.sha512"
+    "C:\\Users\\tvg\\.nuget\\packages\\tmodloader.codeassist\\0.1.5\\tmodloader.codeassist.0.1.5.nupkg.sha512",
+    "C:\\Users\\tvg\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\5.0.0\\microsoft.aspnetcore.app.ref.5.0.0.nupkg.sha512",
+    "C:\\Users\\tvg\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\5.0.0\\microsoft.windowsdesktop.app.ref.5.0.0.nupkg.sha512",
+    "C:\\Users\\tvg\\.nuget\\packages\\microsoft.netcore.app.ref\\5.0.0\\microsoft.netcore.app.ref.5.0.0.nupkg.sha512"
   ],
   "logs": []
 }

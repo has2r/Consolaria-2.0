@@ -38,7 +38,7 @@ namespace Consolaria.Content.Items.Summons
         
         public override bool? UseItem(Player player) {
             if (player.whoAmI == Main.myPlayer) {
-                SoundEngine.PlaySound(SoundID.Roar, player.position, 0);
+                SoundEngine.PlaySound(SoundID.Roar, player.position);
 
                 int type = ModContent.NPCType<TurkortheUngrateful>();
                 if (Main.netMode != NetmodeID.MultiplayerClient)               

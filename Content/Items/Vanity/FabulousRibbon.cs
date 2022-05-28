@@ -14,7 +14,7 @@ namespace Consolaria.Content.Items.Vanity
 			DisplayName.SetDefault("Fabulous Ribbon");
 			Tooltip.SetDefault("'Allows flight and slow fall'");
 
-			ArmorIDs.Head.Sets.DrawHatHair[Mod.GetEquipSlot(Name, EquipType.Head)] = true;
+			ArmorIDs.Head.Sets.DrawHatHair[Item.headSlot] = true;
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 

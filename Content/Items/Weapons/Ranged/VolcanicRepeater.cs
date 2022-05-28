@@ -51,7 +51,7 @@ namespace Consolaria.Content.Items.Weapons.Ranged
 		public override Vector2? HoldoutOffset()	
 			=>  new Vector2(-5, 0);
 
-        public override bool CanConsumeAmmo(Player player)  
+        public override bool CanConsumeAmmo(Item ammo, Player player)  
 			=> player.itemAnimation < Item.useAnimation - 3;
 
 		public override void AddRecipes() {

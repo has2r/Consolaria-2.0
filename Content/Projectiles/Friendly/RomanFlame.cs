@@ -58,8 +58,7 @@ namespace Consolaria.Content.Projectiles.Friendly
                 }
                 if (Projectile.soundDelay == 0) {
                     Projectile.soundDelay = 80;
-                    LegacySoundStyle sound = SoundID.Item14;
-                    SoundEngine.PlaySound(sound, Projectile.Center);
+                    SoundEngine.PlaySound(SoundID.Item14, Projectile.Center);
                 }
             }
         }

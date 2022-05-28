@@ -23,8 +23,10 @@ namespace Consolaria.Content.Projectiles.Friendly
             Projectile.timeLeft = 720;
         }
 
-        public override void Kill(int timeLeft) {
-            if (Projectile.owner == Main.myPlayer) SoundEngine.PlaySound(0, Projectile.Center, 0);   
+        public override bool OnTileCollide(Vector2 oldVelocity) {
+            if (Projectile.owner == Main.myPlayer)
+                SoundEngine.PlaySound(SoundID.Item10, Projectile.Center);
+            return base.OnTileCollide(oldVelocity);
         }
     }
 }

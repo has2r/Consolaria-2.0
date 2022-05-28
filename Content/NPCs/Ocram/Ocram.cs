@@ -274,7 +274,7 @@ namespace Consolaria.Content.NPCs.Ocram
                                 {
                                     float Speed = 8f;
                                     Vector2 vector8 = new Vector2(NPC.position.X + (NPC.width / 2), NPC.position.Y + (NPC.height / 2));
-                                    SoundEngine.PlaySound(2, (int)NPC.position.X, (int)NPC.position.Y, 33);
+                                    SoundEngine.PlaySound(SoundID.Item33, NPC.position);
                                     float rotation = (float)Math.Atan2(vector8.Y - (Main.player[NPC.target].position.Y + (Main.player[NPC.target].height * 0.5f)), vector8.X - (Main.player[NPC.target].position.X + (Main.player[NPC.target].width * 0.5f)));
                                     Projectile.NewProjectile(NPC.GetSource_FromAI(), vector8.X, vector8.Y, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), 100, (int)(NPC.damage * 1.5f), 0f, 0);                                 
                                     if (NPC.ai[3] >= 140)
@@ -291,7 +291,7 @@ namespace Consolaria.Content.NPCs.Ocram
                                 }
                                 if (NPC.ai[2] >= 520 && NPC.ai[2] <= 520)
                                 {
-                                    SoundEngine.PlaySound(15, (int)NPC.position.X, (int)NPC.position.Y, 0, 1f, +0.6f);
+                                    SoundEngine.PlaySound(SoundID.Item15, NPC.position);
                                     int num23 = 36;
                                     for (int index1 = 0; index1 < num23; ++index1)
                                     {
@@ -309,7 +309,7 @@ namespace Consolaria.Content.NPCs.Ocram
                                     NPC.velocity = Vector2.Zero;
                                     if (NPC.ai[3] > 4)
                                     {
-                                        SoundEngine.PlaySound(2, (int)NPC.position.X, (int)NPC.position.Y, 33);
+                                        SoundEngine.PlaySound(SoundID.Item33, NPC.position);
                                         NPC.ai[3] = 0;
                                         Vector2 velocity = Vector2.Normalize(Main.player[NPC.target].Center - NPC.Center) * 10;
                                         Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, velocity.X - Main.rand.Next(-2, 2), velocity.Y - Main.rand.Next(-2, 2), 100, (int)(NPC.damage / 2), 0f, Main.myPlayer, 0f, NPC.whoAmI);
@@ -439,7 +439,7 @@ namespace Consolaria.Content.NPCs.Ocram
                             }
                             else
                             {
-                                SoundEngine.PlaySound(3, (int)NPC.position.X, (int)NPC.position.Y, 1);
+                                SoundEngine.PlaySound(SoundID.NPCHit1, NPC.position);
                                 for (int num373 = 0; num373 < 2; num373++)
                                 {
                                     Gore.NewGore(NPC.GetSource_FromAI(), NPC.position, new Vector2((float)Main.rand.Next(-30, 31) * 0.2f, (float)Main.rand.Next(-30, 31) * 0.2f), ModContent.Find<ModGore>("Consolaria/OcramGore1").Type, 1f);
@@ -450,7 +450,7 @@ namespace Consolaria.Content.NPCs.Ocram
                                 {
                                     Dust.NewDust(NPC.position, NPC.width, NPC.height, 5, (float)Main.rand.Next(-30, 31) * 0.2f, (float)Main.rand.Next(-30, 31) * 0.2f, 0, default(Color), 1f);
                                 }
-                                SoundEngine.PlaySound(15, (int)NPC.position.X, (int)NPC.position.Y, 0);
+                                SoundEngine.PlaySound(SoundID.Roar, NPC.position);
                             }
                         }
                         Dust.NewDust(NPC.position, NPC.width, NPC.height, 5, (float)Main.rand.Next(-30, 31) * 0.2f, (float)Main.rand.Next(-30, 31) * 0.2f, 0, default(Color), 1f);
@@ -575,7 +575,7 @@ namespace Consolaria.Content.NPCs.Ocram
                                             vector38.X += num363 * 3f;
                                             vector38.Y += num364 * 3f;
                                             Vector2 vector8 = new Vector2(NPC.position.X + (NPC.width / 2), NPC.position.Y + (NPC.height / 2));
-                                            SoundEngine.PlaySound(2, (int)NPC.position.X, (int)NPC.position.Y, 33);
+                                            SoundEngine.PlaySound(SoundID.Item33, NPC.position);
                                             float rotation = (float)Math.Atan2(vector8.Y - (Main.player[NPC.target].position.Y + (Main.player[NPC.target].height * 0.5f)), vector8.X - (Main.player[NPC.target].position.X + (Main.player[NPC.target].width * 0.5f)));
                                             Projectile.NewProjectile(NPC.GetSource_FromAI(), vector8.X, vector8.Y, num363, num364, 83, NPC.damage * 2, 0f, 0);
                                         }
@@ -596,7 +596,7 @@ namespace Consolaria.Content.NPCs.Ocram
                                         NPC.velocity.X = 12;
                                     }
                                     NPC.velocity.Y = -10;
-                                    SoundEngine.PlaySound(15, (int)NPC.position.X, (int)NPC.position.Y, 0, 1f, +0.6f);
+                                    SoundEngine.PlaySound(SoundID.Roar, NPC.position);
                                     effect = true;
                                     int num23 = 36;
                                     for (int index1 = 0; index1 < num23; ++index1)
@@ -622,7 +622,7 @@ namespace Consolaria.Content.NPCs.Ocram
                                 NPC.rotation = (float)Math.Atan2((double)NPC.velocity.Y, (double)NPC.velocity.X) - 1.57f;
                                 if (NPC.ai[2] % 35 == 0)
                                 {
-                                    SoundEngine.PlaySound(4, (int)NPC.position.X, (int)NPC.position.Y, 45, 0.8f, 0f);
+                                    SoundEngine.PlaySound(SoundID.NPCDeath45, NPC.position);
                                     NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.Center.X - 40, (int)NPC.Center.Y, ModContent.NPCType<ServantofOcram>());
                                 }
                             }
@@ -632,7 +632,7 @@ namespace Consolaria.Content.NPCs.Ocram
                                 if (NPC.ai[2] >= 540f)
                                 {
                                     NPC.ai[2] = 680;
-                                    SoundEngine.PlaySound(15, (int)NPC.position.X, (int)NPC.position.Y, 0, 1f, +0.6f);
+                                    SoundEngine.PlaySound(SoundID.Roar, NPC.position);
                                     int num23 = 36;
                                     for (int index1 = 0; index1 < num23; ++index1)
                                     {
@@ -680,7 +680,7 @@ namespace Consolaria.Content.NPCs.Ocram
                                     Main.projectile[num54].tileCollide = false;
                                     f += .8f;
                                 }
-                                SoundEngine.PlaySound(15, (int)NPC.position.X, (int)NPC.position.Y, 0);
+                                SoundEngine.PlaySound(SoundID.Roar, NPC.position);
                                 NPC.rotation = num319;
                                 float num384 = 18f;
                                 Vector2 vector39 = new Vector2(NPC.position.X + (float)NPC.width * 0.5f, NPC.position.Y + (float)NPC.height * 0.5f);
@@ -757,7 +757,7 @@ namespace Consolaria.Content.NPCs.Ocram
                             {
                                 for (int i = 0; i < MissileProjectiles; i++)
                                 {
-                                    SoundEngine.PlaySound(4, (int)NPC.position.X, (int)NPC.position.Y, 45, 0.8f, 0f);
+                                    SoundEngine.PlaySound(SoundID.NPCDeath45, NPC.position);
                                     Player player = Main.player[playerIndex];
                                     int Speed = 10;
                                     float SpawnX = Main.rand.Next(1000) - 500 + player.Center.X;

@@ -13,7 +13,7 @@ namespace Consolaria.Content.Items.Vanity
 		public override void Load() {
 			string capeTexture = "Consolaria/Content/Items/Vanity/ShirenShirt_Back";
 			if (Main.netMode != NetmodeID.Server)
-				Mod.AddEquipTexture(this, EquipType.Back, capeTexture);
+				EquipLoader.AddEquipTexture(Mod, capeTexture, EquipType.Back, this);
 		}
 
 		public override void SetStaticDefaults() {
@@ -32,7 +32,7 @@ namespace Consolaria.Content.Items.Vanity
 
         public override void EquipFrameEffects(Player player, EquipType type) {
 			var capeSlot = ModContent.GetInstance<ShirenShirt>();
-			player.back = (sbyte)Mod.GetEquipSlot(capeSlot.Name, EquipType.Back);
+			player.back = (sbyte)EquipLoader.GetEquipSlot(Mod, capeSlot.Name, EquipType.Back);
 		}
 	}
 }

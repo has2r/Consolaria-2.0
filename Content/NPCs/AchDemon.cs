@@ -110,10 +110,10 @@ namespace Consolaria.Content.NPCs
 
 			else if (aiTimer % 15 == 0) {
 				int randomIdleSound = Main.rand.Next(0, 3);
-				if (randomIdleSound == 0) SoundEngine.PlaySound(SoundID.Zombie, NPC.position, 26);
-				if (randomIdleSound == 1) SoundEngine.PlaySound(SoundID.Zombie, NPC.position, 27);
-				if (randomIdleSound == 2) SoundEngine.PlaySound(SoundID.Zombie, NPC.position, 28);
-				if (randomIdleSound == 3) SoundEngine.PlaySound(SoundID.Zombie, NPC.position, 29);
+				if (randomIdleSound == 0) SoundEngine.PlaySound(SoundID.Zombie26, NPC.position);
+				if (randomIdleSound == 1) SoundEngine.PlaySound(SoundID.Zombie27, NPC.position);
+				if (randomIdleSound == 2) SoundEngine.PlaySound(SoundID.Zombie28, NPC.position);
+				if (randomIdleSound == 3) SoundEngine.PlaySound(SoundID.Zombie29, NPC.position);
 			}
 
 			else if (aiTimer >= (300 + Main.rand.Next(300))) aiTimer = 0;

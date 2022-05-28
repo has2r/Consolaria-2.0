@@ -13,7 +13,7 @@ namespace Consolaria.Content.Items.Vanity
 		public override void Load() {
 			string skirtTexture = "Consolaria/Content/Items/Vanity/FabulousDress_Skirt";
 			if (Main.netMode != NetmodeID.Server)
-				Mod.AddEquipTexture(this, EquipType.Front, skirtTexture);
+				EquipLoader.AddEquipTexture(Mod, skirtTexture, EquipType.Front, this);
 		}
 
 		public override void SetStaticDefaults() {
@@ -32,7 +32,7 @@ namespace Consolaria.Content.Items.Vanity
 
 		public override void EquipFrameEffects(Player player, EquipType type) {
 			var skirtSlot = ModContent.GetInstance<FabulousDress>();
-			player.front = (sbyte)Mod.GetEquipSlot(skirtSlot.Name, EquipType.Front);
+			player.front = (sbyte)EquipLoader.GetEquipSlot(Mod, skirtSlot.Name, EquipType.Front);
 		}
 
 		/*public override void SetMatch(bool male, ref int equipSlot, ref bool robes) {

@@ -77,7 +77,7 @@ namespace Consolaria.Content.NPCs.Lepus
                     Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-1, 1), Main.rand.Next(-1, 1)), gore1);
                     Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-1, 1), Main.rand.Next(-1, 1)), gore1);
                 }
-                SoundEngine.PlaySound(2, (int)NPC.position.X, (int)NPC.position.Y, 10, 1f, 0f);
+                SoundEngine.PlaySound(SoundID.Zombie10, NPC.position);
             }
         }
     }

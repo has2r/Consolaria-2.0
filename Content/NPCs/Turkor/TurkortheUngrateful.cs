@@ -118,7 +118,7 @@ namespace Consolaria.Content.NPCs.Turkor
 		}
 
 		private void HalfCircle() {
-			SoundEngine.PlaySound(2, (int)NPC.position.X, (int)NPC.position.Y, 71);
+			SoundEngine.PlaySound(SoundID.Item71, NPC.position);
 			ushort type = (ushort)ModContent.ProjectileType<TurkorKnife>();
 			Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, 8, 0, type, (int)(NPC.damage / 2), 1, Main.myPlayer, 0, 0);
 			Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, 6, -4, type, (int)(NPC.damage / 2), 1, Main.myPlayer, 0, 0);
@@ -243,7 +243,7 @@ namespace Consolaria.Content.NPCs.Turkor
 						Vector2 vector8 = new Vector2(NPC.position.X + (NPC.width * 0.5f), NPC.position.Y + (NPC.height * 0.5f));
 						float rotation0 = (float)Math.Atan2((vector8.Y) - (posY + (Main.player[NPC.target].height * 0.5f)), (vector8.X) - (posX + (Main.player[NPC.target].width * 0.5f)));
 						if (timer % 5 == 0) {
-							SoundEngine.PlaySound(2, (int)NPC.position.X, (int)NPC.position.Y, 42);
+							SoundEngine.PlaySound(SoundID.Item42, NPC.position);
 							int a = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, 0, 0, ModContent.ProjectileType<TurkorFeather>(), (int)(NPC.damage / 2), 1, Main.myPlayer, 0, 0);
 							Main.projectile[a].aiStyle = -1;
 							Main.projectile[a].velocity.X = (float)(Math.Cos(rotation0) * 18) * -1 + Main.rand.Next(-3, 3);
@@ -280,7 +280,7 @@ namespace Consolaria.Content.NPCs.Turkor
 					if (timer2 <= jumptimer) {
 						HalfCircle();
 						NPC.noTileCollide = true;
-						SoundEngine.PlaySound(15, (int)NPC.position.X, (int)NPC.position.Y, 0, 1f, +0.6f);
+						SoundEngine.PlaySound(SoundID.Roar, NPC.position);
 						NPC.velocity.Y = -32;
 					}
 					if (timer2 >= (jumptimer + 20) && !teleport) {

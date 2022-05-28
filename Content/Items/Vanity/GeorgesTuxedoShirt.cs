@@ -13,7 +13,7 @@ namespace Consolaria.Content.Items.Vanity
 		public override void Load() {
 			string caneTexture = "Consolaria/Content/Items/Vanity/GeorgesTuxedoShirt_Cane";
 			if (Main.netMode != NetmodeID.Server)
-				Mod.AddEquipTexture(this, EquipType.Front, caneTexture);
+				EquipLoader.AddEquipTexture(Mod, caneTexture, EquipType.Front, this);
 		}
 
 		public override void SetStaticDefaults() {
@@ -34,7 +34,7 @@ namespace Consolaria.Content.Items.Vanity
 
 		public override void EquipFrameEffects(Player player, EquipType type) {
 			var caneSlot = ModContent.GetInstance<GeorgesTuxedoShirt>();
-			player.front = (sbyte)Mod.GetEquipSlot(caneSlot.Name, EquipType.Front);
+			player.front = (sbyte)EquipLoader.GetEquipSlot(Mod, caneSlot.Name, EquipType.Front);
 		}
 	}
 }

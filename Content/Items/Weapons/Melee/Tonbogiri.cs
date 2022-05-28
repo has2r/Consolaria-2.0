@@ -48,7 +48,7 @@ namespace Consolaria.Content.Items.Weapons.Melee
             => player.ownedProjectileCounts[Item.shoot] < 1;
 
         public override bool? UseItem(Player player) {
-            if (!Main.dedServ) SoundEngine.PlaySound(Item.UseSound, player.Center);        
+            if (!Main.dedServ) SoundEngine.PlaySound(SoundID.DD2_GhastlyGlaivePierce, player.Center);        
             return null;
         }
 

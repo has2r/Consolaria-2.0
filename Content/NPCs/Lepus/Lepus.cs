@@ -292,7 +292,7 @@ namespace Consolaria.Content.NPCs.Lepus
             }
 
             if (timer >= 80 && !roar) {
-                SoundEngine.PlaySound(3, (int)NPC.position.X, (int)NPC.position.Y, 10);
+                SoundEngine.PlaySound(SoundID.NPCHit10, NPC.position);
                 NPC.frame = GetFrame(7);
                 roar = true;
             }
@@ -306,7 +306,7 @@ namespace Consolaria.Content.NPCs.Lepus
                         }
                         else {
                             NPC.velocity.X = 7 * NPC.direction;
-                            SoundEngine.PlaySound(16, (int)NPC.position.X, (int)NPC.position.Y, 0, 1f, 0f);
+                            SoundEngine.PlaySound(SoundID.DoubleJump, NPC.position);
                             Vector2 vector8 = new Vector2(NPC.position.X + (NPC.width * 0.5f), NPC.position.Y + (NPC.height * 0.5f));
                             float rotation = (float)Math.Atan2((vector8.Y) - (player.position.Y - 220 + (player.height * 0.5f)), (vector8.X) - (player.position.X + (player.width * 0.5f)));
                             NPC.velocity.Y = (float)(Math.Sin(rotation) * 14) * -1;
@@ -380,7 +380,6 @@ namespace Consolaria.Content.NPCs.Lepus
                                 int npc = NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.Center.X, (int)NPC.Center.Y, ModContent.NPCType<SmallEgg>());
                                 Main.npc[npc].velocity.X = vector2.X;
                                 Main.npc[npc].velocity.Y = vector2.Y;
-                                SoundEngine.PlaySound(SoundID.Item7, NPC.position);
                             }
                         }
                     }
@@ -399,7 +398,7 @@ namespace Consolaria.Content.NPCs.Lepus
 
             if (timer >= 240 && timer <= 240) {
                 NPC.frame = GetFrame(7);
-                SoundEngine.PlaySound(2, (int)NPC.position.X, (int)NPC.position.Y, 44, 1f, -0.6f);
+                SoundEngine.PlaySound(SoundID.Item44, NPC.position);
                 int bigegg = 0;
                 bigegg = NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.Center.X, (int)NPC.Center.Y + 30, ModContent.NPCType<BigEgg>());
                 Main.npc[bigegg].ai[0] = NPC.whoAmI;
@@ -448,7 +447,7 @@ namespace Consolaria.Content.NPCs.Lepus
                 Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), ModContent.Find<ModGore>("Consolaria/LPG5").Type);
                 Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), ModContent.Find<ModGore>("Consolaria/LPG6").Type);
                 Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), ModContent.Find<ModGore>("Consolaria/LPG7").Type);
-                SoundEngine.PlaySound(SoundID.Roar, NPC.Center, 0);
+                SoundEngine.PlaySound(SoundID.Roar, NPC.Center);
             }
         }
 

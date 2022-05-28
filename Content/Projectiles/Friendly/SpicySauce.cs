@@ -37,7 +37,7 @@ namespace Consolaria.Content.Projectiles.Friendly
                         npc.AddBuff(BuffID.Oiled, 300);
                 }
 
-                SoundEngine.PlaySound(13, Projectile.Center);
+                SoundEngine.PlaySound(SoundID.Shatter, Projectile.Center);
                 Gore.NewGore(Projectile.GetSource_Death(), Projectile.position, -Projectile.oldVelocity * 0.2f, 704, 1f);
                 Gore.NewGore(Projectile.GetSource_Death(), Projectile.position, -Projectile.oldVelocity * 0.2f, 705, 1f);
 

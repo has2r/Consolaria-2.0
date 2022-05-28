@@ -42,6 +42,6 @@ namespace Consolaria.Content.Projectiles.Friendly
            => target.AddBuff(BuffID.OnFire, 180);
 
         public override void Kill(int timeLeft)
-            => SoundEngine.PlaySound(0, Projectile.Center, 0);
+            => SoundEngine.PlaySound(SoundID.Dig, Projectile.Center);
     } 
 }

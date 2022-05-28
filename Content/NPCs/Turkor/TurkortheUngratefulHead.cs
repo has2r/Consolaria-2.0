@@ -58,7 +58,7 @@ namespace Consolaria.Content.NPCs.Turkor
 			NPC.dontTakeDamage = false;
 
 			NPC.HitSound = SoundID.NPCHit7;
-			NPC.DeathSound = SoundLoader.GetLegacySoundSlot(Mod, "Assets/Sounds/TurkorGobble");
+			NPC.DeathSound = new SoundStyle($"{nameof(Consolaria)}/Assets/Sounds/TurkorGobble");
 
 			NPC.knockBackResist = 0f;
 			NPC.noTileCollide = true;
@@ -156,7 +156,7 @@ namespace Consolaria.Content.NPCs.Turkor
 				}
 				if (timer >= 230) {
 					NPC.rotation = 0;
-					if (timer <= 230) SoundEngine.PlaySound(SoundLoader.GetLegacySoundSlot(Mod, "Assets/Sounds/TurkorDoubleGobble"), NPC.position); // SoundEngine.PlaySound(3, (int)NPC.position.X, (int)NPC.position.Y, 10);
+					if (timer <= 230) SoundEngine.PlaySound(new SoundStyle($"{nameof(Consolaria)}/Assets/Sounds/TurkorGobble"), NPC.position); // SoundEngine.PlaySound(3, (int)NPC.position.X, (int)NPC.position.Y, 10);
 					
 					NPC.velocity.X *= 0.98f;
 					NPC.velocity.Y *= 0.98f;
@@ -197,7 +197,6 @@ namespace Consolaria.Content.NPCs.Turkor
 				}
 
 				if (timer % 80 == 0 && rotatepoint >= 1.5f) {
-					SoundEngine.PlaySound(2, (int)NPC.position.X, (int)NPC.position.Y, 42);
 					for (int i = 0; i < 3; i++)
 						Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, Main.rand.Next(0, 8) * NPC.direction, -10 + Main.rand.Next(-3, 3), ModContent.ProjectileType<TurkorFeather>(), (int)(NPC.damage / 3), 1, Main.myPlayer, 0, 0);				
 					NPC.velocity.Y = 5;

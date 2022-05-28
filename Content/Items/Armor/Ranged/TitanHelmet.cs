@@ -85,12 +85,18 @@ namespace Consolaria.Content.Items.Armor.Ranged
             ushort projType = (ushort)ModContent.ProjectileType<TitanShockwawe>();
             if (player.GetModPlayer<TitanPlayer>().titanPower && player.ownedProjectileCounts[projType] < 1 && item.DamageType == DamageClass.Ranged && player.miscCounter % 10 == 0) {
                 Projectile.NewProjectile(player.GetSource_ItemUse(item), player.Center, new Vector2(0, 0), projType, 35, 9f, player.whoAmI);
-                SoundEngine.PlaySound(SoundLoader.GetLegacySoundSlot(Mod, "Assets/Sounds/Shockwave"), player.position);
+              /*  Item.UseSound = new SoundStyle($"{nameof(Consolaria)}/Assets/Sounds/Shockwave")
+                {
+                    Volume = 0.9f,
+                    PitchVariance = 0.2f,
+                    MaxInstances = 3,
+                };*/
+                SoundEngine.PlaySound(new SoundStyle($"{nameof(Consolaria)}/Assets/Sounds/Shockwave"), player.position);
             }
             return null;
         }
 
-        public override bool CanConsumeAmmo(Item weapon, Player player) {
+        public override bool CanConsumeAmmo(Item weapon, Item ammo, Player player) {
             float dontConsumeAmmoChance = 0f;
             if (weapon.useAmmo >= 0) {
                 if (player.armor[0].type == ModContent.ItemType<TitanHelmet>()) dontConsumeAmmoChance += 0.25f;

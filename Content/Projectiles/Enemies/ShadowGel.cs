@@ -34,7 +34,7 @@ namespace Consolaria.Content.Projectiles.Enemies
             
             if (Projectile.ai[1] == 0f) {
                 Projectile.ai[1] = 1f;
-                SoundEngine.PlaySound(2, (int)Projectile.position.X, (int)Projectile.position.Y, 17);
+                SoundEngine.PlaySound(SoundID.Item17, Projectile.position);
             }
         }
 

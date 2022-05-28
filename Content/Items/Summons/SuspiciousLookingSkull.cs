@@ -38,7 +38,7 @@ namespace Consolaria.Content.Items.Summons
         
         public override bool? UseItem(Player player) {
             if (player.whoAmI == Main.myPlayer) {
-                SoundEngine.PlaySound(SoundLoader.GetLegacySoundSlot(Mod, "Assets/Sounds/OcramRoar"), player.position);
+                SoundEngine.PlaySound(new SoundStyle($"{nameof(Consolaria)}/Assets/Sounds/OcramRoar"), player.position);
 
                 int type = ModContent.NPCType<Ocram>();
                 if (Main.netMode != NetmodeID.MultiplayerClient)               

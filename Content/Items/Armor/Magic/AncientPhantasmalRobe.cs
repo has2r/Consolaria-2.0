@@ -13,7 +13,7 @@ namespace Consolaria.Content.Items.Armor.Magic
         public override void Load() {
             string robeTexture = "Consolaria/Content/Items/Armor/Magic/AncientPhantasmalRobe_Extension";
             if (Main.netMode != NetmodeID.Server)
-                Mod.AddEquipTexture(this, EquipType.Legs, robeTexture);
+                EquipLoader.AddEquipTexture(Mod, robeTexture, EquipType.Legs, this);
         }
 
         public override void SetStaticDefaults() {
@@ -35,7 +35,8 @@ namespace Consolaria.Content.Items.Armor.Magic
 
         public override void SetMatch(bool male, ref int equipSlot, ref bool robes) {
             var robeSlot = ModContent.GetInstance<AncientPhantasmalRobe>();
-            equipSlot = Mod.GetEquipSlot(robeSlot.Name, EquipType.Legs);
+            equipSlot = EquipLoader.GetEquipSlot(Mod, robeSlot.Name, EquipType.Legs);
+            robes = true;
         }
 
         public override void UpdateEquip(Player player) {

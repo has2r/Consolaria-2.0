@@ -31,7 +31,7 @@ namespace Consolaria.Content.Projectiles.Friendly
         public override void Kill(int timeLeft) {
             Vector2 position = Projectile.Center;
 
-            SoundEngine.PlaySound(SoundLoader.GetLegacySoundSlot(Mod, "Assets/Sounds/Hallelujah"), Projectile.position);
+            SoundEngine.PlaySound(new SoundStyle($"{nameof(Consolaria)}/Assets/Sounds/Hallelujah"), Projectile.position);
 
             for (int i = 0; i < 50; i++) {
                 int dustIndex = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, 31, 0f, 0f, 100, default(Color), 2f);

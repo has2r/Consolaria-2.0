@@ -48,8 +48,8 @@ namespace Consolaria.Content.NPCs
 			NPC.HitSound = SoundID.NPCHit31;
 			NPC.DeathSound = SoundID.NPCDeath34;
 
-		    //Banner = NPC.type;
-		    //BannerItem = mod.ItemType("ArchDemonBanner");
+			//Banner = NPC.type;
+			//BannerItem = ModContent.ItemType<Items.Banners.AlbinoAntlionBanner>;
 		}
 
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
@@ -62,11 +62,11 @@ namespace Consolaria.Content.NPCs
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
 			Texture2D texture = (Texture2D)ModContent.Request<Texture2D>(Texture);
 			Texture2D bodyTexture = (Texture2D)ModContent.Request<Texture2D>("Consolaria/Assets/Textures/NPCs/AlbinoAntlionBody");
-			Vector2 position = new Vector2(NPC.Center.X, NPC.Center.Y) - Main.screenPosition;
+			Vector2 position = new Vector2(NPC.position.X, NPC.position.Y) - Main.screenPosition;
 			Vector2 drawOrigin = new Vector2(texture.Width * 0.5f, NPC.height * 0.5f);
 			var spriteEffects = NPC.direction > 0 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-			spriteBatch.Draw(texture, new Vector2(position.X, position.Y), NPC.frame, drawColor, NPC.rotation, drawOrigin, NPC.scale, spriteEffects, 0f);
-			spriteBatch.Draw(bodyTexture, new Vector2(position.X, position.Y + 24), NPC.frame, drawColor, 0, drawOrigin, NPC.scale, SpriteEffects.None, 0f);
+			spriteBatch.Draw(bodyTexture, new Vector2(position.X, position.Y + 20), NPC.frame, drawColor, 0, drawOrigin, NPC.scale, SpriteEffects.None, 1f);
+			spriteBatch.Draw(texture, new Vector2(position.X, position.Y), NPC.frame, drawColor, NPC.rotation / 2, drawOrigin, NPC.scale, spriteEffects, 0f);
 			return false;
         }
 

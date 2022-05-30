@@ -34,12 +34,15 @@ namespace Consolaria.Content.NPCs.Lepus
             NPC.defense = 8;
 
             NPC.lifeMax = 72;
-            NPC.knockBackResist = 0f;
+            NPC.knockBackResist = 0.5f;
 
             NPC.HitSound = SoundID.NPCHit1;
             NPC.DeathSound = SoundID.NPCDeath1;
 
             NPC.noTileCollide = false;
+
+            //Banner = NPC.type;
+            //BannerItem = ModContent.ItemType<Items.Banners.DisasterBunnyBanner>;
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
@@ -47,12 +50,6 @@ namespace Consolaria.Content.NPCs.Lepus
                 BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
                 new FlavorTextBestiaryInfoElement("LepusHelper.cs")
             });
-        }
-
-        public override void ScaleExpertStats(int numPlayers, float bossLifeScale) {
-            NPC.lifeMax = 80;
-            NPC.damage = 23;
-            NPC.defense = 9;
         }
 
         public override void HitEffect(int hitDirection, double damage) {
@@ -65,11 +62,11 @@ namespace Consolaria.Content.NPCs.Lepus
 
         public override void ModifyNPCLoot(NPCLoot npcLoot) {
             if (!NPC.AnyNPCs(ModContent.NPCType<Lepus>()))
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SuspiciousLookingEgg>(), 10)); //Drop Suspicious Looking Egg with a 1 out of 10 chance.
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SuspiciousLookingEgg>(), 5)); //Drop Suspicious Looking Egg with a 1 out of 10 chance.
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo) {
-            float spawnChance = DownedBossSystem.downedLepus ? 0.05f : 0.15f;
+            float spawnChance = DownedBossSystem.downedLepus ? 0.01f : 0.05f;
             if (SeasonalEvents.enabled) return SeasonalEvents.isEaster ? SpawnCondition.OverworldDaySlime.Chance * spawnChance : 0f;
             else return SpawnCondition.OverworldDaySlime.Chance * spawnChance;
         }

@@ -11,7 +11,7 @@ namespace Consolaria
             DateTime now = DateTime.Now;
             int day = now.Day;
             int month = now.Month;
-            if ((day >= 1 && month == 4) || (day <= 1 && month == 5))
+            if ((day >= 1 && month == 4) && (day < 1 && month == 5))
                 return true;
             return false;
         }
@@ -20,7 +20,7 @@ namespace Consolaria
             DateTime now = DateTime.Now;
             int day = now.Day;
             int month = now.Month;
-            if ((day > 1 && month == 1) || (day <= 1 && month == 12))
+            if ((day >= 1 && month == 11) && (day < 1 && month == 12))
                 return true;
             return false;          
         }

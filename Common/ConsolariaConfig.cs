@@ -1,4 +1,6 @@
-﻿using System.ComponentModel;
+﻿using Consolaria.Content.Items.Summons;
+using System.ComponentModel;
+using Terraria.ModLoader;
 using Terraria.ModLoader.Config;
 
 namespace Consolaria.Common
@@ -11,12 +13,22 @@ namespace Consolaria.Common
 
 		[Header("Seasonal Events")]
 
-		[Label("Enable Easter")]
+		[Label("Restrict seasonal content by system date (Easter)")]
+		[Tooltip("If enabled the relevant items and enemies will only appear during Easter\nApril 1 - April 30")]
 		[DefaultValue(false)]
+		[ReloadRequired]
 		public bool easterEnabled;
 
-		[Label("Enable Thanksgiving Day")]
+		[Label("Restrict seasonal content by system date (Thanksgiving)")]
+		[Tooltip("If enabled the relevant items and enemies will only appear during Thanksgiving\nNovember 1 - November 30")]
 		[DefaultValue(false)]
+		[ReloadRequired]
 		public bool thanksgivingEnabled;
+
+		/*[Label("Restrict seasonal content by system date (Other events)")]
+		[Tooltip("If enabled the relevant items and enemies will only appear during the corresponding holidays or when (название предмета) is used")]
+		[DefaultValue(false)]
+		[ReloadRequired]
+		public bool smallEventsEnabled;*/
 	}
 }

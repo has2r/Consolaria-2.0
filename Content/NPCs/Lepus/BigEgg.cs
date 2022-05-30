@@ -126,7 +126,7 @@ namespace Consolaria.Content.NPCs.Lepus
             float magnitude = Magnitude(move);
             if (magnitude > speed) move *= speed / magnitude;
          
-            if (timer >= 600) {
+            if (timer >= 900) {
                 NPC.velocity = Vector2.Zero;
                 int gore1 = ModContent.Find<ModGore>("Consolaria/EggShellBig").Type;
                 for (int i = 0; i < 1; i++) {

@@ -17,8 +17,7 @@ namespace Consolaria.Content.Items.BossDrops.Lepus
 			int width = 30; int height = 40;
 			Item.Size = new Vector2(width, height);
 
-			Item.DefaultToPlaceableTile(ModContent.TileType<Tiles.Relics>());
-			Item.placeStyle = 0;
+			Item.DefaultToPlaceableTile(ModContent.TileType<Tiles.LepusRelic>());
 
 			Item.maxStack = 99;
 

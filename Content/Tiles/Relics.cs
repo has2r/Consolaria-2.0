@@ -12,17 +12,17 @@ using Terraria.Localization;
 
 namespace Consolaria.Content.Tiles
 {
-	public class Relics : ModTile
+	public abstract class Relics : ModTile
 	{
 		public const int FrameWidth = 18 * 3;
 		public const int FrameHeight = 18 * 4;
 		public const int HorizontalFrames = 1;
-		public const int VerticalFrames = 3;
+		public const int VerticalFrames = 1;
 
 		public Asset<Texture2D> RelicTexture;
 
 		public override string Texture => "Consolaria/Assets/Textures/Tiles/RelicPedestal";
-		public virtual string RelicTextureName => "Consolaria/Content/Tiles/Relics";
+		public virtual string RelicTextureName => "Consolaria/Content/Tiles/LepusRelic";
 
 		public override void Load() {
 			if (!Main.dedServ)
@@ -40,24 +40,24 @@ namespace Consolaria.Content.Tiles
 			TileObjectData.newTile.CopyFrom(TileObjectData.Style3x4); 
 			TileObjectData.newTile.LavaDeath = false; 
 			TileObjectData.newTile.DrawYOffset = 2; 
-			TileObjectData.newTile.Direction = TileObjectDirection.PlaceLeft; 
+			//TileObjectData.newTile.Direction = TileObjectDirection.PlaceLeft; 
 			TileObjectData.newTile.StyleHorizontal = false;
 
-			TileObjectData.newTile.StyleWrapLimitVisualOverride = 2;
+			/*TileObjectData.newTile.StyleWrapLimitVisualOverride = 2;
 			TileObjectData.newTile.StyleMultiplier = 2;
 			TileObjectData.newTile.StyleWrapLimit = 2;
-			TileObjectData.newTile.styleLineSkipVisualOverride = 0;
+			TileObjectData.newTile.styleLineSkipVisualOverride = 0;*/
 
-			TileObjectData.newAlternate.CopyFrom(TileObjectData.newTile); 
+			/*TileObjectData.newAlternate.CopyFrom(TileObjectData.newTile); 
 			TileObjectData.newAlternate.Direction = TileObjectDirection.PlaceRight;
-			TileObjectData.addAlternate(1);
+			TileObjectData.addAlternate(1);*/
 
 			TileObjectData.addTile(Type);
 
 			AddMapEntry(new Color(233, 207, 94), Language.GetText("MapObject.Relic"));
 		}
 
-		public override void KillMultiTile(int i, int j, int frameX, int frameY) {
+		/*public override void KillMultiTile(int i, int j, int frameX, int frameY) {
 			int placeStyle = frameX / FrameWidth;
 
 			int itemType = 0;
@@ -74,15 +74,15 @@ namespace Consolaria.Content.Tiles
 			}
 			if (itemType > 0)		
 				Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 32, 32, itemType);	
-		}
+		}*/
 
 		public override bool CreateDust(int i, int j, ref int type) 
 			=> false;
 		
-		public override void SetDrawPositions(int i, int j, ref int width, ref int offsetY, ref int height, ref short tileFrameX, ref short tileFrameY) {
+		/*public override void SetDrawPositions(int i, int j, ref int width, ref int offsetY, ref int height, ref short tileFrameX, ref short tileFrameY) {
 			tileFrameX %= FrameWidth; 
 			tileFrameY %= FrameHeight * 2; 
-		}
+		}*/
 
 		public override void DrawEffects(int i, int j, SpriteBatch spriteBatch, ref TileDrawInfo drawData) {
 			if (drawData.tileFrameX % FrameWidth == 0 && drawData.tileFrameY % FrameHeight == 0) 

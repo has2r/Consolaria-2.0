@@ -431,7 +431,7 @@ namespace Consolaria.Content.NPCs.Lepus
                 for (int i = 1; i < NPC.oldPos.Length; i++) {
                     Color color3 = color2;
                     color3 = NPC.GetAlpha(color2);
-                    color3 *= (float)(NPC.oldPos.Length - i) / 15f;
+                    color3 *= (float)((NPC.oldPos.Length - i) / 15f) * 0.75f;
                     Main.spriteBatch.Draw(texture, new Vector2(NPC.oldPos[i].X - Main.screenPosition.X + (float)(NPC.width / 2) - (float)texture.Width * NPC.scale / 2f + origin.X * NPC.scale, NPC.oldPos[i].Y - Main.screenPosition.Y + (float)NPC.height - (float)texture.Height * NPC.scale / (float)Main.npcFrameCount[NPC.type] + 4f + origin.Y * NPC.scale) - NPC.velocity * (float)i * 0.5f, new Rectangle?(NPC.frame), color3, NPC.rotation, origin, scale, effects, 0f);
                 }
             }

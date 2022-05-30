@@ -144,7 +144,7 @@ namespace Consolaria.Content.Tiles
 					default:
 						return;
 				}
-				//player.HasNPCBannerBuff(bannerType) = true;
+				//player.HasNPCBannerBuff(bannerType);
 			}
 		}
 

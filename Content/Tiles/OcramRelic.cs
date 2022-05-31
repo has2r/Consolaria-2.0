@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace Consolaria.Content.Tiles
 {
-	public class OcramRelic : Relics
+	public class OcramRelic : BossRelic
 	{
 		public override string RelicTextureName => "Consolaria/Content/Tiles/OcramRelic";
 

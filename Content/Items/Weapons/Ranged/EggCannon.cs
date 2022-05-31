@@ -1,8 +1,6 @@
 using Consolaria.Content.Projectiles.Friendly;
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.Audio;
-using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -45,40 +43,5 @@ namespace Consolaria.Content.Items.Weapons.Ranged
 			position += _velocity * 50;
 			position += new Vector2(-_velocity.Y, _velocity.X) * (1f * player.direction);
 		}
-		/*public override bool AltFunctionUse(Player player) {
-			if (player.velocity.Y == 0) return true;
-			else return false;		
-		}
-
-		public override bool Shoot(Player player, ProjectileSource_Item_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
-			if (player.altFunctionUse == 2) {
-				player.velocity.Y = -16;
-				int _bonusDustCount = 0;
-				for (int _dustPosition = (int)player.position.X - 20; _dustPosition < (int)player.position.X + player.width + 40; _dustPosition += 20) {
-					for (int _dustCount = 0; _dustCount < 4; _dustCount = _bonusDustCount + 1) {
-						int _dust = Dust.NewDust(new Vector2(player.position.X - 20f, player.position.Y + player.height), player.width + 20, 4, DustID.Smoke, 0f, 0f, 100, default(Color), 1.5f);
-						Dust _dust2 = Main.dust[_dust];
-						_dust2.velocity *= 0.2f;
-						_bonusDustCount = _dustCount;
-					}
-					int _gore = Gore.NewGore(new Vector2((_dustPosition - 20), player.position.Y + player.height - 8f), default(Vector2), Main.rand.Next(61, 64), 1f);
-					Gore gore = Main.gore[_gore];
-					gore.velocity *= 0.4f;
-				}
-				for (int k = 0; k < 200; k++) {
-					if (Main.npc[k].Distance(player.Center) <= 140)
-						Main.npc[k].StrikeNPCNoInteraction(damage * 3, 0.0f, 0, false, false, false);	
-				}
-				SoundEngine.PlaySound(SoundID.Item14, player.position);
-				return false;
-			}
-			else {
-				Item.damage = 20;
-		    	Item.noMelee = true;
-				type = ModContent.ProjectileType<EasterEgg>();
-				Projectile.NewProjectile(source, position, velocity, type, damage, knockback, player.whoAmI);
-			}
-			return false;
-		}*/
 	}
 }

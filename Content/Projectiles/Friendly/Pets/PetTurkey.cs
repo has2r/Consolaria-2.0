@@ -21,11 +21,6 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets
             Projectile.Size = new Vector2(width, height);
         }
 
-        public override bool PreAI() {
-            Main.player[Projectile.owner].penguin = false;
-            return true;
-        }
-
         public override void AI() {
             Player player = Main.player[Projectile.owner];
             if (!player.dead && player.HasBuff(ModContent.BuffType<Buffs.PetTurkey>()))

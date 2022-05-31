@@ -13,6 +13,7 @@ using Terraria.GameContent.ItemDropRules;
 using Consolaria.Content.Items.Summons;
 using Consolaria.Content.Items.Weapons.Ranged;
 using Microsoft.Xna.Framework.Graphics;
+using Consolaria.Content.Items.Armor.Misc;
 
 namespace Consolaria.Content.NPCs.Lepus
 {
@@ -66,7 +67,7 @@ namespace Consolaria.Content.NPCs.Lepus
             NPC.noTileCollide = false;
 
             NPC.HitSound = SoundID.NPCHit1;
-            NPC.DeathSound = SoundID.NPCDeath1;
+            NPC.DeathSound = SoundID.NPCDeath8;
 
             NPC.SpawnWithHigherTime(30);
             NPC.timeLeft = NPC.activeTime * 30;
@@ -447,34 +448,38 @@ namespace Consolaria.Content.NPCs.Lepus
                 Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), ModContent.Find<ModGore>("Consolaria/LPG5").Type);
                 Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), ModContent.Find<ModGore>("Consolaria/LPG6").Type);
                 Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), ModContent.Find<ModGore>("Consolaria/LPG7").Type);
-                SoundEngine.PlaySound(SoundID.Roar, NPC.Center);
+              //  SoundEngine.PlaySound(SoundID.Roar, NPC.Center);
             }
         }
 
-        public override void OnKill()
-            => NPC.SetEventFlagCleared(ref DownedBossSystem.downedLepus, -1);
+        public override void OnKill() {
+            if (NPC.CountNPCS(ModContent.NPCType<Lepus>()) > 1)
+                NPC.active = false;
+            else
+                NPC.SetEventFlagCleared(ref DownedBossSystem.downedLepus, -1);
+        }
 
         public override void BossLoot(ref string name, ref int potionType) {
             if (NPC.CountNPCS(ModContent.NPCType<Lepus>()) == 1) 
                 potionType = ItemID.LesserHealingPotion;  
-            else potionType = 0;
+            else potionType = -1;
         }
 
         public override void ModifyNPCLoot(NPCLoot npcLoot) {
-            if (NPC.CountNPCS(ModContent.NPCType<Lepus>()) == 1) {         
-                Conditions.NotExpert notExpert = new Conditions.NotExpert();
-                npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<LepusBag>()));
-                //npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<LepusRelic>()));
-                //npcLoot.Add(ItemDropRule.MasterModeDropOnAllPlayers(ModContent.ItemType<LepusPet>()));
-                npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<SuspiciousLookingEgg>()));
-                //npcLoot.Add(ItemDropRule.ByCondition(_notExpert, ModContent.ItemType<OstaraHat>(), 3));
-                //npcLoot.Add(ItemDropRule.ByCondition(_notExpert, ModContent.ItemType<OstaraChainmail>(), 3));
-                //npcLoot.Add(ItemDropRule.ByCondition(_notExpert, ModContent.ItemType<OstaraBoots>(), 3));
-                npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<EggCannon>(), 2));
-                npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<LepusMask>(), 8));
-                npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<LepusTrophy>(), 10));
-                npcLoot.Add(ItemDropRule.ByCondition(notExpert, ItemID.BunnyHood, 10));
-            }
+            LepusDropCondition lepusDropCondition = new LepusDropCondition();
+            IItemDropRule conditionalRule = new LeadingConditionRule(lepusDropCondition);
+            Conditions.NotExpert notExpert = new Conditions.NotExpert();
+
+            conditionalRule.OnSuccess(new OneFromRulesRule(1, ItemDropRule.ByCondition(notExpert, ModContent.ItemType<OstaraHat>()), ItemDropRule.ByCondition(notExpert,ModContent.ItemType<OstaraJacket>()), ItemDropRule.ByCondition(notExpert, ModContent.ItemType<OstaraBoots>())));
+            conditionalRule.OnSuccess(ItemDropRule.BossBag(ModContent.ItemType<LepusBag>()));
+            conditionalRule.OnSuccess(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<LepusRelic>()));
+            //conditionalRule.OnSuccess(ItemDropRule.MasterModeDropOnAllPlayers(ModContent.ItemType<LepusPet>()));
+            conditionalRule.OnSuccess(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<EggCannon>(), 2));
+            conditionalRule.OnSuccess(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<LepusMask>(), 8));
+            conditionalRule.OnSuccess(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<LepusTrophy>(), 10));
+            conditionalRule.OnSuccess(ItemDropRule.ByCondition(notExpert, ItemID.BunnyHood, 10));
+            conditionalRule.OnSuccess(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<SuspiciousLookingEgg>()));
+            npcLoot.Add(conditionalRule);
         }
     }
 }

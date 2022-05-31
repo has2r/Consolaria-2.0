@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace Consolaria.Content.Tiles
 {
-	public class TurkorRelic : Relics
+	public class TurkorRelic : BossRelic
 	{
 		public override string RelicTextureName => "Consolaria/Content/Tiles/TurkorRelic";
 

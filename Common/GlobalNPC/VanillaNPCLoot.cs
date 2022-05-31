@@ -4,6 +4,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Consolaria.Content.Items.Vanity;
 using Consolaria.Content.Items.Summons;
+using Consolaria.Content.Items.Pets;
 
 namespace Consolaria.Common
 {
@@ -39,7 +40,13 @@ namespace Consolaria.Common
 			}
 
 			if (npc.type == NPCID.FireImp) 
-				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ShirenHat>(), 250));	
+				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ShirenHat>(), 250));
+			if (npc.type == NPCID.Werewolf)
+				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<WolfFang>(), 15));
+			if (npc.type == NPCID.ToxicSludge)
+				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<PetriDish>(), 25));
+			if (NPCID.Sets.Zombies[npc.type])
+				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Brain>(), 100));
 		}
 	}
 }

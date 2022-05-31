@@ -23,7 +23,9 @@ namespace Consolaria.Content.Items.Weapons.Magic
             Item.knockBack = 4;
 
             Item.useStyle = ItemUseStyleID.Shoot;
-            Item.useTime = Item.useAnimation = 20;
+           	Item.useTime = 8;
+			Item.useAnimation = 24;
+			Item.reuseDelay = 24;
 
             Item.value = Item.buyPrice(gold: 5);
             Item.rare = ItemRarityID.Lime;
@@ -35,30 +37,19 @@ namespace Consolaria.Content.Items.Weapons.Magic
             Item.autoReuse = true;
 
             Item.shoot = ProjectileID.PurpleLaser;
-            Item.shootSpeed = 18f;
+            Item.shootSpeed = 16f;
         }
 
-        public override bool AltFunctionUse(Player player) => true;
+        public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback) {
+            Vector2 _velocity = Utils.SafeNormalize(new Vector2(velocity.X, velocity.Y), Vector2.Zero);
+            position += _velocity * 5;
+            position += new Vector2(-_velocity.Y, _velocity.X) * (-2f * player.direction);
+        }
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
-            if (player.altFunctionUse == 2) {
-                Item.autoReuse = true;
-                Item.useAnimation = 2;
-                Item.useTime = 2;
-                int z = Projectile.NewProjectile(source, position.X, position.Y, velocity.X + Main.rand.Next(-8, 8), velocity.Y + Main.rand.Next(-8, 8), type, damage, knockback, player.whoAmI);
-                Main.projectile[z].penetrate = 1;
-                Main.projectile[z].hostile = false;
-                Main.projectile[z].friendly = true;
-                return false;
-            }
-            else {
-                Item.useAnimation = 16;
-                Item.useTime = 16;
-                int a = Projectile.NewProjectile(source, position.X, position.Y, velocity.X, velocity.Y, type, damage, knockback, player.whoAmI);
-                Main.projectile[a].penetrate = 3;
-                Main.projectile[a].hostile = false;
-                Main.projectile[a].friendly = true;
-            }
+            float _randomVel = Main.rand.Next(-15, 16) * 0.035f;
+            velocity += new Vector2(_randomVel, _randomVel);
+            Projectile.NewProjectile(source, position.X, position.Y, velocity.X, velocity.Y, type, damage, knockback, player.whoAmI, 0f, 0f);
             return false;
         }
     }

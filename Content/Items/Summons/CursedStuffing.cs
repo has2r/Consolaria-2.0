@@ -1,3 +1,4 @@
+using Consolaria.Content.Buffs;
 using Consolaria.Content.NPCs.Turkor;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -34,17 +35,19 @@ namespace Consolaria.Content.Items.Summons
         }
 
         public override bool CanUseItem(Player player)
-         => !NPC.AnyNPCs(ModContent.NPCType<TurkortheUngrateful>());
+         =>  player.HasBuff(ModContent.BuffType<PetTurkey>()) && !NPC.AnyNPCs(ModContent.NPCType<TurkortheUngrateful>());
         
         public override bool? UseItem(Player player) {
             if (player.whoAmI == Main.myPlayer) {
                 SoundEngine.PlaySound(SoundID.Roar, player.position);
 
                 int type = ModContent.NPCType<TurkortheUngrateful>();
-                if (Main.netMode != NetmodeID.MultiplayerClient)               
-                    NPC.SpawnOnPlayer(player.whoAmI, type);              
-                else                
-                    NetMessage.SendData(MessageID.SpawnBoss, number: player.whoAmI, number2: type);                
+                if (Main.netMode != NetmodeID.MultiplayerClient) {
+                    player.ClearBuff(ModContent.BuffType<PetTurkey>());
+                    NPC.SpawnOnPlayer(player.whoAmI, type);
+                }
+                else
+                    NetMessage.SendData(MessageID.SpawnBoss, number: player.whoAmI, number2: type);    
             }
             return true;
         }

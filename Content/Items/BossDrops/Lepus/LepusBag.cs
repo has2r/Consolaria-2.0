@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using Terraria.GameContent.Creative;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent;
+using Consolaria.Content.Items.Armor.Misc;
 
 namespace Consolaria.Content.Items.BossDrops.Lepus
 {
@@ -39,22 +40,14 @@ namespace Consolaria.Content.Items.BossDrops.Lepus
          => true;
         
         public override void OpenBossBag(Player player) {
-           /* int armorDrop = Main.rand.Next(3);
-            if (armorDrop == 0)
-            {
-                player.QuickSpawnItem(mod.ItemType("OstaraHat"));
-            }
-            if (armorDrop == 1)
-            {
-                player.QuickSpawnItem(mod.ItemType("OstaraChainmail"));
-            }
-            if (armorDrop == 2)
-            {
-                player.QuickSpawnItem(mod.ItemType("OstaraBoots"));
-            }*/
+            int armorDrop = Main.rand.Next(3);
+            if (armorDrop == 0) player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<OstaraHat>());
+            if (armorDrop == 1) player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<OstaraJacket>());
+            if (armorDrop == 2) player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<OstaraBoots>());
 
             if (Main.rand.Next(2) == 0)
-                player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<EggCannon>());         
+                player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<EggCannon>());  
+            
             if (Main.rand.Next(8) == 0)
                 player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<LepusMask>());           
             if (Main.rand.Next(10) == 0)

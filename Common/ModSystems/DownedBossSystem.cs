@@ -31,7 +31,6 @@ namespace Consolaria.Common
 
 		public override void LoadWorldData(TagCompound tag) {
 			var downed = tag.GetList<string>("downed");
-
 			downedLepus = downed.Contains("downedLepus");
 			downedTurkor = downed.Contains("downedTurkor");
 			downedOcram = downed.Contains("downedOcram");
@@ -46,7 +45,6 @@ namespace Consolaria.Common
 		}
 
 		public override void NetReceive(BinaryReader reader) {
-			//Order of operations is important and has to match that of NetSend
 			BitsByte flags = reader.ReadByte();
 			downedLepus = flags[0];
 			downedTurkor = flags[1];

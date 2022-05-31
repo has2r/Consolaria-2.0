@@ -13,13 +13,13 @@ using Terraria.ModLoader.Utilities;
 
 namespace Consolaria.Content.NPCs
 {	
-	public class AchDemon : ModNPC
+	public class ArchDemon : ModNPC
 	{
 		private float aiTimer;
 
 		public override void SetStaticDefaults()  {
 			DisplayName.SetDefault("Arch Demon");
-			Main.npcFrameCount[NPC.type] = 2;
+			Main.npcFrameCount[NPC.type] = 5;
 
 			NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData {
 				SpecificallyImmuneTo = new int[] {
@@ -50,7 +50,7 @@ namespace Consolaria.Content.NPCs
 			NPC.noGravity = true;
 
 			NPC.aiStyle = 14;
-			AnimationType = NPCID.DemonEye;
+			AnimationType = NPCID.Demon;
 
 			NPC.lavaImmune = true;
 
@@ -76,16 +76,16 @@ namespace Consolaria.Content.NPCs
 
 			if (aiTimer >= 25f && aiTimer <= 95f) NPC.dontTakeDamage = false;
 			else {
-				int dust = Dust.NewDust(new Vector2(NPC.position.X + NPC.width * 0.5f + 30, NPC.position.Y), 2, 2, 6, 0, -1f, 0, default, 1.75f);
+				int dust = Dust.NewDust(new Vector2(NPC.position.X + NPC.width * 0.5f + 35, NPC.position.Y), 2, 2, 6, 0, -1f, 0, default, 1.75f);
 				Main.dust[dust].noGravity = true;
 				Main.dust[dust].scale *= 0.95f;
-				int dust2 = Dust.NewDust(new Vector2(NPC.position.X + NPC.width * 0.5f - 30, NPC.position.Y), 2, 2, 6, 0, -1f, 0, default, 1.75f);
+				int dust2 = Dust.NewDust(new Vector2(NPC.position.X + NPC.width * 0.5f - 35, NPC.position.Y), 2, 2, 6, 0, -1f, 0, default, 1.75f);
 				Main.dust[dust2].noGravity = true;
 				Main.dust[dust2].scale *= 0.95f;
-				int dust3 = Dust.NewDust(new Vector2(NPC.position.X + NPC.width * 0.5f, NPC.position.Y + 30), 2, 2, 6, 0, -1f, 0, default, 1.75f);
+				int dust3 = Dust.NewDust(new Vector2(NPC.position.X + NPC.width * 0.5f, NPC.position.Y + 35), 2, 2, 6, 0, -1f, 0, default, 1.75f);
 				Main.dust[dust3].noGravity = true;
 				Main.dust[dust3].scale *= 0.95f;
-				int dust4 = Dust.NewDust(new Vector2(NPC.position.X + NPC.width * 0.5f, NPC.position.Y - 30), 2, 2, 6, 0, -1f, 0, default, 1.75f);
+				int dust4 = Dust.NewDust(new Vector2(NPC.position.X + NPC.width * 0.5f, NPC.position.Y - 35), 2, 2, 6, 0, -1f, 0, default, 1.75f);
 				Main.dust[dust4].noGravity = true;
 				Main.dust[dust4].scale *= 0.95f;
 				
@@ -108,7 +108,7 @@ namespace Consolaria.Content.NPCs
 				}
 			}
 
-			else if (aiTimer % 15 == 0) {
+			else if (aiTimer % 35 == 0) {
 				int randomIdleSound = Main.rand.Next(0, 3);
 				if (randomIdleSound == 0) SoundEngine.PlaySound(SoundID.Zombie26, NPC.position);
 				if (randomIdleSound == 1) SoundEngine.PlaySound(SoundID.Zombie27, NPC.position);
@@ -123,12 +123,12 @@ namespace Consolaria.Content.NPCs
 			=> target.AddBuff(BuffID.OnFire, 180);
 		
         public override void HitEffect(int hitDirection, double damage) {
-			Dust.NewDust(NPC.position, NPC.width, NPC.height, 185, 2.5f * hitDirection, -2.5f, 0, default(Color), 0.7f);
+			Dust.NewDust(NPC.position, NPC.width, NPC.height, 5, 2.5f * hitDirection, -2.5f, 0, default(Color), 0.8f);
 			if (NPC.life <= 0) {
 				Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-5, 6), Main.rand.Next(-5, 6)), ModContent.Find<ModGore>("Consolaria/ArchdemonGore1").Type);
 				Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-5, 6), Main.rand.Next(-5, 6)), ModContent.Find<ModGore>("Consolaria/ArchdemonGore2").Type);
 				for (int i = 0; i < 20; i++)
-					Dust.NewDust(NPC.position, NPC.width, NPC.height, 185, 2.5f * hitDirection, -2.5f, 0, default(Color), 1f);		
+					Dust.NewDust(NPC.position, NPC.width, NPC.height, 5, 2.5f * hitDirection, -2.5f, 0, default(Color), 1f);		
 			}
 		}
 

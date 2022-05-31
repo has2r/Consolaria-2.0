@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -15,18 +16,18 @@ namespace Consolaria.Content.Items.Pets
 		}
 
 		public override void SetDefaults() {
-			Item.CloneDefaults(ItemID.Carrot);
+			Item.DefaultToVanitypet(ModContent.ProjectileType<Projectiles.Friendly.Pets.PetTurkey>(), ModContent.BuffType<Buffs.PetTurkey>());
+			
+			int width = 46; int height = 30;
+			Item.Size = new Vector2(width, height);
 
 			Item.rare = ItemRarityID.Orange;
 			Item.value = Item.buyPrice(gold: 10);
-
-			Item.shoot = ModContent.ProjectileType<Projectiles.Friendly.Pets.PetTurkey>();
-			Item.buffType = ModContent.BuffType<Buffs.PetTurkey>();
 		}
 
-		public override void UseStyle(Player player, Rectangle heldItemFrame) {
-			if (player.whoAmI == Main.myPlayer && player.itemTime == 0)
-				player.AddBuff(Item.buffType, 3600);
+		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
+			player.AddBuff(Item.buffType, 2); // The item applies the buff, the buff spawns the projectile
+			return false;
 		}
 	}
 }

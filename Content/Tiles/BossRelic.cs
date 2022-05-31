@@ -5,14 +5,13 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 using Microsoft.Xna.Framework.Graphics;
-using Terraria.Enums;
 using System;
 using ReLogic.Content;
 using Terraria.Localization;
 
 namespace Consolaria.Content.Tiles
 {
-	public abstract class Relics : ModTile
+	public abstract class BossRelic : ModTile
 	{
 		public const int FrameWidth = 18 * 3;
 		public const int FrameHeight = 18 * 4;
@@ -22,7 +21,7 @@ namespace Consolaria.Content.Tiles
 		public Asset<Texture2D> RelicTexture;
 
 		public override string Texture => "Consolaria/Assets/Textures/Tiles/RelicPedestal";
-		public virtual string RelicTextureName => "Consolaria/Content/Tiles/LepusRelic";
+		public virtual string RelicTextureName => null;
 
 		public override void Load() {
 			if (!Main.dedServ)

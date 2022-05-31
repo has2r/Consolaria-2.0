@@ -18,13 +18,13 @@ namespace Consolaria.Content.Items.Summons
         }
 
         public override void SetDefaults() {
-            int width = 24; int height = width;
+            int width = 18; int height = 22;
             Item.Size = new Vector2(width, height);
 
             Item.maxStack = 20;
 
             Item.value = Item.sellPrice(0, 0, 1, 0);
-            Item.rare = ItemRarityID.Blue;
+            Item.rare = ItemRarityID.Pink;
 
             Item.useAnimation = 30;
             Item.useTime = 30;
@@ -52,7 +52,7 @@ namespace Consolaria.Content.Items.Summons
         public override void AddRecipes() {
             CreateRecipe()
                 .AddRecipeGroup(RecipeGroups.Titanium, 10)
-                .AddIngredient(ItemID.Bone, 10)
+                .AddIngredient(ItemID.Bone, 15)
                 .AddIngredient(ItemID.SoulofFright, 5)
                 .AddIngredient(ItemID.SoulofMight, 5)
                 .AddIngredient(ItemID.SoulofSight, 5)

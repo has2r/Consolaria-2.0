@@ -1,3 +1,4 @@
+using Terraria;
 using Terraria.ModLoader;
 
 namespace Consolaria.Common
@@ -5,9 +6,10 @@ namespace Consolaria.Common
     public class SeasonalEvents : ModSystem 
     {
         public static SeasonalEvents Instance;
-        public static bool enabled = ConsolariaConfig.Instance.easterEnabled || ConsolariaConfig.Instance.thanksgivingEnabled,
+        public static bool enabled = ConsolariaConfig.Instance.easterEnabled || ConsolariaConfig.Instance.thanksgivingEnabled || ConsolariaConfig.Instance.smallEventsEnabled,
             isEaster = ConsolariaConfig.Instance.easterEnabled && Helper.CheckEaster(),
-            isThanksgiving = ConsolariaConfig.Instance.thanksgivingEnabled && Helper.CheckThanksgiving();
+            isThanksgiving = ConsolariaConfig.Instance.thanksgivingEnabled && Helper.CheckThanksgiving(),
+            isChineseNewYear = ConsolariaConfig.Instance.smallEventsEnabled && Helper.CheckChineseNewYear();
 
         /*  public override void PostUpdateTime() {
               if (ConsolariaConfig.Instance.easterEnabled || ConsolariaConfig.Instance.thanksgivingEnabled) enabled = true;

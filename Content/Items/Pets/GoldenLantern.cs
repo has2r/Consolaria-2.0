@@ -7,22 +7,23 @@ using Terraria.ModLoader;
 
 namespace Consolaria.Content.Items.Pets
 {
-	public class TurkeyFeather : ModItem
+	public class GoldenLantern : ModItem
 	{
 		public override void SetStaticDefaults() {
-			DisplayName.SetDefault("Turkey Feather");
-			Tooltip.SetDefault("Summons a Pet Turkey");
+			DisplayName.SetDefault("Golden Lantern");
+			Tooltip.SetDefault("Summons a Mythical Wyvernling");
+
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
 		public override void SetDefaults() {
-			Item.DefaultToVanitypet(ModContent.ProjectileType<Projectiles.Friendly.Pets.PetTurkey>(), ModContent.BuffType<Buffs.PetTurkey>());
-			
-			int width = 46; int height = 30;
+			Item.DefaultToVanitypet(ModContent.ProjectileType<Projectiles.Friendly.Pets.MythicalWyvernling>(), ModContent.BuffType<Buffs.MythicalWyvernling>());
+
+			int width = 28; int height = 40;
 			Item.Size = new Vector2(width, height);
 
-			Item.rare = ItemRarityID.Orange;
-			Item.value = Item.buyPrice(gold: 10);
+			Item.rare = ItemRarityID.Pink;
+			Item.value = Item.sellPrice(gold: 10);
 		}
 
 		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {

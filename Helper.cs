@@ -11,7 +11,7 @@ namespace Consolaria
             DateTime now = DateTime.Now;
             int day = now.Day;
             int month = now.Month;
-            if ((day >= 1 && month == 4) && (day < 1 && month == 5))
+            if (day >= 1 && month == 4)
                 return true;
             return false;
         }
@@ -20,9 +20,18 @@ namespace Consolaria
             DateTime now = DateTime.Now;
             int day = now.Day;
             int month = now.Month;
-            if ((day >= 1 && month == 11) && (day < 1 && month == 12))
+            if (day >= 1 && month == 11)
                 return true;
             return false;          
+        }
+
+        public static bool CheckChineseNewYear() {
+            DateTime now = DateTime.Now;
+            int day = now.Day;
+            int month = now.Month;
+            if ((day >= 20 && month == 1) && (day <= 15 && month == 2))
+                return true;
+            return false;
         }
 
         public static Color FadeToColor(Color first, Color second, float blendSpeed, int alpha)

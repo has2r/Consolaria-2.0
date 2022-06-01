@@ -18,6 +18,7 @@ namespace Consolaria.Content.Projectiles.Friendly
 
             Projectile.aiStyle = 16;
             Projectile.friendly = true;
+
             Projectile.penetrate = 1;
             Projectile.timeLeft = 420;
         }

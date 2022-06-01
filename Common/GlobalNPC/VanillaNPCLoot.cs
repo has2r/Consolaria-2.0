@@ -5,6 +5,7 @@ using Terraria.ModLoader;
 using Consolaria.Content.Items.Vanity;
 using Consolaria.Content.Items.Summons;
 using Consolaria.Content.Items.Pets;
+using Consolaria.Content.Items.Consumables;
 
 namespace Consolaria.Common
 {
@@ -48,5 +49,24 @@ namespace Consolaria.Common
 			if (NPCID.Sets.Zombies[npc.type])
 				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Brain>(), 100));
 		}
-	}
+
+        public override void ModifyGlobalLoot(GlobalLoot globalLoot) {
+			int itemType = ModContent.ItemType<RedEnvelope>();
+			int chance = 10;
+			if (SeasonalEvents.enabled) {
+				ChineseNewYearDropCondition chineseNewYearDropCondition = new ChineseNewYearDropCondition();
+				IItemDropRule conditionalRule = new LeadingConditionRule(chineseNewYearDropCondition);
+				IItemDropRule rule = ItemDropRule.Common(itemType, chance);
+				conditionalRule.OnSuccess(rule);
+				globalLoot.Add(conditionalRule);
+			}
+			else {
+				LanernNightDropCondition lanernNightDropCondition = new LanernNightDropCondition();
+				IItemDropRule conditionalRule = new LeadingConditionRule(lanernNightDropCondition);
+				IItemDropRule rule = ItemDropRule.Common(itemType, chance);
+				conditionalRule.OnSuccess(rule);
+				globalLoot.Add(conditionalRule);
+			}
+		}
+    }
 }

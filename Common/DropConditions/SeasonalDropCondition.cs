@@ -43,7 +43,7 @@ namespace Consolaria.Common
 		public string GetConditionDescription() => "Drops during Chinese New Year";
 	}
 
-	public class LanernNightDropCondition : IItemDropRuleCondition
+	public class LanternNightDropCondition : IItemDropRuleCondition
 	{
 		public bool CanDrop(DropAttemptInfo info)
 		{
@@ -52,7 +52,7 @@ namespace Consolaria.Common
 			return false;
 		}
 
-		public bool CanShowItemDropInUI() => true;
+		public bool CanShowItemDropInUI() => false;
 
 		public string GetConditionDescription() => "Drops during Lanern Night";
 	}

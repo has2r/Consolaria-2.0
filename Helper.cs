@@ -34,6 +34,15 @@ namespace Consolaria
             return false;
         }
 
+        public static bool CheckOktoberfest() {
+            DateTime now = DateTime.Now;
+            int day = now.Day;
+            int month = now.Month;
+            if ((day >= 27 && month == 9) && (day <= 31 && month == 10))
+                return true;
+            return false;
+        }
+
         public static Color FadeToColor(Color first, Color second, float blendSpeed, int alpha)
         {
             int r = (int)(second.R * blendSpeed + first.R * (1f - blendSpeed));

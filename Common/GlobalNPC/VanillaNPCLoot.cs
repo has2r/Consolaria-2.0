@@ -61,7 +61,7 @@ namespace Consolaria.Common
 				globalLoot.Add(conditionalRule);
 			}
 			else {
-				LanernNightDropCondition lanernNightDropCondition = new LanernNightDropCondition();
+				LanternNightDropCondition lanernNightDropCondition = new LanternNightDropCondition();
 				IItemDropRule conditionalRule = new LeadingConditionRule(lanernNightDropCondition);
 				IItemDropRule rule = ItemDropRule.Common(itemType, chance);
 				conditionalRule.OnSuccess(rule);

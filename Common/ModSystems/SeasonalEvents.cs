@@ -9,7 +9,8 @@ namespace Consolaria.Common
         public static bool enabled = ConsolariaConfig.Instance.easterEnabled || ConsolariaConfig.Instance.thanksgivingEnabled || ConsolariaConfig.Instance.smallEventsEnabled,
             isEaster = ConsolariaConfig.Instance.easterEnabled && Helper.CheckEaster(),
             isThanksgiving = ConsolariaConfig.Instance.thanksgivingEnabled && Helper.CheckThanksgiving(),
-            isChineseNewYear = ConsolariaConfig.Instance.smallEventsEnabled && Helper.CheckChineseNewYear();
+            isChineseNewYear = ConsolariaConfig.Instance.smallEventsEnabled && Helper.CheckChineseNewYear(),
+            isOktoberfest = ConsolariaConfig.Instance.smallEventsEnabled && Helper.CheckOktoberfest();
 
         /*  public override void PostUpdateTime() {
               if (ConsolariaConfig.Instance.easterEnabled || ConsolariaConfig.Instance.thanksgivingEnabled) enabled = true;

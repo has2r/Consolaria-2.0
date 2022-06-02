@@ -14,6 +14,10 @@ namespace Consolaria.Common
 					shop.item[nextSlot].SetDefaults(ModContent.ItemType<Content.Items.Pets.TurkeyFeather>());
 					nextSlot++;
 				}
+				if (SeasonalEvents.isOktoberfest || !SeasonalEvents.enabled && player.HeldItem.type == ItemID.Ale) {
+					shop.item[nextSlot].SetDefaults(ModContent.ItemType<Content.Items.Consumables.Wiesnbrau>());
+					nextSlot++;
+				}
 			}
 			if (type == NPCID.Demolitionist && Main.xMas) {
 				shop.item[nextSlot].SetDefaults(ModContent.ItemType<Content.Items.Weapons.Magic.RomanCandle>());
@@ -62,6 +66,18 @@ namespace Consolaria.Common
 						shop.item[nextSlot].SetDefaults(ModContent.ItemType<Content.Items.Vanity.FabulousSlippers>());
 						nextSlot++;
 					}
+				}
+				if (SeasonalEvents.isOktoberfest || !SeasonalEvents.enabled && player.HeldItem.type == ItemID.Ale) {
+					shop.item[nextSlot].SetDefaults(ModContent.ItemType<Content.Items.Vanity.AlpineHat>());
+					nextSlot++;
+					shop.item[nextSlot].SetDefaults(ModContent.ItemType<Content.Items.Vanity.Lederweste>());
+					nextSlot++;
+					shop.item[nextSlot].SetDefaults(ModContent.ItemType<Content.Items.Vanity.Lederhosen>());
+					nextSlot++;
+					shop.item[nextSlot].SetDefaults(ModContent.ItemType<Content.Items.Vanity.DirndlBlouse>());
+					nextSlot++;
+					shop.item[nextSlot].SetDefaults(ModContent.ItemType<Content.Items.Vanity.DirndlSkirt>());
+					nextSlot++;
 				}
 			}
 		}

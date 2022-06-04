@@ -6,7 +6,6 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.DataStructures;
 using Terraria.GameContent.ItemDropRules;
-using Consolaria.Content.Items.Vanity;
 using Terraria.ModLoader.Utilities;
 using Terraria.GameContent.Bestiary;
 using Consolaria.Content.Items.Pets;
@@ -17,8 +16,6 @@ namespace Consolaria.Content.NPCs
 {
 	public class MythicalWyvernHead : ModNPC
 	{
-		private int shootTimer;
-
 		public override void SetStaticDefaults() {
 			DisplayName.SetDefault("Mythical Wyvern");
 

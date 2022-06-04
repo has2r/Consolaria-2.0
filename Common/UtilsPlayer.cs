@@ -1,4 +1,5 @@
-﻿using Consolaria.Content.Items.Weapons.Magic;
+﻿using Consolaria.Content.Items.Materials;
+using Consolaria.Content.Items.Weapons.Magic;
 using Consolaria.Content.Projectiles.Friendly;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -15,7 +16,8 @@ namespace Consolaria.Common
         private float blendCount;
 
         public override void PostUpdate() {
-            if (Player.inventory[Player.selectedItem].type == ModContent.ItemType<RomanCandle>() || Player.ownedProjectileCounts[ModContent.ProjectileType<RomanFlame>()] >= 1 || Player.ownedProjectileCounts[ModContent.ProjectileType<RomanFlameMid>()] >= 1 || Player.ownedProjectileCounts[ModContent.ProjectileType<RomanFlameFinal>()] >= 1) {
+            // if (Player.inventory[Player.selectedItem].type == ModContent.ItemType<RomanCandle>() || Player.ownedProjectileCounts[ModContent.ProjectileType<RomanFlame>()] >= 1 || Player.ownedProjectileCounts[ModContent.ProjectileType<RomanFlameMid>()] >= 1 || Player.ownedProjectileCounts[ModContent.ProjectileType<RomanFlameFinal>()] >= 1) {
+            if (Content.Dusts.RomanFlame.changeColor) { 
                 DiscoColor = Helper.FadeToColor(originalColor, targetColor, blendCount, 100);
                 blendCount += 0.025f;
                 if (blendCount >= 1) {

@@ -50,53 +50,11 @@ namespace Consolaria.Content.Items.BossDrops.Ocram
             if (mainDrops == 2) player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<OcramsEye>());
             if (mainDrops == 3) player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<Tizona>());
 
-            /*if (Main.rand.Next(10) == 0) {
-                int ancientArmorDrops = Main.rand.Next(12);
-                switch (ancientArmorDrops) {
-                    case 0:
-                        player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<AncientDragonMask>());
-                        break;
-                    case 1:
-                        player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<AncientDragonBreastplate>());
-                        break;
-                    case 2:
-                        player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<AncientDragonGreaves>());
-                        break;
-                    case 3:
-                        player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<AncientTitanHelmet>());
-                        break;
-                    case 4:
-                        player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<AncientTitanMail>());
-                        break;
-                    case 5:
-                        player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<AncientTitanLeggings>());
-                        break;
-                    case 6:
-                        player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<AncientPhantasmalHeadgear>());
-                        break;
-                    case 7:
-                        player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<AncientPhantasmalRobe>());
-                        break;
-                    case 8:
-                        player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<AncientPhantasmalSubligar>());
-                        break;
-                    case 9:
-                        player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<AncientWarlockHood>());
-                        break;
-                    case 10:
-                        player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<AncientWarlockLeggings>());
-                        break;
-                    case 11:
-                        player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<AncientWarlockRobe>());
-                        break;
-                }
-            }*/
-
             if (Main.rand.Next(8) == 0)
                 player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<OcramMask>());
 
             player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<SoulofBlight>(), Main.rand.Next(25, 40));
-            player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<CursedFang>());
+            player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<OcramsCock>());
             player.QuickSpawnItem(player.GetSource_OpenItem(Type), ItemID.GoldCoin, 15);
         }
 

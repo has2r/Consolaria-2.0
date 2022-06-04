@@ -21,7 +21,7 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets
         }
 
         public override bool PreAI() {
-            Main.player[Projectile.owner].babyFaceMonster = false;
+            Main.player[Projectile.owner].penguin = false;
             return true;
         }
 
@@ -36,16 +36,6 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets
                 Projectile.position.X = player.position.X;
                 Projectile.position.Y = player.position.Y;
             }
-        }
-
-        public override void PostAI() {
-            Projectile.frameCounter++;
-            if (Projectile.frameCounter > 18) {
-                Projectile.frame++;
-                Projectile.frameCounter = 0;
-            }
-            if (Projectile.frame >= Main.projFrames[Projectile.type])
-                Projectile.frame = 0;     
         }
     }
 }

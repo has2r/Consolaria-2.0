@@ -7,6 +7,7 @@ namespace Consolaria.Content.Dusts
 {
 	public class RomanFlame : ModDust
 	{
+		public static bool changeColor;
 		public override void OnSpawn(Dust dust) {
 			dust.noLight = false;
             dust.velocity.Y = Main.rand.Next(-10, 11) * 0.15f;
@@ -22,7 +23,15 @@ namespace Consolaria.Content.Dusts
 			return false;
 		}
 
-		public override Color? GetAlpha(Dust dust, Color lightColor)
+        public override bool Update(Dust dust) {
+			if (dust.active)
+				changeColor = true;
+			else changeColor = false;
+
+			return base.Update(dust);
+        }
+
+        public override Color? GetAlpha(Dust dust, Color lightColor)
 			=> UtilsPlayer.DiscoColor;
 	}
 }

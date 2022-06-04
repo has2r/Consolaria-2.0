@@ -43,6 +43,15 @@ namespace Consolaria
             return false;
         }
 
+        public static bool CheckSaintPatricksDay() {
+            DateTime now = DateTime.Now;
+            int day = now.Day;
+            int month = now.Month;
+            if ((day >= 5 && month == 3) && (day <= 31 && month == 3))
+                return true;
+            return false;
+        }
+
         public static Color FadeToColor(Color first, Color second, float blendSpeed, int alpha)
         {
             int r = (int)(second.R * blendSpeed + first.R * (1f - blendSpeed));

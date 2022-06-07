@@ -10,7 +10,7 @@ namespace Consolaria.Content.Projectiles.Friendly
     public class SpectralArrow : ModProjectile
     {
         public override void SetStaticDefaults() {
-            ProjectileID.Sets.TrailCacheLength[Projectile.type] = 10;
+            ProjectileID.Sets.TrailCacheLength[Projectile.type] = 5;
             ProjectileID.Sets.TrailingMode[Projectile.type] = 2;
         }
 

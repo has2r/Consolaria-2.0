@@ -27,7 +27,7 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets
 
         public override void AI() {
             Player player = Main.player[Projectile.owner];
-            if (!player.dead && player.HasBuff(ModContent.BuffType<Buffs.Zombie>()))
+            if (!player.dead && player.HasBuff(ModContent.BuffType<Buffs.Slime>()))
                 Projectile.timeLeft = 2;
         }
 

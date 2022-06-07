@@ -8,10 +8,6 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent;
 using Consolaria.Content.Items.Weapons.Magic;
 using Consolaria.Content.Items.Weapons.Summon;
-using Consolaria.Content.Items.Armor.Melee;
-using Consolaria.Content.Items.Armor.Ranged;
-using Consolaria.Content.Items.Armor.Magic;
-using Consolaria.Content.Items.Armor.Summon;
 using Consolaria.Content.Items.Materials;
 using Consolaria.Content.Items.Weapons.Melee;
 
@@ -54,7 +50,7 @@ namespace Consolaria.Content.Items.BossDrops.Ocram
                 player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<OcramMask>());
 
             player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<SoulofBlight>(), Main.rand.Next(25, 40));
-            player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<OcramsCock>());
+            player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<ShadowboundExoskeleton>());
             player.QuickSpawnItem(player.GetSource_OpenItem(Type), ItemID.GoldCoin, 15);
         }
 

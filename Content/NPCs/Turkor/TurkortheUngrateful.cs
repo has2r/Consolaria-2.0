@@ -346,7 +346,7 @@ namespace Consolaria.Content.NPCs.Turkor
 			Conditions.NotExpert notExpert = new Conditions.NotExpert();
 			npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<TurkorBag>()));
 			npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<TurkorRelic>()));
-			npcLoot.Add(ItemDropRule.MasterModeDropOnAllPlayers(ModContent.ItemType<FruitfulPlate>()));
+			npcLoot.Add(ItemDropRule.MasterModeDropOnAllPlayers(ModContent.ItemType<FruitfulPlate>(), 4));
 
 			LeadingConditionRule notExpertRule = new LeadingConditionRule(new Conditions.NotExpert());
 			notExpertRule.OnSuccess(new OneFromOptionsDropRule(1, 1, ModContent.ItemType<FeatherStorm>(), ModContent.ItemType<GreatDrumstick>(), ModContent.ItemType<TurkeyStuff>()));

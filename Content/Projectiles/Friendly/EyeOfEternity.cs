@@ -42,7 +42,7 @@ namespace Consolaria.Content.Projectiles.Friendly
             Player owner = Main.player[Projectile.owner];
             if (!CheckActive(owner)) return;    
             Shoot();
-            glowRotation += 0.04f;
+            glowRotation += 0.05f;
         }
 
         private bool CheckActive(Player owner) {

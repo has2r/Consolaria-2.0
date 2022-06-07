@@ -8,17 +8,7 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.NPCs.Ocram
 {
     public class ServantofOcram : ModNPC
-    {
-        public int ParentIndex {
-            get => (int)NPC.ai[0] - 1;
-            set => NPC.ai[0] = value + 1;
-        }
-
-        public bool HasParent => ParentIndex > -1;
-
-        public static int BodyType()
-            => ModContent.NPCType<Ocram>();
-        
+    {     
         public override void SetStaticDefaults() {
             DisplayName.SetDefault("Servant of Ocram");
             Main.npcFrameCount[NPC.type] = 2;
@@ -59,7 +49,7 @@ namespace Consolaria.Content.NPCs.Ocram
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
-            int associatedNPCType = BodyType();
+            int associatedNPCType = ModContent.NPCType<Ocram>();
             bestiaryEntry.UIInfoProvider = new CommonEnemyUICollectionInfoProvider(ContentSamples.NpcBestiaryCreditIdsByNpcNetIds[associatedNPCType], quickUnlock: true);
 
             bestiaryEntry.Info.AddRange(new List<IBestiaryInfoElement> {
@@ -70,7 +60,7 @@ namespace Consolaria.Content.NPCs.Ocram
 
         private bool Despawn() {
             if (Main.netMode != NetmodeID.MultiplayerClient &&
-                (!HasParent || !Main.npc[ParentIndex].active || Main.npc[ParentIndex].type != BodyType())) {
+                (!Main.npc[ModContent.NPCType<Ocram>()].active)) {
                 NPC.active = false;
                 NPC.life = 0;
                 NetMessage.SendData(MessageID.SyncNPC, number: NPC.whoAmI);

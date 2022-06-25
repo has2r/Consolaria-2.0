@@ -20,23 +20,22 @@ namespace Consolaria.Content.Items.BossDrops.Lepus
             Item.Size = new Vector2(width, height);
 
             Item.value = Item.sellPrice(0, 1, 50, 0);
-
             Item.rare = ItemRarityID.Blue;
-            Item.expert = true;
 
+            Item.expert = true;
             Item.accessory = true;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)    
-         => player.GetModPlayer<OstarasGiftPlayer>().chocolateEgg = true;
+            => player.GetModPlayer<OstarasGiftPlayer>().chocolateEgg = true;
     }
 
-    public class OstarasGiftPlayer : ModPlayer
+    internal class OstarasGiftPlayer : ModPlayer
     {
         public bool chocolateEgg;
 
         public override void ResetEffects()
-         => chocolateEgg = false;
+            => chocolateEgg = false;
         
         public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit) {
             if (chocolateEgg && target.type != ModContent.NPCType<ChocolateEgg>() && target.life <= 0 && !NPCID.Sets.CountsAsCritter[target.type] && Main.rand.Next(2) == 0)

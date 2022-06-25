@@ -28,7 +28,7 @@ namespace Consolaria.Content.Items.Consumables
 		public override void SetDefaults() {
 			Item.DefaultToFood(18, 22, ModContent.BuffType<Drunk>(), 60 * 30, true, 17);
 
-			int width = 18; int height = 30;
+			int width = 26; int height = 32;
 			Item.Size = new Vector2(width, height);
 
 			Item.value = Item.buyPrice(silver: 20);

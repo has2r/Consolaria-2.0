@@ -18,6 +18,14 @@ namespace Consolaria.Common
 					shop.item[nextSlot].SetDefaults(ModContent.ItemType<Content.Items.Consumables.Wiesnbrau>());
 					nextSlot++;
 				}
+				if (SeasonalEvents.isValentinesDay || !SeasonalEvents.enabled && player.HasBuff(BuffID.Lovestruck)) {
+					shop.item[nextSlot].SetDefaults(ModContent.ItemType<Content.Items.Accessories.ValentineRing>());
+					nextSlot++;
+				}
+				if (SeasonalEvents.isValentinesDay || !SeasonalEvents.enabled && player.HasBuff(BuffID.Lovestruck)) {
+					shop.item[nextSlot].SetDefaults(ModContent.ItemType<Content.Items.Weapons.Ammo.HeartArrow>());
+					nextSlot++;
+				}
 			}
 			if (type == NPCID.Demolitionist && Main.xMas) {
 				shop.item[nextSlot].SetDefaults(ModContent.ItemType<Content.Items.Weapons.Magic.RomanCandle>());

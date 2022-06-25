@@ -6,10 +6,10 @@ using Terraria.ModLoader;
 
 namespace Consolaria.Content.Projectiles.Friendly.Pets
 {
-	public class MythicalWyvernling : ModProjectile
+	public class Cupid : ModProjectile
 	{
         public override void SetStaticDefaults() {
-            Main.projFrames[Projectile.type] = 5;
+            Main.projFrames[Projectile.type] = 4;
             Main.projPet[Projectile.type] = true;
 
             ProjectileID.Sets.LightPet[Projectile.type] = true;
@@ -19,7 +19,7 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets
             Projectile.CloneDefaults(ProjectileID.ZephyrFish);                      
             AIType = ProjectileID.ZephyrFish;
 
-            int width = 60; int height = 50;
+            int width = 38; int height = 50;
             Projectile.Size = new Vector2(width, height);
         }
 
@@ -30,19 +30,12 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets
 
         public override void AI() {
             Player player = Main.player[Projectile.owner];
-            if (!player.active) {
-                Projectile.active = false;
-                return;
-            }
-            if (!player.dead && player.HasBuff(ModContent.BuffType<Buffs.MythicalWyvernling>()))
+            if (!player.dead && player.HasBuff(ModContent.BuffType<Buffs.Cupid>()))
                 Projectile.timeLeft = 2;
 
-            Projectile.rotation += Projectile.velocity.X / 20f;
-            Projectile.velocity.X *= 0.975f;
-            Projectile.direction = player.direction;
-
+            Projectile.velocity *= 0.985f;
             if (!Main.dedServ)
-                Lighting.AddLight(Projectile.Center, new Color(255, 140, 0).ToVector3() * 0.7f);
+                Lighting.AddLight(Projectile.Center, new Color(255, 105, 180).ToVector3() * 0.7f);
         }
 
         private int texFrameCounter;
@@ -52,7 +45,7 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets
             SpriteBatch spriteBatch = Main.spriteBatch;
             Texture2D texture = (Texture2D)ModContent.Request<Texture2D>(Texture);
             texFrameCounter++;
-            if (texFrameCounter > 9) {
+            if (texFrameCounter > 8) {
                 texCurrentFrame++;
                 texFrameCounter = 0;
             }
@@ -60,7 +53,7 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets
                 texCurrentFrame = 0;
             Vector2 position = new Vector2(Projectile.Center.X, Projectile.Center.Y) - Main.screenPosition;
             Vector2 drawOrigin = new Vector2(texture.Width * 0.5f, Projectile.height * 0.5f);
-            var spriteEffects = Projectile.direction > 0 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+            var spriteEffects = Projectile.direction < 0 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
             int frameHeight = texture.Height / Main.projFrames[Projectile.type];
             Rectangle frameRect = new Rectangle(0, texCurrentFrame * frameHeight, texture.Width, frameHeight);
             spriteBatch.Draw(texture, position, frameRect, lightColor, Projectile.rotation, drawOrigin, Projectile.scale, spriteEffects, 0f);

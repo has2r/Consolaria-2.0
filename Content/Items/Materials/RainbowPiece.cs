@@ -17,7 +17,7 @@ namespace Consolaria.Content.Items.Materials
         }
 
         public override void SetDefaults() {
-            int width = 16; int height = width;
+            int width = 20; int height = width;
             Item.Size = new Vector2(width, height);
 
             Item.rare = ItemRarityID.Blue;

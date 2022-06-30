@@ -32,7 +32,9 @@ namespace Consolaria.Content.Items.Weapons.Ranged
 			Item.value = Item.sellPrice(0, 0, 80, 0);
 			Item.rare = ItemRarityID.Orange;
 			Item.UseSound = SoundID.Item5;
+
 			Item.autoReuse = true;
+			Item.noMelee = true;
 		}
 
 		public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback) {

@@ -33,6 +33,7 @@ namespace Consolaria.Content.Items.Weapons.Ranged
 
 			Item.shoot = ModContent.ProjectileType<EasterEgg>();
 			Item.shootSpeed = 8f;
+			Item.noMelee = true;
 		}
 
 		public override Vector2? HoldoutOffset()

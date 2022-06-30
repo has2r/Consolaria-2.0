@@ -1,5 +1,6 @@
 using Consolaria.Content.NPCs.Ocram;
 using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent.Creative;
@@ -36,7 +37,7 @@ namespace Consolaria.Content.Items.Summons
         public override bool CanUseItem(Player player)
          =>  !Main.dayTime && !NPC.AnyNPCs(ModContent.NPCType<Ocram>());
         
-        public override bool? UseItem(Player player) {
+        public override Nullable<bool> UseItem(Player player)/* tModPorter Suggestion: Return null instead of false */ {
             if (player.whoAmI == Main.myPlayer) {
                 SoundEngine.PlaySound(new SoundStyle($"{nameof(Consolaria)}/Assets/Sounds/OcramRoar"), player.position);
 

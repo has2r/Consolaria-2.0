@@ -18,7 +18,7 @@ namespace Consolaria
 		}
 
 		public override void AddRecipes() {
-			Mod.CreateRecipe(ItemID.RainbowBrick)
+			Recipe.Create(ItemID.RainbowBrick)
 			.AddIngredient(ItemID.StoneBlock, 25)
 			.AddIngredient<RainbowPiece>(1)
 			.AddTile(TileID.Furnaces)

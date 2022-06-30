@@ -3,6 +3,7 @@ using Consolaria.Content.Projectiles.Friendly;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
+using System;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent.Creative;
@@ -81,7 +82,7 @@ namespace Consolaria.Content.Items.Armor.Ranged
 
     internal class TitanArmorBonuses : GlobalItem
     {
-        public override bool? UseItem(Item item, Player player) {
+        public override Nullable<bool> UseItem(Item item, Player player)/* tModPorter Suggestion: Return null instead of false */ {
             ushort projType = (ushort)ModContent.ProjectileType<TitanShockwawe>();
             if (player.GetModPlayer<TitanPlayer>().titanPower && player.ownedProjectileCounts[projType] < 1 && item.DamageType == DamageClass.Ranged && player.miscCounter % 10 == 0) {
                 Projectile.NewProjectile(player.GetSource_ItemUse(item), player.Center, new Vector2(0, 0), projType, 35, 9f, player.whoAmI);

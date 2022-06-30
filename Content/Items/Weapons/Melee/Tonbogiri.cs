@@ -1,6 +1,7 @@
 using Consolaria.Content.Items.Materials;
 using Consolaria.Content.Projectiles.Friendly;
 using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent.Creative;
@@ -47,7 +48,7 @@ namespace Consolaria.Content.Items.Weapons.Melee
         public override bool CanUseItem(Player player)  
             => player.ownedProjectileCounts[Item.shoot] < 1;
 
-        public override bool? UseItem(Player player) {
+        public override Nullable<bool> UseItem(Player player)/* tModPorter Suggestion: Return null instead of false */ {
             if (!Main.dedServ) SoundEngine.PlaySound(SoundID.DD2_GhastlyGlaivePierce, player.Center);        
             return null;
         }

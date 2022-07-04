@@ -1,4 +1,4 @@
-using Consolaria.Content.NPCs.Lepus;
+using Consolaria.Content.NPCs.Bosses.Lepus;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;

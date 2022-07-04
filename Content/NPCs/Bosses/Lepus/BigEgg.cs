@@ -6,7 +6,7 @@ using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Consolaria.Content.NPCs.Lepus
+namespace Consolaria.Content.NPCs.Bosses.Lepus
 {
     public class BigEgg : ModNPC
     {

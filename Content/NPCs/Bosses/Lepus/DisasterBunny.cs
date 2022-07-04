@@ -8,7 +8,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Utilities;
 
-namespace Consolaria.Content.NPCs.Lepus
+namespace Consolaria.Content.NPCs.Bosses.Lepus
 {
     public class DisasterBunny : ModNPC
     {

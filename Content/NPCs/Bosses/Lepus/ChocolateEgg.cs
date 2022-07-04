@@ -4,7 +4,7 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Consolaria.Content.NPCs.Lepus
+namespace Consolaria.Content.NPCs.Bosses.Lepus
 {
     public class ChocolateEgg : ModNPC
     {

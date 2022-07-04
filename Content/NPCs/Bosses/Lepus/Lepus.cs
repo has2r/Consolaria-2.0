@@ -40,9 +40,9 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
 
         private const string MUSIC_PATH = "Assets/Music/Lepus";
 
-        private const short HITBOX_SIZE_X = 75;
+        private const short HITBOX_SIZE_X = 60;
         private const short HITBOX_SIZE_Y = 50;
-        private const short FRAME_WIDTH = 90;
+        private const short FRAME_WIDTH = 100;
         private const short FRAME_HEIGHT = 76;
         private const short STANDING_FRAMES_COUNT = 4;
 
@@ -169,7 +169,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
                     spriteBatch.Draw(texture, new Vector2(NPC.oldPos[i].X - screenPos.X + (float)(NPC.width / 2) - (float)texture.Width * NPC.scale / 2f + origin.X * NPC.scale, NPC.oldPos[i].Y - screenPos.Y + (float)NPC.height - (float)texture.Height * NPC.scale / (float)Main.npcFrameCount[NPC.type] + 4f + origin.Y * NPC.scale) - NPC.velocity * (float)i * 0.5f, new Rectangle?(NPC.frame), color, NPC.rotation, origin, scale * alpha * 0.5f, effects, 0f);
                 }
             }
-            float offsetY = -12f;
+            float offsetY = -10f;
             spriteBatch.Draw(texture, NPC.Center - screenPos + new Vector2(0f, offsetY), new Rectangle?(NPC.frame), drawColor, NPC.rotation, origin, NPC.scale, effects, 0f);
 			return false;
 		}
@@ -203,7 +203,10 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
             switch (State)
             {
                 case (float)States.Stand:
-                    NPC.direction = toPlayer;
+                    if (Math.Abs(NPC.velocity.X) < 0.5f)
+                    {
+                        NPC.direction = toPlayer;
+                    }
                     double rate = 0.125;
                     if ((NPC.frameCounter += rate) > (double)(STANDING_FRAMES_COUNT * STANDING_FRAMES_COUNT)) 
                     {
@@ -254,7 +257,6 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
 
         private void Stagnant()
 		{
-            NPC.TargetClosest(true);
             Player player = Main.player[NPC.target];
             Vector2 center = NPC.Center;
             NPC.velocity.X *= 0.925f;
@@ -263,21 +265,29 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
             {
                 NPC.velocity.X = 0.0f;
             }
-            bool hasTargetAndClose = NPC.HasValidTarget && player.Distance(center) < MAX_DISTANCE;
+            bool hasTargetAndClose = NPC.HasValidTarget;
             if (hasTargetAndClose)
             {
-                bool zeroVelocity = NPC.velocity.Y != 0f | NPC.velocity.X != 0f;
-                if (zeroVelocity)
+                if (player.Distance(center) >= MAX_DISTANCE)
 				{
                     return;
-				}
+                }
+                bool zeroVelocity = NPC.velocity.Y != 0f | NPC.velocity.X != 0f;
+                if (zeroVelocity)
+                {
+                    return;
+                }
                 int attackTime = (int)MathHelper.Lerp(30f, 100f, (float)NPC.life / (float)NPC.lifeMax);
                 if (++StateTimer >= attackTime)
-				{
+                {
                     AdvancedJump = false;
                     JumpCount++;
                     ChangeState((int)States.DoJump);
-				}
+                }
+            }
+            else
+			{
+                NPC.TargetClosest(true);
             }
         }
 
@@ -382,7 +392,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
         private bool TooFar()
 		{
             Player player = Main.player[NPC.target];
-            return player.Center.Y > NPC.position.Y + NPC.height || player.Distance(NPC.Center) > MAX_DISTANCE / 4.25f;
+            return player.Center.Y > NPC.position.Y + NPC.height || player.Distance(NPC.Center) > MAX_DISTANCE / 5f;
         }
 	}
 }

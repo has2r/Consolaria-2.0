@@ -1,7 +1,7 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
-using Consolaria.Content.NPCs.Lepus;
+using Consolaria.Content.NPCs.Bosses.Lepus;
 using Microsoft.Xna.Framework;
 using Terraria.GameContent.Creative;
 

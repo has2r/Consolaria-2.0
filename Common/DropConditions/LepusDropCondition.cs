@@ -8,7 +8,7 @@ namespace Consolaria.Common
 	{
 		public bool CanDrop(DropAttemptInfo info) {
 			if (!info.IsInSimulation) {
-					return NPC.CountNPCS(ModContent.NPCType<Content.NPCs.Lepus.Lepus>()) == 1;
+					return NPC.CountNPCS(ModContent.NPCType<Content.NPCs.Bosses.Lepus.Lepus>()) == 1;
 			}
 			return false;
 		}

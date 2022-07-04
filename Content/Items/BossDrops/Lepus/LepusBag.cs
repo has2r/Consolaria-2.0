@@ -13,7 +13,7 @@ namespace Consolaria.Content.Items.BossDrops.Lepus
 {
     public class LepusBag : ModItem
     {
-        public override int BossBagNPC => ModContent.NPCType<NPCs.Lepus.Lepus>();
+        public override int BossBagNPC => ModContent.NPCType<NPCs.Bosses.Lepus.Lepus>();
 
         public override void SetStaticDefaults() {
             DisplayName.SetDefault("Treasure Bag (Lepus)");

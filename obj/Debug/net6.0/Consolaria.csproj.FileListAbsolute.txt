@@ -1,0 +1,5 @@
+C:\Users\mandr\Documents\My Games\Terraria\tModLoader\ModSources\Consolaria\obj\Debug\net6.0\Consolaria.csproj.AssemblyReference.cache
+C:\Users\mandr\Documents\My Games\Terraria\tModLoader\ModSources\Consolaria\obj\Debug\net6.0\Consolaria.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\mandr\Documents\My Games\Terraria\tModLoader\ModSources\Consolaria\obj\Debug\net6.0\Consolaria.AssemblyInfoInputs.cache
+C:\Users\mandr\Documents\My Games\Terraria\tModLoader\ModSources\Consolaria\obj\Debug\net6.0\Consolaria.AssemblyInfo.cs
+C:\Users\mandr\Documents\My Games\Terraria\tModLoader\ModSources\Consolaria\obj\Debug\net6.0\Consolaria.csproj.CoreCompileInputs.cache

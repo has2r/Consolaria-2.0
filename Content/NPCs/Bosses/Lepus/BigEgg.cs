@@ -12,9 +12,12 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
         public ref float Timer
             => ref NPC.ai[0];
 
-        public override void SetStaticDefaults()
-        {
+        public override void SetStaticDefaults() {
             DisplayName.SetDefault("Lepus Egg");
+            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0) {
+				Hide = true
+			};
+			NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, value);
         }
 
         public override void SetDefaults()

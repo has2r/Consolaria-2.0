@@ -65,7 +65,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SuspiciousLookingEgg>(), 5)); //Drop Suspicious Looking Egg with a 1 out of 10 chance.
         }
 
-        public override float SpawnChance(NPCSpawnInfo spawnInfo) {
+        public override float SpawnChance (NPCSpawnInfo spawnInfo) {
             float spawnChance = DownedBossSystem.downedLepus ? 0.01f : 0.05f;
             if (SeasonalEvents.enabled) return SeasonalEvents.isEaster ? SpawnCondition.OverworldDaySlime.Chance * spawnChance : 0f;
             else return SpawnCondition.OverworldDaySlime.Chance * spawnChance;

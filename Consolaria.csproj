@@ -10,12 +10,4 @@
   <ItemGroup>
     <PackageReference Include="tModLoader.CodeAssist" Version="0.1.*" />
   </ItemGroup>
-  <ItemGroup>
-    <Reference Include="System.ValueTuple">
-      <HintPath>..\..\..\ModLoader\references\System.ValueTuple.dll</HintPath>
-    </Reference>
-    <Reference Include="Terraria">
-      <HintPath>D:\Steam\steamapps\common\Terraria\Terraria.exe</HintPath>
-    </Reference>
-  </ItemGroup>
 </Project>

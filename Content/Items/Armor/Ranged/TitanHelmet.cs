@@ -10,31 +10,31 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Consolaria.Content.Items.Armor.Ranged
-{
+namespace Consolaria.Content.Items.Armor.Ranged {
+
     [AutoloadEquip(EquipType.Head)]
-    public class TitanHelmet : ModItem
-    {
+    public class TitanHelmet : ModItem {
+
         private Asset<Texture2D> helmetGlowmask;
-        public override void Unload() => helmetGlowmask = null;
-        
-        public override void SetStaticDefaults() {
+        public override void Unload () => helmetGlowmask = null;
+
+        public override void SetStaticDefaults () {
             DisplayName.SetDefault("Titan Helmet");
             Tooltip.SetDefault("15% increased ranged damage and critical strike chance" + "\n25% chance to not consume ammo");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
 
             if (!Main.dedServ) {
                 helmetGlowmask = ModContent.Request<Texture2D>(Texture + "_Glow");
                 HeadGlowmask.RegisterData(Item.headSlot, new DrawLayerData() {
-                Texture = ModContent.Request<Texture2D>(Texture + "_Head_Glow")
+                    Texture = ModContent.Request<Texture2D>(Texture + "_Head_Glow")
                 });
             }
         }
 
-        public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
+        public override void PostDrawInWorld (SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
             => Item.BasicInWorldGlowmask(spriteBatch, helmetGlowmask.Value, new Color(255, 255, 255, 0) * 0.8f * 0.75f, rotation, scale);
-        
-        public override void SetDefaults() {
+
+        public override void SetDefaults () {
             int width = 30; int height = 26;
             Item.Size = new Vector2(width, height);
 
@@ -44,24 +44,24 @@ namespace Consolaria.Content.Items.Armor.Ranged
             Item.defense = 14;
         }
 
-        public override void UpdateEquip(Player player) {
+        public override void UpdateEquip (Player player) {
             player.GetCritChance(DamageClass.Ranged) += 15;
             player.GetDamage(DamageClass.Ranged) += 0.15f;
         }
 
-        public override bool IsArmorSet(Item head, Item body, Item legs)
+        public override bool IsArmorSet (Item head, Item body, Item legs)
             => body.type == ModContent.ItemType<TitanMail>() || body.type == ModContent.ItemType<AncientTitanMail>()
             && legs.type == ModContent.ItemType<TitanLeggings>() || legs.type == ModContent.ItemType<AncientTitanLeggings>();
 
-        public override void ArmorSetShadows(Player player)
+        public override void ArmorSetShadows (Player player)
             => player.armorEffectDrawOutlinesForbidden = true;
-        
-        public override void UpdateArmorSet(Player player) {
+
+        public override void UpdateArmorSet (Player player) {
             player.setBonus = "Using ranged weapons emits strong repelling wave around you";
             player.GetModPlayer<TitanPlayer>().titanPower = true;
         }
 
-        public override void AddRecipes() {
+        public override void AddRecipes () {
             CreateRecipe()
                 .AddIngredient(ItemID.HallowedHelmet)
                 .AddRecipeGroup(RecipeGroups.Titanium, 10)
@@ -72,37 +72,29 @@ namespace Consolaria.Content.Items.Armor.Ranged
         }
     }
 
-    public class TitanPlayer : ModPlayer
-    {
+    public class TitanPlayer : ModPlayer {
         public bool titanPower;
 
-        public override void ResetEffects() 
-            => titanPower = false;   
+        public override void ResetEffects ()
+            => titanPower = false;
     }
 
-    internal class TitanArmorBonuses : GlobalItem
-    {
-        public override Nullable<bool> UseItem(Item item, Player player)/* tModPorter Suggestion: Return null instead of false */ {
+    internal class TitanArmorBonuses : GlobalItem {
+        public override bool? UseItem (Item item, Player player) {
             ushort projType = (ushort)ModContent.ProjectileType<TitanShockwawe>();
-            if (player.GetModPlayer<TitanPlayer>().titanPower && player.ownedProjectileCounts[projType] < 1 && item.DamageType == DamageClass.Ranged && player.miscCounter % 10 == 0) {
+            if (player.GetModPlayer<TitanPlayer>().titanPower && player.ownedProjectileCounts [projType] < 1 && item.DamageType == DamageClass.Ranged && player.miscCounter % 10 == 0) {
                 Projectile.NewProjectile(player.GetSource_ItemUse(item), player.Center, new Vector2(0, 0), projType, 35, 9f, player.whoAmI);
-              /*  Item.UseSound = new SoundStyle($"{nameof(Consolaria)}/Assets/Sounds/Shockwave")
-                {
-                    Volume = 0.9f,
-                    PitchVariance = 0.2f,
-                    MaxInstances = 3,
-                };*/
                 SoundEngine.PlaySound(new SoundStyle($"{nameof(Consolaria)}/Assets/Sounds/Shockwave"), player.position);
             }
             return null;
         }
 
-        public override bool CanConsumeAmmo(Item weapon, Item ammo, Player player) {
+        public override bool CanConsumeAmmo (Item weapon, Item ammo, Player player) {
             float dontConsumeAmmoChance = 0f;
             if (weapon.useAmmo >= 0) {
-                if (player.armor[0].type == ModContent.ItemType<TitanHelmet>()) dontConsumeAmmoChance += 0.25f;
-                if (player.armor[1].type == ModContent.ItemType<TitanMail>()) dontConsumeAmmoChance += 0.2f;
-                if (player.armor[2].type == ModContent.ItemType<TitanLeggings>()) dontConsumeAmmoChance += 0.15f;
+                if (player.armor [0].type == ModContent.ItemType<TitanHelmet>() || player.armor [0].type == ModContent.ItemType<AncientTitanHelmet>()) dontConsumeAmmoChance += 0.25f;
+                if (player.armor [1].type == ModContent.ItemType<TitanMail>() || player.armor [1].type == ModContent.ItemType<AncientTitanMail>()) dontConsumeAmmoChance += 0.2f;
+                if (player.armor [2].type == ModContent.ItemType<TitanLeggings>() || player.armor [2].type == ModContent.ItemType<AncientTitanLeggings>()) dontConsumeAmmoChance += 0.15f;
                 return Main.rand.NextFloat() >= dontConsumeAmmoChance;
             }
             return true;

@@ -64,7 +64,7 @@ namespace Consolaria.Content.NPCs
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.UndergroundJungle,
-				new FlavorTextBestiaryInfoElement("Demon, but more powerful, I guess...")
+				new FlavorTextBestiaryInfoElement("A different species of Man Eater, this carnivorous plant can inject acid venom when it bites its careless prey.")
 			});
 		}
 

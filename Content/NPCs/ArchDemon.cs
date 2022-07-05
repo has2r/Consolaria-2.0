@@ -64,7 +64,7 @@ namespace Consolaria.Content.NPCs
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheUnderworld,
-				new FlavorTextBestiaryInfoElement("Demon, but more powerful, I guess...")
+				new FlavorTextBestiaryInfoElement("The most powerful ones among hellish creatures, Arch Demons will tear to shreds anyone who descended into The Underworld with their exploding scythes.")
 			});
 		}
 
@@ -136,6 +136,6 @@ namespace Consolaria.Content.NPCs
 			=> npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ArchDemonMask>(), 15));
 		
 		public override float SpawnChance(NPCSpawnInfo spawnInfo)
-			=> SpawnCondition.Underworld.Chance * 0.33f;
+			=> SpawnCondition.Underworld.Chance * 0.075f;
 	}
 }

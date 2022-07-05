@@ -2,7 +2,6 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
-using System;
 using Terraria.DataStructures;
 using Terraria.ModLoader.Utilities;
 using Terraria.GameContent.Bestiary;
@@ -23,7 +22,8 @@ namespace Consolaria.Content.NPCs
             NPCID.Sets.DebuffImmunitySets.Add(Type, debuffData);
 
             NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0) {
-                Velocity = 1f
+                Velocity = 0.25f
+          
             };
             NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
         }
@@ -60,7 +60,7 @@ namespace Consolaria.Content.NPCs
         }
 
         public override void OnHitPlayer(Player target, int damage, bool crit) {
-            if (Main.rand.Next(4) == 0)
+            if (Main.rand.NextBool(4))
                 target.AddBuff(BuffID.Darkness, 60 * 15);
         }
 

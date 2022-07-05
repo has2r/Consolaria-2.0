@@ -37,9 +37,9 @@ namespace Consolaria.Content.NPCs.Turkor
 			NPCID.Sets.DebuffImmunitySets.Add(Type, debuffData);
 
 			NPCID.Sets.NPCBestiaryDrawModifiers drawModifiers = new NPCID.Sets.NPCBestiaryDrawModifiers(0) {
-				CustomTexturePath = "Consolaria/Assets/Textures/Bestiary/Turkor",
+				CustomTexturePath = "Consolaria/Assets/Textures/Bestiary/Turkor_Bestiary",
 				PortraitScale = 0.6f, 
-				PortraitPositionYOverride = 0f,
+				Position = new Vector2(0, 10f),
 			};
 			NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, drawModifiers);
 		}

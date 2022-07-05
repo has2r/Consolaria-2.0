@@ -25,7 +25,8 @@ namespace Consolaria.Content.NPCs
 			NPCID.Sets.DebuffImmunitySets.Add(Type, debuffData);
 
 			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0) {
-				Velocity = 1f
+				CustomTexturePath = "Consolaria/Assets/Textures/Bestiary/AlbinoAntlion_Bestiary",
+				Position = new Vector2(0f, 4f)
 			};
 			NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
 		}
@@ -48,14 +49,14 @@ namespace Consolaria.Content.NPCs
 			NPC.HitSound = SoundID.NPCHit31;
 			NPC.DeathSound = SoundID.NPCDeath34;
 
-			Banner = Item.NPCtoBanner(ModContent.NPCType<AlbinoAntlion>()); 
-			BannerItem = Item.BannerToItem(ModContent.ItemType<Items.Banners.AlbinoAntlionBanner>()); 
+			//Banner = Item.NPCtoBanner(ModContent.NPCType<AlbinoAntlion>()); 
+			//BannerItem = Item.BannerToItem(ModContent.ItemType<Items.Banners.AlbinoAntlionBanner>()); 
 		}
 
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Desert,
-				new FlavorTextBestiaryInfoElement("Antlion, but more powerful, I guess...")
+				new FlavorTextBestiaryInfoElement("This mutated species of antlion will spit sand clumps and chomp everyone in proximity even more aggressively, despite their skin is susceptible to sunlight.")
 			});
 		}
 

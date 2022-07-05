@@ -24,7 +24,10 @@ namespace Consolaria.Content.NPCs
 			NPCID.Sets.DebuffImmunitySets.Add(Type, debuffData);
 
 			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0) {
-				Velocity = 1f
+				Velocity = 0.8f,
+				Position = new Vector2(20f, 10f),
+				PortraitPositionXOverride = -5f,
+                PortraitPositionYOverride = 12f
 			};
 			NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
 		}

@@ -10,10 +10,10 @@ namespace Consolaria.Content.NPCs
 	public class SpectralMummy : ModNPC
 	{
 		public override void SetStaticDefaults() {
-			Main.npcFrameCount[NPC.type] = 15;
+			Main.npcFrameCount[NPC.type] = 16;
 
             NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0) {
-                Velocity = 1f
+                Velocity = 0.85f
             };
             NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
         }

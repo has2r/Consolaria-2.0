@@ -51,11 +51,10 @@ namespace Consolaria.Content.NPCs
 			//bannerItem = mod.ItemType("VampireMinerBanner");
 		}
 
-		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
-		{
+		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Underground,
-				new FlavorTextBestiaryInfoElement("There's evidence of spelunkers having explored the caverns in the past... as well as evidence of them having died doing so.")
+				new FlavorTextBestiaryInfoElement("Some evidence indicates some spelunkers got bitten by vampire bats before they passed away... and now their rotten remains hunt anyone for tasty blood.")
 			});
 		}
 
@@ -63,12 +62,12 @@ namespace Consolaria.Content.NPCs
 			=> Lighting.AddLight(NPC.Center, new Vector3(0.8f, 0f, 0.7f));
 		
 		public override void OnHitPlayer(Player target, int damage, bool crit) {
-			if (Main.rand.Next(5) == 0)
+			if (Main.rand.NextBool(5))
 				target.AddBuff(BuffID.Bleeding, 60 * 5);
 
-			if (Main.rand.Next(2) == 0 && NPC.life < NPC.lifeMax) {
+			if (Main.rand.NextBool(2) && NPC.life < NPC.lifeMax) {
 				for (int i = 0; i < 10; i++)
-					Dust.NewDust(NPC.position, i, i, 5, 2, 2, 100, default, 0.9f);
+					Dust.NewDust(NPC.position, i, i, DustID.Blood, 2, 2, 100, default, 0.9f);
 
 				int healLife = damage / 5;
 				if (healLife > 0) {

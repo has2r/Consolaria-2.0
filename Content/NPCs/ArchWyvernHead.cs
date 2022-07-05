@@ -33,7 +33,10 @@ namespace Consolaria.Content.NPCs
 			NPCID.Sets.DebuffImmunitySets.Add(Type, debuffData);
 
 			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0) {
-				Velocity = 1f
+				CustomTexturePath = "Consolaria/Assets/Textures/Bestiary/ArchWyvern_Bestiary",
+				Position = new Vector2(20f, 14f),
+                PortraitPositionXOverride = 30f,
+                PortraitPositionYOverride = -6f
 			};
 			NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
 		}

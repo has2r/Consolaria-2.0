@@ -57,7 +57,7 @@ namespace Consolaria.Content.NPCs
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
                 BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Ocean,
-                new FlavorTextBestiaryInfoElement("Once these ocean predators catch a whiff of blood, they become relentless and unstoppable in their ravenous pursuit.")
+                new FlavorTextBestiaryInfoElement("Since there are no whales to be seen in this oceans, these black'n'white predators will hunt anything else... including you!")
             });
         }
 

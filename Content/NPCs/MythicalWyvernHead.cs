@@ -31,7 +31,10 @@ namespace Consolaria.Content.NPCs
 			NPCID.Sets.DebuffImmunitySets.Add(Type, debuffData);
 
 			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0) {
-				Velocity = 1f
+				CustomTexturePath = "Consolaria/Assets/Textures/Bestiary/MythicalhWyvern_Bestiary",
+				Position = new Vector2(20f, 14f),
+                PortraitPositionXOverride = 30f,
+                PortraitPositionYOverride = -6f
 			};
 			NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
 		}
@@ -85,8 +88,7 @@ namespace Consolaria.Content.NPCs
 				if (NPC.ai[0] == 0f) {
 					NPC.ai[3] = NPC.whoAmI;
 					NPC.realLife = NPC.whoAmI;
-					int num7 = 0;
-					int num8 = NPC.whoAmI;
+                    int num8 = NPC.whoAmI;
 					for (int l = 0; l < 14; l++) {
 						int num9 = ModContent.NPCType<MythicalWyvernBody>();
 						switch (l)
@@ -105,8 +107,8 @@ namespace Consolaria.Content.NPCs
 								num9 = ModContent.NPCType<MythicalWyvernTail>();
 								break;
 						}
-						num7 = NPC.NewNPC(NPC.GetSource_FromAI(), (int)(NPC.position.X + (float)(NPC.width / 2)), (int)(NPC.position.Y + (float)NPC.height), num9, NPC.whoAmI);
-						Main.npc[num7].ai[3] = NPC.whoAmI;
+                        int num7 = NPC.NewNPC(NPC.GetSource_FromAI(), (int) (NPC.position.X + (float) (NPC.width / 2)), (int) (NPC.position.Y + (float) NPC.height), num9, NPC.whoAmI);
+                        Main.npc[num7].ai[3] = NPC.whoAmI;
 						Main.npc[num7].realLife = NPC.whoAmI;
 						Main.npc[num7].ai[1] = num8;
 						Main.npc[num7].CopyInteractions(Main.npc[num8]);

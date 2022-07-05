@@ -92,7 +92,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
             NPCID.Sets.BossBestiaryPriority.Add(Type);
             NPCID.Sets.NPCBestiaryDrawModifiers value = new(0)
             {
-                CustomTexturePath = "Consolaria/Assets/Textures/NPCs/Lepus_Bestiary",
+                CustomTexturePath = "Consolaria/Assets/Textures/Bestiary/Lepus_Bestiary",
                 Position = new Vector2(24f, 12f),
                 PortraitPositionXOverride = 10f,
                 PortraitPositionYOverride = -5f,
@@ -171,6 +171,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
             conditionalRule.OnSuccess(new OneFromRulesRule(1, ItemDropRule.ByCondition(notExpert, ModContent.ItemType<OstaraHat>()), ItemDropRule.ByCondition(notExpert, ModContent.ItemType<OstaraJacket>()), ItemDropRule.ByCondition(notExpert, ModContent.ItemType<OstaraBoots>())));
             conditionalRule.OnSuccess(ItemDropRule.BossBag(ModContent.ItemType<LepusBag>()));
             conditionalRule.OnSuccess(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<LepusRelic>()));
+             npcLoot.Add(ItemDropRule.MasterModeDropOnAllPlayers(ModContent.ItemType<RabbitFoot>(), 4));
             conditionalRule.OnSuccess(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<EggCannon>(), 2));
             conditionalRule.OnSuccess(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<LepusMask>(), 8));
             conditionalRule.OnSuccess(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<LepusTrophy>(), 10));

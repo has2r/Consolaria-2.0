@@ -11,7 +11,7 @@ namespace Consolaria.Content.Items.Armor.Ranged
     public class AncientTitanLeggings : ModItem
     {    
         public override void SetStaticDefaults() {
-            DisplayName.SetDefault("Titan Leggings");
+            DisplayName.SetDefault("Ancient Titan Leggings");
             Tooltip.SetDefault("10% increased ranged damage" + "\n10% increased movement speed" + "\n15% chance to not consume ammo");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }

@@ -11,7 +11,7 @@ namespace Consolaria.Content.Items.Armor.Ranged
     public class AncientTitanMail : ModItem
     {     
         public override void SetStaticDefaults() {
-            DisplayName.SetDefault("Titan Mail");
+            DisplayName.SetDefault("Ancient Titan Mail");
             Tooltip.SetDefault("5% increased ranged damage" + "\n15 % increased ranged critical strike chance" + "\n20% chance to not consume ammo");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }

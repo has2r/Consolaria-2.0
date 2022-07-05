@@ -1,54 +1,26 @@
 {
   "version": 3,
   "targets": {
-    "net6.0": {
-      "tModLoader.CodeAssist/0.1.5": {
-        "type": "package"
-      }
-    }
+    "net6.0": {}
   },
-  "libraries": {
-    "tModLoader.CodeAssist/0.1.5": {
-      "sha512": "Sg/jKEg/z5eN+Cdi3/9CU4JfJwvXHVH+UDJf4Lipo26uTa+guLLJXH1XDJNPShTFwKK8jMUYbthINP4QhsgHSA==",
-      "type": "package",
-      "path": "tmodloader.codeassist/0.1.5",
-      "hasTools": true,
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "NugetIcon.png",
-        "analyzers/dotnet/cs/tModLoader.CodeAssist.dll",
-        "tmodloader.codeassist.0.1.5.nupkg.sha512",
-        "tmodloader.codeassist.nuspec",
-        "tools/install.ps1",
-        "tools/uninstall.ps1"
-      ]
-    }
-  },
+  "libraries": {},
   "projectFileDependencyGroups": {
-    "net6.0": [
-      "tModLoader.CodeAssist >= 0.1.*"
-    ]
+    "net6.0": []
   },
   "packageFolders": {
-    "C:\\Users\\mandr\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\HASTUR\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\mandr\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Consolaria\\Consolaria.csproj",
+      "projectUniqueName": "C:\\Users\\HASTUR\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Consolaria\\Consolaria.csproj",
       "projectName": "Consolaria",
-      "projectPath": "C:\\Users\\mandr\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Consolaria\\Consolaria.csproj",
-      "packagesPath": "C:\\Users\\mandr\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\mandr\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Consolaria\\obj\\",
+      "projectPath": "C:\\Users\\HASTUR\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Consolaria\\Consolaria.csproj",
+      "packagesPath": "C:\\Users\\HASTUR\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\HASTUR\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Consolaria\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\mandr\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\HASTUR\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -73,12 +45,6 @@
     "frameworks": {
       "net6.0": {
         "targetAlias": "net6.0",
-        "dependencies": {
-          "tModLoader.CodeAssist": {
-            "target": "Package",
-            "version": "[0.1.*, )"
-          }
-        },
         "imports": [
           "net461",
           "net462",
@@ -89,12 +55,7 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "frameworkReferences": {
-          "Microsoft.NETCore.App": {
-            "privateAssets": "all"
-          }
-        },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.102\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.409\\RuntimeIdentifierGraph.json"
       }
     }
   }

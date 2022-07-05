@@ -12,7 +12,7 @@ namespace Consolaria.Content.Items.Armor.Ranged
     {
       
         public override void SetStaticDefaults() {
-            DisplayName.SetDefault("Titan Helmet");
+            DisplayName.SetDefault("Ancient Titan Helmet");
             Tooltip.SetDefault("15% increased ranged damage and critical strike chance" + "\n25% chance to not consume ammo");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }

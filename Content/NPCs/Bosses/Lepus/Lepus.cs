@@ -554,7 +554,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
                     AdvancedJumped2 = true;
                 }
                 NPC.velocity.X += 5f * (float)NPC.direction;
-                NPC.velocity.Y -= 2.75f;
+                NPC.velocity.Y -= 2.5f;
                 NPC.velocity *= 1.1f;
                 return;
             }

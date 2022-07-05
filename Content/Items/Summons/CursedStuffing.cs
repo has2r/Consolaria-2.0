@@ -40,7 +40,7 @@ namespace Consolaria.Content.Items.Summons
         
         public override Nullable<bool> UseItem(Player player)/* tModPorter Suggestion: Return null instead of false */ {
             if (player.whoAmI == Main.myPlayer) {
-                SoundEngine.PlaySound(SoundID.Roar, player.position);
+                SoundEngine.PlaySound(SoundID.Roar);
 
                 int type = ModContent.NPCType<TurkortheUngrateful>();
                 if (Main.netMode != NetmodeID.MultiplayerClient) {

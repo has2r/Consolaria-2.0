@@ -91,9 +91,10 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
                 {
                     Gore.NewGore(entitySource, NPC.position, new Vector2(Main.rand.Next(-1, 1), Main.rand.Next(-1, 1)), gore);
                 }
-                if (spawnBunny)
+                int type = ModContent.NPCType<DisasterBunny>();
+                if (spawnBunny && NPC.CountNPCS(type) < (Main.expertMode ? 15 : 10))
                 {
-                    int index = NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.Center.X, (int)NPC.Center.Y, ModContent.NPCType<DisasterBunny>());
+                    int index = NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.Center.X, (int)NPC.Center.Y, type);
                     if (Main.netMode == NetmodeID.Server && index < Main.maxNPCs)
                     {
                         NetMessage.SendData(MessageID.SyncNPC, number: index);

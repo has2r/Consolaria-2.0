@@ -452,6 +452,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
         private void MakeExtraJump()
 		{
             NPC.rotation = NPC.velocity.Y / 25f;
+            NPC.noTileCollide = false;
             if (Main.netMode == NetmodeID.MultiplayerClient)
             {
                 return;
@@ -498,7 +499,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
         }
 
         private void ExtraJump()
-		{
+        {
             if (Main.netMode == NetmodeID.MultiplayerClient)
             {
                 return;
@@ -514,17 +515,16 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
 			{
                 return;
 			}
+            NPC.noTileCollide = true;
             SoundEngine.PlaySound(SoundID.DoubleJump, NPC.position);
             while (StateTimer > 0)
             {
-                NPC.noTileCollide = true;
                 NPC.velocity.Y -= Main.rand.NextFloat(2f, 5f) * Main.rand.NextFloat(1.1f, 1.75f) * 0.5f;
                 NPC.velocity.X += Main.rand.NextFloat(2f, 5f) * 0.75f * NPC.direction;
                 StateTimer--;
                 NPC.netUpdate = true;
             }
             JumpCount++;
-            NPC.noTileCollide = false;
         }
 
         private void Jump()

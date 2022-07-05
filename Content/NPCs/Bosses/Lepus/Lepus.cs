@@ -395,7 +395,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
                 {
                     if (AdvancedJumpCount >= MAX_JUMP_COUNT)
 					{
-                        if (Main.rand.NextDouble() < 0.6 && Main.expertMode)
+                        if (Main.rand.NextBool() && Main.expertMode)
 						{
                             JumpCount = 0;
                             ChangeState((int)States.DoExtraJump);
@@ -553,9 +553,9 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
                 {
                     AdvancedJumped2 = true;
                 }
-                NPC.velocity.X += 5f * (float)NPC.direction;
-                NPC.velocity.Y -= 2.5f;
-                NPC.velocity *= 1.1f;
+                NPC.velocity.X += 4.25f * (float)NPC.direction;
+                NPC.velocity.Y -= 2f;
+                NPC.velocity *= 1.075f;
                 return;
             }
             SoundEngine.PlaySound(SoundID.DoubleJump, NPC.position);

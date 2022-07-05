@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.Audio;
 using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -30,7 +31,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
             NPC.knockBackResist = 0f;
 
             NPC.HitSound = SoundID.NPCHit1;
-            NPC.DeathSound = SoundID.NPCDeath1;
+            NPC.DeathSound = new SoundStyle($"{nameof(Consolaria)}/Assets/Sounds/EggCrack");
 
             NPC.noTileCollide = false;
             NPC.friendly = false;
@@ -89,7 +90,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
                 var entitySource = NPC.GetSource_Death();
                 for (int i = 0; i < 2; i++)
                 {
-                    Gore.NewGore(entitySource, NPC.position, new Vector2(Main.rand.Next(-1, 1), Main.rand.Next(-1, 1)), gore);
+                    Gore.NewGore(entitySource, NPC.position, new Vector2(Main.rand.Next(-2, 2), 0), gore);
                 }
                 int type = ModContent.NPCType<DisasterBunny>();
                 if (spawnBunny && NPC.CountNPCS(type) < (Main.expertMode ? 15 : 10))

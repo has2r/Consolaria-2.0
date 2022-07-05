@@ -54,10 +54,10 @@ namespace Consolaria.Content.NPCs.Bosses
         public override bool CheckActive() 
             => false;
 
-        protected ref float StateTimer
+        public ref float StateTimer
             => ref NPC.ai[0];
 
-        protected ref float State
+        public ref float State
             => ref NPC.ai[1];
 
         protected void ChangeState(float newStateID)

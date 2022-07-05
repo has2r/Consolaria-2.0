@@ -14,9 +14,6 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Lepus Egg");
-
-            NPCID.Sets.TrailCacheLength[Type] = 4;
-            NPCID.Sets.TrailingMode[Type] = 0;
         }
 
         public override void SetDefaults()
@@ -43,16 +40,24 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
         {
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
                 BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheHallow,
-                new FlavorTextBestiaryInfoElement("Small Egg")
+                new FlavorTextBestiaryInfoElement("Lepus Egg")
             });
         }
 
+        public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)
+            => false;
+
         public override void AI()
         {
+            float maxRotation = 0.3f;
+            int max = 2000;
+            float current = (float)Timer / (float)max;
+            Timer += 1f * ((current + 0.5f) * 5f);
+            float speed = current < 0.5f ? current : 1f - current;
+            NPC.rotation = MathHelper.Lerp(-maxRotation, maxRotation, speed);
             NPC.scale = (Main.mouseTextColor / 200f - 0.35f) * 0.46f + 0.8f;
             NPC.velocity *= 0.95f;
-            NPC.rotation = NPC.velocity.Y / 15f;
-            if (++Timer >= 360 || (Collision.SolidCollision(NPC.Center, 10, 10) && NPC.oldVelocity.Length() > 5f))
+            if (++Timer >= max || (Collision.SolidCollision(NPC.Center, 10, 10) && NPC.oldVelocity.Length() > 5f))
             {
                 NPC.life = -1;
                 NPC.HitEffect();
@@ -68,7 +73,8 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
 
         public override void HitEffect(int hitDirection, double damage)
         {
-            Death(Timer >= 360);
+            int max = 2000;
+            Death(Timer >= max);
         }
 
         private void Death(bool spawnBunny = false)

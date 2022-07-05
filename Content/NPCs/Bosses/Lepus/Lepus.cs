@@ -554,8 +554,8 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
                     AdvancedJumped2 = true;
                 }
                 NPC.velocity.X += 5f * (float)NPC.direction;
-                NPC.velocity.Y -= 2.5f;
-                NPC.velocity *= 1.05f;
+                NPC.velocity.Y -= 2.75f;
+                NPC.velocity *= 1.1f;
                 return;
             }
             SoundEngine.PlaySound(SoundID.DoubleJump, NPC.position);
@@ -643,11 +643,12 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
             {
                 AdvancedJumped = true;
             }
-            if (Main.netMode == NetmodeID.MultiplayerClient)
+            int type = ModContent.NPCType<BigEgg>();
+            if (Main.netMode == NetmodeID.MultiplayerClient || NPC.CountNPCS(type) > 1)
             {
                 return;
             }
-            int index = NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.Center.X, (int)NPC.Center.Y, ModContent.NPCType<BigEgg>());
+            int index = NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.Center.X, (int)NPC.Center.Y, type);
             if (Main.netMode == NetmodeID.Server && index < Main.maxNPCs)
             {
                 NetMessage.SendData(MessageID.SyncNPC, number: index);

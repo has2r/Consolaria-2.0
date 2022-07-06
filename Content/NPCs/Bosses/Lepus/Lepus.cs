@@ -132,7 +132,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
             NPC.HitSound = SoundID.NPCHit1;
             NPC.DeathSound = SoundID.NPCDeath8;
 
-            NPC.SpawnWithHigherTime(30);
+            NPC.SpawnWithHigherTime(100);
             NPC.timeLeft = NPC.activeTime * 30;
             NPC.Opacity = 0f;
 
@@ -379,7 +379,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
             }
             if (StateTimer != 1f)
             {
-                float offsetY = 350f;
+                float offsetY = Main.expertMode ? 350f : 425f;
                 NPC.Center = Main.player[NPC.target].Center - new Vector2(0f, offsetY);
             }
             ChangeState(STATE_HEAVY_JUMP);
@@ -389,6 +389,10 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
         private void HeavyJump()
 		{
             NPC.rotation = NPC.velocity.Y / 10f;
+            if (Main.netMode == NetmodeID.MultiplayerClient)
+            {
+                return;
+            }
             if (NPC.Opacity != 1f)
             {
                 NPC.Opacity += 0.01f;
@@ -396,7 +400,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
             }
             if (!NPC.collideY)
             {
-                float velocityYSpeed = 10f;
+                float velocityYSpeed = Main.expertMode ? 10f : 5f;
                 float acceleration = velocityYSpeed / 5f;
                 NPC.velocity.Y += velocityYSpeed;
                 NPC.velocity.Y *= acceleration;
@@ -428,6 +432,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
             Vector2 center = NPC.Center;
             float slow = Main.expertMode ? 0.895f : 0.925f;
             NPC.velocity.X *= slow;
+            NPC.rotation = 0f;
             bool zeroVelocityX = Math.Abs(NPC.velocity.X) < 0.1f;
             if (zeroVelocityX)
             {
@@ -493,6 +498,10 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
                 if (++StateTimer > attackTime)
 				{
                     jumpStrength = 15;
+                    if (Main.netMode != NetmodeID.Server)
+                    {
+                        SoundEngine.PlaySound(SoundID.DoubleJump, NPC.position);
+                    }
                     ChangeState(STATE_JUMP2, jumpStrength);
                     NPC.netUpdate = true;
                     return;
@@ -508,6 +517,10 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
                         SoundEngine.PlaySound(style, NPC.Center);
                     }
                 }
+                if (Main.netMode != NetmodeID.Server)
+                {
+                    SoundEngine.PlaySound(SoundID.DoubleJump, NPC.position);
+                }
                 ChangeState(STATE_JUMP2);
                 NPC.netUpdate = true;
             }
@@ -516,11 +529,11 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
         private void MakeExtraJump()
 		{
             NPC.rotation = NPC.velocity.Y / 25f;
-            NPC.noTileCollide = false;
             if (Main.netMode == NetmodeID.MultiplayerClient)
             {
                 return;
             }
+            NPC.noTileCollide = false;
             Player player = Main.player[NPC.target];
             if ((NPC.Center.X > player.Center.X ? (NPC.Center.X - player.Center.X) : (player.Center.X - NPC.Center.X)) < 10 && NPC.Center.Y < player.Center.Y - 150 && JumpCount >= 3)
             {
@@ -565,10 +578,6 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
 
         private void ExtraJump()
         {
-            if (Main.netMode == NetmodeID.MultiplayerClient)
-            {
-                return;
-            }
             float slow = 0.85f;
             NPC.velocity.X *= slow;
             bool zeroVelocityX = Math.Abs(NPC.velocity.X) < 0.1f;
@@ -580,11 +589,15 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
 			{
                 return;
 			}
-            NPC.noTileCollide = true;
             if (Main.netMode != NetmodeID.Server)
             {
                 SoundEngine.PlaySound(SoundID.DoubleJump, NPC.position);
             }
+            if (Main.netMode == NetmodeID.MultiplayerClient)
+            {
+                return;
+            }
+            NPC.noTileCollide = true;
             while (StateTimer > 0)
             {
                 NPC.velocity.Y -= Main.rand.NextFloat(2f, 5f) * Main.rand.NextFloat(1.1f, 1.75f) * 0.5f;
@@ -599,49 +612,48 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
 		{
             NPC.rotation = NPC.velocity.Y / 25f;
             JustSpawned = false;
-            NPC.noTileCollide = true;
-            if (Main.netMode == NetmodeID.MultiplayerClient)
-			{
-                return;
-			}
-            Player player = Main.player[NPC.target];
-            Vector2 center = NPC.Center;
-            Vector2 playerCenter = player.Center;
-            float offsetY = 220f;
-            float rotation = (float)Math.Atan2(center.Y - (playerCenter.Y - offsetY), center.X - playerCenter.X);
-            NPC.velocity.X = (float)(7 * NPC.direction);
-            NPC.velocity.Y = -(float)(Math.Sin(rotation) * 14.0);
-            if (--StateTimer > 0)
+            if (Main.netMode != NetmodeID.MultiplayerClient)
             {
-                if (!AdvancedJumped)
+                NPC.noTileCollide = true;
+                Player player = Main.player[NPC.target];
+                Vector2 center = NPC.Center;
+                Vector2 playerCenter = player.Center;
+                float offsetY = 220f;
+                float rotation = (float)Math.Atan2(center.Y - (playerCenter.Y - offsetY), center.X - playerCenter.X);
+                NPC.velocity.X = (float)(7 * NPC.direction);
+                NPC.velocity.Y = -(float)(Math.Sin(rotation) * 14.0);
+                if (--StateTimer > 0)
                 {
-                    AdvancedJumped = true;
+                    if (!AdvancedJumped)
+                    {
+                        AdvancedJumped = true;
+                    }
+                    if (!AdvancedJumped2)
+                    {
+                        AdvancedJumped2 = true;
+                    }
+                    NPC.velocity.X += 4.25f * (float)NPC.direction;
+                    NPC.velocity.Y -= 2f;
+                    NPC.velocity *= 1.075f;
+                    return;
                 }
-                if (!AdvancedJumped2)
+                if (AdvancedJumpCount >= MAX_ADVANCED_JUMP_COUNT + 1)
                 {
-                    AdvancedJumped2 = true;
+                    AdvancedJumpCount = 0;
+                    SpawnBigEgg();
                 }
-                NPC.velocity.X += 4.25f * (float)NPC.direction;
-                NPC.velocity.Y -= 2f;
-                NPC.velocity *= 1.075f;
-                return;
+                ChangeState(STATE_FALLING, (int)NPC.velocity.X);
+                NPC.netUpdate = true;
             }
-            if (Main.netMode != NetmodeID.Server)
-            {
-                SoundEngine.PlaySound(SoundID.DoubleJump, NPC.position);
-            }
-            if (AdvancedJumpCount >= MAX_ADVANCED_JUMP_COUNT + 1)
-            {
-                AdvancedJumpCount = 0;
-                SpawnBigEgg();
-            }
-            ChangeState(STATE_FALLING, (int)NPC.velocity.X);
-            NPC.netUpdate = true;
         }
 
         private void Falling()
 		{
             NPC.rotation = NPC.velocity.Y / 25f;
+            if (Main.netMode == NetmodeID.MultiplayerClient)
+			{
+                return;
+			}
             if (--StateTimer > 0)
 			{
                 return;
@@ -675,6 +687,13 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
 			{
                 flag = true;
             }
+            if (flag)
+			{
+                if (Main.netMode != NetmodeID.Server)
+                {
+                    SoundEngine.PlaySound(SoundID.DoubleJump, NPC.position);
+                }
+			}
             ChangeState(flag ? STATE_JUMP2 : STATE_STAGNANT);
             if ((flag || AdvancedJumped) && AdvancedJumpCount < MAX_JUMP_COUNT)
 			{
@@ -757,13 +776,12 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
             {
                 NPC.velocity.X = 0f;
             }
-            if (Main.netMode == NetmodeID.MultiplayerClient)
-			{
-                return;
-			}
             if (StateTimer >= 280)
             {
-                NPC.noTileCollide = true;
+                if (Main.netMode != NetmodeID.MultiplayerClient)
+                {
+                    NPC.noTileCollide = true;
+                }
                 if (NPC.Opacity != 0f)
                 {
                     if (NPC.velocity.Y > 0f)
@@ -774,6 +792,10 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
                 }
                 else
 				{
+                    if (Main.netMode == NetmodeID.MultiplayerClient)
+                    {
+                        return;
+                    }
                     NPC.life = 0;
                     NPC.HitEffect(0, 10.0);
                     NPC.active = false;
@@ -790,6 +812,10 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
                     if (Main.netMode != NetmodeID.Server)
                     {
                         SoundEngine.PlaySound(SoundID.DoubleJump, NPC.position);
+                    }
+                    if (Main.netMode == NetmodeID.MultiplayerClient)
+                    {
+                        return;
                     }
                     NPC.velocity.Y -= Main.rand.NextFloat(2f, 5f) * Main.rand.NextFloat(1.1f, 1.75f) * 0.5f * (JumpCount + 3) / 2;
                     NPC.velocity.X += Main.rand.NextFloat(2f, 5f) * Main.rand.NextFloat(1.1f, 1.75f) * 0.5f * NPC.direction;

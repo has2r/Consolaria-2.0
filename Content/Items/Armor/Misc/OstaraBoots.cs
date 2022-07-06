@@ -11,7 +11,7 @@ namespace Consolaria.Content.Items.Armor.Misc
     {
         public override void SetStaticDefaults() {
             DisplayName.SetDefault("Boots of Ostara");
-            Tooltip.SetDefault("5% increased movement speed" + "\nAllows the wearer to perform up to 5 bunny hops");
+            Tooltip.SetDefault("Allows the wearer to perform up to 5 bunny hops");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
@@ -26,9 +26,7 @@ namespace Consolaria.Content.Items.Armor.Misc
             Item.defense = 4;
         }
 
-        public override void UpdateEquip(Player player) { 
-            player.moveSpeed += 0.05f;
-            player.GetModPlayer<OstarasPlayer>().bunnyHop = true;
-        }
+        public override void UpdateEquip(Player player) 
+           => player.GetModPlayer<OstarasPlayer>().bunnyHop = true;    
     }
 }

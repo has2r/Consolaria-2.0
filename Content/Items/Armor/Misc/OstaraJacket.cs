@@ -11,7 +11,7 @@ namespace Consolaria.Content.Items.Armor.Misc
     {
         public override void SetStaticDefaults() {
             DisplayName.SetDefault("Jacket of Ostara");
-            Tooltip.SetDefault("5% increased movement speed");
+            Tooltip.SetDefault("7% increased movement speed");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
@@ -27,7 +27,7 @@ namespace Consolaria.Content.Items.Armor.Misc
         }
 
         public override void UpdateEquip(Player player) 
-            => player.moveSpeed += 0.05f;
+            => player.moveSpeed += 0.07f;
     }
 }
 

@@ -336,3 +336,23 @@ ASALocalRun/
 
 # OSX
 .DS_Store
+.vs/Consolaria/FileContentIndex/f3999010-513e-4cc9-83e8-71eb75a3d4fe.vsidx
+.vs/Consolaria/FileContentIndex/ac3601bc-4f98-4fe7-836e-692f3f4cca0d.vsidx
+.vs/Consolaria/FileContentIndex/93dd315c-cb72-42ae-9c67-e56709b83b49.vsidx
+.vs/Consolaria/DesignTimeBuild/.dtbcache.v2
+.vs/Consolaria/v17/.suo
+*.v2
+obj/project.nuget.cache
+obj/project.assets.json
+obj/Debug/net6.0/Consolaria.GeneratedMSBuildEditorConfig.editorconfig
+obj/Debug/net6.0/Consolaria.assets.cache
+obj/Consolaria.csproj.nuget.g.props
+obj/Consolaria.csproj.nuget.dgspec.json
+.vs/ProjectEvaluation/consolaria.projects.v2
+.vs/ProjectEvaluation/consolaria.metadata.v2
+.vs/Consolaria/v17/.suo
+.vs/Consolaria/FileContentIndex/f3999010-513e-4cc9-83e8-71eb75a3d4fe.vsidx
+.vs/Consolaria/FileContentIndex/bfaaf4b4-6d06-484b-b2e8-fa53c1eb7496.vsidx
+.vs/Consolaria/FileContentIndex/ac3601bc-4f98-4fe7-836e-692f3f4cca0d.vsidx
+.vs/Consolaria/FileContentIndex/93dd315c-cb72-42ae-9c67-e56709b83b49.vsidx
+.vs/Consolaria/DesignTimeBuild/.dtbcache.v2

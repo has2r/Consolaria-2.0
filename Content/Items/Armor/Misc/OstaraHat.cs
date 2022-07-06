@@ -12,7 +12,7 @@ namespace Consolaria.Content.Items.Armor.Misc
 	{
 		public override void SetStaticDefaults() {
 			DisplayName.SetDefault("Hat of Ostara");
-			Tooltip.SetDefault("5% increased movement speed");
+			Tooltip.SetDefault("7% increased movement speed");
 
             ArmorIDs.Head.Sets.DrawHatHair[Item.headSlot] = true;
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
@@ -29,7 +29,7 @@ namespace Consolaria.Content.Items.Armor.Misc
 		}
 
         public override void UpdateEquip(Player player)        
-			=> player.moveSpeed += 0.05f;
+			=> player.moveSpeed += 0.07f;
 
 		public override bool IsArmorSet(Item head, Item body, Item legs)
 			=> body.type == ModContent.ItemType<OstaraJacket>() && legs.type == ModContent.ItemType<OstaraBoots>();

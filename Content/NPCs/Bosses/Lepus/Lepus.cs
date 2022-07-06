@@ -663,7 +663,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
                 flag = true;
             }
             ChangeState(flag ? STATE_JUMP2 : STATE_STAGNANT);
-            if (flag)
+            if (flag && !AdvancedJumped && !AdvancedJumped2)
 			{
                 SpawnStomp();
             }
@@ -772,7 +772,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
                 if (NPC.velocity.Y == 0f && JumpCount <= 5)
                 {
                     NPC.velocity.Y -= Main.rand.NextFloat(2f, 5f) * Main.rand.NextFloat(1.1f, 1.75f) * 0.5f * (JumpCount + 3) / 2;
-                    NPC.velocity.X += Main.rand.NextFloat(2f, 5f) * 1.25f * NPC.direction;
+                    NPC.velocity.X += Main.rand.NextFloat(2f, 5f) * Main.rand.NextFloat(1.1f, 1.75f) * NPC.direction;
                     JumpCount++;
                     NPC.netUpdate = true;
                 }

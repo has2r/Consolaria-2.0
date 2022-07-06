@@ -81,6 +81,11 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
             }
             if (NPC.life <= 0)
             {
+                if (Main.netMode != NetmodeID.Server)
+                {
+                    SoundStyle style = new SoundStyle($"{nameof(Consolaria)}/Assets/Sounds/EggCrack");
+                    SoundEngine.PlaySound(style, NPC.Center);
+                }
                 int gore = ModContent.Find<ModGore>("Consolaria/EggShell").Type;
                 var entitySource = NPC.GetSource_Death();
                 for (int i = 0; i < 2; i++)

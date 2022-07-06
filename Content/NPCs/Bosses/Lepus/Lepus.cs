@@ -341,6 +341,11 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
 			}
             if (TooFar())
 			{
+                if (Main.netMode != NetmodeID.Server)
+                {
+                    SoundStyle style = new($"{nameof(Consolaria)}/Assets/Sounds/LepusFaildJump");
+                    SoundEngine.PlaySound(style, NPC.Center);
+                }
                 ChangeState(STATE_JUMP2);
 			}
         }
@@ -440,8 +445,9 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
                 {
                     return;
                 }
-                bool expertMode = !Main.expertMode;
+                bool expertMode = Main.expertMode;
                 int attackTime = (int)MathHelper.Lerp(!expertMode ? 30f : 15f, !expertMode ? 100f : 85f, (float)NPC.life / (float)NPC.lifeMax);
+                Main.NewText(attackTime);
                 if (++StateTimer >= attackTime)
                 {
                     if (AdvancedJumpCount >= MAX_JUMP_COUNT)
@@ -477,14 +483,14 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
         {
             NPC.rotation = NPC.velocity.Y / 25f;
             bool flag = AdvancedJumpCount >= MAX_JUMP_COUNT;
+            bool expertMode = Main.expertMode;
+            int attackTime = (int)MathHelper.Lerp(!expertMode ? 45f : 30f, !expertMode ? 75f : 60f, (float)NPC.life / (float)NPC.lifeMax);
             if (TooFar() && !JustSpawned && !flag)
             {
                 float slow = 0.35f;
                 int jumpStrength;
                 NPC.velocity.Y *= slow;
                 NPC.velocity.X *= slow;
-                bool expertMode = !Main.expertMode;
-                int attackTime = (int)MathHelper.Lerp(!expertMode ? 45f : 30f, !expertMode ? 75f : 60f, (float)NPC.life / (float)NPC.lifeMax);
                 if (++StateTimer > attackTime)
 				{
                     jumpStrength = 15;
@@ -495,6 +501,14 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
             }
             else
             {
+                if (StateTimer > attackTime / 2)
+                {
+                    if (Main.netMode != NetmodeID.Server)
+                    {
+                        SoundStyle style = new($"{nameof(Consolaria)}/Assets/Sounds/LepusFaildJump");
+                        SoundEngine.PlaySound(style, NPC.Center);
+                    }
+                }
                 ChangeState(STATE_JUMP2);
                 NPC.netUpdate = true;
             }
@@ -644,7 +658,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
             }
             bool flag = false;
             bool flag2 = AdvancedJumpCount >= MAX_JUMP_COUNT;
-            if (JumpCount >= MAX_JUMP_COUNT)
+            if (JumpCount >= (Main.expertMode ? MAX_JUMP_COUNT : MAX_JUMP_COUNT + 1))
             {
                 JumpCount = 0;
                 if (!flag2)
@@ -753,8 +767,11 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
                 NPC.noTileCollide = true;
                 if (NPC.Opacity != 0f)
                 {
-                    NPC.Opacity -= 0.01f;
-                    NPC.Opacity *= 0.9f;
+                    if (NPC.velocity.Y > 0f)
+                    {
+                        NPC.Opacity -= 0.01f;
+                        NPC.Opacity *= 0.9f;
+                    }
                 }
                 else
 				{
@@ -771,8 +788,12 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
             {
                 if (NPC.velocity.Y == 0f && JumpCount <= 5)
                 {
+                    if (Main.netMode != NetmodeID.Server)
+                    {
+                        SoundEngine.PlaySound(SoundID.DoubleJump, NPC.position);
+                    }
                     NPC.velocity.Y -= Main.rand.NextFloat(2f, 5f) * Main.rand.NextFloat(1.1f, 1.75f) * 0.5f * (JumpCount + 3) / 2;
-                    NPC.velocity.X += Main.rand.NextFloat(2f, 5f) * Main.rand.NextFloat(1.1f, 1.75f) * NPC.direction;
+                    NPC.velocity.X += Main.rand.NextFloat(2f, 5f) * Main.rand.NextFloat(1.1f, 1.75f) * 0.5f * NPC.direction;
                     JumpCount++;
                     NPC.netUpdate = true;
                 }

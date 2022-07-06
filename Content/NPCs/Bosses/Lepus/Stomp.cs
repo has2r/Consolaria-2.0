@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.NPCs.Bosses.Lepus
@@ -38,9 +39,12 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
 			Projectile.position = Projectile.Center;
 			Projectile.Size = new Vector2(16f, 8f) * MathHelper.Lerp(5f, num, Utils.GetLerpValue(0f, 9f, Projectile.ai[0]));
 			Projectile.Center = Projectile.position;
-			Point point = Projectile.TopLeft.ToTileCoordinates();
+			if (Main.netMode == NetmodeID.Server)
+			{
+				return;
+			}
+			var point = Projectile.TopLeft.ToTileCoordinates();
 			Point point2 = Projectile.BottomRight.ToTileCoordinates();
-			int num2 = point.X / 2 + point2.X / 2;
 			int num3 = Projectile.width / 2;
 			if ((int)Projectile.ai[0] % 3 != 0)
 				return;

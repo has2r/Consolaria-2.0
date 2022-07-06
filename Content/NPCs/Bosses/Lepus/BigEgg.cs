@@ -91,7 +91,13 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
             {
                 int gore = ModContent.Find<ModGore>("Consolaria/EggShellBig").Type;
                 var entitySource = NPC.GetSource_Death();
-                for (int i = 0; i < 2; i++) {
+                if (Main.netMode != NetmodeID.Server)
+                {
+                    SoundStyle style = new($"{nameof(Consolaria)}/Assets/Sounds/EggCrack");
+                    SoundEngine.PlaySound(style, NPC.Center);
+                }
+                for (int i = 0; i < 2; i++)
+                {
                     Gore.NewGore(entitySource, NPC.position, new Vector2(Main.rand.Next(-2, 2), 0), gore);
                 }
                 int type = ModContent.NPCType<Lepus>();
@@ -100,12 +106,15 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
                     int index = NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.Center.X, (int)NPC.Center.Y, type);
                     (Main.npc[index].ModNPC as Lepus).State = 2;
                     Main.npc[index].Opacity = 1f;
+                    Main.npc[index].TargetClosest();
                     Main.npc[index].netUpdate = true;
+                    Main.npc[index].netUpdate2 = true;
                     if (Main.netMode == NetmodeID.Server && index < Main.maxNPCs)
                     {
                         NetMessage.SendData(MessageID.SyncNPC, number: index);
                     }
                 }
+                NPC.netUpdate = true;
             }
         }
     }

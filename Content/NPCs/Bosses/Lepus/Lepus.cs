@@ -394,10 +394,6 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
                 NPC.Opacity += 0.01f;
                 NPC.Opacity *= 1.1f;
             }
-            if (Main.netMode == NetmodeID.MultiplayerClient)
-            {
-                return;
-            }
             if (!NPC.collideY)
             {
                 float velocityYSpeed = Main.expertMode ? 10f : 5f;
@@ -420,6 +416,10 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
                     Main.dust[dust].velocity.Y = -3.5f + Main.rand.NextFloat() * -3f;
                     Main.dust[dust].velocity.X *= 7f;
                 }
+            }
+            if (Main.netMode == NetmodeID.MultiplayerClient)
+            {
+                return;
             }
             ChangeState(STATE_STAGNANT);
             SpawnStomp();
@@ -703,21 +703,18 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
         }
 
         private void SpawnStomp()
-		{
+        {
             if (NPC.oldVelocity.Y < 1f)
             {
                 return;
             }
             if (Main.netMode != NetmodeID.Server)
-            { 
+            {
                 SoundEngine.PlaySound(SoundID.DD2_OgreGroundPound, NPC.Center);
             }
-            if (Main.netMode != NetmodeID.MultiplayerClient)
-            {
-                bool expertMode = Main.expertMode;
-                int proj = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, Vector2.Zero, ModContent.ProjectileType<Stomp>(), expertMode ? NPC.damage / 3 : 0, 2f, Main.myPlayer, 0f, (expertMode ? Main.rand.NextFloat(75f, 90f) : Main.rand.NextFloat(40f, 65f)) / 3f);
-                NetMessage.SendData(MessageID.SyncProjectile, -1, -1, null, proj);
-            }
+            bool expertMode = Main.expertMode;
+            int proj = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, Vector2.Zero, ModContent.ProjectileType<Stomp>(), expertMode ? NPC.damage / 3 : 0, 2f, Main.myPlayer, 0f, (expertMode ? Main.rand.NextFloat(75f, 90f) : Main.rand.NextFloat(40f, 65f)) / 3f);
+            NetMessage.SendData(MessageID.SyncProjectile, -1, -1, null, proj);
         }
 
         private void SpawnEggs()

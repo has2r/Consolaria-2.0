@@ -447,7 +447,6 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
                 }
                 bool expertMode = Main.expertMode;
                 int attackTime = (int)MathHelper.Lerp(!expertMode ? 30f : 15f, !expertMode ? 100f : 85f, (float)NPC.life / (float)NPC.lifeMax);
-                Main.NewText(attackTime);
                 if (++StateTimer >= attackTime)
                 {
                     if (AdvancedJumpCount >= MAX_JUMP_COUNT)

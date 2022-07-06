@@ -389,14 +389,14 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
         private void HeavyJump()
 		{
             NPC.rotation = NPC.velocity.Y / 10f;
-            if (Main.netMode == NetmodeID.MultiplayerClient)
-            {
-                return;
-            }
             if (NPC.Opacity != 1f)
             {
                 NPC.Opacity += 0.01f;
                 NPC.Opacity *= 1.1f;
+            }
+            if (Main.netMode == NetmodeID.MultiplayerClient)
+            {
+                return;
             }
             if (!NPC.collideY)
             {

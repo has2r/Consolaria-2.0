@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "99QiSRz97wWtCNYD3t8n0uvrngsdJ7yJXujhhkKYi3Dp7V60yy1p2nIUrhDJ/uxKubeGpSak6JT8cSEo2bEwyw==",
+  "dgSpecHash": "2NfFlxb6hZ2a9U+OacwrjZdC2RdtKsDIAn2mYtlRnrbH/+5uQu1/MkjFqQcxB0IGeZhyLBsGYvqpfrSUqhMprg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\HASTUR\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Consolaria\\Consolaria.csproj",
+  "projectFilePath": "C:\\Users\\mandr\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Consolaria\\Consolaria.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\HASTUR\\.nuget\\packages\\tmodloader.codeassist\\0.1.5\\tmodloader.codeassist.0.1.5.nupkg.sha512"
+    "C:\\Users\\mandr\\.nuget\\packages\\tmodloader.codeassist\\0.1.5\\tmodloader.codeassist.0.1.5.nupkg.sha512"
   ],
   "logs": []
 }

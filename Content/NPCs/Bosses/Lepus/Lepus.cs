@@ -356,8 +356,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
 			}
             if (TooFar())
             {
-                SoundStyle style = new($"{nameof(Consolaria)}/Assets/Sounds/LepusFaildJump");
-                SoundEngine.PlaySound(style, NPC.Center);
+                Failed();
                 ChangeState(STATE_JUMP2);
             }
         }
@@ -388,7 +387,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
             if (StateTimer != 1f)
             {
                 float offsetY = Main.expertMode ? 350f : 425f;
-                NPC.Center = Main.player[NPC.target].Center - new Vector2(0f, offsetY);
+                NPC.Center = Main.player[NPC.target].Center - new Vector2(Main.rand.NextFloat(-200f, 200f), offsetY);
             }
             ChangeState(STATE_HEAVY_JUMP);
             NPC.netUpdate = true;
@@ -516,12 +515,29 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
             {
                 if (StateTimer > attackTime / 2)
                 {
-                    SoundStyle style = new($"{nameof(Consolaria)}/Assets/Sounds/LepusFaildJump");
-                    SoundEngine.PlaySound(style, NPC.Center);
+                    Failed();
                 }
                 SoundEngine.PlaySound(SoundID.DoubleJump, NPC.position);
                 ChangeState(STATE_JUMP2);
                 NPC.netUpdate = true;
+            }
+        }
+
+        private void Failed()
+		{
+            SoundStyle style = new($"{nameof(Consolaria)}/Assets/Sounds/LepusFaildJump") { Volume = 1.25f };
+            SoundEngine.PlaySound(style, NPC.Center);
+            for (int i = 0; i < 25; i++)
+            {
+                Dust.NewDust(NPC.Center, 4, 4, DustID.Smoke, NPC.velocity.X * 0.1f, NPC.velocity.Y * 0.1f, 0, Color.GhostWhite, 1.2f);
+            }
+            for (float i = 0f; i < 6f; i += 0.125f)
+            {
+                Dust.NewDustPerfect(NPC.Center, DustID.Smoke, Vector2.UnitY.RotatedBy(i * ((float)Math.PI * 2f) + Main.rand.NextFloat() * 0.5f) * (4f + Main.rand.NextFloat() * 4f), 0, Color.GhostWhite, Main.rand.NextFloat(0.8f, 1.5f)).noGravity = true;
+            }
+            for (float i = 0f; i < 6f; i += 0.25f)
+            {
+                Dust.NewDustPerfect(NPC.Center, DustID.Smoke, Vector2.UnitY.RotatedBy(i * ((float)Math.PI * 2f) + Main.rand.NextFloat() * 0.5f) * (2f + Main.rand.NextFloat() * 3f), 0, Color.GhostWhite, Main.rand.NextFloat(0.8f, 1.5f)).noGravity = true;
             }
         }
 
@@ -530,6 +546,11 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
             NPC.rotation = NPC.velocity.Y / 25f;
             NPC.noTileCollide = false;
             Player player = Main.player[NPC.target];
+            int target = NPC.target;
+            if (target < 0 || target == 255)
+            {
+                NPC.TargetClosest();
+            }
             if ((NPC.Center.X > player.Center.X ? (NPC.Center.X - player.Center.X) : (player.Center.X - NPC.Center.X)) < 10 && NPC.Center.Y < player.Center.Y - 150 && JumpCount >= 3)
             {
                 ChangeState(STATE_APPEARANCE, 1f);
@@ -580,6 +601,11 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
             {
                 NPC.velocity.X = 0f;
             }
+            int target = NPC.target;
+            if (target < 0 || target == 255)
+            {
+                NPC.TargetClosest();
+            }
             if (NPC.velocity.Y != 0f || NPC.velocity.X != 0f)
 			{
                 return;
@@ -601,6 +627,11 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
             NPC.rotation = NPC.velocity.Y / 25f;
             JustSpawned = false;
             NPC.noTileCollide = true;
+            int target = NPC.target;
+            if (target < 0 || target == 255)
+            {
+                NPC.TargetClosest();
+            }
             Player player = Main.player[NPC.target];
             Vector2 center = NPC.Center;
             Vector2 playerCenter = player.Center;
@@ -790,7 +821,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
 		{
             Player player = Main.player[NPC.target];
             Vector2 center = NPC.Center;
-            return (Main.expertMode && !Collision.CanHitLine(center, NPC.width, NPC.height, player.Center, 2, 2)) || player.Distance(center) > MAX_DISTANCE / (Main.expertMode ? 6f : 5f);
+            return (Main.expertMode && !Collision.CanHitLine(center, 40, 40, player.Center, 2, 2)) || player.Distance(center) > MAX_DISTANCE / (Main.expertMode ? 6f : 5f);
         }
 	}
 }

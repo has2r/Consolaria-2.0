@@ -83,26 +83,29 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
 
         private void Death(bool spawnBunny = false)
 		{
-            if (Main.netMode == NetmodeID.Server)
-            {
-                return;
-            }
             if (NPC.life <= 0)
             {
-                int gore = ModContent.Find<ModGore>("Consolaria/EggShellBig").Type;
-                var entitySource = NPC.GetSource_Death();
                 if (Main.netMode != NetmodeID.Server)
                 {
-                    SoundStyle style = new($"{nameof(Consolaria)}/Assets/Sounds/EggCrack");
-                    SoundEngine.PlaySound(style, NPC.Center);
+                    int gore = ModContent.Find<ModGore>("Consolaria/EggShellBig").Type;
+                    var entitySource = NPC.GetSource_Death();
+                    for (int i = 0; i < 2; i++)
+                    {
+                        Gore.NewGore(entitySource, NPC.position, new Vector2(Main.rand.Next(-2, 2), 0), gore);
+                    }
                 }
-                for (int i = 0; i < 2; i++)
+                if (Main.netMode == NetmodeID.MultiplayerClient)
                 {
-                    Gore.NewGore(entitySource, NPC.position, new Vector2(Main.rand.Next(-2, 2), 0), gore);
+                    return;
                 }
                 int type = ModContent.NPCType<Lepus>();
                 if (spawnBunny && NPC.CountNPCS(type) < 5)
                 {
+                    if (Main.netMode != NetmodeID.Server)
+                    {
+                        SoundStyle style = new SoundStyle($"{nameof(Consolaria)}/Assets/Sounds/EggCrack");
+                        SoundEngine.PlaySound(style, NPC.Center);
+                    }
                     int index = NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.Center.X, (int)NPC.Center.Y, type);
                     (Main.npc[index].ModNPC as Lepus).State = 2;
                     Main.npc[index].Opacity = 1f;

@@ -94,10 +94,6 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
                         Gore.NewGore(entitySource, NPC.position, new Vector2(Main.rand.Next(-2, 2), 0), gore);
                     }
                 }
-                if (Main.netMode == NetmodeID.MultiplayerClient)
-                {
-                    return;
-                }
                 int type = ModContent.NPCType<Lepus>();
                 if (spawnBunny && NPC.CountNPCS(type) < 5)
                 {
@@ -106,12 +102,15 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
                         SoundStyle style = new SoundStyle($"{nameof(Consolaria)}/Assets/Sounds/EggCrack");
                         SoundEngine.PlaySound(style, NPC.Center);
                     }
+                    if (Main.netMode == NetmodeID.MultiplayerClient)
+                    {
+                        return;
+                    }
                     int index = NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.Center.X, (int)NPC.Center.Y, type);
-                    (Main.npc[index].ModNPC as Lepus).State = 2;
+                    Main.npc[index].ai[1] = 2f;
                     Main.npc[index].Opacity = 1f;
                     Main.npc[index].TargetClosest();
                     Main.npc[index].netUpdate = true;
-                    Main.npc[index].netUpdate2 = true;
                     if (Main.netMode == NetmodeID.Server && index < Main.maxNPCs)
                     {
                         NetMessage.SendData(MessageID.SyncNPC, number: index);

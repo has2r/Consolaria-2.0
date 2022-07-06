@@ -48,7 +48,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
             float maxRotation = 0.3f;
             int max = 2000;
             float current = (float)Timer / (float)max;
-            Timer += Main.rand.NextFloat() * 3f * ((current + 0.5f) * 5f);
+            Timer += Main.rand.NextFloat(0f, 1f) * Main.rand.NextFloat(0f, 1f) * 3f * ((current + 0.5f) * 5f);
             float speed = current < 0.5f ? current : 1f - current;
             NPC.rotation = MathHelper.Lerp(-maxRotation, maxRotation, speed);
             NPC.scale = (Main.mouseTextColor / 200f - 0.35f) * 0.46f + 0.8f;
@@ -86,10 +86,6 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
                         Gore.NewGore(entitySource, NPC.position, new Vector2(Main.rand.Next(-2, 2), 0), gore);
                     }
                 }
-                if (Main.netMode == NetmodeID.MultiplayerClient)
-                {
-                    return;
-                }
                 int type = ModContent.NPCType<DisasterBunny>();
                 if (spawnBunny && NPC.CountNPCS(type) < (Main.expertMode ? 15 : 10))
                 {
@@ -97,6 +93,10 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
                     {
                         SoundStyle style = new SoundStyle($"{nameof(Consolaria)}/Assets/Sounds/EggCrack");
                         SoundEngine.PlaySound(style, NPC.Center);
+                    }
+                    if (Main.netMode == NetmodeID.MultiplayerClient)
+                    {
+                        return;
                     }
                     int index = NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.Center.X, (int)NPC.Center.Y, type);
                     if (Main.netMode == NetmodeID.Server && index < Main.maxNPCs)

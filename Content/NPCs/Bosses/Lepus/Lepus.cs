@@ -663,7 +663,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
                 flag = true;
             }
             ChangeState(flag ? STATE_JUMP2 : STATE_STAGNANT);
-            if (flag && !AdvancedJumped && !AdvancedJumped2)
+            if (flag && !AdvancedJumped2)
 			{
                 SpawnStomp();
             }

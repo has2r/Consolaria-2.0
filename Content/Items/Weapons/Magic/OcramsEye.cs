@@ -41,15 +41,14 @@ namespace Consolaria.Content.Items.Weapons.Magic
 
         public override void ModifyShootStats (Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback) {
             Vector2 _velocity = Utils.SafeNormalize(new Vector2(velocity.X, velocity.Y), Vector2.Zero);
-            position += _velocity * 5;
-            position += new Vector2(-_velocity.Y, _velocity.X) * (-2f * player.direction);
+            position += new Vector2(-_velocity.Y, _velocity.X) * (3f * player.direction);
         }
 
         public override bool Shoot (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
             float projectilesCount = Main.rand.Next(3, 5);
-            float rotation = MathHelper.ToRadians(15);
+            float rotation = MathHelper.ToRadians(7);
             for (int i = 0; i < projectilesCount; i++) {
-                Vector2 perturbedSpeed = velocity.RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (projectilesCount - 1))) * 1.5f;
+                Vector2 perturbedSpeed = velocity.RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (projectilesCount - 1))) * 1.75f;
                 Projectile.NewProjectile(source, position, perturbedSpeed, type, damage, knockback, player.whoAmI);
             }
             return false;

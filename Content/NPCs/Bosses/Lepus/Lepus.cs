@@ -200,7 +200,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
             Vector2 origin = new Vector2(FrameWidth, FrameHeight) / 2f;
             bool didAdvancedJump = AdvancedJumped && Math.Abs(NPC.velocity.X) > 0.5f;
             bool doHeavyJump = State == STATE_HEAVY_JUMP;
-            bool doSpawnBigEgg = AdvancedJumpCount >= MAX_JUMP_COUNT;
+            bool doSpawnBigEgg = AdvancedJumpCount >= MAX_JUMP_COUNT && !AdvancedJumped2;
             bool playersDead = State == STATE_DEAD_PLAYERS;
             float offsetY = -10f;
             if (!playersDead)
@@ -219,7 +219,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
                         spriteBatch.Draw(texture, new Vector2(NPC.oldPos[i].X - screenPos.X + (float)(NPC.width / 2) - (float)texture.Width * NPC.scale / 2f + origin.X * NPC.scale, NPC.oldPos[i].Y - screenPos.Y + (float)NPC.height - (float)texture.Height * NPC.scale / (float)Main.npcFrameCount[NPC.type] + 4f + origin.Y * NPC.scale) - NPC.velocity * (float)i * 0.5f, new Rectangle?(NPC.frame), color * 1.25f * NPC.Opacity, NPC.rotation, origin, scale * alpha * 0.5f, effects, 0f);
                     }
                 }
-                if (doSpawnBigEgg && NPC.velocity.Y == 0f)
+                if (doSpawnBigEgg)
                 {
                     Color color = NPC.GetAlpha(Utils.MultiplyRGB(Color.HotPink, drawColor));
                     spriteBatch.Draw(texture, NPC.Center - screenPos + new Vector2(0f, offsetY), new Rectangle?(NPC.frame), color * NPC.Opacity, NPC.rotation, origin, NPC.scale * 0.525f * ((Main.mouseTextColor / 200f - 0.35f) * 0.75f + 0.8f) * 1.5f, effects, 0f);
@@ -663,7 +663,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
                 flag = true;
             }
             ChangeState(flag ? STATE_JUMP2 : STATE_STAGNANT);
-            if (flag && !AdvancedJumped2)
+            if ((flag || AdvancedJumped) && AdvancedJumpCount < MAX_JUMP_COUNT)
 			{
                 SpawnStomp();
             }
@@ -673,9 +673,9 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
         private void SpawnStomp()
 		{
             if (NPC.oldVelocity.Y < 1f)
-			{
+            {
                 return;
-			}
+            }
             if (Main.netMode != NetmodeID.Server)
             { 
                 SoundEngine.PlaySound(SoundID.DD2_OgreGroundPound, NPC.Center);

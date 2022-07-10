@@ -49,8 +49,8 @@ namespace Consolaria.Content.NPCs
 			NPC.HitSound = SoundID.NPCHit31;
 			NPC.DeathSound = SoundID.NPCDeath34;
 
-			//Banner = Item.NPCtoBanner(ModContent.NPCType<AlbinoAntlion>()); 
-			//BannerItem = Item.BannerToItem(ModContent.ItemType<Items.Banners.AlbinoAntlionBanner>()); 
+			Banner = NPC.type; 
+			BannerItem = ModContent.ItemType<Items.Banners.AlbinoAntlionBanner>(); 
 		}
 
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
@@ -72,11 +72,11 @@ namespace Consolaria.Content.NPCs
         }
 
 		public override void HitEffect(int hitDirection, double damage) {
-			Dust.NewDust(NPC.position, NPC.width, NPC.height, 185, 2.5f * hitDirection, -2.5f, 0, default(Color), 0.7f);
+			Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Sand, 2.5f * hitDirection, -2.5f, 0, Color.White, 0.7f);
 			if (NPC.life <= 0) {
 				Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-5, 6), Main.rand.Next(-5, 6)), ModContent.Find<ModGore>("Consolaria/AlbinoAntlionGore").Type);
 				for (int i = 0; i < 20; i++)
-					Dust.NewDust(NPC.position, NPC.width, NPC.height, 59, 2.5f * hitDirection, -2.5f, 0, default(Color), 1f);		
+					Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Sand, 2.5f * hitDirection, -2.5f, 0, Color.White, 1f);		
 			}
 		}
 

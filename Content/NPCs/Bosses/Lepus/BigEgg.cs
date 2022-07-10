@@ -30,7 +30,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
             NPC.damage = 0;
             NPC.defense = 3;
 
-            NPC.lifeMax = 120;
+            NPC.lifeMax = 80;
             NPC.knockBackResist = 0f;
 
             NPC.HitSound = SoundID.NPCHit1;

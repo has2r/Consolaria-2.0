@@ -28,17 +28,17 @@ namespace Consolaria.Content.NPCs
             NPC.damage = 60;
             NPC.defense = 15;
 
-            NPC.lifeMax = 220;
+            NPC.lifeMax = 250;
             NPC.knockBackResist = 0.1f;
 
-            NPC.value = Item.buyPrice(silver: 7);
+            NPC.value = Item.buyPrice(silver: 10);
 
             NPC.noGravity = false;
             NPC.lavaImmune = false;
 
             NPC.aiStyle = 3;
-            AIType = NPCID.LightMummy;
-            AnimationType = NPCID.LightMummy;
+            AIType = NPCID.DarkMummy;
+            AnimationType = NPCID.DarkMummy;
 
             //banner = NPC.type;
             //bannerItem = mod.ItemType("ShadowMummyBanner");
@@ -47,23 +47,23 @@ namespace Consolaria.Content.NPCs
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
                 BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheHallow,
-                new FlavorTextBestiaryInfoElement("With the sands transmogrified by outside forces, those put to rest in the desert, whether good or evil, now rise to maim and kill.")
+                new FlavorTextBestiaryInfoElement("The overflowing ghostly energy of these mummies made their tattered bodies highly unstable to contain it.")
             });
         }
 
         public override void OnHitPlayer(Player target, int damage, bool crit) {
-            if (Main.rand.Next(6) == 0)
+            if (Main.rand.NextBool(6))
                 target.AddBuff(BuffID.Confused, 60 * 5);
         }
 
         public override void HitEffect(int hitDirection, double damage) {
-            Dust.NewDust(NPC.position, NPC.width, NPC.height, 185, 2.5f * (float)hitDirection, -2.5f, 0, default, 1f);
+            Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.BlueFairy, 2.5f * (float)hitDirection, -2.5f, 100, default, 1f);
             if (NPC.life <= 0) {
                 Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity / 2f, 11, 1f);
                 Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity / 2f, 12, 1f);
                 Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity / 2f, 13, 1f);
                 for (int i = 0; i < 20; i++)
-                    Dust.NewDust(NPC.position, NPC.width, NPC.height, 185, 2.5f * (float)hitDirection, -2.5f, 0, default, 1f);
+                    Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.BlueFairy, 2.5f * (float)hitDirection, -2.5f, 100, default, 1f);
             }
         }
 
@@ -74,6 +74,7 @@ namespace Consolaria.Content.NPCs
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
-            => (spawnInfo.Player.ZoneHallow && spawnInfo.SpawnTileY == Main.worldSurface) ? SpawnCondition.OverworldHallow.Chance * 0.33f : 0f;
+            => (spawnInfo.Player.ZoneHallow && spawnInfo.Player.ZoneDesert && Main.hardMode) ? 
+            SpawnCondition.LightMummy.Chance * 0.25f : 0f;
     }
 }

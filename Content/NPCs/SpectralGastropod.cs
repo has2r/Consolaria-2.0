@@ -14,6 +14,7 @@ namespace Consolaria.Content.NPCs
 	public class SpectralGastropod : ModNPC
 	{
 		public override void SetStaticDefaults() {
+			DisplayName.SetDefault("Spectrapod");
 			Main.npcFrameCount[NPC.type] = 11;
 
 			NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData {
@@ -57,7 +58,7 @@ namespace Consolaria.Content.NPCs
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheHallow,
-				new FlavorTextBestiaryInfoElement("Touched by the blessing, these nocturnal slimes evolved into a levitating snail-like creature which spits powerful clumps of light.")
+				new FlavorTextBestiaryInfoElement("Unlike Gastropods, these slimes can spit out balls of ghostly energy that are capable of chasing nearby living beings.")
 			});
 		}
 
@@ -103,13 +104,13 @@ namespace Consolaria.Content.NPCs
 		}
 
 		public override void HitEffect(int hitDirection, double damage) {
-			Dust.NewDust(NPC.position, NPC.width, NPC.height, 185, 2.5f * (float)hitDirection, -2.5f, 0, default, 0.7f);
+			Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.BlueFairy, 2.5f * (float)hitDirection, -2.5f, 0, default, 0.7f);
 			if (NPC.life <= 0) {
 				Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity / 2, 11, 1f);
 				Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity / 2, 12, 1f);
 				Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity / 2, 13, 1f);
 				for (int i = 0; i < 20; i++)
-					Dust.NewDust(NPC.position, NPC.width, NPC.height, 185, 2.5f * (float)hitDirection, -2.5f, 0, default, 1f);	
+					Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.BlueFairy, 2.5f * (float)hitDirection, -2.5f, 0, default, 1f);	
 			}
 		}
 
@@ -117,12 +118,13 @@ namespace Consolaria.Content.NPCs
 			=> Color.White * 0.8f;
 
 		public override void ModifyNPCLoot(NPCLoot npcLoot) {
-			var gastropodDropRules = Main.ItemDropsDB.GetRulesForNPCID(NPCID.Gastropod, true);
+			var gastropodDropRules = Main.ItemDropsDB.GetRulesForNPCID(NPCID.Gastropod, false);
 			foreach (var gastropodDropRule in gastropodDropRules)
 				npcLoot.Add(gastropodDropRule);
 		}
 
 		public override float SpawnChance(NPCSpawnInfo spawnInfo)
-			=> (spawnInfo.Player.ZoneHallow && spawnInfo.SpawnTileY == Main.worldSurface) ? SpawnCondition.OverworldHallow.Chance * 0.33f : 0f;
+			=> (spawnInfo.Player.ZoneHallow &&  Main.hardMode) ?
+			SpawnCondition.OverworldHallow.Chance * 0.25f : 0f;
 	}
 }

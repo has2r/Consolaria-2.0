@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.Utilities;
 
 namespace Consolaria.Content.NPCs {
-	public class ShadowMummy : ModNPC {
+	public class FleshMummy : ModNPC {
 		public override void SetStaticDefaults () {
 			Main.npcFrameCount [NPC.type] = 16;
 
@@ -35,8 +35,8 @@ namespace Consolaria.Content.NPCs {
 			NPC.lavaImmune = false;
 
 			NPC.aiStyle = 3;
-			AIType = NPCID.DarkMummy;
-			AnimationType = NPCID.DarkMummy;
+			AIType = NPCID.BloodMummy;
+			AnimationType = NPCID.BloodMummy;
 
 			//banner = NPC.type;
 			//bannerItem = mod.ItemType("ShadowMummyBanner");
@@ -44,7 +44,7 @@ namespace Consolaria.Content.NPCs {
 
 		public override void SetBestiary (BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement [] {
-				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.UndergroundCorruption,
+				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.UndergroundCrimson,
 				new FlavorTextBestiaryInfoElement("With the sands transmogrified by outside forces, those put to rest in the desert, whether good or evil, now rise to maim and kill.")
 			});
 		}
@@ -53,28 +53,28 @@ namespace Consolaria.Content.NPCs {
 			if (Main.rand.NextBool(5))
 				target.AddBuff(BuffID.Silenced, 60 * 8);
 			if (Main.rand.NextBool(4))
-				target.AddBuff(BuffID.Blackout, 60 * Main.rand.Next(4, 8));
+				target.AddBuff(BuffID.Bleeding, 60 * 5);
 		}
 
 		public override void HitEffect (int hitDirection, double damage) {
-			Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Corruption, 2.5f * (float) hitDirection, -2.5f, 0, default, 1f);
+			Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood, 2.5f * (float) hitDirection, -2.5f, 0, default, 1f);
 			if (NPC.life <= 0) {
 				Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity / 2f, 99, 1f);
 				Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity / 2f, 99, 1f);
 				Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity / 2f, 99, 1f);
 				for (int i = 0; i < 20; i++)
-					Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Corruption, 2.5f * (float) hitDirection, -2.5f, 0, default, 1f);
+					Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood, 2.5f * (float) hitDirection, -2.5f, 0, default, 1f);
 			}
 		}
 
 		public override void ModifyNPCLoot (NPCLoot npcLoot) {
-			var mummysDropRules = Main.ItemDropsDB.GetRulesForNPCID(NPCID.DarkMummy, false);
+			var mummysDropRules = Main.ItemDropsDB.GetRulesForNPCID(NPCID.BloodMummy, false);
 			foreach (var mummyDropRule in mummysDropRules)
 				npcLoot.Add(mummyDropRule);
 		}
 
 		public override float SpawnChance (NPCSpawnInfo spawnInfo)
-			=> (spawnInfo.Player.ZoneCorrupt && spawnInfo.Player.ZoneDesert && Main.hardMode) ?
+			=> (spawnInfo.Player.ZoneCrimson && spawnInfo.Player.ZoneDesert && Main.hardMode) ?
 			SpawnCondition.DarkMummy.Chance * 0.25f : 0f;
 	}
 }

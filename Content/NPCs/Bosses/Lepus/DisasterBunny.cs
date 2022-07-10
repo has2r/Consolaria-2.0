@@ -48,7 +48,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
                 BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
-                new FlavorTextBestiaryInfoElement("LepusHelper.cs")
+                new FlavorTextBestiaryInfoElement("Disastrous spawn of the legendary Overworld monstrosity, these bug-eyed rabbits will bite anything they come across.")
             });
         }
 
@@ -61,13 +61,16 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
         }
 
         public override void ModifyNPCLoot(NPCLoot npcLoot) {
-            if (!NPC.AnyNPCs(ModContent.NPCType<Lepus>()))
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SuspiciousLookingEgg>(), 5)); //Drop Suspicious Looking Egg with a 1 out of 10 chance.
+            LepusDropCondition lepusDropCondition = new();
+            IItemDropRule conditionalRule = new LeadingConditionRule(lepusDropCondition);
+            conditionalRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<SuspiciousLookingEgg>(), 10));
+            npcLoot.Add(conditionalRule);
         }
 
         public override float SpawnChance (NPCSpawnInfo spawnInfo) {
             float spawnChance = DownedBossSystem.downedLepus ? 0.01f : 0.05f;
-            if (SeasonalEvents.enabled) return SeasonalEvents.isEaster ? SpawnCondition.OverworldDaySlime.Chance * spawnChance : 0f;
+            if (SeasonalEvents.enabled) return SeasonalEvents.isEaster ? 
+                    SpawnCondition.OverworldDaySlime.Chance * spawnChance : 0f;
             else return SpawnCondition.OverworldDaySlime.Chance * spawnChance;
         }
     }

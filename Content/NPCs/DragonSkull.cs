@@ -55,7 +55,7 @@ namespace Consolaria.Content.NPCs
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheDungeon,
-				new FlavorTextBestiaryInfoElement("Demon, but more powerful, I guess...")
+				new FlavorTextBestiaryInfoElement("Touched by the Dungeon's curse, the fossilized heads of ancient reptiles now prey on the living, transferring their curse to their victims.")
 			});
 		}
 
@@ -75,30 +75,29 @@ namespace Consolaria.Content.NPCs
 
 		public override Color? GetAlpha(Color lightColor)
 			=> new Color(255, 255, 255, 200);
-		
 
 		public override void OnHitPlayer(Player target, int damage, bool crit) {
-			if (Main.rand.Next(33) == 0) 
+			if (Main.rand.NextBool(33)) 
 				target.AddBuff(BuffID.Cursed, 240);
 		}
 
         public override void HitEffect(int hitDirection, double damage) {
 			if (NPC.life <= 0) {
 				for (int k = 0; k < 20; k++) {
-					Dust.NewDust(NPC.position, NPC.width, NPC.height, 5, 2.5f * hitDirection, -2.5f, 0, default, 0.7f);
-					Dust.NewDust(NPC.position, NPC.width, NPC.height, 5, 2.5f * hitDirection, -2.5f, 0, default, 0.7f);
-					Dust.NewDust(NPC.position, NPC.width, NPC.height, 5, 2.5f * hitDirection, -2.5f, 0, default, 0.7f);
-					Dust.NewDust(NPC.position, NPC.width, NPC.height, 5, 2.5f * hitDirection, -2.5f, 0, default, 0.7f);
-					Dust.NewDust(NPC.position, NPC.width, NPC.height, 5, 2.5f * hitDirection, -2.5f, 0, default, 0.7f);
-					Dust.NewDust(NPC.position, NPC.width, NPC.height, 5, 2.5f * hitDirection, -2.5f, 0, default, 0.7f);
-					Dust.NewDust(NPC.position, NPC.width, NPC.height, 5, 2.5f * hitDirection, -2.5f, 0, default, 0.7f);
+					Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Bone, 2.5f * hitDirection, -2.5f, 0, default, 0.7f);
+					Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Bone, 2.5f * hitDirection, -2.5f, 0, default, 0.7f);
+					Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Bone, 2.5f * hitDirection, -2.5f, 0, default, 0.7f);
+					Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Bone, 2.5f * hitDirection, -2.5f, 0, default, 0.7f);
+					Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Bone, 2.5f * hitDirection, -2.5f, 0, default, 0.7f);
+					Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Bone, 2.5f * hitDirection, -2.5f, 0, default, 0.7f);
+					Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Bone, 2.5f * hitDirection, -2.5f, 0, default, 0.7f);
 				}
 			}
 			else {
 				for (int k = 0; k < damage / NPC.lifeMax * 50.0; k++) {
-					Dust.NewDust(NPC.position, NPC.width, NPC.height, 5, hitDirection, -1f, 0, default, 0.7f);
-					Dust.NewDust(NPC.position, NPC.width, NPC.height, 5, hitDirection, -1f, 0, default, 0.7f);
-					Dust.NewDust(NPC.position, NPC.width, NPC.height, 5, hitDirection, -1f, 0, default, 0.7f);
+					Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Bone, hitDirection, -1f, 0, default, 0.7f);
+					Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Bone, hitDirection, -1f, 0, default, 0.7f);
+					Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Bone, hitDirection, -1f, 0, default, 0.7f);
 				}
 			}
 		}
@@ -111,6 +110,6 @@ namespace Consolaria.Content.NPCs
 		}
 		
 		public override float SpawnChance(NPCSpawnInfo spawnInfo)
-			=> SpawnCondition.Dungeon.Chance * 0.33f;
+			=> SpawnCondition.Dungeon.Chance * 0.25f;
 	}
 }

@@ -48,8 +48,6 @@ namespace Consolaria.Content.NPCs
             AIType = NPCID.Shark;
             AnimationType = NPCID.Shark;
 
-
-            NPC.buffImmune[BuffID.Confused] = true;
            // banner = NPC.type;
             //bannerItem = mod.ItemType("OrcaBanner");
         }

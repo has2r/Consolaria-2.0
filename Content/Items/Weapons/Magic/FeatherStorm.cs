@@ -12,7 +12,7 @@ namespace Consolaria.Content.Items.Weapons.Magic
     public class FeatherStorm : ModItem {
         public override void SetStaticDefaults () {
             DisplayName.SetDefault("Feather Storm");
-            Tooltip.SetDefault("Shoots feathers from the sky");
+            Tooltip.SetDefault("Casts feathers from the sky");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
         }
 

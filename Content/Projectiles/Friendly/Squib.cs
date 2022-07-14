@@ -25,7 +25,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
 
 		public override void AI () {
 			if (extraRotation) {
-				Projectile.rotation += 0.25f * Projectile.direction;
+				Projectile.rotation += 0.2f * Projectile.direction;
 				if (Projectile.timeLeft % 20 == 0)
 					Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.position.X, Projectile.position.Y + 10, 0.0f, Projectile.velocity.Y * 0.5f, ProjectileID.MolotovFire, Projectile.damage / 3, 2f, Projectile.owner);
 			}

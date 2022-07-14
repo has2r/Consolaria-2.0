@@ -7,11 +7,9 @@ using Consolaria.Content.Items.Summons;
 using Consolaria.Content.Items.Pets;
 using Consolaria.Content.Items.Consumables;
 
-namespace Consolaria.Common
-{
-	public class VanillaNPCLoot : GlobalNPC
-	{
-		public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot) {
+namespace Consolaria.Common {
+	public class VanillaNPCLoot : GlobalNPC {
+		public override void ModifyNPCLoot (NPC npc, NPCLoot npcLoot) {
 			if (npc.type == NPCID.Harpy) {
 				int itemType = ModContent.ItemType<CursedStuffing>();
 				int chance = 10;
@@ -40,17 +38,17 @@ namespace Consolaria.Common
 				else npcLoot.Add(ItemDropRule.Common(itemType, chance));
 			}
 
-			if (npc.type == NPCID.FireImp) 
+			if (npc.type == NPCID.FireImp)
 				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ShirenHat>(), 250));
 			if (npc.type == NPCID.Werewolf)
 				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<WolfFang>(), 15));
 			if (npc.type == NPCID.ToxicSludge)
 				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<PetriDish>(), 25));
-			if (NPCID.Sets.Zombies[npc.type])
+			if (NPCID.Sets.Zombies [npc.type])
 				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Brain>(), 100));
 		}
 
-        public override void ModifyGlobalLoot(GlobalLoot globalLoot) {
+		public override void ModifyGlobalLoot (GlobalLoot globalLoot) {
 			int itemType = ModContent.ItemType<RedEnvelope>();
 			int chance = 10;
 			if (SeasonalEvents.enabled) {
@@ -68,5 +66,5 @@ namespace Consolaria.Common
 				globalLoot.Add(conditionalRule);
 			}
 		}
-    }
+	}
 }

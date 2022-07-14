@@ -3,11 +3,15 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
 
-namespace Consolaria.Content.Items.Banners
-{
-	public class SpectralGastropodBanner : ModItem
-	{
-		public override void SetDefaults() {
+namespace Consolaria.Content.Items.Banners {
+	public class SpectralGastropodBanner : ModItem {
+		public override void SetStaticDefaults () {
+			DisplayName.SetDefault("Spectropod Banner");
+			SacrificeTotal = 1;
+			Tooltip.SetDefault("{$CommonItemTooltip.BannerBonus}Spectropod");
+		}
+
+		public override void SetDefaults () {
 			int width = 10; int height = 24;
 			Item.Size = new Vector2(width, height);
 

@@ -54,8 +54,8 @@ namespace Consolaria.Content.NPCs
 			AIType = 83;
 			AnimationType = 83;
 
-			//banner = NPC.type;
-			//bannerItem = mod.ItemType("ShadowHammerBanner");
+			Banner = NPC.type;
+			BannerItem = ModContent.ItemType<Items.Banners.ShadowHammerBanner>();
 		}
 
 		public override void SetBestiary (BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
@@ -69,6 +69,9 @@ namespace Consolaria.Content.NPCs
 			if (Main.rand.NextBool(4))
 				target.AddBuff(BuffID.CursedInferno, 60 * 5);
 		}
+
+		public override Color? GetAlpha (Color drawColor)
+			=> Color.White * 0.8f;
 
 		public override void HitEffect (int hitDirection, double damage) {
 			Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.CursedTorch, 2.5f * (float) hitDirection, -2.5f, 0, default, 1f);

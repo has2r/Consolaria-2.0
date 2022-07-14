@@ -46,8 +46,8 @@ namespace Consolaria.Content.NPCs
             NPC.HitSound = SoundID.NPCHit1;
             NPC.DeathSound = SoundID.NPCDeath6;
 
-            //banner = NPC.type;
-            //bannerItem = mod.ItemType("SpectralElementalBanner");
+            Banner = NPC.type;
+            BannerItem = ModContent.ItemType<Items.Banners.SpectralElementalBanner>();
         }
 
         public override void SetBestiary (BestiaryDatabase database, BestiaryEntry bestiaryEntry) {

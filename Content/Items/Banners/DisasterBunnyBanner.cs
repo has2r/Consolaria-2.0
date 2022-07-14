@@ -3,11 +3,14 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
 
-namespace Consolaria.Content.Items.Banners
-{
-	public class DisasterBunnyBanner : ModItem
-	{
-		public override void SetDefaults() {
+namespace Consolaria.Content.Items.Banners {
+	public class DisasterBunnyBanner : ModItem {
+		public override void SetStaticDefaults () {
+			SacrificeTotal = 1;
+			Tooltip.SetDefault("{$CommonItemTooltip.BannerBonus}Disaster Bunny");
+		}
+
+		public override void SetDefaults () {
 			int width = 10; int height = 24;
 			Item.Size = new Vector2(width, height);
 

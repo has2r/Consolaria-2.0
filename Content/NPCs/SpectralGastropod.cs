@@ -51,8 +51,8 @@ namespace Consolaria.Content.NPCs
 			AIType = -1;
 			AnimationType = 122;
 
-			//banner = NPC.type;
-			//bannerItem = mod.ItemType("SpectralGastropodBanner");
+			Banner = NPC.type;
+			BannerItem = ModContent.ItemType<Items.Banners.SpectralGastropodBanner>();
 		}
 
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {

@@ -38,8 +38,8 @@ namespace Consolaria.Content.NPCs {
 			AIType = NPCID.DarkMummy;
 			AnimationType = NPCID.DarkMummy;
 
-			//banner = NPC.type;
-			//bannerItem = mod.ItemType("ShadowMummyBanner");
+			Banner = NPC.type;
+			BannerItem = ModContent.ItemType<Items.Banners.ShadowMummyBanner>();
 		}
 
 		public override void SetBestiary (BestiaryDatabase database, BestiaryEntry bestiaryEntry) {

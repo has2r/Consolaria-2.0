@@ -1,4 +1,4 @@
-using Consolaria.Content.Items.Weapons.Ranged;
+using Consolaria.Content.Items.Weapons.Melee;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent.Bestiary;

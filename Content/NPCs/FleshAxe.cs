@@ -54,8 +54,8 @@ namespace Consolaria.Content.NPCs
 			AIType = NPCID.CrimsonAxe;
 			AnimationType = NPCID.CrimsonAxe;
 
-			//banner = NPC.type;
-			//bannerItem = mod.ItemType("ShadowHammerBanner");
+			Banner = NPC.type;
+			BannerItem = ModContent.ItemType<Items.Banners.ShadowHammerBanner>();
 		}
 
 		public override void SetBestiary (BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
@@ -70,7 +70,10 @@ namespace Consolaria.Content.NPCs
 				target.AddBuff(BuffID.Ichor, 60 * 5);
 		}
 
-		public override void HitEffect (int hitDirection, double damage) {
+		public override Color? GetAlpha (Color drawColor)
+			=> Color.White * 0.8f;
+        
+        public override void HitEffect (int hitDirection, double damage) {
 			Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Ichor, 2.5f * (float) hitDirection, -2.5f, 0, default, 1f);
 			if (NPC.life <= 0) {
 				Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity / 2f, 99, 1f);

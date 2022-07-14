@@ -12,8 +12,10 @@ namespace Consolaria.Content.Items.Weapons.Summon
 		public override void SetStaticDefaults() {
 			DisplayName.SetDefault("Turkey Staff");
 			Tooltip.SetDefault("Summons a weird turkey to fight for you");
+
 			ItemID.Sets.GamepadWholeScreenUseRange[Item.type] = true;
 			ItemID.Sets.LockOnIgnoresCollision[Item.type] = true;
+
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
@@ -28,7 +30,7 @@ namespace Consolaria.Content.Items.Weapons.Summon
 			Item.noMelee = true;
 
 			Item.DamageType = DamageClass.Summon;
-			Item.damage = 30;
+			Item.damage = 26;
 			Item.knockBack = 4f;
 
 			Item.value = Item.sellPrice(gold: 1, silver: 15);

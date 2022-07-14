@@ -48,8 +48,8 @@ namespace Consolaria.Content.NPCs
             AIType = NPCID.Shark;
             AnimationType = NPCID.Shark;
 
-           // banner = NPC.type;
-            //bannerItem = mod.ItemType("OrcaBanner");
+            Banner = NPC.type;
+            BannerItem = ModContent.ItemType<Items.Banners.OrcaBanner>();
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
@@ -60,7 +60,7 @@ namespace Consolaria.Content.NPCs
         }
 
         public override void OnHitPlayer(Player target, int damage, bool crit) {
-            if (Main.rand.Next(2) == 0)
+            if (Main.rand.NextBool(2))
                 target.AddBuff(BuffID.Bleeding, 60 * 5);
         }
 
@@ -85,6 +85,6 @@ namespace Consolaria.Content.NPCs
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
-            => SpawnCondition.OceanMonster.Chance * 0.33f;
+            => SpawnCondition.OceanMonster.Chance * 0.05f;
     }
 }

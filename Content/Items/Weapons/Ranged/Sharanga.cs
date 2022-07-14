@@ -4,22 +4,21 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Consolaria.Content.Items.Weapons.Ranged
-{
-	public class Sharanga : ModItem
-	{
-		public override void SetStaticDefaults() {
+namespace Consolaria.Content.Items.Weapons.Ranged {
+	public class Sharanga : ModItem {
+		public override void SetStaticDefaults () {
 			DisplayName.SetDefault("Sharanga");
 			Tooltip.SetDefault("Transforms any suitable ammo into Spectral Arrows");
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
 		}
 
-		public override void SetDefaults() {
+		public override void SetDefaults () {
 			int width = 20; int height = 46;
 			Item.Size = new Vector2(width, height);
 
 			Item.damage = 36;
-			Item.knockBack = 1f;
+			Item.knockBack = 1.5f;
 			Item.DamageType = DamageClass.Ranged;
 
 			Item.useStyle = ItemUseStyleID.Shoot;
@@ -37,7 +36,7 @@ namespace Consolaria.Content.Items.Weapons.Ranged
 			Item.noMelee = true;
 		}
 
-		public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback) {
+		public override void ModifyShootStats (Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback) {
 			type = ModContent.ProjectileType<Projectiles.Friendly.SpectralArrow>();
 
 			Vector2 _velocity = Utils.SafeNormalize(new Vector2(velocity.X, velocity.Y), Vector2.Zero);
@@ -45,7 +44,7 @@ namespace Consolaria.Content.Items.Weapons.Ranged
 			position += new Vector2(-_velocity.Y, _velocity.X) * (-2f * player.direction);
 		}
 
-		public override void AddRecipes() {
+		public override void AddRecipes () {
 			CreateRecipe()
 				.AddIngredient(ItemID.MoltenFury)
 				.AddIngredient(ItemID.DemonBow, 1)

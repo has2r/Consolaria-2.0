@@ -62,8 +62,8 @@ namespace Consolaria.Content.NPCs
 
 			NPC.alpha = 255;
 
-			//Banner = NPC.type;
-			//BannerItem = ModContent.ItemType<Items.Banners.ArchWyvernBanner>;
+			Banner = NPC.type;
+			BannerItem = ModContent.ItemType<Items.Banners.MythicalWyvernBanner>();
 		}
 
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {

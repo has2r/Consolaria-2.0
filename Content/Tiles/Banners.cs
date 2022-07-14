@@ -97,6 +97,10 @@ namespace Consolaria.Content.Tiles
 			if (closer) {
 				switch (bannerType) {
 				case 0:
+				npcType = ModContent.NPCType<NPCs.ArchWyvernBody1>();
+				npcType = ModContent.NPCType<NPCs.ArchWyvernBody2>();
+				npcType = ModContent.NPCType<NPCs.ArchWyvernBody3>();
+				npcType = ModContent.NPCType<NPCs.ArchWyvernLegs>();
 				npcType = ModContent.NPCType<NPCs.ArchWyvernHead>();
 				break;
 				case 1:
@@ -139,6 +143,10 @@ namespace Consolaria.Content.Tiles
 				npcType = ModContent.NPCType<NPCs.Bosses.Lepus.DisasterBunny>();
 				break;
 				case 14:
+				npcType = ModContent.NPCType<NPCs.MythicalWyvernBody>();
+				npcType = ModContent.NPCType<NPCs.MythicalWyvernBody2>();
+				npcType = ModContent.NPCType<NPCs.MythicalWyvernBody3>();
+				npcType = ModContent.NPCType<NPCs.MythicalWyvernLegs>();
 				npcType = ModContent.NPCType<NPCs.MythicalWyvernHead>();
 				break;
 				case 15:

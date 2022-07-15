@@ -46,7 +46,7 @@ namespace Consolaria.Content.NPCs
         public override void SetBestiary (BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement [] {
                 BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.UndergroundDesert,
-                new FlavorTextBestiaryInfoElement("")
+                new FlavorTextBestiaryInfoElement("Rarely some antlion soldiers mutate, losing their coloring and becoming even more ferocious than their brothers-in-swarm.")
             });
         }
 

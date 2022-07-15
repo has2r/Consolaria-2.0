@@ -1,14 +1,26 @@
+using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.ModLoader;
 
 namespace Consolaria.Common {
     public class SeasonalEvents : ModSystem {
         public static SeasonalEvents Instance;
+        public static bool allEventsForToday;
         public static bool enabled = ConsolariaConfig.Instance.easterEnabled || ConsolariaConfig.Instance.thanksgivingEnabled || ConsolariaConfig.Instance.smallEventsEnabled,
             isEaster = ConsolariaConfig.Instance.easterEnabled && SeasonalEventsHelper.CheckEaster(),
             isThanksgiving = ConsolariaConfig.Instance.thanksgivingEnabled && SeasonalEventsHelper.CheckThanksgiving(),
-            isChineseNewYear = ConsolariaConfig.Instance.smallEventsEnabled && SeasonalEventsHelper.CheckChineseNewYear(),
-            isOktoberfest = ConsolariaConfig.Instance.smallEventsEnabled && SeasonalEventsHelper.CheckOktoberfest(),
-            isSaintPatricksDay = ConsolariaConfig.Instance.smallEventsEnabled && SeasonalEventsHelper.CheckSaintPatricksDay(),
-            isValentinesDay = ConsolariaConfig.Instance.smallEventsEnabled && SeasonalEventsHelper.CheckValentinesDay();
+            isChineseNewYear = (ConsolariaConfig.Instance.smallEventsEnabled && SeasonalEventsHelper.CheckChineseNewYear()) || allEventsForToday,
+            isOktoberfest = (ConsolariaConfig.Instance.smallEventsEnabled && SeasonalEventsHelper.CheckOktoberfest()) || allEventsForToday,
+            isSaintPatricksDay = (ConsolariaConfig.Instance.smallEventsEnabled && SeasonalEventsHelper.CheckSaintPatricksDay()) || allEventsForToday,
+            isValentinesDay = (ConsolariaConfig.Instance.smallEventsEnabled && SeasonalEventsHelper.CheckValentinesDay()) || allEventsForToday;
+
+        public override void PostUpdateTime () {
+            if (!Main.dayTime && Main.time == 16400) {
+                if (allEventsForToday) {
+                    allEventsForToday = false;
+                    Main.NewText("Events is over!", Color.HotPink);
+                }
+            }
+        }
     }
 }

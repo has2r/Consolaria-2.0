@@ -2,7 +2,7 @@
 
 namespace Consolaria.Common {
     public static class SeasonalEventsHelper {
-        public static bool CheckEaster() {
+        public static bool CheckEaster () {
             DateTime now = DateTime.Now;
             int day = now.Day;
             int month = now.Month;
@@ -11,16 +11,16 @@ namespace Consolaria.Common {
             return false;
         }
 
-        public static bool CheckThanksgiving() {
+        public static bool CheckThanksgiving () {
             DateTime now = DateTime.Now;
             int day = now.Day;
             int month = now.Month;
             if (day >= 1 && month == 11)
                 return true;
-            return false;          
+            return false;
         }
 
-        public static bool CheckChineseNewYear() {
+        public static bool CheckChineseNewYear () {
             DateTime now = DateTime.Now;
             int day = now.Day;
             int month = now.Month;
@@ -29,7 +29,7 @@ namespace Consolaria.Common {
             return false;
         }
 
-        public static bool CheckOktoberfest() {
+        public static bool CheckOktoberfest () {
             DateTime now = DateTime.Now;
             int day = now.Day;
             int month = now.Month;
@@ -38,7 +38,7 @@ namespace Consolaria.Common {
             return false;
         }
 
-        public static bool CheckSaintPatricksDay() {
+        public static bool CheckSaintPatricksDay () {
             DateTime now = DateTime.Now;
             int day = now.Day;
             int month = now.Month;
@@ -47,7 +47,7 @@ namespace Consolaria.Common {
             return false;
         }
 
-        public static bool CheckValentinesDay() {
+        public static bool CheckValentinesDay () {
             DateTime now = DateTime.Now;
             int day = now.Day;
             int month = now.Month;

@@ -48,7 +48,7 @@ namespace Consolaria.Content.NPCs
 
         public override void SetBestiary (BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement [] {
-                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.UndergroundCorruption,
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheCorruption,
                 new FlavorTextBestiaryInfoElement("Steeped in the power of world evil, these slimes can spread their excretas.")
             });
         }
@@ -87,6 +87,6 @@ namespace Consolaria.Content.NPCs
 
         public override float SpawnChance (NPCSpawnInfo spawnInfo)
             => (spawnInfo.Player.ZoneCorrupt && Main.hardMode && spawnInfo.SpawnTileY > Main.rockLayer) ?
-               SpawnCondition.Corruption.Chance * 0.25f : 0f;
+               SpawnCondition.Corruption.Chance * 0.025f : 0f;
     }
 }

@@ -1,7 +1,6 @@
 using Consolaria.Content.Buffs;
 using Consolaria.Content.NPCs.Turkor;
 using Microsoft.Xna.Framework;
-using System;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent.Creative;
@@ -15,6 +14,7 @@ namespace Consolaria.Content.Items.Summons
         public override void SetStaticDefaults() {
             DisplayName.SetDefault("Cursed Stuffing");
             Tooltip.SetDefault("Summons Turkor the Ungrateful");
+
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 3;
             ItemID.Sets.SortingPriorityBossSpawns[Type] = 12;
         }
@@ -25,7 +25,7 @@ namespace Consolaria.Content.Items.Summons
 
             Item.maxStack = 20;
 
-            Item.value = Item.sellPrice(0, 0, 1, 0);
+            Item.value = Item.sellPrice(silver: 1);
             Item.rare = ItemRarityID.Blue;
 
             Item.useAnimation = 30;
@@ -38,7 +38,7 @@ namespace Consolaria.Content.Items.Summons
         public override bool CanUseItem(Player player)
          =>  player.HasBuff(ModContent.BuffType<PetTurkey>()) && !NPC.AnyNPCs(ModContent.NPCType<TurkortheUngrateful>());
         
-        public override Nullable<bool> UseItem(Player player)/* tModPorter Suggestion: Return null instead of false */ {
+        public override bool? UseItem (Player player) {
             if (player.whoAmI == Main.myPlayer) {
                 SoundEngine.PlaySound(SoundID.Roar);
 

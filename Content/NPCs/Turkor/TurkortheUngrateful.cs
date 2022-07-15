@@ -16,6 +16,7 @@ using Consolaria.Content.Items.Weapons.Magic;
 using Consolaria.Content.Items.Weapons.Melee;
 using Consolaria.Content.Items.Weapons.Summon;
 using Consolaria.Content.Items.Weapons.Ranged;
+using Consolaria.Content.Items.Consumables;
 
 namespace Consolaria.Content.NPCs.Turkor
 {
@@ -355,6 +356,8 @@ namespace Consolaria.Content.NPCs.Turkor
 			npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<SpicySauce>(), 2, 15, 34));
 			npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<TurkorMask>(), 7));
 			npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<TurkorTrophy>(), 10));
+
+			npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<Wishbone>(), 15));
 		}
 	}
 }

@@ -14,8 +14,8 @@ namespace Consolaria.Common
             if (SeasonalEvents.isSaintPatricksDay || !SeasonalEvents.enabled && Main.raining) {
                 if (Main.dayTime) {
                     rainbowDropCount++;
-                    if (rainbowDropCount % 450 == 0 && Main.rand.Next(4) == 0)
-                        Item.NewItem(Item.GetSource_NaturalSpawn(), randomPosition, ModContent.ItemType<Content.Items.Materials.RainbowPiece>(), 1);                
+                    if (rainbowDropCount % 450 == 0 && Main.rand.NextBool(4))
+                        Item.NewItem(Entity.GetSource_NaturalSpawn(), randomPosition, ModContent.ItemType<Content.Items.Materials.RainbowPiece>(), 1);                
                 }
                 else rainbowDropCount = 0;
             }

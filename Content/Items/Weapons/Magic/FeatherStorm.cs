@@ -54,8 +54,8 @@ namespace Consolaria.Content.Items.Weapons.Magic
                 float num15 = Item.shootSpeed / num14;
                 float num16 = num12 * num15;
                 float num17 = num13 * num15;
-                float SpeedX = num16 + (float)Main.rand.Next(-40, 41) * 0.05f;
-                float SpeedY = num17 + (float)Main.rand.Next(-40, 41) * 0.05f;
+                float SpeedX = num16 + (float)Main.rand.Next(-40, 41) * 0.25f;
+                float SpeedY = num17 + (float)Main.rand.Next(-40, 41) * 0.25f;
                 Projectile.NewProjectile(source, vector2_1.X, vector2_1.Y, SpeedX, SpeedY, type, damage, knockback, player.whoAmI);
             }
             return false;

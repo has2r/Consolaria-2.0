@@ -1,6 +1,4 @@
-﻿using Consolaria.Content.Items.Summons;
-using System.ComponentModel;
-using Terraria.ModLoader;
+﻿using System.ComponentModel;
 using Terraria.ModLoader.Config;
 
 namespace Consolaria.Common
@@ -26,7 +24,7 @@ namespace Consolaria.Common
 		public bool thanksgivingEnabled;
 
 		[Label("Restrict seasonal content by system date (Other events)")]
-		[Tooltip("If enabled the relevant items and enemies will only appear during the corresponding holidays or when (название предмета) is used")]
+		[Tooltip("If enabled the relevant items and enemies will only appear during the corresponding holidays or when Wishbone is used")]
 		[DefaultValue(false)]
 		[ReloadRequired]
 		public bool smallEventsEnabled;

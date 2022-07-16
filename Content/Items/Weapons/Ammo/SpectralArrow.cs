@@ -4,21 +4,20 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Consolaria.Content.Items.Weapons.Ammo
-{
-    public class SpectralArrow : ModItem
-    {
-        public override void SetStaticDefaults() {
-            DisplayName.SetDefault("Spectral Arrow"); 
-            Tooltip.SetDefault("Can pierce three enemies");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 99;
+namespace Consolaria.Content.Items.Weapons.Ammo {
+    public class SpectralArrow : ModItem {
+        public override void SetStaticDefaults () {
+            DisplayName.SetDefault("Spectral Arrow");
+            Tooltip.SetDefault("Pierces tiles and enemies, but loses damage with every hit");
+
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 99;
         }
 
-        public override void SetDefaults() {
+        public override void SetDefaults () {
             int width = 26; int height = 30;
             Item.Size = new Vector2(width, height);
 
-            Item.damage = 16;
+            Item.damage = 12;
             Item.knockBack = 0f;
             Item.DamageType = DamageClass.Ranged;
 
@@ -26,12 +25,12 @@ namespace Consolaria.Content.Items.Weapons.Ammo
             Item.consumable = true;
 
             Item.shoot = ModContent.ProjectileType<Projectiles.Friendly.SpectralArrow>();
-            Item.shootSpeed = 1.5f;
+            Item.shootSpeed = 3.5f;
 
-            Item.value = Item.sellPrice(copper: 20);
+            Item.value = Item.sellPrice(silver: 1, copper: 10);
             Item.rare = ItemRarityID.Orange;
 
             Item.ammo = AmmoID.Arrow;
-        }  
+        }
     }
 }

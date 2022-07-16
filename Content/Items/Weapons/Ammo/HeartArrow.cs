@@ -27,7 +27,7 @@ namespace Consolaria.Content.Items.Weapons.Ammo {
             Item.consumable = true;
 
             Item.shoot = ModContent.ProjectileType<Projectiles.Friendly.HeartArrow>();
-            Item.shootSpeed = 1.5f;
+            Item.shootSpeed = 3f;
 
             Item.value = Item.buyPrice(copper: 50);
             Item.rare = ItemRarityID.Blue;

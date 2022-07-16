@@ -80,6 +80,18 @@ namespace Consolaria.Content.Tiles
 			case 15:
 			itemType = ModContent.ItemType<Items.Banners.DragonSkullBanner>();
 			break;
+			case 16:
+			itemType = ModContent.ItemType<Items.Banners.FleshSlimeBanner>();
+			break;
+			case 17:
+			itemType = ModContent.ItemType<Items.Banners.FleshMummyBanner>();
+			break;
+			case 18:
+			itemType = ModContent.ItemType<Items.Banners.FleshAxeBanner>();
+			break;
+			case 19:
+			itemType = ModContent.ItemType<Items.Banners.AlbinoChargerBanner>();
+			break;
 			default:
 			return;
 			}
@@ -151,6 +163,19 @@ namespace Consolaria.Content.Tiles
 				break;
 				case 15:
 				npcType = ModContent.NPCType<NPCs.DragonSkull>();
+				break;
+				case 16:
+				npcType = ModContent.NPCType<NPCs.FleshSlime>();
+				break;
+				case 17:
+				npcType = ModContent.NPCType<NPCs.FleshMummy>();
+				break;
+				case 18:
+				npcType = ModContent.NPCType<NPCs.FleshAxe>();
+				break;
+				case 19:
+				npcType = ModContent.NPCType<NPCs.AlbinoCharger>();
+				npcType = ModContent.NPCType<NPCs.GiantAlbinoCharger>();
 				break;
 				default:
 				return;

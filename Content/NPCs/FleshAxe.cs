@@ -55,7 +55,7 @@ namespace Consolaria.Content.NPCs
 			AnimationType = NPCID.CrimsonAxe;
 
 			Banner = NPC.type;
-			BannerItem = ModContent.ItemType<Items.Banners.ShadowHammerBanner>();
+			BannerItem = ModContent.ItemType<Items.Banners.FleshAxeBanner>();
 		}
 
 		public override void SetBestiary (BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
@@ -91,7 +91,7 @@ namespace Consolaria.Content.NPCs
 		}
 
 		public override float SpawnChance (NPCSpawnInfo spawnInfo)
-			=> (spawnInfo.Player.ZoneCrimson && Main.hardMode && spawnInfo.SpawnTileY < Main.rockLayer) ?
-			SpawnCondition.Crimson.Chance * 0.15f : 0f;
+			=> (spawnInfo.Player.ZoneCrimson && Main.hardMode && spawnInfo.SpawnTileY > Main.rockLayer) ?
+			SpawnCondition.Crimson.Chance * 0.025f : 0f;
 	}
 }

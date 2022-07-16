@@ -45,12 +45,11 @@ namespace Consolaria.Content.Items.BossDrops.Lepus
             if (armorDrop == 1) player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<OstaraJacket>());
             if (armorDrop == 2) player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<OstaraBoots>());
 
-            if (Main.rand.Next(2) == 0)
-                player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<EggCannon>());  
-            
-            if (Main.rand.Next(8) == 0)
+            if (Main.rand.NextBool(2))
+                player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<EggCannon>());           
+            if (Main.rand.NextBool(8))
                 player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<LepusMask>());           
-            if (Main.rand.Next(10) == 0)
+            if (Main.rand.NextBool(10))
                 player.QuickSpawnItem(player.GetSource_OpenItem(Type), ItemID.BunnyHood);
             
             player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<SuspiciousLookingEgg>());

@@ -149,9 +149,9 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
         }
 
         public override void ScaleExpertStats (int numPlayers, float bossLifeScale) {
-            NPC.lifeMax = (int) (NPC.lifeMax * 0.625f * bossLifeScale + numPlayers);
+            NPC.lifeMax = NPC.lifeMax * 0.625f * bossLifeScale + numPlayers > 1 ? numPlayers : 0;
+            NPC.defense += numPlayers > 1 ? numPlayers : 0;
             NPC.damage = (int) (NPC.damage * 0.6f);
-            NPC.defense += numPlayers;
         }
 
         public override void SetBestiary (BestiaryDatabase database, BestiaryEntry bestiaryEntry)
@@ -183,9 +183,9 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
             conditionalRule.OnSuccess(ItemDropRule.MasterModeDropOnAllPlayers(ModContent.ItemType<RabbitFoot>(), 4));
             conditionalRule.OnSuccess(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<EggCannon>(), 2));
             conditionalRule.OnSuccess(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<LepusMask>(), 8));
-            conditionalRule.OnSuccess(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<LepusTrophy>(), 10));
             conditionalRule.OnSuccess(ItemDropRule.ByCondition(notExpert, ItemID.BunnyHood, 10));
             conditionalRule.OnSuccess(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<SuspiciousLookingEgg>()));
+            conditionalRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<LepusTrophy>(), 10));
             npcLoot.Add(conditionalRule);
         }
 

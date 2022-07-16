@@ -1,5 +1,4 @@
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
@@ -7,41 +6,37 @@ using Terraria.ModLoader;
 
 namespace Consolaria.Content.Projectiles.Friendly {
     public class SpectralArrow : ModProjectile {
+
+        private int hitCounter;
         public override void SetStaticDefaults () {
             ProjectileID.Sets.TrailCacheLength [Projectile.type] = 5;
             ProjectileID.Sets.TrailingMode [Projectile.type] = 2;
         }
 
         public override void SetDefaults () {
-            int width = 5; int height = width;
+            int width = 14; int height = width;
             Projectile.Size = new Vector2(width, height);
 
-            Projectile.friendly = true;
             Projectile.DamageType = DamageClass.Ranged;
             Projectile.arrow = true;
 
             Projectile.aiStyle = 1;
-            Projectile.penetrate = 3;
+            Projectile.penetrate = 5;
 
-            Projectile.tileCollide = true;
+            Projectile.alpha = byte.MaxValue;
+            Projectile.light = 0.2f;
+
+            Projectile.tileCollide = false;
+            Projectile.friendly = true;
+
+            Projectile.timeLeft = 180;
         }
 
-        public override void AI () {
-            if (Projectile.penetrate == 2) Projectile.damage /= 2;
-            if (Projectile.penetrate == 1) Projectile.damage /= 3;
-        }
+        public override void OnHitNPC (NPC target, int damage, float knockback, bool crit)
+            => hitCounter++;
 
-        public override bool PreDraw (ref Color lightColor) {
-            SpriteBatch spriteBatch = Main.spriteBatch;
-            Texture2D texture = (Texture2D) ModContent.Request<Texture2D>(Texture);
-            Vector2 drawOrigin = new Vector2(texture.Width * 0.5f, Projectile.height * 0.5f);
-            for (int k = 0; k < Projectile.oldPos.Length; k++) {
-                Vector2 drawPos = Projectile.oldPos [k] - Main.screenPosition + drawOrigin + new Vector2(0f, Projectile.gfxOffY);
-                Color color = Projectile.GetAlpha(lightColor) * ((float) (Projectile.oldPos.Length - k) / (float) Projectile.oldPos.Length);
-                spriteBatch.Draw(texture, drawPos, null, color * Projectile.Opacity, Projectile.rotation, drawOrigin, Projectile.scale, SpriteEffects.None, 0f);
-            }
-            return false;
-        }
+        public override void ModifyHitNPC (NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+          => damage -= (int) (damage * hitCounter * 0.1f);
 
         public override void Kill (int timeLeft) {
             if (Projectile.owner == Main.myPlayer) {
@@ -52,7 +47,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
         }
 
         public override Color? GetAlpha (Color lightColor)
-            => new Color(255, 255, 255, 150);
+            => new Color?(Color.White * 0.75f * (hitCounter * 0.25f));
 
         public override bool? CanCutTiles ()
             => false;

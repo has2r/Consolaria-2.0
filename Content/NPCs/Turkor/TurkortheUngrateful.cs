@@ -74,9 +74,9 @@ namespace Consolaria.Content.NPCs.Turkor
 		}
 
 		public override void ScaleExpertStats(int numPlayers, float bossLifeScale) {
-			NPC.lifeMax = (int)(NPC.lifeMax * 0.625f * bossLifeScale + numPlayers);
-			NPC.damage = (int)(NPC.damage * 0.6f);
-			NPC.defense = (int)(NPC.defense + numPlayers);
+			NPC.lifeMax = (NPC.lifeMax * 0.625f * bossLifeScale + numPlayers > 1 ? numPlayers : 0);
+			NPC.defense = (NPC.defense + numPlayers > 1 ? numPlayers : 0);
+			NPC.damage = (int) (NPC.damage * 0.6f);
 		}
 
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
@@ -352,12 +352,11 @@ namespace Consolaria.Content.NPCs.Turkor
 			LeadingConditionRule notExpertRule = new LeadingConditionRule(new Conditions.NotExpert());
 			notExpertRule.OnSuccess(new OneFromOptionsDropRule(1, 1, ModContent.ItemType<FeatherStorm>(), ModContent.ItemType<GreatDrumstick>(), ModContent.ItemType<TurkeyStuff>()));
 			npcLoot.Add(notExpertRule);
-
 			npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<SpicySauce>(), 2, 15, 34));
 			npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<TurkorMask>(), 7));
-			npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<TurkorTrophy>(), 10));
 
-			npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<Wishbone>(), 15));
+			npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<TurkorTrophy>(), 10));
+			npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Wishbone>(), 5));
 		}
 	}
 }

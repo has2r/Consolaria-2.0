@@ -38,8 +38,8 @@ namespace Consolaria.Content.NPCs {
 			AIType = NPCID.BloodMummy;
 			AnimationType = NPCID.BloodMummy;
 
-			//banner = NPC.type;
-			//bannerItem = mod.ItemType("ShadowMummyBanner");
+			Banner = NPC.type;
+			BannerItem = ModContent.ItemType<Items.Banners.FleshMummyBanner>();
 		}
 
 		public override void SetBestiary (BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
@@ -74,7 +74,7 @@ namespace Consolaria.Content.NPCs {
 		}
 
 		public override float SpawnChance (NPCSpawnInfo spawnInfo)
-			=> (spawnInfo.Player.ZoneCrimson && spawnInfo.Player.ZoneDesert && Main.hardMode) ?
-			SpawnCondition.DarkMummy.Chance * 0.25f : 0f;
+			=> (spawnInfo.Player.ZoneCrimson && spawnInfo.Player.ZoneDesert && spawnInfo.SpawnTileY < Main.rockLayer && Main.hardMode) ?
+			SpawnCondition.Crimson.Chance * 0.025f : 0f;
 	}
 }

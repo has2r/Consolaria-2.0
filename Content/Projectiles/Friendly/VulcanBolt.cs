@@ -5,12 +5,10 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Consolaria.Content.Projectiles.Friendly
-{
-    public class VulcanBolt : ModProjectile
-    {
-        public override void SetDefaults() {
-            int width = 5; int height = width;
+namespace Consolaria.Content.Projectiles.Friendly {
+    public class VulcanBolt : ModProjectile {
+        public override void SetDefaults () {
+            int width = 14; int height = width;
             Projectile.Size = new Vector2(width, height);
 
             Projectile.friendly = true;
@@ -23,18 +21,18 @@ namespace Consolaria.Content.Projectiles.Friendly
             Projectile.tileCollide = true;
         }
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC (NPC target, int damage, float knockback, bool crit)
             => target.AddBuff(BuffID.OnFire3, 300);
 
-        public override void OnHitPvp(Player target, int damage, bool crit)
+        public override void OnHitPvp (Player target, int damage, bool crit)
             => target.AddBuff(BuffID.OnFire3, 300);
 
-        public override void AI() {
-            if (Main.rand.Next(2) == 0)
-                Dust.NewDust(Projectile.position + Projectile.velocity, Projectile.width, Projectile.height, 6, Projectile.velocity.X * 0.4f, Projectile.velocity.Y * 0.4f, 0, default, 1.2f);      
+        public override void AI () {
+            if (Main.rand.NextBool(2))
+                Dust.NewDust(Projectile.position + Projectile.velocity, Projectile.width, Projectile.height, 6, Projectile.velocity.X * 0.4f, Projectile.velocity.Y * 0.4f, 0, default, 1.2f);
         }
 
-        public override void Kill(int timeLeft) {
+        public override void Kill (int timeLeft) {
             if (Projectile.owner == Main.myPlayer) {
                 int radius = 5;
                 for (int x = -radius; x <= radius; x++) {
@@ -42,8 +40,8 @@ namespace Consolaria.Content.Projectiles.Friendly
                         if (Math.Sqrt(x * x + y * y) <= radius + 0.5) {
                             int dust = Dust.NewDust(Projectile.Center, 20, 20, DustID.Smoke, 0.0f, 0.0f, 120, default, 1f);
                             int dust2 = Dust.NewDust(Projectile.Center, 20, 20, 6, 0.0f, 0.0f, 100, default, 1.2f);
-                            Main.dust[dust2].noGravity = true;
-                            Main.dust[dust2].velocity = Main.dust[dust].velocity;
+                            Main.dust [dust2].noGravity = true;
+                            Main.dust [dust2].velocity = Main.dust [dust].velocity;
                         }
                     }
                 }

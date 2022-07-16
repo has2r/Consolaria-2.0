@@ -38,8 +38,8 @@ namespace Consolaria.Content.NPCs
             AIType = NPCID.WalkingAntlion;
             AnimationType = NPCID.WalkingAntlion;
 
-            // banner = NPC.type;
-            //bannerItem = mod.ItemType("OrcaBanner");
+            Banner = NPC.type;
+            BannerItem = ModContent.ItemType<Items.Banners.AlbinoChargerBanner>();
         }
 
         public override void SetBestiary (BestiaryDatabase database, BestiaryEntry bestiaryEntry) {

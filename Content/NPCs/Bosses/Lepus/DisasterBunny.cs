@@ -41,8 +41,8 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
 
             NPC.noTileCollide = false;
 
-            //Banner = NPC.type;
-            //BannerItem = ModContent.ItemType<Items.Banners.DisasterBunnyBanner>;
+            Banner = NPC.type;
+            BannerItem = ModContent.ItemType<Items.Banners.DisasterBunnyBanner>();
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {

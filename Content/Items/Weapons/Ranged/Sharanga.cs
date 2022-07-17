@@ -26,9 +26,9 @@ namespace Consolaria.Content.Items.Weapons.Ranged {
 
 			Item.useAmmo = AmmoID.Arrow;
 			Item.shoot = ProjectileID.WoodenArrowFriendly;
-			Item.shootSpeed = 8f;
+			Item.shootSpeed = 10f;
 
-			Item.value = Item.sellPrice(0, 0, 80, 0);
+			Item.value = Item.sellPrice(gold: 1, silver: 5);
 			Item.rare = ItemRarityID.Orange;
 			Item.UseSound = SoundID.Item5;
 

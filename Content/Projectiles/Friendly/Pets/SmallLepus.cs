@@ -1,6 +1,5 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -49,7 +48,7 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets
             Projectile.frameCounter = 0;
             Projectile.frame = 8;
             if (Projectile.localAI [0] == (60 * Main.rand.Next(6, 15)) && !isFlying) {
-                Gore.NewGore(Projectile.GetSource_FromAI(), new Vector2(Projectile.position.X, Projectile.Center.Y), Projectile.velocity * 0.5f, ModContent.Find<ModGore>("Consolaria/EasterEggFullGore").Type);
+                Gore.NewGore(Projectile.GetSource_FromAI(), new Vector2(Projectile.position.X, Projectile.Center.Y), Vector2.Zero, ModContent.Find<ModGore>("Consolaria/EasterEggFullGore").Type);
                 Projectile.localAI [0] = 0;
             }
 

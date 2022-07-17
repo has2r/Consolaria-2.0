@@ -1,5 +1,5 @@
-displayName = Consolaria
-author = RoA Gang
+displayName = [c/7B68EE:Consolaria]
+author = RoA Gang (has2r, peege.on, Zerokk, Heretic)
 
 version = 1.0.0.1
 homepage = https://forums.terraria.org/index.php?threads/consolaria.62570/

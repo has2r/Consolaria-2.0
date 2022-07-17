@@ -17,8 +17,9 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets
             Projectile.CloneDefaults(ProjectileID.KingSlimePet);                      
             AIType = ProjectileID.KingSlimePet;
 
-            int width = 32; int height = 22;
+            int width = 30; int height = 22;
             Projectile.Size = new Vector2(width, height);
+            Projectile.alpha = byte.MaxValue;
         }
 
         public override bool PreAI() {
@@ -30,28 +31,29 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets
             Player player = Main.player[Projectile.owner];
             if (!player.dead && player.HasBuff(ModContent.BuffType<Buffs.Slime>()))
                 Projectile.timeLeft = 2;
+
+            Projectile.frameCounter = 0;
+            Projectile.frame = 8;
         }
 
         private int texFrameCounter;
         private int texCurrentFrame;
 
         public override bool PreDraw(ref Color lightColor) {
-            Player player = Main.player[Projectile.owner];
             SpriteBatch spriteBatch = Main.spriteBatch;
             Texture2D texture = (Texture2D)ModContent.Request<Texture2D>(Texture);
             Texture2D balloon = (Texture2D)ModContent.Request<Texture2D>("Consolaria/Assets/Textures/Projectiles/SlimePet_Balloon");
 
-            bool fackingGround = Projectile.velocity.X == 0f;
-
+            bool isFlying = Projectile.ai [0] == 1;
             texFrameCounter++;
-            if (Projectile.ai[0] == 1) {
-                texCurrentFrame = 6;
+            if (isFlying) {
+                texCurrentFrame = 5;
                 texFrameCounter = 0;
             }
-            else if (texFrameCounter >= 10) {
+            else if(texFrameCounter >= 10) {
                 texFrameCounter = 0;
                 texCurrentFrame++;
-                if (texCurrentFrame >= 5)
+                if (texCurrentFrame >= 4)
                     texCurrentFrame = 0;
             }
 
@@ -60,9 +62,10 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets
             var spriteEffects = Projectile.direction > 0 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
             int frameHeight = texture.Height / Main.projFrames[Projectile.type];
             Rectangle frameRect = new Rectangle(0, texCurrentFrame * frameHeight, texture.Width, frameHeight);
-            spriteBatch.Draw(texture, position, frameRect, player.shirtColor * 0.75f, Projectile.rotation, drawOrigin, Projectile.scale, spriteEffects, 0f);
-            if (Projectile.ai[0] == 1)
-                spriteBatch.Draw(texture, new Vector2(position.X - Projectile.height * 0.5f, position.Y), frameRect, player.underShirtColor * 0.75f, 0, drawOrigin, Projectile.scale, spriteEffects, 1f);
+            int offsetY = 8; 
+            spriteBatch.Draw(texture, new Vector2(position.X, position.Y - offsetY), frameRect, Main.DiscoColor * 0.8f * 0.75f, 0, drawOrigin, Projectile.scale, spriteEffects, 0f);
+            if (isFlying)
+                spriteBatch.Draw(balloon, new Vector2(position.X, position.Y - offsetY - 62), null, Color.Red * 0.8f, 0, drawOrigin, Projectile.scale, spriteEffects, 1f);
             return false;
         }
     }

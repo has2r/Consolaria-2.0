@@ -8,11 +8,6 @@ namespace Consolaria.Content.Projectiles.Friendly {
     public class SpectralArrow : ModProjectile {
 
         private int hitCounter;
-        public override void SetStaticDefaults () {
-            ProjectileID.Sets.TrailCacheLength [Projectile.type] = 5;
-            ProjectileID.Sets.TrailingMode [Projectile.type] = 2;
-        }
-
         public override void SetDefaults () {
             int width = 14; int height = width;
             Projectile.Size = new Vector2(width, height);
@@ -29,7 +24,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
             Projectile.tileCollide = false;
             Projectile.friendly = true;
 
-            Projectile.timeLeft = 180;
+            Projectile.timeLeft = 120;
         }
 
         public override void OnHitNPC (NPC target, int damage, float knockback, bool crit)
@@ -47,7 +42,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
         }
 
         public override Color? GetAlpha (Color lightColor)
-            => new Color?(Color.White * 0.75f * (hitCounter * 0.25f));
+            => new Color?(Color.White * 0.75f * (Projectile.penetrate * 0.25f));
 
         public override bool? CanCutTiles ()
             => false;

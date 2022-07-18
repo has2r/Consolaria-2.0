@@ -69,10 +69,9 @@ namespace Consolaria.Content.NPCs.Turkor
 			NPC.noGravity = true;
 		}
 
-		public override void ScaleExpertStats(int numPlayers, float bossLifeScale) {
-			NPC.lifeMax = (int)(NPC.lifeMax * 0.625f * bossLifeScale + numPlayers);
-			NPC.damage = (int)(NPC.damage * 0.6f);
-			NPC.defense = (int)(NPC.defense + numPlayers);
+		public override void ScaleExpertStats (int numPlayers, float bossLifeScale) {
+			NPC.lifeMax = 2000 + (int) (numPlayers > 1 ? NPC.lifeMax * 0.2 * numPlayers : 0);
+			NPC.damage = (int) (NPC.damage * 0.65f);
 		}
 
 		private Rectangle GetFrame(int number)

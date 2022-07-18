@@ -58,21 +58,8 @@ namespace Consolaria.Content.NPCs.Ocram
             });
         }
 
-        private bool Despawn() {
-            if (Main.netMode != NetmodeID.MultiplayerClient &&
-                (!Main.npc[ModContent.NPCType<Ocram>()].active)) {
-                NPC.active = false;
-                NPC.life = 0;
-                NetMessage.SendData(MessageID.SyncNPC, number: NPC.whoAmI);
-                return true;
-            }
-            return false;
-        }
-
-        public override void AI() {
-            if (Despawn()) return;
-            NPC.position += NPC.velocity * 1.1f;
-        }
+        public override void AI() 
+            => NPC.position += NPC.velocity * 1.1f;
         
         public override void HitEffect(int hitDirection, double damage) {
             for (int i = 0; i < 3; i++)
@@ -86,7 +73,7 @@ namespace Consolaria.Content.NPCs.Ocram
         }
 
         public override void OnKill() {
-            if (Main.rand.Next(2) == 0)
+            if (Main.rand.NextBool(2))
                 Item.NewItem(NPC.GetSource_Death(), (int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ItemID.Heart);  
         }
     }

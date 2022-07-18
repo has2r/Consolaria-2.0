@@ -21,7 +21,7 @@ namespace Consolaria.Content.Items.Weapons.Melee {
 			Item.autoReuse = true;
 			Item.noUseGraphic = true;
 
-			Item.DamageType = DamageClass.Ranged;
+			Item.DamageType = DamageClass.Melee;
 			Item.damage = 14;
 
 			Item.knockBack = 4;

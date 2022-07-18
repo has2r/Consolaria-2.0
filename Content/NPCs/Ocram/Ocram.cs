@@ -71,9 +71,8 @@ namespace Consolaria.Content.NPCs.Ocram {
         }
 
         public override void ScaleExpertStats (int numPlayers, float bossLifeScale) {
-            NPC.lifeMax = (NPC.lifeMax * 0.65f * bossLifeScale + numPlayers > 1 ? numPlayers : 0);
-            NPC.defense = (NPC.defense + numPlayers > 1 ? numPlayers : 0);
-            NPC.damage = (int) (NPC.damage * 0.6f);
+            NPC.lifeMax = 45000 + (int) (numPlayers > 1 ? NPC.lifeMax * 0.2 * numPlayers : 0);
+            NPC.damage = (int) (NPC.damage * 0.65f);
         }
 
         public override void SetBestiary (BestiaryDatabase database, BestiaryEntry bestiaryEntry) {

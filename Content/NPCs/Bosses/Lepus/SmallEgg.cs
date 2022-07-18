@@ -36,6 +36,8 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
             NPC.noTileCollide = false;
             NPC.friendly = false;
         }
+        public override void ScaleExpertStats (int numPlayers, float bossLifeScale)
+            => NPC.lifeMax = 50;
 
         public override bool? DrawHealthBar (byte hbPosition, ref float scale, ref Vector2 position)
             => false;

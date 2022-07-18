@@ -37,6 +37,9 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
             NPC.noTileCollide = false;
         }
 
+        public override void ScaleExpertStats (int numPlayers, float bossLifeScale) 
+            => NPC.lifeMax = 100;
+        
         public override void SetBestiary (BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement [] {
                 BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheHallow,

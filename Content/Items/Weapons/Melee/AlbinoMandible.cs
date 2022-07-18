@@ -8,6 +8,7 @@ namespace Consolaria.Content.Items.Weapons.Melee {
 	public class AlbinoMandible : ModItem {
 		public override void SetStaticDefaults () {
 			DisplayName.SetDefault("Albino Mandible");
+			Tooltip.SetDefault("'Surplisingly aerodynamic'");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
 		}
 

@@ -4,16 +4,14 @@ using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using Terraria.GameContent.Creative;
 
-namespace Consolaria.Content.Items.Consumables
-{
-    public class Squib : ModItem
-    {
-        public override void SetStaticDefaults() {
-            DisplayName.SetDefault("Squib");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 99;
+namespace Consolaria.Content.Items.Consumables {
+    public class Squib : ModItem {
+        public override void SetStaticDefaults () {
+            DisplayName.SetDefault("Fiery Cracker");
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 99;
         }
 
-        public override void SetDefaults() {
+        public override void SetDefaults () {
             int width = 26; int height = 30;
             Item.Size = new Vector2(width, height);
 

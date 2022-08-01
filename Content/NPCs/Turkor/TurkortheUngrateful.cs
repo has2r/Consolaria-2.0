@@ -142,9 +142,12 @@ namespace Consolaria.Content.NPCs.Turkor
 		private float colo = 0f;
 
 		//head related
-		private bool headSpawned = false;
-		private int headNumber = 1;
-		private int turkorHead_ = 0;
+		private bool headSpawned {
+			get => NPC.ai[0] == 1f;
+			set => NPC.ai[0] = value ? 1f : 0f;
+		}
+		public ref float headNumber => ref NPC.ai[2];
+		public ref float turkorHead_ => ref NPC.ai[3];
 
 		//idling phase stuff
 		private int timer = 0;
@@ -212,15 +215,14 @@ namespace Consolaria.Content.NPCs.Turkor
 					ground_ = true;
 				}
 			}
-
-			if (NPC.AnyNPCs(turkorHead) || NPC.localAI[1] == 40 || enraged) NPC.dontTakeDamage = true;			
-			else NPC.dontTakeDamage = false;	
+			
+			NPC.dontTakeDamage = NPC.AnyNPCs(turkorHead) || NPC.localAI[1] == 40 || enraged;
 
 			if (!headSpawned) {
 				headSpawned = true;
-				for (int i = 0; i < headNumber; ++i) {
-					turkorHead_ = NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, turkorHead);
-					NPC npc = Main.npc[turkorHead_];
+				for (int i = 0; i < (int)headNumber; ++i) {
+					turkorHead_ = (float)NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, turkorHead);
+					NPC npc = Main.npc[(int)turkorHead_];
 					npc.velocity.X = Main.rand.Next(-6, 7);
 					npc.velocity.Y = Main.rand.Next(-6, 7);
 					npc.ai[1] = (float)NPC.whoAmI;
@@ -319,6 +321,7 @@ namespace Consolaria.Content.NPCs.Turkor
 								timer = 0;
 								findplayer = false;
 								NPC.velocity = Vector2.Zero;
+								NPC.netUpdate = true;
 							}
 						}
 					}

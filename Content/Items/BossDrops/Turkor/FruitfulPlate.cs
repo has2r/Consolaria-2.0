@@ -4,18 +4,16 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Consolaria.Content.Items.BossDrops.Turkor
-{	
-	public class FruitfulPlate : ModItem
-	{		
-		public override void SetStaticDefaults() {
+namespace Consolaria.Content.Items.BossDrops.Turkor {
+	public class FruitfulPlate : ModItem {
+		public override void SetStaticDefaults () {
 			DisplayName.SetDefault("Fruitful Plate");
-            Tooltip.SetDefault("Summons a fruitful plate mount");
+			Tooltip.SetDefault("Summons a fruitful plate mount");
 
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
 		}
 
-		public override void SetDefaults() {
+		public override void SetDefaults () {
 			int width = 30; int height = width;
 			Item.Size = new Vector2(width, height);
 
@@ -28,6 +26,6 @@ namespace Consolaria.Content.Items.BossDrops.Turkor
 			Item.UseSound = SoundID.Item2;
 
 			Item.mountType = ModContent.MountType<Mounts.FruitfulPlate>();
-		}     
-    }
+		}
+	}
 }

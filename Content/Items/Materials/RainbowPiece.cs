@@ -30,10 +30,7 @@ namespace Consolaria.Content.Items.Materials
             SoundEngine.PlaySound(SoundID.Item4, Item.position);
             for (int index = 0; index < 10; ++index)
                 Dust.NewDust(Item.position, Item.width, Item.height, ModContent.DustType<Dusts.RomanFlame>(), Item.velocity.X, Item.velocity.Y, 100, Main.DiscoColor, Main.rand.NextFloat(0.8f, 1.3f));
-
-            Item.active = false;
-            Item.type = ItemID.None;
-            Item.stack = 0;
+            Item.TurnToAir();
         }
 
         public override void PostUpdate () {

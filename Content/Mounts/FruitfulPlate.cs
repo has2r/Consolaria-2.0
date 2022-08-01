@@ -5,20 +5,18 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Consolaria.Content.Mounts
-{
-    public class FruitfulPlate : ModMount
-    {
-        public override void SetStaticDefaults() {
+namespace Consolaria.Content.Mounts {
+    public class FruitfulPlate : ModMount {
+        public override void SetStaticDefaults () {
             // Movement
-            MountData.jumpHeight = 20; // How high the mount can jump.
-            MountData.acceleration = 5f; // The rate at which the mount speeds up.
+            MountData.jumpHeight = 16; // How high the mount can jump.
+            MountData.acceleration = 4f; // The rate at which the mount speeds up.
             MountData.jumpSpeed = 12f; // The rate at which the player and mount ascend towards (negative y velocity) the jump height when the jump button is presssed.
-            MountData.blockExtraJumps = false; // Determines whether or not you can use a double jump (like cloud in a bottle) while in the mount.
+            MountData.blockExtraJumps = true;// Determines whether or not you can use a double jump (like cloud in a bottle) while in the mount.
             MountData.constantJump = false; // Allows you to hold the jump button down.
             MountData.heightBoost = 0; // Height between the mount and the ground
             MountData.fallDamage = 0; // Fall damage multiplier.
-            MountData.runSpeed = 1.5f; // The speed of the mount
+            MountData.runSpeed = 1.75f; // The speed of the mount
             MountData.dashSpeed = 0f; // The speed the mount moves when in the state of dashing.
             MountData.flightTimeMax = 0; // The amount of time in frames a mount can be in the state of flying.
 
@@ -68,11 +66,14 @@ namespace Consolaria.Content.Mounts
             }
         }
 
-        public override void UpdateEffects(Player player) {
-            if (Math.Abs(player.velocity.X) > 0.5f && player.velocity.Y == 0) {
-                Rectangle rect = player.getRect();
-                Dust.NewDust(new Vector2(rect.X - 20 * player.direction, rect.Y + 20), rect.Width, rect.Height, DustID.Lead, player.velocity.X / 2, 0f, 70, default, 0.8f);
+        public override void UpdateEffects (Player player) {
+            if (player.velocity.Y == 0) {
+                if (Math.Abs(player.velocity.X) > 0.5f) {
+                    Rectangle rect = player.getRect();
+                    Dust.NewDust(new Vector2(rect.X - 20 * player.direction, rect.Y + 20), rect.Width, rect.Height, DustID.Lead, player.velocity.X / 2, 0f, 70, default, 0.8f);
+                }
             }
+            else player.velocity.X = 0;
         }
     }
 }

@@ -20,13 +20,15 @@ namespace Consolaria.Content.NPCs.Turkor
 		private bool projspam = false;
 		private bool attackingphase = false;
 
+		private int hurtframe = 0;
+
 		private float rotatepoint = 0;
 
 		private bool chase = false;
 
 		public override void SetStaticDefaults() {
 			DisplayName.SetDefault("Turkor the Ungrateful Head");
-			Main.npcFrameCount[NPC.type] = 3;
+			Main.npcFrameCount[NPC.type] = 4;
 
 			NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData {
 				SpecificallyImmuneTo = new int[] {
@@ -81,18 +83,27 @@ namespace Consolaria.Content.NPCs.Turkor
 			if (!attackingphase || charge && timer > 230 || projspam) {
 				if (!projspam && NPC.velocity.X * NPC.direction < 0 && turntimer < 15) {
 					turntimer++;
-					NPC.frame = GetFrame(3);
+					NPC.frame = GetFrame(4);
 				}
+				else if (hurtframe > 0) {
+					NPC.frame = GetFrame(3);
+					hurtframe--;	
+				}					
 				else {
 					if (NPC.velocity.X * NPC.direction > 0) { turntimer = 0; }
 					NPC.spriteDirection = NPC.direction;
-					NPC.frameCounter += 0.08f;
-					NPC.frameCounter %= 2;
-					int frame = (int)NPC.frameCounter;
-					NPC.frame.Y = frame * frameHeight;
+					if (charge)
+					{
+						NPC.frameCounter += 0.08f;
+						NPC.frameCounter %= 2;
+						int frame = (int)NPC.frameCounter;
+						NPC.frame.Y = frame * frameHeight;
+					}
+					else if (projspam && timer % 80 < 20) NPC.frame = GetFrame(2);
+					else NPC.frame = GetFrame(1);
 				}
 			}
-			if (charge && timer <= 230) NPC.frame = GetFrame(3);	
+			if (charge && timer <= 230) NPC.frame = GetFrame(4);	
 		}
 
 		public override bool CanHitPlayer(Player target, ref int cooldownSlot) => charge;
@@ -177,6 +188,7 @@ namespace Consolaria.Content.NPCs.Turkor
 
 				//if hit/running out of time then bounce back
 				if (timer > 270 || timer > 230 && NPC.justHit) {
+					if (timer <= 270) hurtframe = 20;
 					timer = 0;
 					charge = false;
 					attackingphase = false;
@@ -199,6 +211,7 @@ namespace Consolaria.Content.NPCs.Turkor
 					for (int i = 0; i < 3; i++)
 						Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, Main.rand.Next(0, 8) * NPC.direction, -10 + Main.rand.Next(-3, 3), ModContent.ProjectileType<TurkorFeather>(), (int)(NPC.damage / 3), 1, Main.myPlayer, 0, 0);				
 					NPC.velocity.Y = 5;
+					SoundEngine.PlaySound(SoundID.NPCDeath48, NPC.position);
 				}
 				if (timer >= 360) {
 					rotatepoint -= 0.1f;

@@ -43,7 +43,7 @@ namespace Consolaria.Content.Projectiles.Enemies
 				color.A = (byte)(color.A * (10 - k) / acolor);
 				spriteBatch.Draw(texture, drawPos, null, color, Projectile.rotation, drawOrigin, Projectile.scale - k / (float)Projectile.oldPos.Length, effects, 0f);
 			}
-			return true;
+			return false;
 		}
 	}
 }

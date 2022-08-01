@@ -200,6 +200,7 @@ namespace Consolaria.Content.NPCs.Turkor
 					colo = 0;
 					NPC.localAI[2] = 0;
 					enraged = false;
+					if (NPC.AnyNPCs(turkorHead)) timer = 0;
 				}
 			}
 

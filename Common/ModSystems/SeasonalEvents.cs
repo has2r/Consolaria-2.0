@@ -4,7 +4,6 @@ using Terraria.ModLoader;
 
 namespace Consolaria.Common {
     public class SeasonalEvents : ModSystem {
-        public static SeasonalEvents Instance;
         public static bool allEventsForToday;
         public static bool enabled = ConsolariaConfig.Instance.easterEnabled || ConsolariaConfig.Instance.thanksgivingEnabled || ConsolariaConfig.Instance.smallEventsEnabled || allEventsForToday,
             isEaster = ConsolariaConfig.Instance.easterEnabled && SeasonalEventsHelper.CheckEaster(),
@@ -15,7 +14,7 @@ namespace Consolaria.Common {
             isValentinesDay = (ConsolariaConfig.Instance.smallEventsEnabled && SeasonalEventsHelper.CheckValentinesDay()) || allEventsForToday;
 
         public override void PostUpdateTime () {
-            if (!Main.dayTime && Main.time == 16400) {
+            if (Main.time == 24000.0) {
                 if (allEventsForToday) {
                     allEventsForToday = false;
                     Main.NewText("Events is over!", Color.HotPink);

@@ -5,8 +5,7 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Consolaria.Content.Items.Materials
-{
+namespace Consolaria.Content.Items.Materials {
     public class RainbowPiece : ModItem {
         public override void SetStaticDefaults () {
             DisplayName.SetDefault("Rainbow Piece");

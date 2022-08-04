@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -28,7 +27,7 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
 
         public override void AI () {
             Player player = Main.player [Projectile.owner];
-            if (!player.dead && player.HasBuff(ModContent.BuffType<Buffs.Leprechaun>()))
+            if (!player.dead && player.HasBuff(ModContent.BuffType<Buffs.Elfa>()))
                 Projectile.timeLeft = 2;
         }
     }

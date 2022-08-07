@@ -110,7 +110,7 @@ namespace Consolaria.Content.NPCs.Turkor
 		
 		public override void AI() {
 			NPC.direction = Main.player[NPC.target].Center.X < NPC.Center.X ? -1 : 1;
-			if (!spawn) {
+			if (!spawn && (Main.netMode == NetmodeID.MultiplayerClient || Main.netMode == NetmodeID.SinglePlayer)) {
 				NPC.realLife = NPC.whoAmI;
 				int neck = NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, ModContent.NPCType<TurkorNeck>(), NPC.whoAmI, 0, NPC.whoAmI); //, 1, NPC.ai[1]);
 				Main.npc[neck].localAI[0] = 30;
@@ -118,6 +118,7 @@ namespace Consolaria.Content.NPCs.Turkor
 				Main.npc[neck].ai[0] = NPC.whoAmI;
 				Main.npc[neck].ai[1] = NPC.whoAmI;
 				spawn = true;
+				NPC.netUpdate = true;
 			}
 			if (!Main.npc[(int)NPC.ai[1]].active) {
 				NPC.life = 0;
@@ -157,6 +158,7 @@ namespace Consolaria.Content.NPCs.Turkor
 				timer = 200;
 				NPC.velocity *= 0.46f;
 				NPC.rotation = 0;
+				NPC.netUpdate = true;
 			}
 
 			//attack1: charge at player
@@ -195,6 +197,7 @@ namespace Consolaria.Content.NPCs.Turkor
 					NPC.velocity.X *= -0.38f;
 					NPC.velocity.Y *= -0.38f;
 				}
+				NPC.netUpdate = true;
 			}
 
 			//attck2: spawn feather around it self while slowly drift toward the player
@@ -222,6 +225,7 @@ namespace Consolaria.Content.NPCs.Turkor
 						NPC.rotation = 0;
 					}
 				}
+				NPC.netUpdate = true;
 			}
 
 			if (!charge) {
@@ -267,6 +271,7 @@ namespace Consolaria.Content.NPCs.Turkor
 				float num857 = (float)Math.Sqrt((double)(num855 * num855 + num856 * num856));
 				if (num857 > 600f) chase = true;		
 				if (num857 <= 400 && chase) chase = false;	
+				NPC.netUpdate = true;
 			}
 		}
 

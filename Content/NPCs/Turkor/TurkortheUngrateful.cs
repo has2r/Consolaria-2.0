@@ -106,7 +106,7 @@ namespace Consolaria.Content.NPCs.Turkor
 			posBX += (float)Math.Cos(h) * 4;
 			posBY += (float)Math.Sin(h) * 4;
 
-			if (enraged) {
+			if (enraged > 0) {
 				for (int i = 0; i < 1; i++) {
 					Color color2 = drawColor;
 					color2 = NPC.GetAlpha(color2) * colo;
@@ -142,12 +142,9 @@ namespace Consolaria.Content.NPCs.Turkor
 		private float colo = 0f;
 
 		//head related
-		private bool headSpawned {
-			get => NPC.ai[0] == 1f;
-			set => NPC.ai[0] = value ? 1f : 0f;
-		}
-		public ref float headNumber => ref NPC.ai[2];
-		public ref float turkorHead_ => ref NPC.ai[3];
+		private bool headSpawned;
+		private int headNumber;
+		private int turkorHead_;
 
 		//idling phase stuff
 		private int timer = 0;
@@ -167,7 +164,7 @@ namespace Consolaria.Content.NPCs.Turkor
 		private float posY = 0f;
 
 		//enraged mode
-		private bool enraged = false;
+		public ref float enraged => ref NPC.ai[0];
 
 		public override void AI() {
 			Player player = Main.player[NPC.target];
@@ -191,7 +188,7 @@ namespace Consolaria.Content.NPCs.Turkor
 			if (num857 > 600f) {
 				NPC.localAI[2] = 40;
 				if (colo < .5f) colo += 0.05f; 
-				enraged = true;
+				enraged = 1;
 			}
 			else {
 
@@ -199,7 +196,7 @@ namespace Consolaria.Content.NPCs.Turkor
 				else {
 					colo = 0;
 					NPC.localAI[2] = 0;
-					enraged = false;
+					enraged = 0;
 					if (NPC.AnyNPCs(turkorHead)) timer = 0;
 				}
 			}
@@ -215,15 +212,16 @@ namespace Consolaria.Content.NPCs.Turkor
 					NPC.noTileCollide = false;
 					ground_ = true;
 				}
+				NPC.netUpdate = true;
 			}
 			
-			NPC.dontTakeDamage = NPC.AnyNPCs(turkorHead) || NPC.localAI[1] == 40 || enraged;
+			NPC.dontTakeDamage = NPC.AnyNPCs(turkorHead) || NPC.localAI[1] == 40 || enraged > 0;
 
-			if (!headSpawned) {
+			if (!headSpawned && Main.netMode != NetmodeID.MultiplayerClient) {
 				headSpawned = true;
-				for (int i = 0; i < (int)headNumber; ++i) {
-					turkorHead_ = (float)NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, turkorHead);
-					NPC npc = Main.npc[(int)turkorHead_];
+				for (int i = 0; i < headNumber; ++i) {
+					turkorHead_ = NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, turkorHead);
+					NPC npc = Main.npc[turkorHead_];
 					npc.velocity.X = Main.rand.Next(-6, 7);
 					npc.velocity.Y = Main.rand.Next(-6, 7);
 					npc.ai[1] = (float)NPC.whoAmI;
@@ -232,7 +230,7 @@ namespace Consolaria.Content.NPCs.Turkor
 			}
 
 			//shoot projectiles at player 
-			if (!NPC.AnyNPCs(turkorHead) || enraged) {
+			if ((!NPC.AnyNPCs(turkorHead) || enraged > 0) && (Main.netMode == NetmodeID.MultiplayerClient || Main.netMode == NetmodeID.SinglePlayer)) {
 				timer++;
 				if (timer >= 140 && NPC.localAI[1] != 40) {
 					if (!findplayer && timer < 160) {
@@ -287,7 +285,7 @@ namespace Consolaria.Content.NPCs.Turkor
 						NPC.velocity.Y = -32;
 					}
 					if (timer2 >= (jumptimer + 20) && !teleport) {
-						if (NPC.alpha <= 255) NPC.alpha += 5;					
+						if (NPC.alpha <= 255) NPC.alpha += 5;
 						else {
 							NPC.velocity.Y = 0;
 							teleport = true;
@@ -311,7 +309,7 @@ namespace Consolaria.Content.NPCs.Turkor
 								NPC.alpha = 0;
 								NPC.rotation = 0;
 								ground_ = false;
-								if (headNumber < 3) headNumber += 1;								
+								if (headNumber < 3) headNumber += 1;
 								headSpawned = false;
 								NPC.noGravity = false;
 								NPC.localAI[1] = 0;
@@ -322,10 +320,10 @@ namespace Consolaria.Content.NPCs.Turkor
 								timer = 0;
 								findplayer = false;
 								NPC.velocity = Vector2.Zero;
-								NPC.netUpdate = true;
 							}
 						}
 					}
+					NPC.netUpdate = true;
 				}
 			}
 		}

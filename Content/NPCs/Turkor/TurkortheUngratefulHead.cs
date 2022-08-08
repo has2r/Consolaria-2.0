@@ -7,11 +7,9 @@ using Terraria.Audio;
 using Consolaria.Content.Projectiles.Enemies;
 using Terraria.DataStructures;
 
-namespace Consolaria.Content.NPCs.Turkor
-{
+namespace Consolaria.Content.NPCs.Turkor {
 	[AutoloadBossHead]
-	public class TurkortheUngratefulHead : ModNPC
-	{
+	public class TurkortheUngratefulHead : ModNPC {
 		private int turntimer = 0;
 		private int timer = 0;
 
@@ -26,12 +24,12 @@ namespace Consolaria.Content.NPCs.Turkor
 
 		private bool chase = false;
 
-		public override void SetStaticDefaults() {
+		public override void SetStaticDefaults () {
 			DisplayName.SetDefault("Turkor the Ungrateful Head");
-			Main.npcFrameCount[NPC.type] = 4;
+			Main.npcFrameCount [NPC.type] = 4;
 
 			NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData {
-				SpecificallyImmuneTo = new int[] {
+				SpecificallyImmuneTo = new int [] {
 					BuffID.Poisoned,
 					BuffID.Confused
 				}
@@ -39,12 +37,12 @@ namespace Consolaria.Content.NPCs.Turkor
 			NPCID.Sets.DebuffImmunitySets.Add(Type, debuffData);
 
 			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0) {
-				Hide = true 
+				Hide = true
 			};
 			NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, value);
 		}
 
-		public override void SetDefaults() {
+		public override void SetDefaults () {
 			int width = 50; int height = 100;
 			NPC.Size = new Vector2(width, height);
 
@@ -76,10 +74,10 @@ namespace Consolaria.Content.NPCs.Turkor
 			NPC.damage = (int) (NPC.damage * 0.65f);
 		}
 
-		private Rectangle GetFrame(int number)
+		private Rectangle GetFrame (int number)
 			=> new Rectangle(0, NPC.frame.Height * (number - 1), NPC.frame.Width, NPC.frame.Height);
 
-		public override void FindFrame(int frameHeight) {
+		public override void FindFrame (int frameHeight) {
 			if (!attackingphase || charge && timer > 230 || projspam) {
 				if (!projspam && NPC.velocity.X * NPC.direction < 0 && turntimer < 15) {
 					turntimer++;
@@ -87,73 +85,72 @@ namespace Consolaria.Content.NPCs.Turkor
 				}
 				else if (hurtframe > 0) {
 					NPC.frame = GetFrame(3);
-					hurtframe--;	
-				}					
+					hurtframe--;
+				}
 				else {
 					if (NPC.velocity.X * NPC.direction > 0) { turntimer = 0; }
 					NPC.spriteDirection = NPC.direction;
-					if (charge)
-					{
+					if (charge) {
 						NPC.frameCounter += 0.08f;
 						NPC.frameCounter %= 2;
-						int frame = (int)NPC.frameCounter;
+						int frame = (int) NPC.frameCounter;
 						NPC.frame.Y = frame * frameHeight;
 					}
 					else if (projspam && timer % 80 < 20) NPC.frame = GetFrame(2);
 					else NPC.frame = GetFrame(1);
 				}
 			}
-			if (charge && timer <= 230) NPC.frame = GetFrame(4);	
+			if (charge && timer <= 230) NPC.frame = GetFrame(4);
 		}
 
-		public override bool CanHitPlayer(Player target, ref int cooldownSlot) => charge;
-		
-		public override void AI() {
-			NPC.direction = Main.player[NPC.target].Center.X < NPC.Center.X ? -1 : 1;
+		public override bool CanHitPlayer (Player target, ref int cooldownSlot) => charge;
+
+		public override void AI () {
+			NPC.direction = Main.player [NPC.target].Center.X < NPC.Center.X ? -1 : 1;
 			if (!spawn && (Main.netMode == NetmodeID.MultiplayerClient || Main.netMode == NetmodeID.SinglePlayer)) {
 				NPC.realLife = NPC.whoAmI;
-				int neck = NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, ModContent.NPCType<TurkorNeck>(), NPC.whoAmI, 0, NPC.whoAmI); //, 1, NPC.ai[1]);
-				Main.npc[neck].localAI[0] = 30;
-				Main.npc[neck].realLife = NPC.whoAmI;
-				Main.npc[neck].ai[0] = NPC.whoAmI;
-				Main.npc[neck].ai[1] = NPC.whoAmI;
+				int neck = NPC.NewNPC(NPC.GetSource_FromAI(), (int) NPC.position.X, (int) NPC.position.Y, ModContent.NPCType<TurkorNeck>(), NPC.whoAmI, 0, NPC.whoAmI); //, 1, NPC.ai[1]);
+				Main.npc [neck].localAI [0] = 30;
+				Main.npc [neck].realLife = NPC.whoAmI;
+				Main.npc [neck].ai [0] = NPC.whoAmI;
+				Main.npc [neck].ai [1] = NPC.whoAmI;
 				spawn = true;
 				NPC.netUpdate = true;
 			}
-			if (!Main.npc[(int)NPC.ai[1]].active) {
+			if (!Main.npc [(int) NPC.ai [1]].active) {
 				NPC.life = 0;
 				NPC.HitEffect(0, 10.0);
 				NPC.active = false;
 			}
 			if (NPC.alpha >= 0) NPC.alpha -= 15;
-		
+
 			timer++;
-			if (Main.player[NPC.target].dead) {
+			if (Main.player [NPC.target].dead) {
 				timer = 0;
 				charge = false;
 				NPC.TargetClosest(false);
 				NPC.velocity.Y -= 0.1f;
-				if (NPC.timeLeft > 10 && Main.player[NPC.target].dead) {
+				if (NPC.timeLeft > 10 && Main.player [NPC.target].dead) {
 					NPC.timeLeft = 10;
 					return;
 				}
 			}
-			else if (!Main.player[NPC.target].dead) NPC.TargetClosest(true);
+			else if (!Main.player [NPC.target].dead) NPC.TargetClosest(true);
 
-			if (timer > 200 && Main.rand.Next(50) == 0 && !attackingphase) {
+			if (timer > 200 && Main.rand.NextBool(50) && !attackingphase) {
 				attackingphase = true;
 				//pick random attack
 				switch (Main.rand.Next(2)) {
-					case 0:
-						charge = true;
-						break;
+				case 0:
+				charge = true;
+				break;
 
-					case 1:
-						projspam = true;
-						break;
+				case 1:
+				projspam = true;
+				break;
 
-					default:
-						break;
+				default:
+				break;
 				}
 				timer = 200;
 				NPC.velocity *= 0.46f;
@@ -164,23 +161,24 @@ namespace Consolaria.Content.NPCs.Turkor
 			//attack1: charge at player
 			if (charge) {
 				if (timer <= 230) {
-					NPC.rotation = Vector2.UnitY.RotatedBy((double)(timer / 40f * 6.2f), default(Vector2)).Y * 0.2f;
+					NPC.rotation = Vector2.UnitY.RotatedBy((double) (timer / 40f * 6.2f), default(Vector2)).Y * 0.2f;
 				}
 				if (timer >= 230) {
 					NPC.rotation = 0;
 					if (timer <= 230) SoundEngine.PlaySound(new SoundStyle($"{nameof(Consolaria)}/Assets/Sounds/TurkorGobble"), NPC.position); // SoundEngine.PlaySound(3, (int)NPC.position.X, (int)NPC.position.Y, 10);
-					
+
 					NPC.velocity.X *= 0.98f;
 					NPC.velocity.Y *= 0.98f;
-					Vector2 vector8 = new Vector2(NPC.position.X + (NPC.width * 0.5f), NPC.position.Y + (NPC.height * 0.5f)); {
-						float rotation = (float)Math.Atan2((vector8.Y) - (Main.player[NPC.target].position.Y + (Main.player[NPC.target].height * 0.5f)), (vector8.X) - (Main.player[NPC.target].position.X + (Main.player[NPC.target].width * 0.5f)));
-						NPC.velocity.X = (float)(Math.Cos(rotation) * 14) * -1;
-						NPC.velocity.Y = (float)(Math.Sin(rotation) * 14) * -1;
+					Vector2 vector8 = new Vector2(NPC.position.X + (NPC.width * 0.5f), NPC.position.Y + (NPC.height * 0.5f));
+					{
+						float rotation = (float) Math.Atan2((vector8.Y) - (Main.player [NPC.target].position.Y + (Main.player [NPC.target].height * 0.5f)), (vector8.X) - (Main.player [NPC.target].position.X + (Main.player [NPC.target].width * 0.5f)));
+						NPC.velocity.X = (float) (Math.Cos(rotation) * 14) * -1;
+						NPC.velocity.Y = (float) (Math.Sin(rotation) * 14) * -1;
 					}
 				}
 
 				//if near player then bounce back
-				if (timer >= 230 && Main.player[NPC.target].Distance(NPC.Center) <= 30) {
+				if (timer >= 230 && Main.player [NPC.target].Distance(NPC.Center) <= 30) {
 					timer = 0;
 					charge = false;
 					attackingphase = false;
@@ -202,9 +200,9 @@ namespace Consolaria.Content.NPCs.Turkor
 
 			//attck2: spawn feather around it self while slowly drift toward the player
 			if (projspam) {
-				if (NPC.spriteDirection == -1) NPC.rotation = rotatepoint;		
-				else NPC.rotation = -rotatepoint;	
-				if (rotatepoint <= 1.5f && timer < 360) rotatepoint += 0.1f;	
+				if (NPC.spriteDirection == -1) NPC.rotation = rotatepoint;
+				else NPC.rotation = -rotatepoint;
+				if (rotatepoint <= 1.5f && timer < 360) rotatepoint += 0.1f;
 				if (!chase) {
 					NPC.velocity.X *= 0.86f;
 					NPC.velocity.Y *= 0.86f;
@@ -212,7 +210,7 @@ namespace Consolaria.Content.NPCs.Turkor
 
 				if (timer % 80 == 0 && rotatepoint >= 1.5f) {
 					for (int i = 0; i < 3; i++)
-						Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, Main.rand.Next(0, 8) * NPC.direction, -10 + Main.rand.Next(-3, 3), ModContent.ProjectileType<TurkorFeather>(), (int)(NPC.damage / 3), 1, Main.myPlayer, 0, 0);				
+						Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, Main.rand.Next(0, 8) * NPC.direction, -10 + Main.rand.Next(-3, 3), ModContent.ProjectileType<TurkorFeather>(), (int) (NPC.damage / 3), 1, Main.myPlayer, 0, 0);
 					NPC.velocity.Y = 5;
 					SoundEngine.PlaySound(SoundID.NPCDeath48, NPC.position);
 				}
@@ -230,52 +228,47 @@ namespace Consolaria.Content.NPCs.Turkor
 
 			if (!charge) {
 				if (!chase) {
-					if (Main.player[NPC.target].Center.X - Main.rand.Next(-200, 201) < NPC.Center.X)
-					{
+					if (Main.player [NPC.target].Center.X - Main.rand.Next(-200, 201) < NPC.Center.X) {
 						if (NPC.velocity.X > -6) NPC.velocity.X -= 0.08f;
 					}
-					else if (Main.player[NPC.target].Center.X - Main.rand.Next(-200, 201) > NPC.Center.X)
-					{
+					else if (Main.player [NPC.target].Center.X - Main.rand.Next(-200, 201) > NPC.Center.X) {
 						if (NPC.velocity.X < 6) NPC.velocity.X += 0.08f;
 					}
-					if (Main.player[NPC.target].Center.Y - Main.rand.Next(-150, 201) < NPC.Center.Y)
-					{
+					if (Main.player [NPC.target].Center.Y - Main.rand.Next(-150, 201) < NPC.Center.Y) {
 						if (NPC.velocity.Y > -6) NPC.velocity.Y -= 0.14f;
 					}
-					else if (Main.player[NPC.target].Center.Y - Main.rand.Next(-150, 201) > NPC.Center.Y)
-					{
+					else if (Main.player [NPC.target].Center.Y - Main.rand.Next(-150, 201) > NPC.Center.Y) {
 						if (NPC.velocity.Y < 6) NPC.velocity.Y += 0.14f;
 					}
 				}
 				else {
-					if (Main.npc[(int)NPC.ai[1]].Center.X - Main.rand.Next(-200, 201) < NPC.Center.X)
-					{
+					if (Main.npc [(int) NPC.ai [1]].Center.X - Main.rand.Next(-200, 201) < NPC.Center.X) {
 						if (NPC.velocity.X > -6) NPC.velocity.X -= 0.08f;
 					}
-					else if (Main.npc[(int)NPC.ai[1]].Center.X - Main.rand.Next(-200, 201) > NPC.Center.X)
-					{
+					else if (Main.npc [(int) NPC.ai [1]].Center.X - Main.rand.Next(-200, 201) > NPC.Center.X) {
 						if (NPC.velocity.X < 6) NPC.velocity.X += 0.08f;
 					}
-					if (Main.npc[(int)NPC.ai[1]].Center.Y - Main.rand.Next(-150, 201) < NPC.Center.Y)
-					{
+					if (Main.npc [(int) NPC.ai [1]].Center.Y - Main.rand.Next(-150, 201) < NPC.Center.Y) {
 						if (NPC.velocity.Y > -6) NPC.velocity.Y -= 0.14f;
 					}
-					else if (Main.npc[(int)NPC.ai[1]].Center.Y - Main.rand.Next(-150, 201) > NPC.Center.Y)
-					{
+					else if (Main.npc [(int) NPC.ai [1]].Center.Y - Main.rand.Next(-150, 201) > NPC.Center.Y) {
 						if (NPC.velocity.Y < 6) NPC.velocity.Y += 0.14f;
 					}
 				}
 				Vector2 vector101 = new Vector2(NPC.Center.X, NPC.Center.Y);
-				float num855 = Main.npc[(int)NPC.ai[1]].Center.X - vector101.X;
-				float num856 = Main.npc[(int)NPC.ai[1]].Center.Y - vector101.Y;
-				float num857 = (float)Math.Sqrt((double)(num855 * num855 + num856 * num856));
-				if (num857 > 600f) chase = true;		
-				if (num857 <= 400 && chase) chase = false;	
+				float num855 = Main.npc [(int) NPC.ai [1]].Center.X - vector101.X;
+				float num856 = Main.npc [(int) NPC.ai [1]].Center.Y - vector101.Y;
+				float num857 = (float) Math.Sqrt((double) (num855 * num855 + num856 * num856));
+				if (num857 > 600f) chase = true;
+				if (num857 <= 400 && chase) chase = false;
 				NPC.netUpdate = true;
 			}
 		}
 
-		public override void HitEffect(int hitDirection, double damage) {
+		public override void HitEffect (int hitDirection, double damage) {
+			if (Main.netMode == NetmodeID.Server)
+				return;
+
 			if (NPC.life <= 0) {
 				if (NPC.life <= 0) {
 					Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-3, 4), Main.rand.Next(-3, 4)), ModContent.Find<ModGore>("Consolaria/TurkorBeakGore").Type);
@@ -286,8 +279,8 @@ namespace Consolaria.Content.NPCs.Turkor
 					Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), ModContent.Find<ModGore>("Consolaria/TurkorFeatherGore").Type);
 				}
 				for (int k = 0; k < 10; k++) {
-					int dust_ = Dust.NewDust(NPC.position, NPC.width, NPC.height, 26, 3f * hitDirection, -3f, 0, default, 2f);
-					Main.dust[dust_].velocity *= 0.2f;
+					int dust_ = Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Bone, 3f * hitDirection, -3f, 0, default, 2f);
+					Main.dust [dust_].velocity *= 0.2f;
 				}
 			}
 		}

@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent.Bestiary;
@@ -54,13 +55,30 @@ namespace Consolaria.Content.NPCs.Ocram
 
             bestiaryEntry.Info.AddRange(new List<IBestiaryInfoElement> {
                 BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Times.NightTime,
-                new FlavorTextBestiaryInfoElement("Evil creatures newly birthed from the Ocram, brought forth to protect their master by any means necessary.")
+                new FlavorTextBestiaryInfoElement("Evil creatures manifested from Ocram, brought forth to protect their master by any means necessary.")
             });
         }
 
         public override void AI() 
             => NPC.position += NPC.velocity * 1.1f;
-        
+
+        public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
+        {
+            Texture2D texture = (Texture2D)ModContent.Request<Texture2D>(Texture);
+            SpriteEffects effects = (NPC.spriteDirection == -1) ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
+            Vector2 origin = new((float)(texture.Width / 2), (float)(texture.Height / Main.npcFrameCount[NPC.type] / 2));
+            Main.spriteBatch.Draw(texture, new Vector2(NPC.position.X - Main.screenPosition.X + (float)(NPC.width / 2) - (float)texture.Width * NPC.scale / 2f + origin.X * NPC.scale, NPC.position.Y - Main.screenPosition.Y + (float)NPC.height - (float)texture.Height * NPC.scale / (float)Main.npcFrameCount[NPC.type] + 4f + origin.Y * NPC.scale), new Rectangle?(NPC.frame), Color.White, NPC.rotation, origin, NPC.scale, effects, 0f);
+                for (int i = 1; i < NPC.oldPos.Length; i++)
+                {
+                    Color color = Lighting.GetColor((int)((double)NPC.position.X + (double)NPC.width * 0.5) / 16, (int)(((double)NPC.position.Y + (double)NPC.height * 0.5) / 16.0));
+                    Color color2 = Color.Red;
+                    color2 = NPC.GetAlpha(color2);
+                    color2 *= (NPC.oldPos.Length - i) / 15f;
+                    Main.spriteBatch.Draw(texture, new Vector2(NPC.position.X - Main.screenPosition.X + (float)(NPC.width / 2) - (float)texture.Width * NPC.scale / 2f + origin.X * NPC.scale, NPC.position.Y - Main.screenPosition.Y + (float)NPC.height - (float)texture.Height * NPC.scale / (float)Main.npcFrameCount[NPC.type] + 4f + origin.Y * NPC.scale) - NPC.velocity * (float)i * 0.5f, new Rectangle?(NPC.frame), color2, NPC.rotation, origin, NPC.scale, effects, 0f);
+                }
+            return true;
+        }
+
         public override void HitEffect(int hitDirection, double damage) {
             for (int i = 0; i < 3; i++)
                 Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Shadowflame, hitDirection, -1f, 0, default, 1f);

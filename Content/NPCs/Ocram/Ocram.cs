@@ -104,15 +104,23 @@ namespace Consolaria.Content.NPCs.Ocram {
             float num318 = NPC.position.Y + (float) NPC.height - 59f - Main.player [NPC.target].position.Y - (float) (Main.player [NPC.target].height / 2);
             float num319 = (float) Math.Atan2((double) num318, (double) num317) + 1.57f;
 
+            //Main.NewText(num319, Color.Aqua);
+            //Main.NewText(NPC.rotation, Color.LightPink);
+
             if (num319 < 0f) {
+                //Main.NewText(num319, Color.GreenYellow);
                 num319 += 6.2f;
             }
             else {
                 if (num319 > 6.2f) {
+                    //Main.NewText(num319, Color.Brown);
                     num319 -= 6.2f;
                 }
             }
             float num320 = 0.1f;
+
+           
+
             if (NPC.rotation < num319) {
                 if ((double) (num319 - NPC.rotation) > 3.1) {
                     NPC.rotation -= num320;
@@ -135,10 +143,12 @@ namespace Consolaria.Content.NPCs.Ocram {
                 NPC.rotation = num319;
             }
             if (NPC.rotation < 0f) {
+                //Main.NewText(NPC.rotation, Color.GreenYellow);
                 NPC.rotation += 6.2f;
             }
             else {
-                if (NPC.rotation > 6.2) {
+                if (NPC.rotation > 6.2f) {
+                    //Main.NewText(NPC.rotation, Color.Brown);
                     NPC.rotation -= 6.2f;
                 }
             }
@@ -225,7 +235,6 @@ namespace Consolaria.Content.NPCs.Ocram {
                                     NPC.ai [3] += 1f;
                                 }
                                 if (NPC.ai [3] >= 60 && NPC.ai [3] <= 70) {
-                                    NPC.velocity *= 0.95f;
                                     float Speed = 8f;
                                     Vector2 vector8 = new Vector2(NPC.position.X + (NPC.width / 2), NPC.position.Y + (NPC.height / 2));
                                     SoundEngine.PlaySound(SoundID.Item33, NPC.position);
@@ -242,6 +251,8 @@ namespace Consolaria.Content.NPCs.Ocram {
                                         Main.dust [index3].fadeIn = Main.rand.NextFloat(0, 1f);
                                     }
                                 }
+
+                                NPC.ai[2] = 0; //will repeat this attack infinitely for testing
                             }
                             if (NPC.ai [2] > 360 && NPC.ai [2] <= 520) { //stationary laser barrage preparation
                                 if (!Main.player [NPC.target].dead) {
@@ -261,7 +272,7 @@ namespace Consolaria.Content.NPCs.Ocram {
                                 }
 
                                 if (NPC.ai [2] > 420 && NPC.ai [2] <= 480) { //stationary laser barrage
-                                     NPC.velocity *= 0.95f;
+                                     NPC.velocity *= 0.9f;
                                     if ((double) NPC.velocity.X > -0.1 && (double) NPC.velocity.X < 0.1) {
                                         NPC.velocity.X = 0f;
                                     }
@@ -281,8 +292,8 @@ namespace Consolaria.Content.NPCs.Ocram {
                                 }
 
                                 if (NPC.ai [2] > 480 && NPC.ai [2] <= 500) {
-                                    NPC.velocity.X = NPC.velocity.X * 0.95f;
-                                    NPC.velocity.Y = NPC.velocity.Y * 0.95f;
+                                    NPC.velocity.X = NPC.velocity.X * 0.93f;
+                                    NPC.velocity.Y = NPC.velocity.Y * 0.93f;
                                     if ((double) NPC.velocity.X > -0.1 && (double) NPC.velocity.X < 0.1) {
                                         NPC.velocity.X = 0f;
                                     }

@@ -66,11 +66,10 @@ namespace Consolaria.Content.NPCs.Ocram {
             Vector2 origin = new((float) (texture.Width / 2), (float) (texture.Height / Main.npcFrameCount [NPC.type] / 2));
             Main.spriteBatch.Draw(texture, new Vector2(NPC.position.X - Main.screenPosition.X + (float) (NPC.width / 2) - (float) texture.Width * NPC.scale / 2f + origin.X * NPC.scale, NPC.position.Y - Main.screenPosition.Y + (float) NPC.height - (float) texture.Height * NPC.scale / (float) Main.npcFrameCount [NPC.type] + 4f + origin.Y * NPC.scale), new Rectangle?(NPC.frame), Color.White, NPC.rotation, origin, NPC.scale, effects, 0f);
             for (int i = 1; i < NPC.oldPos.Length; i++) {
-                Color color = Lighting.GetColor((int) ((double) NPC.position.X + (double) NPC.width * 0.5) / 16, (int) (((double) NPC.position.Y + (double) NPC.height * 0.5) / 16.0));
-                Color color2 = Color.Red;
-                color2 = NPC.GetAlpha(color2);
-                color2 *= (NPC.oldPos.Length - i) / 15f;
-                Main.spriteBatch.Draw(texture, new Vector2(NPC.position.X - Main.screenPosition.X + (float) (NPC.width / 2) - (float) texture.Width * NPC.scale / 2f + origin.X * NPC.scale, NPC.position.Y - Main.screenPosition.Y + (float) NPC.height - (float) texture.Height * NPC.scale / (float) Main.npcFrameCount [NPC.type] + 4f + origin.Y * NPC.scale) - NPC.velocity * (float) i * 0.5f, new Rectangle?(NPC.frame), color2, NPC.rotation, origin, NPC.scale, effects, 0f);
+                Color color = Color.Red;
+                color = NPC.GetAlpha(color);
+                color *= (NPC.oldPos.Length - i) / 15f;
+                Main.spriteBatch.Draw(texture, new Vector2(NPC.position.X - Main.screenPosition.X + (float) (NPC.width / 2) - (float) texture.Width * NPC.scale / 2f + origin.X * NPC.scale, NPC.position.Y - Main.screenPosition.Y + (float) NPC.height - (float) texture.Height * NPC.scale / (float) Main.npcFrameCount [NPC.type] + 4f + origin.Y * NPC.scale) - NPC.velocity * (float) i * 0.5f, new Rectangle?(NPC.frame), color, NPC.rotation, origin, NPC.scale, effects, 0f);
             }
             return true;
         }
@@ -82,7 +81,7 @@ namespace Consolaria.Content.NPCs.Ocram {
             for (int i = 0; i < 3; i++)
                 Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Shadowflame, hitDirection, -1f, 0, default, 1f);
             if (NPC.life <= 0) {
-                Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity, ModContent.Find<ModGore>("Consolaria/Servant_Gore").Type, 0.75f);
+                Gore.NewGore(NPC.GetSource_Death(), NPC.position, Vector2.Zero, ModContent.Find<ModGore>("Consolaria/Servant_Gore").Type, 0.75f);
                 for (int j = 0; j < 12; j++)
                     Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Shadowflame, hitDirection, -1f, 0, default, 1f);
             }

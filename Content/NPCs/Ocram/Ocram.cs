@@ -179,7 +179,6 @@ namespace Consolaria.Content.NPCs.Ocram {
                         float num325 = Main.player [NPC.target].position.X + (Main.player [NPC.target].width / 2) - 300f - (num324 * 300) - vector32.X;
                         float num326 = Main.player [NPC.target].position.Y + (Main.player [NPC.target].height / 2) - 300f - vector32.Y;
                         float num327 = (float) Math.Sqrt((num325 * num325 + num326 * num326));
-                        float num328 = num327;
                         num327 = num322 / num327;
                         num325 *= num327;
                         num326 *= num327;
@@ -226,6 +225,7 @@ namespace Consolaria.Content.NPCs.Ocram {
                                     NPC.ai [3] += 1f;
                                 }
                                 if (NPC.ai [3] >= 60 && NPC.ai [3] <= 70) {
+                                    NPC.velocity *= 0.95f;
                                     float Speed = 8f;
                                     Vector2 vector8 = new Vector2(NPC.position.X + (NPC.width / 2), NPC.position.Y + (NPC.height / 2));
                                     SoundEngine.PlaySound(SoundID.Item33, NPC.position);
@@ -261,7 +261,7 @@ namespace Consolaria.Content.NPCs.Ocram {
                                 }
 
                                 if (NPC.ai [2] > 420 && NPC.ai [2] <= 480) { //stationary laser barrage
-                                    NPC.velocity *= 0.9f;
+                                     NPC.velocity *= 0.95f;
                                     if ((double) NPC.velocity.X > -0.1 && (double) NPC.velocity.X < 0.1) {
                                         NPC.velocity.X = 0f;
                                     }
@@ -281,8 +281,8 @@ namespace Consolaria.Content.NPCs.Ocram {
                                 }
 
                                 if (NPC.ai [2] > 480 && NPC.ai [2] <= 500) {
-                                    NPC.velocity.X = NPC.velocity.X * 0.93f;
-                                    NPC.velocity.Y = NPC.velocity.Y * 0.93f;
+                                    NPC.velocity.X = NPC.velocity.X * 0.95f;
+                                    NPC.velocity.Y = NPC.velocity.Y * 0.95f;
                                     if ((double) NPC.velocity.X > -0.1 && (double) NPC.velocity.X < 0.1) {
                                         NPC.velocity.X = 0f;
                                     }

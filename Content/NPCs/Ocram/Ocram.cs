@@ -26,6 +26,7 @@ namespace Consolaria.Content.NPCs.Ocram {
         private const int MissileProjectiles = 5;
         private const float MissileAngleSpread = 150;
         private bool effect = false;
+        private float rad = (float)Math.PI * 2f;
 
         public override void SetStaticDefaults () {
             DisplayName.SetDefault("Ocram");
@@ -104,22 +105,15 @@ namespace Consolaria.Content.NPCs.Ocram {
             float num318 = NPC.position.Y + (float) NPC.height - 59f - Main.player [NPC.target].position.Y - (float) (Main.player [NPC.target].height / 2);
             float num319 = (float) Math.Atan2((double) num318, (double) num317) + 1.57f;
 
-            //Main.NewText(num319, Color.Aqua);
-            //Main.NewText(NPC.rotation, Color.LightPink);
-
             if (num319 < 0f) {
-                //Main.NewText(num319, Color.GreenYellow);
-                num319 += 6.2f;
+                num319 += rad;
             }
             else {
-                if (num319 > 6.2f) {
-                    //Main.NewText(num319, Color.Brown);
-                    num319 -= 6.2f;
+                if (num319 > rad) {
+                    num319 -= rad;
                 }
             }
             float num320 = 0.1f;
-
-           
 
             if (NPC.rotation < num319) {
                 if ((double) (num319 - NPC.rotation) > 3.1) {
@@ -143,13 +137,12 @@ namespace Consolaria.Content.NPCs.Ocram {
                 NPC.rotation = num319;
             }
             if (NPC.rotation < 0f) {
-                //Main.NewText(NPC.rotation, Color.GreenYellow);
-                NPC.rotation += 6.2f;
+                NPC.rotation += rad;
             }
-            else {
-                if (NPC.rotation > 6.2f) {
-                    //Main.NewText(NPC.rotation, Color.Brown);
-                    NPC.rotation -= 6.2f;
+            else
+            {
+                if (NPC.rotation > rad) {
+                    NPC.rotation -= rad;
                 }
             }
             if (NPC.rotation > num319 - num320 && NPC.rotation < num319 + num320) {
@@ -186,12 +179,15 @@ namespace Consolaria.Content.NPCs.Ocram {
                             num324 = -1;
                         }
                         Vector2 vector32 = new Vector2(NPC.position.X + NPC.width * 0.5f, NPC.position.Y + NPC.height * 0.5f);
-                        float num325 = Main.player [NPC.target].position.X + (Main.player [NPC.target].width / 2) - 300f - (num324 * 300) - vector32.X;
+                        float num325 = Main.player [NPC.target].position.X + (Main.player [NPC.target].width / 2) - 300f - (num324 * 300) - vector32.X; //about 12 if boss is to the left and -12 if it is to the right
                         float num326 = Main.player [NPC.target].position.Y + (Main.player [NPC.target].height / 2) - 300f - vector32.Y;
                         float num327 = (float) Math.Sqrt((num325 * num325 + num326 * num326));
                         num327 = num322 / num327;
                         num325 *= num327;
                         num326 *= num327;
+
+                        //adjust velocity.x and y between 12 and -12 depending on player position
+
                         if (NPC.velocity.X < num325) {
                             NPC.velocity.X = NPC.velocity.X + num323;
                             if (NPC.velocity.X < 0f && num325 > 0f) {

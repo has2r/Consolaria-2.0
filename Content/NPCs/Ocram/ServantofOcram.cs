@@ -81,7 +81,7 @@ namespace Consolaria.Content.NPCs.Ocram {
             for (int i = 0; i < 3; i++)
                 Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Shadowflame, hitDirection, -1f, 0, default, 1f);
             if (NPC.life <= 0) {
-                Gore.NewGore(NPC.GetSource_Death(), NPC.position, Vector2.Zero, ModContent.Find<ModGore>("Consolaria/Servant_Gore").Type, 0.75f);
+                Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity * 0.75f, ModContent.Find<ModGore>("Consolaria/Servant_Gore").Type, 0.75f);
                 for (int j = 0; j < 12; j++)
                     Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Shadowflame, hitDirection, -1f, 0, default, 1f);
             }

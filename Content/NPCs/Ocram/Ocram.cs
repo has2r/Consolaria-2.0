@@ -775,17 +775,16 @@ namespace Consolaria.Content.NPCs.Ocram {
             Texture2D texture = (Texture2D) ModContent.Request<Texture2D>("Consolaria/Assets/Textures/NPCs/Ocram");
             SpriteEffects effects = (NPC.spriteDirection == -1) ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
             Vector2 origin = new(texture.Width / 2, texture.Height / Main.npcFrameCount [NPC.type] / 2);
-            Vector2 ocrampos = new Vector2(NPC.position.X - Main.screenPosition.X + NPC.width / 2 - texture.Width * NPC.scale / 2f + origin.X * NPC.scale, NPC.position.Y - Main.screenPosition.Y + NPC.height - texture.Height * NPC.scale / Main.npcFrameCount [NPC.type] + 4f + origin.Y * NPC.scale);
+            Vector2 ocramPos = new Vector2(NPC.position.X - Main.screenPosition.X + NPC.width / 2 - texture.Width * NPC.scale / 2f + origin.X * NPC.scale, NPC.position.Y - Main.screenPosition.Y + NPC.height - texture.Height * NPC.scale / Main.npcFrameCount [NPC.type] + 4f + origin.Y * NPC.scale);
             if (drawTrail) {
-                Main.spriteBatch.Draw(texture, ocrampos, new Rectangle?(NPC.frame), Color.White, NPC.rotation, origin, NPC.scale, effects, 0f);
+                Main.spriteBatch.Draw(texture, ocramPos, new Rectangle?(NPC.frame), Color.White, NPC.rotation, origin, NPC.scale, effects, 0f);
                 for (int i = 1; i < NPC.oldPos.Length; i++) {
                     Color color = Lighting.GetColor((int) (NPC.position.X + NPC.width * 0.5) / 16, (int) ((NPC.position.Y + NPC.height * 0.5) / 16.0));
-                    Color color2 = color;
-                    if (NPC.ai [0] == 0f) color2 = Color.Red;
-                    else color2 = Color.BlueViolet;
-                    color2 = NPC.GetAlpha(color2);
-                    color2 *= (NPC.oldPos.Length - i) / 15f;
-                    Main.spriteBatch.Draw(texture, ocrampos - NPC.velocity * i * 0.5f, new Rectangle?(NPC.frame), color2, NPC.rotation, origin, NPC.scale, effects, 0f);
+                    if (NPC.ai [0] == 0f) color = Color.Red;
+                    else color = Color.BlueViolet;
+                    color = NPC.GetAlpha(color);
+                    color *= (NPC.oldPos.Length - i) / 15f;
+                    Main.spriteBatch.Draw(texture, ocramPos - NPC.velocity * i * 0.5f, new Rectangle?(NPC.frame), color, NPC.rotation, origin, NPC.scale, effects, 0f);
                 }
             }
             return true;

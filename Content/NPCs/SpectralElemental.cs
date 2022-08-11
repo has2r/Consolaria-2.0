@@ -63,7 +63,7 @@ namespace Consolaria.Content.NPCs
             Vector2 playerPos = new(player.position.X, player.position.Y);
             if (NPC.localAI [0] >= 300 + Main.rand.Next(0, 180) && Vector2.Distance(NPC.Center, player.Center) < 300f) {
                 for (int I = 0; I < 20; I++)
-                    Dust.NewDust(NPC.position, NPC.width - (Main.rand.Next(NPC.width)), NPC.height - (Main.rand.Next(NPC.height)), DustID.BlueFairy, (float) Main.rand.Next(-5, 5), Main.rand.Next(-5, 5), 100, default, 1.1f);
+                    Dust.NewDust(NPC.position, NPC.width - (Main.rand.Next(NPC.width)), NPC.height - (Main.rand.Next(NPC.height)), DustID.BlueFairy, Main.rand.Next(-5, 5), Main.rand.Next(-5, 5), 100, default, 1.1f);
                 Teleport(playerPos);
                 NPC.localAI [0] = 0;
             }
@@ -83,10 +83,10 @@ namespace Consolaria.Content.NPCs
         }
 
         public override void HitEffect (int hitDirection, double damage) {
-            Dust.NewDust(NPC.position, NPC.width, NPC.height, 185, 2.5f * (float) hitDirection, -2.5f, 0, default, 0.8f);
+            Dust.NewDust(NPC.position, NPC.width, NPC.height, 185, 2.5f * hitDirection, -2.5f, 0, default, 0.8f);
             if (NPC.life <= 0) {
                 for (int i = 0; i < 25; i++)
-                    Dust.NewDust(NPC.position, NPC.width, NPC.height, 185, 2.5f * (float) hitDirection, -2.5f, 0, default, 1f);
+                    Dust.NewDust(NPC.position, NPC.width, NPC.height, 185, 2.5f * hitDirection, -2.5f, 0, default, 1f);
             }
         }
 

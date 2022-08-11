@@ -15,14 +15,12 @@ namespace Consolaria.Content.NPCs.Turkor {
 
 		private bool spawn = false;
 		private bool charge = false;
+		private bool chase = false;
 		private bool projspam = false;
 		private bool attackingphase = false;
 
 		private int hurtframe = 0;
-
 		private float rotatepoint = 0;
-
-		private bool chase = false;
 
 		public override void SetStaticDefaults () {
 			DisplayName.SetDefault("Turkor the Ungrateful Head");
@@ -161,7 +159,7 @@ namespace Consolaria.Content.NPCs.Turkor {
 			//attack1: charge at player
 			if (charge) {
 				if (timer <= 230) {
-					NPC.rotation = Vector2.UnitY.RotatedBy((double) (timer / 40f * 6.2f), default(Vector2)).Y * 0.2f;
+					NPC.rotation = Vector2.UnitY.RotatedBy((double) (timer / 40f * 6.2f), default).Y * 0.2f;
 				}
 				if (timer >= 230) {
 					NPC.rotation = 0;
@@ -210,7 +208,7 @@ namespace Consolaria.Content.NPCs.Turkor {
 
 				if (timer % 80 == 0 && rotatepoint >= 1.5f) {
 					for (int i = 0; i < 3; i++)
-						Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, Main.rand.Next(0, 8) * NPC.direction, -10 + Main.rand.Next(-3, 3), ModContent.ProjectileType<TurkorFeather>(), (int) (NPC.damage / 3), 1, Main.myPlayer, 0, 0);
+						Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, Main.rand.Next(0, 8) * NPC.direction, -10 + Main.rand.Next(-3, 3), ModContent.ProjectileType<TurkorFeather>(), NPC.damage / 3, 1, Main.myPlayer, 0, 0);
 					NPC.velocity.Y = 5;
 					SoundEngine.PlaySound(SoundID.NPCDeath48, NPC.position);
 				}

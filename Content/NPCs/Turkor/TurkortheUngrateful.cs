@@ -99,7 +99,7 @@ namespace Consolaria.Content.NPCs.Turkor {
 		public override bool PreDraw (SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
 			SpriteEffects effects = (NPC.spriteDirection == -1) ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
 			Texture2D texture = (Texture2D) ModContent.Request<Texture2D>(Texture);
-			Vector2 origin = new Vector2((float) (texture.Width / 2), (float) (texture.Height / Main.npcFrameCount [NPC.type] / 2));
+			Vector2 origin = new Vector2(texture.Width / 2, texture.Height / Main.npcFrameCount [NPC.type] / 2);
 			h += 0.1f;
 			posBX += (float) Math.Cos(h) * 4;
 			posBY += (float) Math.Sin(h) * 4;
@@ -108,8 +108,8 @@ namespace Consolaria.Content.NPCs.Turkor {
 				for (int i = 0; i < 1; i++) {
 					Color color2 = drawColor;
 					color2 = NPC.GetAlpha(color2) * colo;
-					Main.spriteBatch.Draw(texture, new Vector2(NPC.position.X + 20 + posBX - Main.screenPosition.X + (float) (NPC.width / 2) - (float) texture.Width * NPC.scale / 2f + origin.X * NPC.scale, NPC.position.Y - 40 + posBY - Main.screenPosition.Y + (float) NPC.height - (float) texture.Height * NPC.scale / (float) Main.npcFrameCount [NPC.type] + 4f + origin.Y * NPC.scale) - NPC.velocity * (float) i * 0.5f, new Rectangle?(NPC.frame), color2, NPC.rotation, origin, NPC.scale, effects, 0f);
-					Main.spriteBatch.Draw(texture, new Vector2(NPC.position.X - 20 - posBX - Main.screenPosition.X + (float) (NPC.width / 2) - (float) texture.Width * NPC.scale / 2f + origin.X * NPC.scale, NPC.position.Y + 40 - posBY - Main.screenPosition.Y + (float) NPC.height - (float) texture.Height * NPC.scale / (float) Main.npcFrameCount [NPC.type] + 4f + origin.Y * NPC.scale) - NPC.velocity * (float) i * 0.5f, new Rectangle?(NPC.frame), color2, NPC.rotation, origin, NPC.scale, effects, 0f);
+					Main.spriteBatch.Draw(texture, new Vector2(NPC.position.X + 20 + posBX - Main.screenPosition.X + NPC.width / 2 - texture.Width * NPC.scale / 2f + origin.X * NPC.scale, NPC.position.Y - 40 + posBY - Main.screenPosition.Y + NPC.height - texture.Height * NPC.scale / Main.npcFrameCount [NPC.type] + 4f + origin.Y * NPC.scale) - NPC.velocity * i * 0.5f, new Rectangle?(NPC.frame), color2, NPC.rotation, origin, NPC.scale, effects, 0f);
+					Main.spriteBatch.Draw(texture, new Vector2(NPC.position.X - 20 - posBX - Main.screenPosition.X + NPC.width / 2 - texture.Width * NPC.scale / 2f + origin.X * NPC.scale, NPC.position.Y + 40 - posBY - Main.screenPosition.Y + NPC.height - texture.Height * NPC.scale / Main.npcFrameCount [NPC.type] + 4f + origin.Y * NPC.scale) - NPC.velocity * i * 0.5f, new Rectangle?(NPC.frame), color2, NPC.rotation, origin, NPC.scale, effects, 0f);
 				}
 			}
 			return true;
@@ -118,19 +118,19 @@ namespace Consolaria.Content.NPCs.Turkor {
 		private void HalfCircle () {
 			SoundEngine.PlaySound(SoundID.Item71, NPC.position);
 			ushort type = (ushort) ModContent.ProjectileType<TurkorKnife>();
-			Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, 8, 0, type, (int) (NPC.damage / 2), 1, Main.myPlayer, 0, 0);
-			Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, 6, -4, type, (int) (NPC.damage / 2), 1, Main.myPlayer, 0, 0);
-			Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, 0, -6, type, (int) (NPC.damage / 2), 1, Main.myPlayer, 0, 0);
-			Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, -8, 0, type, (int) (NPC.damage / 2), 1, Main.myPlayer, 0, 0);
-			Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, -6, -4, type, (int) (NPC.damage / 2), 1, Main.myPlayer, 0, 0);
+			Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, 8, 0, type, NPC.damage / 2, 1, Main.myPlayer, 0, 0);
+			Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, 6, -4, type, NPC.damage / 2, 1, Main.myPlayer, 0, 0);
+			Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, 0, -6, type, NPC.damage / 2, 1, Main.myPlayer, 0, 0);
+			Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, -8, 0, type, NPC.damage / 2, 1, Main.myPlayer, 0, 0);
+			Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, -6, -4, type, NPC.damage / 2, 1, Main.myPlayer, 0, 0);
 			for (int num623 = (int) NPC.position.X - 20; num623 < (int) NPC.position.X + NPC.width + 40; num623 += 20) {
 				for (int num624 = 0; num624 < 4; num624 = num + 1) {
-					int dust = Dust.NewDust(new Vector2(NPC.position.X - 20f, NPC.position.Y + NPC.height), NPC.width + 20, 4, DustID.Smoke, 0f, 0f, 100, default(Color), 1.5f);
+					int dust = Dust.NewDust(new Vector2(NPC.position.X - 20f, NPC.position.Y + NPC.height), NPC.width + 20, 4, DustID.Smoke, 0f, 0f, 100, default, 1.5f);
 					Dust dust3 = Main.dust [dust];
 					dust3.velocity *= 0.2f;
 					num = num624;
 				}
-				int num626 = Gore.NewGore(NPC.GetSource_FromAI(), new Vector2((num623 - 20), NPC.position.Y + NPC.height - 8f), default(Vector2), Main.rand.Next(61, 64), 1f);
+				int num626 = Gore.NewGore(NPC.GetSource_FromAI(), new Vector2((num623 - 20), NPC.position.Y + NPC.height - 8f), default, Main.rand.Next(61, 64), 1f);
 				Gore gore = Main.gore [num626];
 				gore.velocity *= 0.4f;
 			}
@@ -255,7 +255,7 @@ namespace Consolaria.Content.NPCs.Turkor {
 						float rotation0 = (float) Math.Atan2((vector8.Y) - (posY + (Main.player [NPC.target].height * 0.5f)), (vector8.X) - (posX + (Main.player [NPC.target].width * 0.5f)));
 						if (timer % 5 == 0) {
 							SoundEngine.PlaySound(SoundID.Item42, NPC.position);
-							int a = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, 0, 0, ModContent.ProjectileType<TurkorFeather>(), (int) (NPC.damage / 2), 1, Main.myPlayer, 0, 0);
+							int a = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, 0, 0, ModContent.ProjectileType<TurkorFeather>(), NPC.damage / 2, 1, Main.myPlayer, 0, 0);
 							Main.projectile [a].aiStyle = -1;
 							Main.projectile [a].velocity.X = (float) (Math.Cos(rotation0) * 18) * -1 + Main.rand.Next(-3, 3);
 							Main.projectile [a].velocity.Y = (float) (Math.Sin(rotation0) * 18) * -1 + Main.rand.Next(-3, 3);
@@ -276,7 +276,7 @@ namespace Consolaria.Content.NPCs.Turkor {
 
 				if (timer2 >= jumptimer - 100) {
 					NPC.localAI [1] = 40;
-					NPC.rotation = Vector2.UnitY.RotatedBy((double) (timer / 25f * 6.3f), default(Vector2)).Y * 0.2f;
+					NPC.rotation = Vector2.UnitY.RotatedBy((double) (timer / 25f * 6.3f), default).Y * 0.2f;
 				}
 
 				//preventing melee cheese

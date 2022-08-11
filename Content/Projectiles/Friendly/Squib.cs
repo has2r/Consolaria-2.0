@@ -61,11 +61,11 @@ namespace Consolaria.Content.Projectiles.Friendly {
 					if (vector5 == Vector2.Zero) break;
 					int num24 = Main.rand.Next(10, 20);
 					float num25 = MathHelper.Lerp(0.8f, 1f, Utils.GetLerpValue(Projectile.oldPos.Length, 0f, num23, clamped: true));
-					if ((float) num23 >= (float) Projectile.oldPos.Length * 0.25f) num24--;
-					if ((float) num23 >= (float) Projectile.oldPos.Length * 0.5f) num24 -= 2;
+					if (num23 >= Projectile.oldPos.Length * 0.25f) num24--;
+					if (num23 >= Projectile.oldPos.Length * 0.5f) num24 -= 2;
 					Vector2 value4 = vector5.DirectionTo(target5).SafeNormalize(Vector2.Zero);
 					target5 = vector5;
-					for (float num26 = 0f; num26 < (float) num24; num26++) {
+					for (float num26 = 0f; num26 < num24; num26++) {
 						if (Main.rand.NextBool(2)) {
 							int num27 = Dust.NewDust(vector5, Projectile.width, Projectile.height, DustID.Firework_Red, 0f, 0f, 50, default);
 							Dust dust2 = Main.dust [num27];

@@ -34,8 +34,8 @@ namespace Consolaria.Content.Projectiles.Enemies
 			SpriteEffects effects = (Projectile.spriteDirection == -1) ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
 			for (int k = 0; k < Projectile.oldPos.Length; k++) {
 				Vector2 drawPos = Projectile.oldPos[k] - Main.screenPosition + drawOrigin + new Vector2(0f, Projectile.gfxOffY);
-				Color color = Projectile.GetAlpha(lightColor) * ((float)(Projectile.oldPos.Length - k) / (float)Projectile.oldPos.Length);
-				color = Color.Lerp(color, Color.Crimson, (float)k / 12f);
+				Color color = Projectile.GetAlpha(lightColor) * ((Projectile.oldPos.Length - k) / (float)Projectile.oldPos.Length);
+				color = Color.Lerp(color, Color.Crimson, k / 12f);
 				color.A = (byte)2f;
 				color.R = (byte)(color.R * (10 - k) / acolor);
 				color.G = (byte)(color.G * (10 - k) / acolor);

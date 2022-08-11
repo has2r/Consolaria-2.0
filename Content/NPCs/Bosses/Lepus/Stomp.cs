@@ -53,7 +53,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
 			{
 				for (int j = point.Y; j <= point2.Y; j++)
 				{
-					if (Vector2.Distance(Projectile.Center, new Vector2(i * 16, j * 16)) > (float)num3)
+					if (Vector2.Distance(Projectile.Center, new Vector2(i * 16, j * 16)) > num3)
 						continue;
 					Tile tileSafely = Framing.GetTileSafely(i, j);
 					if (!tileSafely.HasTile || !Main.tileSolid[tileSafely.TileType] || Main.tileSolidTop[tileSafely.TileType] || Main.tileFrameImportant[tileSafely.TileType])
@@ -65,17 +65,17 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
 					for (int k = 0; k < num5; k++)
 					{
 						Dust obj = Main.dust[WorldGen.KillTile_MakeTileDust(i, j, tileSafely)];
-						obj.velocity.Y -= 3f + (float)num4 * 1.5f;
+						obj.velocity.Y -= 3f + num4 * 1.5f;
 						obj.velocity.Y *= Main.rand.NextFloat();
 						obj.velocity.Y *= 0.75f;
-						obj.scale += (float)num4 * 0.03f;
+						obj.scale += num4 * 0.03f;
 					}
 					if (num4 >= 2)
 					{
 						for (int m = 0; m < num5 - 1; m++)
 						{
 							Dust obj2 = Main.dust[WorldGen.KillTile_MakeTileDust(i, j, tileSafely)];
-							obj2.velocity.Y -= 1f + (float)num4;
+							obj2.velocity.Y -= 1f + num4;
 							obj2.velocity.Y *= Main.rand.NextFloat();
 							obj2.velocity.Y *= 0.75f;
 						}
@@ -85,7 +85,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
 						for (int m = 0; m < num5 - 1; m++)
 						{
 							Dust obj2 = Main.dust[WorldGen.KillTile_MakeTileDust(i, j, tileSafely)];
-							obj2.velocity.Y -= 1f + (float)num4;
+							obj2.velocity.Y -= 1f + num4;
 							obj2.velocity.Y *= Main.rand.NextFloat();
 							obj2.velocity.Y *= 0.75f;
 						}

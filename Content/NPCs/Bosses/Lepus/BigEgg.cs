@@ -53,7 +53,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
         public override void AI () {
             float maxRotation = 0.2f;
             int max = 4000;
-            float current = (float) Timer / (float) max;
+            float current = (float) Timer / max;
             Timer += Main.rand.NextFloat() * 3f * ((current + 0.5f) * 5f);
             float speed = current < 0.5f ? current : 1f - current;
             NPC.rotation = MathHelper.Lerp(-maxRotation, maxRotation, speed);

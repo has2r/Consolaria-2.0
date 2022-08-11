@@ -38,7 +38,7 @@ namespace Consolaria.Content.Projectiles.Enemies
 					Vector2 vector = Vector2.UnitX * 0f;
 					vector += -Vector2.UnitY.RotatedBy(vel * (8f / dustCount), default) * new Vector2(18f, 18f);
 					vector = vector.RotatedBy(Projectile.velocity.ToRotation(), default);
-					int dust = Dust.NewDust(Projectile.Center, 0, 0, 6, 0f, 0f, 0, default(Color), 1f);
+					int dust = Dust.NewDust(Projectile.Center, 0, 0, 6, 0f, 0f, 0, default, 1f);
 					Main.dust[dust].noGravity = true;
 					Main.dust[dust].position = new Vector2(Projectile.Center.X, Projectile.Center.Y) + vector;
 					Main.dust[dust].velocity = Projectile.velocity * 0f + vector.SafeNormalize(Vector2.UnitY) * 0.8f;

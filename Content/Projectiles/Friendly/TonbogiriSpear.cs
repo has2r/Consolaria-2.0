@@ -51,7 +51,7 @@ namespace Consolaria.Content.Projectiles.Friendly
                 if (Projectile.alpha < 0) Projectile.alpha = 0;      
                 if (Projectile.localAI[0] > 0f) Projectile.localAI[0] -= 1f;
                 
-                float num = (float)player.itemAnimation / (float)player.itemAnimationMax;
+                float num = player.itemAnimation / (float)player.itemAnimationMax;
                 float num2 = 1f - num;
                 float num3 = Projectile.velocity.ToRotation();
                 float num4 = Projectile.velocity.Length();
@@ -59,17 +59,17 @@ namespace Consolaria.Content.Projectiles.Friendly
                 Vector2 spinningpoint = new Vector2(1.5f, 0f).RotatedBy((float)Math.PI + num2 * ((float)Math.PI * 3f)) * new Vector2(num4, Projectile.ai[0]);
                 Projectile.position += spinningpoint.RotatedBy(num3) + new Vector2(num4 + num5, 0f).RotatedBy(num3);
                 Vector2 target = vector2 + spinningpoint.RotatedBy(num3) + new Vector2(num4 + num5 + 40f, 0f).RotatedBy(num3);
-                Projectile.rotation = vector2.AngleTo(target) + (float)Math.PI / 4f * (float)player.direction;
+                Projectile.rotation = vector2.AngleTo(target) + (float)Math.PI / 4f * player.direction;
                 if (Projectile.spriteDirection == -1) Projectile.rotation += (float)Math.PI;
                 
                 vector2.DirectionTo(Projectile.Center);
                 Vector2 value = vector2.DirectionTo(target);
                 Vector2 vector3 = Projectile.velocity.SafeNormalize(Vector2.UnitY);
                 float num6 = 2f;
-                for (int i = 0; (float)i < num6; i++) {
+                for (int i = 0; i < num6; i++) {
                     Dust dust = Dust.NewDustDirect(Projectile.Center, 14, 14, 171, 0f, 0f, 120);
                     dust.velocity = vector2.DirectionTo(dust.position) * 2f;
-                    dust.position = Projectile.Center + vector3.RotatedBy(num2 * ((float)Math.PI * 2f) * 2f + (float)i / num6 * ((float)Math.PI * 2f)) * 8f;
+                    dust.position = Projectile.Center + vector3.RotatedBy(num2 * ((float)Math.PI * 2f) * 2f + i / num6 * ((float)Math.PI * 2f)) * 8f;
                     dust.scale = 1f + 0.5f * Main.rand.NextFloat();
                     dust.velocity += vector3 * 3f;
                     dust.noGravity = true;
@@ -82,7 +82,7 @@ namespace Consolaria.Content.Projectiles.Friendly
         }
 
         public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox) {
-            float f5 = Projectile.rotation - (float)Math.PI / 4f * (float)Math.Sign(Projectile.velocity.X) + ((Projectile.spriteDirection == -1) ? ((float)Math.PI) : 0f);
+            float f5 = Projectile.rotation - (float)Math.PI / 4f * Math.Sign(Projectile.velocity.X) + ((Projectile.spriteDirection == -1) ? ((float)Math.PI) : 0f);
             float collisionPoint = 0f;
             float scaleFactor = -95f;
             if (Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(), Projectile.Center, Projectile.Center + f5.ToRotationVector2() * scaleFactor, 23f * Projectile.scale, ref collisionPoint))
@@ -104,13 +104,13 @@ namespace Consolaria.Content.Projectiles.Friendly
             Player player = Main.player[Projectile.owner];
             SpriteBatch spriteBatch = Main.spriteBatch;
             Texture2D texture = (Texture2D)ModContent.Request<Texture2D>(Texture);
-            Vector2 drawOrigin = new Vector2((Projectile.spriteDirection == 1) ? ((float)texture.Width + 8f) : (-8f), (player.gravDir == 1f) ? (-8f) : ((float)texture.Height + 8f));
+            Vector2 drawOrigin = new Vector2((Projectile.spriteDirection == 1) ? (texture.Width + 8f) : (-8f), (player.gravDir == 1f) ? (-8f) : (texture.Height + 8f));
             Vector2 position = Projectile.position + new Vector2(Projectile.width, Projectile.height) / 2f + Vector2.UnitY * Projectile.gfxOffY - Main.screenPosition;
             float rotation = Projectile.rotation;
             var spriteEffects = player.direction > 0 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
             if (player.gravDir == -1f) {
                 spriteEffects = SpriteEffects.FlipVertically;
-                rotation += (float)Math.PI / 2f * (float)(Projectile.spriteDirection);
+                rotation += (float)Math.PI / 2f * Projectile.spriteDirection;
             }
             spriteBatch.Draw(texture, position, null, lightColor, rotation, drawOrigin, Projectile.scale, spriteEffects, 0f);
             return false;

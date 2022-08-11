@@ -24,7 +24,7 @@ namespace Consolaria.Content.Tiles
 			TileObjectData.newTile.AnchorTop = new AnchorData(AnchorType.SolidTile | AnchorType.SolidSide | AnchorType.SolidBottom, TileObjectData.newTile.Width, 0);
 			TileObjectData.addTile(Type);
 
-			TileID.Sets.DisableSmartCursor [(int) Type] = true;
+			TileID.Sets.DisableSmartCursor [Type] = true;
 			AddMapEntry(new Color(233, 207, 94), Language.GetText("MapObject.Banner"));
 		}
 

@@ -43,7 +43,7 @@ namespace Consolaria.Content.Projectiles.Friendly
                 if (Main.rand.Next(1) == 0) {
                     for (int index1 = 0; index1 < 2; ++index1) {
                         int _pos = 4;
-                        int _dust = Dust.NewDust(new Vector2(Projectile.position.X + (float)_pos, Projectile.position.Y + (float)_pos), Projectile.width - _pos * 3, Projectile.height - _pos * 3, DustID.Shadowflame , 0.0f, 0.0f, 125, default, 0.95f);
+                        int _dust = Dust.NewDust(new Vector2(Projectile.position.X + _pos, Projectile.position.Y + _pos), Projectile.width - _pos * 3, Projectile.height - _pos * 3, DustID.Shadowflame , 0.0f, 0.0f, 125, default, 0.95f);
                         if (spawnDust && Main.rand.Next(3) == 0) {
                             Main.dust[_dust].noGravity = true;
                             Main.dust[_dust].scale *= 2f;

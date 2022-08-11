@@ -74,13 +74,13 @@ namespace Consolaria.Content.NPCs
 			=> Color.White * 0.8f;
         
         public override void HitEffect (int hitDirection, double damage) {
-			Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Ichor, 2.5f * (float) hitDirection, -2.5f, 0, default, 1f);
+			Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Ichor, 2.5f * hitDirection, -2.5f, 0, default, 1f);
 			if (NPC.life <= 0) {
 				Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity / 2f, 99, 1f);
 				Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity / 2f, 99, 1f);
 				Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity / 2f, 99, 1f);
 				for (int i = 0; i < 20; i++)
-					Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Ichor, 2.5f * (float) hitDirection, -2.5f, 0, default, 1f);
+					Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Ichor, 2.5f * hitDirection, -2.5f, 0, default, 1f);
 			}
 		}
 

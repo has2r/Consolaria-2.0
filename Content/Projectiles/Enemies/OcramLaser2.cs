@@ -43,7 +43,7 @@ namespace Consolaria.Content.Projectiles.Enemies {
             for (int k = 0; k < Projectile.oldPos.Length; k++) {
                 if (Projectile.timeLeft < 890) {
                     Vector2 drawPos = Projectile.oldPos [k] - Main.screenPosition + drawOrigin + new Vector2(0f, Projectile.gfxOffY);
-                    Color color = Color.MediumVioletRed * ((float) (Projectile.oldPos.Length - k) / (float) Projectile.oldPos.Length);
+                    Color color = Color.MediumVioletRed * ((Projectile.oldPos.Length - k) / (float) Projectile.oldPos.Length);
                     color = Projectile.GetAlpha(color) * ((Projectile.oldPos.Length - k) / (float) Projectile.oldPos.Length);
                     float rotation;
                     if (k + 1 >= Projectile.oldPos.Length) { rotation = (Projectile.position - Projectile.oldPos [k]).ToRotation() + MathHelper.PiOver2; }

@@ -44,7 +44,7 @@ namespace Consolaria.Content.Projectiles.Friendly
             SpriteEffects effects = (Projectile.spriteDirection == -1) ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
             for (int k = 0; k < Projectile.oldPos.Length; k++) {
                 Vector2 drawPos = Projectile.oldPos[k] - Main.screenPosition + drawOrigin + new Vector2(0f, Projectile.gfxOffY);
-                Color color = Projectile.GetAlpha(lightColor) * ((float)(Projectile.oldPos.Length - k) / (float)Projectile.oldPos.Length);
+                Color color = Projectile.GetAlpha(lightColor) * ((Projectile.oldPos.Length - k) / (float)Projectile.oldPos.Length);
                 color = Color.BlueViolet * 0.12f;
                 float rotation;
                 if (k + 1 >= Projectile.oldPos.Length) { rotation = (Projectile.position - Projectile.oldPos[k]).ToRotation() + MathHelper.PiOver2; }

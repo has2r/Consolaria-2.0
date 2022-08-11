@@ -116,7 +116,7 @@ namespace Consolaria.Content.NPCs
 						Main.npc[num99].realLife = NPC.whoAmI;
 						Main.npc[num99].ai[1] = num96;
 						Main.npc[num96].ai[0] = num99;
-						NetMessage.SendData(23, -1, -1, null, num99);
+						NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, num99);
 						num96 = num99;
 					}
 				}

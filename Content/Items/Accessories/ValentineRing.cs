@@ -28,10 +28,12 @@ namespace Consolaria.Content.Items.Accessories {
            => unlockEffects = true;
 
         public override void UpdateAccessory (Player player, bool hideVisual) {
-            if (unlockEffects) {
-                player.lifeRegen += player.lifeRegen / 2;
-                player.jumpSpeedBoost += 2f;
-            }
+            if (!unlockEffects)
+                return;
+
+            player.lifeRegen += player.lifeRegen / 2;
+            player.jumpSpeedBoost += 2f;
+
         }
     }
 }

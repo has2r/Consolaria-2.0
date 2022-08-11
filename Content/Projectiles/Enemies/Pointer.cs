@@ -29,8 +29,8 @@ namespace Consolaria.Content.Projectiles.Enemies
 		public override void AI() {
 			int num;
 			for (int num164 = 0; num164 < 1; num164 = num + 1) {
-				float x2 = Projectile.position.X - Projectile.velocity.X / 10f * (float)num164;
-				float y2 = Projectile.position.Y - Projectile.velocity.Y / 10f * (float)num164;
+				float x2 = Projectile.position.X - Projectile.velocity.X / 10f * num164;
+				float y2 = Projectile.position.Y - Projectile.velocity.Y / 10f * num164;
 				int num165 = Dust.NewDust(new Vector2(x2, y2), 1, 1, 31, 0f, 0f, 60, Color.White, 1f);
 				Vector2 offset = new Vector2(Main.rand.NextFloat(-2, 2), Main.rand.NextFloat(-2, 2)) * num2;
 				Main.dust[num165].position.X = x2 + offset.X;

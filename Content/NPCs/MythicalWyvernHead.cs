@@ -104,7 +104,7 @@ namespace Consolaria.Content.NPCs {
 						num9 = ModContent.NPCType<MythicalWyvernTail>();
 						break;
 						}
-						int num7 = NPC.NewNPC(NPC.GetSource_FromAI(), (int) (NPC.position.X + (float) (NPC.width / 2)), (int) (NPC.position.Y + (float) NPC.height), num9, NPC.whoAmI);
+						int num7 = NPC.NewNPC(NPC.GetSource_FromAI(), (int) (NPC.position.X + NPC.width / 2), (int) (NPC.position.Y + NPC.height), num9, NPC.whoAmI);
 						Main.npc [num7].ai [3] = NPC.whoAmI;
 						Main.npc [num7].realLife = NPC.whoAmI;
 						Main.npc [num7].ai [1] = num8;

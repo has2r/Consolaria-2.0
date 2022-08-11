@@ -496,9 +496,9 @@ namespace Consolaria.Content.NPCs.Ocram {
                             if (NPC.position.X + (float) (NPC.width / 2) < Main.player [NPC.target].position.X + (float) Main.player [NPC.target].width) {
                                 num377 = -1;
                             }
-                            Vector2 vector38 = new Vector2(NPC.position.X + (float) NPC.width * 0.5f, NPC.position.Y + (float) NPC.height * 0.5f);
-                            float num378 = Main.player [NPC.target].position.X + (float) (Main.player [NPC.target].width / 2) - (float) (num377 * 180) - vector38.X;
-                            float num379 = Main.player [NPC.target].position.Y + (float) (Main.player [NPC.target].height / 2) - 300f - vector38.Y;
+                            Vector2 newvel = new Vector2(NPC.position.X + (float) NPC.width * 0.5f, NPC.position.Y + (float) NPC.height * 0.5f);
+                            float num378 = Main.player [NPC.target].position.X + (float) (Main.player [NPC.target].width / 2) - (float) (num377 * 180) - newvel.X;
+                            float num379 = Main.player [NPC.target].position.Y + (float) (Main.player [NPC.target].height / 2) - 300f - newvel.Y;
                             float num380 = (float) Math.Sqrt((double) (num378 * num378 + num379 * num379));
                             num380 = num375 / num380;
                             num378 *= num380;
@@ -550,23 +550,23 @@ namespace Consolaria.Content.NPCs.Ocram {
                                         }
                                         if (NPC.localAI [1] > 8f) {
                                             NPC.localAI [1] = 0f;
-                                            float num363 = Main.player [NPC.target].position.X + (float) (Main.player [NPC.target].width / 2) - vector38.X - 70;
-                                            float num364 = Main.player [NPC.target].position.Y + (float) (Main.player [NPC.target].height / 2) - vector38.Y;
-                                            vector38 = new Vector2(NPC.position.X + (float) NPC.width * 0.5f, NPC.position.Y + (float) NPC.height * 0.5f);
-                                            num363 -= Main.rand.Next(-80, 80) - 70;
-                                            num364 -= Main.rand.Next(-80, 80);
+                                            float num363 = Main.player [NPC.target].position.X + (float) (Main.player [NPC.target].width / 2) - newvel.X - 70;
+                                            float num364 = Main.player [NPC.target].position.Y + (float) (Main.player [NPC.target].height / 2) - newvel.Y;
+                                            newvel = new Vector2(NPC.position.X + (float) NPC.width * 0.5f, NPC.position.Y + (float) NPC.height * 0.5f);
+                                            num363 -= Main.rand.Next(-80, 81) - 70;
+                                            num364 -= Main.rand.Next(-80, 81);
                                             float num365 = 10 / (float) Math.Sqrt((double) (num363 * num363 + num364 * num364));
                                             num363 *= num365;
                                             num364 *= num365;
                                             num363 += (float) Main.rand.Next(-30, 31) * 0.05f;
                                             num364 += (float) Main.rand.Next(-30, 31) * 0.05f;
-                                            vector38.X += num363 * 3f;
-                                            vector38.Y += num364 * 3f;
+                                            newvel.X += num363 * 3f;
+                                            newvel.Y += num364 * 3f;
                                             Vector2 vector8 = new Vector2(NPC.position.X + (NPC.width / 2), NPC.position.Y + (NPC.height / 2));
                                             vector8 += new Vector2(0, -30).RotatedBy(NPC.rotation);
                                             SoundEngine.PlaySound(SoundID.Item33, NPC.position);
                                             float rotation = (float) Math.Atan2(vector8.Y - (Main.player [NPC.target].position.Y + (Main.player [NPC.target].height * 0.5f)), vector8.X - (Main.player [NPC.target].position.X + (Main.player [NPC.target].width * 0.5f)));
-                                            Projectile.NewProjectile(NPC.GetSource_FromAI(), vector8.X, vector8.Y, num363, num364, ModContent.ProjectileType<OcramLaser2>(), NPC.damage * 2, 0f, 0);
+                                            Projectile.NewProjectile(NPC.GetSource_FromAI(), vector8.X, vector8.Y, num363, num364, ModContent.ProjectileType<OcramLaser2>(), NPC.damage * 2, 1.5f, 0);
 
                                             int index3 = Dust.NewDust(vector8, 0, 0, DustID.Shadowflame, 0f, 0f, 100, default(Color), 1f + Main.rand.NextFloat(0, 1.5f));
                                             Main.dust [index3].noGravity = true;
@@ -575,9 +575,96 @@ namespace Consolaria.Content.NPCs.Ocram {
                                     }
                                 }
                             }
+                            bool isExpert = Main.expertMode || Main.masterMode;
+                            if (isExpert && NPC.ai[2] > 200f) { //scythe bullet hell
+                                float distance = 14f;
+                                float velocityBoost = 0.35f;
+                                int num230 = 1;
+                                if (NPC.position.X + NPC.width / 2 < Main.player[NPC.target].position.X + Main.player[NPC.target].width)
+                                {
+                                    num230 = -1;
+                                }
+                                Vector2 posVector = new Vector2(NPC.position.X + NPC.width * 0.5f, NPC.position.Y + NPC.height * 0.5f);
+                                float posVectorX = Main.player[NPC.target].position.X + (Main.player[NPC.target].width / 2) - 350f - (num230 * 350) - posVector.X; //about 12 if boss is to the left and -12 if it is to the right
+                                float posVectorY = Main.player[NPC.target].position.Y + (Main.player[NPC.target].height / 2) - 350f - posVector.Y;
+                                float huyZna = (float)Math.Sqrt((posVectorX * posVectorX + posVectorY * posVectorY));
+                                huyZna = distance / huyZna;
+                                posVectorX *= huyZna;
+                                posVectorY *= huyZna;
 
-                            if (NPC.ai [2] >= 540f) //reset and switch to next attack
-                            {
+                                //adjust velocity.x and y between 12 and -12 depending on player position
+                                if (NPC.velocity.X < posVectorX)
+                                {
+                                    NPC.velocity.X = NPC.velocity.X + velocityBoost;
+                                    if (NPC.velocity.X < 0f && posVectorX > 0f)
+                                    {
+                                        NPC.velocity.X = NPC.velocity.X + velocityBoost;
+                                    }
+                                }
+                                else
+                                {
+                                    if (NPC.velocity.X > posVectorX)
+                                    {
+                                        NPC.velocity.X = NPC.velocity.X - velocityBoost;
+                                        if (NPC.velocity.X > 0f && posVectorX < 0f)
+                                        {
+                                            NPC.velocity.X = NPC.velocity.X - velocityBoost;
+                                        }
+                                    }
+                                }
+                                if (NPC.velocity.Y < posVectorY)
+                                {
+                                    NPC.velocity.Y = NPC.velocity.Y + velocityBoost;
+                                    if (NPC.velocity.Y < 0f && posVectorY > 0f)
+                                    {
+                                        NPC.velocity.Y = NPC.velocity.Y + velocityBoost;
+                                    }
+                                }
+                                else
+                                {
+                                    if (NPC.velocity.Y > posVectorY)
+                                    {
+                                        NPC.velocity.Y = NPC.velocity.Y - velocityBoost;
+                                        if (NPC.velocity.Y > 0f && posVectorY < 0f)
+                                        {
+                                            NPC.velocity.Y = NPC.velocity.Y - velocityBoost;
+                                        }
+                                    }
+                                }
+                                NPC.localAI[3]++;
+                                if (Main.netMode != NetmodeID.MultiplayerClient && NPC.localAI[3] % 15 == 0)
+                                {
+                                    int num362 = 5;
+                                    int randomOffset = Main.rand.Next(-120, 121);
+                                    float velX = Main.player[NPC.target].position.X + Main.player[NPC.target].width / 2 - num362 * 50 - newvel.X;
+                                    float velY = Main.player[NPC.target].position.Y + Main.player[NPC.target].height / 2 - newvel.Y;
+                                    _ = (float)Math.Sqrt((double)(velX * velX + velY * velY));
+                                    newvel = new Vector2(NPC.position.X + NPC.width * 0.5f, NPC.position.Y + NPC.height * 0.5f);
+                                    velX = Main.player[NPC.target].position.X + Main.player[NPC.target].width / 2 - randomOffset - newvel.X;
+                                    velY = Main.player[NPC.target].position.Y + Main.player[NPC.target].height / 2 - randomOffset - newvel.Y;
+                                    float bebra = 16f;
+                                    float bebra2 = (float)Math.Sqrt((double)(velX * velX + velY * velY));
+                                    bebra2 = bebra / bebra2;
+                                    velX *= bebra2;
+                                    velY *= bebra2;
+                                    velX += Main.rand.Next(-90, 91) * 0.05f;
+                                    velY += Main.rand.Next(-50, 51) * 0.05f;
+                                    newvel.X += velX * 2.5f;
+                                    newvel.Y += velY * 2.5f;
+                                    Vector2 projPos = new Vector2(NPC.position.X + (NPC.width / 2), NPC.position.Y + (NPC.height / 2));
+                                    Projectile.NewProjectile(NPC.GetSource_FromAI(), projPos.X, projPos.Y, velX, velY, ModContent.ProjectileType<OcramScythe>(), NPC.damage * 2, 4f);
+                                    SoundEngine.PlaySound(SoundID.Item8, NPC.position);
+
+                                    int index3 = Dust.NewDust(projPos, 0, 0, DustID.Shadowflame, 0f, 0f, 100, default(Color), 1f + Main.rand.NextFloat(0, 1.5f));
+                                    Main.dust[index3].noGravity = true;
+                                    Main.dust[index3].fadeIn = Main.rand.NextFloat(0, 1f);
+
+                                    NPC.localAI[3] = 0;
+                                }
+                            }
+                            float ai2Limit = isExpert ? 540f : 200f;
+                            if (NPC.ai[2] >= ai2Limit)
+                            {   
                                 effect = true;
                                 NPC.ai [1] = 1f;
                                 NPC.ai [2] = 0f;

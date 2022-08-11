@@ -27,6 +27,9 @@ namespace Consolaria.Content.NPCs.Ocram {
         private const float MissileAngleSpread = 150;
         private bool effect = false;
         private float rad = (float)Math.PI * 2f;
+        private bool showeye = false;
+        private Vector2 oldocrampos;
+        private float glowopacity;
 
         public override void SetStaticDefaults () {
             DisplayName.SetDefault("Ocram");
@@ -229,6 +232,7 @@ namespace Consolaria.Content.NPCs.Ocram {
                             if (NPC.ai [2] < 360) { // laser spam
                                 if (!Main.player [NPC.target].dead) {
                                     NPC.ai [3] += 1f;
+                                    glowopacity += 0.015f;
                                 }
                                 if (NPC.ai [3] >= 60 && NPC.ai [3] <= 70) {
                                     float Speed = 8f;
@@ -240,6 +244,9 @@ namespace Consolaria.Content.NPCs.Ocram {
                                         NPC.ai [3] = 0;
                                     }
 
+                                    if (glowopacity > 0) glowopacity -= 0.15f;
+                                    if (glowopacity < 0) glowopacity = 0;
+
                                     if (NPC.ai [3] % 2 == 0) {
                                         int index3 = Dust.NewDust(NPC.Center, 0, 0, DustID.LavaMoss, 0f, 0f, 100, new Color(255, 0, 244), Main.rand.NextFloat(0.8f, 2f));
                                         Main.dust [index3].noGravity = true;
@@ -247,8 +254,6 @@ namespace Consolaria.Content.NPCs.Ocram {
                                         Main.dust [index3].fadeIn = Main.rand.NextFloat(0, 1f);
                                     }
                                 }
-
-                                NPC.ai[2] = 0; //will repeat this attack infinitely for testing
                             }
                             if (NPC.ai [2] > 360 && NPC.ai [2] <= 520) { //stationary laser barrage preparation
                                 if (!Main.player [NPC.target].dead) {
@@ -266,6 +271,9 @@ namespace Consolaria.Content.NPCs.Ocram {
                                         Main.dust [index2].velocity = Vector2.Normalize(vector2_4) * -3f;
                                     }
                                 }
+
+                                if (NPC.ai[2] >= 380 && NPC.ai[2] <= 420) glowopacity += 0.15f;
+                                if (glowopacity > 1) glowopacity = 1;
 
                                 if (NPC.ai [2] > 420 && NPC.ai [2] <= 480) { //stationary laser barrage
                                      NPC.velocity *= 0.9f;
@@ -285,6 +293,9 @@ namespace Consolaria.Content.NPCs.Ocram {
                                         Main.dust [index3].noGravity = true;
                                         Main.dust [index3].fadeIn = Main.rand.NextFloat(0, 1f);
                                     }
+
+                                    if (glowopacity > 0) glowopacity -= 0.02f;
+                                    if (glowopacity < 0) glowopacity = 0;
                                 }
 
                                 if (NPC.ai [2] > 480 && NPC.ai [2] <= 500) {
@@ -449,7 +460,7 @@ namespace Consolaria.Content.NPCs.Ocram {
                                 NPC.ai [2] = 0f;
                             }
                             else {
-
+                                showeye = true;
                                 SoundEngine.PlaySound(SoundID.NPCHit1, NPC.position);
                                 if (Main.netMode != NetmodeID.Server) {
 
@@ -539,17 +550,12 @@ namespace Consolaria.Content.NPCs.Ocram {
                                         }
                                         if (NPC.localAI [1] > 8f) {
                                             NPC.localAI [1] = 0f;
-                                            int num362 = 1;
-                                            int zalupa = Main.rand.Next(-80, 80);
-                                            float num363 = Main.player [NPC.target].position.X + (float) (Main.player [NPC.target].width / 2) - (float) (num362 * 70) - vector38.X;
+                                            float num363 = Main.player [NPC.target].position.X + (float) (Main.player [NPC.target].width / 2) - vector38.X - 70;
                                             float num364 = Main.player [NPC.target].position.Y + (float) (Main.player [NPC.target].height / 2) - vector38.Y;
-                                            float num365 = (float) Math.Sqrt((double) (num363 * num363 + num364 * num364));
                                             vector38 = new Vector2(NPC.position.X + (float) NPC.width * 0.5f, NPC.position.Y + (float) NPC.height * 0.5f);
-                                            num363 = Main.player [NPC.target].position.X + (float) (Main.player [NPC.target].width / 2) - zalupa - vector38.X;
-                                            num364 = Main.player [NPC.target].position.Y + (float) (Main.player [NPC.target].height / 2) - zalupa - vector38.Y;
-                                            float num366 = 10f;
-                                            num365 = (float) Math.Sqrt((double) (num363 * num363 + num364 * num364));
-                                            num365 = num366 / num365;
+                                            num363 -= Main.rand.Next(-80, 80) - 70;
+                                            num364 -= Main.rand.Next(-80, 80);
+                                            float num365 = 10 / (float) Math.Sqrt((double) (num363 * num363 + num364 * num364));
                                             num363 *= num365;
                                             num364 *= num365;
                                             num363 += (float) Main.rand.Next(-30, 31) * 0.05f;
@@ -557,6 +563,7 @@ namespace Consolaria.Content.NPCs.Ocram {
                                             vector38.X += num363 * 3f;
                                             vector38.Y += num364 * 3f;
                                             Vector2 vector8 = new Vector2(NPC.position.X + (NPC.width / 2), NPC.position.Y + (NPC.height / 2));
+                                            vector8 += new Vector2(0, -30).RotatedBy(NPC.rotation);
                                             SoundEngine.PlaySound(SoundID.Item33, NPC.position);
                                             float rotation = (float) Math.Atan2(vector8.Y - (Main.player [NPC.target].position.Y + (Main.player [NPC.target].height * 0.5f)), vector8.X - (Main.player [NPC.target].position.X + (Main.player [NPC.target].width * 0.5f)));
                                             Projectile.NewProjectile(NPC.GetSource_FromAI(), vector8.X, vector8.Y, num363, num364, ModContent.ProjectileType<OcramLaser2>(), NPC.damage * 2, 0f, 0);
@@ -691,8 +698,9 @@ namespace Consolaria.Content.NPCs.Ocram {
             Texture2D texture = (Texture2D) ModContent.Request<Texture2D>("Consolaria/Assets/Textures/NPCs/Ocram");
             SpriteEffects effects = (NPC.spriteDirection == -1) ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
             Vector2 origin = new((float) (texture.Width / 2), (float) (texture.Height / Main.npcFrameCount [NPC.type] / 2));
+            Vector2 ocrampos = new Vector2(NPC.position.X - Main.screenPosition.X + (float)(NPC.width / 2) - (float)texture.Width * NPC.scale / 2f + origin.X * NPC.scale, NPC.position.Y - Main.screenPosition.Y + (float)NPC.height - (float)texture.Height * NPC.scale / (float)Main.npcFrameCount[NPC.type] + 4f + origin.Y * NPC.scale);
             if (effect) {
-                Main.spriteBatch.Draw(texture, new Vector2(NPC.position.X - Main.screenPosition.X + (float) (NPC.width / 2) - (float) texture.Width * NPC.scale / 2f + origin.X * NPC.scale, NPC.position.Y - Main.screenPosition.Y + (float) NPC.height - (float) texture.Height * NPC.scale / (float) Main.npcFrameCount [NPC.type] + 4f + origin.Y * NPC.scale), new Rectangle?(NPC.frame), Color.White, NPC.rotation, origin, NPC.scale, effects, 0f);
+                Main.spriteBatch.Draw(texture, ocrampos, new Rectangle?(NPC.frame), Color.White, NPC.rotation, origin, NPC.scale, effects, 0f);
                 for (int i = 1; i < NPC.oldPos.Length; i++) {
                     Color color = Lighting.GetColor((int) ((double) NPC.position.X + (double) NPC.width * 0.5) / 16, (int) (((double) NPC.position.Y + (double) NPC.height * 0.5) / 16.0));
                     Color color2 = color;
@@ -700,11 +708,41 @@ namespace Consolaria.Content.NPCs.Ocram {
                     else color2 = Color.BlueViolet;
                     color2 = NPC.GetAlpha(color2);
                     color2 *= (NPC.oldPos.Length - i) / 15f;
-                    Main.spriteBatch.Draw(texture, new Vector2(NPC.position.X - Main.screenPosition.X + (float) (NPC.width / 2) - (float) texture.Width * NPC.scale / 2f + origin.X * NPC.scale, NPC.position.Y - Main.screenPosition.Y + (float) NPC.height - (float) texture.Height * NPC.scale / (float) Main.npcFrameCount [NPC.type] + 4f + origin.Y * NPC.scale) - NPC.velocity * (float) i * 0.5f, new Rectangle?(NPC.frame), color2, NPC.rotation, origin, NPC.scale, effects, 0f);
+                    Main.spriteBatch.Draw(texture, ocrampos - NPC.velocity * (float)i * 0.5f, new Rectangle?(NPC.frame), color2, NPC.rotation, origin, NPC.scale, effects, 0f);
                 }
             }
-            //drawColor = new Color(200, 200, 200, 255);
             return true;
+        }
+
+        public override void PostDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
+        {
+            Texture2D eye = (Texture2D)ModContent.Request<Texture2D>("Consolaria/Assets/Textures/NPCs/OcramEye");
+            Texture2D glow = (Texture2D)ModContent.Request<Texture2D>("Consolaria/Assets/Textures/NPCs/OcramGlow");
+            Texture2D eyeglow = (Texture2D)ModContent.Request<Texture2D>("Consolaria/Assets/Textures/NPCs/OcramEyeGlow");
+
+            Vector2 origin = new((float)(eye.Width / 2), (float)(eye.Height / 2));
+            Vector2 ocrampos = NPC.Center - Main.screenPosition;
+
+            if (showeye) {
+                float eyerotation = (float)Math.Atan2(NPC.Center.Y - (Main.player[NPC.target].position.Y + (Main.player[NPC.target].height * 0.5f)), NPC.Center.X - (Main.player[NPC.target].position.X + (Main.player[NPC.target].width * 0.5f)));
+                Vector2 toplayer = NPC.Center - Main.player[NPC.target].Center;
+                float playerdistance = (float)Math.Sqrt(toplayer.X * toplayer.X + toplayer.Y * toplayer.Y);
+                ocrampos -= new Vector2(Math.Min(500, playerdistance), 0).RotatedBy(eyerotation) / 120;
+                Main.spriteBatch.Draw(eye, (ocrampos + oldocrampos) / 2, null, drawColor, NPC.rotation, origin, NPC.scale, SpriteEffects.None, 0f);
+
+                if (NPC.ai[2] <= 200f && NPC.ai[1] == 0f)
+                {
+                    float blink = (float)Math.Sin(NPC.ai[2] / 4) / 2 + 0.5f;
+                    drawColor = new Color(1f - blink, 0.5f * blink, 2.5f * blink, 0);
+                    Main.spriteBatch.Draw(eyeglow, (ocrampos + oldocrampos) / 2, null, drawColor, NPC.rotation, origin, NPC.scale, SpriteEffects.None, 0f);
+                }
+
+                oldocrampos = ocrampos;
+            }
+            else {
+                drawColor = new Color(1 * glowopacity, 0, 0, 0);
+                Main.spriteBatch.Draw(glow, ocrampos, null, drawColor, NPC.rotation, origin, NPC.scale, SpriteEffects.None, 0f);
+            }
         }
 
         public override void HitEffect (int hitDirection, double damage) {

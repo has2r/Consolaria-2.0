@@ -1,31 +1,31 @@
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
+using Consolaria.Content.Items.Armor.Misc;
 using Consolaria.Content.Items.Summons;
 using Consolaria.Content.Items.Weapons.Ranged;
 using Microsoft.Xna.Framework;
-using Terraria.GameContent.Creative;
 using Microsoft.Xna.Framework.Graphics;
+using Terraria;
 using Terraria.GameContent;
-using Consolaria.Content.Items.Armor.Misc;
+using Terraria.GameContent.Creative;
+using Terraria.ID;
+using Terraria.ModLoader;
 
-namespace Consolaria.Content.Items.BossDrops.Lepus
-{
-    public class LepusBag : ModItem
-    {
+namespace Consolaria.Content.Items.BossDrops.Lepus {
+    public class LepusBag : ModItem {
+
+        [System.Obsolete]
         public override int BossBagNPC => ModContent.NPCType<NPCs.Bosses.Lepus.Lepus>();
 
-        public override void SetStaticDefaults() {
+        public override void SetStaticDefaults () {
             DisplayName.SetDefault("Treasure Bag (Lepus)");
             Tooltip.SetDefault("{$CommonItemTooltip.RightClickToOpen}");
 
-            ItemID.Sets.BossBag[Type] = true;
-            ItemID.Sets.PreHardmodeLikeBossBag[Type] = true;
+            ItemID.Sets.BossBag [Type] = true;
+            ItemID.Sets.PreHardmodeLikeBossBag [Type] = true;
 
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 3;
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 3;
         }
 
-        public override void SetDefaults() {
+        public override void SetDefaults () {
             int width = 24; int height = width;
             Item.Size = new Vector2(width, height);
 
@@ -36,31 +36,32 @@ namespace Consolaria.Content.Items.BossDrops.Lepus
             Item.expert = true;
         }
 
-        public override bool CanRightClick() 
+        public override bool CanRightClick ()
          => true;
-        
-        public override void OpenBossBag(Player player) {
+
+        [System.Obsolete]
+        public override void OpenBossBag (Player player) {
             int armorDrop = Main.rand.Next(3);
             if (armorDrop == 0) player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<OstaraHat>());
             if (armorDrop == 1) player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<OstaraJacket>());
             if (armorDrop == 2) player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<OstaraBoots>());
 
             if (Main.rand.NextBool(2))
-                player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<EggCannon>());           
+                player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<EggCannon>());
             if (Main.rand.NextBool(8))
-                player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<LepusMask>());           
+                player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<LepusMask>());
             if (Main.rand.NextBool(10))
                 player.QuickSpawnItem(player.GetSource_OpenItem(Type), ItemID.BunnyHood);
-            
+
             player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<SuspiciousLookingEgg>());
             player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<OstarasGift>());
             player.QuickSpawnItem(player.GetSource_OpenItem(Type), ItemID.GoldCoin, 3);
         }
 
-        public override Color? GetAlpha(Color lightColor)
+        public override Color? GetAlpha (Color lightColor)
             => Color.Lerp(lightColor, Color.White, 0.4f);
 
-        public override void PostUpdate() {
+        public override void PostUpdate () {
             Lighting.AddLight(Item.Center, Color.White.ToVector3() * 0.4f);
 
             if (Item.timeSinceItemSpawned % 12 == 0) {
@@ -78,11 +79,11 @@ namespace Consolaria.Content.Items.BossDrops.Lepus
             }
         }
 
-        public override bool PreDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI) {
-            Texture2D texture = TextureAssets.Item[Item.type].Value;
+        public override bool PreDrawInWorld (SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI) {
+            Texture2D texture = TextureAssets.Item [Item.type].Value;
             Rectangle frame;
 
-            if (Main.itemAnimations[Item.type] != null) frame = Main.itemAnimations[Item.type].GetFrame(texture, Main.itemFrameCounter[whoAmI]);
+            if (Main.itemAnimations [Item.type] != null) frame = Main.itemAnimations [Item.type].GetFrame(texture, Main.itemFrameCounter [whoAmI]);
             else frame = texture.Frame();
 
             Vector2 frameOrigin = frame.Size() / 2f;

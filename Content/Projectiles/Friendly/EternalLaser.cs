@@ -2,13 +2,12 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Consolaria.Content.Projectiles.Friendly
-{
-	public class EternalLaser : ModProjectile
-	{
-        public override void SetDefaults() {
+namespace Consolaria.Content.Projectiles.Friendly {
+    public class EternalLaser : ModProjectile {
+        public override void SetDefaults () {
             Projectile.CloneDefaults(ProjectileID.EyeLaser);
             AIType = ProjectileID.EyeLaser;
+
             Projectile.DamageType = DamageClass.Summon;
             Projectile.friendly = true;
             Projectile.hostile = false;
@@ -18,10 +17,10 @@ namespace Consolaria.Content.Projectiles.Friendly
 
             Projectile.timeLeft = 900;
             Projectile.penetrate = 1;
-		}
+        }
 
-        public override void AI() {
-            if(Projectile.timeLeft <= 895) Projectile.alpha = 0;
+        public override void AI () {
+            if (Projectile.timeLeft <= 895) Projectile.alpha = 0;
         }
     }
 }

@@ -1,31 +1,31 @@
+using Consolaria.Content.Items.Materials;
+using Consolaria.Content.Items.Weapons.Magic;
+using Consolaria.Content.Items.Weapons.Melee;
+using Consolaria.Content.Items.Weapons.Ranged;
+using Consolaria.Content.Items.Weapons.Summon;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.GameContent;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Consolaria.Content.Items.Weapons.Ranged;
-using Microsoft.Xna.Framework;
-using Terraria.GameContent.Creative;
-using Microsoft.Xna.Framework.Graphics;
-using Terraria.GameContent;
-using Consolaria.Content.Items.Weapons.Magic;
-using Consolaria.Content.Items.Weapons.Summon;
-using Consolaria.Content.Items.Materials;
-using Consolaria.Content.Items.Weapons.Melee;
 
-namespace Consolaria.Content.Items.BossDrops.Ocram
-{
-    public class OcramBag : ModItem
-    {
+namespace Consolaria.Content.Items.BossDrops.Ocram {
+    public class OcramBag : ModItem {
+        [System.Obsolete]
         public override int BossBagNPC => ModContent.NPCType<NPCs.Ocram.Ocram>();
 
-        public override void SetStaticDefaults() {
+
+        public override void SetStaticDefaults () {
             DisplayName.SetDefault("Treasure Bag (Ocram)");
             Tooltip.SetDefault("{$CommonItemTooltip.RightClickToOpen}");
 
-            ItemID.Sets.BossBag[Type] = true;
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 3;
+            ItemID.Sets.BossBag [Type] = true;
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 3;
         }
 
-        public override void SetDefaults() {
+        public override void SetDefaults () {
             int width = 24; int height = width;
             Item.Size = new Vector2(width, height);
 
@@ -36,17 +36,18 @@ namespace Consolaria.Content.Items.BossDrops.Ocram
             Item.expert = true;
         }
 
-        public override bool CanRightClick() 
+        public override bool CanRightClick ()
             => true;
 
-        public override void OpenBossBag(Player player) {
+        [System.Obsolete]
+        public override void OpenBossBag (Player player) {
             int mainDrops = Main.rand.Next(4);
             if (mainDrops == 0) player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<EternityStaff>());
             if (mainDrops == 1) player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<DragonBreath>());
             if (mainDrops == 2) player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<OcramsEye>());
             if (mainDrops == 3) player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<Tizona>());
 
-            if (Main.rand.Next(8) == 0)
+            if (Main.rand.NextBool(8))
                 player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<OcramMask>());
 
             player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<SoulofBlight>(), Main.rand.Next(25, 40));
@@ -54,10 +55,10 @@ namespace Consolaria.Content.Items.BossDrops.Ocram
             player.QuickSpawnItem(player.GetSource_OpenItem(Type), ItemID.GoldCoin, 15);
         }
 
-        public override Color? GetAlpha(Color lightColor)
+        public override Color? GetAlpha (Color lightColor)
             => Color.Lerp(lightColor, Color.White, 0.4f);
 
-        public override void PostUpdate() {
+        public override void PostUpdate () {
             Lighting.AddLight(Item.Center, Color.White.ToVector3() * 0.4f);
 
             if (Item.timeSinceItemSpawned % 12 == 0) {
@@ -75,11 +76,11 @@ namespace Consolaria.Content.Items.BossDrops.Ocram
             }
         }
 
-        public override bool PreDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI) {
-            Texture2D texture = TextureAssets.Item[Item.type].Value;
+        public override bool PreDrawInWorld (SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI) {
+            Texture2D texture = TextureAssets.Item [Item.type].Value;
             Rectangle frame;
 
-            if (Main.itemAnimations[Item.type] != null) frame = Main.itemAnimations[Item.type].GetFrame(texture, Main.itemFrameCounter[whoAmI]);
+            if (Main.itemAnimations [Item.type] != null) frame = Main.itemAnimations [Item.type].GetFrame(texture, Main.itemFrameCounter [whoAmI]);
             else frame = texture.Frame();
 
             Vector2 frameOrigin = frame.Size() / 2f;

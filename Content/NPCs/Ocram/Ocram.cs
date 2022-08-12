@@ -23,6 +23,7 @@ namespace Consolaria.Content.NPCs.Ocram {
         private int t = 0;
         private float h = 0.2f;
         private bool Phase2 = false;
+        private int rage;
 
         private const int MissileProjectiles = 5;
         private const float MissileAngleSpread = 150;
@@ -548,7 +549,7 @@ namespace Consolaria.Content.NPCs.Ocram {
                                         if (NPC.life < NPC.lifeMax * 0.5) {
                                             NPC.localAI [1] += 1f;
                                         }
-                                        if (NPC.life < NPC.lifeMax * 0.25) {
+                                        if (NPC.life < NPC.lifeMax * 0.25 || rage > 80) {
                                             NPC.localAI [1] += 2f;
                                         }
                                         if (NPC.localAI [1] > 8f) {
@@ -579,10 +580,10 @@ namespace Consolaria.Content.NPCs.Ocram {
                             }
 
                             bool isExpert = Main.expertMode || Main.masterMode;
-                            float ai2Limit = isExpert ? 600f : 200f;
+                            float ai2Limit = isExpert ? 700f : 200f;
                             if (isExpert && NPC.ai [2] > 200f) { //scythe bullet hell
                                 float distance = 14f;
-                                float velocityBoost = 0.35f;
+                                float velocityBoost = 0.7f;
                                 int num230 = 1;
                                 if (NPC.position.X + NPC.width / 2 < Main.player [NPC.target].position.X + Main.player [NPC.target].width) {
                                     num230 = -1;
@@ -625,8 +626,10 @@ namespace Consolaria.Content.NPCs.Ocram {
                                     }
                                 }
 
+                                if (Main.player[NPC.target].Center.Y < NPC.Center.Y && NPC.ai[2] > 250f) rage++;
+
                                 NPC.localAI [3]++;
-                                if (Main.netMode != NetmodeID.MultiplayerClient && NPC.localAI [3] % 15 == 0) {
+                                if (Main.netMode != NetmodeID.MultiplayerClient && NPC.localAI [3] % 12 == 0 && NPC.ai[2] > 250f && NPC.ai[2] < 650f) {
                                     /*     int num362 = 5;
                                          int randomOffset = Main.rand.Next(-120, 121);
                                          float velX = Main.player [NPC.target].position.X + Main.player [NPC.target].width / 2 - num362 * 50 - newvel.X;
@@ -684,6 +687,7 @@ namespace Consolaria.Content.NPCs.Ocram {
                                 SoundEngine.PlaySound(SoundID.Roar, NPC.position);
                                 NPC.rotation = num319;
                                 float num384 = 18f;
+                                if (rage > 45) num384 *= 1.25f;
                                 Vector2 vector39 = new Vector2(NPC.position.X + NPC.width * 0.5f, NPC.position.Y + NPC.height * 0.5f);
                                 float num385 = Main.player [NPC.target].position.X + Main.player [NPC.target].width / 2 - vector39.X;
                                 float num386 = Main.player [NPC.target].position.Y + Main.player [NPC.target].height / 2 - vector39.Y;
@@ -696,6 +700,7 @@ namespace Consolaria.Content.NPCs.Ocram {
                             }
                             if (NPC.ai [1] == 2f) { //scythe attack pause
                                 NPC.ai [2] += 1f; //timer between dashes
+                                if (rage > 45) NPC.ai [2] += 1f;
                                 if (NPC.ai [2] >= 50f) {
                                     //int num23 = 36;
                                     int num23 = 2;
@@ -727,8 +732,9 @@ namespace Consolaria.Content.NPCs.Ocram {
                                     NPC.ai [2] = 0f;
                                     NPC.target = 255;
                                     NPC.rotation = num319;
-                                    if (NPC.ai [3] >= 6f) { //scythe attack ends after ai[3] reaches 7
+                                    if (NPC.ai [3] >= 5f) { //scythe attack ends after ai[3] reaches 5
                                         drawTrail = false; //trail deactivates
+                                        rage = 0;
                                         NPC.ai [1] = 0f;
                                         NPC.ai [3] = 0f;
                                         return;
@@ -742,6 +748,7 @@ namespace Consolaria.Content.NPCs.Ocram {
                 }
             }
             if (Main.bloodMoon && Phase2 && Main.rand.NextBool(600)) { //dumb skull attack
+                rage = 999;
                 Vector2 Vector3 = new Vector2(NPC.position.X + NPC.width * 0.1f, NPC.position.Y + NPC.height * 0.1f);
                 if (Collision.CanHit(Vector3, 1, 1, Main.player [NPC.target].position, Main.player [NPC.target].width, Main.player [NPC.target].height)) {
                     if (Main.netMode != NetmodeID.MultiplayerClient) {
@@ -775,31 +782,16 @@ namespace Consolaria.Content.NPCs.Ocram {
         }
 
         //da kto eta vasha trigonometriya
-        private float scytheVelX = -180;
-        private float scytheVelY = 5f;
-        private bool changeDirection;
+        private float scythevel = 1;
 
         private void ScytheAttack (float aiLimit) {
-            int scytheVelXmin = -180;
-            int scytheVelXmax = 180;
-            int step = 30;
 
-            if (scytheVelX < scytheVelXmax && !changeDirection)
-                scytheVelX += step;
-            else {
-                changeDirection = true;
-                scytheVelX -= step;
-            }
-
-            if (scytheVelX == scytheVelXmin && changeDirection) {
-                changeDirection = false;
-                NPC.ai [2] = aiLimit;
-            }
-
-            Vector2 vel = new Vector2(scytheVelX * 0.075f, scytheVelY);
-            Vector2 projPos = new Vector2(NPC.position.X + (NPC.width / 2), NPC.position.Y + (NPC.height / 2));
+            float scytheangle = rad / 6 * (float)Math.Sin(NPC.ai[2] / 32);
+            Vector2 vel = new Vector2(0, scythevel).RotatedBy(scytheangle);
+            Vector2 projPos = new Vector2(NPC.position.X + (NPC.width / 2), NPC.position.Y + (NPC.height / 2)) + vel * 80;
             Projectile.NewProjectile(NPC.GetSource_FromAI(), projPos.X, projPos.Y, vel.X, vel.Y, ModContent.ProjectileType<OcramScythe>(), NPC.damage * 2, 4f);
             SoundEngine.PlaySound(SoundID.Item8, NPC.position);
+            if (rage > 45) NPC.ai[2] = aiLimit;
         }
 
         public override bool PreDraw (SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {

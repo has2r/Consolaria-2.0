@@ -31,7 +31,8 @@ namespace Consolaria.Content.NPCs {
 			NPCID.Sets.DebuffImmunitySets.Add(Type, debuffData);
 
 			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0) {
-				Velocity = 0.5f
+				CustomTexturePath = "Consolaria/Assets/Textures/Bestiary/DragonSnatcher_Bestiary",
+				Rotation = (float) Math.PI / 2f
 			};
 			NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
 		}

@@ -70,7 +70,7 @@ namespace Consolaria.Common {
               Mod,
               "Ocram",
               ModContent.NPCType<Ocram>(),
-              9.9f,
+              11.9f,
               () => DownedBossSystem.downedOcram,
               () => true,
               new List<int> {

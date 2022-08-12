@@ -21,19 +21,19 @@ namespace Consolaria.Content.NPCs.Ocram {
     [AutoloadBossHead]
     public class Ocram : ModNPC {
         private int t = 0;
-        private float h = 0.2f;
-        private bool Phase2 = false;
         private int rage;
+        private float h = 0.2f;
+        private bool secondPhaseActive = false; 
 
         private const int MissileProjectiles = 5;
         private const float MissileAngleSpread = 150;
 
         private bool drawTrail = false;
         private bool showEye = false;
-        private Vector2 ocramOldPos;
         private float glowOpacity;
+        private Vector2 ocramOldPos;
 
-        private const float rad = (float) Math.PI * 2f;
+        private const float Rad = (float) Math.PI * 2f;
 
         public override void SetStaticDefaults () {
             DisplayName.SetDefault("Ocram");
@@ -41,9 +41,15 @@ namespace Consolaria.Content.NPCs.Ocram {
             NPCID.Sets.MPAllowedEnemies [Type] = true;
 
             NPCID.Sets.BossBestiaryPriority.Add(Type);
+            float scale = 0.475f;
+            float xOffset = 38f;
             NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0) {
+                Position = new Vector2(0, -xOffset),
                 Velocity = 1f,
-                Scale = 0.85f
+                Scale = scale,
+
+                PortraitPositionYOverride = -xOffset,
+                PortraitScale = scale             
             };
             NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
         }
@@ -62,7 +68,7 @@ namespace Consolaria.Content.NPCs.Ocram {
             NPC.knockBackResist = 0f;
 
             NPC.value = Item.buyPrice(gold: 10);
-            NPC.npcSlots = 1f;
+            NPC.npcSlots = 10f;
 
             NPC.boss = true;
             NPC.lavaImmune = true;
@@ -96,15 +102,15 @@ namespace Consolaria.Content.NPCs.Ocram {
             if (NPC.target < 0 || NPC.target == 255 || Main.player [NPC.target].dead || !Main.player [NPC.target].active) {
                 NPC.TargetClosest(true);
             }
+
             if (Main.expertMode) {
                 if (NPC.life < (int) (NPC.lifeMax * 0.65f)) {
-                    Phase2 = true;
+                    secondPhaseActive = true;
                 }
             }
-
             if (!Main.expertMode) {
                 if (NPC.life < NPC.lifeMax / 2) {
-                    Phase2 = true;
+                    secondPhaseActive = true;
                 }
             }
 
@@ -114,11 +120,11 @@ namespace Consolaria.Content.NPCs.Ocram {
             float num319 = (float) Math.Atan2((double) num318, (double) num317) + 1.57f;
 
             if (num319 < 0f) {
-                num319 += rad;
+                num319 += Rad;
             }
             else {
-                if (num319 > rad) {
-                    num319 -= rad;
+                if (num319 > Rad) {
+                    num319 -= Rad;
                 }
             }
             float num320 = 0.1f;
@@ -145,11 +151,11 @@ namespace Consolaria.Content.NPCs.Ocram {
                 NPC.rotation = num319;
             }
             if (NPC.rotation < 0f) {
-                NPC.rotation += rad;
+                NPC.rotation += Rad;
             }
             else {
-                if (NPC.rotation > rad) {
-                    NPC.rotation -= rad;
+                if (NPC.rotation > Rad) {
+                    NPC.rotation -= Rad;
                 }
             }
             if (NPC.rotation > num319 - num320 && NPC.rotation < num319 + num320) {
@@ -431,7 +437,7 @@ namespace Consolaria.Content.NPCs.Ocram {
                             }
                         }
                     }
-                    if (Phase2) {
+                    if (secondPhaseActive) {
                         NPC.ai [0] = 1f;
                         NPC.ai [1] = 0f;
                         NPC.ai [2] = 0f;
@@ -626,10 +632,11 @@ namespace Consolaria.Content.NPCs.Ocram {
                                     }
                                 }
 
-                                if (Main.player[NPC.target].Center.Y < NPC.Center.Y && NPC.ai[2] > 250f) rage++;
+                                if (Main.player[NPC.target].Center.Y < NPC.Center.Y && NPC.ai[2] > 250f)
+                                    rage++;
 
                                 NPC.localAI [3]++;
-                                if (Main.netMode != NetmodeID.MultiplayerClient && NPC.localAI [3] % 12 == 0 && NPC.ai[2] > 250f && NPC.ai[2] < 650f) {
+                                if (Main.netMode != NetmodeID.MultiplayerClient && NPC.localAI [3] % 15 == 0 && NPC.ai[2] > 250f && NPC.ai[2] < 650f) {
                                     /*     int num362 = 5;
                                          int randomOffset = Main.rand.Next(-120, 121);
                                          float velX = Main.player [NPC.target].position.X + Main.player [NPC.target].width / 2 - num362 * 50 - newvel.X;
@@ -747,7 +754,7 @@ namespace Consolaria.Content.NPCs.Ocram {
                     }
                 }
             }
-            if (Main.bloodMoon && Phase2 && Main.rand.NextBool(600)) { //dumb skull attack
+            if (Main.bloodMoon && secondPhaseActive && Main.rand.NextBool(600)) { //dumb skull attack
                 rage = 999;
                 Vector2 Vector3 = new Vector2(NPC.position.X + NPC.width * 0.1f, NPC.position.Y + NPC.height * 0.1f);
                 if (Collision.CanHit(Vector3, 1, 1, Main.player [NPC.target].position, Main.player [NPC.target].width, Main.player [NPC.target].height)) {
@@ -782,14 +789,12 @@ namespace Consolaria.Content.NPCs.Ocram {
         }
 
         //da kto eta vasha trigonometriya
-        private float scythevel = 1;
-
         private void ScytheAttack (float aiLimit) {
-
-            float scytheangle = rad / 6 * (float)Math.Sin(NPC.ai[2] / 32);
-            Vector2 vel = new Vector2(0, scythevel).RotatedBy(scytheangle);
+            float scytheVel = 1;
+            float scytheangle = Rad / 6 * (float)Math.Sin(NPC.ai[2] / 32);
+            Vector2 vel = new Vector2(0, scytheVel).RotatedBy(scytheangle);
             Vector2 projPos = new Vector2(NPC.position.X + (NPC.width / 2), NPC.position.Y + (NPC.height / 2)) + vel * 80;
-            Projectile.NewProjectile(NPC.GetSource_FromAI(), projPos.X, projPos.Y, vel.X, vel.Y, ModContent.ProjectileType<OcramScythe>(), NPC.damage * 2, 4f);
+            Projectile.NewProjectile(NPC.GetSource_FromAI(), projPos.X, projPos.Y, vel.X, vel.Y, ModContent.ProjectileType<OcramScythe>(), (int) (NPC.damage * 1.5f), 4f);
             SoundEngine.PlaySound(SoundID.Item8, NPC.position);
             if (rage > 45) NPC.ai[2] = aiLimit;
         }

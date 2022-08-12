@@ -15,7 +15,7 @@ namespace Consolaria.Content.Items.Armor.Ranged {
     [AutoloadEquip(EquipType.Head)]
     public class TitanHelmet : ModItem {
 
-        private Asset<Texture2D> helmetGlowmask;
+        public static Lazy<Asset<Texture2D>> helmetGlowmask;
         public override void Unload () => helmetGlowmask = null;
 
         public override void SetStaticDefaults () {
@@ -24,7 +24,7 @@ namespace Consolaria.Content.Items.Armor.Ranged {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
 
             if (!Main.dedServ) {
-                helmetGlowmask = ModContent.Request<Texture2D>(Texture + "_Glow");
+                helmetGlowmask = new(() => ModContent.Request<Texture2D>(Texture + "_Glow"));
                 HeadGlowmask.RegisterData(Item.headSlot, new DrawLayerData() {
                     Texture = ModContent.Request<Texture2D>(Texture + "_Head_Glow")
                 });
@@ -32,7 +32,7 @@ namespace Consolaria.Content.Items.Armor.Ranged {
         }
 
         public override void PostDrawInWorld (SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
-            => Item.BasicInWorldGlowmask(spriteBatch, helmetGlowmask.Value, new Color(255, 255, 255, 0) * 0.8f * 0.75f, rotation, scale);
+            => Item.BasicInWorldGlowmask(spriteBatch, helmetGlowmask.Value.Value, new Color(255, 255, 255, 0) * 0.8f, rotation, scale);
 
         public override void SetDefaults () {
             int width = 30; int height = 26;
@@ -81,7 +81,7 @@ namespace Consolaria.Content.Items.Armor.Ranged {
 
     internal class TitanArmorBonuses : GlobalItem {
         public override bool? UseItem (Item item, Player player) {
-            ushort projType = (ushort)ModContent.ProjectileType<TitanShockwawe>();
+            ushort projType = (ushort) ModContent.ProjectileType<TitanShockwawe>();
             if (player.GetModPlayer<TitanPlayer>().titanPower && player.ownedProjectileCounts [projType] < 1 && item.DamageType == DamageClass.Ranged && player.miscCounter % 10 == 0) {
                 Projectile.NewProjectile(player.GetSource_ItemUse(item), player.Center, new Vector2(0, 0), projType, 35, 9f, player.whoAmI);
                 SoundEngine.PlaySound(new SoundStyle($"{nameof(Consolaria)}/Assets/Sounds/Shockwave"), player.position);

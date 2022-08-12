@@ -12,10 +12,11 @@ using Terraria.ModLoader.Utilities;
 
 namespace Consolaria.Content.NPCs {
 	public class DragonSnatcher : ModNPC {
+
 		private int timer = 0;
-		private bool spawned = false;
 		private float posX = 0f;
 		private float posY = 0f;
+		private bool spawned = false;
 
 		public override void SetStaticDefaults () {
 			DisplayName.SetDefault("Dragon Snatcher");
@@ -106,7 +107,7 @@ namespace Consolaria.Content.NPCs {
 				NPC.netUpdate = true;
 			}
 
-				if (posX < NPC.position.X) {
+			if (posX < NPC.position.X) {
 				if (NPC.velocity.X > -4) { NPC.velocity.X -= 0.25f; }
 			}
 			else if (posX > NPC.Center.X) {
@@ -132,9 +133,9 @@ namespace Consolaria.Content.NPCs {
 			bool flag = true;
 			while (flag) {
 				float drawPos = (float) Math.Sqrt(drawPosX * drawPosX + drawPosY * drawPosY);
-				if (drawPos < 16f) flag = false;
+				if (drawPos < 18f) flag = false;
 				else {
-					drawPos = 16f / drawPos;
+					drawPos = 18f / drawPos;
 					drawPosX *= drawPos;
 					drawPosY *= drawPos;
 					vector.X += drawPosX;

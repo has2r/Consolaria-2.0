@@ -7,19 +7,17 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Consolaria.Content.Items.Armor.Melee
-{
+namespace Consolaria.Content.Items.Armor.Melee {
     [AutoloadEquip(EquipType.Head)]
-    public class DragonMask : ModItem
-    {
-        public override void SetStaticDefaults() {
+    public class DragonMask : ModItem {
+        public override void SetStaticDefaults () {
             DisplayName.SetDefault("Dragon Mask");
             Tooltip.SetDefault("10% increased melee damage" + "\n10% increased melee speed");
 
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
         }
 
-        public override void SetDefaults() {
+        public override void SetDefaults () {
             int width = 30; int height = 26;
             Item.Size = new Vector2(width, height);
 
@@ -29,24 +27,24 @@ namespace Consolaria.Content.Items.Armor.Melee
             Item.defense = 20;
         }
 
-        public override void UpdateEquip(Player player) {
+        public override void UpdateEquip (Player player) {
             player.GetDamage(DamageClass.Melee) += 0.1f;
             player.GetAttackSpeed(DamageClass.Melee) += 0.1f;
         }
 
-        public override bool IsArmorSet(Item head, Item body, Item legs)
+        public override bool IsArmorSet (Item head, Item body, Item legs)
             => body.type == ModContent.ItemType<DragonBreastplate>() || body.type == ModContent.ItemType<AncientDragonBreastplate>()
             && legs.type == ModContent.ItemType<DragonGreaves>() || legs.type == ModContent.ItemType<AncientDragonGreaves>();
 
-        public override void ArmorSetShadows(Player player) 
+        public override void ArmorSetShadows (Player player)
             => player.armorEffectDrawShadow = true;
 
-        public override void UpdateArmorSet(Player player) {
+        public override void UpdateArmorSet (Player player) {
             player.setBonus = "Creates a burst of flames after taking damage";
             player.GetModPlayer<DragonPlayer>().dragonBurst = true;
         }
-        
-        public override void AddRecipes() {
+
+        public override void AddRecipes () {
             CreateRecipe()
                 .AddIngredient(ItemID.HallowedMask)
                .AddRecipeGroup(RecipeGroups.Titanium, 10)
@@ -57,20 +55,18 @@ namespace Consolaria.Content.Items.Armor.Melee
         }
     }
 
-    public class DragonPlayer : ModPlayer
-    {
+    public class DragonPlayer : ModPlayer {
         public bool dragonBurst;
 
-        public override void ResetEffects()
+        public override void ResetEffects ()
             => dragonBurst = false;
 
         private float projectilesCount = Main.rand.Next(3, 5);
         private float rotation = MathHelper.ToRadians(15);
         private Vector2 velocity, position;
 
-        public override void OnHitByNPC(NPC npc, int damage, bool crit) {
+        public override void OnHitByNPC (NPC npc, int damage, bool crit) {
             if (dragonBurst) {
-                // Vector2 velocity = Helper.VelocityToPoint(Player.position, npc.position, 6f);
                 velocity = new(6 * Player.direction, 0);
                 position = new(Player.direction > 0 ? Player.Center.X + 15 : Player.Center.X - 15, Player.Center.Y - 5);
                 for (int i = 0; i < projectilesCount; i++) {
@@ -81,9 +77,8 @@ namespace Consolaria.Content.Items.Armor.Melee
             }
         }
 
-        public override void OnHitByProjectile(Projectile proj, int damage, bool crit) {
+        public override void OnHitByProjectile (Projectile proj, int damage, bool crit) {
             if (dragonBurst) {
-                //Vector2 velocity = Helper.VelocityToPoint(Player.position, proj.position, 6f);
                 velocity = new(6 * Player.direction, 0);
                 position = new(Player.direction > 0 ? Player.Center.X + 15 : Player.Center.X - 15, Player.Center.Y - 5);
                 for (int i = 0; i < projectilesCount; i++) {

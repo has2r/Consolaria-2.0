@@ -29,7 +29,7 @@ namespace Consolaria.Content.Items.Accessories {
             Item.value = Item.sellPrice(gold: 8);
             Item.rare = ItemRarityID.Lime;
 
-            Item.alpha = 75;
+            Item.alpha = 70;
             Item.accessory = true;
         }
 

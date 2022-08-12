@@ -577,7 +577,9 @@ namespace Consolaria.Content.NPCs.Ocram {
                                     }
                                 }
                             }
+
                             bool isExpert = Main.expertMode || Main.masterMode;
+                            float ai2Limit = isExpert ? 600f : 200f;
                             if (isExpert && NPC.ai [2] > 200f) { //scythe bullet hell
                                 float distance = 14f;
                                 float velocityBoost = 0.35f;
@@ -622,37 +624,38 @@ namespace Consolaria.Content.NPCs.Ocram {
                                         }
                                     }
                                 }
+
                                 NPC.localAI [3]++;
                                 if (Main.netMode != NetmodeID.MultiplayerClient && NPC.localAI [3] % 15 == 0) {
-                                    int num362 = 5;
-                                    int randomOffset = Main.rand.Next(-120, 121);
-                                    float velX = Main.player [NPC.target].position.X + Main.player [NPC.target].width / 2 - num362 * 50 - newvel.X;
-                                    float velY = Main.player [NPC.target].position.Y + Main.player [NPC.target].height / 2 - newvel.Y;
-                                    _ = (float) Math.Sqrt((double) (velX * velX + velY * velY));
-                                    newvel = new Vector2(NPC.position.X + NPC.width * 0.5f, NPC.position.Y + NPC.height * 0.5f);
-                                    velX = Main.player [NPC.target].position.X + Main.player [NPC.target].width / 2 - randomOffset - newvel.X;
-                                    velY = Main.player [NPC.target].position.Y + Main.player [NPC.target].height / 2 - randomOffset - newvel.Y;
-                                    float bebra = 16f;
-                                    float bebra2 = (float) Math.Sqrt((double) (velX * velX + velY * velY));
-                                    bebra2 = bebra / bebra2;
-                                    velX *= bebra2;
-                                    velY *= bebra2;
-                                    velX += Main.rand.Next(-90, 91) * 0.05f;
-                                    velY += Main.rand.Next(-50, 51) * 0.05f;
-                                    newvel.X += velX * 2.5f;
-                                    newvel.Y += velY * 2.5f;
-                                    Vector2 projPos = new Vector2(NPC.position.X + (NPC.width / 2), NPC.position.Y + (NPC.height / 2));
-                                    Projectile.NewProjectile(NPC.GetSource_FromAI(), projPos.X, projPos.Y, velX, velY, ModContent.ProjectileType<OcramScythe>(), NPC.damage * 2, 4f);
-                                    SoundEngine.PlaySound(SoundID.Item8, NPC.position);
+                                    /*     int num362 = 5;
+                                         int randomOffset = Main.rand.Next(-120, 121);
+                                         float velX = Main.player [NPC.target].position.X + Main.player [NPC.target].width / 2 - num362 * 50 - newvel.X;
+                                         float velY = Main.player [NPC.target].position.Y + Main.player [NPC.target].height / 2 - newvel.Y;
+                                         _ = (float) Math.Sqrt((double) (velX * velX + velY * velY));
+                                         newvel = new Vector2(NPC.position.X + NPC.width * 0.5f, NPC.position.Y + NPC.height * 0.5f);
+                                         velX = Main.player [NPC.target].position.X + Main.player [NPC.target].width / 2 - randomOffset - newvel.X;
+                                         velY = Main.player [NPC.target].position.Y + Main.player [NPC.target].height / 2 - randomOffset - newvel.Y;
+                                         float bebra = 16f;
+                                         float bebra2 = (float) Math.Sqrt((double) (velX * velX + velY * velY));
+                                         bebra2 = bebra / bebra2;
+                                         velX *= bebra2;
+                                         velY *= bebra2;
+                                         velX += Main.rand.Next(-90, 91) * 0.05f;
+                                         velY += Main.rand.Next(-50, 51) * 0.05f;
+                                         newvel.X += velX * 2.5f;
+                                         newvel.Y += velY * 2.5f;
+                                         Vector2 projPos = new Vector2(NPC.position.X + (NPC.width / 2), NPC.position.Y + (NPC.height / 2));
+                                         Projectile.NewProjectile(NPC.GetSource_FromAI(), projPos.X, projPos.Y, velX, velY, ModContent.ProjectileType<OcramScythe>(), NPC.damage * 2, 4f);
+                                         SoundEngine.PlaySound(SoundID.Item8, NPC.position);
 
-                                    int index3 = Dust.NewDust(projPos, 0, 0, DustID.Shadowflame, 0f, 0f, 100, default, 1f + Main.rand.NextFloat(0, 1.5f));
-                                    Main.dust [index3].noGravity = true;
-                                    Main.dust [index3].fadeIn = Main.rand.NextFloat(0, 1f);
+                                         int index3 = Dust.NewDust(projPos, 0, 0, DustID.Shadowflame, 0f, 0f, 100, default, 1f + Main.rand.NextFloat(0, 1.5f));
+                                         Main.dust [index3].noGravity = true;
+                                         Main.dust [index3].fadeIn = Main.rand.NextFloat(0, 1f);*/
 
+                                    ScytheAttack(ai2Limit);
                                     NPC.localAI [3] = 0;
                                 }
                             }
-                            float ai2Limit = isExpert ? 540f : 200f;
                             if (NPC.ai [2] >= ai2Limit) {
                                 drawTrail = true;
                                 NPC.ai [1] = 1f;
@@ -769,6 +772,34 @@ namespace Consolaria.Content.NPCs.Ocram {
                     }
                 }
             }
+        }
+
+        //da kto eta vasha trigonometriya
+        private float scytheVelX = -180;
+        private float scytheVelY = 5f;
+        private bool changeDirection;
+
+        private void ScytheAttack (float aiLimit) {
+            int scytheVelXmin = -180;
+            int scytheVelXmax = 180;
+            int step = 30;
+
+            if (scytheVelX < scytheVelXmax && !changeDirection)
+                scytheVelX += step;
+            else {
+                changeDirection = true;
+                scytheVelX -= step;
+            }
+
+            if (scytheVelX == scytheVelXmin && changeDirection) {
+                changeDirection = false;
+                NPC.ai [2] = aiLimit;
+            }
+
+            Vector2 vel = new Vector2(scytheVelX * 0.075f, scytheVelY);
+            Vector2 projPos = new Vector2(NPC.position.X + (NPC.width / 2), NPC.position.Y + (NPC.height / 2));
+            Projectile.NewProjectile(NPC.GetSource_FromAI(), projPos.X, projPos.Y, vel.X, vel.Y, ModContent.ProjectileType<OcramScythe>(), NPC.damage * 2, 4f);
+            SoundEngine.PlaySound(SoundID.Item8, NPC.position);
         }
 
         public override bool PreDraw (SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {

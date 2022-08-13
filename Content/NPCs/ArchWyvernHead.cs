@@ -71,7 +71,7 @@ namespace Consolaria.Content.NPCs
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Sky,
-				new FlavorTextBestiaryInfoElement("Looks like a Digger fell into some aqua-colored paint. Oh well.")
+				new FlavorTextBestiaryInfoElement("Legends say that wyverns are capable of breathing fire. What they don't tell is that few grow old enough to gain such power.")
 			});
 		}
 

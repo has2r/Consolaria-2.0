@@ -54,7 +54,7 @@ namespace Consolaria.Content.NPCs
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Underground,
-				new FlavorTextBestiaryInfoElement("Some evidence indicates some spelunkers got bitten by vampire bats before they passed away... and now their rotten remains hunt anyone for tasty blood.")
+				new FlavorTextBestiaryInfoElement("Evidence indicates that some spelunkers got bitten by vampire bats before passing away... and now their rotten remains are out for blood.")
 			});
 		}
 

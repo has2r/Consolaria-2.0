@@ -64,7 +64,7 @@ namespace Consolaria.Content.NPCs {
 		public override void SetBestiary (BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement [] {
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.UndergroundJungle,
-				new FlavorTextBestiaryInfoElement("A different species of Man Eater, this carnivorous plant can inject acid venom when it bites its careless prey.")
+				new FlavorTextBestiaryInfoElement("This species of Snatcher learned to repurpose the stingers of Hornets that fell prey to it to hunt bigger targets.")
 			});
 		}
 

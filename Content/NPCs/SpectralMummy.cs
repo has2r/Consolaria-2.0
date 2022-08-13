@@ -47,7 +47,7 @@ namespace Consolaria.Content.NPCs
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
                 BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.HallowDesert,
-                new FlavorTextBestiaryInfoElement("The overflowing ghostly energy of these mummies made their tattered bodies highly unstable to contain it.")
+                new FlavorTextBestiaryInfoElement("The overflowing light energy of these mummies made their tattered bodies highly unstable.")
             });
         }
 

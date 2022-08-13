@@ -55,7 +55,7 @@ namespace Consolaria.Content.NPCs {
 		public override void SetBestiary (BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement [] {
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.UndergroundJungle,
-				new FlavorTextBestiaryInfoElement("Relatives of the common Hornets, these violent insects can discharge stingers even more venomous than before.")
+				new FlavorTextBestiaryInfoElement("Relatives of common Hornets, these insects developed an unusual appearance to scare off enemies. If that's not enough, the poisonous stingers should do the job.")
 			});
 		}
 

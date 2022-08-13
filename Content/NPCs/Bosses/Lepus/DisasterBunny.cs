@@ -48,7 +48,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
                 BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
-                new FlavorTextBestiaryInfoElement("Disastrous spawn of the legendary Overworld monstrosity, these bug-eyed rabbits will bite anything they come across.")
+                new FlavorTextBestiaryInfoElement("Disastrous spawn of the rabid giant, these bug-eyed creatures will bite anything they come across.")
             });
         }
 

@@ -110,9 +110,8 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
                 Position = new Vector2(24f, 12f),
                 PortraitPositionXOverride = 10f,
                 PortraitPositionYOverride = -5f,
-                PortraitScale = 1.25f,
-                Rotation = (float) Math.PI / 2f + 0.5f,
-                Scale = 1.25f
+                PortraitScale = 1f,
+                Scale = 1f
             };
             NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
         }
@@ -157,7 +156,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
             => bestiaryEntry.Info.AddRange(new List<IBestiaryInfoElement>
             {
                 BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheHallow,
-                new FlavorTextBestiaryInfoElement("A hare of incredible size, capable of producing weak copies of itself as quickly as chewing the unfortunate Terrarian with its huge teeth.")
+                new FlavorTextBestiaryInfoElement("A rabbit of such size is troublesome enough, but this monster is capable of reproducing through colorful eggs, spread around the world in Spring for fools to pick up.")
             });
 
         public override void ModifyHitPlayer (Player target, ref int damage, ref bool crit) {

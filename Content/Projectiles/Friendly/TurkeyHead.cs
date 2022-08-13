@@ -9,6 +9,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
         public override void SetStaticDefaults () {
             DisplayName.SetDefault("Weird Turkey");
             Main.projPet [Projectile.type] = true;
+			Main.projFrames[Projectile.type] = 4;
 
             ProjectileID.Sets.CultistIsResistantTo [Projectile.type] = true;
             ProjectileID.Sets.MinionTargettingFeature [Projectile.type] = true;
@@ -38,6 +39,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
         }
 
         public override void AI () {
+            if (Projectile.frame > 3) Projectile.frame = 1;
             Player player = Main.player [Projectile.owner];
             if (!CheckActive(player)) return;
         }
@@ -93,7 +95,9 @@ namespace Consolaria.Content.Projectiles.Friendly {
                     vector2_1.Normalize();
                     position += vector2_1 * height;
                     vector2_4 = mountedCenter - position;
-                    spriteBatch.Draw(texture, position - Main.screenPosition, null, lightColor, 0, origin, 1f, SpriteEffects.None, 0.0f);
+                    Vector2 vector2_5 = position - Main.screenPosition;
+                    Color neckColor = Lighting.GetColor((int)(position.X / 16), (int)(position.Y / 16f));
+                    spriteBatch.Draw(texture, vector2_5, null, neckColor, 0, origin, 1f, SpriteEffects.None, 0.0f);
                 }
             }
             return true;

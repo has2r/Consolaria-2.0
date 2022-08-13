@@ -49,7 +49,7 @@ namespace Consolaria.Content.NPCs
         public override void SetBestiary (BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement [] {
                 BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheCrimson,
-                new FlavorTextBestiaryInfoElement("Steeped in the power of world evil, these slimes can spread their excretas.")
+                new FlavorTextBestiaryInfoElement("Steeped in the power of Crimson, these slimes can spread their excretas.")
             });
         }
 

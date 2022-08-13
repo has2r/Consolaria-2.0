@@ -55,7 +55,7 @@ namespace Consolaria.Content.NPCs
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheDungeon,
-				new FlavorTextBestiaryInfoElement("Touched by the Dungeon's curse, the fossilized heads of ancient reptiles now prey on the living, transferring their curse to their victims.")
+				new FlavorTextBestiaryInfoElement("Touched by necromantic spells, the heads of ancient reptiles now prey on the living, sharing their curse with their victims.")
 			});
 		}
 

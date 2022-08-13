@@ -58,7 +58,7 @@ namespace Consolaria.Content.NPCs
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheHallow,
-				new FlavorTextBestiaryInfoElement("Unlike Gastropods, these slimes can spit out balls of ghostly energy that are capable of chasing nearby living beings.")
+				new FlavorTextBestiaryInfoElement("Once ordinary Gastropods, these slimes possessed by spirits of light can spit out balls of concentrated luminous energy.")
 			});
 		}
 

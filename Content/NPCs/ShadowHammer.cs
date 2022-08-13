@@ -61,7 +61,7 @@ namespace Consolaria.Content.NPCs
 		public override void SetBestiary (BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement [] {
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.UndergroundCorruption,
-				new FlavorTextBestiaryInfoElement("Magicked through the pure hatred of the world evil, this weapon flails about attempting to smash anything that breathes.")
+				new FlavorTextBestiaryInfoElement("Magicked through the pure hatred of the Corruption, this weapon flails about attempting to smash anything that breathes.")
 			});
 		}
 

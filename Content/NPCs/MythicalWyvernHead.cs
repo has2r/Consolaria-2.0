@@ -67,7 +67,7 @@ namespace Consolaria.Content.NPCs {
 		public override void SetBestiary (BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement [] {
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Sky,
-				new FlavorTextBestiaryInfoElement("")
+				new FlavorTextBestiaryInfoElement("Beings of legends, these reclusive wyverns only appear at a particular time of year.")
 			});
 		}
 

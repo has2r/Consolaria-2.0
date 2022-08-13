@@ -64,7 +64,7 @@ namespace Consolaria.Content.NPCs
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheUnderworld,
-				new FlavorTextBestiaryInfoElement("The most powerful ones among hellish creatures, Arch Demons will tear to shreds anyone who descended into The Underworld with their exploding scythes.")
+				new FlavorTextBestiaryInfoElement("Particularly powerful demons live long enough for their body to turn into a withered husk.")
 			});
 		}
 

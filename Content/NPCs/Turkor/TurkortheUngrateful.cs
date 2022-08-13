@@ -37,7 +37,7 @@ namespace Consolaria.Content.NPCs.Turkor {
 
 			NPCID.Sets.NPCBestiaryDrawModifiers drawModifiers = new NPCID.Sets.NPCBestiaryDrawModifiers(0) {
 				CustomTexturePath = "Consolaria/Assets/Textures/Bestiary/Turkor_Bestiary",
-				PortraitScale = 0.6f,
+				PortraitScale = 1f,
 				Position = new Vector2(0, 10f),
 			};
 			NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, drawModifiers);
@@ -79,7 +79,7 @@ namespace Consolaria.Content.NPCs.Turkor {
 		public override void SetBestiary (BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
 			bestiaryEntry.Info.AddRange(new List<IBestiaryInfoElement> {
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
-				new FlavorTextBestiaryInfoElement("Empowered by unknown thanksgiving spirits, this mutant turkey poses a great danger to those who dare to cut a piece or two from its crunchy body.")
+				new FlavorTextBestiaryInfoElement("Existing out of pure spite, this monstrocity is on a yearly vendetta against those who dare to take a bite of Thanksgiving turkey.")
 			});
 		}
 

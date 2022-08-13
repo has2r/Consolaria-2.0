@@ -41,8 +41,8 @@ namespace Consolaria.Content.NPCs.Ocram {
             NPCID.Sets.MPAllowedEnemies [Type] = true;
 
             NPCID.Sets.BossBestiaryPriority.Add(Type);
-            float scale = 0.475f;
-            float xOffset = 38f;
+            float scale = 1f;
+            float xOffset = 20f;
             NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0) {
                 Position = new Vector2(0, -xOffset),
                 Velocity = 1f,

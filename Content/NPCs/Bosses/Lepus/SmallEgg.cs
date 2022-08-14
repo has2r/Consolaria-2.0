@@ -78,7 +78,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
                     }
                 }
                 int type = ModContent.NPCType<DisasterBunny>();
-                if (spawnBunny && NPC.CountNPCS(type) < (Main.expertMode ? 15 : 10)) {
+                if (spawnBunny && NPC.CountNPCS(type) < (Main.expertMode ? 15 : 10) && NPC.CountNPCS(ModContent.NPCType<Lepus>()) > 0) {
                     if (Main.netMode != NetmodeID.Server) {
                         SoundStyle style = new SoundStyle($"{nameof(Consolaria)}/Assets/Sounds/EggCrack");
                         SoundEngine.PlaySound(style, NPC.Center);

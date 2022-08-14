@@ -159,11 +159,11 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
                 new FlavorTextBestiaryInfoElement("A rabbit of such size is troublesome enough, but this monster is capable of reproducing through colorful eggs, spread around the world in Spring for fools to pick up.")
             });
 
-        public override void ModifyHitPlayer (Player target, ref int damage, ref bool crit) {
+        /*public override void ModifyHitPlayer (Player target, ref int damage, ref bool crit) {
             short debuffTime = 120;
             short debuffTime2 = 180;
             target.AddBuff(BuffID.Slow, Main.expertMode ? debuffTime2 : debuffTime);
-        }
+        }*/
 
         public override void OnKill ()
             => NPC.SetEventFlagCleared(ref DownedBossSystem.downedLepus, -1);
@@ -209,13 +209,13 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
                         float alpha = didAdvancedJump ? alphaX : alphaY;
                         color *= (float) ((NPC.oldPos.Length - i) / 15f) * 0.85f;
                         color *= alpha;
-                        spriteBatch.Draw(texture, new Vector2(NPC.oldPos [i].X - screenPos.X + NPC.width / 2 - texture.Width * NPC.scale / 2f + origin.X * NPC.scale, NPC.oldPos [i].Y - screenPos.Y + NPC.height - texture.Height * NPC.scale / Main.npcFrameCount [NPC.type] + 4f + origin.Y * NPC.scale) - NPC.velocity * i * 0.5f, new Rectangle?(NPC.frame), color * 1.25f * NPC.Opacity, NPC.rotation, origin, scale * alpha * 0.5f, effects, 0f);
+                        spriteBatch.Draw(texture, new Vector2(NPC.oldPos [i].X - screenPos.X + NPC.width / 2 - texture.Width * NPC.scale / 2f + origin.X * NPC.scale, NPC.oldPos [i].Y - screenPos.Y + NPC.height - texture.Height * NPC.scale / Main.npcFrameCount [NPC.type] + 4f + origin.Y * NPC.scale), new Rectangle?(NPC.frame), color * 1.25f * NPC.Opacity, NPC.rotation, origin, scale * alpha * 0.5f, effects, 0f);
                     }
                 }
-                if (doSpawnBigEgg) {
+                /*if (doSpawnBigEgg) {
                     Color color = NPC.GetAlpha(Utils.MultiplyRGB(Color.HotPink, drawColor));
                     spriteBatch.Draw(texture, NPC.Center - screenPos + new Vector2(0f, offsetY), new Rectangle?(NPC.frame), color * NPC.Opacity, NPC.rotation, origin, NPC.scale * 0.525f * ((Main.mouseTextColor / 200f - 0.35f) * 0.75f + 0.8f) * 1.5f, effects, 0f);
-                }
+                }*/
             }
             spriteBatch.Draw(texture, NPC.Center - screenPos + new Vector2(0f, offsetY), new Rectangle?(NPC.frame), drawColor * NPC.Opacity, NPC.rotation, origin, NPC.scale, effects, 0f);
             return false;
@@ -322,6 +322,11 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
             if (TooFar()) {
                 SoundStyle style = new($"{nameof(Consolaria)}/Assets/Sounds/LepusFaildJump");
                 SoundEngine.PlaySound(style, NPC.Center);
+                for (int index1 = 0; index1 < 8; ++index1) {
+                    int dust = Dust.NewDust(NPC.TopLeft - new Vector2(20, 60), NPC.width + 40, NPC.height + 40, ModContent.DustType<Dusts.EggDust>(), 0, 0, 0, default(Color), Main.rand.NextFloat(0.9f, 1.1f));
+                    Main.dust[dust].velocity.X = 0;
+                    Main.dust[dust].velocity.Y = 0.8f;
+                }
                 ChangeState(STATE_JUMP2);
             }
         }
@@ -358,8 +363,8 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
                 NPC.Opacity *= 1.1f;
             }
             if (!NPC.collideY && NPC.velocity.Y != 0f) {
-                float velocityYSpeed = Main.expertMode ? 10f : 5f;
-                float acceleration = velocityYSpeed / 5f;
+                float velocityYSpeed = Main.expertMode ? 5f : 2.5f;
+                float acceleration = velocityYSpeed / 2.5f;
                 NPC.velocity.Y += velocityYSpeed;
                 NPC.velocity.Y *= acceleration;
                 NPC.velocity.Y = Math.Min(NPC.velocity.Y, 20f);
@@ -446,6 +451,12 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
                     ChangeState(STATE_JUMP2, jumpStrength);
                     NPC.netUpdate = true;
                     return;
+                }
+                else if (StateTimer % 3 == 0) {
+                    Vector2 eyeCenter = NPC.Center + new Vector2(12, 0) * NPC.direction;
+                    int dust = Dust.NewDust(NPC.TopLeft - new Vector2(20, 20), NPC.width + 40, NPC.height + 40, DustID.Smoke, 0, 0, 20, Color.HotPink, Main.rand.NextFloat(1.2f, 1.7f));
+                    Main.dust[dust].position = eyeCenter + new Vector2(0, -80).RotatedByRandom(Math.PI * 2f);
+                    Main.dust[dust].velocity = Vector2.Normalize(Main.dust[dust].position - eyeCenter) * -2f;
                 }
             }
             else {
@@ -618,6 +629,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
                     NetMessage.SendData(MessageID.SyncNPC, number: index);
                 }
             }
+            JustSpawned = true;
         }
 
         private void SpawnBigEgg () {
@@ -644,8 +656,8 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
             if (zeroVelocityX) {
                 NPC.velocity.X = 0f;
             }
+            if (StateTimer >= 270) NPC.noTileCollide = true;
             if (StateTimer >= 280) {
-                NPC.noTileCollide = true;
                 if (NPC.Opacity != 0f) {
                     if (NPC.velocity.Y > 0f) {
                         NPC.Opacity -= 0.01f;
@@ -675,7 +687,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
         private bool TooFar () {
             Player player = Main.player [NPC.target];
             Vector2 center = NPC.Center;
-            return (Main.expertMode && !Collision.CanHitLine(center, NPC.width, NPC.height, player.Center, 2, 2)) || player.Distance(center) > MAX_DISTANCE / (Main.expertMode ? 6f : 5f);
+            return (Main.expertMode && !Collision.CanHitLine(center, 10, 10, player.Center, 2, 2)) || player.Distance(center) > MAX_DISTANCE / (Main.expertMode ? 6f : 5f);
         }
     }
 }

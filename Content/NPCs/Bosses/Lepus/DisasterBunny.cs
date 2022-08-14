@@ -31,9 +31,9 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
             AnimationType = 47;
 
             NPC.damage = 20;
-            NPC.defense = 8;
+            NPC.defense = 4;
 
-            NPC.lifeMax = 72;
+            NPC.lifeMax = 70;
             NPC.knockBackResist = 0.5f;
 
             NPC.HitSound = SoundID.NPCHit1;
@@ -44,6 +44,8 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
             Banner = NPC.type;
             BannerItem = ModContent.ItemType<Items.Banners.DisasterBunnyBanner>();
         }
+        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+            => NPC.lifeMax = 105;
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {

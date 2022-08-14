@@ -8,15 +8,13 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Utilities;
 
-namespace Consolaria.Content.NPCs
-{
-	public class VampireMiner : ModNPC
-	{
-		public override void SetStaticDefaults() {
-			Main.npcFrameCount[NPC.type] = 15;
+namespace Consolaria.Content.NPCs {
+	public class VampireMiner : ModNPC {
+		public override void SetStaticDefaults () {
+			Main.npcFrameCount [NPC.type] = 15;
 
 			NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData {
-				SpecificallyImmuneTo = new int[] {
+				SpecificallyImmuneTo = new int [] {
 					BuffID.Poisoned,
 					BuffID.Bleeding
 				}
@@ -28,7 +26,7 @@ namespace Consolaria.Content.NPCs
 			NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
 		}
 
-		public override void SetDefaults() {
+		public override void SetDefaults () {
 			int width = 40; int height = width;
 			NPC.Size = new Vector2(width, height);
 
@@ -51,17 +49,17 @@ namespace Consolaria.Content.NPCs
 			BannerItem = ModContent.ItemType<Items.Banners.VampireMinerBanner>();
 		}
 
-		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
-			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+		public override void SetBestiary (BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
+			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement [] {
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Underground,
 				new FlavorTextBestiaryInfoElement("Evidence indicates that some spelunkers got bitten by vampire bats before passing away... and now their rotten remains are out for blood.")
 			});
 		}
 
-		public override void AI()
+		public override void AI ()
 			=> Lighting.AddLight(NPC.Center, new Vector3(0.8f, 0f, 0.7f));
-		
-		public override void OnHitPlayer(Player target, int damage, bool crit) {
+
+		public override void OnHitPlayer (Player target, int damage, bool crit) {
 			if (Main.rand.NextBool(5))
 				target.AddBuff(BuffID.Bleeding, 60 * 5);
 
@@ -77,24 +75,24 @@ namespace Consolaria.Content.NPCs
 			}
 		}
 
-		public override void HitEffect(int hitDirection, double damage) {
-			Dust.NewDust(NPC.position, NPC.width, NPC.height, 5, 2.5f * hitDirection, -2.5f, 0, default, 0.7f);
+		public override void HitEffect (int hitDirection, double damage) {
+			Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood, 2.5f * hitDirection, -2.5f, 0, default, 0.7f);
 			if (NPC.life <= 0) {
 				Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity, ModContent.Find<ModGore>("Consolaria/vampgore1").Type, 1f);
 				Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity, ModContent.Find<ModGore>("Consolaria/vampgore2").Type, 1f);
 				for (int i = 0; i < 20; i++)
-					Dust.NewDust(NPC.position, NPC.width, NPC.height, 5, 2.5f * hitDirection, -2.5f, 0, default, 1f);
+					Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood, 2.5f * hitDirection, -2.5f, 0, default, 1f);
 			}
 		}
 
-		public override void ModifyNPCLoot(NPCLoot npcLoot) {
+		public override void ModifyNPCLoot (NPCLoot npcLoot) {
 			var minerDropRules = Main.ItemDropsDB.GetRulesForNPCID(NPCID.UndeadMiner, false);
 			foreach (var minerDropRule in minerDropRules)
 				npcLoot.Add(minerDropRule);
 			npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<VialOfBlood>(), 5));
 		}
 
-		public override float SpawnChance(NPCSpawnInfo spawnInfo)
-			=> SpawnCondition.Underground.Chance * 0.15f;
+		public override float SpawnChance (NPCSpawnInfo spawnInfo)
+			=> SpawnCondition.Cavern.Chance * 0.025f;
 	}
 }

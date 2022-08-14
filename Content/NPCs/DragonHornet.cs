@@ -98,6 +98,6 @@ namespace Consolaria.Content.NPCs {
 		}
 
 		public override float SpawnChance (NPCSpawnInfo spawnInfo)
-			=> SpawnCondition.UndergroundJungle.Chance * 0.33f;
+			=> SpawnCondition.UndergroundJungle.Chance * 0.025f;
 	}
 }

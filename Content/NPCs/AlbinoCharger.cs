@@ -70,6 +70,6 @@ namespace Consolaria.Content.NPCs {
         }
 
         public override float SpawnChance (NPCSpawnInfo spawnInfo)
-            => SpawnCondition.DesertCave.Chance * 0.05f;
+            => SpawnCondition.DesertCave.Chance * 0.025f;
     }
 }

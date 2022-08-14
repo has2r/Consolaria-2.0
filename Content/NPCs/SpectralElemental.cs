@@ -8,8 +8,7 @@ using Terraria.GameContent.Bestiary;
 using Consolaria.Content.Projectiles.Enemies;
 using Terraria.ModLoader.Utilities;
 
-namespace Consolaria.Content.NPCs
-{
+namespace Consolaria.Content.NPCs {
     public class SpectralElemental : ModNPC {
         public override void SetStaticDefaults () {
             DisplayName.SetDefault("Spectral Elemental");
@@ -83,10 +82,10 @@ namespace Consolaria.Content.NPCs
         }
 
         public override void HitEffect (int hitDirection, double damage) {
-            Dust.NewDust(NPC.position, NPC.width, NPC.height, 185, 2.5f * hitDirection, -2.5f, 0, default, 0.8f);
+            Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.FrostHydra, 2.5f * hitDirection, -2.5f, 0, default, 0.8f);
             if (NPC.life <= 0) {
                 for (int i = 0; i < 25; i++)
-                    Dust.NewDust(NPC.position, NPC.width, NPC.height, 185, 2.5f * hitDirection, -2.5f, 0, default, 1f);
+                    Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.FrostHydra, 2.5f * hitDirection, -2.5f, 0, default, 1f);
             }
         }
 
@@ -113,7 +112,7 @@ namespace Consolaria.Content.NPCs
         }
 
         public override float SpawnChance (NPCSpawnInfo spawnInfo)
-            => (spawnInfo.Player.ZoneHallow && spawnInfo.SpawnTileY < Main.rockLayer) ?
-            SpawnCondition.OverworldHallow.Chance * 0.15f : 0f;
+            => (spawnInfo.Player.ZoneHallow && spawnInfo.SpawnTileY > Main.rockLayer) ?
+            SpawnCondition.OverworldHallow.Chance * 0.015f : 0f;
     }
 }

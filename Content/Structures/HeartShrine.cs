@@ -67,7 +67,7 @@ namespace Consolaria.Content.Structures {
 
             int structureCount = 0;
             do {
-                if (!TryLocation(width, height, ref heartShrinePositionX, ref heartShrinePositionY))
+                if (!WorldGenHelper.TryStructureLocation(new int [] { TileID.SnowBlock, TileID.IceBlock }, width, height, ref heartShrinePositionX, ref heartShrinePositionY))
                     return;
 
                 structureCount++;
@@ -96,7 +96,7 @@ namespace Consolaria.Content.Structures {
                     AddHeartShrineLoot(Main.chest [chestIndex].item);
 
                 WorldGen.structures.AddStructure(new Rectangle(heartShrinePositionX, heartShrinePositionY, width, height), 2);
-            } while (structureCount != GetWorldSize());
+            } while (structureCount != WorldGenHelper.GetWorldSize());
         }
 
         private void AddHeartShrineLoot (Item [] chestInventory) {
@@ -108,52 +108,6 @@ namespace Consolaria.Content.Structures {
             chestInventory [heartShrineLootIndex].SetDefaults(ItemID.HeartreachPotion); chestInventory [heartShrineLootIndex].stack = 1; heartShrineLootIndex++;
             chestInventory [heartShrineLootIndex].SetDefaults(ModContent.ItemType<HeartArrow>()); chestInventory [heartShrineLootIndex].stack = WorldGen.genRand.Next(14, 30); heartShrineLootIndex++;
             chestInventory [heartShrineLootIndex].SetDefaults(ItemID.CopperCoin); chestInventory [heartShrineLootIndex].stack = 69;
-        }
-
-        private bool TryLocation (int width, int height, ref int i, ref int j) {
-            int minValue = int.MaxValue;
-            int maxValue = int.MinValue;
-            for (int i1 = 0; i1 < Main.maxTilesX; ++i1) {
-                for (int j1 = 0; j1 < Main.maxTilesY; ++j1) {
-                    Tile tileSafely = Framing.GetTileSafely(i1, j1);
-                    if (tileSafely.TileType == TileID.SnowBlock || tileSafely.TileType == TileID.IceBlock) {
-                        if (i1 < minValue)
-                            minValue = i1;
-                        if (i1 > maxValue)
-                            maxValue = i1;
-                    }
-                }
-            }
-            for (int index1 = 0; index1 < 1000; ++index1) {
-                int x = WorldGen.genRand.Next(minValue, maxValue - width);
-                int y = WorldGen.genRand.Next((int) WorldGen.rockLayerLow, (int) WorldGen.rockLayer + 100);
-                Rectangle rectangle = new Rectangle(x, y, width, height);
-                if (WorldGen.structures.CanPlace(rectangle, 0)) {
-                    bool flag = true;
-                    for (int index2 = 0; index2 < 1000; ++index2) {
-                        Chest chest;
-                        if ((chest = Main.chest [index2]) != null && rectangle.Contains(chest.x, chest.y)) {
-                            flag = false;
-                            break;
-                        }
-                    }
-                    if (flag) {
-                        i = x;
-                        j = y;
-                        return true;
-                    }
-                }
-            }
-            return false;
-        }
-
-        private int GetWorldSize () {
-            int worldSize = 1;
-            if (Main.maxTilesX <= 4200) worldSize = 1;
-            else if (Main.maxTilesX <= 6400) worldSize = 2;
-            else if (Main.maxTilesX <= 8400) worldSize = 3;
-
-            return worldSize;
         }
     }
 }

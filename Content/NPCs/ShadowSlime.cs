@@ -5,12 +5,10 @@ using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
 using Terraria.ModLoader.Utilities;
 using Terraria.GameContent.Bestiary;
-using Consolaria.Content.Projectiles.Enemies;
 using Consolaria.Content.Items.Pets;
 using Terraria.GameContent.ItemDropRules;
 
-namespace Consolaria.Content.NPCs
-{
+namespace Consolaria.Content.NPCs {
     public class ShadowSlime : ModNPC {
         public override void SetStaticDefaults () {
             Main.npcFrameCount [NPC.type] = 2;
@@ -75,6 +73,6 @@ namespace Consolaria.Content.NPCs
 
         public override float SpawnChance (NPCSpawnInfo spawnInfo)
             => (spawnInfo.Player.ZoneCorrupt && Main.hardMode && spawnInfo.SpawnTileY < Main.rockLayer) ?
-            SpawnCondition.Corruption.Chance * 0.15f : 0f;
+            SpawnCondition.Corruption.Chance * 0.025f : 0f;
     }
 }

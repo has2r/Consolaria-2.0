@@ -1,5 +1,5 @@
-displayName = [c/7B68EE:Consolaria]
-author = RoA Gang (has2r, peege.on, Zerokk, Heretic)
+displayName = Consolaria
+author = RoA Gang (has2r, peege.on, Zerokk, Heretic, DrunkenCat)
 
 version = 1.0.0.1
 homepage = https://forums.terraria.org/index.php?threads/consolaria.62570/
@@ -8,5 +8,5 @@ hideCode = false
 hideResources = false
 includeSource = true
 
-buildIgnore = *.csproj, *..gitattributes, *.sln, *.user, obj\*, bin\*, .vs\*, Properties\*
+buildIgnore = *.csproj, *.sln, *.user, obj\*, bin\*, .vs\*, Properties\*, .git\*, .gitattributes, .gitignore
 includePDB = true

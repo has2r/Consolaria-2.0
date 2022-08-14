@@ -544,47 +544,46 @@ namespace Consolaria.Content.NPCs.Ocram {
                             NPC.ai [2] += 1f; //ai[2] is a simple timer (reset by some attacks), ai[1] cycles between attacks depending on it
 
                             if (NPC.ai [2] <= 200f) { //laser bullet hell
-                                if (Main.netMode != NetmodeID.MultiplayerClient) {
-                                    NPC.localAI [2] += 1f;
-                                    if (NPC.localAI [2] > 8f) {
-                                        NPC.localAI [2] = 0f;
-                                    }
-                                    if (Main.netMode != NetmodeID.MultiplayerClient) {
-                                        NPC.velocity *= 0.95f;
-                                        NPC.localAI [1] += 2f;
-                                        if (NPC.life < NPC.lifeMax * 0.5) {
-                                            NPC.localAI [1] += 1f;
-                                        }
-                                        if (NPC.life < NPC.lifeMax * 0.25 || rage > 80) {
-                                            NPC.localAI [1] += 2f;
-                                        }
-                                        if (NPC.localAI [1] > 8f) {
-                                            NPC.localAI [1] = 0f;
-                                            float num363 = Main.player [NPC.target].position.X + Main.player [NPC.target].width / 2 - newvel.X - 70;
-                                            float num364 = Main.player [NPC.target].position.Y + Main.player [NPC.target].height / 2 - newvel.Y;
-                                            newvel = new Vector2(NPC.position.X + NPC.width * 0.5f, NPC.position.Y + NPC.height * 0.5f);
-                                            num363 -= Main.rand.Next(-80, 81) - 70;
-                                            num364 -= Main.rand.Next(-80, 81);
-                                            float num365 = 10 / (float) Math.Sqrt((double) (num363 * num363 + num364 * num364));
-                                            num363 *= num365;
-                                            num364 *= num365;
-                                            num363 += Main.rand.Next(-30, 31) * 0.05f;
-                                            num364 += Main.rand.Next(-30, 31) * 0.05f;
-                                            newvel.X += num363 * 3f;
-                                            newvel.Y += num364 * 3f;
-                                            Vector2 vector8 = new Vector2(NPC.position.X + (NPC.width / 2), NPC.position.Y + (NPC.height / 2));
-                                            vector8 += new Vector2(0, -30).RotatedBy(NPC.rotation);
-                                            SoundEngine.PlaySound(SoundID.Item33, NPC.position);
-                                            Projectile.NewProjectile(NPC.GetSource_FromAI(), vector8.X, vector8.Y, num363, num364, ModContent.ProjectileType<OcramLaser2>(), (int) (NPC.damage * 1.5f), 2.5f);
-
-                                            int index3 = Dust.NewDust(vector8, 0, 0, DustID.Shadowflame, 0f, 0f, 100, default, 1f + Main.rand.NextFloat(0, 1.5f));
-                                            Main.dust [index3].noGravity = true;
-                                            Main.dust [index3].fadeIn = Main.rand.NextFloat(0, 1f);
-                                        }
-                                    }
+                                                      //  if (Main.netMode != NetmodeID.MultiplayerClient) {
+                                NPC.localAI [2] += 1f;
+                                if (NPC.localAI [2] > 8f) {
+                                    NPC.localAI [2] = 0f;
                                 }
+                                NPC.velocity *= 0.95f;
+                                NPC.localAI [1] += 2f;
+                                if (NPC.life < NPC.lifeMax * 0.5) {
+                                    NPC.localAI [1] += 1f;
+                                }
+                                if (NPC.life < NPC.lifeMax * 0.25 || rage > 80) {
+                                    NPC.localAI [1] += 2f;
+                                }
+                                if (NPC.localAI [1] > 8f) {
+                                    NPC.localAI [1] = 0f;
+                                }
+                                Vector2 vector8 = new Vector2(NPC.position.X + (NPC.width / 2), NPC.position.Y + (NPC.height / 2));
+                                if (Main.netMode != NetmodeID.MultiplayerClient) {
+                                    float num363 = Main.player [NPC.target].position.X + Main.player [NPC.target].width / 2 - newvel.X - 70;
+                                    float num364 = Main.player [NPC.target].position.Y + Main.player [NPC.target].height / 2 - newvel.Y;
+                                    newvel = new Vector2(NPC.position.X + NPC.width * 0.5f, NPC.position.Y + NPC.height * 0.5f);
+                                    num363 -= Main.rand.Next(-80, 81) - 70;
+                                    num364 -= Main.rand.Next(-80, 81);
+                                    float num365 = 10 / (float) Math.Sqrt((double) (num363 * num363 + num364 * num364));
+                                    num363 *= num365;
+                                    num364 *= num365;
+                                    num363 += Main.rand.Next(-30, 31) * 0.05f;
+                                    num364 += Main.rand.Next(-30, 31) * 0.05f;
+                                    newvel.X += num363 * 3f;
+                                    newvel.Y += num364 * 3f;
+                                    vector8 += new Vector2(0, -30).RotatedBy(NPC.rotation);
+                                    int laser2 = Projectile.NewProjectile(NPC.GetSource_FromAI(), vector8.X, vector8.Y, num363, num364, ModContent.ProjectileType<OcramLaser2>(), (int) (NPC.damage * 1.5f), 2.5f);
+                                    NetMessage.SendData(MessageID.SyncProjectile, -1, -1, null, laser2);
+                                }
+                                SoundEngine.PlaySound(SoundID.Item33, NPC.position);
+                                int index3 = Dust.NewDust(vector8, 0, 0, DustID.Shadowflame, 0f, 0f, 100, default, 1f + Main.rand.NextFloat(0, 1.5f));
+                                Main.dust [index3].noGravity = true;
+                                Main.dust [index3].fadeIn = Main.rand.NextFloat(0, 1f);
                             }
-
+                        
                             bool isExpert = Main.expertMode || Main.masterMode;
                             float ai2Limit = isExpert ? 700f : 200f;
                             if (isExpert && NPC.ai [2] > 200f) { //scythe bullet hell
@@ -636,7 +635,7 @@ namespace Consolaria.Content.NPCs.Ocram {
                                     rage++;
 
                                 NPC.localAI [3]++;
-                                if (Main.netMode != NetmodeID.MultiplayerClient && NPC.localAI [3] % 15 == 0 && NPC.ai[2] > 250f && NPC.ai[2] < 650f) {
+                                if (NPC.localAI [3] % 15 == 0 && NPC.ai[2] > 250f && NPC.ai[2] < 650f) {
                                     /*     int num362 = 5;
                                          int randomOffset = Main.rand.Next(-120, 121);
                                          float velX = Main.player [NPC.target].position.X + Main.player [NPC.target].width / 2 - num362 * 50 - newvel.X;
@@ -677,20 +676,21 @@ namespace Consolaria.Content.NPCs.Ocram {
                         }
                         else {
                             if (NPC.ai [1] == 1f) { //scythe attack dash
-                                int damage = NPC.damage / 3;
-                                float knockback = 4f;
-                                float Speed = 9f;
-                                Vector2 velocity = Vector2.Normalize(Main.player [NPC.target].Center - NPC.Center) * Speed;
+                                if (Main.netMode != NetmodeID.MultiplayerClient) {
+                                    int damage = NPC.damage / 3;
+                                    float knockback = 4f;
+                                    float Speed = 9f;
+                                    Vector2 velocity = Vector2.Normalize(Main.player [NPC.target].Center - NPC.Center) * Speed;
 
-                                Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.position.X + 120, NPC.position.Y + 50, velocity.X, velocity.Y, ModContent.ProjectileType<OcramScythe>(), damage, knockback);
-                                Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.position.X + 160, NPC.position.Y + 50, velocity.X, velocity.Y, ModContent.ProjectileType<OcramScythe>(), damage, knockback);
-                                Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.position.X - 120, NPC.position.Y - 50, velocity.X, velocity.Y, ModContent.ProjectileType<OcramScythe>(), damage, knockback);
-                                Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.position.X - 160, NPC.position.Y - 50, velocity.X, velocity.Y, ModContent.ProjectileType<OcramScythe>(), damage, knockback);
-                                Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.position.X + 50, NPC.position.Y + 120, velocity.X, velocity.Y, ModContent.ProjectileType<OcramScythe>(), damage, knockback);
-                                Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.position.X + 50, NPC.position.Y + 160, velocity.X, velocity.Y, ModContent.ProjectileType<OcramScythe>(), damage, knockback);
-                                Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.position.X - 50, NPC.position.Y - 120, velocity.X, velocity.Y, ModContent.ProjectileType<OcramScythe>(), damage, knockback);
-                                Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.position.X - 50, NPC.position.Y - 160, velocity.X, velocity.Y, ModContent.ProjectileType<OcramScythe>(), damage, knockback);
-
+                                    Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.position.X + 120, NPC.position.Y + 50, velocity.X, velocity.Y, ModContent.ProjectileType<OcramScythe>(), damage, knockback);
+                                    Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.position.X + 160, NPC.position.Y + 50, velocity.X, velocity.Y, ModContent.ProjectileType<OcramScythe>(), damage, knockback);
+                                    Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.position.X - 120, NPC.position.Y - 50, velocity.X, velocity.Y, ModContent.ProjectileType<OcramScythe>(), damage, knockback);
+                                    Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.position.X - 160, NPC.position.Y - 50, velocity.X, velocity.Y, ModContent.ProjectileType<OcramScythe>(), damage, knockback);
+                                    Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.position.X + 50, NPC.position.Y + 120, velocity.X, velocity.Y, ModContent.ProjectileType<OcramScythe>(), damage, knockback);
+                                    Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.position.X + 50, NPC.position.Y + 160, velocity.X, velocity.Y, ModContent.ProjectileType<OcramScythe>(), damage, knockback);
+                                    Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.position.X - 50, NPC.position.Y - 120, velocity.X, velocity.Y, ModContent.ProjectileType<OcramScythe>(), damage, knockback);
+                                    Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.position.X - 50, NPC.position.Y - 160, velocity.X, velocity.Y, ModContent.ProjectileType<OcramScythe>(), damage, knockback);
+                                }
                                 SoundEngine.PlaySound(SoundID.Roar, NPC.position);
                                 NPC.rotation = num319;
                                 float num384 = 18f;
@@ -790,13 +790,16 @@ namespace Consolaria.Content.NPCs.Ocram {
 
         //da kto eta vasha trigonometriya
         private void ScytheAttack (float aiLimit) {
-            float scytheVel = 1;
-            float scytheangle = Rad / 6 * (float)Math.Sin(NPC.ai[2] / 32);
-            Vector2 vel = new Vector2(0, scytheVel).RotatedBy(scytheangle);
-            Vector2 projPos = new Vector2(NPC.position.X + (NPC.width / 2), NPC.position.Y + (NPC.height / 2)) + vel * 80;
-            Projectile.NewProjectile(NPC.GetSource_FromAI(), projPos.X, projPos.Y, vel.X, vel.Y, ModContent.ProjectileType<OcramScythe>(), (int) (NPC.damage * 1.5f), 4f);
+            if (Main.netMode != NetmodeID.MultiplayerClient) {
+                float scytheVel = 1;
+                float scytheangle = Rad / 6 * (float) Math.Sin(NPC.ai [2] / 32);
+                Vector2 vel = new Vector2(0, scytheVel).RotatedBy(scytheangle);
+                Vector2 projPos = new Vector2(NPC.position.X + (NPC.width / 2), NPC.position.Y + (NPC.height / 2)) + vel * 80;
+                int proj = Projectile.NewProjectile(NPC.GetSource_FromAI(), projPos.X, projPos.Y, vel.X, vel.Y, ModContent.ProjectileType<OcramScythe>(), (int) (NPC.damage * 1.5f), 4f);
+                NetMessage.SendData(MessageID.SyncProjectile, -1, -1, null, proj);
+            }
             SoundEngine.PlaySound(SoundID.Item8, NPC.position);
-            if (rage > 45) NPC.ai[2] = aiLimit;
+            if (rage > 45) NPC.ai [2] = aiLimit;
         }
 
         public override bool PreDraw (SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {

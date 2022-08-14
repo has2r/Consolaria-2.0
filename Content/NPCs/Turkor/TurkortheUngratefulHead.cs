@@ -8,7 +8,6 @@ using Consolaria.Content.Projectiles.Enemies;
 using Terraria.DataStructures;
 
 namespace Consolaria.Content.NPCs.Turkor {
-	[AutoloadBossHead]
 	public class TurkortheUngratefulHead : ModNPC {
 		private int turntimer = 0;
 		private int timer = 0;
@@ -47,8 +46,6 @@ namespace Consolaria.Content.NPCs.Turkor {
 			NPC.aiStyle = -1;
 			NPC.netAlways = true;
 
-			NPC.BossBar = null;
-
 			NPC.damage = 40;
 			NPC.defense = 10;
 			NPC.lifeMax = 1200;
@@ -65,9 +62,14 @@ namespace Consolaria.Content.NPCs.Turkor {
 
 			NPC.lavaImmune = true;
 			NPC.noGravity = true;
+
+			NPC.BossBar = Main.BigBossProgressBar.NeverValid;
 		}
 
-		public override void ScaleExpertStats (int numPlayers, float bossLifeScale) {
+		public override void BossHeadSlot (ref int index)
+			=> index = -1;
+        
+        public override void ScaleExpertStats (int numPlayers, float bossLifeScale) {
 			NPC.lifeMax = 2000 + (int) (numPlayers > 1 ? NPC.lifeMax * 0.2 * numPlayers : 0);
 			NPC.damage = (int) (NPC.damage * 0.65f);
 		}
@@ -105,15 +107,17 @@ namespace Consolaria.Content.NPCs.Turkor {
 
 		public override void AI () {
 			NPC.direction = Main.player [NPC.target].Center.X < NPC.Center.X ? -1 : 1;
-			if (!spawn && (Main.netMode == NetmodeID.MultiplayerClient || Main.netMode == NetmodeID.SinglePlayer)) {
-				NPC.realLife = NPC.whoAmI;
-				int neck = NPC.NewNPC(NPC.GetSource_FromAI(), (int) NPC.position.X, (int) NPC.position.Y, ModContent.NPCType<TurkorNeck>(), NPC.whoAmI, 0, NPC.whoAmI); //, 1, NPC.ai[1]);
-				Main.npc [neck].localAI [0] = 30;
-				Main.npc [neck].realLife = NPC.whoAmI;
-				Main.npc [neck].ai [0] = NPC.whoAmI;
-				Main.npc [neck].ai [1] = NPC.whoAmI;
-				spawn = true;
-				NPC.netUpdate = true;
+			if (Main.netMode != NetmodeID.MultiplayerClient) {
+				if (!spawn) {
+					NPC.realLife = NPC.whoAmI;
+					int neck = NPC.NewNPC(NPC.GetSource_FromAI(), (int) NPC.position.X, (int) NPC.position.Y, ModContent.NPCType<TurkorNeck>(), NPC.whoAmI, 0, NPC.whoAmI); //, 1, NPC.ai[1]);
+					Main.npc [neck].localAI [0] = 30;
+					Main.npc [neck].realLife = NPC.whoAmI;
+					Main.npc [neck].ai [0] = NPC.whoAmI;
+					Main.npc [neck].ai [1] = NPC.whoAmI;
+					NetMessage.SendData(MessageID.SyncNPC, number: neck);
+					spawn = true;
+				}
 			}
 			if (!Main.npc [(int) NPC.ai [1]].active) {
 				NPC.life = 0;
@@ -207,8 +211,11 @@ namespace Consolaria.Content.NPCs.Turkor {
 				}
 
 				if (timer % 80 == 0 && rotatepoint >= 1.5f) {
-					for (int i = 0; i < 3; i++)
-						Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, Main.rand.Next(0, 8) * NPC.direction, -10 + Main.rand.Next(-3, 3), ModContent.ProjectileType<TurkorFeather>(), NPC.damage / 3, 1, Main.myPlayer, 0, 0);
+					if (Main.netMode != NetmodeID.MultiplayerClient)
+						for (int i = 0; i < 3; i++) {
+							int proj = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, Main.rand.Next(0, 8) * NPC.direction, -10 + Main.rand.Next(-3, 3), ModContent.ProjectileType<TurkorFeather>(), NPC.damage / 3, 1, Main.myPlayer);
+							NetMessage.SendData(MessageID.SyncProjectile, -1, -1, null, proj);
+						}
 					NPC.velocity.Y = 5;
 					SoundEngine.PlaySound(SoundID.NPCDeath48, NPC.position);
 				}

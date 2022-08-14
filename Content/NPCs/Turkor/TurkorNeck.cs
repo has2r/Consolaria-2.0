@@ -43,6 +43,7 @@ namespace Consolaria.Content.NPCs.Turkor {
 		public override void HitEffect (int hitDirection, double damage) {
 			if (Main.netMode == NetmodeID.Server)
 				return;
+
 			if (NPC.life <= 0 || !NPC.active)
 				Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-1, 1), Main.rand.Next(-1, 1)), ModContent.Find<ModGore>("Consolaria/TurkorNeck").Type);
 		}
@@ -57,6 +58,9 @@ namespace Consolaria.Content.NPCs.Turkor {
 				Main.npc [neck].ai [0] = NPC.whoAmI;
 				Main.npc [neck].ai [1] = Main.npc [(int) NPC.ai [1]].whoAmI;
 				Main.npc [neck].realLife = NPC.whoAmI;
+				if (Main.netMode != NetmodeID.Server && neck < Main.maxNPCs) {
+					NetMessage.SendData(MessageID.SyncNPC, number: neck);
+				}
 			}
 			NPC.alpha = Main.npc [(int) NPC.ai [0]].alpha;
 			if (!Main.npc [(int) NPC.ai [0]].active) {
@@ -76,6 +80,7 @@ namespace Consolaria.Content.NPCs.Turkor {
 			}
 			NPC.direction = Main.player [NPC.target].Center.X < NPC.Center.X ? -1 : 1;
 			NPC.rotation = (float) Math.Atan2(Main.npc [(int) NPC.ai [0]].Center.Y - NPC.Center.Y, Main.npc [(int) NPC.ai [0]].Center.X - NPC.Center.X) + 1.57f;
+			NPC.netUpdate = true;
 		}
 	}
 }

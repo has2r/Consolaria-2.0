@@ -1,4 +1,4 @@
-using Consolaria.Content.NPCs.Ocram;
+using Consolaria.Content.NPCs.Bosses.Ocram;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
@@ -6,19 +6,17 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Consolaria.Content.Items.Summons
-{
-    public class SuspiciousLookingSkull : ModItem
-    {
-        public override void SetStaticDefaults() {
+namespace Consolaria.Content.Items.Summons {
+    public class SuspiciousLookingSkull : ModItem {
+        public override void SetStaticDefaults () {
             DisplayName.SetDefault("Suspicious Looking Skull");
             Tooltip.SetDefault("Summons Ocram");
 
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 3;
-            ItemID.Sets.SortingPriorityBossSpawns[Type] = 12;
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 3;
+            ItemID.Sets.SortingPriorityBossSpawns [Type] = 12;
         }
 
-        public override void SetDefaults() {
+        public override void SetDefaults () {
             int width = 18; int height = 22;
             Item.Size = new Vector2(width, height);
 
@@ -34,23 +32,23 @@ namespace Consolaria.Content.Items.Summons
             Item.consumable = true;
         }
 
-        public override bool CanUseItem(Player player)
-         =>  !Main.dayTime && !NPC.AnyNPCs(ModContent.NPCType<Ocram>());
-        
+        public override bool CanUseItem (Player player)
+         => !Main.dayTime && !NPC.AnyNPCs(ModContent.NPCType<Ocram>());
+
         public override bool? UseItem (Player player) {
             if (player.whoAmI == Main.myPlayer) {
                 SoundEngine.PlaySound(new SoundStyle($"{nameof(Consolaria)}/Assets/Sounds/OcramRoar"), player.position);
 
                 int type = ModContent.NPCType<Ocram>();
-                if (Main.netMode != NetmodeID.MultiplayerClient)               
-                    NPC.SpawnOnPlayer(player.whoAmI, type);              
-                else                
-                    NetMessage.SendData(MessageID.SpawnBoss, number: player.whoAmI, number2: type);                
+                if (Main.netMode != NetmodeID.MultiplayerClient)
+                    NPC.SpawnOnPlayer(player.whoAmI, type);
+                else
+                    NetMessage.SendData(MessageID.SpawnBoss, number: player.whoAmI, number2: type);
             }
             return true;
         }
 
-        public override void AddRecipes() {
+        public override void AddRecipes () {
             CreateRecipe()
                 .AddRecipeGroup(RecipeGroups.Titanium, 10)
                 .AddIngredient(ItemID.Bone, 15)

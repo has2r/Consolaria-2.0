@@ -3,8 +3,8 @@ using Consolaria.Content.Items.BossDrops.Ocram;
 using Consolaria.Content.Items.BossDrops.Turkor;
 using Consolaria.Content.Items.Summons;
 using Consolaria.Content.NPCs.Bosses.Lepus;
-using Consolaria.Content.NPCs.Ocram;
-using Consolaria.Content.NPCs.Turkor;
+using Consolaria.Content.NPCs.Bosses.Ocram;
+using Consolaria.Content.NPCs.Bosses.Turkor;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -63,7 +63,7 @@ namespace Consolaria.Common {
                    Vector2 centered = new Vector2(rect.X + (rect.Width / 2) - (texture.Width / 2), rect.Y + (rect.Height / 2) - (texture.Height / 2));
                    sb.Draw(texture, centered, color);
                },
-               "Consolaria/Content/NPCs/Turkor/TurkortheUngratefulHead_Head_Boss"
+               "Consolaria/Content/NPCs/Bosses/Turkor/TurkortheUngratefulHead_Head_Boss"
             );
             bossChecklist.Call(
               "AddBoss",

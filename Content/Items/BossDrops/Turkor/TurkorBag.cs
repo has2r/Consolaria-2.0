@@ -14,7 +14,7 @@ namespace Consolaria.Content.Items.BossDrops.Turkor {
     public class TurkorBag : ModItem {
 
         [System.Obsolete]
-        public override int BossBagNPC => ModContent.NPCType<NPCs.Turkor.TurkortheUngrateful>();
+        public override int BossBagNPC => ModContent.NPCType<NPCs.Bosses.Turkor.TurkortheUngrateful>();
 
         public override void SetStaticDefaults () {
             DisplayName.SetDefault("Treasure Bag (Turkor the Ungrateful)");

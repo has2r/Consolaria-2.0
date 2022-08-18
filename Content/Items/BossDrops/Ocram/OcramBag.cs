@@ -13,9 +13,9 @@ using Terraria.ModLoader;
 
 namespace Consolaria.Content.Items.BossDrops.Ocram {
     public class OcramBag : ModItem {
-        [System.Obsolete]
-        public override int BossBagNPC => ModContent.NPCType<NPCs.Ocram.Ocram>();
 
+        [System.Obsolete]
+        public override int BossBagNPC => ModContent.NPCType<NPCs.Bosses.Ocram.Ocram>();
 
         public override void SetStaticDefaults () {
             DisplayName.SetDefault("Treasure Bag (Ocram)");

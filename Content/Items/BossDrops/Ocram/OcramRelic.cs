@@ -22,7 +22,7 @@ namespace Consolaria.Content.Items.BossDrops.Ocram
 			Item.maxStack = 99;
 
 			Item.rare = ItemRarityID.Master;
-			Item.value = Item.buyPrice(gold: 5);
+			Item.value = Item.buyPrice(gold: 1);
 
 			Item.master = true; 
 		}

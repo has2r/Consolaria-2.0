@@ -20,10 +20,10 @@ namespace Consolaria.Content.Items.Armor.Misc
             int width = 22; int height = 18;
             Item.Size = new Vector2(width, height);
 
-            Item.value = Item.sellPrice(gold: 1);
+            Item.value = Item.sellPrice(silver: 20);
             Item.rare = ItemRarityID.Green;
 
-            Item.defense = 4;
+            Item.defense = 3;
         }
 
         public override void UpdateEquip(Player player) 

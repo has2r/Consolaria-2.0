@@ -11,12 +11,18 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 	[AutoloadBossHead]
 	public class TurkortheUngratefulHead : ModNPC {
 		private int turntimer = 0;
-		private int timer = 0;
+		private ref float timer => ref NPC.ai [0];
 
 		private bool spawn = false;
-		private bool charge = false;
+		private bool charge {
+			get => NPC.ai[2] == 1f;
+			set => NPC.ai[2] = value ? 1f : 0f;
+		}
 		private bool chase = false;
-		private bool projSpam = false;
+		private bool projSpam {
+			get => NPC.ai[3] == 1f;
+			set => NPC.ai[3] = value ? 1f : 0f;
+		}
 		private bool attackingPhase = false;
 
 		private int hurtFrame = 0;
@@ -45,7 +51,6 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 			NPC.Size = new Vector2(width, height);
 
 			NPC.aiStyle = -1;
-			NPC.netAlways = true;
 
 			NPC.damage = 40;
 			NPC.defense = 10;
@@ -109,12 +114,14 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 				if (!spawn) {
 					NPC.realLife = NPC.whoAmI;
 					int neck = NPC.NewNPC(NPC.GetSource_FromAI(), (int) NPC.position.X, (int) NPC.position.Y, ModContent.NPCType<TurkorNeck>(), NPC.whoAmI, 0, NPC.whoAmI); //, 1, NPC.ai[1]);
-					Main.npc [neck].localAI [0] = 30;
+					Main.npc [neck].ai [2] = 30;
+					Main.npc [neck].ai [3] = -1f;
 					Main.npc [neck].realLife = NPC.whoAmI;
 					Main.npc [neck].ai [0] = NPC.whoAmI;
 					Main.npc [neck].ai [1] = NPC.whoAmI;
 					NetMessage.SendData(MessageID.SyncNPC, number: neck);
 					spawn = true;
+					NPC.netUpdate = true;
 				}
 			}
 			if (!Main.npc [(int) NPC.ai [1]].active) {
@@ -134,6 +141,7 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 					NPC.timeLeft = 10;
 					return;
 				}
+				NPC.netUpdate = true;
 			}
 			else if (!Main.player [NPC.target].dead) NPC.TargetClosest(true);
 
@@ -206,6 +214,7 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 				if (!chase) {
 					NPC.velocity.X *= 0.86f;
 					NPC.velocity.Y *= 0.86f;
+					NPC.netUpdate = true;
 				}
 
 				if (timer % 80 == 0 && rotatepoint >= 1.5f) {
@@ -216,6 +225,7 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 						}
 					NPC.velocity.Y = 5;
 					SoundEngine.PlaySound(SoundID.NPCDeath48, NPC.position);
+					NPC.netUpdate = true;
 				}
 				if (timer >= 360) {
 					rotatepoint -= 0.1f;

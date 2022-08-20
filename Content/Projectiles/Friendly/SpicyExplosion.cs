@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
@@ -21,11 +22,22 @@ namespace Consolaria.Content.Projectiles.Friendly
 
             Projectile.timeLeft = 420;
             Projectile.penetrate = -1;
-        }
 
-        public override Color? GetAlpha(Color lightColor) => Color.White;
+            Projectile.rotation = Main.rand.NextFloat(0, (float)Math.PI * 2f);
+            Projectile.alpha = 50;
+        }
              
         public override void AI() {
+            Projectile.alpha += 10;
+
+            Player player = Main.player[Projectile.owner];
+            if (Projectile.owner == Main.myPlayer)
+            {
+                Vector2 position = new Vector2(24f, 24f);
+                int _dust = Dust.NewDust(Projectile.Center - position / 2f, (int)position.X, (int)position.Y, 105, 0f, -2f, 100, Color.Brown, 1f);
+                Main.dust[_dust].velocity *= 2f;
+            }
+
             Projectile.frameCounter++;
             if (Projectile.frameCounter > 3) {
                 Projectile.frame++;
@@ -41,7 +53,7 @@ namespace Consolaria.Content.Projectiles.Friendly
         public override void OnHitPvp(Player target, int damage, bool crit)
            => target.AddBuff(BuffID.OnFire, 180);
 
-        public override void Kill(int timeLeft)
-            => SoundEngine.PlaySound(SoundID.Dig, Projectile.Center);
+        /*public override void Kill(int timeLeft)
+            => SoundEngine.PlaySound(SoundID.Dig, Projectile.Center);*/
     } 
 }

@@ -7,7 +7,7 @@ namespace Consolaria.Content.Buffs
 	{
 		public override void SetStaticDefaults() {
 			DisplayName.SetDefault("Eye of Eternity");
-			Description.SetDefault("Eye of Eternity will fight for you");
+			Description.SetDefault("The eye of eternity will fight for you");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}

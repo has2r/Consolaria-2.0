@@ -9,7 +9,7 @@ namespace Consolaria.Content.Items.Weapons.Ranged {
 	public class DragonBreath : ModItem {
 		public override void SetStaticDefaults () {
 			DisplayName.SetDefault("Dragon's Breath");
-			Tooltip.SetDefault("Shoots Shadow Flames\n70% chance to not consume gel");
+			Tooltip.SetDefault("70% chance to not consume gel");
 
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
 		}
@@ -18,7 +18,7 @@ namespace Consolaria.Content.Items.Weapons.Ranged {
 			int width = 28; int height = 30;
 			Item.Size = new Vector2(width, height);
 
-			Item.damage = 50;
+			Item.damage = 72;
 			Item.DamageType = DamageClass.Ranged;
 
 			Item.useTime = 3;

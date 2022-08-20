@@ -23,17 +23,18 @@ namespace Consolaria.Content.Items.Weapons.Melee
             int width = 56; int height = width;
             Item.Size = new Vector2(width, height);
 
-            Item.damage = 50;
+            Item.damage = 92;
             Item.DamageType = DamageClass.Melee;
 
             Item.noUseGraphic = true;
-            Item.useTime = Item.useAnimation = 26;
+            Item.useTime = Item.useAnimation = 32;
 
             Item.shoot = ModContent.ProjectileType<TonbogiriSpear>();
-            Item.shootSpeed = 40f;
+            Item.shootSpeed = 57f;
 
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.knockBack = 2f;
+            Item.crit = 8;
 
             Item.value = Item.buyPrice(gold: 5, silver: 30);
             Item.rare = ItemRarityID.Lime;

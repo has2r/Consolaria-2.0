@@ -9,7 +9,7 @@ namespace Consolaria.Content.Items.Weapons.Summon {
 	public class EternityStaff : ModItem {
 		public override void SetStaticDefaults () {
 			DisplayName.SetDefault("Eternity Staff");
-			Tooltip.SetDefault("Summons an Eye of Eternity to fight for you");
+			Tooltip.SetDefault("Summons an eye of eternity to fight for you");
 
 			ItemID.Sets.GamepadWholeScreenUseRange [Item.type] = true;
 			ItemID.Sets.LockOnIgnoresCollision [Item.type] = true;
@@ -28,7 +28,7 @@ namespace Consolaria.Content.Items.Weapons.Summon {
 			Item.noMelee = true;
 
 			Item.DamageType = DamageClass.Summon;
-			Item.damage = 60;
+			Item.damage = 36;
 			Item.knockBack = 4f;
 
 			Item.value = Item.sellPrice(gold: 5, silver: 75);

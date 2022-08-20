@@ -1,3 +1,4 @@
+using Consolaria.Content.Projectiles.Friendly;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
@@ -14,7 +15,7 @@ namespace Consolaria.Content.Items.Weapons.Magic
         }
 
         public override void SetDefaults () {
-            int width = 34; int height = width;
+            int width = 36; int height = width;
             Item.Size = new Vector2(width, height);
 
             Item.DamageType = DamageClass.Magic;
@@ -22,9 +23,9 @@ namespace Consolaria.Content.Items.Weapons.Magic
             Item.knockBack = 4;
 
             Item.useStyle = ItemUseStyleID.Shoot;
-            Item.useTime = 8;
-            Item.useAnimation = 24;
-            Item.reuseDelay = 24;
+            Item.useTime = 11;
+            Item.useAnimation = 33;
+            Item.reuseDelay = 33;
 
             Item.value = Item.buyPrice(gold: 5);
             Item.rare = ItemRarityID.Lime;
@@ -35,7 +36,7 @@ namespace Consolaria.Content.Items.Weapons.Magic
             Item.noMelee = true;
             Item.autoReuse = true;
 
-            Item.shoot = ProjectileID.PurpleLaser;
+            Item.shoot = ModContent.ProjectileType<OcramEyeGlow>();
             Item.shootSpeed = 16f;
         }
 
@@ -48,10 +49,10 @@ namespace Consolaria.Content.Items.Weapons.Magic
             float projectilesCount = Main.rand.Next(3, 5);
             float rotation = MathHelper.ToRadians(7);
             for (int i = 0; i < projectilesCount; i++) {
-                Vector2 perturbedSpeed = velocity.RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (projectilesCount - 1))) * 1.75f;
-                Projectile.NewProjectile(source, position, perturbedSpeed, type, damage, knockback, player.whoAmI);
+                Vector2 perturbedSpeed = velocity.RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (projectilesCount - 1))) * 1.25f;
+                Projectile.NewProjectile(source, position + Main.player[player.whoAmI].velocity, perturbedSpeed, ModContent.ProjectileType<OcramEyeLaser>(), damage, knockback, player.whoAmI);
             }
-            return false;
+            return true;
         }
     }
 }

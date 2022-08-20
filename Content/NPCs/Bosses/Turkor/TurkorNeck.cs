@@ -6,8 +6,7 @@ using Terraria.ModLoader;
 
 namespace Consolaria.Content.NPCs.Bosses.Turkor {
 	public class TurkorNeck : ModNPC {
-		private int neck = 0;
-		private bool spawn = false;
+		private ref float neck => ref NPC.ai [3];
 
 		public override void SetStaticDefaults () {
 			DisplayName.SetDefault("");
@@ -26,7 +25,6 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 			NPC.noGravity = true;
 			NPC.noTileCollide = true;
 			NPC.dontTakeDamage = true;
-			NPC.netAlways = true;
 			NPC.HitSound = SoundID.NPCHit1;
 			NPC.DeathSound = SoundID.NPCDeath1;
 			NPC.lavaImmune = true;
@@ -50,17 +48,19 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 
 		public override void AI () {
 			NPC.TargetClosest(true);
-			if (!spawn && NPC.localAI [0] > 0) {
-				spawn = true;
+			if (neck == -1f && NPC.ai [2] > 0 && Main.netMode != NetmodeID.MultiplayerClient) {
 				NPC.realLife = NPC.whoAmI;
-				neck = NPC.NewNPC(NPC.GetSource_FromAI(), (int) NPC.Center.X, (int) NPC.Center.Y + 20, ModContent.NPCType<TurkorNeck>(), NPC.whoAmI, 0, NPC.whoAmI);
-				Main.npc [neck].localAI [0] = NPC.localAI [0] - 1;
-				Main.npc [neck].ai [0] = NPC.whoAmI;
-				Main.npc [neck].ai [1] = Main.npc [(int) NPC.ai [1]].whoAmI;
-				Main.npc [neck].realLife = NPC.whoAmI;
+				Console.WriteLine(NPC.ai [2]);
+				neck = (float) NPC.NewNPC(NPC.GetSource_FromAI(), (int) NPC.Center.X, (int) NPC.Center.Y + 20, ModContent.NPCType<TurkorNeck>(), NPC.whoAmI, 0, NPC.whoAmI);
+				Main.npc [(int) neck].ai [2] = NPC.ai [2] - 1;
+				Main.npc [(int) neck].ai [0] = NPC.whoAmI;
+				Main.npc [(int) neck].ai [1] = Main.npc [(int) NPC.ai [1]].whoAmI;
+				Main.npc [(int) neck].ai [3] = -1f;
+				Main.npc [(int) neck].realLife = NPC.whoAmI;
 				if (Main.netMode != NetmodeID.Server && neck < Main.maxNPCs) {
-					NetMessage.SendData(MessageID.SyncNPC, number: neck);
+					NetMessage.SendData(MessageID.SyncNPC, number: (int)neck);
 				}
+				NPC.netUpdate = true;
 			}
 			NPC.alpha = Main.npc [(int) NPC.ai [0]].alpha;
 			if (!Main.npc [(int) NPC.ai [0]].active) {
@@ -69,20 +69,17 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 				NPC.active = false;
 			}
 
-			if (spawn && NPC.localAI [0] > 0)
-				NPC.Center = CenterPoint(Main.npc [neck].Center, Main.npc [(int) NPC.ai [0]].Center);
+			if (neck != -1f && NPC.ai [2] > 0)
+				NPC.Center = CenterPoint(Main.npc [(int)neck].Center, Main.npc [(int) NPC.ai [0]].Center);
 
-			else if (NPC.localAI [0] <= 0) {
+			else if (NPC.ai [2] <= 0) {
 				for (int k = 0; k < Main.maxNPCs; k++) {
 					if (Main.npc [k].type == ModContent.NPCType<TurkortheUngrateful>() && Main.npc [k].active)
 						NPC.Center = CenterPoint1(Main.npc [k].Center, Main.npc [(int) NPC.ai [0]].Center);
 				}
 			}
-			if (Main.netMode == NetmodeID.Server) {
-				NPC.direction = Main.player [NPC.target].Center.X < NPC.Center.X ? -1 : 1;
-				NPC.rotation = (float) Math.Atan2(Main.npc [(int) NPC.ai [0]].Center.Y - NPC.Center.Y, Main.npc [(int) NPC.ai [0]].Center.X - NPC.Center.X) + 1.57f;
-				NPC.netUpdate = true;
-			}
+			NPC.direction = Main.player [NPC.target].Center.X < NPC.Center.X ? -1 : 1;
+			NPC.rotation = (float) Math.Atan2(Main.npc [(int) NPC.ai [0]].Center.Y - NPC.Center.Y, Main.npc [(int) NPC.ai [0]].Center.X - NPC.Center.X) + 1.57f;
 		}
 	}
 }

@@ -46,7 +46,7 @@ namespace Consolaria.Content.Items.Summons {
                 if (Main.netMode != NetmodeID.MultiplayerClient)
                     NPC.SpawnBoss((int) spawnPosition.X, (int) spawnPosition.Y, type, player.whoAmI);
                 else
-                    NetMessage.SendData(MessageID.SpawnBoss, player.whoAmI, number2: type);
+                    NetMessage.SendData(MessageID.SpawnBoss, number: player.whoAmI, number2: type);
             }
             return true;
         }

@@ -356,3 +356,5 @@ obj/Consolaria.csproj.nuget.dgspec.json
 .vs/Consolaria/FileContentIndex/ac3601bc-4f98-4fe7-836e-692f3f4cca0d.vsidx
 .vs/Consolaria/FileContentIndex/93dd315c-cb72-42ae-9c67-e56709b83b49.vsidx
 .vs/Consolaria/DesignTimeBuild/.dtbcache.v2
+*.v2
+.vs/Consolaria/v17/.suo

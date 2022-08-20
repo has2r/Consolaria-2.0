@@ -105,7 +105,7 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 			posBX += (float) Math.Cos(h) * 4;
 			posBY += (float) Math.Sin(h) * 4;
 
-			if (enraged > 0) {
+			if (enraged) {
 				for (int i = 0; i < 1; i++) {
 					Color color2 = drawColor;
 					color2 = NPC.GetAlpha(color2) * colo;
@@ -153,8 +153,8 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 		private int headNumber;
 
 		//idling phase stuff
-		private int timer = 0;
-		private int timer2 = 0;
+		private ref float timer => ref NPC.ai[0];
+		private ref float timer2 => ref NPC.ai[3];
 		//bool onAir = false;
 		//bool Despawning = false;
 		private bool ground_ = false;
@@ -170,7 +170,7 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 		private float posY = 0f;
 
 		//enraged mode
-		public ref float enraged => ref NPC.ai [0];
+		private bool enraged;
 
 		public override void OnSpawn (IEntitySource source) {
 			if (NPC.CountNPCS(turkorHead) <= 0 || !headSpawned) {
@@ -195,6 +195,8 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 				NPC.HitEffect(0, 10.0);
 				NPC.active = false;
 			}
+			
+			bool isNotMpClient = (Main.netMode != NetmodeID.MultiplayerClient);
 
 			//if player too far then becomes enraged
 			Vector2 vector101 = new Vector2(NPC.Center.X, NPC.Center.Y);
@@ -202,17 +204,17 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 			float num856 = Main.player [NPC.target].Center.Y - vector101.Y;
 			float num857 = (float) Math.Sqrt((double) (num855 * num855 + num856 * num856));
 			if (num857 > 600f) {
-				NPC.localAI [2] = 40;
+				if (isNotMpClient) NPC.ai [2] = 40;
 				if (colo < .5f) colo += 0.05f;
-				enraged = 1;
+				enraged = true;
 			}
 			else {
 
 				if (colo > 0f) colo -= 0.05f;
 				else {
 					colo = 0;
-					NPC.localAI [2] = 0;
-					enraged = 0;
+					if (isNotMpClient) NPC.ai [2] = 0;
+					enraged = false;
 					if (NPC.AnyNPCs(turkorHead)) timer = 0;
 				}
 			}
@@ -224,14 +226,14 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 					NPC.velocity.Y = -6;
 				}
 				else {
-					if (NPC.localAI [2] != 40) { timer = 0; }
+					if (NPC.ai [2] != 40) { timer = 0; }
 					NPC.noTileCollide = false;
 					ground_ = true;
 				}
 				NPC.netUpdate = true;
 			}
 
-			NPC.dontTakeDamage = NPC.AnyNPCs(turkorHead) || NPC.localAI [1] == 40 || enraged > 0;
+			NPC.dontTakeDamage = NPC.AnyNPCs(turkorHead) || NPC.ai [1] == 40 || enraged;
 
 			//spawn heads
 			if (Main.netMode != NetmodeID.MultiplayerClient) {
@@ -251,9 +253,9 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 			}
 
 			//shoot projectiles at player 
-			if ((!NPC.AnyNPCs(turkorHead) || enraged > 0) && (Main.netMode == NetmodeID.MultiplayerClient || Main.netMode == NetmodeID.SinglePlayer)) {
+			if ((!NPC.AnyNPCs(turkorHead) || enraged) && (Main.netMode == NetmodeID.MultiplayerClient || Main.netMode == NetmodeID.SinglePlayer)) {
 				timer++;
-				if (timer >= 140 && NPC.localAI [1] != 40) {
+				if (timer >= 140 && NPC.ai [1] != 40) {
 					if (!findPlayer && timer < 160) {
 						posX = Main.player [NPC.target].position.X;
 						posY = Main.player [NPC.target].position.Y;
@@ -288,14 +290,16 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 				timer2++;
 
 				if (timer2 >= jumpTimer - 100) {
-					NPC.localAI [1] = 40;
+					if (isNotMpClient) NPC.ai [1] = 40;
 					NPC.rotation = Vector2.UnitY.RotatedBy((double) (timer / 25f * 6.3f), default).Y * 0.2f;
 				}
 
 				//preventing melee cheese
-				if (NPC.localAI [1] != 40 && timer2 < jumpTimer && (NPC.life <= (int) (NPC.lifeMax * 0.75f) && headNumber < 2 || NPC.life <= (int) (NPC.lifeMax * 0.4f) && headNumber < 3)) {
-					timer2 = jumpTimer - 100;
-					NPC.localAI [1] = 40;
+				if (NPC.ai [1] != 40 && timer2 < jumpTimer && (NPC.life <= (int) (NPC.lifeMax * 0.75f) && headNumber < 2 || NPC.life <= (int) (NPC.lifeMax * 0.4f) && headNumber < 3)) {
+					if (isNotMpClient) {
+						timer2 = jumpTimer - 100;
+						NPC.ai [1] = 40;
+					}
 				}
 
 				if (timer2 >= jumpTimer) {
@@ -335,7 +339,7 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 								if (headNumber < 3) headNumber += 1;
 								headSpawned = false;
 								NPC.noGravity = false;
-								NPC.localAI [1] = 0;
+								NPC.ai [1] = 0;
 								HalfCircle();
 								teleport = false;
 								posX = 0;

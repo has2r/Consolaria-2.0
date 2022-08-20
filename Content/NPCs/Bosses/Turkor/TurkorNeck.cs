@@ -54,16 +54,17 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 				neck = (float) NPC.NewNPC(NPC.GetSource_FromAI(), (int) NPC.Center.X, (int) NPC.Center.Y + 20, ModContent.NPCType<TurkorNeck>(), NPC.whoAmI, 0, NPC.whoAmI);
 				Main.npc [(int) neck].ai [2] = NPC.ai [2] - 1;
 				Main.npc [(int) neck].ai [0] = NPC.whoAmI;
-				Main.npc [(int) neck].ai [1] = Main.npc [(int) NPC.ai [1]].whoAmI;
+				Main.npc [(int) neck].ai [1] = NPC.ai [1]; // why net this? (not used afaik)
 				Main.npc [(int) neck].ai [3] = -1f;
 				Main.npc [(int) neck].realLife = NPC.whoAmI;
+				Main.npc [(int) neck].position = Main.npc [(int) NPC.ai [1]].position;
 				if (Main.netMode != NetmodeID.Server && neck < Main.maxNPCs) {
 					NetMessage.SendData(MessageID.SyncNPC, number: (int)neck);
 				}
 				NPC.netUpdate = true;
 			}
 			NPC.alpha = Main.npc [(int) NPC.ai [0]].alpha;
-			if (!Main.npc [(int) NPC.ai [0]].active) {
+			if (!Main.npc [(int) NPC.ai [0]].active && Main.netMode != NetmodeID.MultiplayerClient) {
 				NPC.life = 0;
 				NPC.HitEffect(0, 10.0);
 				NPC.active = false;

@@ -119,6 +119,7 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 					Main.npc [neck].realLife = NPC.whoAmI;
 					Main.npc [neck].ai [0] = NPC.whoAmI;
 					Main.npc [neck].ai [1] = NPC.whoAmI;
+					Main.npc [neck].position = NPC.position;
 					NetMessage.SendData(MessageID.SyncNPC, number: neck);
 					spawn = true;
 					NPC.netUpdate = true;

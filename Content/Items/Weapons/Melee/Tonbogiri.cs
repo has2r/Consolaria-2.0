@@ -32,6 +32,7 @@ namespace Consolaria.Content.Items.Weapons.Melee {
 
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.knockBack = 2f;
+            Item.crit = 10;
 
             Item.value = Item.buyPrice(gold: 5, silver: 30);
             Item.rare = ItemRarityID.Lime;

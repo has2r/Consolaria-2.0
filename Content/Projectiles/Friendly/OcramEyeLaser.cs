@@ -43,9 +43,6 @@ namespace Consolaria.Content.Projectiles.Friendly {
             Lighting.AddLight(Projectile.Center, 0.4f, 0.1f, 0.5f);
         }
 
-        public override void OnHitNPC (NPC target, int damage, float knockback, bool crit)
-            => target.AddBuff(BuffID.ShadowFlame, 180);
-
         public override bool PreDraw (ref Color lightColor) {
             SpriteBatch spriteBatch = Main.spriteBatch;
             Texture2D texture = (Texture2D) ModContent.Request<Texture2D>(Texture);

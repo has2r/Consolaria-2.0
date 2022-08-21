@@ -706,12 +706,13 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
 
         private void SpawnStomp()
         {
-            if (NPC.oldVelocity.Y < 1f || SpawnedStomp)
+            if (NPC.oldVelocity.Length() < 8f || SpawnedStomp)
             {
                 return;
             }
             SpawnedStomp = true;
-            SoundEngine.PlaySound(SoundID.DD2_OgreGroundPound, NPC.Center);
+            //SoundEngine.PlaySound(SoundID.DD2_OgreGroundPound with { Volume = 0.5f }, NPC.Center);
+            SoundEngine.PlaySound(SoundID.Item73 with { Volume = 0.5f, Pitch = Main.rand.NextFloat(-0.25f, 0.25f) }, NPC.Center);
             if (Main.netMode != NetmodeID.MultiplayerClient)
             {
                 bool expertMode = Main.expertMode;

@@ -55,9 +55,6 @@ namespace Consolaria.Content.Projectiles.Enemies {
             return true;
         }
 
-        public override void OnHitPlayer (Player target, int damage, bool crit)
-            => target.AddBuff(BuffID.ShadowFlame, 180);
-
         public override Color? GetAlpha (Color lightColor)
             => new Color(255, 255, 255, 200);
     }

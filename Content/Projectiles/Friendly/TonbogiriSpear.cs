@@ -71,7 +71,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
                 Vector2 vector3 = Projectile.velocity.SafeNormalize(Vector2.UnitY);
                 float num6 = 2f;
                 for (int i = 0; i < num6; i++) {
-                    Dust dust = Dust.NewDustDirect(Projectile.Center, 14, 14, DustID.Venom, 0f, 0f, 120);
+                    Dust dust = Dust.NewDustDirect(Projectile.Center, 14, 14, Main.rand.NextBool(7) ? DustID.CrystalSerpent_Pink : DustID.Venom, 0f, 0f, 120);
                     // Dust dust = Dust.NewDustDirect(Projectile.Center, 14, 14, Main.rand.NextBool(7) ? DustID.FireworkFountain_Pink : DustID.Venom, 0f, 0f, 120);
                     dust.velocity = vector2.DirectionTo(dust.position) * 2f;
                     dust.position = Projectile.Center + vector3.RotatedBy(num2 * ((float) Math.PI * 2f) * 2f + i / num6 * ((float) Math.PI * 2f)) * 8f;

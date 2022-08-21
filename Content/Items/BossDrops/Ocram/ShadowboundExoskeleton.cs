@@ -11,8 +11,8 @@ namespace Consolaria.Content.Items.BossDrops.Ocram {
         public override void SetStaticDefaults () {
             DisplayName.SetDefault("Shadowbound Exoskeleton");
 
-            string keyValue = Language.GetTextValue("Key.UP");
-            Tooltip.SetDefault($"Allows the player to do rocket jump on double tap {keyValue}");
+            string tapDir = Language.GetTextValue(Main.ReversedUpDownArmorSetBonuses ? "Key.DOWN" : "Key.UP");
+            Tooltip.SetDefault($"Allows the player to rocket jump on double tap {tapDir}");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
         }
@@ -22,7 +22,7 @@ namespace Consolaria.Content.Items.BossDrops.Ocram {
             Item.Size = new Vector2(width, height);
 
             Item.DamageType = DamageClass.Melee;
-            Item.damage = 60;
+            Item.damage = 90;
             Item.knockBack = 6f;
 
             Item.value = Item.sellPrice(gold: 4);
@@ -105,9 +105,9 @@ namespace Consolaria.Content.Items.BossDrops.Ocram {
 
             for (int _npc = 0; _npc < Main.maxNPCs; _npc++) {
                 NPC npc = Main.npc [_npc];
-                if (npc.active && !npc.friendly && npc.life > 0 && npc.Distance(Player.position) <= radius) {
+                if (npc.active && !npc.friendly && npc.life > 0 && !npc.dontTakeDamage && npc.Distance(Player.position) <= radius) {
                     npc.StrikeNPCNoInteraction(rocketJumpDamage, rocketJumpKnockBack, 0, false, false, false);
-                    npc.AddBuff(BuffID.ShadowFlame, 180);
+                    //npc.AddBuff(BuffID.ShadowFlame, 180);
                 }
             }
             SoundEngine.PlaySound(SoundID.Item14 with { Pitch = 0.1f, Volume = 0.7f}, Player.position);
@@ -116,7 +116,15 @@ namespace Consolaria.Content.Items.BossDrops.Ocram {
 
         public override void SetControls () {
             for (int i = 0; i < 4; i++) {
-                bool JustPressed = Player.controlUp && Player.releaseUp;
+                bool JustPressed = false;
+                switch (i) {
+                    case 0:
+                        JustPressed = (Player.controlDown && Player.releaseDown);
+                        break;
+                    case 1:
+                        JustPressed = (Player.controlUp && Player.releaseUp);
+                        break;
+                }
                 if (JustPressed && Player.doubleTapCardinalTimer [i] > 0 && JustPressed && Player.doubleTapCardinalTimer [i] < 15)
                     KeyDoubleTap(i);
             }
@@ -124,6 +132,8 @@ namespace Consolaria.Content.Items.BossDrops.Ocram {
 
         private void KeyDoubleTap (int keyDir) {
             int inputKey = 1;
+            if (Main.ReversedUpDownArmorSetBonuses)
+                inputKey = 0;
             if (keyDir == inputKey) {
                 if (ocramJump)
                     DoRocketJump();

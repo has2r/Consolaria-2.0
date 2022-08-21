@@ -706,7 +706,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
 
         private void SpawnStomp()
         {
-            if (NPC.oldVelocity.Y < 0.5f || SpawnedStomp)
+            if (NPC.oldVelocity.Y < 1f || SpawnedStomp)
             {
                 return;
             }

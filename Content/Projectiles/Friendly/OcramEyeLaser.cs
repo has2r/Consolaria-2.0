@@ -3,7 +3,6 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework.Graphics;
-using Terraria.Audio;
 
 namespace Consolaria.Content.Projectiles.Friendly {
     public class OcramEyeLaser : ModProjectile {
@@ -37,11 +36,14 @@ namespace Consolaria.Content.Projectiles.Friendly {
         public override void AI () {
             if (Main.rand.NextBool(8)) {
                 int dust = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, DustID.Shadowflame, 0, 0, 100, default, 1.1f);
-                Main.dust[dust].velocity = -Projectile.velocity * 0.4f;
+                Main.dust [dust].velocity = -Projectile.velocity * 0.4f;
             }
             if (Projectile.timeLeft <= 890) Projectile.alpha = 50;
             Lighting.AddLight(Projectile.Center, 0.4f, 0.1f, 0.5f);
         }
+
+        public override void OnHitNPC (NPC target, int damage, float knockback, bool crit)
+            => target.AddBuff(BuffID.ShadowFlame, 180);
 
         public override bool PreDraw (ref Color lightColor) {
             SpriteBatch spriteBatch = Main.spriteBatch;
@@ -63,12 +65,10 @@ namespace Consolaria.Content.Projectiles.Friendly {
             return true;
         }
 
-        public override void Kill(int timeLeft)
-        {
-            for (int i = 0; i < 4; i++)
-            {
+        public override void Kill (int timeLeft) {
+            for (int i = 0; i < 4; i++) {
                 int num506 = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, DustID.Shadowflame, Projectile.velocity.X, Projectile.velocity.Y, 100, default, 1.5f);
-                Main.dust[num506].noGravity = true;
+                Main.dust [num506].noGravity = true;
                 Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, DustID.Shadowflame, Projectile.velocity.X, Projectile.velocity.Y, 100, default, 1.1f);
             }
         }

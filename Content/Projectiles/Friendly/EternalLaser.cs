@@ -27,7 +27,10 @@ namespace Consolaria.Content.Projectiles.Friendly {
             if (Main.rand.NextBool(8)) Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, DustID.Shadowflame, -Projectile.velocity.X * 0.4f, -Projectile.velocity.Y * 0.4f, 120, default, 0.6f);
         }
 
-        public override Color? GetAlpha(Color lightColor)
+        public override void OnHitNPC (NPC target, int damage, float knockback, bool crit)
+            => target.AddBuff(BuffID.ShadowFlame, 180);
+
+        public override Color? GetAlpha (Color lightColor)
             => Color.White;
     }
 }

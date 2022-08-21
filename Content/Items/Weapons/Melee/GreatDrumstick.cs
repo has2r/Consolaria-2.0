@@ -8,7 +8,7 @@ namespace Consolaria.Content.Items.Weapons.Melee {
     public class GreatDrumstick : ModItem {
         public override void SetStaticDefaults () {
             DisplayName.SetDefault("Great Drumstick");
-            Tooltip.SetDefault("Covers enemies in oil" + "\nOiled enemies take more damage from fire" + "\n'I like large fries, but not fried turkey'");
+            Tooltip.SetDefault("Covers enemies in oil" + "\nSet oiled enemies on fire for extra damage" + "\n'I like large fries, but not fried turkey'");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
         }

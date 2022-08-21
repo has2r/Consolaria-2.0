@@ -11,7 +11,7 @@ namespace Consolaria.Content.Items.BossDrops.Lepus
     {
         public override void SetStaticDefaults() {
             DisplayName.SetDefault("Ostara's Gift");
-            Tooltip.SetDefault("Enemies have a chance of leaving chocolate eggs on death" + "\nBroken eggs drop some life hearts and mana stars");
+            Tooltip.SetDefault("Enemies have a chance of leaving chocolate eggs on death" + "\nEggs drop life hearts and mana stars when broken");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 

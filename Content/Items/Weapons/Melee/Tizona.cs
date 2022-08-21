@@ -12,7 +12,7 @@ namespace Consolaria.Content.Items.Weapons.Melee
 	{
 		public override void SetStaticDefaults() {
 			DisplayName.SetDefault("Tizona");
-			Tooltip.SetDefault("Shoots a cursed skull that inflicts enemies with Shadowflames");
+			Tooltip.SetDefault("Shoots a cursed skull");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 

@@ -22,7 +22,7 @@ namespace Consolaria.Content.Items.Vanity
 			int width = 30; int height = 18;
 			Item.Size = new Vector2(width, height);
 
-			Item.rare = ItemRarityID.LightRed;
+			Item.rare = ItemRarityID.White;
 			Item.value = Item.buyPrice(gold: 15);
 			Item.vanity = true;
 		}

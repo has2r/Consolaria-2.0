@@ -11,7 +11,7 @@ namespace Consolaria.Content.Items.Pets
 	{
 		public override void SetStaticDefaults() {
 			DisplayName.SetDefault("Golden Lantern");
-			Tooltip.SetDefault("Summons a Mythical Wyvernling");
+			Tooltip.SetDefault("Summons a mythical wyvernling to provide light");
 
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}

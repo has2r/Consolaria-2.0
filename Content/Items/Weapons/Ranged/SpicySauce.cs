@@ -8,7 +8,7 @@ namespace Consolaria.Content.Items.Weapons.Ranged {
     public class SpicySauce : ModItem {
         public override void SetStaticDefaults () {
             DisplayName.SetDefault("Spicy Sauce");
-            Tooltip.SetDefault("Affected enemies take additional damage from fire");
+            Tooltip.SetDefault("Covers enemies in oil" + "\nSet oiled enemies on fire for extra damage");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 99;
         }

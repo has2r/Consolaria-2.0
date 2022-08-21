@@ -18,6 +18,8 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets
 
             int width = 34; int height = 44;
             Projectile.Size = new Vector2(width, height);
+
+            Projectile.scale = 0.8f;
         }
 
         public override bool PreAI() {

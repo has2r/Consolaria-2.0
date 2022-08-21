@@ -10,7 +10,7 @@ namespace Consolaria.Content.Items.BossDrops.Lepus
 	{
 		public override void SetStaticDefaults() {
 			DisplayName.SetDefault("Rabbit Foot");
-			Tooltip.SetDefault("Summons a Baby Lepus");
+			Tooltip.SetDefault("Summons a baby Lepus" + "\n'Provides an illusion of good luck'");
 
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}

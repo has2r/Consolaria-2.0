@@ -10,7 +10,7 @@ namespace Consolaria.Content.Items.Pets
 	public class BrokenHeart : ModItem
 	{
 		public override void SetStaticDefaults() {
-			Tooltip.SetDefault("Summons a pet cupid");
+			Tooltip.SetDefault("Summons a pet cupid to provide light");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 

@@ -9,7 +9,7 @@ namespace Consolaria.Content.Items.Consumables {
     public class Wishbone : ModItem {
         public override void SetStaticDefaults () {
             DisplayName.SetDefault("Wishbone");
-            Tooltip.SetDefault("Enables all small seasonal events for one day");
+            Tooltip.SetDefault("Enables all minor seasonal events for one day");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 3;
             ItemID.Sets.SortingPriorityBossSpawns [Type] = 12;
@@ -38,7 +38,7 @@ namespace Consolaria.Content.Items.Consumables {
         public override bool? UseItem (Player player) {
             if (player.whoAmI == Main.myPlayer) {
                 SeasonalEvents.allEventsForToday = true;
-                Main.NewText("Events has started!", Color.HotPink);
+                Main.NewText("The spirits of celebration arise...", Color.HotPink);
             }
             return true;
         }

@@ -37,7 +37,7 @@ namespace Consolaria.Content.Items.Armor.Summon
             && legs.type == ModContent.ItemType<WarlockLeggings>() || legs.type == ModContent.ItemType<AncientWarlockLeggings>();
 
         public override void UpdateArmorSet(Player player) {
-            player.setBonus = "Killing enemies minions healing the player for a small amount of life";
+            player.setBonus = "Enemies killed by minions heal the player";
             player.GetModPlayer<WarlockPlayer>().necroHealing = true;
         }
 

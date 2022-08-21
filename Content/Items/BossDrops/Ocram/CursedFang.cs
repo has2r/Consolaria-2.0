@@ -10,7 +10,7 @@ namespace Consolaria.Content.Items.BossDrops.Ocram
 	{
 		public override void SetStaticDefaults() {
 			DisplayName.SetDefault("Cursed Fang");
-			Tooltip.SetDefault("Summons a Lil Marco" + "\n'You're my friend now'");
+			Tooltip.SetDefault("Summons a lil' Marco" + "\n'You're my friend now'");
 
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}

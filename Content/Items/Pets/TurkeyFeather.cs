@@ -10,7 +10,7 @@ namespace Consolaria.Content.Items.Pets {
 	public class TurkeyFeather : ModItem {
 		public override void SetStaticDefaults () {
 			DisplayName.SetDefault("Turkey Feather");
-			Tooltip.SetDefault("Summons a Pet Turkey");
+			Tooltip.SetDefault("Summons a pet turkey");
 
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
 		}

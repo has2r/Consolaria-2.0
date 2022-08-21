@@ -8,7 +8,7 @@ namespace Consolaria.Content.Buffs
 	{
 		public override void SetStaticDefaults() {
 			DisplayName.SetDefault("Mythical Wyvernling");
-			Description.SetDefault("Privides light");
+			Description.SetDefault("A mythical wyvernling is following you");
 
 			Main.buffNoTimeDisplay[Type] = true;
 			Main.lightPet[Type] = true;

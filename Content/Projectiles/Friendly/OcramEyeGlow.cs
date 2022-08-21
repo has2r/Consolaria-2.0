@@ -24,14 +24,14 @@ namespace Consolaria.Content.Projectiles.Friendly {
 			Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2;
 
 			Vector2 playerCenter = player.RotatedRelativePoint(player.MountedCenter, reverseRotation: false, addGfxOffY: false);
-			Projectile.Center = playerCenter + Projectile.velocity * 10f;
+			Projectile.Center = playerCenter + Projectile.velocity * 15f;
 
 			Projectile.alpha += 20;
 			if (Projectile.alpha >= 255) Projectile.active = false;
 		}
 
 		public override Color? GetAlpha (Color lightColor)
-		 => new Color(Color.BlueViolet.R * (255 - Projectile.alpha) / 255, Color.BlueViolet.G * (255 - Projectile.alpha) / 255, Color.BlueViolet.B * (255 - Projectile.alpha) / 255, 0);
+			=> new Color(Color.BlueViolet.R * (255 - Projectile.alpha) / 255, Color.BlueViolet.G * (255 - Projectile.alpha) / 255, Color.BlueViolet.B * (255 - Projectile.alpha) / 255, 0);
 
 		public override bool? CanDamage ()
 			=> false;

@@ -6,8 +6,7 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Consolaria.Content.Items.Weapons.Magic
-{
+namespace Consolaria.Content.Items.Weapons.Magic {
     public class OcramsEye : ModItem {
         public override void SetStaticDefaults () {
             DisplayName.SetDefault("Eye of Ocram");
@@ -37,7 +36,7 @@ namespace Consolaria.Content.Items.Weapons.Magic
             Item.autoReuse = true;
 
             Item.shoot = ModContent.ProjectileType<OcramEyeGlow>();
-            Item.shootSpeed = 16f;
+            Item.shootSpeed = 10f;
         }
 
         public override void ModifyShootStats (Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback) {
@@ -50,7 +49,7 @@ namespace Consolaria.Content.Items.Weapons.Magic
             float rotation = MathHelper.ToRadians(7);
             for (int i = 0; i < projectilesCount; i++) {
                 Vector2 perturbedSpeed = velocity.RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (projectilesCount - 1))) * 1.25f;
-                Projectile.NewProjectile(source, position + Main.player[player.whoAmI].velocity, perturbedSpeed, ModContent.ProjectileType<OcramEyeLaser>(), damage, knockback, player.whoAmI);
+                Projectile.NewProjectile(source, position + player.velocity, perturbedSpeed, ModContent.ProjectileType<OcramEyeLaser>(), damage, knockback, player.whoAmI);
             }
             return true;
         }

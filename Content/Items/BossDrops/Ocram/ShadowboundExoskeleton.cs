@@ -11,8 +11,8 @@ namespace Consolaria.Content.Items.BossDrops.Ocram {
         public override void SetStaticDefaults () {
             DisplayName.SetDefault("Shadowbound Exoskeleton");
 
-            string tapDir = Language.GetTextValue(Main.ReversedUpDownArmorSetBonuses ? "Key.UP" : "Key.DOWN");
-            Tooltip.SetDefault($"Allows the player to do rocket jump on double tap {tapDir}");
+            string keyValue = Language.GetTextValue("Key.UP");
+            Tooltip.SetDefault($"Allows the player to do rocket jump on double tap {keyValue}");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
         }
@@ -21,7 +21,7 @@ namespace Consolaria.Content.Items.BossDrops.Ocram {
             int width = 30; int height = width;
             Item.Size = new Vector2(width, height);
 
-            Item.DamageType = DamageClass.Generic;
+            Item.DamageType = DamageClass.Melee;
             Item.damage = 60;
             Item.knockBack = 6f;
 
@@ -83,7 +83,7 @@ namespace Consolaria.Content.Items.BossDrops.Ocram {
             if (rocketJumped)
                 return;
 
-            int radius = 80;
+            int radius = 120;
             Vector2 dustPos = new(Player.position.X, Player.position.Y + Player.height / 2);
             Player.velocity.Y = -18;
 
@@ -96,42 +96,34 @@ namespace Consolaria.Content.Items.BossDrops.Ocram {
                 if (Main.dust [dust].position != Player.Center)
                     Main.dust [dust].velocity = Player.DirectionTo(Main.dust [dust].position) * 5f;
             }
-            for (int g = 0; g < 6; g++) {
-                int goreIndex = Gore.NewGore(Player.GetSource_Misc("Rocket_Jump"), dustPos, default, Main.rand.Next(61, 64), 1f);
-                Main.gore [goreIndex].GetAlpha(new Color(75, 0, 130, 100));
+            if (Main.netMode != NetmodeID.Server) {
+                for (int g = 0; g < 6; g++) {
+                    int goreIndex = Gore.NewGore(Player.GetSource_Misc("Rocket_Jump"), dustPos, default, Main.rand.Next(61, 64), 1f);
+                    Main.gore [goreIndex].GetAlpha(new Color(75, 0, 130, 100));
+                }
             }
 
             for (int _npc = 0; _npc < Main.maxNPCs; _npc++) {
                 NPC npc = Main.npc [_npc];
-                if (npc.active && !npc.friendly && npc.life > 0 && npc.Distance(Player.Center) <= radius) {
+                if (npc.active && !npc.friendly && npc.life > 0 && npc.Distance(Player.position) <= radius) {
                     npc.StrikeNPCNoInteraction(rocketJumpDamage, rocketJumpKnockBack, 0, false, false, false);
                     npc.AddBuff(BuffID.ShadowFlame, 180);
                 }
             }
-            SoundEngine.PlaySound(SoundID.Item14, Player.position);
+            SoundEngine.PlaySound(SoundID.Item14 with { Pitch = 0.1f, Volume = 0.7f}, Player.position);
             rocketJumped = true;
         }
 
         public override void SetControls () {
             for (int i = 0; i < 4; i++) {
-                bool JustPressed = false;
-                switch (i) {
-                case 0:
-                JustPressed = (Player.controlDown && Player.releaseDown);
-                break;
-                case 1:
-                JustPressed = (Player.controlUp && Player.releaseUp);
-                break;
-                }
+                bool JustPressed = Player.controlUp && Player.releaseUp;
                 if (JustPressed && Player.doubleTapCardinalTimer [i] > 0 && JustPressed && Player.doubleTapCardinalTimer [i] < 15)
                     KeyDoubleTap(i);
             }
         }
 
         private void KeyDoubleTap (int keyDir) {
-            int inputKey = 0;
-            if (Main.ReversedUpDownArmorSetBonuses)
-                inputKey = 1;
+            int inputKey = 1;
             if (keyDir == inputKey) {
                 if (ocramJump)
                     DoRocketJump();

@@ -856,7 +856,7 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
                 float scytheangle = rad / 6 * (float) Math.Sin(NPC.ai [2] / 32);
                 Vector2 vel = new Vector2(0, scytheVel).RotatedBy(scytheangle);
                 Vector2 projPos = new Vector2(NPC.position.X + (NPC.width / 2), NPC.position.Y + (NPC.height / 2)) + vel * 80;
-                int proj = Projectile.NewProjectile(NPC.GetSource_FromAI(), projPos.X, projPos.Y, vel.X, vel.Y, ModContent.ProjectileType<OcramScythe>(), (int) (NPC.damage * 1.5f), 4f);
+                int proj = Projectile.NewProjectile(NPC.GetSource_FromAI(), projPos.X, projPos.Y, vel.X, vel.Y, ModContent.ProjectileType<OcramScythe>(), (int) (NPC.damage * 1.2f), 4f);
                 NetMessage.SendData(MessageID.SyncProjectile, -1, -1, null, proj);
             }
             SoundEngine.PlaySound(SoundID.Item8 with {Pitch = -0.1f, MaxInstances = 0 }, NPC.position);

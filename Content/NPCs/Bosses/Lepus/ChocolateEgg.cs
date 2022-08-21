@@ -62,7 +62,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
                         Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-1, 1), Main.rand.Next(-1, 1)), chocolateEggGore);
                     }
                 }
-                SoundEngine.PlaySound(new SoundStyle($"{nameof(Consolaria)}/Assets/Sounds/EggCrack") { Volume = 0.7f, Pitch = 0.15f }, NPC.Center);
+                SoundEngine.PlaySound(new SoundStyle($"{nameof(Consolaria)}/Assets/Sounds/EggCrack") { Volume = 0.7f, Pitch = -0.15f }, NPC.Center);
             }
         }
 

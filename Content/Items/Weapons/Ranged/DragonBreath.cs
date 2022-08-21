@@ -24,7 +24,7 @@ namespace Consolaria.Content.Items.Weapons.Ranged {
 			Item.useTime = 3;
 			Item.useAnimation = 18;
 
-			Item.shoot = ModContent.ProjectileType<Projectiles.Friendly.ShadowFlames>();
+			Item.shoot = ModContent.ProjectileType<Projectiles.Friendly.ShadowBreath>();
 			Item.shootSpeed = 6.5f;
 
 			Item.useStyle = ItemUseStyleID.Shoot;

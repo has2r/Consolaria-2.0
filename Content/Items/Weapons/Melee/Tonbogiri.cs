@@ -1,25 +1,23 @@
 using Consolaria.Content.Items.Materials;
 using Consolaria.Content.Projectiles.Friendly;
 using Microsoft.Xna.Framework;
-using System;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Consolaria.Content.Items.Weapons.Melee
-{
-    public class Tonbogiri : ModItem
-    {
-        public override void SetStaticDefaults() {
+namespace Consolaria.Content.Items.Weapons.Melee {
+    public class Tonbogiri : ModItem {
+        public override void SetStaticDefaults () {
             DisplayName.SetDefault("Tonbogiri");
             Tooltip.SetDefault("'A legendary Japanese spear coated in venom'");
-            ItemID.Sets.SkipsInitialUseSound[Item.type] = true;
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
+            ItemID.Sets.SkipsInitialUseSound [Item.type] = true;
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
         }
 
-        public override void SetDefaults() {
+        public override void SetDefaults () {
             int width = 56; int height = width;
             Item.Size = new Vector2(width, height);
 
@@ -34,7 +32,6 @@ namespace Consolaria.Content.Items.Weapons.Melee
 
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.knockBack = 2f;
-            Item.crit = 8;
 
             Item.value = Item.buyPrice(gold: 5, silver: 30);
             Item.rare = ItemRarityID.Lime;
@@ -46,15 +43,15 @@ namespace Consolaria.Content.Items.Weapons.Melee
             Item.channel = true;
         }
 
-        public override bool CanUseItem(Player player)  
-            => player.ownedProjectileCounts[Item.shoot] < 1;
+        public override bool CanUseItem (Player player)
+            => player.ownedProjectileCounts [Item.shoot] < 1;
 
-        public override Nullable<bool> UseItem(Player player)/* tModPorter Suggestion: Return null instead of false */ {
-            if (!Main.dedServ) SoundEngine.PlaySound(SoundID.DD2_GhastlyGlaivePierce, player.Center);        
+        public override bool? UseItem (Player player) {
+            if (!Main.dedServ) SoundEngine.PlaySound(SoundID.DD2_GhastlyGlaivePierce, player.position);
             return null;
         }
 
-        public override void AddRecipes() {
+        public override void AddRecipes () {
             CreateRecipe()
                 .AddIngredient(ItemID.Gungnir)
                 .AddRecipeGroup(RecipeGroups.Titanium, 10)

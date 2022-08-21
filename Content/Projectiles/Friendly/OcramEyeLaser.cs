@@ -31,6 +31,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
             Projectile.penetrate = -1;
 
             Projectile.light = 0.1f;
+            Projectile.extraUpdates = 3;
         }
 
         public override void AI () {

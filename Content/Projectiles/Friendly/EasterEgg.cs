@@ -27,10 +27,12 @@ namespace Consolaria.Content.Projectiles.Friendly {
             if (Main.rand.NextBool(150)) NPC.NewNPC(Projectile.GetSource_Death(), (int) Projectile.Center.X, (int) Projectile.Center.Y, NPCID.CorruptBunny);
             if (Main.rand.NextBool(150)) NPC.NewNPC(Projectile.GetSource_Death(), (int) Projectile.Center.X, (int) Projectile.Center.Y, NPCID.CrimsonBunny);
 
-            int easterEggGoreType = ModContent.Find<ModGore>("Consolaria/EasterEggGore").Type;
-            for (int i = 0; i < 1; i++) {
-                Gore.NewGore(Projectile.GetSource_Death(), Projectile.position, new Vector2(Main.rand.Next(-2, 2), -1), easterEggGoreType);
-                Gore.NewGore(Projectile.GetSource_Death(), Projectile.position, new Vector2(Main.rand.Next(-2, 2), -1), easterEggGoreType);
+            if (Main.netMode != NetmodeID.Server) {
+                int easterEggGoreType = ModContent.Find<ModGore>("Consolaria/EasterEggGore").Type;
+                for (int i = 0; i < 1; i++) {
+                    Gore.NewGore(Projectile.GetSource_Death(), Projectile.position, new Vector2(Main.rand.Next(-2, 2), -1), easterEggGoreType);
+                    Gore.NewGore(Projectile.GetSource_Death(), Projectile.position, new Vector2(Main.rand.Next(-2, 2), -1), easterEggGoreType);
+                }
             }
         }
     }

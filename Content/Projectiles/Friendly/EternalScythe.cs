@@ -4,12 +4,10 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Consolaria.Content.Projectiles.Friendly
-{
-	public class EternalScythe : ModProjectile
-	{
-		private float rotationTimer = (float)Math.PI;
-		public override void SetDefaults() {
+namespace Consolaria.Content.Projectiles.Friendly {
+	public class EternalScythe : ModProjectile {
+		private float rotationTimer = (float) Math.PI;
+		public override void SetDefaults () {
 			int width = 32; int height = width;
 			Projectile.Size = new Vector2(width, height);
 
@@ -22,8 +20,8 @@ namespace Consolaria.Content.Projectiles.Friendly
 			Projectile.tileCollide = true;
 			Projectile.timeLeft = 250;
 		}
-		public override void AI()
-		{
+
+		public override void AI () {
 			if (Projectile.scale < 0.65f)
 				Projectile.scale += 0.1f;
 
@@ -36,13 +34,13 @@ namespace Consolaria.Content.Projectiles.Friendly
 			rotationTimer += 0.01f;
 		}
 
-		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+		public override void OnHitNPC (NPC target, int damage, float knockback, bool crit)
 			=> target.AddBuff(BuffID.ShadowFlame, 180);
 
-		public override void OnHitPvp(Player target, int damage, bool crit)
+		public override void OnHitPvp (Player target, int damage, bool crit)
 			=> target.AddBuff(BuffID.ShadowFlame, 180);
 
-		public override Color? GetAlpha(Color lightColor)
+		public override Color? GetAlpha (Color lightColor)
 			=> Color.White;
 	}
 }

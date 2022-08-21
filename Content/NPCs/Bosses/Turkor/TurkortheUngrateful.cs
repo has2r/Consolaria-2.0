@@ -17,6 +17,7 @@ using Consolaria.Content.Items.Weapons.Melee;
 using Consolaria.Content.Items.Weapons.Summon;
 using Consolaria.Content.Items.Weapons.Ranged;
 using Consolaria.Content.Items.Consumables;
+using System.IO;
 
 namespace Consolaria.Content.NPCs.Bosses.Turkor {
 	[AutoloadBossHead]
@@ -171,6 +172,37 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 
 		//enraged mode
 		private bool enraged;
+
+
+		public override void ReceiveExtraAI(BinaryReader reader)
+		{
+			colo = reader.ReadSingle();
+			headSpawned = reader.ReadBoolean();
+			headNumber = reader.ReadInt32();
+			ground_ = reader.ReadBoolean();
+			num = reader.ReadInt32();
+			teleport = reader.ReadBoolean();
+			jumpTimer = reader.ReadInt32();
+			findPlayer = reader.ReadBoolean();
+			posX = reader.ReadSingle();
+			posY = reader.ReadSingle();
+			enraged = reader.ReadBoolean();
+		}
+
+		public override void SendExtraAI(BinaryWriter writer)
+		{
+			writer.Write(colo);
+			writer.Write(headSpawned);
+			writer.Write(headNumber);
+			writer.Write(ground_);
+			writer.Write(num);
+			writer.Write(teleport);
+			writer.Write(jumpTimer);
+			writer.Write(findPlayer);
+			writer.Write(posX);
+			writer.Write(posY);
+			writer.Write(enraged);
+		}
 
 		public override void OnSpawn (IEntitySource source) {
 			if (NPC.CountNPCS(turkorHead) <= 0 || !headSpawned) {

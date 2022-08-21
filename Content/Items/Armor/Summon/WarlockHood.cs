@@ -56,51 +56,46 @@ namespace Consolaria.Content.Items.Armor.Summon {
 
     internal class WarlockPlayer : ModPlayer {
         public bool necroHealing;
+        private int healingTimer;
+        private readonly int healingTimerLimit = 180;
 
-        private bool startCooldownTimer;
-        private int setbonusCooldown;
+        public override void Initialize ()
+            => healingTimer = healingTimerLimit;
 
         public override void ResetEffects ()
             => necroHealing = false;
 
-        public override void UpdateEquips () {
-            int cooldownTimeMax = 10;
-
-            if (startCooldownTimer)
-                setbonusCooldown++;
-
-            if (setbonusCooldown >= cooldownTimeMax) {
-                setbonusCooldown = 0;
-                startCooldownTimer = false;
-            }
+        public override void PostUpdateEquips () {
+            if (!necroHealing) return;
+            if (healingTimer > 0)
+                healingTimer--;
         }
 
         public override void OnHitNPCWithProj (Projectile proj, NPC target, int damage, float knockback, bool crit) {
-            if (target.type == NPCID.TargetDummy || startCooldownTimer)
+            if (target.type == NPCID.TargetDummy || !necroHealing)
                 return;
 
-            if (necroHealing && (proj.minion  || proj.DamageType == DamageClass.Summon) && target.life <= 0) {
+            if (healingTimer == 0 && target.life <= 0 &&
+                (proj.minion || proj.DamageType == DamageClass.Summon)) {
                 int helLife = Player.statLifeMax / 20;
-                if (helLife > 0) {
-                    float _dustCountMax = 40;
-                    int _dustCount = 0;
-                    while (_dustCount < _dustCountMax) {
-                        Vector2 vector = Vector2.UnitX * 0f;
-                        vector += -Vector2.UnitY.RotatedBy(_dustCount * (7f / _dustCountMax), default) * new Vector2(26f, 26);
-                        vector = vector.RotatedBy(proj.velocity.ToRotation(), default);
-                        int _dust = Dust.NewDust(proj.Center, 0, 0, DustID.Shadowflame, 0f, 0f, 100, Color.DarkViolet, 1.2f);
-                        Main.dust [_dust].noGravity = true;
-                        Main.dust [_dust].position = proj.Center + vector;
-                        Main.dust [_dust].velocity = proj.velocity * 0f + vector.SafeNormalize(Vector2.UnitY) * 0.8f;
-                        int _dustCountMax2 = _dustCount;
-                        _dustCount = _dustCountMax2 + 1;
-                    }
-                    SoundEngine.PlaySound(SoundID.NPCDeath55, proj.Center);
-                    Player.statLife += helLife;
-                    Player.HealEffect(helLife);
-                    NetMessage.SendData(MessageID.SpiritHeal, -1, -1, null, proj.owner, helLife);
-                    startCooldownTimer = true;
+                float _dustCountMax = 40;
+                int _dustCount = 0;
+                while (_dustCount < _dustCountMax) {
+                    Vector2 vector = Vector2.UnitX * 0f;
+                    vector += -Vector2.UnitY.RotatedBy(_dustCount * (7f / _dustCountMax), default) * new Vector2(26f, 26);
+                    vector = vector.RotatedBy(proj.velocity.ToRotation(), default);
+                    int _dust = Dust.NewDust(proj.Center, 0, 0, DustID.Shadowflame, 0f, 0f, 100, Color.DarkViolet, 1.2f);
+                    Main.dust [_dust].noGravity = true;
+                    Main.dust [_dust].position = proj.Center + vector;
+                    Main.dust [_dust].velocity = proj.velocity * 0f + vector.SafeNormalize(Vector2.UnitY) * 0.8f;
+                    int _dustCountMax2 = _dustCount;
+                    _dustCount = _dustCountMax2 + 1;
                 }
+                SoundEngine.PlaySound(SoundID.NPCDeath55, proj.Center);
+                Player.statLife += helLife;
+                Player.HealEffect(helLife);
+                NetMessage.SendData(MessageID.SpiritHeal, -1, -1, null, proj.owner, helLife);
+                healingTimer = healingTimerLimit;
             }
         }
     }

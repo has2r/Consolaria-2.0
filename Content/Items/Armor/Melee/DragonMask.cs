@@ -34,8 +34,8 @@ namespace Consolaria.Content.Items.Armor.Melee {
         }
 
         public override bool IsArmorSet (Item head, Item body, Item legs)
-            => body.type == ModContent.ItemType<DragonBreastplate>() || body.type == ModContent.ItemType<AncientDragonBreastplate>()
-            && legs.type == ModContent.ItemType<DragonGreaves>() || legs.type == ModContent.ItemType<AncientDragonGreaves>();
+            => body.type == ModContent.ItemType<DragonBreastplate>() || body.type == ModContent.ItemType<AncientDragonBreastplate>() && 
+            legs.type == ModContent.ItemType<DragonGreaves>() || legs.type == ModContent.ItemType<AncientDragonGreaves>();
 
         public override void ArmorSetShadows (Player player)
             => player.armorEffectDrawShadow = true;
@@ -73,17 +73,18 @@ namespace Consolaria.Content.Items.Armor.Melee {
         }
 
         private void ShootFlames (IEntitySource spawnSource) {
-            float projectilesCount = Main.rand.Next(3, 5);
+            float projectilesCount = 7;
             float rotation = MathHelper.ToRadians(15);
             Vector2 velocity, position;
-            ushort type = (ushort)ModContent.ProjectileType<DragonFlame>();
-            velocity = new Vector2(6 * Player.direction, 0);
-            position = new Vector2(Player.direction > 0 ? Player.Center.X + 15 : Player.Center.X - 15, Player.Center.Y - 5);
+            ushort type = (ushort)ModContent.ProjectileType<ShadowflameBurst>();
+            int xOffset = 5;
+            velocity = new Vector2(4.5f * Player.direction, 0);
+            position = new Vector2(Player.direction > 0 ? Player.Center.X + xOffset : Player.Center.X - xOffset, Player.Center.Y - 5);
             for (int i = 0; i < projectilesCount; i++) {
-                Vector2 perturbedSpeed = velocity.RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (projectilesCount - 1))) * 1.1f;
-                Projectile.NewProjectile(spawnSource, position, new Vector2(perturbedSpeed.X + Main.rand.Next(-2, 2), perturbedSpeed.Y), type, 50, 4.5f, Player.whoAmI);
+                Vector2 perturbedSpeed = velocity.RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (projectilesCount))) * 1.15f;
+                Projectile.NewProjectile(spawnSource, position, new Vector2(perturbedSpeed.X + Main.rand.NextFloat(-0.15f, 0.15f), perturbedSpeed.Y), type, 70, 2f, Player.whoAmI);
             }
-            SoundEngine.PlaySound(SoundID.DD2_PhantomPhoenixShot, Player.Center);
+            SoundEngine.PlaySound(SoundID.DD2_PhantomPhoenixShot with { Volume = 0.8f}, Player.Center);
         }
     }
 }

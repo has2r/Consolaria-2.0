@@ -428,7 +428,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
                 }
             }
             ChangeState(STATE_STAGNANT);
-            //SpawnStomp();
+            SpawnStomp();
             NPC.netUpdate = true;
         }
 
@@ -678,7 +678,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
                 flag = true;
             }
             ChangeState(flag ? STATE_JUMP2 : STATE_STAGNANT);
-            SpawnStomp();
+            //SpawnStomp();
             NPC.netUpdate = true;
             if (flag)
             {
@@ -686,7 +686,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
             }
             if ((flag || AdvancedJumped) && AdvancedJumpCount < MAX_JUMP_COUNT)
             {
-                //SpawnStomp();
+                SpawnStomp();
             }
         }
 

@@ -68,6 +68,8 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 			NPC.noTileCollide = false;
 			NPC.noGravity = false;
 
+			NPC.netAlways = true;
+
 			NPC.SpawnWithHigherTime(30);
 
 			if (!Main.dedServ) Music = MusicLoader.GetMusicSlot(Mod, "Assets/Music/Turkor");
@@ -182,7 +184,6 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 			ground_ = reader.ReadBoolean();
 			num = reader.ReadInt32();
 			teleport = reader.ReadBoolean();
-			jumpTimer = reader.ReadInt32();
 			findPlayer = reader.ReadBoolean();
 			posX = reader.ReadSingle();
 			posY = reader.ReadSingle();
@@ -197,26 +198,46 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 			writer.Write(ground_);
 			writer.Write(num);
 			writer.Write(teleport);
-			writer.Write(jumpTimer);
 			writer.Write(findPlayer);
 			writer.Write(posX);
 			writer.Write(posY);
 			writer.Write(enraged);
 		}
 
-		public override void OnSpawn (IEntitySource source) {
-			if (NPC.CountNPCS(turkorHead) <= 0 || !headSpawned) {
-				if (Main.netMode != NetmodeID.MultiplayerClient) {
-					int npc = NPC.NewNPC(source, (int) NPC.position.X, (int) NPC.position.Y, turkorHead, 0, 0, NPC.whoAmI);
-					NetMessage.SendData(MessageID.SyncNPC, number: npc);
-				}
-				headSpawned = true;
-				headNumber++;
+		public static int GetFirstTileFloor(int x, int startY, bool solid = true)
+		{
+			for (int y = startY; y < Main.maxTilesY; y++)
+			{
+				Tile tile = Main.tile[x, y];
+				if (tile != null && tile.HasTile && (!solid || Main.tileSolid[(int)tile.TileType])) { return y; }
 			}
+			return Main.maxTilesY;
 		}
+
 
 		public override void AI () {
 			Player player = Main.player [NPC.target];
+
+			if (NPC.localAI[0] == 0f)
+			{
+				NPC.localAI[0] = 1f;
+				float x = player.position.X + Main.rand.NextFloat(50f, 150f) * 5f * (Main.rand.NextBool() ? -1f : 1f);
+				int y = GetFirstTileFloor((int)x / 16, (int)(NPC.Center.Y / 16f) + 3);
+				Vector2 position = new Vector2 { X = x, Y = y * 16f };
+				NPC.position = position;
+				if (NPC.CountNPCS(turkorHead) <= 0 || !headSpawned)
+				{
+					if (Main.netMode != NetmodeID.MultiplayerClient)
+					{
+						int npc = NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, turkorHead, 0, 0, NPC.whoAmI);
+						NetMessage.SendData(MessageID.SyncNPC, number: npc);
+					}
+					headSpawned = true;
+					headNumber++;
+				}
+				NPC.netUpdate = true;
+				return;
+			}
 
 			int dust = Dust.NewDust(new Vector2(NPC.position.X, NPC.position.Y - 20), NPC.width, NPC.height, DustID.Smoke, 0f, -6f, 60, Color.White, 1f);
 			Main.dust [dust].velocity *= 0.2f;
@@ -342,6 +363,7 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 						NPC.noTileCollide = true;
 						SoundEngine.PlaySound(SoundID.Roar, NPC.position);
 						NPC.velocity.Y = -32;
+						NPC.netUpdate = true;
 					}
 					if (timer2 >= (jumpTimer + 20) && !teleport) {
 						if (NPC.alpha <= 255) NPC.alpha += 5;
@@ -355,6 +377,7 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 						if (timer2 <= (jumpTimer + 60)) {
 							NPC.position.X = Main.player [NPC.target].Center.X - 40;
 							NPC.position.Y = Main.player [NPC.target].Center.Y - 800;
+							NPC.netUpdate = true;
 						}
 						NPC.alpha -= 8;
 
@@ -379,10 +402,10 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 								timer = 0;
 								findPlayer = false;
 								NPC.velocity = Vector2.Zero;
+								NPC.netUpdate = true;
 							}
 						}
 					}
-					NPC.netUpdate = true;
 				}
 			}
 		}

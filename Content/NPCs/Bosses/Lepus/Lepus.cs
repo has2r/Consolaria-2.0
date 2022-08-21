@@ -82,11 +82,19 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
             set;
         } = false;
 
+
+        public bool SpawnedStomp
+        {
+            get;
+            set;
+        } = false;
+
         public override void ReceiveExtraAI(BinaryReader reader)
         {
             AdvancedJumped = reader.ReadBoolean();
             JustSpawned = reader.ReadBoolean();
             AdvancedJumped2 = reader.ReadBoolean();
+            SpawnedStomp = reader.ReadBoolean();
         }
 
         public override void SendExtraAI(BinaryWriter writer)
@@ -94,6 +102,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
             writer.Write(AdvancedJumped);
             writer.Write(JustSpawned);
             writer.Write(AdvancedJumped2);
+            writer.Write(SpawnedStomp);
         }
 
         public ref float JumpCount
@@ -281,6 +290,10 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
                 case STATE_DEAD_PLAYERS:
                     ByeWords();
                     break;
+            }
+            if (NPC.velocity.Y != 0f && SpawnedStomp)
+			{
+                SpawnedStomp = false;
             }
         }
 
@@ -554,6 +567,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
             {
                 return;
             }
+            SpawnStomp();
             float slow = 0.85f;
             NPC.velocity.X *= slow;
             bool zeroVelocityX = Math.Abs(NPC.velocity.X) < 0.1f;
@@ -677,25 +691,26 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
             {
                 flag = true;
             }
+            SpawnStomp();
             ChangeState(flag ? STATE_JUMP2 : STATE_STAGNANT);
-            //SpawnStomp();
             NPC.netUpdate = true;
             if (flag)
             {
                 SoundEngine.PlaySound(SoundID.DoubleJump, NPC.position);
             }
-            if ((flag || AdvancedJumped) && AdvancedJumpCount < MAX_JUMP_COUNT)
+            /*if ((flag || AdvancedJumped) && AdvancedJumpCount <= MAX_JUMP_COUNT)
             {
                 SpawnStomp();
-            }
+            }*/
         }
 
         private void SpawnStomp()
         {
-            if (NPC.velocity.Y != 0f)
+            if (NPC.oldVelocity.Y < 0.5f || SpawnedStomp)
             {
                 return;
             }
+            SpawnedStomp = true;
             SoundEngine.PlaySound(SoundID.DD2_OgreGroundPound, NPC.Center);
             if (Main.netMode != NetmodeID.MultiplayerClient)
             {

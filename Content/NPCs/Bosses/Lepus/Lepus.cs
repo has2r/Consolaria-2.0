@@ -497,9 +497,17 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
             if (StateTimer != 1f)
             {
                 float offsetY = Main.expertMode ? 350f : 425f;
-                NPC.Center = Main.player[NPC.target].Center - new Vector2(0f, offsetY);
+                Vector2 center = Main.player[NPC.target].Center;
+                if (StateTimer != -1f)
+                {
+                    NPC.Center = center - new Vector2(0f, offsetY);
+                }
+                else
+                {
+                    NPC.Center = center - new Vector2(Main.rand.Next(50, 150) * (Main.rand.NextBool() ? 1 : -1), offsetY);
+                }
             }
-            ChangeState(STATE_HEAVY_JUMP);
+            ChangeState(STATE_HEAVY_JUMP, 0f);
             NPC.netUpdate = true;
         }
 
@@ -514,7 +522,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
             }
             else
 			{
-                ChangeState(STATE_APPEARANCE, 0f);
+                ChangeState(STATE_APPEARANCE, -1f);
                 NPC.netUpdate = true;
             }
         }

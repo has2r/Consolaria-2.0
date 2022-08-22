@@ -35,9 +35,11 @@ namespace Consolaria.Content.Projectiles.Friendly {
         }
 
         public override void AI () {
-            if (Main.rand.NextBool(8)) {
-                int dust = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, DustID.Shadowflame, 0, 0, 100, default, 1.1f);
-                Main.dust [dust].velocity = -Projectile.velocity * 0.4f;
+            if (Main.netMode != NetmodeID.Server) {
+                if (Main.rand.NextBool(8)) {
+                    int dust = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, DustID.Shadowflame, 0, 0, 100, default, 1.1f);
+                    Main.dust [dust].velocity = -Projectile.velocity * 0.4f;
+                }
             }
             if (Projectile.timeLeft <= 890) Projectile.alpha = 50;
             Lighting.AddLight(Projectile.Center, 0.4f, 0.1f, 0.5f);
@@ -64,10 +66,12 @@ namespace Consolaria.Content.Projectiles.Friendly {
         }
 
         public override void Kill (int timeLeft) {
-            for (int i = 0; i < 4; i++) {
-                int num506 = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, DustID.Shadowflame, Projectile.velocity.X, Projectile.velocity.Y, 100, default, 1.5f);
-                Main.dust [num506].noGravity = true;
-                Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, DustID.Shadowflame, Projectile.velocity.X, Projectile.velocity.Y, 100, default, 1.1f);
+            if (Main.netMode != NetmodeID.Server) {
+                for (int i = 0; i < 4; i++) {
+                    int num506 = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, DustID.Shadowflame, Projectile.velocity.X, Projectile.velocity.Y, 100, default, 1.5f);
+                    Main.dust [num506].noGravity = true;
+                    Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, DustID.Shadowflame, Projectile.velocity.X, Projectile.velocity.Y, 100, default, 1.1f);
+                }
             }
         }
 

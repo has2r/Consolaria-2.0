@@ -4,8 +4,7 @@ using Terraria.Graphics.Effects;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Consolaria.Content.Projectiles.Friendly
-{
+namespace Consolaria.Content.Projectiles.Friendly {
     public class TitanShockwawe : ModProjectile {
         public override string Texture => "Consolaria/Assets/Textures/Empty";
 

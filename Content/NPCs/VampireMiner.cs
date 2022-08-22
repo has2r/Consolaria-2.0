@@ -76,6 +76,9 @@ namespace Consolaria.Content.NPCs {
 		}
 
 		public override void HitEffect (int hitDirection, double damage) {
+			if (Main.netMode == NetmodeID.Server)
+				return;
+
 			Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood, 2.5f * hitDirection, -2.5f, 0, default, 0.7f);
 			if (NPC.life <= 0) {
 				Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity, ModContent.Find<ModGore>("Consolaria/vampgore1").Type, 1f);

@@ -28,12 +28,14 @@ namespace Consolaria.Content.Projectiles.Friendly {
             => target.AddBuff(BuffID.OnFire3, 300);
 
         public override void AI () {
-            if (Main.rand.NextBool(2))
-                Dust.NewDust(Projectile.position + Projectile.velocity, Projectile.width, Projectile.height, DustID.Torch, Projectile.velocity.X * 0.4f, Projectile.velocity.Y * 0.4f, 0, default, 1.2f);
+            if (Main.netMode != NetmodeID.Server) {
+                if (Main.rand.NextBool(2))
+                    Dust.NewDust(Projectile.position + Projectile.velocity, Projectile.width, Projectile.height, DustID.Torch, Projectile.velocity.X * 0.4f, Projectile.velocity.Y * 0.4f, 0, default, 1.2f);
+            }
         }
 
         public override void Kill (int timeLeft) {
-            if (Projectile.owner == Main.myPlayer) {
+            if (Main.netMode != NetmodeID.Server) {
                 int radius = 5;
                 for (int x = -radius; x <= radius; x++) {
                     for (int y = -radius; y <= radius; y++) {
@@ -45,11 +47,8 @@ namespace Consolaria.Content.Projectiles.Friendly {
                         }
                     }
                 }
-                if (Projectile.soundDelay == 0) {
-                    Projectile.soundDelay = 80;
-                    SoundEngine.PlaySound(SoundID.Item14 with { Volume = 0.75f, MaxInstances = 3 }, Projectile.Center);
-                }
             }
+            SoundEngine.PlaySound(SoundID.Item14 with { Volume = 0.75f, MaxInstances = 3 }, Projectile.Center);
         }
     }
 }

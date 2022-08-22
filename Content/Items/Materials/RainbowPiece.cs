@@ -28,9 +28,12 @@ namespace Consolaria.Content.Items.Materials {
         public override void Update (ref float gravity, ref float maxFallSpeed) {
             if (Main.dayTime)
                 return;
+
+            if (Main.netMode != NetmodeID.Server) {
+                for (int index = 0; index < 10; ++index)
+                    Dust.NewDust(Item.position, Item.width, Item.height, ModContent.DustType<Dusts.RomanFlame>(), Item.velocity.X, Item.velocity.Y, 100, Main.DiscoColor, Main.rand.NextFloat(0.8f, 1.3f));
+            }
             SoundEngine.PlaySound(SoundID.Item4, Item.position);
-            for (int index = 0; index < 10; ++index)
-                Dust.NewDust(Item.position, Item.width, Item.height, ModContent.DustType<Dusts.RomanFlame>(), Item.velocity.X, Item.velocity.Y, 100, Main.DiscoColor, Main.rand.NextFloat(0.8f, 1.3f));
             Item.TurnToAir();
         }
 
@@ -38,30 +41,30 @@ namespace Consolaria.Content.Items.Materials {
             Lighting.AddLight(Item.Center, Main.DiscoColor.ToVector3() * 0.4f);
 
             if (Item.timeSinceItemSpawned % 12 == 0) {
-                Vector2 center = Item.Center + new Vector2(0f, Item.height * -0.1f);
-                Vector2 direction = Main.rand.NextVector2CircularEdge(Item.width * 0.6f, Item.height * 0.6f);
-                float distance = 0.3f + Main.rand.NextFloat() * 0.5f;
-                Vector2 velocity = new Vector2(0f, -Main.rand.NextFloat() * 0.3f - 1.5f);
+                if (Main.netMode != NetmodeID.Server) {
+                    Vector2 center = Item.Center + new Vector2(0f, Item.height * -0.1f);
+                    Vector2 direction = Main.rand.NextVector2CircularEdge(Item.width * 0.6f, Item.height * 0.6f);
+                    float distance = 0.3f + Main.rand.NextFloat() * 0.5f;
+                    Vector2 velocity = new Vector2(0f, -Main.rand.NextFloat() * 0.3f - 1.5f);
 
-                //Dust dust = Dust.NewDustPerfect(center + direction * distance, ModContent.DustType<Dusts.RomanFlame>(), velocity);
-
-                int dust = Dust.NewDust(center + direction * distance, 0, 0, ModContent.DustType<Dusts.RomanFlame>(), velocity.X, velocity.Y, 0, Main.DiscoColor);
-                Main.dust[dust].position = center + direction * distance;
-                Main.dust[dust].velocity = velocity;
-                Main.dust[dust].scale = 0.5f;
-                Main.dust[dust].fadeIn = 1.1f;
-                Main.dust[dust].noGravity = true;
-                Main.dust[dust].alpha = 0;
+                    int dust = Dust.NewDust(center + direction * distance, 0, 0, ModContent.DustType<Dusts.RomanFlame>(), velocity.X, velocity.Y, 0, Main.DiscoColor);
+                    Main.dust [dust].position = center + direction * distance;
+                    Main.dust [dust].velocity = velocity;
+                    Main.dust [dust].scale = 0.5f;
+                    Main.dust [dust].fadeIn = 1.1f;
+                    Main.dust [dust].noGravity = true;
+                    Main.dust [dust].alpha = 0;
+                }
             }
         }
-        public override bool PreDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI)
-        {
-            Texture2D texture = TextureAssets.Item[Item.type].Value;
+
+        public override bool PreDrawInWorld (SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI) {
+            Texture2D texture = TextureAssets.Item [Item.type].Value;
             Rectangle frame;
 
             Color rainbowGlow = new Color(Main.DiscoColor.R, Main.DiscoColor.G, Main.DiscoColor.B, 60);
 
-            if (Main.itemAnimations[Item.type] != null) frame = Main.itemAnimations[Item.type].GetFrame(texture, Main.itemFrameCounter[whoAmI]);
+            if (Main.itemAnimations [Item.type] != null) frame = Main.itemAnimations [Item.type].GetFrame(texture, Main.itemFrameCounter [whoAmI]);
             else frame = texture.Frame();
 
             Vector2 frameOrigin = frame.Size() / 2f;
@@ -77,14 +80,12 @@ namespace Consolaria.Content.Items.Materials {
             if (time >= 1f) time = 2f - time;
             time = time * 0.5f + 0.5f;
 
-            for (float i = 0f; i < 1f; i += 0.25f)
-            {
+            for (float i = 0f; i < 1f; i += 0.25f) {
                 float radians = (i + timer) * MathHelper.TwoPi;
                 spriteBatch.Draw(texture, drawPos + new Vector2(0f, 8f).RotatedBy(radians) * time, frame, rainbowGlow, rotation, frameOrigin, scale, SpriteEffects.None, 0);
             }
 
-            for (float i = 0f; i < 1f; i += 0.34f)
-            {
+            for (float i = 0f; i < 1f; i += 0.34f) {
                 float radians = (i + timer) * MathHelper.TwoPi;
                 spriteBatch.Draw(texture, drawPos + new Vector2(0f, 4f).RotatedBy(radians) * time, frame, rainbowGlow, rotation, frameOrigin, scale, SpriteEffects.None, 0);
             }

@@ -35,9 +35,9 @@ namespace Consolaria.Content.Projectiles.Friendly {
             Projectile.timeLeft = 120;
         }
 
-        public override void AI () 
+        public override void AI ()
             => Projectile.velocity *= 0.98f;
-        
+
         public override void OnHitNPC (NPC target, int damage, float knockback, bool crit)
             => hitCounter++;
 
@@ -45,15 +45,15 @@ namespace Consolaria.Content.Projectiles.Friendly {
             => damage -= (int) (damage * hitCounter * 0.1f);
 
         public override void Kill (int timeLeft) {
-            if (Projectile.owner == Main.myPlayer) {
+            if (Main.netMode != NetmodeID.Server) {
                 for (int k = 0; k < 7; k++) {
                     int dust1 = Dust.NewDust(Projectile.position, 8, 16, DustID.DungeonSpirit, 0, 0, 100, default, 1.4f);
                     Main.dust [dust1].noGravity = true;
                     Main.dust [dust1].fadeIn = 1f;
                     Main.dust [dust1].velocity = Main.dust [dust1].velocity * 0.6f + Projectile.oldVelocity * 1.5f;
                 }
-                SoundEngine.PlaySound(SoundID.NPCDeath6 with { Pitch = 0.2f, Volume = 0.8f }, Projectile.Center);
             }
+            SoundEngine.PlaySound(SoundID.NPCDeath6 with { Pitch = 0.2f, Volume = 0.8f }, Projectile.Center);
         }
 
         public override bool PreDraw (ref Color lightColor) {

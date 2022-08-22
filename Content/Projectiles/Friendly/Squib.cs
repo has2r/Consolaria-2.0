@@ -41,20 +41,19 @@ namespace Consolaria.Content.Projectiles.Friendly {
 			=> target.AddBuff(BuffID.OnFire, 180);
 
 		public override void Kill (int timeLeft) {
-			Player player = Main.player [Projectile.owner];
-			if (Projectile.owner == Main.myPlayer) {
-				SoundEngine.PlaySound(SoundID.Item14, Projectile.position);
+			SoundEngine.PlaySound(SoundID.Item14, Projectile.position);
 
-				int width = Projectile.width;
-				int height = Projectile.height;
+			int width = Projectile.width;
+			int height = Projectile.height;
 
-				Projectile.Resize(60, 60);
+			Projectile.Resize(60, 60);
 
-				Projectile.maxPenetrate = -1;
-				Projectile.penetrate = -1;
-				Projectile.Damage();
-				Projectile.Resize(width, height);
+			Projectile.maxPenetrate = -1;
+			Projectile.penetrate = -1;
+			Projectile.Damage();
+			Projectile.Resize(width, height);
 
+			if (Main.netMode != NetmodeID.Server) {
 				Vector2 target5 = Projectile.Center;
 				for (int num23 = 0; num23 < Projectile.oldPos.Length; num23++) {
 					Vector2 vector5 = Projectile.oldPos [num23];
@@ -87,7 +86,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
 							}
 						}
 						else {
-							Dust dust10 = Dust.NewDustDirect(vector5, Projectile.width, Projectile.height, 6, (0f - Projectile.velocity.X) * 0.2f, (0f - Projectile.velocity.Y) * 0.2f, 50);
+							Dust dust10 = Dust.NewDustDirect(vector5, Projectile.width, Projectile.height, DustID.Torch, (0f - Projectile.velocity.X) * 0.2f, (0f - Projectile.velocity.Y) * 0.2f, 50);
 							Dust dust2;
 							if (Main.rand.NextBool(2)) {
 								dust10.noGravity = true;
@@ -105,7 +104,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
 					}
 				}
 				for (int num28 = 0; num28 < 30; num28++) {
-					Dust dust11 = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, 6, (0f - Projectile.velocity.X) * 0.2f, (0f - Projectile.velocity.Y) * 0.2f, 50);
+					Dust dust11 = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Torch, (0f - Projectile.velocity.X) * 0.2f, (0f - Projectile.velocity.Y) * 0.2f, 50);
 					dust11.noGravity = true;
 					dust11.velocity = Main.rand.NextVector2Circular(1f, 1f) * 6f;
 					dust11.scale = 1.6f;
@@ -113,7 +112,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
 					dust11.noLightEmittence = (dust11.noLight = true);
 					Dust dust2 = dust11;
 					dust2.velocity += Projectile.velocity * 0.15f;
-					dust11 = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, 6, (0f - Projectile.velocity.X) * 0.2f, (0f - Projectile.velocity.Y) * 0.2f, 0);
+					dust11 = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Torch, (0f - Projectile.velocity.X) * 0.2f, (0f - Projectile.velocity.Y) * 0.2f, 0);
 					dust2 = dust11;
 					dust2.velocity *= 2f;
 					dust11.noLightEmittence = (dust11.noLight = true);

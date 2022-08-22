@@ -5,7 +5,6 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.Projectiles.Friendly {
-
     public class HeartArrow : ModProjectile {
 
         public override void SetDefaults () {
@@ -23,9 +22,11 @@ namespace Consolaria.Content.Projectiles.Friendly {
         }
 
         public override void AI () {
-            if (Main.rand.NextBool(3)) {
-                int dust = Dust.NewDust(new Vector2(Projectile.position.X + 2f, Projectile.position.Y + 2f), Projectile.width, Projectile.height, DustID.HeartCrystal, Projectile.velocity.X * 0.2f, Projectile.velocity.Y * 0.2f, 100, default, 1.25f);
-                Main.dust [dust].noGravity = true;
+            if (Main.netMode != NetmodeID.Server) {
+                if (Main.rand.NextBool(3)) {
+                    int dust = Dust.NewDust(new Vector2(Projectile.position.X + 2f, Projectile.position.Y + 2f), Projectile.width, Projectile.height, DustID.HeartCrystal, Projectile.velocity.X * 0.2f, Projectile.velocity.Y * 0.2f, 100, default, 1.25f);
+                    Main.dust [dust].noGravity = true;
+                }
             }
         }
 
@@ -40,7 +41,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
             => target.AddBuff(BuffID.Lovestruck, 90);
 
         public override void Kill (int timeLeft) {
-            if (Projectile.owner == Main.myPlayer) {
+            if (Main.netMode != NetmodeID.Server) {
                 if (Main.rand.NextBool(5) && !Projectile.noDropItem) {
                     Item.NewItem(Projectile.GetSource_DropAsItem(), Projectile.position, Projectile.width, Projectile.height, ModContent.ItemType<Items.Weapons.Ammo.HeartArrow>());
                 }

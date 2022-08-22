@@ -50,6 +50,9 @@ namespace Consolaria.Content.NPCs {
         }
 
         public override void HitEffect (int hitDirection, double damage) {
+            if (Main.netMode == NetmodeID.Server)
+                return;
+
             Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Sand, 2.5f * hitDirection, -2.5f, 0, Color.White, 0.7f);
             if (NPC.life <= 0) {
                 for (int k = 0; k < 20; k++)

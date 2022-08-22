@@ -54,7 +54,7 @@ namespace Consolaria.Content.Structures {
 
             int structureCount = 0;
             do {
-                if (WorldGenHelper.TryStructureLocation(new int [] { TileID.JungleGrass }, width, height, ref JungleSanctumPositionX, ref JungleSanctumPositionY))
+                if (WorldGenHelper.TryStructureLocation(new int [] { TileID.JungleGrass, TileID.Mud }, width, height, ref JungleSanctumPositionX, ref JungleSanctumPositionY))
                     return;
 
                 structureCount++;

@@ -8,7 +8,7 @@ namespace Consolaria.Content.Items.Weapons.Ammo {
     public class SpectralArrow : ModItem {
         public override void SetStaticDefaults () {
             DisplayName.SetDefault("Spectral Arrow");
-            Tooltip.SetDefault("Pierces tiles and enemies, but loses damage with every hit");
+            Tooltip.SetDefault("Pierces tiles and enemies, but dissipates quickly in the air");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 99;
         }

@@ -58,7 +58,6 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
                 if (Main.netMode == NetmodeID.Server) {
                     NPC.netSkip = -1;
                     NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, NPC.whoAmI);
-                    NetMessage.SendData(MessageID.SpecialFX, -1, -1, null, 2, (int) NPC.Center.X, (int) NPC.Center.Y, NPC.type);
                 }
             }
         }

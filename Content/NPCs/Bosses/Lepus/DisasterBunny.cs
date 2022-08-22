@@ -44,6 +44,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
             Banner = NPC.type;
             BannerItem = ModContent.ItemType<Items.Banners.DisasterBunnyBanner>();
         }
+
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
             => NPC.lifeMax = 105;
 

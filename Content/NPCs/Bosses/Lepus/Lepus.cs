@@ -427,7 +427,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
             {
                 return;
             }
-            if (TooFar())
+            if (TooFar() && State != STATE_JUMP2)
             {
                 SoundStyle style = new($"{nameof(Consolaria)}/Assets/Sounds/LepusFaildJump");
                 SoundEngine.PlaySound(style, NPC.Center);
@@ -441,6 +441,31 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
                     }
                 }
                 ChangeState(STATE_JUMP2);
+                NPC.netUpdate = true;
+            }
+        }
+
+		public override void OnHitByItem(Player player, Item item, int damage, float knockback, bool crit)
+		{
+            if (State != STATE_JUMP)
+            {
+                return;
+            }
+            if (TooFar() && State != STATE_JUMP2)
+            {
+                SoundStyle style = new($"{nameof(Consolaria)}/Assets/Sounds/LepusFaildJump");
+                SoundEngine.PlaySound(style, NPC.Center);
+                if (Main.netMode != NetmodeID.Server)
+                {
+                    for (int index1 = 0; index1 < 8; ++index1)
+                    {
+                        int dust = Dust.NewDust(NPC.TopLeft - new Vector2(20, 60), NPC.width + 40, NPC.height + 40, ModContent.DustType<Dusts.EggDust>(), 0, 0, 0, default(Color), Main.rand.NextFloat(0.9f, 1.1f));
+                        Main.dust[dust].velocity.X = 0;
+                        Main.dust[dust].velocity.Y = 0.8f;
+                    }
+                }
+                ChangeState(STATE_JUMP2);
+                NPC.netUpdate = true;
             }
         }
 
@@ -482,7 +507,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
         {
             NPC.rotation = NPC.velocity.Y / 25f;
             NPC.dontTakeDamage = NPC.noTileCollide = true;
-            if (NPC.Opacity != 0f)
+            if (NPC.Opacity > 0f)
             {
                 NPC.Opacity -= 0.01f;
                 NPC.Opacity *= 0.9f;

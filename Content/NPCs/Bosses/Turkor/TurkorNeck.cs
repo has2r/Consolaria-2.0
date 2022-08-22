@@ -10,7 +10,6 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 		private ref float neck => ref NPC.ai [3];
 
 		public override void SetStaticDefaults () {
-			DisplayName.SetDefault("");
 			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0) {
 				Hide = true
 			};
@@ -45,14 +44,6 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 		public static Vector2 CenterPoint1 (Vector2 A, Vector2 B)
 			=> new((A.X + B.X - 50) / 2f, (A.Y + B.Y + 20) / 2f);
 
-		public override void HitEffect (int hitDirection, double damage) {
-			if (Main.netMode == NetmodeID.Server)
-				return;
-
-			if (NPC.life <= 0 || !NPC.active)
-				Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-1, 1), Main.rand.Next(-1, 1)), ModContent.Find<ModGore>("Consolaria/TurkorNeck").Type);
-		}
-
 		public override void AI () {
 			NPC.TargetClosest(true);
 			if (neck == -1f && NPC.ai [2] > 0 && Main.netMode != NetmodeID.MultiplayerClient) {
@@ -75,6 +66,9 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 				NPC.life = 0;
 				NPC.HitEffect(0, 10.0);
 				NPC.active = false;
+				if (Main.netMode != NetmodeID.Server) {
+					Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-1, 1), Main.rand.Next(-1, 1)), ModContent.Find<ModGore>("Consolaria/TurkorNeck").Type);
+				}
 			}
 
 			if (neck != -1f && NPC.ai [2] > 0)

@@ -6,8 +6,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Utilities;
 
-namespace Consolaria.Content.NPCs
-{
+namespace Consolaria.Content.NPCs {
 	public class FleshAxe : ModNPC {
 		public override void SetStaticDefaults () {
 			Main.npcFrameCount [NPC.type] = 5;
@@ -72,8 +71,11 @@ namespace Consolaria.Content.NPCs
 
 		public override Color? GetAlpha (Color drawColor)
 			=> Color.White * 0.8f;
-        
-        public override void HitEffect (int hitDirection, double damage) {
+
+		public override void HitEffect (int hitDirection, double damage) {
+			if (Main.netMode == NetmodeID.Server)
+				return;
+
 			Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Ichor, 2.5f * hitDirection, -2.5f, 0, default, 1f);
 			if (NPC.life <= 0) {
 				Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity / 2f, 99, 1f);

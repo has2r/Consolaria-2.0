@@ -38,27 +38,30 @@ namespace Consolaria.Content.Projectiles.Friendly {
                 else if (Projectile.ai [0] == 10.0) scale = 0.75f;
 
                 spawnDust = true;
-                for (int index1 = 0; index1 < 2; ++index1) {
-                    int _pos = 4;
-                    int _dust = Dust.NewDust(new Vector2(Projectile.position.X + _pos, Projectile.position.Y + _pos), Projectile.width - _pos * 3, Projectile.height - _pos * 3, DustID.Shadowflame, 0.0f, 0.0f, 125, default, 0.95f);
-                    if (spawnDust && Main.rand.NextBool(4)) {
-                        Main.dust [_dust].noGravity = true;
-                        Main.dust [_dust].scale *= 2f;
-                        Dust dust1 = Main.dust [_dust];
-                        dust1.velocity.X = dust1.velocity.X * 2f;
-                        Dust dust2 = Main.dust [_dust];
-                        dust2.velocity.Y = dust2.velocity.Y * 2f;
+                if (Main.netMode != NetmodeID.Server) {
+                    for (int index1 = 0; index1 < 2; ++index1) {
+                        int _pos = 4;
+                        int _dust = Dust.NewDust(new Vector2(Projectile.position.X + _pos, Projectile.position.Y + _pos), Projectile.width - _pos * 3, Projectile.height - _pos * 3, DustID.Shadowflame, 0.0f, 0.0f, 125, default, 0.95f);
+                        if (spawnDust && Main.rand.NextBool(4)) {
+                            Main.dust [_dust].noGravity = true;
+                            Main.dust [_dust].scale *= 2f;
+                            Dust dust1 = Main.dust [_dust];
+                            dust1.velocity.X = dust1.velocity.X * 2f;
+                            Dust dust2 = Main.dust [_dust];
+                            dust2.velocity.Y = dust2.velocity.Y * 2f;
+                        }
+                        else {
+                            Main.dust [_dust].noGravity = true;
+                            Main.dust [_dust].scale *= 1;
+                        }
+                        Dust dust3 = Main.dust [_dust];
+                        dust3.velocity.X = dust3.velocity.X * 1.2f;
+                        Dust dust4 = Main.dust [_dust];
+                        dust4.velocity.Y = dust4.velocity.Y * 1.2f;
+                        Main.dust [_dust].scale *= scale;
+                        if (spawnDust)
+                            Main.dust [_dust].velocity += Projectile.velocity;
                     }
-                    else {
-                        Main.dust [_dust].noGravity = true;
-                        Main.dust [_dust].scale *= 1;
-                    }
-                    Dust dust3 = Main.dust [_dust];
-                    dust3.velocity.X = dust3.velocity.X * 1.2f;
-                    Dust dust4 = Main.dust [_dust];
-                    dust4.velocity.Y = dust4.velocity.Y * 1.2f;
-                    Main.dust [_dust].scale *= scale;
-                    if (spawnDust) Main.dust [_dust].velocity += Projectile.velocity;
                 }
             }
             else Projectile.ai [0]++;

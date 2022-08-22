@@ -64,21 +64,22 @@ namespace Consolaria.Content.Projectiles.Friendly {
                 Projectile.position += spinningpoint.RotatedBy(num3) + new Vector2(num4 + num5, 0f).RotatedBy(num3);
                 Vector2 target = vector2 + spinningpoint.RotatedBy(num3) + new Vector2(num4 + num5 + 40f, 0f).RotatedBy(num3);
                 Projectile.rotation = vector2.AngleTo(target) + (float) Math.PI / 4f * player.direction;
-                if (Projectile.spriteDirection == -1) Projectile.rotation += (float) Math.PI;
+                if (Projectile.spriteDirection == -1)
+                    Projectile.rotation += (float) Math.PI;
 
                 vector2.DirectionTo(Projectile.Center);
-                Vector2 value = vector2.DirectionTo(target);
-                Vector2 vector3 = Projectile.velocity.SafeNormalize(Vector2.UnitY);
-                float num6 = 2f;
-                for (int i = 0; i < num6; i++) {
-                    Dust dust = Dust.NewDustDirect(Projectile.Center, 14, 14, Main.rand.NextBool(7) ? DustID.CrystalSerpent_Pink : DustID.Venom, 0f, 0f, 120);
-                    // Dust dust = Dust.NewDustDirect(Projectile.Center, 14, 14, Main.rand.NextBool(7) ? DustID.FireworkFountain_Pink : DustID.Venom, 0f, 0f, 120);
-                    dust.velocity = vector2.DirectionTo(dust.position) * 2f;
-                    dust.position = Projectile.Center + vector3.RotatedBy(num2 * ((float) Math.PI * 2f) * 2f + i / num6 * ((float) Math.PI * 2f)) * 8f;
-                    dust.scale = Main.rand.NextFloat(0.8f, 1.4f);
-                    dust.velocity += vector3 * 3f;
-                    dust.noGravity = true;
-                    dust.noLight = false;
+                if (Main.netMode != NetmodeID.Server) {
+                    Vector2 vector3 = Projectile.velocity.SafeNormalize(Vector2.UnitY);
+                    float num6 = 2f;
+                    for (int i = 0; i < num6; i++) {
+                        Dust dust = Dust.NewDustDirect(Projectile.Center, 14, 14, Main.rand.NextBool(7) ? DustID.CrystalSerpent_Pink : DustID.Venom, 0f, 0f, 120);
+                        dust.velocity = vector2.DirectionTo(dust.position) * 2f;
+                        dust.position = Projectile.Center + vector3.RotatedBy(num2 * ((float) Math.PI * 2f) * 2f + i / num6 * ((float) Math.PI * 2f)) * 8f;
+                        dust.scale = Main.rand.NextFloat(0.8f, 1.4f);
+                        dust.velocity += vector3 * 3f;
+                        dust.noGravity = true;
+                        dust.noLight = false;
+                    }
                 }
             }
             if (player.itemAnimation == 2) {

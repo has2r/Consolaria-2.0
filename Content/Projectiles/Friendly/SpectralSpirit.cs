@@ -23,23 +23,25 @@ namespace Consolaria.Content.Projectiles.Friendly {
         }
 
         public override void AI () {
-            for (int dustCount = 0; dustCount < 3; ++dustCount) {
-                float dustVelX = Projectile.velocity.X / 4f * dustCount;
-                float dustVelY = Projectile.velocity.Y / 3f * dustCount;
+            if (Main.netMode != NetmodeID.Server) {
+                for (int dustCount = 0; dustCount < 3; ++dustCount) {
+                    float dustVelX = Projectile.velocity.X / 4f * dustCount;
+                    float dustVelY = Projectile.velocity.Y / 3f * dustCount;
 
-                int dust_ = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.GoldFlame, 0f, 0f, 0, default, 1.5f);
-                Main.dust [dust_].position.X = Projectile.Center.X - dustVelX;
-                Main.dust [dust_].position.Y = Projectile.Center.Y - dustVelY;
-                Main.dust [dust_].velocity *= 0.0f;
-                Main.dust [dust_].noGravity = true;
-                Main.dust [dust_].noLight = true;
+                    int dust_ = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.GoldFlame, 0f, 0f, 0, default, 1.5f);
+                    Main.dust [dust_].position.X = Projectile.Center.X - dustVelX;
+                    Main.dust [dust_].position.Y = Projectile.Center.Y - dustVelY;
+                    Main.dust [dust_].velocity *= 0.0f;
+                    Main.dust [dust_].noGravity = true;
+                    Main.dust [dust_].noLight = true;
 
-                if (Main.rand.NextBool(2)) {
-                    int dust2_ = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Shadowflame, 0f, 0f, 100, new Color(255, 255, 255, 200), 1.35f);
-                    Main.dust [dust2_].position.X = Projectile.Center.X - dustVelX;
-                    Main.dust [dust2_].position.Y = Projectile.Center.Y - dustVelY;
-                    Main.dust [dust2_].velocity *= 0.0f;
-                    Main.dust [dust2_].noGravity = true;
+                    if (Main.rand.NextBool(2)) {
+                        int dust2_ = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Shadowflame, 0f, 0f, 100, new Color(255, 255, 255, 200), 1.35f);
+                        Main.dust [dust2_].position.X = Projectile.Center.X - dustVelX;
+                        Main.dust [dust2_].position.Y = Projectile.Center.Y - dustVelY;
+                        Main.dust [dust2_].velocity *= 0.0f;
+                        Main.dust [dust2_].noGravity = true;
+                    }
                 }
             }
 
@@ -76,15 +78,17 @@ namespace Consolaria.Content.Projectiles.Friendly {
         }
 
         public override void Kill (int timeLeft) {
-            for (int dustCount = 12; dustCount > 0; --dustCount) {
-                Vector2 velocity = Projectile.velocity;
-                int dust = Dust.NewDust(Projectile.position, 2, 2, DustID.Shadowflame, 0.0f, 0.0f, 100, new Color(255, 255, 255, 200), 1.5f);
-                Main.dust [dust].velocity = velocity.RotatedBy(15 * (dustCount + 2), new Vector2());
-                Main.dust [dust].noGravity = true;
-                if (Main.rand.NextBool(2)) {
-                    int dust2 = Dust.NewDust(Projectile.position, 2, 2, DustID.GoldFlame, 0.0f, 0.0f, 0, default, 2f);
-                    Main.dust [dust2].velocity = velocity.RotatedBy(15 * (dustCount + 2), new Vector2());
-                    Main.dust [dust2].noGravity = true;
+            if (Main.netMode != NetmodeID.Server) {
+                for (int dustCount = 12; dustCount > 0; --dustCount) {
+                    Vector2 velocity = Projectile.velocity;
+                    int dust = Dust.NewDust(Projectile.position, 2, 2, DustID.Shadowflame, 0.0f, 0.0f, 100, new Color(255, 255, 255, 200), 1.5f);
+                    Main.dust [dust].velocity = velocity.RotatedBy(15 * (dustCount + 2), new Vector2());
+                    Main.dust [dust].noGravity = true;
+                    if (Main.rand.NextBool(2)) {
+                        int dust2 = Dust.NewDust(Projectile.position, 2, 2, DustID.GoldFlame, 0.0f, 0.0f, 0, default, 2f);
+                        Main.dust [dust2].velocity = velocity.RotatedBy(15 * (dustCount + 2), new Vector2());
+                        Main.dust [dust2].noGravity = true;
+                    }
                 }
             }
         }

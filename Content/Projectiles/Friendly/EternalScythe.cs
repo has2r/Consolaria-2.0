@@ -28,7 +28,10 @@ namespace Consolaria.Content.Projectiles.Friendly {
 			if (Projectile.timeLeft > 200)
 				Projectile.velocity *= 1.05f;
 
-			if (Main.rand.NextBool(3)) Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Shadowflame, Projectile.velocity.X * 0.2f, Projectile.velocity.Y * 0.2f, 100, default, 0.8f);
+			if (Main.netMode != NetmodeID.Server) {
+				if (Main.rand.NextBool(3))
+					Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Shadowflame, Projectile.velocity.X * 0.2f, Projectile.velocity.Y * 0.2f, 100, default, 0.8f);
+			}
 
 			Projectile.rotation += 2 / rotationTimer;
 			rotationTimer += 0.01f;

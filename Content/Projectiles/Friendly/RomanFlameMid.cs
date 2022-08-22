@@ -4,11 +4,10 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Consolaria.Content.Projectiles.Friendly
-{
+namespace Consolaria.Content.Projectiles.Friendly {
     public class RomanFlameMid : ModProjectile {
         public override string Texture => "Consolaria/Assets/Textures/Empty";
-        private readonly ushort dustType = (ushort)(ModContent.DustType<Dusts.RomanFlame>());
+        private readonly ushort dustType = (ushort) (ModContent.DustType<Dusts.RomanFlame>());
         private readonly Color colorType = Main.DiscoColor;
 
         public override void SetDefaults () {
@@ -29,35 +28,34 @@ namespace Consolaria.Content.Projectiles.Friendly
 
 
         public override void AI () {
-            int dust = Dust.NewDust(Projectile.position + Projectile.velocity, Projectile.width, Projectile.height, dustType, Projectile.velocity.X * 0.75f, Projectile.velocity.Y * 0.75f, 100, colorType, 1.5f);
-            Main.dust [dust].noGravity = true;
+            if (Main.netMode != NetmodeID.Server) {
+                int dust = Dust.NewDust(Projectile.position + Projectile.velocity, Projectile.width, Projectile.height, dustType, Projectile.velocity.X * 0.75f, Projectile.velocity.Y * 0.75f, 100, colorType, 1.5f);
+                Main.dust [dust].noGravity = true;
+            }
         }
 
         public override void Kill (int timeLeft) {
             Player player = Main.player [Projectile.owner];
-            if (Projectile.owner == Main.myPlayer) {
-                if (Projectile.penetrate == 1) {
-                    float projectilesCount = Main.rand.Next(3, 5);
-                    Vector2 velocity = Projectile.velocity;
-                    for (int i = 0; i < projectilesCount; i++) {
-                        Vector2 perturbedSpeed = new Vector2(velocity.X, velocity.Y).RotatedByRandom(MathHelper.ToRadians(180));
-                        Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.position, perturbedSpeed, ModContent.ProjectileType<RomanFlameFinal>(), Projectile.damage, Projectile.knockBack, player.whoAmI);
-                    }
-                }
-
+            float projectilesCount = Main.rand.Next(3, 5);
+            Vector2 velocity = Projectile.velocity;
+            for (int i = 0; i < projectilesCount; i++) {
+                Vector2 perturbedSpeed = new Vector2(velocity.X, velocity.Y).RotatedByRandom(MathHelper.ToRadians(180));
+                Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.position, perturbedSpeed, ModContent.ProjectileType<RomanFlameFinal>(), Projectile.damage, Projectile.knockBack, player.whoAmI);
+            }
+            if (Main.netMode != NetmodeID.Server) {
                 Vector2 position = new Vector2(16f, 16f);
                 for (int i = 0; i < 20; i++) {
-                    int _dust = Dust.NewDust(Projectile.Center - position / 2f, (int)position.X, (int)position.Y, dustType, 0f, 0f, 100, colorType, 1f);
+                    int _dust = Dust.NewDust(Projectile.Center - position / 2f, (int) position.X, (int) position.Y, dustType, 0f, 0f, 100, colorType, 1f);
                     Main.dust [_dust].noGravity = true;
                     Main.dust [_dust].velocity *= 2.5f;
-                    _dust = Dust.NewDust(Projectile.Center - position / 2f, (int)position.X, (int)position.Y, dustType, 0f, 0f, 100, colorType, 1.2f);
+                    _dust = Dust.NewDust(Projectile.Center - position / 2f, (int) position.X, (int) position.Y, dustType, 0f, 0f, 100, colorType, 1.2f);
                     Main.dust [_dust].velocity *= 1.5f;
                     Main.dust [_dust].noGravity = true;
                 }
-                if (Projectile.soundDelay == 0) {
-                    Projectile.soundDelay = 80;
-                    SoundEngine.PlaySound(SoundID.Item14, Projectile.Center);
-                }
+            }
+            if (Projectile.soundDelay == 0) {
+                Projectile.soundDelay = 100;
+                SoundEngine.PlaySound(SoundID.Item14 with { Volume = 0.8f }, Projectile.Center);
             }
         }
     }

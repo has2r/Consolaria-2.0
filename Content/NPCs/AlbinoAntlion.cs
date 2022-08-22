@@ -71,12 +71,15 @@ namespace Consolaria.Content.NPCs
 			return false;
         }
 
-		public override void HitEffect(int hitDirection, double damage) {
+		public override void HitEffect (int hitDirection, double damage) {
+			if (Main.netMode == NetmodeID.Server)
+				return;
+
 			Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Sand, 2.5f * hitDirection, -2.5f, 0, Color.White, 0.7f);
 			if (NPC.life <= 0) {
 				Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-5, 6), Main.rand.Next(-5, 6)), ModContent.Find<ModGore>("Consolaria/AlbinoAntlionGore").Type);
 				for (int i = 0; i < 20; i++)
-					Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Sand, 2.5f * hitDirection, -2.5f, 0, Color.White, 1f);		
+					Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Sand, 2.5f * hitDirection, -2.5f, 0, Color.White, 1f);
 			}
 		}
 

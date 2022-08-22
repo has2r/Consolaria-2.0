@@ -82,6 +82,9 @@ namespace Consolaria.Content.NPCs {
 			=> target.AddBuff(BuffID.Poisoned, 180);
 
 		public override void HitEffect (int hitDirection, double damage) {
+			if (Main.netMode == NetmodeID.Server)
+				return;
+
 			Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.JungleGrass, 2.5f * hitDirection, -2.5f, 0, default, 0.7f);
 			if (NPC.life <= 0) {
 				Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-5, 6), Main.rand.Next(-5, 6)), ModContent.Find<ModGore>("Consolaria/DragonHornetGore").Type);

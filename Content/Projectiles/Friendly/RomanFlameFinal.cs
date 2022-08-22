@@ -27,16 +27,17 @@ namespace Consolaria.Content.Projectiles.Friendly
         }
 
         public override void AI () {
-            int dust = Dust.NewDust(Projectile.position + Projectile.velocity, Projectile.width, Projectile.height, dustType, Projectile.velocity.X * 0.75f, Projectile.velocity.Y * 0.75f, 100, colorType, 1.5f);
-            Main.dust [dust].noGravity = true;
+            if (Main.netMode != NetmodeID.Server) {
+                int dust = Dust.NewDust(Projectile.position + Projectile.velocity, Projectile.width, Projectile.height, dustType, Projectile.velocity.X * 0.75f, Projectile.velocity.Y * 0.75f, 100, colorType, 1.5f);
+                Main.dust [dust].noGravity = true;
+            }
         }
 
         public override void Kill (int timeLeft) {
-            Player player = Main.player [Projectile.owner];
-            if (Projectile.owner == Main.myPlayer) {
+            if (Main.netMode != NetmodeID.Server) {
                 Vector2 position = new Vector2(12f, 12f);
                 for (int i = 0; i < 20; i++) {
-                    int _dust = Dust.NewDust(Projectile.Center - position / 2f, (int)position.X, (int)position.Y, dustType, 0f, 0f, 100, colorType, 0.8f);
+                    int _dust = Dust.NewDust(Projectile.Center - position / 2f, (int) position.X, (int) position.Y, dustType, 0f, 0f, 100, colorType, 0.8f);
                     Main.dust [_dust].noGravity = true;
                     Main.dust [_dust].velocity *= 2.5f;
                 }

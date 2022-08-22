@@ -129,14 +129,14 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 				Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, -6, -4, type, NPC.damage / 2, 1, Main.myPlayer, 0, 0);
 			}
 			SoundEngine.PlaySound(SoundID.Item71, NPC.position);
-			for (int num623 = (int) NPC.position.X - 20; num623 < (int) NPC.position.X + NPC.width + 40; num623 += 20) {
-				for (int num624 = 0; num624 < 4; num624 = num + 1) {
-					int dust = Dust.NewDust(new Vector2(NPC.position.X - 20f, NPC.position.Y + NPC.height), NPC.width + 20, 4, DustID.Smoke, 0f, 0f, 100, default, 1.5f);
-					Dust dust3 = Main.dust [dust];
-					dust3.velocity *= 0.2f;
-					num = num624;
-				}
-				if (Main.netMode != NetmodeID.MultiplayerClient) {
+			if (Main.netMode != NetmodeID.Server) {
+				for (int num623 = (int) NPC.position.X - 20; num623 < (int) NPC.position.X + NPC.width + 40; num623 += 20) {
+					for (int num624 = 0; num624 < 4; num624 = num + 1) {
+						int dust = Dust.NewDust(new Vector2(NPC.position.X - 20f, NPC.position.Y + NPC.height), NPC.width + 20, 4, DustID.Smoke, 0f, 0f, 100, default, 1.5f);
+						Dust dust3 = Main.dust [dust];
+						dust3.velocity *= 0.2f;
+						num = num624;
+					}
 					int num626 = Gore.NewGore(NPC.GetSource_FromAI(), new Vector2((num623 - 20), NPC.position.Y + NPC.height - 8f), default, Main.rand.Next(61, 64), 1f);
 					Gore gore = Main.gore [num626];
 					gore.velocity *= 0.4f;
@@ -156,8 +156,8 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 		private int headNumber;
 
 		//idling phase stuff
-		private ref float timer => ref NPC.ai[0];
-		private ref float timer2 => ref NPC.ai[3];
+		private ref float timer => ref NPC.ai [0];
+		private ref float timer2 => ref NPC.ai [3];
 		//bool onAir = false;
 		//bool Despawning = false;
 		private bool ground_ = false;
@@ -176,8 +176,7 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 		private bool enraged;
 
 
-		public override void ReceiveExtraAI(BinaryReader reader)
-		{
+		public override void ReceiveExtraAI (BinaryReader reader) {
 			colo = reader.ReadSingle();
 			headSpawned = reader.ReadBoolean();
 			headNumber = reader.ReadInt32();
@@ -190,8 +189,7 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 			enraged = reader.ReadBoolean();
 		}
 
-		public override void SendExtraAI(BinaryWriter writer)
-		{
+		public override void SendExtraAI (BinaryWriter writer) {
 			writer.Write(colo);
 			writer.Write(headSpawned);
 			writer.Write(headNumber);
@@ -204,12 +202,10 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 			writer.Write(enraged);
 		}
 
-		public static int GetFirstTileFloor(int x, int startY, bool solid = true)
-		{
-			for (int y = startY; y < Main.maxTilesY; y++)
-			{
-				Tile tile = Main.tile[x, y];
-				if (tile != null && tile.HasTile && (!solid || Main.tileSolid[(int)tile.TileType])) { return y; }
+		public static int GetFirstTileFloor (int x, int startY, bool solid = true) {
+			for (int y = startY; y < Main.maxTilesY; y++) {
+				Tile tile = Main.tile [x, y];
+				if (tile != null && tile.HasTile && (!solid || Main.tileSolid [(int) tile.TileType])) { return y; }
 			}
 			return Main.maxTilesY;
 		}
@@ -218,18 +214,15 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 		public override void AI () {
 			Player player = Main.player [NPC.target];
 
-			if (NPC.localAI[0] == 0f)
-			{
-				NPC.localAI[0] = 1f;
+			if (NPC.localAI [0] == 0f) {
+				NPC.localAI [0] = 1f;
 				float x = player.position.X + Main.rand.NextFloat(50f, 150f) * 5f * (Main.rand.NextBool() ? -1f : 1f);
-				int y = GetFirstTileFloor((int)x / 16, (int)(NPC.Center.Y / 16f) + 3);
+				int y = GetFirstTileFloor((int) x / 16, (int) (NPC.Center.Y / 16f) + 3);
 				Vector2 position = new Vector2 { X = x, Y = y * 16f };
 				NPC.position = position;
-				if (NPC.CountNPCS(turkorHead) <= 0 || !headSpawned)
-				{
-					if (Main.netMode != NetmodeID.MultiplayerClient)
-					{
-						int npc = NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, turkorHead, 0, 0, NPC.whoAmI);
+				if (NPC.CountNPCS(turkorHead) <= 0 || !headSpawned) {
+					if (Main.netMode != NetmodeID.MultiplayerClient) {
+						int npc = NPC.NewNPC(NPC.GetSource_FromAI(), (int) NPC.position.X, (int) NPC.position.Y, turkorHead, 0, 0, NPC.whoAmI);
 						NetMessage.SendData(MessageID.SyncNPC, number: npc);
 					}
 					headSpawned = true;
@@ -248,7 +241,7 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 				NPC.HitEffect(0, 10.0);
 				NPC.active = false;
 			}
-			
+
 			bool isNotMpClient = (Main.netMode != NetmodeID.MultiplayerClient);
 
 			//if player too far then becomes enraged

@@ -24,7 +24,10 @@ namespace Consolaria.Content.Projectiles.Friendly {
 
         public override void AI () {
             if (Projectile.timeLeft <= 870) Projectile.alpha = 0;
-            if (Main.rand.NextBool(8)) Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, DustID.Shadowflame, -Projectile.velocity.X * 0.4f, -Projectile.velocity.Y * 0.4f, 120, default, 0.6f);
+            if (Main.netMode != NetmodeID.Server) {
+                if (Main.rand.NextBool(8)) 
+                    Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, DustID.Shadowflame, -Projectile.velocity.X * 0.4f, -Projectile.velocity.Y * 0.4f, 120, default, 0.6f);
+            }
         }
 
         public override Color? GetAlpha (Color lightColor)

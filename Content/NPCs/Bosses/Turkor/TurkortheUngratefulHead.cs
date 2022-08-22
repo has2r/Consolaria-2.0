@@ -34,7 +34,6 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 
 			NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData {
 				SpecificallyImmuneTo = new int [] {
-					BuffID.Poisoned,
 					BuffID.Confused
 				}
 			};
@@ -56,7 +55,6 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 			NPC.defense = 10;
 			NPC.lifeMax = 1200;
 
-			NPC.dontTakeDamage = false;
 
 			NPC.HitSound = SoundID.NPCHit7;
 			NPC.DeathSound = new SoundStyle($"{nameof(Consolaria)}/Assets/Sounds/TurkorGobble");
@@ -106,7 +104,7 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 			if (charge && timer <= 230) NPC.frame = GetFrame(4);
 		}
 
-		public override bool CanHitPlayer (Player target, ref int cooldownSlot) => charge;
+		//public override bool CanHitPlayer (Player target, ref int cooldownSlot) => charge;
 
 		public override void AI () {
 			NPC.direction = Main.player [NPC.target].Center.X < NPC.Center.X ? -1 : 1;

@@ -39,9 +39,11 @@ namespace Consolaria.Content.Projectiles.Friendly {
             float rotation = MathHelper.ToRadians(45);
 
             Vector2 velocity = Projectile.velocity;
-            for (int i = 0; i < projectilesCount; i++) {
-                Vector2 perturbedSpeed = velocity.RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (projectilesCount - 1))) * 1.1f;
-                Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.oldPosition, perturbedSpeed, ModContent.ProjectileType<RomanFlameMid>(), Projectile.damage, Projectile.knockBack, player.whoAmI);
+            if (timeLeft < 10) {
+                for (int i = 0; i < projectilesCount; i++) {
+                    Vector2 perturbedSpeed = velocity.RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (projectilesCount - 1))) * 1.1f;
+                    Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.oldPosition, perturbedSpeed, ModContent.ProjectileType<RomanFlameMid>(), Projectile.damage, Projectile.knockBack, player.whoAmI);
+                }
             }
             if (Main.netMode != NetmodeID.Server) {
                 Vector2 position = new Vector2(18f, 18f);

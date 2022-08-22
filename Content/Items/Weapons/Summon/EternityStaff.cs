@@ -24,7 +24,7 @@ namespace Consolaria.Content.Items.Weapons.Summon {
 			Item.useStyle = ItemUseStyleID.Swing;
 			Item.useTime = Item.useAnimation = 20;
 
-			Item.mana = 25;
+			Item.mana = 10;
 			Item.noMelee = true;
 
 			Item.DamageType = DamageClass.Summon;

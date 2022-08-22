@@ -35,13 +35,13 @@ namespace Consolaria.Content.Items.Armor.Summon {
            => body.type == ModContent.ItemType<WarlockRobe>() || body.type == ModContent.ItemType<AncientWarlockRobe>()
            && legs.type == ModContent.ItemType<WarlockLeggings>() || legs.type == ModContent.ItemType<AncientWarlockLeggings>();
 
+        public override void ArmorSetShadows(Player player)
+            => player.armorEffectDrawShadow = true;
+
         public override void UpdateArmorSet (Player player) {
             player.setBonus = "Enemies killed by minions heal the player";
             player.GetModPlayer<WarlockPlayer>().necroHealing = true;
         }
-
-        public override void UpdateVanitySet (Player player)
-            => Lighting.AddLight(player.Center, 0.5f, 0.3f, 0.7f);
 
         public override void AddRecipes () {
             CreateRecipe()

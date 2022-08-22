@@ -10,7 +10,7 @@ namespace Consolaria.Content.Items.Consumables
     {
         public override void SetStaticDefaults() {
             DisplayName.SetDefault("Holy Hand Grenade");
-            Tooltip.SetDefault("The Lord's chosen weapon");
+            Tooltip.SetDefault("'The Lord's chosen weapon'");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 99;
         }
 

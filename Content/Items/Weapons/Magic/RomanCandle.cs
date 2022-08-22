@@ -10,7 +10,7 @@ namespace Consolaria.Content.Items.Weapons.Magic
 	public class RomanCandle : ModItem
 	{
 		public override void SetStaticDefaults() {
-			Tooltip.SetDefault("'Fireworks are not a toy, kid!'");
+			Tooltip.SetDefault("'Fire works!'");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 

@@ -56,6 +56,10 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
         }
 
         public override void HitEffect(int hitDirection, double damage) {
+            if (Main.netMode == NetmodeID.Server)
+            {
+                return;
+            }
             if (NPC.life <= 0)  {
                 Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-1, 1), Main.rand.Next(-4, 5)), ModContent.Find<ModGore>("Consolaria/DBG1").Type);
                 Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-1, 1), Main.rand.Next(-4, 5)), ModContent.Find<ModGore>("Consolaria/DBG2").Type);

@@ -347,7 +347,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
         }
 
         public override void HitEffect (int hitDirection, double damage) {
-            if (Main.netMode == NetmodeID.Server || State == STATE_DEAD_PLAYERS) {
+            if (Main.netMode == NetmodeID.Server) {
                 return;
             }
             if (NPC.life <= 0) {

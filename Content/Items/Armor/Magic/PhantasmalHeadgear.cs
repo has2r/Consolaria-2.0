@@ -38,13 +38,13 @@ namespace Consolaria.Content.Items.Armor.Magic {
            => body.type == ModContent.ItemType<PhantasmalRobe>() || body.type == ModContent.ItemType<AncientPhantasmalRobe>()
            && legs.type == ModContent.ItemType<PhantasmalSubligar>() || legs.type == ModContent.ItemType<AncientPhantasmalSubligar>();
 
+        public override void ArmorSetShadows(Player player)
+            => player.armorEffectDrawOutlines = true;
+
         public override void UpdateArmorSet (Player player) {
             player.setBonus = "Drinking a mana potion unleashes a barrage of homing spirit bolts";
             player.GetModPlayer<SpectralPlayer>().spectralGuard = true;
         }
-
-        public override void UpdateVanitySet (Player player)
-            => Lighting.AddLight(player.Center, 0.5f, 0.3f, 0.7f);
 
         public override void AddRecipes () {
             CreateRecipe()

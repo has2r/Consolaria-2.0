@@ -26,11 +26,11 @@ namespace Consolaria.Content.Items.Weapons.Summon
 			Item.useStyle = ItemUseStyleID.Swing;
 			Item.useTime = Item.useAnimation = 30;
 
-			Item.mana = 15;
+			Item.mana = 10;
 			Item.noMelee = true;
 
 			Item.DamageType = DamageClass.Summon;
-			Item.damage = 26;
+			Item.damage = 23;
 			Item.knockBack = 4f;
 
 			Item.value = Item.sellPrice(gold: 1, silver: 15);

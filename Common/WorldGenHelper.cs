@@ -9,7 +9,7 @@ namespace Consolaria.Common {
             for (int i1 = 0; i1 < Main.maxTilesX; ++i1) {
                 for (int j1 = 0; j1 < Main.maxTilesY; ++j1) {
                     Tile tileSafely = Framing.GetTileSafely(i1, j1);
-                    if (tileSafely.TileType == (int) tileType.GetValue(0) || tileSafely.TileType == (int) tileType.GetValue(1)) {
+                    if (tileSafely.TileType == (int) tileType.GetValue(0) || (tileType.Length != 1 && tileSafely.TileType == (int)tileType.GetValue(1))) {
                         if (i1 < minValue)
                             minValue = i1;
                         if (i1 > maxValue)

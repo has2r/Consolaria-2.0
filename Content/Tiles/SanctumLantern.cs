@@ -8,15 +8,21 @@ using Terraria.ObjectData;
 namespace Consolaria.Content.Tiles {
 	public class SanctumLantern : ModTile {
 		public override void SetStaticDefaults () {
-			Main.tileLighted [Type] = true;
 			Main.tileFrameImportant [Type] = true;
-			Main.tileLavaDeath [Type] = true;
+
+			TileObjectData.addTile(Type);
 
 			TileObjectData.newTile.CopyFrom(TileObjectData.Style1x2);
+			TileObjectData.newTile.CoordinatePadding = 2;
 			TileObjectData.newTile.Height = 2;
 			TileObjectData.newTile.CoordinateHeights = new int [] { 16, 16 };
 			TileObjectData.newTile.StyleHorizontal = true;
+			TileObjectData.newTile.AnchorBottom = default(AnchorData);
+			TileObjectData.newTile.AnchorTop = default(AnchorData);
 			TileObjectData.newTile.AnchorWall = true;
+			Main.tileSolid[Type] = false;
+			Main.tileLavaDeath[Type] = true;
+			Main.tileLighted[Type] = true;
 			TileObjectData.addTile(Type);
 
 			ModTranslation name = CreateMapEntryName();

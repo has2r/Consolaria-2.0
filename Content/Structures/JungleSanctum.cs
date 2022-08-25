@@ -17,7 +17,7 @@ namespace Consolaria.Content.Structures
             int index = tasks.FindIndex(genpass => genpass.Name.Equals("Micro Biomes"));
             if (index != -1)
             {
-                tasks.Insert(index - 1, new JungleSanctumGeneration("Jungle Sanctum", 10f));
+                tasks.Insert(index + 1, new JungleSanctumGeneration("Jungle Sanctum", 10f));
             }
         }
     }

@@ -55,6 +55,12 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
 
         public override void HitEffect (int hitDirection, double damage) {
             if (NPC.life <= 0) {
+                int item = Item.NewItem(NPC.GetSource_Death(), NPC.Center, 2, 2, ItemID.Star, Main.rand.Next(1, 3), false, 0, false, false);
+                if (Main.netMode == NetmodeID.MultiplayerClient && item >= 0)
+                    NetMessage.SendData(MessageID.SyncItem, -1, -1, null, item, 1f, 0f, 0f, 0, 0, 0);
+                item = Item.NewItem(NPC.GetSource_Death(), NPC.Center, 2, 2, ItemID.Heart, Main.rand.Next(1, 4), false, 0, false, false);
+                if (Main.netMode == NetmodeID.MultiplayerClient && item >= 0)
+                    NetMessage.SendData(MessageID.SyncItem, -1, -1, null, item, 1f, 0f, 0f, 0, 0, 0);
                 if (Main.netMode != NetmodeID.Server) {
                     int chocolateEggGore = ModContent.Find<ModGore>("Consolaria/ChocolateEggGore").Type;
                     for (int i = 0; i < 1; i++) {
@@ -64,11 +70,6 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
                 }
                 SoundEngine.PlaySound(new SoundStyle($"{nameof(Consolaria)}/Assets/Sounds/EggCrack") { Volume = 0.7f, Pitch = -0.15f }, NPC.Center);
             }
-        }
-
-        public override void ModifyNPCLoot (NPCLoot npcLoot) {
-            npcLoot.Add(ItemDropRule.Common(ItemID.Star, 1, 1, 2));
-            npcLoot.Add(ItemDropRule.Common(ItemID.Heart, 1, 1, 3));
         }
     }
 }

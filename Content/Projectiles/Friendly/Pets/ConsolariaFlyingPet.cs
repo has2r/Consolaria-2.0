@@ -58,7 +58,7 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
 			float yDist = player.Center.Y - projPos.Y;
 			yDist += Utils.NextFloat(Main.rand, -10f, 20f);
 			xDist += Utils.NextFloat(Main.rand, -10f, 20f);
-			xDist += 60f * (isLightPet ? player.direction : (-(float) player.direction));
+			xDist += 60f * (isLightPet ? player.direction : -player.direction);
 			yDist -= 60f;
 			Vector2 playerVector = new Vector2(xDist, yDist);
 			float playerDist = playerVector.Length();
@@ -81,44 +81,46 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
 				if (playerDist < 100f) {
 					passiveMovement = 0.1f;
 				}
-				if (playerDist > 300f) 
+				if (playerDist > 300f)
 					passiveMovement = 1f;
-				
+
 				playerDist = returnSpeed / playerDist;
 				playerVector.X *= playerDist;
 				playerVector.Y *= playerDist;
 			}
+			float speedCheck = 0.05f;
 			if (Projectile.velocity.X < playerVector.X) {
 				Projectile.velocity.X = Projectile.velocity.X + passiveMovement;
-				if (passiveMovement > 0.05f && Projectile.velocity.X < 0f) {
+				if (passiveMovement > speedCheck && Projectile.velocity.X < 0f) {
 					Projectile.velocity.X = Projectile.velocity.X + passiveMovement;
 				}
 			}
 			if (Projectile.velocity.X > playerVector.X) {
 				Projectile.velocity.X = Projectile.velocity.X - passiveMovement;
-				if (passiveMovement > 0.05f && Projectile.velocity.X > 0f) {
+				if (passiveMovement > speedCheck && Projectile.velocity.X > 0f) {
 					Projectile.velocity.X = Projectile.velocity.X - passiveMovement;
 				}
 			}
 			if (Projectile.velocity.Y < playerVector.Y) {
 				Projectile.velocity.Y = Projectile.velocity.Y + passiveMovement;
-				if (passiveMovement > 0.05f && Projectile.velocity.Y < 0f) {
+				if (passiveMovement > speedCheck && Projectile.velocity.Y < 0f) {
 					Projectile.velocity.Y = Projectile.velocity.Y + passiveMovement * 2f;
 				}
 			}
 			if (Projectile.velocity.Y > playerVector.Y) {
 				Projectile.velocity.Y = Projectile.velocity.Y - passiveMovement;
-				if (passiveMovement > 0.05f && Projectile.velocity.Y > 0f) {
+				if (passiveMovement > speedCheck && Projectile.velocity.Y > 0f) {
 					Projectile.velocity.Y = Projectile.velocity.Y - passiveMovement * 2f;
 				}
 			}
-			if (Projectile.velocity.X >= 0.25f) {
-				Projectile.direction = 1;
+			if (player.velocity.X != 0) {
+				if (Projectile.velocity.X > 0.25f) {
+					Projectile.spriteDirection = -1;
+				}
+				if (Projectile.velocity.X < -0.25f) {
+					Projectile.spriteDirection = 1;
+				}
 			}
-			if (Projectile.velocity.X <= -0.25f) {
-				Projectile.direction = -1;
-			}
-			Projectile.spriteDirection = changeDirection ? Projectile.direction : -Projectile.direction;
 			Projectile.rotation = Projectile.velocity.X * tilt;
 		}
 

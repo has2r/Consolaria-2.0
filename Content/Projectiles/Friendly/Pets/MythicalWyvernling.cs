@@ -24,8 +24,6 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
             int frameTime = 8;
             Animation(frameTime);
             LightColor(new Color(255, 140, 0));
-
-            Projectile.velocity.X *= 0.975f;
         }
     }
 }

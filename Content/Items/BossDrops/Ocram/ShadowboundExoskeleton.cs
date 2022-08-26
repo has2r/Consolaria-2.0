@@ -86,17 +86,16 @@ namespace Consolaria.Content.Items.BossDrops.Ocram {
             int radius = 120;
             Vector2 dustPos = new(Player.position.X, Player.position.Y + Player.height / 2);
             Player.velocity.Y = -18;
-
-            for (int i = 0; i < 30; i++) {
-                int dust = Dust.NewDust(dustPos, Player.width, 4, DustID.Shadowflame, 0f, -1.5f, 100, default, 1.25f);
-                Main.dust [dust].noGravity = true;
-                Main.dust [dust].velocity *= 4f;
-                dust = Dust.NewDust(dustPos, Player.width, 4, DustID.Shadowflame, 0f, -1.5f, 50, default, 1.5f);
-                Main.dust [dust].velocity *= 2.5f;
-                if (Main.dust [dust].position != Player.Center)
-                    Main.dust [dust].velocity = Player.DirectionTo(Main.dust [dust].position) * 5f;
-            }
             if (Main.netMode != NetmodeID.Server) {
+                for (int i = 0; i < 30; i++) {
+                    int dust = Dust.NewDust(dustPos, Player.width, 4, DustID.Shadowflame, 0f, -1.5f, 100, default, 1.25f);
+                    Main.dust [dust].noGravity = true;
+                    Main.dust [dust].velocity *= 4f;
+                    dust = Dust.NewDust(dustPos, Player.width, 4, DustID.Shadowflame, 0f, -1.5f, 50, default, 1.5f);
+                    Main.dust [dust].velocity *= 2.5f;
+                    if (Main.dust [dust].position != Player.Center)
+                        Main.dust [dust].velocity = Player.DirectionTo(Main.dust [dust].position) * 5f;
+                }
                 for (int g = 0; g < 6; g++) {
                     int goreIndex = Gore.NewGore(Player.GetSource_Misc("Rocket_Jump"), dustPos, default, Main.rand.Next(61, 64), 1f);
                     Main.gore [goreIndex].GetAlpha(new Color(75, 0, 130, 100));
@@ -107,7 +106,7 @@ namespace Consolaria.Content.Items.BossDrops.Ocram {
                 NPC npc = Main.npc [_npc];
                 if (npc.active && !npc.friendly && npc.life > 0 && !npc.dontTakeDamage && npc.Distance(Player.position) <= radius) {
                     npc.StrikeNPCNoInteraction(rocketJumpDamage, rocketJumpKnockBack, 0, false, false, false);
-                    //npc.AddBuff(BuffID.ShadowFlame, 180);
+                    npc.AddBuff(BuffID.ShadowFlame, 180);
                 }
             }
             SoundEngine.PlaySound(SoundID.Item14 with { Pitch = 0.1f, Volume = 0.7f}, Player.position);

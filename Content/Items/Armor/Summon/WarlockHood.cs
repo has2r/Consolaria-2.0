@@ -32,8 +32,8 @@ namespace Consolaria.Content.Items.Armor.Summon {
         }
 
         public override bool IsArmorSet (Item head, Item body, Item legs)
-           => body.type == ModContent.ItemType<WarlockRobe>() || body.type == ModContent.ItemType<AncientWarlockRobe>()
-           && legs.type == ModContent.ItemType<WarlockLeggings>() || legs.type == ModContent.ItemType<AncientWarlockLeggings>();
+           => (body.type == ModContent.ItemType<WarlockRobe>() || body.type == ModContent.ItemType<AncientWarlockRobe>())
+           && (legs.type == ModContent.ItemType<WarlockLeggings>() || legs.type == ModContent.ItemType<AncientWarlockLeggings>());
 
         public override void ArmorSetShadows(Player player)
             => player.armorEffectDrawShadow = true;
@@ -72,7 +72,7 @@ namespace Consolaria.Content.Items.Armor.Summon {
         }
 
         public override void OnHitNPCWithProj (Projectile proj, NPC target, int damage, float knockback, bool crit) {
-            if (target.type == NPCID.TargetDummy || !necroHealing)
+            if (target.type == NPCID.TargetDummy || Player.moonLeech || !necroHealing)
                 return;
 
             if (healingTimer == 0 && target.life <= 0 &&

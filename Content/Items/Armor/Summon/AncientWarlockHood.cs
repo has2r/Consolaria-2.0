@@ -33,8 +33,8 @@ namespace Consolaria.Content.Items.Armor.Summon
         }
 
         public override bool IsArmorSet(Item head, Item body, Item legs) 
-            => body.type == ModContent.ItemType<WarlockRobe>() || body.type == ModContent.ItemType<AncientWarlockRobe>() 
-            && legs.type == ModContent.ItemType<WarlockLeggings>() || legs.type == ModContent.ItemType<AncientWarlockLeggings>();
+            => (body.type == ModContent.ItemType<WarlockRobe>() || body.type == ModContent.ItemType<AncientWarlockRobe>())
+            && (legs.type == ModContent.ItemType<WarlockLeggings>() || legs.type == ModContent.ItemType<AncientWarlockLeggings>());
 
         public override void ArmorSetShadows(Player player)
             => player.armorEffectDrawShadow = true;

@@ -34,8 +34,8 @@ namespace Consolaria.Content.Items.Armor.Melee {
         }
 
         public override bool IsArmorSet (Item head, Item body, Item legs)
-            => body.type == ModContent.ItemType<DragonBreastplate>() || body.type == ModContent.ItemType<AncientDragonBreastplate>() && 
-            legs.type == ModContent.ItemType<DragonGreaves>() || legs.type == ModContent.ItemType<AncientDragonGreaves>();
+            => (body.type == ModContent.ItemType<DragonBreastplate>() || body.type == ModContent.ItemType<AncientDragonBreastplate>())
+            && (legs.type == ModContent.ItemType<DragonGreaves>() || legs.type == ModContent.ItemType<AncientDragonGreaves>());
 
         public override void ArmorSetShadows (Player player)
             => player.armorEffectDrawShadow = true;

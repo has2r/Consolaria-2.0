@@ -1,44 +1,28 @@
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Consolaria.Content.Projectiles.Friendly.Pets
-{
-	public class Tiphia : ModProjectile
-	{
-        public override void SetStaticDefaults() {
-            Main.projFrames[Projectile.type] = 3;
-            Main.projPet[Projectile.type] = true;
-        }
-        
-        public override void SetDefaults() {
-            Projectile.CloneDefaults(ProjectileID.BabyHornet);                      
-            AIType = ProjectileID.BabyHornet;
+namespace Consolaria.Content.Projectiles.Friendly.Pets {
+    public class Tiphia : ConsolariaFlyingPet {
+        public override int maxFrames => 3;
+        public override bool isLightPet => false;
 
-            int width = 40; int height = 34;
+        public override void SetDefaults () {
+            int width = 34; int height = 34;
             Projectile.Size = new Vector2(width, height);
+
+            base.SetDefaults();
         }
 
-        public override bool PreAI() {
-            Main.player[Projectile.owner].hornet = false;
-            return true;
-        }
-
-        public override void AI() {
-            Player player = Main.player[Projectile.owner];
+        public override void AI () {
+            Player player = Main.player [Projectile.owner];
             if (!player.dead && player.HasBuff(ModContent.BuffType<Buffs.Tiphia>()))
-                Projectile.timeLeft = 2;    
-        }
+                Projectile.timeLeft = 2;
 
-        public override void PostAI() {
-            Projectile.frameCounter++;
-            if (Projectile.frameCounter > 9) {
-                Projectile.frame++;
-                Projectile.frameCounter = 0;
-            }
-            if (Projectile.frame >= Main.projFrames[Projectile.type])
-                Projectile.frame = 0;     
+            bool turnRight = false; float tilt = 0.025f;
+            FloatingAI(turnRight, tilt);
+            int frameTime = 6;
+            Animation(frameTime);
         }
     }
 }

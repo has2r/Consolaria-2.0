@@ -18,11 +18,11 @@ namespace Consolaria.Content.Items.Weapons.Ranged {
 			int width = 18; int height = 56;
 			Item.Size = new Vector2(width, height);
 
-			Item.damage = 45;
+			Item.damage = 89;
 			Item.DamageType = DamageClass.Ranged;
 
-			Item.useTime = 6;
-			Item.useAnimation = 18;
+			Item.useTime = 12;
+			Item.useAnimation = 12;
 			Item.reuseDelay = 20;
 
 			Item.shoot = ProjectileID.WoodenArrowFriendly;
@@ -52,8 +52,8 @@ namespace Consolaria.Content.Items.Weapons.Ranged {
 		public override Vector2? HoldoutOffset ()
 			=> new Vector2(-5, 0);
 
-		public override bool CanConsumeAmmo (Item ammo, Player player)
-			=> player.itemAnimation < Item.useAnimation - 3;
+		/*public override bool CanConsumeAmmo (Item ammo, Player player)
+			=> player.itemAnimation < Item.useAnimation - 3;*/
 
 		public override void AddRecipes () {
 			CreateRecipe()

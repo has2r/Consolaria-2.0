@@ -106,7 +106,7 @@ namespace Consolaria.Content.Items.BossDrops.Ocram {
                 NPC npc = Main.npc [_npc];
                 if (npc.active && !npc.friendly && npc.life > 0 && !npc.dontTakeDamage && npc.Distance(Player.position) <= radius) {
                     npc.StrikeNPCNoInteraction(rocketJumpDamage, rocketJumpKnockBack, 0, false, false, false);
-                    npc.AddBuff(BuffID.ShadowFlame, 180);
+                    //npc.AddBuff(BuffID.ShadowFlame, 180);
                 }
             }
             SoundEngine.PlaySound(SoundID.Item14 with { Pitch = 0.1f, Volume = 0.7f}, Player.position);

@@ -35,8 +35,8 @@ namespace Consolaria.Content.Items.Armor.Magic
         }
 
         public override bool IsArmorSet(Item head, Item body, Item legs) 
-            => body.type == ModContent.ItemType<PhantasmalRobe>() || body.type == ModContent.ItemType<AncientPhantasmalRobe>()
-            && legs.type == ModContent.ItemType<PhantasmalSubligar>() || legs.type == ModContent.ItemType<AncientPhantasmalSubligar>();
+            => (body.type == ModContent.ItemType<PhantasmalRobe>() || body.type == ModContent.ItemType<AncientPhantasmalRobe>())
+            && (legs.type == ModContent.ItemType<PhantasmalSubligar>() || legs.type == ModContent.ItemType<AncientPhantasmalSubligar>());
 
         public override void ArmorSetShadows(Player player)
             => player.armorEffectDrawOutlines = true;

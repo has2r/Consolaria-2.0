@@ -18,8 +18,6 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets
 
             int width = 34; int height = 44;
             Projectile.Size = new Vector2(width, height);
-
-            Projectile.scale = 0.8f;
         }
 
         public override bool PreAI() {
@@ -37,6 +35,15 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets
             if (Vector2.Distance(player.Center, Projectile.Center) > 500f) {
                 Projectile.position.X = player.position.X;
                 Projectile.position.Y = player.position.Y;
+            }
+
+            Projectile.frameCounter++;
+            if (Projectile.frameCounter > 9) {
+                Projectile.frame++;
+                Projectile.frameCounter = 0;
+            }
+            if (Projectile.frame > Main.projFrames [Projectile.type]) {
+                Projectile.frame = 0;
             }
         }
     }

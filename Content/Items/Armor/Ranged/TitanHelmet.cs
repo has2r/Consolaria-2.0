@@ -50,8 +50,8 @@ namespace Consolaria.Content.Items.Armor.Ranged {
         }
 
         public override bool IsArmorSet (Item head, Item body, Item legs)
-            => body.type == ModContent.ItemType<TitanMail>() || body.type == ModContent.ItemType<AncientTitanMail>()
-            && legs.type == ModContent.ItemType<TitanLeggings>() || legs.type == ModContent.ItemType<AncientTitanLeggings>();
+            => (body.type == ModContent.ItemType<TitanMail>() || body.type == ModContent.ItemType<AncientTitanMail>())
+            && (legs.type == ModContent.ItemType<TitanLeggings>() || legs.type == ModContent.ItemType<AncientTitanLeggings>());
 
         public override void ArmorSetShadows (Player player)
             => player.armorEffectDrawOutlinesForbidden = true;

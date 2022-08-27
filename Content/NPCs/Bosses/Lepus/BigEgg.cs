@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
+using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -16,6 +17,12 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
                 Hide = true
             };
             NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, value);
+            NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData
+            {
+                SpecificallyImmuneTo = new int[] {
+                    BuffID.Confused
+                }
+            };
         }
 
         public override void SetDefaults () {
@@ -51,6 +58,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
             => false;
 
         public override void AI () {
+            NPC.direction = 1;
             float maxRotation = 0.2f;
             int max = 4000;
             float current = (float) Timer / max;

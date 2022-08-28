@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace Consolaria.Content.Projectiles.Friendly.Pets {
     public class Bat : ConsolariaFlyingPet {
-        public override int maxFrames => 5;
+        public override int maxFrames => 4;
         public override bool isLightPet => false;
 
         public override void SetDefaults () {
@@ -19,9 +19,9 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
             if (!player.dead && player.HasBuff(ModContent.BuffType<Buffs.Bat>()))
                 Projectile.timeLeft = 2;
 
-            bool turnRight = false; float tilt = 0.025f;
+            bool turnRight = false; float tilt = 0.03f;
             FloatingAI(turnRight, tilt);
-            int frameTime = 5;
+            int frameTime = 4;
             Animation(frameTime);
         }
     }

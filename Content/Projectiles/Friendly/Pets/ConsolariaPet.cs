@@ -34,11 +34,11 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
 		public override void AI () => CheckPlayer();
 
 		private int playerStill;
-		private bool fly;
+		private bool isFlying;
 
 		public void WalkerAI () {
 			Player player = Main.player [Projectile.owner];
-			if (!fly) {
+			if (!isFlying) {
                 Projectile.rotation = 0f;
 				Vector2 center2 = Projectile.Center;
 				float playerDistance = (player.Center - center2).Length();
@@ -51,7 +51,7 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
                     Projectile.velocity.Y = 7f;
 				}
 				if (playerDistance > 600f) {
-					fly = true;
+					isFlying = true;
                     Projectile.velocity.X = 0f;
                     Projectile.velocity.Y = 0f;
                     Projectile.tileCollide = false;
@@ -114,7 +114,7 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
 					}
 				}
 			}
-			else if (fly) {
+			else if (isFlying) {
 				float num16 = 0.3f;
                 Projectile.tileCollide = false;
 				Vector2 vector3 =  new Vector2(Projectile.position.X + Projectile.width * 0.5f, Projectile.position.Y +  Projectile.height * 0.5f);
@@ -141,7 +141,7 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
 						playerStill = 0;
 					}
 					if (playerStill > 60 && !Collision.SolidCollision(Projectile.position, Projectile.width, Projectile.height)) {
-						fly = false;
+						isFlying = false;
                         Projectile.tileCollide = true;
 					}
 				}
@@ -209,6 +209,10 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
 			if (Projectile.velocity.X < -0.25f) {
                 Projectile.spriteDirection = 1;
 			}
+		}
+
+		public virtual void OnFlying () {//override this in your pet
+			if (!isFlying) return;
 		}
 
 		private int walkingAnimationSpeed,  walkingFirstFrame,  walkingLastFrame;

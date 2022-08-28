@@ -28,14 +28,22 @@ namespace Consolaria.Common {
 				int itemType = ModContent.ItemType<SuspiciousLookingEgg>();
 				int chance = 4;
 
-				if (SeasonalEvents.enabled) {
+				if (SeasonalEvents.enabled)
+				{
 					EasterDropCondition easterDropCondition = new EasterDropCondition();
 					IItemDropRule conditionalRule = new LeadingConditionRule(easterDropCondition);
 					IItemDropRule rule = ItemDropRule.Common(itemType, chance);
 					conditionalRule.OnSuccess(rule);
 					npcLoot.Add(conditionalRule);
 				}
-				else npcLoot.Add(ItemDropRule.Common(itemType, chance));
+				else
+				{
+					LepusDropCondition2 easterDropCondition = new LepusDropCondition2();
+					IItemDropRule conditionalRule = new LeadingConditionRule(easterDropCondition);
+					IItemDropRule rule = ItemDropRule.Common(itemType, chance);
+					conditionalRule.OnSuccess(rule);
+					npcLoot.Add(conditionalRule);
+				}
 			}
 
 			if (npc.type == NPCID.FireImp)

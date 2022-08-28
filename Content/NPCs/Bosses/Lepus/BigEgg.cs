@@ -2,7 +2,6 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
-using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -17,10 +16,11 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
                 Hide = true
             };
             NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, value);
-            NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData
-            {
-                SpecificallyImmuneTo = new int[] {
-                    BuffID.Confused
+            NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData {
+                SpecificallyImmuneTo = new int [] {
+                    BuffID.Confused,
+                    BuffID.Poisoned,
+                    BuffID.Venom
                 }
             };
         }
@@ -45,14 +45,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
         }
 
         public override void ScaleExpertStats (int numPlayers, float bossLifeScale) 
-            => NPC.lifeMax = 125;
-        
-        public override void SetBestiary (BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
-            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement [] {
-                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheHallow,
-                new FlavorTextBestiaryInfoElement("Lepus Egg")
-            });
-        }
+            => NPC.lifeMax = 125 + (int) (numPlayers > 1 ? NPC.lifeMax * 0.15 * numPlayers : 0);     
 
         public override bool? DrawHealthBar (byte hbPosition, ref float scale, ref Vector2 position)
             => false;

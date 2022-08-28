@@ -12,7 +12,7 @@ namespace Consolaria.Common {
 		public override void ModifyNPCLoot (NPC npc, NPCLoot npcLoot) {
 			if (npc.type == NPCID.Harpy) {
 				int itemType = ModContent.ItemType<CursedStuffing>();
-				int chance = 10;
+				int chance = 4; // 25%
 
 				if (SeasonalEvents.enabled) {
 					ThanksgivingDropCondition thanksgivingDropCondition = new ThanksgivingDropCondition();
@@ -26,7 +26,7 @@ namespace Consolaria.Common {
 
 			if (npc.type == NPCID.CorruptBunny || npc.type == NPCID.CrimsonBunny) {
 				int itemType = ModContent.ItemType<SuspiciousLookingEgg>();
-				int chance = 10;
+				int chance = 4;
 
 				if (SeasonalEvents.enabled) {
 					EasterDropCondition easterDropCondition = new EasterDropCondition();
@@ -45,7 +45,7 @@ namespace Consolaria.Common {
 			if (npc.type == NPCID.ToxicSludge)
 				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<PetriDish>(), 25));
 			if (NPCID.Sets.Zombies [npc.type])
-				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Brain>(), 100));
+				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Brain>(), 125));
 		}
 
 		public override void ModifyGlobalLoot (GlobalLoot globalLoot) {

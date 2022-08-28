@@ -8,21 +8,19 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Utilities;
 
-namespace Consolaria.Content.NPCs.Bosses.Lepus
-{
-    public class DisasterBunny : ModNPC
-    {
-        public override void SetStaticDefaults() {
+namespace Consolaria.Content.NPCs.Bosses.Lepus {
+    public class DisasterBunny : ModNPC {
+        public override void SetStaticDefaults () {
             DisplayName.SetDefault("Diseaster Bunny");
-            Main.npcFrameCount[NPC.type] = 7;
+            Main.npcFrameCount [NPC.type] = 7;
 
-            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0) { 
+            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0) {
                 Velocity = 1f
             };
             NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
         }
 
-        public override void SetDefaults() {
+        public override void SetDefaults () {
             int width = 35; int height = 28;
             NPC.Size = new Vector2(width, height);
 
@@ -45,38 +43,37 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
             BannerItem = ModContent.ItemType<Items.Banners.DisasterBunnyBanner>();
         }
 
-        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        public override void ScaleExpertStats (int numPlayers, float bossLifeScale)
             => NPC.lifeMax = 105;
 
-        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
-            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+        public override void SetBestiary (BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
+            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement [] {
                 BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
                 new FlavorTextBestiaryInfoElement("Disastrous spawn of the rabid giant, these bug-eyed creatures will bite anything they come across.")
             });
         }
 
-        public override void HitEffect(int hitDirection, double damage) {
+        public override void HitEffect (int hitDirection, double damage) {
             if (Main.netMode == NetmodeID.Server)
-            {
                 return;
-            }
-            if (NPC.life <= 0)  {
+
+            if (NPC.life <= 0) {
                 Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-1, 1), Main.rand.Next(-4, 5)), ModContent.Find<ModGore>("Consolaria/DBG1").Type);
                 Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-1, 1), Main.rand.Next(-4, 5)), ModContent.Find<ModGore>("Consolaria/DBG2").Type);
                 Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-1, 1), Main.rand.Next(-4, 5)), ModContent.Find<ModGore>("Consolaria/DBG3").Type);
             }
         }
 
-        public override void ModifyNPCLoot(NPCLoot npcLoot) {
+        public override void ModifyNPCLoot (NPCLoot npcLoot) {
             LepusDropCondition lepusDropCondition = new();
             IItemDropRule conditionalRule = new LeadingConditionRule(lepusDropCondition);
-            conditionalRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<SuspiciousLookingEgg>(), 5));
+            conditionalRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<SuspiciousLookingEgg>(), 4));
             npcLoot.Add(conditionalRule);
         }
 
         public override float SpawnChance (NPCSpawnInfo spawnInfo) {
-            float spawnChance = DownedBossSystem.downedLepus ? 0.01f : 0.05f;
-            if (SeasonalEvents.enabled) return SeasonalEvents.isEaster ? 
+            float spawnChance = DownedBossSystem.downedLepus ? 0.01f : 0.035f;
+            if (SeasonalEvents.enabled) return SeasonalEvents.isEaster ?
                     SpawnCondition.OverworldDaySlime.Chance * spawnChance : 0f;
             else return SpawnCondition.OverworldDaySlime.Chance * spawnChance;
         }

@@ -40,6 +40,7 @@ namespace Consolaria.Content.NPCs {
 			NPC.knockBackResist = 0.3f;
 
 			NPC.value = Item.buyPrice(silver: 5);
+			NPC.npcSlots = 1.5f;
 
 			NPC.aiStyle = 3;
 			AIType = 21;
@@ -96,6 +97,6 @@ namespace Consolaria.Content.NPCs {
 		}
 
 		public override float SpawnChance (NPCSpawnInfo spawnInfo)
-			=> SpawnCondition.Cavern.Chance * 0.025f;
+			=> SpawnCondition.Cavern.Chance * 0.02f;
 	}
 }

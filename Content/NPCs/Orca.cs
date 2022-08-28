@@ -86,6 +86,6 @@ namespace Consolaria.Content.NPCs {
         }
 
         public override float SpawnChance (NPCSpawnInfo spawnInfo)
-            => SpawnCondition.OceanMonster.Chance * 0.05f;
+            => SpawnCondition.OceanMonster.Chance * 0.025f;
     }
 }

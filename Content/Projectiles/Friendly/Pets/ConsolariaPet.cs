@@ -214,6 +214,15 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
 			this.flyingLastFrame = flyingLastFrame;		
 		}
 
+		public void Spawn()
+		{
+			if (Projectile.ai[0] == 0f)
+			{
+				Projectile.ai[0] = 1f;
+				Projectile.Center = Main.player[Projectile.owner].Center - new Vector2(0f, 25f);
+			}
+		}
+
 		public void FlyingAnimation (bool oneFrame) {
 			this.oneFrame = oneFrame;
 		}

@@ -19,6 +19,7 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
             if (!player.dead && player.HasBuff(ModContent.BuffType<Buffs.Werewolf>()))
                 Projectile.timeLeft = 2;
 
+            Spawn();
             WalkerAI();
             WalkingAnimation(2, 2, 15);
             int finalFrame = maxFrames - 1;

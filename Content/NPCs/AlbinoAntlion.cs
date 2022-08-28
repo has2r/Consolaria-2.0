@@ -9,16 +9,14 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Utilities;
 
-namespace Consolaria.Content.NPCs
-{	
-	public class AlbinoAntlion : ModNPC
-	{
-		public override void SetStaticDefaults()  {
+namespace Consolaria.Content.NPCs {
+	public class AlbinoAntlion : ModNPC {
+		public override void SetStaticDefaults () {
 			DisplayName.SetDefault("Albino Antlion");
-			Main.npcFrameCount[NPC.type] = 5;
+			Main.npcFrameCount [NPC.type] = 5;
 
 			NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData {
-				SpecificallyImmuneTo = new int[] {
+				SpecificallyImmuneTo = new int [] {
 					BuffID.Confused
 				}
 			};
@@ -31,7 +29,7 @@ namespace Consolaria.Content.NPCs
 			NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
 		}
 
-		public override void SetDefaults() {
+		public override void SetDefaults () {
 			int width = 24; int height = width;
 			NPC.Size = new Vector2(width, height);
 
@@ -49,27 +47,27 @@ namespace Consolaria.Content.NPCs
 			NPC.HitSound = SoundID.NPCHit31;
 			NPC.DeathSound = SoundID.NPCDeath34;
 
-			Banner = NPC.type; 
-			BannerItem = ModContent.ItemType<Items.Banners.AlbinoAntlionBanner>(); 
+			Banner = NPC.type;
+			BannerItem = ModContent.ItemType<Items.Banners.AlbinoAntlionBanner>();
 		}
 
-		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
-			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+		public override void SetBestiary (BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
+			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement [] {
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Desert,
 				new FlavorTextBestiaryInfoElement("Species of antlion with a rare mutation show even more aggression, perhaps to compensate their shell being susceptible to sunlight.")
 			});
 		}
 
-        public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
-			Texture2D texture = (Texture2D)ModContent.Request<Texture2D>(Texture);
-			Texture2D bodyTexture = (Texture2D)ModContent.Request<Texture2D>("Consolaria/Assets/Textures/NPCs/AlbinoAntlionBody");
+		public override bool PreDraw (SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
+			Texture2D texture = (Texture2D) ModContent.Request<Texture2D>(Texture);
+			Texture2D bodyTexture = (Texture2D) ModContent.Request<Texture2D>("Consolaria/Assets/Textures/NPCs/AlbinoAntlionBody");
 			Vector2 position = new Vector2(NPC.position.X, NPC.position.Y) - Main.screenPosition;
 			Vector2 drawOrigin = new Vector2(texture.Width * 0.5f, NPC.height * 0.5f);
 			var spriteEffects = NPC.direction > 0 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
 			spriteBatch.Draw(bodyTexture, new Vector2(position.X, position.Y + 20), NPC.frame, drawColor, 0, drawOrigin, NPC.scale, SpriteEffects.None, 1f);
 			spriteBatch.Draw(texture, new Vector2(position.X, position.Y), NPC.frame, drawColor, NPC.rotation / 2, drawOrigin, NPC.scale, spriteEffects, 0f);
 			return false;
-        }
+		}
 
 		public override void HitEffect (int hitDirection, double damage) {
 			if (Main.netMode == NetmodeID.Server)
@@ -83,10 +81,10 @@ namespace Consolaria.Content.NPCs
 			}
 		}
 
-		public override void ModifyNPCLoot(NPCLoot npcLoot)
+		public override void ModifyNPCLoot (NPCLoot npcLoot)
 			=> npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AlbinoMandible>(), 30));
-		
-		public override float SpawnChance(NPCSpawnInfo spawnInfo)
-			=> SpawnCondition.OverworldDayDesert.Chance * 0.05f;
+
+		public override float SpawnChance (NPCSpawnInfo spawnInfo)
+			=> SpawnCondition.OverworldDayDesert.Chance * 0.025f;
 	}
 }

@@ -89,14 +89,7 @@ namespace Consolaria.Common {
 			if (RabbitInvasion.rabbitInvasion)
 			{
 				string text = "Bunnies are everywhere!";
-				if (Main.netMode == NetmodeID.SinglePlayer)
-				{
-					Main.NewText(text, new Color(50, 255, 130));
-				}
-				else if (Main.netMode == NetmodeID.Server)
-				{
-					ChatHelper.BroadcastChatMessage(NetworkText.FromKey(text), new Color(50, 255, 130));
-				}
+				Main.NewText(text, new Color(50, 255, 130));
 			}
 		}
 	}
@@ -211,7 +204,7 @@ namespace Consolaria.Common {
 			{
 				pool.Clear();
 				pool.Add(ModContent.NPCType<DisasterBunny>(), 100f);
-				pool.Add(WorldGen.crimson ? NPCID.CrimsonBunny : NPCID.CorruptBunny, 40f);
+				pool.Add(WorldGen.crimson ? NPCID.CrimsonBunny : NPCID.CorruptBunny, 25f);
 			}
 		}
 	}

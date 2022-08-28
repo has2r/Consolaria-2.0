@@ -55,6 +55,29 @@ namespace Consolaria.Common {
 			downedTurkor = flags [1];
 			downedOcram = flags [2];
 		}
+
+		public override void PostUpdateWorld()
+		{
+
+		}
+	}
+
+	public class RabbitInvasionBiome : ModBiome
+	{
+		private const string MUSIC_PATH = "Consolaria/Assets/Music/Lepus";
+		public override int Music => MusicLoader.GetMusicSlot(MUSIC_PATH);
+
+		public override void SetStaticDefaults()
+			=> DisplayName.SetDefault("Rabbit Invasion");
+
+		public override bool IsBiomeActive(Player player)
+		{
+			Vector2 position = player.position;
+			int playerX = (int)position.X / 16;
+			int playerY = (int)position.Y / 16;
+			int middle = Main.maxTilesX / 2;
+			return playerY < Main.worldSurface && playerX > middle - 750 && playerX < middle + 750 && !NPC.AnyNPCs(ModContent.NPCType<Lepus>()) && RabbitInvasion.rabbitInvasion;
+		}
 	}
 
 	public class RabbitInvasionPlayer : ModPlayer
@@ -136,11 +159,11 @@ namespace Consolaria.Common {
 
 		public override void OnKill(NPC npc)
 		{
-			if (!RabbitInvasion.rabbitInvasion)
+			if (!RabbitInvasion.rabbitInvasion || RabbitInvasion.rabbitKilledCount == -1)
 			{
 				return;
 			}
-			if (npc.type == ModContent.NPCType<DisasterBunny>())
+			if (npc.type == ModContent.NPCType<DisasterBunny>() || npc.type == NPCID.Bunny)
 			{
 				if (RabbitInvasion.rabbitKilledCount < 100)
 				{
@@ -148,6 +171,7 @@ namespace Consolaria.Common {
 				}
 				else
 				{
+					RabbitInvasion.rabbitKilledCount = -1;
 					Player player = Main.player[npc.target];
 					SoundEngine.PlaySound(SoundID.Roar);
 					int type = ModContent.NPCType<Lepus>();
@@ -174,6 +198,7 @@ namespace Consolaria.Common {
 			{
 				pool.Clear();
 				pool.Add(ModContent.NPCType<DisasterBunny>(), 100f);
+				pool.Add(NPCID.Bunny, 25f);
 			}
 		}
 	}

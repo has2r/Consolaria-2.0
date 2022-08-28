@@ -21,6 +21,8 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
             NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
         }
 
+        private const string MUSIC_PATH = "Assets/Music/Lepus";
+
         public override void SetDefaults () {
             int width = 35; int height = 28;
             NPC.Size = new Vector2(width, height);
@@ -44,7 +46,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
             BannerItem = ModContent.ItemType<Items.Banners.DisasterBunnyBanner>();
         }
 
-        public override void ScaleExpertStats (int numPlayers, float bossLifeScale)
+		public override void ScaleExpertStats (int numPlayers, float bossLifeScale)
             => NPC.lifeMax = 105;
 
         public override void SetBestiary (BestiaryDatabase database, BestiaryEntry bestiaryEntry) {

@@ -9,7 +9,7 @@ namespace Consolaria.Common
 	{
 		public bool CanDrop(DropAttemptInfo info)
 		{
-			return true;
+			return !info.IsInSimulation;
 		}
 
 		public bool CanShowItemDropInUI() => true;
@@ -21,7 +21,9 @@ namespace Consolaria.Common
 	{
 		public bool CanDrop(DropAttemptInfo info) 
 		{
+			if (!info.IsInSimulation)
 			return !NPC.AnyNPCs(ModContent.NPCType<Lepus>()) && !RabbitInvasion.rabbitInvasion;
+			return false;
 		}
 
 		public bool CanShowItemDropInUI() => true;
@@ -33,7 +35,9 @@ namespace Consolaria.Common
 	{
 		public bool CanDrop(DropAttemptInfo info)
 		{
-			return RabbitInvasion.rabbitInvasion;
+			if (!info.IsInSimulation)
+				return RabbitInvasion.rabbitInvasion;
+			return false;
 		}
 
 		public bool CanShowItemDropInUI() => true;

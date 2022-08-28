@@ -50,7 +50,7 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
 					}
 				}
 			}
-			float passiveMovement = 0.5f;
+			float flySpeedBoost = 0.5f;
 			Projectile.tileCollide = false;
 			float range = 100f;
 			Vector2 projPos = Projectile.Center;
@@ -75,14 +75,14 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
 				if (Math.Abs(Projectile.velocity.X) > 2f || Math.Abs(Projectile.velocity.Y) > 2f) {
 					Projectile.velocity *= 0.99f;
 				}
-				passiveMovement = 0.01f;
+				flySpeedBoost = 0.01f;
 			}
 			else {
 				if (playerDist < 100f) {
-					passiveMovement = 0.1f;
+					flySpeedBoost = 0.1f;
 				}
 				if (playerDist > 300f)
-					passiveMovement = 1f;
+					flySpeedBoost = 1f;
 
 				playerDist = returnSpeed / playerDist;
 				playerVector.X *= playerDist;
@@ -90,27 +90,27 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
 			}
 			float speedCheck = 0.05f;
 			if (Projectile.velocity.X < playerVector.X) {
-				Projectile.velocity.X = Projectile.velocity.X + passiveMovement;
-				if (passiveMovement > speedCheck && Projectile.velocity.X < 0f) {
-					Projectile.velocity.X = Projectile.velocity.X + passiveMovement;
+				Projectile.velocity.X = Projectile.velocity.X + flySpeedBoost;
+				if (flySpeedBoost > speedCheck && Projectile.velocity.X < 0f) {
+					Projectile.velocity.X = Projectile.velocity.X + flySpeedBoost;
 				}
 			}
 			if (Projectile.velocity.X > playerVector.X) {
-				Projectile.velocity.X = Projectile.velocity.X - passiveMovement;
-				if (passiveMovement > speedCheck && Projectile.velocity.X > 0f) {
-					Projectile.velocity.X = Projectile.velocity.X - passiveMovement;
+				Projectile.velocity.X = Projectile.velocity.X - flySpeedBoost;
+				if (flySpeedBoost > speedCheck && Projectile.velocity.X > 0f) {
+					Projectile.velocity.X = Projectile.velocity.X - flySpeedBoost;
 				}
 			}
 			if (Projectile.velocity.Y < playerVector.Y) {
-				Projectile.velocity.Y = Projectile.velocity.Y + passiveMovement;
-				if (passiveMovement > speedCheck && Projectile.velocity.Y < 0f) {
-					Projectile.velocity.Y = Projectile.velocity.Y + passiveMovement * 2f;
+				Projectile.velocity.Y = Projectile.velocity.Y + flySpeedBoost;
+				if (flySpeedBoost > speedCheck && Projectile.velocity.Y < 0f) {
+					Projectile.velocity.Y = Projectile.velocity.Y + flySpeedBoost * 2f;
 				}
 			}
 			if (Projectile.velocity.Y > playerVector.Y) {
-				Projectile.velocity.Y = Projectile.velocity.Y - passiveMovement;
-				if (passiveMovement > speedCheck && Projectile.velocity.Y > 0f) {
-					Projectile.velocity.Y = Projectile.velocity.Y - passiveMovement * 2f;
+				Projectile.velocity.Y = Projectile.velocity.Y - flySpeedBoost;
+				if (flySpeedBoost > speedCheck && Projectile.velocity.Y > 0f) {
+					Projectile.velocity.Y = Projectile.velocity.Y - flySpeedBoost * 2f;
 				}
 			}
 			if (player.velocity.X != 0) {

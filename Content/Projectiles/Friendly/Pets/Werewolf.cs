@@ -20,15 +20,13 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
                 Projectile.timeLeft = 2;
 
             WalkerAI();
-            WalkingAnimation(2, 0, 16);
-            FlyingAnimation(2, 17, 20);
-        }
+            WalkingAnimation(2, 0, 15);
+            int finalFrame = maxFrames - 1;
+            FlyingAnimation(4, 16, finalFrame);
 
-        public override void OnFlying () {
-            double rotation = Math.PI / 2;
+            double rotation = (Math.PI / 2) * player.direction;
+            if (isFlying)
             Projectile.rotation = (float) rotation;
-            Main.NewText("bebring");
-            base.OnFlying();
         }
     }
 }

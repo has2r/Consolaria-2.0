@@ -57,8 +57,10 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
             });
         }
 
-        public override void AI ()
-            => NPC.position += NPC.velocity * 1.1f;
+        public override void AI () {
+            NPC.direction = 1;
+            NPC.position += NPC.velocity * 1.1f;
+        }
 
         public override bool PreDraw (SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
             Texture2D texture = (Texture2D) ModContent.Request<Texture2D>(Texture);

@@ -21,7 +21,8 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
                 Projectile.timeLeft = 2;
 
             WalkerAI();
-            WalkingAnimation(3, 0, 8);
+            int finalFrame = maxFrames - 1;
+            WalkingAnimation(3, 0, finalFrame);
             FlyingAnimation(oneFrame: true);
 
             Projectile.localAI [0]++;

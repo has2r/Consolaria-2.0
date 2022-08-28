@@ -21,12 +21,13 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
 			Projectile.timeLeft *= 5;
 
 			Projectile.tileCollide = true;
+
+			Projectile.velocity.Y = -5;
 		}
 
 		public override bool TileCollideStyle (ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac) {
 			Player player = Main.player [Projectile.owner];
-			Vector2 center2 = Projectile.Center;
-			float playerDistance = (player.Center - center2).Length();
+			float playerDistance = (player.Center - Projectile.Center).Length();
 			fallThrough = (playerDistance > 200f);
 			return true;
 		}
@@ -34,21 +35,20 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
 		public override void AI () => CheckPlayer();
 
 		private int playerStill;
-		private bool isFlying;
+		public bool isFlying;
 
 		public void WalkerAI () {
 			Player player = Main.player [Projectile.owner];
 			if (!isFlying) {
                 Projectile.rotation = 0f;
-				Vector2 center2 = Projectile.Center;
-				float playerDistance = (player.Center - center2).Length();
+				float playerDistance = (player.Center - Projectile.Center).Length();
 				if (Projectile.velocity.Y == 0f && (CheckHole() || (playerDistance > 110f && Projectile.position.X == Projectile.oldPosition.X))) {
                     Projectile.velocity.Y = -5f;
 				}
-				Projectile projectile = Projectile;
-				projectile.velocity.Y = projectile.velocity.Y + 0.2f;
-				if (Projectile.velocity.Y > 7f) {
-                    Projectile.velocity.Y = 7f;
+				Projectile checkProjectile1 = Projectile;
+				checkProjectile1.velocity.Y += 0.35f; // falling speed
+				if (Projectile.velocity.Y > 7.5f) {
+                    Projectile.velocity.Y = 7.5f;
 				}
 				if (playerDistance > 600f) {
 					isFlying = true;
@@ -58,15 +58,15 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
 				}
 				if (playerDistance > 100f) {
 					if (player.position.X - Projectile.position.X > 0f) {
-						Projectile projectile2 = Projectile;
-						projectile2.velocity.X = projectile2.velocity.X + 0.1f;
+						Projectile checkProjectile2 = Projectile;
+						checkProjectile2.velocity.X += 0.1f;
 						if (Projectile.velocity.X > 7f) {
                             Projectile.velocity.X = 7f;
 						}
 					}
 					else {
-						Projectile projectile3 = Projectile;
-						projectile3.velocity.X = projectile3.velocity.X - 0.1f;
+						Projectile checkProjectile3 = Projectile;
+						checkProjectile3.velocity.X -= 0.1f;
 						if (Projectile.velocity.X < -7f) {
                             Projectile.velocity.X = -7f;
 						}
@@ -74,12 +74,12 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
 				}
 				if (playerDistance < 100f && Projectile.velocity.X != 0f) {
 					if (Projectile.velocity.X > 0.5f) {
-						Projectile projectile4 = Projectile;
-						projectile4.velocity.X = projectile4.velocity.X - 0.15f;
+						Projectile checkProjectile4 = Projectile;
+						checkProjectile4.velocity.X -= 0.15f;
 					}
 					else if (Projectile.velocity.X < -0.5f) {
-						Projectile projectile5 = Projectile;
-						projectile5.velocity.X = projectile5.velocity.X + 0.15f;
+						Projectile checkProjectile5 = Projectile;
+						checkProjectile5.velocity.X += 0.15f;
 					}
 					else if (Projectile.velocity.X < 0.5f && Projectile.velocity.X > -0.5f) {
                         Projectile.velocity.X = 0f;
@@ -88,22 +88,7 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
 				if (Projectile.position.X == Projectile.oldPosition.X && Projectile.position.Y == Projectile.oldPosition.Y && Projectile.velocity.X == 0f) {
                     Projectile.frame = 0;
 				}
-				else if (Projectile.velocity.Y > 0.3f && Projectile.position.Y != Projectile.oldPosition.Y) {
-                    Projectile.frame = 1;
-                    Projectile.frameCounter = 0;
-				}
 				else {
-					/*  Projectile.frameCounter++;
-					  if (Projectile.frameCounter > 5) {
-						  Projectile.frame++;
-						  Projectile.frameCounter = 0;
-					  }
-					  if (Projectile.frame > 6) {
-						  Projectile.frame = 2;
-					  }
-					  if (Projectile.frame < 2) {
-						  Projectile.frame = 2;
-					  }*/
 					Projectile.frameCounter++;
 					if (Projectile.frameCounter > walkingAnimationSpeed) {
 						Projectile.frame++;
@@ -115,79 +100,77 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
 				}
 			}
 			else if (isFlying) {
-				float num16 = 0.3f;
+				float flySpeedBoost = 0.3f;
                 Projectile.tileCollide = false;
-				Vector2 vector3 =  new Vector2(Projectile.position.X + Projectile.width * 0.5f, Projectile.position.Y +  Projectile.height * 0.5f);
-				float horiPos = Main.player [Projectile.owner].position.X + Main.player [Projectile.owner].width / 2 - vector3.X;
-				float vertiPos = Main.player [Projectile.owner].position.Y + Main.player [Projectile.owner].height / 2 - vector3.Y;
-				vertiPos += Main.rand.Next(-10, 21);
-				horiPos += Main.rand.Next(-10, 21);
-				horiPos += 60f * -(float) Main.player [Projectile.owner].direction;
-				vertiPos -= 60f;
-				float playerDistance2 = (float) Math.Sqrt((double) (horiPos * horiPos + vertiPos * vertiPos));
+				Vector2 position =  new Vector2(Projectile.position.X + Projectile.width * 0.5f, Projectile.position.Y +  Projectile.height * 0.5f);
+				float posX = Main.player [Projectile.owner].position.X + Main.player [Projectile.owner].width / 2 - position.X;
+				float posY = Main.player [Projectile.owner].position.Y + Main.player [Projectile.owner].height / 2 - position.Y;
+				posY += Main.rand.Next(-10, 21);
+				posX += Main.rand.Next(-10, 21);
+				posX += 60f * -(float) Main.player [Projectile.owner].direction;
+				posY -= 60f;
+				float newPlayerDistance = (float) Math.Sqrt((double) (posX * posX + posY * posY));
 				float num17 = 18f;
-				Math.Sqrt((double) (horiPos * horiPos + vertiPos * vertiPos));
-				if (playerDistance2 > 1200f) {
+				Math.Sqrt((double) (posX * posX + posY * posY));
+				if (newPlayerDistance > 1200f) {
                     Projectile.position.X = Main.player [Projectile.owner].Center.X - Projectile.width / 2;
                     Projectile.position.Y = Main.player [Projectile.owner].Center.Y - Projectile.height / 2;
                     Projectile.netUpdate = true;
 				}
-				if (playerDistance2 < 100f) {
-					num16 = 0.1f;
+				if (newPlayerDistance < 100f) {
+					flySpeedBoost = 0.1f;
 					if (player.velocity.Y == 0f) {
 						playerStill++;
 					}
 					else {
 						playerStill = 0;
 					}
-					if (playerStill > 60 && !Collision.SolidCollision(Projectile.position, Projectile.width, Projectile.height)) {
+					if (playerStill > 30 && !Collision.SolidCollision(Projectile.position, Projectile.width, Projectile.height)) {
 						isFlying = false;
                         Projectile.tileCollide = true;
 					}
 				}
-				if (playerDistance2 < 50f) {
+				if (newPlayerDistance < 50f) {
 					if (Math.Abs(Projectile.velocity.X) > 2f || Math.Abs(Projectile.velocity.Y) > 2f) {
                         Projectile.velocity *= 0.9f;
 					}
-					num16 = 0.01f;
+					flySpeedBoost = 0.01f;
 				}
 				else {
-					if (playerDistance2 < 100f) {
-						num16 = 0.1f;
+					if (newPlayerDistance < 100f) {
+						flySpeedBoost = 0.1f;
 					}
-					if (playerDistance2 > 300f) {
-						num16 = 1f;
+					if (newPlayerDistance > 300f) {
+						flySpeedBoost = 1f;
 					}
-					playerDistance2 = num17 / playerDistance2;
-					horiPos *= playerDistance2;
-					vertiPos *= playerDistance2;
+					newPlayerDistance = num17 / newPlayerDistance;
+					posX *= newPlayerDistance;
+					posY *= newPlayerDistance;
 				}
-				if (Projectile.velocity.X <= horiPos) {
-                    Projectile.velocity.X = Projectile.velocity.X + num16;
-					if (num16 > 0.05f && Projectile.velocity.X < 0f) {
-                        Projectile.velocity.X = Projectile.velocity.X + num16;
-					}
-				}
-				if (Projectile.velocity.X > horiPos) {
-                    Projectile.velocity.X = Projectile.velocity.X - num16;
-					if (num16 > 0.05f && Projectile.velocity.X > 0f) {
-                        Projectile.velocity.X = Projectile.velocity.X - num16;
+				if (Projectile.velocity.X <= posX) {
+                    Projectile.velocity.X = Projectile.velocity.X + flySpeedBoost;
+					if (flySpeedBoost > 0.05f && Projectile.velocity.X < 0f) {
+                        Projectile.velocity.X = Projectile.velocity.X + flySpeedBoost;
 					}
 				}
-				if (Projectile.velocity.Y <= vertiPos) {
-                    Projectile.velocity.Y = Projectile.velocity.Y + num16;
-					if (num16 > 0.05f && Projectile.velocity.Y < 0f) {
-                        Projectile.velocity.Y = Projectile.velocity.Y + num16 * 2f;
+				if (Projectile.velocity.X > posX) {
+                    Projectile.velocity.X = Projectile.velocity.X - flySpeedBoost;
+					if (flySpeedBoost > 0.05f && Projectile.velocity.X > 0f) {
+                        Projectile.velocity.X = Projectile.velocity.X - flySpeedBoost;
 					}
 				}
-				if (Projectile.velocity.Y > vertiPos) {
-                    Projectile.velocity.Y = Projectile.velocity.Y - num16;
-					if (num16 > 0.05f && Projectile.velocity.Y > 0f) {
-                        Projectile.velocity.Y = Projectile.velocity.Y - num16 * 2f;
+				if (Projectile.velocity.Y <= posY) {
+                    Projectile.velocity.Y = Projectile.velocity.Y + flySpeedBoost;
+					if (flySpeedBoost > 0.05f && Projectile.velocity.Y < 0f) {
+                        Projectile.velocity.Y = Projectile.velocity.Y + flySpeedBoost * 2f;
 					}
 				}
-                Projectile.rotation = Projectile.velocity.X * 0.03f;
-				//Projectile.frame = 7;
+				if (Projectile.velocity.Y > posY) {
+                    Projectile.velocity.Y = Projectile.velocity.Y - flySpeedBoost;
+					if (flySpeedBoost > 0.05f && Projectile.velocity.Y > 0f) {
+                        Projectile.velocity.Y = Projectile.velocity.Y - flySpeedBoost * 2f;
+					}
+				}
 				if (oneFrame == true) {
 					Projectile.frame = maxFrames - 1;
 				}
@@ -209,10 +192,6 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
 			if (Projectile.velocity.X < -0.25f) {
                 Projectile.spriteDirection = 1;
 			}
-		}
-
-		public virtual void OnFlying () {//override this in your pet
-			if (!isFlying) return;
 		}
 
 		private int walkingAnimationSpeed,  walkingFirstFrame,  walkingLastFrame;

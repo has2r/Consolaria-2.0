@@ -1,6 +1,7 @@
 using Consolaria.Common;
 using Consolaria.Content.Items.Armor.Misc;
 using Consolaria.Content.Items.BossDrops.Lepus;
+using Consolaria.Content.Items.Miscellaneous;
 using Consolaria.Content.Items.Summons;
 using Consolaria.Content.Items.Weapons.Ranged;
 using Microsoft.Xna.Framework;
@@ -10,10 +11,12 @@ using System.Collections.Generic;
 using System.IO;
 using Terraria;
 using Terraria.Audio;
+using Terraria.Chat;
 using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.NPCs.Bosses.Lepus
@@ -176,6 +179,8 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
             NPC.timeLeft = NPC.activeTime * 30;
             NPC.Opacity = 0f;
 
+            NPC.npcSlots = 50f;
+
             NPC.gfxOffY = -4;
             FrameWidth = FRAME_WIDTH;
             FrameHeight = FRAME_HEIGHT;
@@ -206,7 +211,27 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
         }*/
 
         public override void OnKill()
-            => NPC.SetEventFlagCleared(ref DownedBossSystem.downedLepus, -1);
+        {
+            NPC.SetEventFlagCleared(ref DownedBossSystem.downedLepus, -1);
+            if (RabbitInvasion.rabbitInvasion)
+            {
+                RabbitInvasion.rabbitInvasion = false;
+                RabbitInvasion.rabbitKilledCount = 0;
+                string text = "Bunnies are retreating!";
+                if (Main.netMode == NetmodeID.SinglePlayer)
+                {
+                    Main.NewText(text, new Color(50, 255, 130));
+                }
+                else if (Main.netMode == NetmodeID.Server)
+                {
+                    ChatHelper.BroadcastChatMessage(NetworkText.FromKey(text), new Color(50, 255, 130));
+                }
+            }
+            if (Main.netMode == NetmodeID.Server)
+            {
+                NetMessage.SendData(MessageID.WorldData);
+            }
+        }
 
         public override void BossLoot(ref string name, ref int potionType)
             => potionType = NPC.CountNPCS(Type) <= 1 ? ItemID.LesserHealingPotion : -1;
@@ -225,7 +250,11 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
             conditionalRule.OnSuccess(ItemDropRule.ByCondition(notExpert, ItemID.BunnyHood, 10));
             conditionalRule.OnSuccess(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<SuspiciousLookingEgg>()));
             conditionalRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<LepusTrophy>(), 10));
+            LepusDropCondition1 lepusDropCondition2 = new();
+            IItemDropRule conditionalRule2 = new LeadingConditionRule(lepusDropCondition2);
+            conditionalRule2.OnSuccess(ItemDropRule.Common(ModContent.ItemType<GoldenCarrot>(), minimumDropped: 10, maximumDropped: 20));
             npcLoot.Add(conditionalRule);
+            npcLoot.Add(conditionalRule2);
         }
 
         public override bool CheckDead()
@@ -239,6 +268,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
             bool didAdvancedJump = AdvancedJumped && Math.Abs(NPC.velocity.X) > 0.5f;
             bool playersDead = State == STATE_DEAD_PLAYERS;
             float offsetY = -10f;
+            bool doJump = State == STATE_JUMP && StateTimer >= 25;
             Vector2 position = NPC.Center - screenPos + new Vector2(0f, offsetY);
             if (!playersDead)
             {
@@ -247,6 +277,14 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
                     float scale = (Main.mouseTextColor / 200f - 0.35f) * 0.46f + 0.8f;
                     float alphaX = Math.Max(0.1f, (Math.Abs(NPC.velocity.X) > 5f ? 5f : Math.Abs(NPC.velocity.X)) / 3f);
                     float alphaY = Math.Max(0.1f, (Math.Abs(NPC.velocity.Y) > 5f ? 5f : Math.Abs(NPC.velocity.Y)) / 3f);
+                    if (doJump)
+					{
+                        spriteBatch.End();
+                        spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Additive, Main.DefaultSamplerState, DepthStencilState.None, RasterizerState.CullCounterClockwise, null, Main.GameViewMatrix.TransformationMatrix);
+                        spriteBatch.Draw(texture, NPC.Center - screenPos + new Vector2(0f, offsetY), new Rectangle?(NPC.frame), Utils.MultiplyRGB(Color.HotPink, drawColor) * NPC.Opacity * (Opacity < 0.5f ? 1f - Opacity : Opacity), NPC.rotation, origin, NPC.scale * (2f - (Opacity + 0.5f)), effects, 0f);
+                        spriteBatch.End();
+                        spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, RasterizerState.CullCounterClockwise, null, Main.GameViewMatrix.TransformationMatrix);
+                    }
                     for (int i = 1; i < NPC.oldPos.Length - 1; i += 2)
                     {
                         Color color = NPC.GetAlpha(Color.Multiply(Utils.MultiplyRGB(Color.HotPink, drawColor), (10 - i) / 15f * 1.5f));
@@ -332,7 +370,8 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
             bool didAdvancedJump = AdvancedJumped && Math.Abs(NPC.velocity.X) > 0.5f;
             bool doHeavyJump = State == STATE_HEAVY_JUMP;
             bool doSpawnBigEgg = AdvancedJumpCount >= MAX_JUMP_COUNT && !AdvancedJumped2;
-            if (didAdvancedJump || doHeavyJump || doSpawnBigEgg)
+            bool doJump = State == STATE_JUMP && StateTimer >= 25;
+            if (didAdvancedJump || doHeavyJump || doSpawnBigEgg || doJump)
 			{
                 if (Opacity < 1f)
                 {
@@ -461,7 +500,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
 
         public override void HitEffect(int hitDirection, double damage)
         {
-            if (Main.netMode == NetmodeID.Server)
+            if (Main.netMode == NetmodeID.Server || State == STATE_DEAD_PLAYERS)
             {
                 return;
             }
@@ -644,13 +683,10 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
                 }
                 else if (StateTimer % 3 == 0)
                 {
-                    Vector2 eyeCenter = NPC.Center + new Vector2(12 * NPC.direction, -5);
-                    int dust = Dust.NewDust(NPC.position - new Vector2(20, 20), NPC.width + 40, NPC.height + 40, DustID.Smoke, 0, 0, 20, Color.HotPink, Main.rand.NextFloat(1.2f, 1.7f));
-                    Main.dust[dust].position = eyeCenter + new Vector2(0, -80).RotatedByRandom(Math.PI * 2f);
-                    Main.dust[dust].velocity = Vector2.Normalize(Main.dust[dust].position - eyeCenter) * -2f;
-                    Main.dust[dust].fadeIn = 1f;
-                    int dust2 = Dust.NewDust(NPC.position - new Vector2(60, 60), NPC.width + 120, NPC.height + 120, DustID.Smoke, 0, 0, 175, Color.HotPink, Main.rand.NextFloat(1.2f, 1.7f) * 0.75f);
-                    Main.dust[dust2].velocity = (Vector2.Normalize(Main.dust[dust2].position - eyeCenter) * -2f).RotatedBy(Math.PI + (double)Main.GlobalTimeWrappedHourly) * 2f;
+                    Vector2 eyeCenter = NPC.Center + new Vector2(12 * NPC.direction, -12);
+                    int dust2 = Dust.NewDust(NPC.position - new Vector2(20, 20), NPC.width + 40, NPC.height + 40, DustID.Smoke, 0, 0, 75, Color.HotPink, Main.rand.NextFloat(1.2f, 1.7f));
+                    Main.dust[dust2].position = eyeCenter + new Vector2(0, -80).RotatedByRandom(Math.PI * 2f);
+                    Main.dust[dust2].velocity = Vector2.Normalize(Main.dust[dust2].position - eyeCenter) * -2f;
                     Main.dust[dust2].fadeIn = 1f;
                 }
             }
@@ -914,6 +950,15 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
                     NPC.life = 0;
                     NPC.HitEffect(0, 10.0);
                     NPC.active = false;
+                    if (RabbitInvasion.rabbitInvasion)
+                    {
+                        RabbitInvasion.rabbitInvasion = false;
+                        RabbitInvasion.rabbitKilledCount = 0;
+                    }
+                    if (Main.netMode == NetmodeID.Server)
+                    {
+                        NetMessage.SendData(MessageID.WorldData);
+                    }
                     if (Main.netMode == NetmodeID.Server)
                     {
                         NetMessage.SendData(MessageID.DamageNPC, -1, -1, null, NPC.whoAmI, -1f, 0f, 0f, 0, 0, 0);

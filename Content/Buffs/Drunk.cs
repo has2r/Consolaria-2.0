@@ -28,12 +28,12 @@ namespace Consolaria.Content.Buffs
 			=> drunk = false;
 
 		public override void ModifyHitByNPC(NPC npc, ref int damage, ref bool crit)
-			=> WhenDrunk(damage);
+			=> WhenDrunk(ref damage);
 
 		public override void ModifyHitByProjectile(Projectile proj, ref int damage, ref bool crit)
-			=> WhenDrunk(damage);
+			=> WhenDrunk(ref damage);
 
-        private void WhenDrunk(int damage) {
+        private void WhenDrunk(ref int damage) {
 			if (drunk)
 				damage /= 2;
 		}

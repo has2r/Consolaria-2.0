@@ -1,4 +1,5 @@
 using Consolaria.Content.Items.Armor.Misc;
+using Consolaria.Content.Items.Miscellaneous;
 using Consolaria.Content.Items.Summons;
 using Consolaria.Content.Items.Weapons.Ranged;
 using Microsoft.Xna.Framework;

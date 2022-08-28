@@ -34,7 +34,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
             NPC.damage = 0;
             NPC.defense = 3;
 
-            NPC.lifeMax = 100;
+            NPC.lifeMax = 85;
             NPC.knockBackResist = 0f;
 
             NPC.HitSound = SoundID.NPCHit1;
@@ -44,9 +44,9 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
             NPC.noTileCollide = false;
         }
 
-        public override void ScaleExpertStats (int numPlayers, float bossLifeScale) 
-            => NPC.lifeMax = 125;
-        
+        public override void ScaleExpertStats (int numPlayers, float bossLifeScale)
+            => NPC.lifeMax = 110 + (int)(numPlayers > 1 ? NPC.lifeMax * 0.2 * numPlayers : 0);
+
         public override void SetBestiary (BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement [] {
                 BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheHallow,

@@ -5,6 +5,7 @@ using Consolaria.Content.Items.Weapons.Magic;
 using Consolaria.Content.Items.Weapons.Melee;
 using Consolaria.Content.Items.Weapons.Ranged;
 using Consolaria.Content.Items.Weapons.Summon;
+using Consolaria.Content.Items.Consumables;
 using Consolaria.Content.Projectiles.Enemies;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -38,6 +39,8 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
         private Color boomColor;
         private Vector2 ocramOldPos;
         private int spawnCheck;
+
+        private bool bloodMoonMode = Main.bloodMoon;
 
         float[] boomRot = new float[9];
         float[] boomScale = new float[9];
@@ -130,6 +133,16 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
                 if (NPC.alpha > 0) NPC.alpha -= 10;
                 NPC.velocity *= 0.95f;
                 spawnCheck++;
+
+                if(Main.rand.NextBool(2)) {
+                    int index2 = Dust.NewDust(new Vector2(NPC.Center.X, NPC.Center.Y), 0, 0, DustID.LavaMoss, 0f, 0f, 100, new Color(255, 0, 244), Main.rand.NextFloat(1f, 1.5f));
+                    Main.dust[index2].noGravity = true;
+                    Main.dust[index2].noLight = false;
+                    Main.dust[index2].fadeIn = Main.rand.NextFloat(0, 1.5f);
+                    Main.dust[index2].position += new Vector2(Main.rand.Next(80, 120), 0).RotatedByRandom(rad);
+                    Main.dust[index2].velocity = Vector2.Normalize(NPC.Center - Main.dust[index2].position) * Main.rand.NextFloat(1f, 2f);
+                }
+
                 return;
             }
 
@@ -280,7 +293,7 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
                                     NPC.ai [3] += 1f;
                                     glowOpacity += 0.015f;
                                 }
-                                if (NPC.ai [3] >= 60 && NPC.ai [3] <= 70) {
+                                if (NPC.ai [3] >= 60 || NPC.ai[3] >= 40 && bloodMoonMode) {
                                     float Speed = 8f;
                                     Vector2 vector8 = new Vector2(NPC.position.X + (NPC.width / 2), NPC.position.Y + (NPC.height / 2));
                                     SoundEngine.PlaySound(SoundID.Item33, NPC.position);
@@ -309,7 +322,7 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
                                     NPC.ai [3] += 1f;
                                 }
 
-                                if (NPC.ai[2] == 379 && !isExpert) NPC.ai[2] = 481;
+                                if (NPC.ai[2] == 379 && !isExpert || NPC.ai[2] == 379 && bloodMoonMode && Main.rand.NextBool(2)) NPC.ai[2] = 481;
 
                                 if (NPC.ai [2] == 380) {
                                     SoundEngine.PlaySound(SoundID.Item15, NPC.position);
@@ -376,7 +389,7 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
                                     NPC.velocity.X = 12;
                                 }
                                 NPC.velocity.Y = -10;
-                                SoundEngine.PlaySound(SoundID.Roar, NPC.position);
+                                SoundEngine.PlaySound(SoundID.Roar with { PitchVariance =  0.15f, MaxInstances = 0 }, NPC.position);
                                 if (Main.netMode != NetmodeID.Server) {
                                     int num23 = 36;
                                     for (int index1 = 0; index1 < num23; ++index1) {
@@ -398,6 +411,10 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
                                 NPC.velocity.X = (float) Math.Cos(h) * t;
                                 NPC.velocity.Y = (float) Math.Sin(h) * t;
                                 NPC.rotation = (float) Math.Atan2(NPC.velocity.Y, NPC.velocity.X) - 1.57f;
+                                if (bloodMoonMode && NPC.ai[2] % 5 == 0) {
+                                    SoundEngine.PlaySound(SoundID.Item33, NPC.position);
+                                    Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, new Vector2(0, 10f).RotatedBy(NPC.rotation), ModContent.ProjectileType<OcramLaser1>(), (int)(NPC.damage * 0.5f), 1.5f);
+                                }
                                 if (NPC.ai [2] % 35 == 0) {
                                     SoundEngine.PlaySound(SoundID.NPCDeath45, NPC.position);
                                     NPC.NewNPC(NPC.GetSource_FromAI(), (int) NPC.Center.X - 40, (int) NPC.Center.Y, ModContent.NPCType<ServantofOcram>());
@@ -407,7 +424,7 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
                             if (NPC.ai [2] >= 740f) { //summon finishes
                                 if (NPC.ai [2] >= 740f) {
                                     NPC.ai [2] = 920;
-                                    SoundEngine.PlaySound(SoundID.Roar, NPC.position);
+                                    SoundEngine.PlaySound(SoundID.Roar with { PitchVariance =  0.15f, MaxInstances = 0 }, NPC.position);
                                     if (Main.netMode != NetmodeID.Server) {
                                         int num23 = 36;
                                         for (int index1 = 0; index1 < num23; ++index1) {
@@ -435,7 +452,7 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
                         if (NPC.ai [1] == 1f) { //dash attack
                             NPC.rotation = num319;
                             float num332 = 14f;
-                            SoundEngine.PlaySound(SoundID.Roar, NPC.position);
+                            SoundEngine.PlaySound(SoundID.Roar with { PitchVariance =  0.15f, MaxInstances = 0 }, NPC.position);
                             Vector2 vector33 = new Vector2(NPC.position.X + NPC.width * 0.5f, NPC.position.Y + NPC.height * 0.5f);
                             float num333 = Main.player [NPC.target].position.X + Main.player [NPC.target].width / 2 - vector33.X;
                             float num334 = Main.player [NPC.target].position.Y + Main.player [NPC.target].height / 2 - vector33.Y;
@@ -443,6 +460,7 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
                             num335 = num332 / num335;
                             NPC.velocity.X = num333 * num335;
                             NPC.velocity.Y = num334 * num335;
+                            if (bloodMoonMode) NPC.velocity *= 1.3f;
                             NPC.ai [1] = 2f; //switch to pause between dashes
                         }
                         else {
@@ -462,11 +480,11 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
                                     NPC.rotation = (float) Math.Atan2(NPC.velocity.Y, NPC.velocity.X) - 1.57f;
                                     if (Main.netMode != NetmodeID.Server) {
                                         if (Main.rand.NextBool(4)) {
-                                            int index4 = Dust.NewDust(NPC.Center + new Vector2(120, 0).RotatedBy(NPC.rotation), 20, 20, DustID.LavaMoss, 0f, 0f, 100, new Color(255, 0, 244), Main.rand.NextFloat(0.6f, 1.2f)); //235, 258, 296, 183
+                                            int index4 = Dust.NewDust(NPC.Center + new Vector2(120, 0).RotatedBy(NPC.rotation), 20, 20, DustID.LavaMoss, 0f, 0f, 100, new Color(255, 0, 244), Main.rand.NextFloat(0.6f, 1.2f));
                                             Main.dust [index4].velocity = NPC.velocity;
                                             Main.dust [index4].noGravity = true;
                                             Main.dust [index4].fadeIn = Main.rand.NextFloat(0, 1.4f);
-                                            int index5 = Dust.NewDust(NPC.Center + new Vector2(-120, 0).RotatedBy(NPC.rotation), 20, 20, DustID.LavaMoss, 0f, 0f, 100, new Color(255, 0, 244), Main.rand.NextFloat(0.6f, 1.2f)); //235, 258, 296, 183
+                                            int index5 = Dust.NewDust(NPC.Center + new Vector2(-120, 0).RotatedBy(NPC.rotation), 20, 20, DustID.LavaMoss, 0f, 0f, 100, new Color(255, 0, 244), Main.rand.NextFloat(0.6f, 1.2f));
                                             Main.dust [index5].velocity = NPC.velocity;
                                             Main.dust [index5].noGravity = true;
                                             Main.dust [index5].fadeIn = Main.rand.NextFloat(0, 1.4f);
@@ -554,7 +572,7 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
                                         Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood, Main.rand.Next(-30, 31) * 0.2f, Main.rand.Next(-30, 31) * 0.2f, 0, default, 1f);
                                     }
                                 }
-                                SoundEngine.PlaySound(SoundID.Roar, NPC.position);
+                                SoundEngine.PlaySound(SoundID.Roar with { PitchVariance =  0.15f, MaxInstances = 0 }, NPC.position);
                             }
                         }
 
@@ -842,7 +860,7 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
                     }
                 }
             }
-            if (Main.bloodMoon && secondPhaseActive && Main.rand.NextBool(600)) { //dumb skull attack
+            if (bloodMoonMode && secondPhaseActive && Main.rand.NextBool(500)) { //dumb skull attack
                 rage = 999;
                 Vector2 Vector3 = new Vector2(NPC.position.X + NPC.width * 0.1f, NPC.position.Y + NPC.height * 0.1f);
                 if (Collision.CanHit(Vector3, 1, 1, Main.player [NPC.target].position, Main.player [NPC.target].width, Main.player [NPC.target].height)) {

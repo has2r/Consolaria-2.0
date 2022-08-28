@@ -28,7 +28,7 @@ namespace Consolaria.Common
 
 		public bool CanShowItemDropInUI() => true;
 		
-		public string GetConditionDescription() => "This can be dropped if Lepus is not alive";	
+		public string GetConditionDescription() => "Drops if Lepus is not present";	
 	}
 
 	public class LepusDropCondition1 : IItemDropRuleCondition
@@ -42,6 +42,6 @@ namespace Consolaria.Common
 
 		public bool CanShowItemDropInUI() => true;
 
-		public string GetConditionDescription() => "This can be dropped during invasion of rabbits";
+		public string GetConditionDescription() => "Drops during an invasion of rabbits";
 	}
 }

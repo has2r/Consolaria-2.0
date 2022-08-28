@@ -54,6 +54,6 @@ namespace Consolaria.Common
 
 		public bool CanShowItemDropInUI() => false;
 
-		public string GetConditionDescription() => "Drops during Lanern Night";
+		public string GetConditionDescription() => "Drops during Lantern Night";
 	}
 }

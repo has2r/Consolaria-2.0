@@ -43,6 +43,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
         }
 
         public override void AI () {
+            Projectile.spriteDirection = -1;
             Lighting.AddLight(Projectile.Center, 0.3f, 0.1f, 0.3f);
             Player owner = Main.player [Projectile.owner];
             if (!CheckActive(owner)) return;
@@ -123,7 +124,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
             Texture2D texture = (Texture2D) ModContent.Request<Texture2D>("Consolaria/Assets/Textures/Projectiles/EyeOfEternity_Pulse");
 
             Vector2 drawOrigin = new Vector2(texture.Width * 0.5f, Projectile.height * 0.5f);
-            SpriteEffects effects = (Projectile.spriteDirection == -1) ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
+            SpriteEffects effects = SpriteEffects.None;
             Color color2 = new Color(Color.BlueViolet.R, Color.BlueViolet.G, Color.BlueViolet.B, 0);
             Vector2 pulseOffset = new Vector2(3, 0).RotatedBy(Math.PI * 2f * (Math.Sin(Projectile.localAI [0] / 16) / 2 + 0.5));
             Vector2 drawPos = Projectile.position - Main.screenPosition + drawOrigin;

@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 using Terraria.ModLoader;
@@ -92,16 +93,24 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
                     Projectile.frameCounter = 0;
 				}
 				else {
-                    Projectile.frameCounter++;
-					if (Projectile.frameCounter > 5) {
-                        Projectile.frame++;
-                        Projectile.frameCounter = 0;
+					/*  Projectile.frameCounter++;
+					  if (Projectile.frameCounter > 5) {
+						  Projectile.frame++;
+						  Projectile.frameCounter = 0;
+					  }
+					  if (Projectile.frame > 6) {
+						  Projectile.frame = 2;
+					  }
+					  if (Projectile.frame < 2) {
+						  Projectile.frame = 2;
+					  }*/
+					Projectile.frameCounter++;
+					if (Projectile.frameCounter > walkingAnimationSpeed) {
+						Projectile.frame++;
+						Projectile.frameCounter = 0;
 					}
-					if (Projectile.frame > 6) {
-                        Projectile.frame = 2;
-					}
-					if (Projectile.frame < 2) {
-                        Projectile.frame = 2;
+					if (Projectile.frame > walkingLastFrame) {
+						Projectile.frame = walkingFirstFrame;
 					}
 				}
 			}
@@ -178,7 +187,20 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
 					}
 				}
                 Projectile.rotation = Projectile.velocity.X * 0.03f;
-                Projectile.frame = 7;
+				//Projectile.frame = 7;
+				if (oneFrame == true) {
+					Projectile.frame = maxFrames - 1;
+				}
+				else {
+					Projectile.frameCounter++;
+					if (Projectile.frameCounter > flyingAnimationSpeed) {
+						Projectile.frame++;
+						Projectile.frameCounter = 0;
+					}
+					if (Projectile.frame > flyingLastFrame) {
+						Projectile.frame = flyingFirstFrame;
+					}
+				}
 			}
 			if (Projectile.velocity.X > 0.25f) {
                 Projectile.spriteDirection = -1;
@@ -189,13 +211,60 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
 			}
 		}
 
+		private int walkingAnimationSpeed,  walkingFirstFrame,  walkingLastFrame;
+
+		public void WalkingAnimation (int walkingAnimationSpeed, int walkingFirstFrame, int walkingLastFrame) {
+			this.walkingAnimationSpeed = walkingAnimationSpeed;
+			this.walkingFirstFrame = walkingFirstFrame;
+			this.walkingLastFrame = walkingLastFrame;
+		}
+
+		private int flyingAnimationSpeed, flyingFirstFrame, flyingLastFrame;
+		private bool oneFrame;
+
+		public void FlyingAnimation (int flyingAnimationSpeed, int flyingFirstFrame, int flyingLastFrame) {
+			this.flyingAnimationSpeed = flyingAnimationSpeed;
+			this.flyingFirstFrame = flyingFirstFrame;
+			this.flyingLastFrame = flyingLastFrame;		
+		}
+
+		public void FlyingAnimation (bool oneFrame) {
+			this.oneFrame = oneFrame;
+		}
+
+		private int texFrameCounter;
+		private int texCurrentFrame;
+
+		public void OverrideVanillaAnimation (Color lightColor, int animationSpeed, int walkingLastFrame, int flyingFirstFrame) {
+			Texture2D texture = (Texture2D) ModContent.Request<Texture2D>(Texture);
+			bool onGround = Projectile.velocity.Y == 0f;
+			texFrameCounter++;
+			if (texFrameCounter > animationSpeed) {
+				texFrameCounter = 0;
+				texCurrentFrame++;
+				if (texCurrentFrame >= (onGround ? walkingLastFrame : Main.projFrames [Projectile.type]))
+					texCurrentFrame = onGround ? 0 : flyingFirstFrame;
+			}
+			if (onGround && Projectile.velocity.X == 0f) {
+				texCurrentFrame = 0;
+				texFrameCounter = 0;
+			}
+
+			Vector2 position = new Vector2(Projectile.Center.X, Projectile.Center.Y) - Main.screenPosition;
+			Vector2 drawOrigin = new Vector2(texture.Width * 0.5f, Projectile.height * 0.5f);
+			var spriteEffects = Projectile.direction > 0 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+			int frameHeight = texture.Height / Main.projFrames [Projectile.type];
+			Rectangle frameRect = new Rectangle(0, texCurrentFrame * frameHeight, texture.Width, frameHeight);
+			Main.EntitySpriteDraw(texture, position, frameRect, lightColor, Projectile.rotation, drawOrigin, Projectile.scale, spriteEffects, 0);
+		}
+
 		private bool CheckHole () {
 			int tileWidth = 4;
 			int tileX = (int) (Projectile.Center.X / 16f) - tileWidth;
 			if (Projectile.velocity.X > 0f) {
 				tileX += tileWidth;
 			}
-			int tileY = (int) ((Projectile.position.Y +  Projectile.height) / 16f);
+			int tileY = (int) ((Projectile.position.Y + Projectile.height) / 16f);
 			for (int y = tileY; y < tileY + 2; y++) {
 				for (int x = tileX; x < tileX + tileWidth; x++) {
 					if (Main.tile [x, y].HasTile) {
@@ -204,17 +273,6 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
 				}
 			}
 			return true;
-		}
-
-		public void Animation (int animationSpeed) {
-            Projectile.frameCounter++;
-			if (Projectile.frameCounter > animationSpeed) {
-                Projectile.frame++;
-                Projectile.frameCounter = 0;
-			}
-			if (Projectile.frame > Main.projFrames [Projectile.type] - 1) {
-                Projectile.frame = 0;
-			}
 		}
 
 		private void CheckPlayer () {

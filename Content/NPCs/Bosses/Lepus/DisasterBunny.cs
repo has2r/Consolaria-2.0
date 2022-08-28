@@ -1,4 +1,5 @@
 using Consolaria.Common;
+using Consolaria.Content.Items.Miscellaneous;
 using Consolaria.Content.Items.Summons;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -65,10 +66,14 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
         }
 
         public override void ModifyNPCLoot (NPCLoot npcLoot) {
-            LepusDropCondition lepusDropCondition = new();
+            LepusDropCondition2 lepusDropCondition = new();
             IItemDropRule conditionalRule = new LeadingConditionRule(lepusDropCondition);
-            conditionalRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<SuspiciousLookingEgg>(), 4));
+            conditionalRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<SuspiciousLookingEgg>(), 5));
+            LepusDropCondition1 lepusDropCondition2 = new();
+            IItemDropRule conditionalRule2 = new LeadingConditionRule(lepusDropCondition2);
+            conditionalRule2.OnSuccess(ItemDropRule.Common(ModContent.ItemType<GoldenCarrot>(), 4));
             npcLoot.Add(conditionalRule);
+            npcLoot.Add(conditionalRule2);
         }
 
         public override float SpawnChance (NPCSpawnInfo spawnInfo) {

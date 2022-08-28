@@ -61,9 +61,9 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
             int frameHeight = texture.Height / Main.projFrames [Projectile.type];
             Rectangle frameRect = new Rectangle(0, texCurrentFrame * frameHeight, texture.Width, frameHeight);
             int offsetY = 8;
-            spriteBatch.Draw(texture, new Vector2(position.X, position.Y - offsetY), frameRect, Main.DiscoColor * 0.8f * 0.75f, 0, drawOrigin, Projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2(position.X, position.Y - offsetY), frameRect, Main.DiscoColor * 0.8f, 0, drawOrigin, Projectile.scale, spriteEffects, 0f);
             if (isFlying)
-                spriteBatch.Draw(balloon, new Vector2(position.X, position.Y - offsetY - 62), null, Color.Red * 0.8f, 0, drawOrigin, Projectile.scale, spriteEffects, 1f);
+                spriteBatch.Draw(balloon, new Vector2(position.X, position.Y - offsetY - 62), null, lightColor, 0, drawOrigin, Projectile.scale, spriteEffects, 1f);
             return false;
         }
     }

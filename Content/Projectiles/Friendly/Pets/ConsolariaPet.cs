@@ -44,6 +44,9 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
 				float playerDistance = (player.Center - Projectile.Center).Length();
 				if (Projectile.velocity.Y == 0f && (CheckHole() || (playerDistance > 110f && Projectile.position.X == Projectile.oldPosition.X))) {
                     Projectile.velocity.Y = -5f;
+
+					Projectile.frame = 1;
+					Projectile.frameCounter = 0;
 				}
 				Projectile checkProjectile1 = Projectile;
 				checkProjectile1.velocity.Y += 0.35f; // falling speed

@@ -20,11 +20,11 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
                 Projectile.timeLeft = 2;
 
             WalkerAI();
-            WalkingAnimation(2, 0, 15);
+            WalkingAnimation(2, 2, 15);
             int finalFrame = maxFrames - 1;
             FlyingAnimation(4, 16, finalFrame);
 
-            double rotation = (Math.PI / 2) * player.direction;
+            double rotation = (Math.PI / 2) * player.velocity.X * 0.08f;
             if (isFlying)
             Projectile.rotation = (float) rotation;
         }

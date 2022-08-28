@@ -1,4 +1,5 @@
-﻿using Consolaria.Content.NPCs.Bosses.Lepus;
+﻿using Consolaria.Content.Items.Miscellaneous;
+using Consolaria.Content.NPCs.Bosses.Lepus;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.IO;
@@ -6,6 +7,7 @@ using System.Linq;
 using Terraria;
 using Terraria.Audio;
 using Terraria.Chat;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -143,6 +145,17 @@ namespace Consolaria.Common {
 
 	public class RabbitInvasionNPCs : GlobalNPC
 	{
+		public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
+		{
+			if (npc.type == NPCID.CrimsonBunny || npc.type == NPCID.CorruptBunny)
+			{
+				LepusDropCondition1 lepusDropCondition2 = new();
+				IItemDropRule conditionalRule2 = new LeadingConditionRule(lepusDropCondition2);
+				conditionalRule2.OnSuccess(ItemDropRule.Common(ModContent.ItemType<GoldenCarrot>(), 4));
+				npcLoot.Add(conditionalRule2);
+			}
+		}
+
 		public override void EditSpawnRate(Player player, ref int spawnRate, ref int maxSpawns)
 		{
 			Vector2 position = player.position;
@@ -163,7 +176,7 @@ namespace Consolaria.Common {
 			{
 				return;
 			}
-			if (npc.type == ModContent.NPCType<DisasterBunny>() || npc.type == NPCID.Bunny)
+			if (npc.type == ModContent.NPCType<DisasterBunny>() || npc.type == (WorldGen.crimson ? NPCID.CrimsonBunny : NPCID.CorruptBunny))
 			{
 				if (RabbitInvasion.rabbitKilledCount < 100)
 				{
@@ -198,7 +211,7 @@ namespace Consolaria.Common {
 			{
 				pool.Clear();
 				pool.Add(ModContent.NPCType<DisasterBunny>(), 100f);
-				pool.Add(NPCID.Bunny, 25f);
+				pool.Add(WorldGen.crimson ? NPCID.CrimsonBunny : NPCID.CorruptBunny, 40f);
 			}
 		}
 	}

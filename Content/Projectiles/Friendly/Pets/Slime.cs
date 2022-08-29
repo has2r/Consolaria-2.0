@@ -1,6 +1,8 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.IO;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -25,10 +27,27 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
             return true;
         }
 
-        public override void AI () {
+        private int choosenBalloon = 0;
+
+		public override void SendExtraAI(BinaryWriter writer)
+		{
+            writer.Write(choosenBalloon);
+		}
+
+		public override void ReceiveExtraAI(BinaryReader reader)
+		{
+            choosenBalloon = reader.ReadInt32();
+        }
+
+		public override void AI () {
             Player player = Main.player [Projectile.owner];
             if (!player.dead && player.HasBuff(ModContent.BuffType<Buffs.Slime>()))
                 Projectile.timeLeft = 2;
+
+            if (choosenBalloon == 0)
+			{
+                choosenBalloon = Main.rand.NextFromList(2, 3, 4, 5, 6);
+            }
 
             Projectile.frameCounter = 0;
             Projectile.frame = 8;
@@ -40,6 +59,8 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
         public override bool PreDraw (ref Color lightColor) {
             SpriteBatch spriteBatch = Main.spriteBatch;
             Texture2D texture = (Texture2D) ModContent.Request<Texture2D>(Texture);
+            int framesCountX = 7;
+            SpriteFrame frame = new SpriteFrame((byte)framesCountX, 1);
             Texture2D balloon = (Texture2D) ModContent.Request<Texture2D>("Consolaria/Assets/Textures/Projectiles/SlimePet_Balloon");
 
             bool isFlying = Projectile.ai [0] == 1;
@@ -63,7 +84,12 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
             int offsetY = 8;
             spriteBatch.Draw(texture, new Vector2(position.X, position.Y - offsetY), frameRect, Main.DiscoColor * 0.8f, 0, drawOrigin, Projectile.scale, spriteEffects, 0f);
             if (isFlying)
-                spriteBatch.Draw(balloon, new Vector2(position.X, position.Y - offsetY - 62), null, lightColor, 0, drawOrigin, Projectile.scale, spriteEffects, 1f);
+            {
+                Rectangle rectangle = frame.GetSourceRectangle(balloon);
+                int width = balloon.Width / framesCountX;
+                rectangle.X = width * (choosenBalloon - 1);
+                spriteBatch.Draw(balloon, new Vector2(position.X, position.Y - offsetY - 62) + new Vector2(6, 4), rectangle, lightColor, 0, drawOrigin, Projectile.scale, spriteEffects, 1f);
+            }
             return false;
         }
     }

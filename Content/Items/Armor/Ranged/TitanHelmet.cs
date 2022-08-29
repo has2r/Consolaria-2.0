@@ -107,7 +107,9 @@ namespace Consolaria.Content.Items.Armor.Ranged {
                 modPlayer.shockwaveTimer == 0)
             {
                 SoundEngine.PlaySound(SoundID.DD2_ExplosiveTrapExplode, player.Center);
-                Projectile.NewProjectile(player.GetSource_ItemUse(item), player.Center, velocity, type2, damage * 10, 7.5f, player.whoAmI);
+                int proj = Projectile.NewProjectile(player.GetSource_ItemUse(item), player.Center, velocity, type2, damage * 10, 7.5f, player.whoAmI);
+                if (Main.netMode == NetmodeID.Server)
+                    NetMessage.SendData(MessageID.SyncProjectile, -1, -1, null, proj);
                 //SoundEngine.PlaySound(new SoundStyle($"{nameof(Consolaria)}/Assets/Sounds/Shockwave") { Volume = 0.8f }, player.position);
                 modPlayer.shockwaveTimer = modPlayer.shockwaveTimerLimit;
             }

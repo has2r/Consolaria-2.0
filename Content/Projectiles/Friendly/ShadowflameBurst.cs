@@ -29,7 +29,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
             if (Projectile.timeLeft > lifeLimit) 
                 Projectile.timeLeft = lifeLimit;
 
-            if (Projectile.ai [0] > 6f) {
+            if (Projectile.ai [0] > 5f) {
                 if (Main.netMode != NetmodeID.Server) {
                     if (Main.rand.NextBool(2)) {
                         int dust = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, DustID.Shadowflame, Projectile.velocity.X * 1.2f, Projectile.velocity.Y * 1.2f);

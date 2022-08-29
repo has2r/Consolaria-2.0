@@ -3,7 +3,6 @@ using Consolaria.Content.Projectiles.Friendly;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
-using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -59,32 +58,51 @@ namespace Consolaria.Content.Items.Armor.Melee {
     public class DragonPlayer : ModPlayer {
         public bool dragonBurst;
 
+        private bool startFlames;
+        private int burstTimer;
+
         public override void ResetEffects ()
             => dragonBurst = false;
 
         public override void OnHitByNPC (NPC npc, int damage, bool crit) {
-            if (dragonBurst)
-                ShootFlames(Player.GetSource_OnHurt(npc, null));
+            if (dragonBurst && !startFlames)
+                startFlames = true;
         }
 
         public override void OnHitByProjectile (Projectile proj, int damage, bool crit) {
-            if (dragonBurst)
-                ShootFlames(Player.GetSource_OnHurt(proj, null));
+            if (dragonBurst && !startFlames)
+                startFlames = true;
         }
 
-        private void ShootFlames (IEntitySource spawnSource) {
-            float projectilesCount = 7;
-            float rotation = MathHelper.ToRadians(15);
-            Vector2 velocity, position;
-            ushort type = (ushort)ModContent.ProjectileType<ShadowflameBurst>();
-            int xOffset = 5;
-            velocity = new Vector2(4.5f * Player.direction, 0);
-            position = new Vector2(Player.direction > 0 ? Player.Center.X + xOffset : Player.Center.X - xOffset, Player.Center.Y - 5);
-            for (int i = 0; i < projectilesCount; i++) {
-                Vector2 perturbedSpeed = velocity.RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (projectilesCount))) * 1.15f;
-                Projectile.NewProjectile(spawnSource, position, new Vector2(perturbedSpeed.X + Main.rand.NextFloat(-0.15f, 0.15f), perturbedSpeed.Y), type, 70, 2f, Player.whoAmI);
+        public override void PostUpdate () {
+            if (!dragonBurst) return;
+
+            if (startFlames) {
+                burstTimer++;
+                Vector2 cursorPosition = new Vector2(Main.MouseWorld.X, Main.MouseWorld.Y - 40);
+                Vector2 velocity = new Vector2(cursorPosition.X - Player.position.X, cursorPosition.Y - Player.position.Y);
+                int xOffset = 5;
+                Vector2 position = new Vector2(Player.direction > 0 ? Player.Center.X + xOffset : Player.Center.X - xOffset, Player.Center.Y - 5);
+                velocity.Normalize();
+                velocity *= 5.75f;
+                float rotation = MathHelper.ToRadians(15);
+                float projectilesCount = 7;
+                ushort type = (ushort) ModContent.ProjectileType<ShadowflameBurst>();
+                if (burstTimer % 10 == 0) {
+                    for (int i = 0; i < projectilesCount; i++) {
+                        Vector2 perturbedSpeed = velocity.RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (projectilesCount))) * 1.15f;
+                        Projectile.NewProjectile(Player.GetSource_Misc("Dragon Armor"), position, new Vector2(perturbedSpeed.X + Main.rand.NextFloat(-0.25f, 0.25f), perturbedSpeed.Y), type, 70, 2.5f, Player.whoAmI);
+                        SoundEngine.PlaySound(SoundID.DD2_PhantomPhoenixShot with { Volume = 0.8f, MaxInstances = 3 }, Player.Center);
+                    }
+                }
+                if (velocity.X < 0.3f) Player.direction = -1;
+                else Player.direction = 1;
             }
-            SoundEngine.PlaySound(SoundID.DD2_PhantomPhoenixShot with { Volume = 0.8f}, Player.Center);
+
+            if (burstTimer >= 30) {
+                startFlames = false;
+                burstTimer = 0;
+            }    
         }
     }
 }

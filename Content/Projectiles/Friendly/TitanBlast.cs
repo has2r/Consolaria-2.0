@@ -27,7 +27,10 @@ namespace Consolaria.Content.Projectiles.Friendly {
             Projectile.timeLeft = 200;
 
             Projectile.tileCollide = false;
+
+            Projectile.netImportant = true;
         }
+
         public override bool ShouldUpdatePosition()
             => false;
 
@@ -38,15 +41,18 @@ namespace Consolaria.Content.Projectiles.Friendly {
         {
             Player player = Main.player[Projectile.owner];
             player.heldProj = Projectile.whoAmI;
-            Vector2 position = Vector2.Subtract(Main.MouseWorld, player.RotatedRelativePoint(player.MountedCenter, true));
-            position.Normalize();
-            if (!Utils.HasNaNs(position))
+            if (Main.myPlayer == Projectile.owner)
             {
-                Projectile.velocity = position;
-                Projectile.netUpdate = true;
+                Vector2 position = Vector2.Subtract(Main.MouseWorld, player.RotatedRelativePoint(player.MountedCenter, true));
+                position.Normalize();
+                if (!Utils.HasNaNs(position))
+                {
+                    Projectile.velocity = position;
+                    Projectile.netUpdate = true;
+                }
+                Projectile.Center = player.MountedCenter + Projectile.velocity * 100f + new Vector2(0f, -4f);
             }
             Projectile.rotation = Utils.ToRotation(Projectile.velocity) + 1.57f;
-            Projectile.Center = player.MountedCenter + Projectile.velocity * 100f + new Vector2(0f, -4f);
             Projectile.spriteDirection = Math.Sign(Projectile.velocity.X);
             if (!player.dead && player.active)
             {

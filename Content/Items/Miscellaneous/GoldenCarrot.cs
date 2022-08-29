@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
@@ -19,7 +20,7 @@ namespace Consolaria.Content.Items.Miscellaneous
 			};
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 5;
 			Main.RegisterItemAnimation(Type, new DrawAnimationVertical(int.MaxValue, 3));
-			Tooltip.SetDefault("Medium improvements to all stats\nReduces last received debuff time by half\n'GOLDEN CARROT?! WHAT?!'");
+			Tooltip.SetDefault("Medium improvements to all stats\nIncreases all buffs time by 15 seconds\n'GOLDEN CARROT?! WHAT?!'");
 		}
 
 		public override void SetDefaults() {
@@ -51,7 +52,26 @@ namespace Consolaria.Content.Items.Miscellaneous
 			}
 			if (player.whoAmI == Main.myPlayer && player.itemTime == 0)
 			{
-				int index = -1;
+				List<int> buffIDS = new List<int>();
+				for (int i = 0; i < player.buffType.Length; i++)
+				{
+					if (!Main.debuff[player.buffType[i]] && !Main.buffNoTimeDisplay[player.buffType[i]] && !Main.vanityPet[player.buffType[i]])
+					{
+						buffIDS.Add(player.FindBuffIndex(player.buffType[i]));
+					}
+				}
+				int sum = 0;
+				foreach (int index in buffIDS)
+				{
+					if (index != -1)
+					{
+						int addTime = 900;
+						player.buffTime[index] += addTime;
+						sum += addTime;
+					}
+				}
+				player.AddBuff(buff, sum);
+				/*int index = -1;
 				for (int i = player.buffType.Length - 1; i > 0; i--)
 				{
 					if (Main.debuff[player.buffType[i]])
@@ -70,7 +90,7 @@ namespace Consolaria.Content.Items.Miscellaneous
 					return;
 				}
 				player.buffTime[index2] /= 2;
-				player.AddBuff(buff, player.buffTime[index2] * 2);
+				player.AddBuff(buff, player.buffTime[index2] * 2);*/
 				//player.GetModPlayer<GoldenCarrotPlayer>().index = index2;
 			}
 		}

@@ -1,29 +1,28 @@
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Consolaria.Content.Items.Pets
-{
-	public class PetriDish : ModItem
-	{
-		public override void SetStaticDefaults() {
+namespace Consolaria.Content.Items.Pets {
+	public class PetriDish : ModItem {
+		public override void SetStaticDefaults () {
 			Tooltip.SetDefault("Summons a pet Slime");
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
 		}
 
-		public override void SetDefaults() {
-			Item.CloneDefaults(ItemID.ZephyrFish);
+		public override void SetDefaults () {
+			Item.DefaultToVanitypet(ModContent.ProjectileType<Projectiles.Friendly.Pets.Slime>(), ModContent.BuffType<Buffs.Slime>());
+
+			int width = 22; int height = 24;
+			Item.Size = new Vector2(width, height);
 
 			Item.rare = ItemRarityID.Orange;
 			Item.value = Item.sellPrice(gold: 2);
-
-			Item.shoot = ModContent.ProjectileType<Projectiles.Friendly.Pets.Slime>();
-			Item.buffType = ModContent.BuffType<Buffs.Slime>();
 		}
 
-		public override void UseStyle(Player player, Rectangle heldItemFrame) {
+		public override void UseStyle (Player player, Rectangle heldItemFrame) {
 			if (player.whoAmI == Main.myPlayer && player.itemTime == 0)
 				player.AddBuff(Item.buffType, 3600);
 		}

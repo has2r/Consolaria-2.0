@@ -4,27 +4,24 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Consolaria.Content.Items.Pets
-{
-	public class Cabbage : ModItem
-	{
-		public override void SetStaticDefaults() {
-			DisplayName.SetDefault("Cabbage");
+namespace Consolaria.Content.Items.Pets {
+	public class Cabbage : ModItem {
+		public override void SetStaticDefaults () {
 			Tooltip.SetDefault("Summons a pet Guinea Pig");
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
 		}
 
-		public override void SetDefaults() {
-			Item.CloneDefaults(ItemID.Carrot);
+		public override void SetDefaults () {
+			Item.CloneDefaults(ItemID.Carrot); Item.DefaultToVanitypet(ModContent.ProjectileType<Projectiles.Friendly.Pets.GuineaPig>(), ModContent.BuffType<Buffs.GuineaPig>());
+
+			int width = 30; int height = width;
+			Item.Size = new Vector2(width, height);
 
 			Item.rare = ItemRarityID.Orange;
 			Item.value = Item.sellPrice(gold: 3);
-
-			Item.shoot = ModContent.ProjectileType<Projectiles.Friendly.Pets.GuineaPig>();
-			Item.buffType = ModContent.BuffType<Buffs.GuineaPig>();
 		}
 
-		public override void UseStyle(Player player, Rectangle heldItemFrame) {
+		public override void UseStyle (Player player, Rectangle heldItemFrame) {
 			if (player.whoAmI == Main.myPlayer && player.itemTime == 0)
 				player.AddBuff(Item.buffType, 3600);
 		}

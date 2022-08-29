@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Consolaria.Common;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
@@ -12,6 +13,8 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
             int width = 30; int height = 50;
             Projectile.Size = new Vector2(width, height);
 
+            DrawOffsetX -= 10;
+
             base.SetDefaults();
         }
 
@@ -19,10 +22,11 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
             Player player = Main.player [Projectile.owner];
             if (!player.dead && player.HasBuff(ModContent.BuffType<Buffs.Leprechaun>()))
                 Projectile.timeLeft = 2;
-
+          
             WalkerAI();
+            PassiveAnimation(idleFrame: 0, jumpFrame: 3);
             int finalFrame = maxFrames - 1;
-            WalkingAnimation(3, 0, finalFrame);
+            WalkingAnimation(walkingAnimationSpeed: 3, walkingFirstFrame: 0, finalFrame);
             FlyingAnimation(oneFrame: true);
 
             Projectile.localAI [0]++;

@@ -21,8 +21,6 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
 			Projectile.timeLeft *= 5;
 
 			Projectile.tileCollide = true;
-
-			Projectile.velocity.Y = -5;
 		}
 
 		public override bool TileCollideStyle (ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac) {
@@ -39,14 +37,15 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
 
 		public void WalkerAI () {
 			Player player = Main.player [Projectile.owner];
+			if (Projectile.ai [0] == 0f) {
+				Projectile.ai [0] = 1f;
+				Projectile.Center = player.Center - new Vector2(0f, 25f);
+			}
 			if (!isFlying) {
                 Projectile.rotation = 0f;
 				float playerDistance = (player.Center - Projectile.Center).Length();
 				if (Projectile.velocity.Y == 0f && (CheckHole() || (playerDistance > 110f && Projectile.position.X == Projectile.oldPosition.X))) {
                     Projectile.velocity.Y = -5f;
-
-					Projectile.frame = 1;
-					Projectile.frameCounter = 0;
 				}
 				Projectile checkProjectile1 = Projectile;
 				checkProjectile1.velocity.Y += 0.35f; // falling speed
@@ -89,7 +88,11 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
 					}
 				}
 				if (Projectile.position.X == Projectile.oldPosition.X && Projectile.position.Y == Projectile.oldPosition.Y && Projectile.velocity.X == 0f) {
-                    Projectile.frame = 0;
+                    Projectile.frame = idleFrame;
+				}
+				else if (Projectile.velocity.Y > 0.3f && Projectile.position.Y != Projectile.oldPosition.Y) {
+					Projectile.frame = jumpFrame;
+					Projectile.frameCounter = 0;
 				}
 				else {
 					Projectile.frameCounter++;
@@ -197,6 +200,13 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
 			}
 		}
 
+		private int idleFrame, jumpFrame;
+
+		public void PassiveAnimation (int idleFrame, int jumpFrame) {
+			this.idleFrame = idleFrame;
+			this.jumpFrame = jumpFrame;
+		}
+
 		private int walkingAnimationSpeed,  walkingFirstFrame,  walkingLastFrame;
 
 		public void WalkingAnimation (int walkingAnimationSpeed, int walkingFirstFrame, int walkingLastFrame) {
@@ -212,15 +222,6 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
 			this.flyingAnimationSpeed = flyingAnimationSpeed;
 			this.flyingFirstFrame = flyingFirstFrame;
 			this.flyingLastFrame = flyingLastFrame;		
-		}
-
-		public void Spawn()
-		{
-			if (Projectile.ai[0] == 0f)
-			{
-				Projectile.ai[0] = 1f;
-				Projectile.Center = Main.player[Projectile.owner].Center - new Vector2(0f, 25f);
-			}
 		}
 
 		public void FlyingAnimation (bool oneFrame) {

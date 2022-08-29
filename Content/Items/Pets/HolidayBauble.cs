@@ -1,6 +1,5 @@
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -8,9 +7,7 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Items.Pets {
 	public class HolidayBauble : ModItem {
 		public override void SetStaticDefaults () {
-			DisplayName.SetDefault("Holiday Bauble");
 			Tooltip.SetDefault("Summons a pet Elfa");
-
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
 		}
 
@@ -24,9 +21,9 @@ namespace Consolaria.Content.Items.Pets {
 			Item.value = Item.sellPrice(gold: 1);
 		}
 
-		public override bool Shoot (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
-			player.AddBuff(Item.buffType, 2);
-			return false;
+		public override void UseStyle (Player player, Rectangle heldItemFrame) {
+			if (player.whoAmI == Main.myPlayer && player.itemTime == 0)
+				player.AddBuff(Item.buffType, 3600);
 		}
 	}
 }

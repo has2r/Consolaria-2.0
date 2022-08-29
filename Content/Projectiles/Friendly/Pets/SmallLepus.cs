@@ -4,20 +4,19 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Consolaria.Content.Projectiles.Friendly.Pets
-{
-    public class SmallLepus : ModProjectile
-    {
+namespace Consolaria.Content.Projectiles.Friendly.Pets {
+    public class SmallLepus : ModProjectile {
         private float rotationSpeed;
         private bool isFlying;
-        public override void SetStaticDefaults() {
+
+        public override void SetStaticDefaults () {
             DisplayName.SetDefault("Baby Lepus");
 
-            Main.projFrames[Projectile.type] = 5;
-            Main.projPet[Projectile.type] = true;
+            Main.projFrames [Projectile.type] = 5;
+            Main.projPet [Projectile.type] = true;
         }
 
-        public override void SetDefaults() {
+        public override void SetDefaults () {
             int width = 36; int height = 36;
             Projectile.Size = new Vector2(width, height);
 
@@ -31,13 +30,13 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets
             Projectile.timeLeft *= 5;
         }
 
-        public override bool PreAI() {
-            Main.player[Projectile.owner].petFlagKingSlimePet = false;
+        public override bool PreAI () {
+            Main.player [Projectile.owner].petFlagKingSlimePet = false;
             return true;
         }
 
-        public override void AI() {  
-            Player player = Main.player[Projectile.owner];
+        public override void AI () {
+            Player player = Main.player [Projectile.owner];
             if (!player.dead && player.HasBuff(ModContent.BuffType<Buffs.SmallLepus>()))
                 Projectile.timeLeft = 2;
 
@@ -47,8 +46,10 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets
             Projectile.localAI [0]++;
             Projectile.frameCounter = 0;
             Projectile.frame = 8;
+
             if (Projectile.localAI [0] == (60 * Main.rand.Next(6, 15)) && !isFlying) {
-                Gore.NewGore(Projectile.GetSource_FromAI(), new Vector2(Projectile.position.X, Projectile.Center.Y), Vector2.Zero, ModContent.Find<ModGore>("Consolaria/EasterEggFullGore").Type);
+                if (Main.netMode != NetmodeID.Server)
+                    Gore.NewGore(Projectile.GetSource_FromAI(), new Vector2(Projectile.position.X, Projectile.Center.Y), Vector2.Zero, ModContent.Find<ModGore>("Consolaria/EasterEggFullGore").Type);
                 Projectile.localAI [0] = 0;
             }
 
@@ -64,10 +65,8 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets
         private int texFrameCounter;
         private int texCurrentFrame;
 
-        public override bool PreDraw(ref Color lightColor) {
-            SpriteBatch spriteBatch = Main.spriteBatch;
-            Texture2D texture = (Texture2D)ModContent.Request<Texture2D>(Texture);
-
+        public override bool PreDraw (ref Color lightColor) {
+            Texture2D texture = (Texture2D) ModContent.Request<Texture2D>(Texture);
             bool fuckingGround = Projectile.velocity.X == 0f;
             texFrameCounter++;
             if (isFlying) {
@@ -80,13 +79,13 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets
                 if (texCurrentFrame >= (fuckingGround ? 2 : 4))
                     texCurrentFrame = 0;
             }
-            
+
             Vector2 position = new Vector2(Projectile.Center.X, Projectile.Center.Y) - Main.screenPosition;
             Vector2 drawOrigin = new Vector2(texture.Width * 0.5f, Projectile.height * 0.5f);
             var spriteEffects = Projectile.direction > 0 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-            int frameHeight = texture.Height / Main.projFrames[Projectile.type];
+            int frameHeight = texture.Height / Main.projFrames [Projectile.type];
             Rectangle frameRect = new Rectangle(0, texCurrentFrame * frameHeight, texture.Width, frameHeight);
-            spriteBatch.Draw(texture, position, frameRect, lightColor, rotationSpeed, drawOrigin, Projectile.scale, spriteEffects, 0f);
+            Main.EntitySpriteDraw(texture, position, frameRect, lightColor, rotationSpeed, drawOrigin, Projectile.scale, spriteEffects, 0);
             return false;
         }
     }

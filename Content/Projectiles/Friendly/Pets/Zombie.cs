@@ -1,50 +1,30 @@
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Consolaria.Content.Projectiles.Friendly.Pets
-{
-	public class Zombie : ModProjectile
-	{
-        public override void SetStaticDefaults() {
-            Main.projFrames[Projectile.type] = 3;
-            Main.projPet[Projectile.type] = true;
-        }
-        
-        public override void SetDefaults() {
-            Projectile.CloneDefaults(ProjectileID.Penguin);                      
-            AIType = ProjectileID.Penguin;
+namespace Consolaria.Content.Projectiles.Friendly.Pets {
+    public class Zombie : ConsolariaPet {
+        public override int maxFrames => 7;
 
-            int width = 34; int height = 44;
+        public override void SetDefaults () {
+            int width = 26; int height = 52;
             Projectile.Size = new Vector2(width, height);
+
+            DrawOffsetX -= 20;
+
+            base.SetDefaults();
         }
 
-        public override bool PreAI() {
-            Main.player[Projectile.owner].penguin = false;
-            return true;
-        }
-
-        public override void AI() {
-            Player player = Main.player[Projectile.owner];
+        public override void AI () {
+            Player player = Main.player [Projectile.owner];
             if (!player.dead && player.HasBuff(ModContent.BuffType<Buffs.Zombie>()))
                 Projectile.timeLeft = 2;
 
-            if (Projectile.localAI[0] >= 800f)Projectile.localAI[0] = 0f;
-            
-            if (Vector2.Distance(player.Center, Projectile.Center) > 500f) {
-                Projectile.position.X = player.position.X;
-                Projectile.position.Y = player.position.Y;
-            }
-
-            Projectile.frameCounter++;
-            if (Projectile.frameCounter > 9) {
-                Projectile.frame++;
-                Projectile.frameCounter = 0;
-            }
-            if (Projectile.frame > Main.projFrames [Projectile.type]) {
-                Projectile.frame = 0;
-            }
+            WalkerAI();
+            PassiveAnimation(idleFrame: 0, jumpFrame: 2);
+            WalkingAnimation(walkingAnimationSpeed: 3, walkingFirstFrame: 0, walkingLastFrame: 2);
+            int finalFrame = maxFrames - 1;
+            FlyingAnimation(flyingAnimationSpeed: 4, flyingFirstFrame: 3, finalFrame);
         }
     }
 }

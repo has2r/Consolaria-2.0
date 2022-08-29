@@ -8,8 +8,10 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
         public override int maxFrames => 20;
 
         public override void SetDefaults () {
-            int width = 34; int height = 52;
+            int width = 30; int height = 52;
             Projectile.Size = new Vector2(width, height);
+
+            DrawOffsetX -= 10;
 
             base.SetDefaults();
         }
@@ -19,11 +21,11 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
             if (!player.dead && player.HasBuff(ModContent.BuffType<Buffs.Werewolf>()))
                 Projectile.timeLeft = 2;
 
-            Spawn();
             WalkerAI();
-            WalkingAnimation(2, 2, 15);
+            PassiveAnimation(idleFrame: 0, jumpFrame: 1);
+            WalkingAnimation(walkingAnimationSpeed: 2, walkingFirstFrame: 2, walkingLastFrame: 15);
             int finalFrame = maxFrames - 1;
-            FlyingAnimation(4, 16, finalFrame);
+            FlyingAnimation(flyingAnimationSpeed: 4, flyingFirstFrame: 16, finalFrame);
 
             double rotation = (Math.PI / 2) * player.velocity.X * 0.08f;
             if (isFlying)

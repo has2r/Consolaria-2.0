@@ -55,9 +55,10 @@ namespace Consolaria.Content.Items.Miscellaneous
 				List<int> buffIDS = new List<int>();
 				for (int i = 0; i < player.buffType.Length; i++)
 				{
-					if (!Main.debuff[player.buffType[i]] && !Main.buffNoTimeDisplay[player.buffType[i]] && !Main.vanityPet[player.buffType[i]])
+					int type = player.buffType[i];
+					if (!Main.debuff[type] && !Main.buffNoTimeDisplay[type] && !Main.vanityPet[type] && type != 206 && type != 207 && type != 26)
 					{
-						buffIDS.Add(player.FindBuffIndex(player.buffType[i]));
+						buffIDS.Add(player.FindBuffIndex(type));
 					}
 				}
 				int sum = 0;

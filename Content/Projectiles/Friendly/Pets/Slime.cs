@@ -46,7 +46,7 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
 
             if (choosenBalloon == 0)
 			{
-                choosenBalloon = Main.rand.NextFromList(2, 3, 4, 5, 6);
+                choosenBalloon = Main.rand.NextFromList(1, 2, 3, 4, 5, 6);
             }
 
             Projectile.frameCounter = 0;

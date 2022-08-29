@@ -6,6 +6,7 @@ using ReLogic.Content;
 using System;
 using Terraria;
 using Terraria.Audio;
+using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -93,18 +94,33 @@ namespace Consolaria.Content.Items.Armor.Ranged {
     internal class TitanArmorBonuses : GlobalItem {
         public override bool? UseItem (Item item, Player player) {
             TitanPlayer modPlayer = player.GetModPlayer<TitanPlayer>();
-            ushort type = (ushort) ModContent.ProjectileType<TitanShockwawe>();
+            ushort type = (ushort) ModContent.ProjectileType<TitanBlast>();
 
             if (modPlayer.titanPower && player.ownedProjectileCounts [type] < 1 && item.DamageType == DamageClass.Ranged &&
                 modPlayer.shockwaveTimer == 0) {
                 Projectile.NewProjectile(player.GetSource_ItemUse(item), player.Center, new Vector2(0, 0), type, 80, 7.5f, player.whoAmI);
-                SoundEngine.PlaySound(new SoundStyle($"{nameof(Consolaria)}/Assets/Sounds/Shockwave") { Volume = 0.8f }, player.position);
+                //SoundEngine.PlaySound(new SoundStyle($"{nameof(Consolaria)}/Assets/Sounds/Shockwave") { Volume = 0.8f }, player.position);
                 modPlayer.shockwaveTimer = modPlayer.shockwaveTimerLimit;
             }
             return null;
         }
 
-        public override bool CanConsumeAmmo (Item weapon, Item ammo, Player player) {
+		public override bool Shoot(Item item, Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+		{
+            TitanPlayer modPlayer = player.GetModPlayer<TitanPlayer>();
+            ushort type2 = (ushort)ModContent.ProjectileType<TitanBlast>();
+
+            if (modPlayer.titanPower && player.ownedProjectileCounts[type2] < 1 && item.DamageType == DamageClass.Ranged &&
+                modPlayer.shockwaveTimer == 0)
+            {
+                Projectile.NewProjectile(player.GetSource_ItemUse(item), player.Center, velocity, type2, damage * 10, 7.5f, player.whoAmI);
+                //SoundEngine.PlaySound(new SoundStyle($"{nameof(Consolaria)}/Assets/Sounds/Shockwave") { Volume = 0.8f }, player.position);
+                modPlayer.shockwaveTimer = modPlayer.shockwaveTimerLimit;
+            }
+            return base.Shoot(item, player, source, position, velocity, type, damage, knockback);
+		}
+
+		public override bool CanConsumeAmmo (Item weapon, Item ammo, Player player) {
             float dontConsumeAmmoChance = 0f;
             if (weapon.useAmmo >= 0) {
                 if (player.armor [0].type == ModContent.ItemType<TitanHelmet>() || player.armor [0].type == ModContent.ItemType<AncientTitanHelmet>())

@@ -97,19 +97,6 @@ namespace Consolaria.Content.Items.Armor.Ranged {
     }
           
     internal class TitanArmorBonuses : GlobalItem {
-        public override bool? UseItem (Item item, Player player) {
-            TitanPlayer modPlayer = player.GetModPlayer<TitanPlayer>();
-            ushort type = (ushort) ModContent.ProjectileType<TitanBlast>();
-
-            if (modPlayer.titanPower && player.ownedProjectileCounts [type] < 1 && item.DamageType == DamageClass.Ranged &&
-                modPlayer.shockwaveTimer == 0) {
-                SoundEngine.PlaySound(SoundID.DD2_ExplosiveTrapExplode, player.Center);
-                Projectile.NewProjectile(player.GetSource_ItemUse(item), player.Center, new Vector2(0, 0), type, 80, 7.5f, player.whoAmI);
-                //SoundEngine.PlaySound(new SoundStyle($"{nameof(Consolaria)}/Assets/Sounds/Shockwave") { Volume = 0.8f }, player.position);
-                modPlayer.shockwaveTimer = modPlayer.shockwaveTimerLimit;
-            }
-            return null;
-        }
 
 		public override bool Shoot(Item item, Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
 		{
@@ -119,6 +106,7 @@ namespace Consolaria.Content.Items.Armor.Ranged {
             if (modPlayer.titanPower && player.ownedProjectileCounts[type2] < 1 && item.DamageType == DamageClass.Ranged &&
                 modPlayer.shockwaveTimer == 0)
             {
+                SoundEngine.PlaySound(SoundID.DD2_ExplosiveTrapExplode, player.Center);
                 Projectile.NewProjectile(player.GetSource_ItemUse(item), player.Center, velocity, type2, damage * 10, 7.5f, player.whoAmI);
                 //SoundEngine.PlaySound(new SoundStyle($"{nameof(Consolaria)}/Assets/Sounds/Shockwave") { Volume = 0.8f }, player.position);
                 modPlayer.shockwaveTimer = modPlayer.shockwaveTimerLimit;

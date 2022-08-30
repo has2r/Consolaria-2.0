@@ -236,10 +236,24 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 			Main.dust [dust].velocity *= 0.2f;
 
 			NPC.TargetClosest(true);
-			if (player.dead) {
-				NPC.life = 0;
-				NPC.HitEffect(0, 10.0);
-				NPC.active = false;
+			int target = NPC.target;
+			bool flag = target < 0 || target == 255;
+			player = Main.player[target];
+			if (player.dead || flag)
+			{
+				NPC.TargetClosest();
+				player = Main.player[NPC.target];
+				if (player.dead || flag)
+				{
+					NPC.life = 0;
+					NPC.HitEffect(0, 10.0);
+					NPC.active = false;
+					if (Main.netMode == NetmodeID.Server)
+					{
+						NetMessage.SendData(MessageID.DamageNPC, -1, -1, null, NPC.whoAmI, -1f, 0f, 0f, 0, 0, 0);
+					}
+					return;
+				}
 			}
 
 			bool isNotMpClient = (Main.netMode != NetmodeID.MultiplayerClient);

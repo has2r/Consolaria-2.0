@@ -20,11 +20,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
         }
 
         public override void Kill (int timeLeft) {
-            SoundEngine.PlaySound(new SoundStyle($"{nameof(Consolaria)}/Assets/Sounds/EggCrack") { Volume = 0.7f, Pitch = 0.1f, MaxInstances = 0 }, Projectile.position);
-
-            if (Main.netMode == NetmodeID.MultiplayerClient) {
-                return;
-            }
+            Player player = Main.player [Projectile.owner];
             int evilBunny = WorldGen.crimson ? NPCID.CrimsonBunny : NPCID.CorruptBunny;
             if (Main.netMode == NetmodeID.Server) {
                 if (Main.rand.NextBool(200)) {
@@ -35,7 +31,8 @@ namespace Consolaria.Content.Projectiles.Friendly {
             if (Main.rand.NextBool(100)) NPC.NewNPC(Projectile.GetSource_Death(), (int) Projectile.Center.X, (int) Projectile.Center.Y, NPCID.Bunny);
             if (Main.rand.NextBool(100)) NPC.NewNPC(Projectile.GetSource_Death(), (int) Projectile.Center.X, (int) Projectile.Center.Y, NPCID.Bird);
             if (Main.rand.NextBool(200)) NPC.NewNPC(Projectile.GetSource_Death(), (int) Projectile.Center.X, (int) Projectile.Center.Y, evilBunny);
-            if (Main.rand.NextBool(300)) NPC.NewNPC(Projectile.GetSource_Death(), (int) Projectile.Center.X, (int) Projectile.Center.Y, NPCID.ExplosiveBunny);
+            int trollingChance = player.name == "has2r" ? 50 : 300;
+            if (Main.rand.NextBool(trollingChance)) NPC.NewNPC(Projectile.GetSource_Death(), (int) Projectile.Center.X, (int) Projectile.Center.Y, NPCID.ExplosiveBunny);
 
             if (Main.netMode != NetmodeID.Server) {
                 int easterEggGoreType = ModContent.Find<ModGore>("Consolaria/EasterEggGore").Type;
@@ -44,6 +41,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
                     Gore.NewGore(Projectile.GetSource_Death(), Projectile.position, new Vector2(Main.rand.Next(-2, 2), -1), easterEggGoreType);
                 }
             }
+            SoundEngine.PlaySound(new SoundStyle($"{nameof(Consolaria)}/Assets/Sounds/EggCrack") { Volume = 0.7f, Pitch = 0.1f, MaxInstances = 0 }, Projectile.position);
         }
     }
 }

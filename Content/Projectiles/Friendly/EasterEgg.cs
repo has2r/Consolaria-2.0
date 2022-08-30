@@ -22,10 +22,20 @@ namespace Consolaria.Content.Projectiles.Friendly {
         public override void Kill (int timeLeft) {
             SoundEngine.PlaySound(new SoundStyle($"{nameof(Consolaria)}/Assets/Sounds/EggCrack") { Volume = 0.7f, Pitch = 0.1f, MaxInstances = 0 }, Projectile.position);
 
+            if (Main.netMode == NetmodeID.MultiplayerClient) {
+                return;
+            }
+            int evilBunny = WorldGen.crimson ? NPCID.CrimsonBunny : NPCID.CorruptBunny;
+            if (Main.netMode == NetmodeID.Server) {
+                if (Main.rand.NextBool(200)) {
+                    int index = NPC.NewNPC(Projectile.GetSource_Death(), (int) Projectile.Center.X, (int) Projectile.Center.Y, evilBunny);
+                    NetMessage.SendData(MessageID.SyncNPC, number: index);
+                }
+            }
             if (Main.rand.NextBool(100)) NPC.NewNPC(Projectile.GetSource_Death(), (int) Projectile.Center.X, (int) Projectile.Center.Y, NPCID.Bunny);
             if (Main.rand.NextBool(100)) NPC.NewNPC(Projectile.GetSource_Death(), (int) Projectile.Center.X, (int) Projectile.Center.Y, NPCID.Bird);
-            if (Main.rand.NextBool(150)) NPC.NewNPC(Projectile.GetSource_Death(), (int) Projectile.Center.X, (int) Projectile.Center.Y, NPCID.CorruptBunny);
-            if (Main.rand.NextBool(150)) NPC.NewNPC(Projectile.GetSource_Death(), (int) Projectile.Center.X, (int) Projectile.Center.Y, NPCID.CrimsonBunny);
+            if (Main.rand.NextBool(200)) NPC.NewNPC(Projectile.GetSource_Death(), (int) Projectile.Center.X, (int) Projectile.Center.Y, evilBunny);
+            if (Main.rand.NextBool(300)) NPC.NewNPC(Projectile.GetSource_Death(), (int) Projectile.Center.X, (int) Projectile.Center.Y, NPCID.ExplosiveBunny);
 
             if (Main.netMode != NetmodeID.Server) {
                 int easterEggGoreType = ModContent.Find<ModGore>("Consolaria/EasterEggGore").Type;

@@ -1,21 +1,16 @@
 using Consolaria.Content.Items.Armor.Misc;
-using Consolaria.Content.Items.Miscellaneous;
-using Consolaria.Content.Items.Summons;
 using Consolaria.Content.Items.Weapons.Ranged;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.GameContent.Creative;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.Items.BossDrops.Lepus {
     public class LepusBag : ModItem {
-
-        [System.Obsolete]
-        public override int BossBagNPC => ModContent.NPCType<NPCs.Bosses.Lepus.Lepus>();
-
         public override void SetStaticDefaults () {
             DisplayName.SetDefault("Treasure Bag (Lepus)");
             Tooltip.SetDefault("{$CommonItemTooltip.RightClickToOpen}");
@@ -38,25 +33,16 @@ namespace Consolaria.Content.Items.BossDrops.Lepus {
         }
 
         public override bool CanRightClick ()
-         => true;
+            => true;
 
-        [System.Obsolete]
-        public override void OpenBossBag (Player player) {
-            int armorDrop = Main.rand.Next(3);
-            if (armorDrop == 0) player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<OstaraHat>());
-            if (armorDrop == 1) player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<OstaraJacket>());
-            if (armorDrop == 2) player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<OstaraBoots>());
+        public override void ModifyItemLoot (ItemLoot itemLoot) {
+            itemLoot.Add(new OneFromRulesRule(1, ItemDropRule.Common(ModContent.ItemType<OstaraHat>()), ItemDropRule.Common(ModContent.ItemType<OstaraJacket>()), ItemDropRule.Common(ModContent.ItemType<OstaraBoots>())));
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<EggCannon>(), 2));
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<LepusMask>(), 8));
+            itemLoot.Add(ItemDropRule.Common(ItemID.BunnyHood, 10));
 
-            if (Main.rand.NextBool(2))
-                player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<EggCannon>());
-            if (Main.rand.NextBool(8))
-                player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<LepusMask>());
-            if (Main.rand.NextBool(10))
-                player.QuickSpawnItem(player.GetSource_OpenItem(Type), ItemID.BunnyHood);
-
-            player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<SuspiciousLookingEgg>());
-            player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<OstarasGift>());
-            player.QuickSpawnItem(player.GetSource_OpenItem(Type), ItemID.GoldCoin, 3);
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<OstarasGift>()));
+            itemLoot.Add(ItemDropRule.CoinsBasedOnNPCValue(ModContent.NPCType<NPCs.Bosses.Lepus.Lepus>()));
         }
 
         public override Color? GetAlpha (Color lightColor)

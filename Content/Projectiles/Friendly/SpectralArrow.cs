@@ -36,7 +36,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
         }
 
         public override void AI ()
-            => Projectile.velocity *= 0.98f;
+            => Projectile.velocity *= 0.99f;
 
         public override void OnHitNPC (NPC target, int damage, float knockback, bool crit)
             => hitCounter++;

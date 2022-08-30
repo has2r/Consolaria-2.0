@@ -7,15 +7,12 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.GameContent.Creative;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.Items.BossDrops.Turkor {
     public class TurkorBag : ModItem {
-
-        [System.Obsolete]
-        public override int BossBagNPC => ModContent.NPCType<NPCs.Bosses.Turkor.TurkortheUngrateful>();
-
         public override void SetStaticDefaults () {
             DisplayName.SetDefault("Treasure Bag (Turkor the Ungrateful)");
             Tooltip.SetDefault("{$CommonItemTooltip.RightClickToOpen}");
@@ -40,18 +37,15 @@ namespace Consolaria.Content.Items.BossDrops.Turkor {
         public override bool CanRightClick ()
             => true;
 
-        [System.Obsolete]
-        public override void OpenBossBag (Player player) {
-            int mainDrops = Main.rand.Next(4);
-            if (mainDrops == 0) player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<FeatherStorm>());
-            if (mainDrops == 1) player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<GreatDrumstick>());
-            if (mainDrops == 2) player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<TurkeyStuff>());
-            if (mainDrops == 3) player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<SpicySauce>(), Main.rand.Next(20, 39));
+        public override void ModifyItemLoot (ItemLoot itemLoot) {
+            itemLoot.Add(new OneFromRulesRule(1, ItemDropRule.Common(ModContent.ItemType<FeatherStorm>()),
+                ItemDropRule.Common(ModContent.ItemType<GreatDrumstick>()),
+                ItemDropRule.Common(ModContent.ItemType<TurkeyStuff>()),
+                ItemDropRule.Common(ModContent.ItemType<SpicySauce>(), 1, 20, 39)));
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<TurkorMask>(), 8));
 
-            if (Main.rand.NextBool(10)) player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<TurkorMask>());
-
-            player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<HornoPlenty>());
-            player.QuickSpawnItem(player.GetSource_OpenItem(Type), ItemID.GoldCoin, 8);
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<HornoPlenty>()));
+            itemLoot.Add(ItemDropRule.CoinsBasedOnNPCValue(ModContent.NPCType<NPCs.Bosses.Turkor.TurkortheUngrateful>()));
         }
 
         public override Color? GetAlpha (Color lightColor)

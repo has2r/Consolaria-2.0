@@ -31,7 +31,7 @@ namespace Consolaria.Content.Items.Miscellaneous
 			Item.UseSound = SoundID.Item2;
 			Item.useTurn = true;
 			Item.buffType = 206;
-			Item.buffTime = 7200;
+			Item.buffTime = 3600 * 5;
 			Item.maxStack = 20;
 			Item.width = 18;
 			Item.height = 28;

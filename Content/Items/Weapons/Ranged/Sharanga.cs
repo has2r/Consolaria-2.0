@@ -17,8 +17,8 @@ namespace Consolaria.Content.Items.Weapons.Ranged {
 			int width = 20; int height = 46;
 			Item.Size = new Vector2(width, height);
 
-			Item.damage = 36;
-			Item.knockBack = 1.5f;
+			Item.damage = 32;
+			Item.knockBack = 1.75f;
 			Item.DamageType = DamageClass.Ranged;
 
 			Item.useStyle = ItemUseStyleID.Shoot;
@@ -26,7 +26,7 @@ namespace Consolaria.Content.Items.Weapons.Ranged {
 
 			Item.useAmmo = AmmoID.Arrow;
 			Item.shoot = ProjectileID.WoodenArrowFriendly;
-			Item.shootSpeed = 10f;
+			Item.shootSpeed = 12f;
 
 			Item.value = Item.sellPrice(gold: 1, silver: 5);
 			Item.rare = ItemRarityID.Orange;

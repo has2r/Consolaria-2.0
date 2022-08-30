@@ -25,7 +25,7 @@ namespace Consolaria.Content.Items.Weapons.Ranged {
 			Item.noMelee = true;
 
 			Item.useStyle = ItemUseStyleID.Shoot;
-			Item.useAnimation = Item.useTime = 22;
+			Item.useAnimation = Item.useTime = 24;
 
 			Item.UseSound = SoundID.Item11;
 			Item.autoReuse = true;
@@ -35,16 +35,15 @@ namespace Consolaria.Content.Items.Weapons.Ranged {
 
 
 			Item.shoot = ModContent.ProjectileType<EasterEgg>();
-			Item.shootSpeed = 8f;
+			Item.shootSpeed = 10f;
 		}
 
 		public override Vector2? HoldoutOffset ()
-		 => new Vector2(-5, 0);
+			=> new Vector2(-5, 0);
 
 		public override void ModifyShootStats (Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback) {
 			Vector2 _velocity = Utils.SafeNormalize(new Vector2(velocity.X, velocity.Y), Vector2.Zero);
-			position += _velocity * 50;
-			position += new Vector2(-_velocity.Y, _velocity.X) * (1f * player.direction);
+			position += new Vector2(-_velocity.Y, _velocity.X) * (1.5f * player.direction);
 		}
 	}
 }

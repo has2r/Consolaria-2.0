@@ -8,15 +8,12 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.GameContent.Creative;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.Items.BossDrops.Ocram {
     public class OcramBag : ModItem {
-
-        [System.Obsolete]
-        public override int BossBagNPC => ModContent.NPCType<NPCs.Bosses.Ocram.Ocram>();
-
         public override void SetStaticDefaults () {
             DisplayName.SetDefault("Treasure Bag (Ocram)");
             Tooltip.SetDefault("{$CommonItemTooltip.RightClickToOpen}");
@@ -39,20 +36,17 @@ namespace Consolaria.Content.Items.BossDrops.Ocram {
         public override bool CanRightClick ()
             => true;
 
-        [System.Obsolete]
-        public override void OpenBossBag (Player player) {
-            int mainDrops = Main.rand.Next(4);
-            if (mainDrops == 0) player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<EternityStaff>());
-            if (mainDrops == 1) player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<DragonBreath>());
-            if (mainDrops == 2) player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<OcramsEye>());
-            if (mainDrops == 3) player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<Tizona>());
+        public override void ModifyItemLoot (ItemLoot itemLoot) {
+            itemLoot.Add(new OneFromRulesRule(1, ItemDropRule.Common(ModContent.ItemType<EternityStaff>()),
+                ItemDropRule.Common(ModContent.ItemType<DragonBreath>()),
+                ItemDropRule.Common(ModContent.ItemType<OcramsEye>()),
+                ItemDropRule.Common(ModContent.ItemType<Tizona>())));
 
-            if (Main.rand.NextBool(8))
-                player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<OcramMask>());
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<OcramMask>(), 8));
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<SoulofBlight>(), 1, 25, 40));
 
-            player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<SoulofBlight>(), Main.rand.Next(25, 40));
-            player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<ShadowboundExoskeleton>());
-            player.QuickSpawnItem(player.GetSource_OpenItem(Type), ItemID.GoldCoin, 15);
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<ShadowboundExoskeleton>()));
+            itemLoot.Add(ItemDropRule.CoinsBasedOnNPCValue(ModContent.NPCType<NPCs.Bosses.Ocram.Ocram>()));
         }
 
         public override Color? GetAlpha (Color lightColor)

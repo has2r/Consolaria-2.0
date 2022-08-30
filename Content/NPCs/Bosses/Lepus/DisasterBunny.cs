@@ -70,7 +70,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
         public override void ModifyNPCLoot (NPCLoot npcLoot) {
             LepusDropCondition2 lepusDropCondition = new();
             IItemDropRule conditionalRule = new LeadingConditionRule(lepusDropCondition);
-            conditionalRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<SuspiciousLookingEgg>(), 5));
+            conditionalRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<SuspiciousLookingEgg>(), 4));
             LepusDropCondition1 lepusDropCondition2 = new();
             IItemDropRule conditionalRule2 = new LeadingConditionRule(lepusDropCondition2);
             conditionalRule2.OnSuccess(ItemDropRule.Common(ModContent.ItemType<GoldenCarrot>(), 4));

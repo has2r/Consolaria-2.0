@@ -27,7 +27,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
             Projectile.penetrate = 5;
 
             Projectile.alpha = byte.MaxValue;
-            Projectile.light = 0.2f;
+            Projectile.light = 0.1f;
 
             Projectile.tileCollide = false;
             Projectile.friendly = true;
@@ -36,7 +36,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
         }
 
         public override void AI ()
-            => Projectile.velocity *= 0.99f;
+            => Projectile.velocity *= 0.975f;
 
         public override void OnHitNPC (NPC target, int damage, float knockback, bool crit)
             => hitCounter++;

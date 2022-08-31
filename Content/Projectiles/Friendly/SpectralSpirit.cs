@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 using Terraria.ID;
@@ -7,6 +8,11 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Projectiles.Friendly {
     public class SpectralSpirit : ModProjectile {
         public override string Texture => "Consolaria/Assets/Textures/Empty";
+
+        public override void SetStaticDefaults () {
+            ProjectileID.Sets.TrailCacheLength [Projectile.type] = 14;
+            ProjectileID.Sets.TrailingMode [Projectile.type] = 1;
+        }
 
         public override void SetDefaults () {
             int width = 8; int height = width;
@@ -20,34 +26,14 @@ namespace Consolaria.Content.Projectiles.Friendly {
 
             Projectile.tileCollide = false;
             Projectile.extraUpdates = 1;
+
+            Projectile.scale = 0.8f;
         }
 
         public override void AI () {
-            if (Main.netMode != NetmodeID.Server) {
-                for (int dustCount = 0; dustCount < 3; ++dustCount) {
-                    float dustVelX = Projectile.velocity.X / 4f * dustCount;
-                    float dustVelY = Projectile.velocity.Y / 3f * dustCount;
-
-                    int dust_ = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.GoldFlame, 0f, 0f, 0, default, 1.5f);
-                    Main.dust [dust_].position.X = Projectile.Center.X - dustVelX;
-                    Main.dust [dust_].position.Y = Projectile.Center.Y - dustVelY;
-                    Main.dust [dust_].velocity *= 0.0f;
-                    Main.dust [dust_].noGravity = true;
-                    Main.dust [dust_].noLight = true;
-
-                    if (Main.rand.NextBool(2)) {
-                        int dust2_ = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Shadowflame, 0f, 0f, 100, new Color(255, 255, 255, 200), 1.35f);
-                        Main.dust [dust2_].position.X = Projectile.Center.X - dustVelX;
-                        Main.dust [dust2_].position.Y = Projectile.Center.Y - dustVelY;
-                        Main.dust [dust2_].velocity *= 0.0f;
-                        Main.dust [dust2_].noGravity = true;
-                    }
-                }
-            }
-
             float posX = Projectile.Center.X;
             float posY = Projectile.Center.Y;
-            float maxDetectRadius = 800f;
+            float maxDetectRadius = 1000f;
             bool flag = false;
             for (int _npc = 0; _npc < Main.maxNPCs; ++_npc) {
                 if (Main.npc [_npc].CanBeChasedBy(Projectile, false) && Projectile.Distance(Main.npc [_npc].Center) < maxDetectRadius && Collision.CanHit(Projectile.Center, 1, 1, Main.npc [_npc].Center, 1, 1)) {
@@ -79,17 +65,27 @@ namespace Consolaria.Content.Projectiles.Friendly {
 
         public override void Kill (int timeLeft) {
             if (Main.netMode != NetmodeID.Server) {
-                for (int dustCount = 12; dustCount > 0; --dustCount) {
+                for (int dustCount = 16; dustCount > 0; --dustCount) {
                     Vector2 velocity = Projectile.velocity;
-                    int dust = Dust.NewDust(Projectile.position, 2, 2, DustID.Shadowflame, 0.0f, 0.0f, 100, new Color(255, 255, 255, 200), 1.5f);
-                    Main.dust [dust].velocity = velocity.RotatedBy(15 * (dustCount + 2), new Vector2());
-                    Main.dust [dust].noGravity = true;
                     if (Main.rand.NextBool(2)) {
-                        int dust2 = Dust.NewDust(Projectile.position, 2, 2, DustID.GoldFlame, 0.0f, 0.0f, 0, default, 2f);
-                        Main.dust [dust2].velocity = velocity.RotatedBy(15 * (dustCount + 2), new Vector2());
+                        int dust2 = Dust.NewDust(Projectile.position, 2, 2, DustID.GoldFlame, 0.0f, 0.0f, 75, default, 2.5f);
+                        Main.dust [dust2].velocity = velocity.RotatedBy(15 * (dustCount + 5), new Vector2());
                         Main.dust [dust2].noGravity = true;
                     }
                 }
+            }
+        }
+
+        public override void PostDraw (Color lightColor) {
+            SpriteBatch spriteBatch = Main.spriteBatch;
+            Texture2D texture = (Texture2D) ModContent.Request<Texture2D>("Consolaria/Assets/Textures/Projectiles/Tonbogiri_Glow");
+            Vector2 drawOrigin = new Vector2(texture.Width * 0.5f, texture.Height * 0.5f);
+            SpriteEffects effects = (Projectile.spriteDirection == -1) ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+            for (int k = 0; k < Projectile.oldPos.Length - 1; k++) {
+                Vector2 drawPos = Projectile.oldPos [k] + new Vector2(Projectile.width, Projectile.height) / 2f + Vector2.UnitY * Projectile.gfxOffY - Main.screenPosition;
+                Color color = new Color(240 - k * 5, 225 - k * 5, 60 + k * 10, 100);
+                float rotation = (float) Math.Atan2(Projectile.oldPos [k].Y - Projectile.oldPos [k + 1].Y, Projectile.oldPos [k].X - Projectile.oldPos [k + 1].X);
+                spriteBatch.Draw(texture, drawPos, null, color, rotation, drawOrigin, Projectile.scale - k / (float) Projectile.oldPos.Length, effects, 0f);
             }
         }
     }

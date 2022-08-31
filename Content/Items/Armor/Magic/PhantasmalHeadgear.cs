@@ -38,7 +38,7 @@ namespace Consolaria.Content.Items.Armor.Magic {
            => (body.type == ModContent.ItemType<PhantasmalRobe>() || body.type == ModContent.ItemType<AncientPhantasmalRobe>())
            && (legs.type == ModContent.ItemType<PhantasmalSubligar>() || legs.type == ModContent.ItemType<AncientPhantasmalSubligar>());
 
-        public override void ArmorSetShadows(Player player)
+        public override void ArmorSetShadows (Player player)
             => player.armorEffectDrawOutlines = true;
 
         public override void UpdateArmorSet (Player player) {
@@ -68,11 +68,11 @@ namespace Consolaria.Content.Items.Armor.Magic {
         public override void OnConsumeItem (Item item, Player player) {
             if (player.GetModPlayer<SpectralPlayer>().spectralGuard) {
                 int projectilesCount = Main.rand.Next(3, 6);
-                Vector2 velocity = new Vector2(0, -3);
+                Vector2 velocity = new Vector2(0, -4);
                 if (item.healMana > 0) {
                     for (int i = 0; i < projectilesCount; i++) {
-                        Vector2 position = new(player.position.X + Main.rand.Next(-60, 61), player.position.Y + Main.rand.Next(-40, 41));
-                        Projectile.NewProjectile(player.GetSource_ItemUse(item), position.X, position.Y, velocity.X, velocity.Y, ModContent.ProjectileType<SpectralSpirit>(), 80, 2.5f, player.whoAmI);
+                        Vector2 position = new Vector2(player.position.X + Main.rand.Next(-60, 61), player.position.Y + Main.rand.Next(-40, 41));
+                        Projectile.NewProjectile(player.GetSource_ItemUse(item), position.X, position.Y, velocity.X, velocity.Y + Main.rand.NextFloat(-0.5f, 0.6f), ModContent.ProjectileType<SpectralSpirit>(), 80, 2.5f, player.whoAmI);
                     }
                     SoundEngine.PlaySound(SoundID.DD2_BookStaffCast, player.Center);
                 }

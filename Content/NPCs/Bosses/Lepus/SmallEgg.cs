@@ -51,7 +51,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
             => false;
 
         public override void AI () {
-            NPC.direction = 1;
+            NPC.direction = 0;
             float maxRotation = 0.3f;
             int max = 2000;
             float current = (float) Timer / max;

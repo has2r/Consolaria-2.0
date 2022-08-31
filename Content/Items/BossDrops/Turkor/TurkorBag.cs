@@ -38,10 +38,8 @@ namespace Consolaria.Content.Items.BossDrops.Turkor {
             => true;
 
         public override void ModifyItemLoot (ItemLoot itemLoot) {
-            itemLoot.Add(new OneFromRulesRule(1, ItemDropRule.Common(ModContent.ItemType<FeatherStorm>()),
-                ItemDropRule.Common(ModContent.ItemType<GreatDrumstick>()),
-                ItemDropRule.Common(ModContent.ItemType<TurkeyStuff>()),
-                ItemDropRule.Common(ModContent.ItemType<SpicySauce>(), 1, 20, 39)));
+            itemLoot.Add(ItemDropRule.OneFromOptionsNotScalingWithLuck(1, new int [] { ModContent.ItemType<FeatherStorm>(), ModContent.ItemType<GreatDrumstick>(), ModContent.ItemType<TurkeyStuff>() }));
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<SpicySauce>(), 2, 20, 39));
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<TurkorMask>(), 8));
 
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<HornoPlenty>()));

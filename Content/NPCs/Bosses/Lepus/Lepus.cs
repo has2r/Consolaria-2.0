@@ -565,6 +565,13 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
                 NPC.Opacity += 0.01f;
                 NPC.Opacity *= 1.1f;
             }
+            float slow = Main.expertMode ? 0.895f : 0.925f;
+            NPC.velocity.X *= slow; 
+            bool zeroVelocityX = Math.Abs(NPC.velocity.X) < 0.1f;
+            if (zeroVelocityX)
+            {
+                NPC.velocity.X = 0f;
+            }
             if (!NPC.collideY && NPC.velocity.Y != 0f)
             {
                 float velocityYSpeed = Main.expertMode ? 5f : 2.5f;

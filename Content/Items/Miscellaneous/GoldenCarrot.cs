@@ -25,7 +25,7 @@ namespace Consolaria.Content.Items.Miscellaneous
 
 		public override void SetDefaults() {
 			Item.rare = ItemRarityID.Orange;
-			Item.value = Item.sellPrice(gold: 2);
+			Item.value = Item.sellPrice(silver: 10);
 			Item.useTime = Item.useAnimation = 10;
 			Item.useStyle = ItemUseStyleID.EatFood;
 			Item.UseSound = SoundID.Item2;

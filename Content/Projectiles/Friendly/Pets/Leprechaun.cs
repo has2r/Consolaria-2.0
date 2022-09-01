@@ -40,6 +40,10 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
             Projectile.localAI [0]++;
             if (Projectile.localAI [0] % 1800 == 0 && Projectile.velocity.X != 0)
                 DropRandomCoin();
+			
+			double rotation = (Math.PI / 2) * Projectile.velocity.X * 0.08f;
+            if (isFlying)
+            Projectile.rotation = (float) rotation;
         }
 
         private void DropRandomCoin () {

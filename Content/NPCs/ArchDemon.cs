@@ -101,13 +101,13 @@ namespace Consolaria.Content.NPCs {
 					vel2_ = vel_ / vel2_;
 					velX *= vel2_;
 					velY *= vel2_;
-					ushort pro = (ushort) Projectile.NewProjectile(NPC.GetSource_FromAI(), shootVector.X, shootVector.Y, velX, velY, ModContent.ProjectileType<ArchScythe>(), 52, 0f, player.whoAmI);
+					ushort pro = (ushort) Projectile.NewProjectile(NPC.GetSource_FromAI(), shootVector.X, shootVector.Y, velX, velY, ModContent.ProjectileType<ArchScythe>(), (int)(NPC.damage * 0.75f), 0f, player.whoAmI);
 					Main.projectile [pro].timeLeft = 300;
 					SoundEngine.PlaySound(SoundID.Item8, NPC.position);
 				}
 			}
 
-			else if (aiTimer % 35 == 0) {
+			else if (aiTimer % 100 == 0) {
 				int randomIdleSound = Main.rand.Next(0, 3);
 				if (randomIdleSound == 0) SoundEngine.PlaySound(SoundID.Zombie26, NPC.position);
 				if (randomIdleSound == 1) SoundEngine.PlaySound(SoundID.Zombie27, NPC.position);
@@ -138,6 +138,6 @@ namespace Consolaria.Content.NPCs {
 			=> npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ArchDemonMask>(), 15));
 
 		public override float SpawnChance (NPCSpawnInfo spawnInfo)
-			=> SpawnCondition.Underworld.Chance * 0.075f;
+			=> SpawnCondition.Underworld.Chance * 0.005f;
 	}
 }

@@ -27,7 +27,7 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
             int finalFrame = maxFrames - 1;
             FlyingAnimation(flyingAnimationSpeed: 4, flyingFirstFrame: 16, finalFrame);
 
-            double rotation = (Math.PI / 2) * player.velocity.X * 0.08f;
+            double rotation = (Math.PI / 2) * Projectile.velocity.X * 0.08f;
             if (isFlying)
             Projectile.rotation = (float) rotation;
         }

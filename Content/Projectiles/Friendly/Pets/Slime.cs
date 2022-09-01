@@ -88,7 +88,7 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
                 Rectangle rectangle = frame.GetSourceRectangle(balloon);
                 int width = balloon.Width / framesCountX;
                 rectangle.X = width * (choosenBalloon - 1);
-                spriteBatch.Draw(balloon, new Vector2(position.X, position.Y - offsetY - 62) + new Vector2(6, 4), rectangle, lightColor, 0, drawOrigin, Projectile.scale, spriteEffects, 1f);
+                spriteBatch.Draw(balloon, new Vector2(position.X, position.Y - offsetY - 62 + 14) + new Vector2(8, 4), rectangle, lightColor, 0, drawOrigin, Projectile.scale, spriteEffects, 1f);
             }
             return false;
         }

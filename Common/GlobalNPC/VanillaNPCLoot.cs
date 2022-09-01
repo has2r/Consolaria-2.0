@@ -28,16 +28,14 @@ namespace Consolaria.Common {
 				int itemType = ModContent.ItemType<SuspiciousLookingEgg>();
 				int chance = 4;
 
-				if (SeasonalEvents.enabled)
-				{
+				if (SeasonalEvents.enabled) {
 					EasterDropCondition easterDropCondition = new EasterDropCondition();
 					IItemDropRule conditionalRule = new LeadingConditionRule(easterDropCondition);
 					IItemDropRule rule = ItemDropRule.Common(itemType, chance);
 					conditionalRule.OnSuccess(rule);
 					npcLoot.Add(conditionalRule);
 				}
-				else
-				{
+				else {
 					LepusDropCondition2 easterDropCondition = new LepusDropCondition2();
 					IItemDropRule conditionalRule = new LeadingConditionRule(easterDropCondition);
 					IItemDropRule rule = ItemDropRule.Common(itemType, chance);
@@ -53,12 +51,12 @@ namespace Consolaria.Common {
 			if (npc.type == NPCID.ToxicSludge)
 				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<PetriDish>(), 25));
 			if (NPCID.Sets.Zombies [npc.type])
-				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Brain>(), 125));
+				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Brain>(), 150));
 		}
 
 		public override void ModifyGlobalLoot (GlobalLoot globalLoot) {
 			int itemType = ModContent.ItemType<RedEnvelope>();
-			int chance = 10;
+			int chance = 15;
 			if (SeasonalEvents.enabled) {
 				ChineseNewYearDropCondition chineseNewYearDropCondition = new ChineseNewYearDropCondition();
 				IItemDropRule conditionalRule = new LeadingConditionRule(chineseNewYearDropCondition);

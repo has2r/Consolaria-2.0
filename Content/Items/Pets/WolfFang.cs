@@ -5,7 +5,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.Items.Pets {
-	public class WolfFang : ModItem {
+	public class WolfFang : PetItem {
 		public override void SetStaticDefaults () {
 			Tooltip.SetDefault("Summons a pet Werewolf");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
@@ -19,11 +19,6 @@ namespace Consolaria.Content.Items.Pets {
 
 			Item.rare = ItemRarityID.Orange;
 			Item.value = Item.sellPrice(gold: 3);
-		}
-
-		public override void UseStyle (Player player, Rectangle heldItemFrame) {
-			if (player.whoAmI == Main.myPlayer && player.itemTime == 0)
-				player.AddBuff(Item.buffType, 3600);
 		}
 	}
 }

@@ -5,7 +5,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.Items.Pets {
-	public class GoldenLantern : ModItem {
+	public class GoldenLantern : PetItem {
 		public override void SetStaticDefaults () {
 			Tooltip.SetDefault("Summons a mythical wyvernling to provide light");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
@@ -19,11 +19,6 @@ namespace Consolaria.Content.Items.Pets {
 
 			Item.rare = ItemRarityID.Pink;
 			Item.value = Item.sellPrice(gold: 10);
-		}
-
-		public override void UseStyle (Player player, Rectangle heldItemFrame) {
-			if (player.whoAmI == Main.myPlayer && player.itemTime == 0)
-				player.AddBuff(Item.buffType, 3600);
 		}
 	}
 }

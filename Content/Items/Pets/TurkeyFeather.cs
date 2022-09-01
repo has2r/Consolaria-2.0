@@ -7,7 +7,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.Items.Pets {
-	public class TurkeyFeather : ModItem {
+	public class TurkeyFeather : PetItem {
 		public override void SetStaticDefaults () {
 			DisplayName.SetDefault("Turkey Feather");
 			Tooltip.SetDefault("Summons a pet turkey");

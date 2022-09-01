@@ -5,7 +5,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.Items.Pets {
-	public class HolidayBauble : ModItem {
+	public class HolidayBauble : PetItem {
 		public override void SetStaticDefaults () {
 			Tooltip.SetDefault("Summons a pet Elfa");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
@@ -19,11 +19,6 @@ namespace Consolaria.Content.Items.Pets {
 
 			Item.rare = ItemRarityID.Blue;
 			Item.value = Item.sellPrice(gold: 1);
-		}
-
-		public override void UseStyle (Player player, Rectangle heldItemFrame) {
-			if (player.whoAmI == Main.myPlayer && player.itemTime == 0)
-				player.AddBuff(Item.buffType, 3600);
 		}
 	}
 }

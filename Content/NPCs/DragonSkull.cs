@@ -111,6 +111,6 @@ namespace Consolaria.Content.NPCs {
 		}
 
 		public override float SpawnChance (NPCSpawnInfo spawnInfo)
-			=> SpawnCondition.Dungeon.Chance * 0.025f;
+			=> SpawnCondition.Dungeon.Chance * 0.005f;
 	}
 }

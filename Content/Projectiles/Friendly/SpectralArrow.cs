@@ -53,7 +53,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
                     Main.dust [dust1].velocity = Main.dust [dust1].velocity * 0.6f + Projectile.oldVelocity * 1.5f;
                 }
             }
-            SoundEngine.PlaySound(SoundID.NPCDeath6 with { Pitch = 0.2f, Volume = 0.8f }, Projectile.Center);
+            SoundEngine.PlaySound(SoundID.NPCDeath6 with { Pitch = 0.2f, Volume = 0.5f }, Projectile.Center);
         }
 
         public override bool PreDraw (ref Color lightColor) {

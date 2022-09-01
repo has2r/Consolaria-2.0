@@ -36,7 +36,7 @@ namespace Consolaria.Content.Items.Weapons.Ranged {
             Item.useStyle = ItemUseStyleID.Swing;
             Item.UseSound = SoundID.Item87;
 
-            Item.value = Item.buyPrice(silver: 15);
+            Item.value = Item.buyPrice(silver: 5);
             Item.rare = ItemRarityID.Orange;
         }
     }

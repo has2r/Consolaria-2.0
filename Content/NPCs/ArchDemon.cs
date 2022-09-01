@@ -138,6 +138,6 @@ namespace Consolaria.Content.NPCs {
 			=> npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ArchDemonMask>(), 15));
 
 		public override float SpawnChance (NPCSpawnInfo spawnInfo)
-			=> SpawnCondition.Underworld.Chance * 0.005f;
+			=> SpawnCondition.Underworld.Chance * 0.002f;
 	}
 }

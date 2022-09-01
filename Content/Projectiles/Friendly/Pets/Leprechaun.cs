@@ -34,16 +34,15 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
             WalkerAI();
             PassiveAnimation(idleFrame: 0, jumpFrame: 3);
             int finalFrame = maxFrames - 1;
-            WalkingAnimation(walkingAnimationSpeed: 3, walkingFirstFrame: 0, finalFrame);
+            WalkingAnimation(walkingAnimationSpeed: 3, walkingFirstFrame: 1, finalFrame);
             FlyingAnimation(oneFrame: true);
 
             Projectile.localAI [0]++;
-            if (Projectile.localAI [0] % 1800 == 0 && Projectile.velocity.X != 0)
+            if (Projectile.localAI [0] % 800 == 0 && Projectile.velocity.X != 0 && Main.rand.NextBool(3))
                 DropRandomCoin();
 			
-			double rotation = (Math.PI / 2) * Projectile.velocity.X * 0.08f;
             if (isFlying)
-            Projectile.rotation = (float) rotation;
+            Projectile.rotation = Projectile.velocity.ToRotation() + (float)Math.PI / 2;
         }
 
         private void DropRandomCoin () {
@@ -77,7 +76,7 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
                 Color color = new Color(150, 150, 150, 50);
                 float rotation = (float) Math.Atan2(Projectile.oldPos [k].Y - Projectile.oldPos [k + 1].Y, Projectile.oldPos [k].X - Projectile.oldPos [k + 1].X);
                 if (isFlying)
-                    spriteBatch.Draw(texture, new Vector2(drawPos.X - 10 * Projectile.direction, drawPos.Y + 20), null, color, rotation, drawOrigin, Projectile.scale - k / (float) Projectile.oldPos.Length + 0.5f, effects, 0f);
+                    spriteBatch.Draw(texture, new Vector2(drawPos.X, drawPos.Y) + new Vector2 (0, 16).RotatedBy(Projectile.rotation), null, color, rotation, drawOrigin, Projectile.scale - k / (float) Projectile.oldPos.Length + 0.5f, effects, 0f);
             }
             return true;
         }

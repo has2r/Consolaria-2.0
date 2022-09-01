@@ -47,16 +47,16 @@ namespace Consolaria.Common {
 			if (npc.type == NPCID.FireImp)
 				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ShirenHat>(), 250));
 			if (npc.type == NPCID.Werewolf)
-				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<WolfFang>(), 15));
+				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<WolfFang>(), 150));
 			if (npc.type == NPCID.ToxicSludge)
-				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<PetriDish>(), 25));
+				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<PetriDish>(), 150));
 			if (NPCID.Sets.Zombies [npc.type])
-				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Brain>(), 150));
+				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Brain>(), 1000));
 		}
 
 		public override void ModifyGlobalLoot (GlobalLoot globalLoot) {
 			int itemType = ModContent.ItemType<RedEnvelope>();
-			int chance = 15;
+			int chance = 30;
 			if (SeasonalEvents.enabled) {
 				ChineseNewYearDropCondition chineseNewYearDropCondition = new ChineseNewYearDropCondition();
 				IItemDropRule conditionalRule = new LeadingConditionRule(chineseNewYearDropCondition);

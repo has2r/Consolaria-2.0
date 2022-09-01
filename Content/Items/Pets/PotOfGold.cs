@@ -6,7 +6,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.Items.Pets {
-	public class PotOfGold : ModItem {
+	public class PotOfGold : PetItem {
 		public override void SetStaticDefaults () {
 			DisplayName.SetDefault("Pot O' Gold");
 			Tooltip.SetDefault("Summons a pet Leprechaun O'Fyffe");
@@ -22,11 +22,6 @@ namespace Consolaria.Content.Items.Pets {
 
 			Item.rare = ItemRarityID.Green;
 			Item.value = Item.sellPrice(gold: 1);
-		}
-
-		public override void UseStyle (Player player, Rectangle heldItemFrame) {
-			if (player.whoAmI == Main.myPlayer && player.itemTime == 0)
-				player.AddBuff(Item.buffType, 3600);
 		}
 
 		public override void AddRecipes () {

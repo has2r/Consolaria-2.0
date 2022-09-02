@@ -78,6 +78,6 @@ namespace Consolaria.Content.NPCs {
 
 		public override float SpawnChance (NPCSpawnInfo spawnInfo)
 			=> (spawnInfo.Player.ZoneCorrupt && spawnInfo.Player.ZoneDesert && spawnInfo.SpawnTileY < Main.rockLayer && Main.hardMode) ?
-			 SpawnCondition.Corruption.Chance * 0.025f : 0;
+			 SpawnCondition.Corruption.Chance * 0.005f : 0;
 	}
 }

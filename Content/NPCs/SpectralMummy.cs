@@ -76,6 +76,6 @@ namespace Consolaria.Content.NPCs {
 
         public override float SpawnChance (NPCSpawnInfo spawnInfo)
             => (spawnInfo.Player.ZoneHallow && spawnInfo.Player.ZoneDesert && Main.hardMode) ?
-            SpawnCondition.LightMummy.Chance * 0.25f : 0f;
+            SpawnCondition.LightMummy.Chance * 0.005f : 0f;
     }
 }

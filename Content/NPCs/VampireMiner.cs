@@ -93,7 +93,7 @@ namespace Consolaria.Content.NPCs {
 			var minerDropRules = Main.ItemDropsDB.GetRulesForNPCID(NPCID.UndeadMiner, false);
 			foreach (var minerDropRule in minerDropRules)
 				npcLoot.Add(minerDropRule);
-			npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<VialOfBlood>(), 5));
+			npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<VialOfBlood>(), 25));
 		}
 
 		public override float SpawnChance (NPCSpawnInfo spawnInfo)

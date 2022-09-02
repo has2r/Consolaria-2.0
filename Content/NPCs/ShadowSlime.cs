@@ -68,7 +68,7 @@ namespace Consolaria.Content.NPCs {
         }
 
         public override void ModifyNPCLoot (NPCLoot npcLoot) {
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<PetriDish>(), 10));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<PetriDish>(), 25));
             var slimeDropRules = Main.ItemDropsDB.GetRulesForNPCID(NPCID.CorruptSlime, false);
             foreach (var slimeDropRule in slimeDropRules)
                 npcLoot.Add(slimeDropRule);
@@ -76,6 +76,6 @@ namespace Consolaria.Content.NPCs {
 
         public override float SpawnChance (NPCSpawnInfo spawnInfo)
             => (spawnInfo.Player.ZoneCorrupt && Main.hardMode && spawnInfo.SpawnTileY < Main.rockLayer) ?
-            SpawnCondition.Corruption.Chance * 0.025f : 0f;
+            SpawnCondition.Corruption.Chance * 0.005f : 0f;
     }
 }

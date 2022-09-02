@@ -95,7 +95,7 @@ namespace Consolaria.Content.NPCs {
 		}
 
 		public override void ModifyNPCLoot (NPCLoot npcLoot) {
-			npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Beeswax>(), 15));
+			npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Beeswax>(), 25));
 			npcLoot.Add(ItemDropRule.Common(ItemID.Bezoar, 100));
 			npcLoot.Add(ItemDropRule.Common(ItemID.Stinger, 2));
 		}

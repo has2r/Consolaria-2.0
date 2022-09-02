@@ -165,7 +165,7 @@ namespace Consolaria.Content.NPCs {
 		}
 
 		public override void ModifyNPCLoot (NPCLoot npcLoot) {
-			npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Cabbage>(), 15));
+			npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Cabbage>(), 25));
 			npcLoot.Add(ItemDropRule.Common(ItemID.Stinger, 2));
 		}
 

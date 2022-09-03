@@ -10,7 +10,7 @@ namespace Consolaria.Content.Items.Accessories {
         private bool unlockEffects;
 
         public override void SetStaticDefaults () {
-            Tooltip.SetDefault("Give it to someone special!" + "\n50% health regeneration\nIncreases jump height");
+            Tooltip.SetDefault("Give it to someone special!" + "\nSlowly regenerates life\nIncreases jump height");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
         }
 

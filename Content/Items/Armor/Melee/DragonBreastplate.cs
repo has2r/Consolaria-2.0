@@ -10,7 +10,7 @@ namespace Consolaria.Content.Items.Armor.Melee {
     public class DragonBreastplate : ModItem {
         public override void SetStaticDefaults () {
             DisplayName.SetDefault("Dragon Breastplate");
-            Tooltip.SetDefault("10% increased melee critical strike chance" + "\n15% increased melee speed");
+            Tooltip.SetDefault("10% increased melee damage and critical strike chance" + "\n15% increased melee speed");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
         }

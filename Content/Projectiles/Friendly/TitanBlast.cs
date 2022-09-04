@@ -63,7 +63,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
                     Vector2 direction = Vector2.Subtract(player.Center, center);
                     Vector2 velocity = Vector2.Normalize(direction);
                     direction = Utils.HasNaNs(direction) ? Vector2.Zero : velocity;
-                    player.velocity += direction * 15f;
+                    player.velocity += direction * 20f;
                     if (Utils.HasNaNs(player.velocity))
                     {
                         player.velocity = Vector2.Zero;
@@ -71,6 +71,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
                     Projectile.netUpdate = true;
                 }
             }
+            Lighting.AddLight(Projectile.Center, new Vector3(1.9f, 1.4f, 0.8f) * (4 - Projectile.frame) / 4);
             if (Projectile.frame >= 4)
             {
                 Projectile.Kill();
@@ -85,5 +86,8 @@ namespace Consolaria.Content.Projectiles.Friendly {
                 }
             }
         }
+
+        public override Color? GetAlpha(Color lightColor)
+            => new Color(200, 200, 200, 75);
     }
 }

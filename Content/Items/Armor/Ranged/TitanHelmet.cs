@@ -20,7 +20,7 @@ namespace Consolaria.Content.Items.Armor.Ranged {
 
         public override void SetStaticDefaults () {
             DisplayName.SetDefault("Titan Helmet");
-            Tooltip.SetDefault("15% increased ranged damage" + "\n10% increased ranged critical strike chance " + "\n25% chance to not consume ammo");
+            Tooltip.SetDefault("10% increased ranged damage and critical strike chance " + "\n25% chance to not consume ammo");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
 
             if (!Main.dedServ) {
@@ -46,7 +46,7 @@ namespace Consolaria.Content.Items.Armor.Ranged {
 
         public override void UpdateEquip (Player player) {
             player.GetCritChance(DamageClass.Ranged) += 10;
-            player.GetDamage(DamageClass.Ranged) += 0.15f;
+            player.GetDamage(DamageClass.Ranged) += 0.1f;
         }
 
         public override bool IsArmorSet (Item head, Item body, Item legs)
@@ -57,7 +57,7 @@ namespace Consolaria.Content.Items.Armor.Ranged {
             => player.armorEffectDrawOutlinesForbidden = true;
 
         public override void UpdateArmorSet (Player player) {
-            player.setBonus = "Using ranged weapons emits strong repelling wave around you";
+            player.setBonus = "Using ranged weapons triggers a recoil blast";
             player.GetModPlayer<TitanPlayer>().titanPower = true;
         }
 
@@ -106,6 +106,19 @@ namespace Consolaria.Content.Items.Armor.Ranged {
                 int proj = Projectile.NewProjectile(player.GetSource_ItemUse(item), player.Center, velocity, type2, damage * 10, 7.5f, player.whoAmI);
                 if (Main.netMode == NetmodeID.Server)
                     NetMessage.SendData(MessageID.SyncProjectile, -1, -1, null, proj);
+                if (Main.netMode != NetmodeID.Server)
+                {
+                    Vector2 dustVel = new Vector2(10, 0).RotatedBy(velocity.ToRotation());
+                    for (int i = 0; i <= 15; i++) {
+                        int dust = Dust.NewDust(player.Center, 0, 0, DustID.Smoke, dustVel.X * 0.4f, dustVel.Y * 0.4f, 120, default, Main.rand.NextFloat(0.5f, 1.5f));
+                        int dust2 = Dust.NewDust(player.Center, 0, 0, DustID.SolarFlare, dustVel.X * 1.3f, dustVel.Y * 1.3f, 100, default, Main.rand.NextFloat(0.5f, 1.5f));
+                        Main.dust[dust2].velocity = Main.dust[dust2].velocity.RotatedByRandom(0.8f);
+                        Main.dust[dust2].noGravity = true;
+                        Main.dust[dust2].noLight = false;
+                        Main.dust[dust].fadeIn = Main.rand.NextFloat(0.4f, 1.4f);
+                        Main.dust[dust2].fadeIn = Main.rand.NextFloat(0.4f, 1.4f);
+                    }
+                }
                 modPlayer.shockwaveTimer = modPlayer.shockwaveTimerLimit;
             }
             return base.Shoot(item, player, source, position, velocity, type, damage, knockback);

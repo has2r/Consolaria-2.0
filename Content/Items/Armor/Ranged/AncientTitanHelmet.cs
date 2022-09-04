@@ -11,7 +11,7 @@ namespace Consolaria.Content.Items.Armor.Ranged {
 
         public override void SetStaticDefaults () {
             DisplayName.SetDefault("Ancient Titan Helmet");
-            Tooltip.SetDefault("15% increased ranged damage" + "\n10% increased ranged critical strike chance " + "\n25% chance to not consume ammo");
+            Tooltip.SetDefault("10% increased ranged damage and critical strike chance " + "\n25% chance to not consume ammo");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
         }
@@ -28,7 +28,7 @@ namespace Consolaria.Content.Items.Armor.Ranged {
 
         public override void UpdateEquip (Player player) {
             player.GetCritChance(DamageClass.Ranged) += 10;
-            player.GetDamage(DamageClass.Ranged) += 0.15f;
+            player.GetDamage(DamageClass.Ranged) += 0.1f;
         }
 
         public override bool IsArmorSet (Item head, Item body, Item legs)
@@ -39,7 +39,7 @@ namespace Consolaria.Content.Items.Armor.Ranged {
             => player.armorEffectDrawOutlinesForbidden = true;
 
         public override void UpdateArmorSet (Player player) {
-            player.setBonus = "Using ranged weapons emits strong repelling wave around you";
+            player.setBonus = "Using ranged weapons triggers a recoil blast";
             player.GetModPlayer<TitanPlayer>().titanPower = true;
         }
 

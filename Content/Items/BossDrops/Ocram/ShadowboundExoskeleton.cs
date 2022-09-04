@@ -56,11 +56,11 @@ namespace Consolaria.Content.Items.BossDrops.Ocram {
                     if (Player.gravDir == -1f) Player.height = -6;
 
                     float size = (Player.jump / 50f + 1f) / 2f;
-                    for (int i = 0; i < 3; i++) {
-                        var dust = Dust.NewDust(new Vector2(Player.position.X, Player.position.Y + (Player.height / 2)), Player.width, 19, DustID.Shadowflame, Player.velocity.X * 0.3f, Player.velocity.Y * 0.3f, 100, default, 1f * size);
+                    for (int i = 0; i < 2; i++) {
+                        var dust = Dust.NewDust(new Vector2(Player.position.X, Player.position.Y + (Player.height / 2)), Player.width, 19, DustID.Shadowflame, Player.velocity.X * 0.3f, Player.velocity.Y * 0.3f, 100, default, 1.75f * size);
                         Main.dust [dust].velocity *= 0.5f * size;
                         Main.dust [dust].fadeIn = 1.5f * size;
-                        var dust2 = Dust.NewDust(new Vector2(Player.position.X, Player.position.Y + Player.height / 2), Player.width, 32, DustID.Shadowflame, Player.velocity.X * 0.3f, Player.velocity.Y * 0.3f, 120, default, 1f * size);
+                        var dust2 = Dust.NewDust(new Vector2(Player.position.X, Player.position.Y + Player.height / 2), Player.width, 32, DustID.Shadowflame, Player.velocity.X * 0.3f, Player.velocity.Y * 0.3f, 120, default, 1.75f * size);
                         Main.dust [dust2].velocity *= 0.5f * size;
                         Main.dust [dust2].fadeIn = 1.5f * size;
                     }

@@ -10,7 +10,7 @@ namespace Consolaria.Content.Items.Armor.Summon {
     public class WarlockLeggings : ModItem {
         public override void SetStaticDefaults () {
             DisplayName.SetDefault("Warlock Leggings");
-            Tooltip.SetDefault("10% increased minion damage" + "\n15% increased movement speed" + "\nIncreases your max number of minions");
+            Tooltip.SetDefault("Increases your max number of minions by 1" + "\n20% increased minion damage" + "\n15% increased movement speed");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
         }
@@ -29,7 +29,7 @@ namespace Consolaria.Content.Items.Armor.Summon {
             player.moveSpeed += 0.15f;
             player.maxMinions += 1;
 
-            player.GetDamage(DamageClass.Summon) += 0.1f;
+            player.GetDamage(DamageClass.Summon) += 0.2f;
         }
 
         public override void AddRecipes () {

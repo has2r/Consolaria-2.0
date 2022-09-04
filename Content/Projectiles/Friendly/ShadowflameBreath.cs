@@ -38,7 +38,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
                 else if (Projectile.ai [0] == 10.0) scale = 0.75f;
 
                 spawnDust = true;
-                if (Main.netMode != NetmodeID.Server) {
+                if (Main.netMode != NetmodeID.Server && Projectile.timeLeft % 2 == 0) {
                     for (int index1 = 0; index1 < 2; ++index1) {
                         int _pos = 4;
                         int _dust = Dust.NewDust(new Vector2(Projectile.position.X + _pos, Projectile.position.Y + _pos), Projectile.width - _pos * 3, Projectile.height - _pos * 3, DustID.Shadowflame, 0.0f, 0.0f, 125, default, 0.95f);

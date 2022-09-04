@@ -64,14 +64,11 @@ namespace Consolaria.Content.Items.Armor.Melee {
         public override void ResetEffects ()
             => dragonBurst = false;
 
-        public override void OnHitByNPC (NPC npc, int damage, bool crit) {
-            if (dragonBurst && !startFlames)
+        public override void PostHurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit) {
+            if (dragonBurst && !startFlames) {
                 startFlames = true;
-        }
-
-        public override void OnHitByProjectile (Projectile proj, int damage, bool crit) {
-            if (dragonBurst && !startFlames)
-                startFlames = true;
+                SoundEngine.PlaySound(SoundID.DD2_PhantomPhoenixShot with { Volume = 0.8f, MaxInstances = 3 }, Player.Center);
+            }
         }
 
         public override void PostUpdate () {
@@ -88,11 +85,10 @@ namespace Consolaria.Content.Items.Armor.Melee {
                 float rotation = MathHelper.ToRadians(15);
                 float projectilesCount = 7;
                 ushort type = (ushort) ModContent.ProjectileType<ShadowflameBurst>();
-                if (burstTimer % 10 == 0) {
+                if (burstTimer % 5 == 0) {
                     for (int i = 0; i < projectilesCount; i++) {
                         Vector2 perturbedSpeed = velocity.RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (projectilesCount))) * 1.15f;
-                        Projectile.NewProjectile(Player.GetSource_Misc("Dragon Armor"), position, new Vector2(perturbedSpeed.X + Main.rand.NextFloat(-0.25f, 0.25f), perturbedSpeed.Y), type, 70, 2.5f, Player.whoAmI);
-                        SoundEngine.PlaySound(SoundID.DD2_PhantomPhoenixShot with { Volume = 0.8f, MaxInstances = 3 }, Player.Center);
+                        Projectile.NewProjectile(Player.GetSource_Misc("Dragon Armor"), position, new Vector2(perturbedSpeed.X + Main.rand.NextFloat(-0.25f, 0.25f), perturbedSpeed.Y), type, 150, 2.5f, Player.whoAmI);
                     }
                 }
                 if (velocity.X < 0.3f) Player.direction = -1;

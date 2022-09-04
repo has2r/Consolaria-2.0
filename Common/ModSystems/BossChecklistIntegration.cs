@@ -56,7 +56,7 @@ namespace Consolaria.Common {
                     ModContent.ItemType<FruitfulPlate>()
                },
                ModContent.ItemType<CursedStuffing>(),
-               $"Use a [i:" + ModContent.ItemType<CursedStuffing>() + "] after summoning pet turkey",
+               $"Use a [i:" + ModContent.ItemType<CursedStuffing>() + "] after summoning a pet turkey",
                "Turkor the Ungrateful escapes from the dinner plate!",
                (SpriteBatch spriteBatch, Rectangle rect, Color color) => {
                    Texture2D texture = ModContent.Request<Texture2D>("Consolaria/Assets/Textures/Bestiary/Turkor_Bestiary").Value;
@@ -81,7 +81,7 @@ namespace Consolaria.Common {
                     ModContent.ItemType<CursedFang>()
               },
               ModContent.ItemType<SuspiciousLookingSkull>(),
-              $"Use a [i:" + ModContent.ItemType<SuspiciousLookingSkull>() + "] at night after all mechanical bosses has been defeated",
+              $"Use a [i:" + ModContent.ItemType<SuspiciousLookingSkull>() + "] at night",
               "Ocram disappears back into shadows!"
             );
         }

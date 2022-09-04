@@ -10,7 +10,7 @@ namespace Consolaria.Content.Items.Armor.Melee {
     public class AncientDragonGreaves : ModItem {
         public override void SetStaticDefaults () {
             DisplayName.SetDefault("Ancient Dragon Greaves");
-            Tooltip.SetDefault("20% increased movement speed");
+            Tooltip.SetDefault("5% increased melee damage and critical strike chance" + "\n20% increased movement speed");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
         }
@@ -25,8 +25,11 @@ namespace Consolaria.Content.Items.Armor.Melee {
             Item.defense = 14;
         }
 
-        public override void UpdateEquip (Player player)
-            => player.moveSpeed += 0.2f;
+        public override void UpdateEquip (Player player) {
+            player.GetCritChance(DamageClass.Melee) += 5;
+            player.GetDamage(DamageClass.Melee) += 0.05f;
+            player.moveSpeed += 0.2f;
+        }
 
         public override void AddRecipes () {
             CreateRecipe()

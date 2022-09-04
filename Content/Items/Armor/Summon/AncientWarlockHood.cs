@@ -10,7 +10,7 @@ namespace Consolaria.Content.Items.Armor.Summon {
     public class AncientWarlockHood : ModItem {
         public override void SetStaticDefaults () {
             DisplayName.SetDefault("Ancient Warlock Hood");
-            Tooltip.SetDefault("15% increased minion damage" + "\nIncreases your max number of minions");
+            Tooltip.SetDefault("Increases your max number of minions by 1" + "\n20% increased minion damage");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
         }
@@ -22,12 +22,12 @@ namespace Consolaria.Content.Items.Armor.Summon {
             Item.value = Item.sellPrice(gold: 6, silver: 40);
             Item.rare = ItemRarityID.Lime;
 
-            Item.defense = 8;
+            Item.defense = 6;
         }
 
         public override void UpdateEquip (Player player) {
             player.maxMinions += 1;
-            player.GetDamage(DamageClass.Summon) += 0.15f;
+            player.GetDamage(DamageClass.Summon) += 0.2f;
         }
 
         public override bool IsArmorSet (Item head, Item body, Item legs)

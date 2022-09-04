@@ -5,19 +5,17 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Consolaria.Content.Items.Armor.Magic
-{
+namespace Consolaria.Content.Items.Armor.Magic {
     [AutoloadEquip(EquipType.Head)]
-    public class AncientPhantasmalHeadgear : ModItem
-    {
-        public override void SetStaticDefaults() {
+    public class AncientPhantasmalHeadgear : ModItem {
+        public override void SetStaticDefaults () {
             DisplayName.SetDefault("Ancient Phantasmal Headgear");
-            Tooltip.SetDefault("5% increased magic damage and critical strike chance" + "\nIncreases maximum mana by 70");
+            Tooltip.SetDefault("10% increased magic damage and critical strike chance" + "\nIncreases maximum mana by 70");
 
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
         }
 
-        public override void SetDefaults() {
+        public override void SetDefaults () {
             int width = 30; int height = 26;
             Item.Size = new Vector2(width, height);
 
@@ -27,26 +25,26 @@ namespace Consolaria.Content.Items.Armor.Magic
             Item.defense = 12;
         }
 
-        public override void UpdateEquip(Player player) {
+        public override void UpdateEquip (Player player) {
             player.statManaMax2 += 70;
 
-            player.GetCritChance(DamageClass.Magic) += 5;
-            player.GetDamage(DamageClass.Magic) += 0.05f;
+            player.GetCritChance(DamageClass.Magic) += 10;
+            player.GetDamage(DamageClass.Magic) += 0.1f;
         }
 
-        public override bool IsArmorSet(Item head, Item body, Item legs) 
+        public override bool IsArmorSet (Item head, Item body, Item legs)
             => (body.type == ModContent.ItemType<PhantasmalRobe>() || body.type == ModContent.ItemType<AncientPhantasmalRobe>())
             && (legs.type == ModContent.ItemType<PhantasmalSubligar>() || legs.type == ModContent.ItemType<AncientPhantasmalSubligar>());
 
-        public override void ArmorSetShadows(Player player)
+        public override void ArmorSetShadows (Player player)
             => player.armorEffectDrawOutlines = true;
 
-        public override void UpdateArmorSet(Player player) {
+        public override void UpdateArmorSet (Player player) {
             player.setBonus = "Drinking a mana potion unleashes a barrage of homing spirit bolts";
             player.GetModPlayer<SpectralPlayer>().spectralGuard = true;
         }
 
-        public override void AddRecipes() {
+        public override void AddRecipes () {
             CreateRecipe()
                 .AddIngredient(ItemID.AncientHallowedHeadgear)
                 .AddRecipeGroup(RecipeGroups.Titanium, 10)

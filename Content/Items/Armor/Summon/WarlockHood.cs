@@ -11,7 +11,7 @@ namespace Consolaria.Content.Items.Armor.Summon {
     public class WarlockHood : ModItem {
         public override void SetStaticDefaults () {
             DisplayName.SetDefault("Warlock Hood");
-            Tooltip.SetDefault("9% increased minion damage" + "\nIncreases your max number of minions");
+            Tooltip.SetDefault("15% increased minion damage" + "\nIncreases your max number of minions");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
         }
@@ -23,19 +23,19 @@ namespace Consolaria.Content.Items.Armor.Summon {
             Item.value = Item.sellPrice(gold: 6, silver: 40);
             Item.rare = ItemRarityID.Lime;
 
-            Item.defense = 7;
+            Item.defense = 8;
         }
 
         public override void UpdateEquip (Player player) {
             player.maxMinions += 1;
-            player.GetDamage(DamageClass.Summon) += 0.09f;
+            player.GetDamage(DamageClass.Summon) += 0.15f;
         }
 
         public override bool IsArmorSet (Item head, Item body, Item legs)
            => (body.type == ModContent.ItemType<WarlockRobe>() || body.type == ModContent.ItemType<AncientWarlockRobe>())
            && (legs.type == ModContent.ItemType<WarlockLeggings>() || legs.type == ModContent.ItemType<AncientWarlockLeggings>());
 
-        public override void ArmorSetShadows(Player player)
+        public override void ArmorSetShadows (Player player)
             => player.armorEffectDrawShadow = true;
 
         public override void UpdateArmorSet (Player player) {
@@ -78,18 +78,20 @@ namespace Consolaria.Content.Items.Armor.Summon {
             if (healingTimer == 0 && target.life <= 0 &&
                 (proj.minion || proj.DamageType == DamageClass.Summon)) {
                 int helLife = Player.statLifeMax / 20;
-                float _dustCountMax = 40;
-                int _dustCount = 0;
-                while (_dustCount < _dustCountMax) {
-                    Vector2 vector = Vector2.UnitX * 0f;
-                    vector += -Vector2.UnitY.RotatedBy(_dustCount * (7f / _dustCountMax), default) * new Vector2(26f, 26);
-                    vector = vector.RotatedBy(proj.velocity.ToRotation(), default);
-                    int _dust = Dust.NewDust(proj.Center, 0, 0, DustID.Shadowflame, 0f, 0f, 100, Color.DarkViolet, 1.2f);
-                    Main.dust [_dust].noGravity = true;
-                    Main.dust [_dust].position = proj.Center + vector;
-                    Main.dust [_dust].velocity = proj.velocity * 0f + vector.SafeNormalize(Vector2.UnitY) * 0.8f;
-                    int _dustCountMax2 = _dustCount;
-                    _dustCount = _dustCountMax2 + 1;
+                if (Main.netMode != NetmodeID.Server) {
+                    float _dustCountMax = 45;
+                    int _dustCount = 0;
+                    while (_dustCount < _dustCountMax) {
+                        Vector2 vector = Vector2.UnitX * 0f;
+                        vector += -Vector2.UnitY.RotatedBy(_dustCount * (7f / _dustCountMax), default) * new Vector2(26f, 26f);
+                        vector = vector.RotatedBy(proj.velocity.ToRotation(), default);
+                        int _dust = Dust.NewDust(proj.Center, 0, 0, DustID.Shadowflame, 0f, 0f, 100, Color.DarkViolet, 1.3f);
+                        Main.dust [_dust].noGravity = true;
+                        Main.dust [_dust].position = proj.Center + vector;
+                        Main.dust [_dust].velocity = proj.velocity * 0f + vector.SafeNormalize(Vector2.UnitY) * 0.75f;
+                        int _dustCountMax2 = _dustCount;
+                        _dustCount = _dustCountMax2 + 1;
+                    }
                 }
                 SoundEngine.PlaySound(SoundID.NPCDeath55, proj.Center);
                 Player.statLife += helLife;

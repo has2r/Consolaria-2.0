@@ -12,7 +12,7 @@ namespace Consolaria.Content.Items.Armor.Melee {
     public class DragonMask : ModItem {
         public override void SetStaticDefaults () {
             DisplayName.SetDefault("Dragon Mask");
-            Tooltip.SetDefault("10% increased melee damage" + "\n10% increased melee speed");
+            Tooltip.SetDefault("15% increased melee damage and speed");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
         }
@@ -24,12 +24,12 @@ namespace Consolaria.Content.Items.Armor.Melee {
             Item.value = Item.sellPrice(gold: 6, silver: 40);
             Item.rare = ItemRarityID.Lime;
 
-            Item.defense = 20;
+            Item.defense = 18;
         }
 
         public override void UpdateEquip (Player player) {
-            player.GetDamage(DamageClass.Melee) += 0.1f;
-            player.GetAttackSpeed(DamageClass.Melee) += 0.1f;
+            player.GetDamage(DamageClass.Melee) += 0.15f;
+            player.GetAttackSpeed(DamageClass.Melee) += 0.15f;
         }
 
         public override bool IsArmorSet (Item head, Item body, Item legs)

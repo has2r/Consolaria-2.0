@@ -31,9 +31,8 @@ namespace Consolaria.Content.Items.Accessories {
             if (!unlockEffects)
                 return;
 
-            player.lifeRegen += player.lifeRegen / 2;
-            player.jumpSpeedBoost += 2f;
-
+            player.lifeRegen += 3;
+            player.jumpSpeedBoost += 2.5f;
         }
     }
 }

@@ -5,34 +5,33 @@ using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using Consolaria.Content.Items.Materials;
 
-namespace Consolaria.Content.Items.Armor.Melee
-{
+namespace Consolaria.Content.Items.Armor.Melee {
     [AutoloadEquip(EquipType.Body)]
-    public class DragonBreastplate : ModItem
-    {
-        public override void SetStaticDefaults() {
+    public class DragonBreastplate : ModItem {
+        public override void SetStaticDefaults () {
             DisplayName.SetDefault("Dragon Breastplate");
-            Tooltip.SetDefault("10% increased melee critical strike chance");
+            Tooltip.SetDefault("10% increased melee critical strike chance" + "\n15% increased melee speed");
 
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
         }
 
-        public override void SetDefaults() {
+        public override void SetDefaults () {
             int width = 34; int height = 22;
             Item.Size = new Vector2(width, height);
 
             Item.value = Item.sellPrice(gold: 5);
             Item.rare = ItemRarityID.Lime;
 
-            Item.defense = 26;
+            Item.defense = 24;
         }
 
-        public override void UpdateEquip(Player player) {
+        public override void UpdateEquip (Player player) {
             player.GetCritChance(DamageClass.Melee) += 10;
             player.GetDamage(DamageClass.Melee) += 0.1f;
+            player.GetAttackSpeed(DamageClass.Melee) += 0.15f;
         }
 
-        public override void AddRecipes() {
+        public override void AddRecipes () {
             CreateRecipe()
                 .AddIngredient(ItemID.HallowedPlateMail)
                 .AddRecipeGroup(RecipeGroups.Titanium, 12)
@@ -43,4 +42,3 @@ namespace Consolaria.Content.Items.Armor.Melee
         }
     }
 }
-

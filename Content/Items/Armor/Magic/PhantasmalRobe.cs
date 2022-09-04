@@ -12,7 +12,7 @@ namespace Consolaria.Content.Items.Armor.Magic
     {
         public override void SetStaticDefaults() {
             DisplayName.SetDefault("Phantasmal Robe");
-            Tooltip.SetDefault("7% increased magic damage" + "\n4% increased magic critical strike chance" + "\nIncreases maximum mana by 50");
+            Tooltip.SetDefault("10% increased magic damage" + "\n5% increased magic critical strike chance" + "\nIncreases maximum mana by 50");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
@@ -24,14 +24,14 @@ namespace Consolaria.Content.Items.Armor.Magic
             Item.value = Item.sellPrice(gold: 5);
             Item.rare = ItemRarityID.Lime;
 
-            Item.defense = 14;
+            Item.defense = 16;
         }
 
         public override void UpdateEquip(Player player) {
             player.statManaMax2 += 50;
 
-            player.GetCritChance(DamageClass.Magic) += 4;
-            player.GetDamage(DamageClass.Magic) += 0.07f;
+            player.GetCritChance(DamageClass.Magic) += 5;
+            player.GetDamage(DamageClass.Magic) += 0.1f;
         }
 
         public override void AddRecipes() {

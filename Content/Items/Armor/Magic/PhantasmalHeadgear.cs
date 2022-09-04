@@ -12,7 +12,7 @@ namespace Consolaria.Content.Items.Armor.Magic {
     public class PhantasmalHeadgear : ModItem {
         public override void SetStaticDefaults () {
             DisplayName.SetDefault("Phantasmal Headgear");
-            Tooltip.SetDefault("5% increased magic damage and critical strike chance" + "\nIncreases maximum mana by 70");
+            Tooltip.SetDefault("10% increased magic damage and critical strike chance" + "\nIncreases maximum mana by 70");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
         }
@@ -30,8 +30,8 @@ namespace Consolaria.Content.Items.Armor.Magic {
         public override void UpdateEquip (Player player) {
             player.statManaMax2 += 70;
 
-            player.GetCritChance(DamageClass.Magic) += 5;
-            player.GetDamage(DamageClass.Magic) += 0.05f;
+            player.GetCritChance(DamageClass.Magic) += 10;
+            player.GetDamage(DamageClass.Magic) += 0.1f;
         }
 
         public override bool IsArmorSet (Item head, Item body, Item legs)

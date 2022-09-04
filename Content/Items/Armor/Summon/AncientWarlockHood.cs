@@ -5,46 +5,44 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Consolaria.Content.Items.Armor.Summon
-{
+namespace Consolaria.Content.Items.Armor.Summon {
     [AutoloadEquip(EquipType.Head)]
-    public class AncientWarlockHood : ModItem
-    {
-        public override void SetStaticDefaults() {
+    public class AncientWarlockHood : ModItem {
+        public override void SetStaticDefaults () {
             DisplayName.SetDefault("Ancient Warlock Hood");
-            Tooltip.SetDefault("9% increased minion damage" + "\nIncreases your max number of minions");
+            Tooltip.SetDefault("15% increased minion damage" + "\nIncreases your max number of minions");
 
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
         }
 
-        public override void SetDefaults() {
+        public override void SetDefaults () {
             int width = 30; int height = 26;
             Item.Size = new Vector2(width, height);
 
             Item.value = Item.sellPrice(gold: 6, silver: 40);
             Item.rare = ItemRarityID.Lime;
 
-            Item.defense = 7;
+            Item.defense = 8;
         }
 
-        public override void UpdateEquip(Player player) {
+        public override void UpdateEquip (Player player) {
             player.maxMinions += 1;
-            player.GetDamage(DamageClass.Summon) += 0.09f;
+            player.GetDamage(DamageClass.Summon) += 0.15f;
         }
 
-        public override bool IsArmorSet(Item head, Item body, Item legs) 
+        public override bool IsArmorSet (Item head, Item body, Item legs)
             => (body.type == ModContent.ItemType<WarlockRobe>() || body.type == ModContent.ItemType<AncientWarlockRobe>())
             && (legs.type == ModContent.ItemType<WarlockLeggings>() || legs.type == ModContent.ItemType<AncientWarlockLeggings>());
 
-        public override void ArmorSetShadows(Player player)
+        public override void ArmorSetShadows (Player player)
             => player.armorEffectDrawShadow = true;
 
-        public override void UpdateArmorSet(Player player) {
+        public override void UpdateArmorSet (Player player) {
             player.setBonus = "Enemies killed by minions heal the player";
             player.GetModPlayer<WarlockPlayer>().necroHealing = true;
         }
 
-        public override void AddRecipes() {
+        public override void AddRecipes () {
             CreateRecipe()
                 .AddIngredient(ItemID.AncientHallowedHood)
                 .AddRecipeGroup(RecipeGroups.Titanium, 10)

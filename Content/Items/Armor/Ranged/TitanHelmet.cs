@@ -12,7 +12,6 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.Items.Armor.Ranged {
-
     [AutoloadEquip(EquipType.Head)]
     public class TitanHelmet : ModItem {
 
@@ -21,7 +20,7 @@ namespace Consolaria.Content.Items.Armor.Ranged {
 
         public override void SetStaticDefaults () {
             DisplayName.SetDefault("Titan Helmet");
-            Tooltip.SetDefault("15% increased ranged damage and critical strike chance" + "\n25% chance to not consume ammo");
+            Tooltip.SetDefault("15% increased ranged damage" + "\n10% increased ranged critical strike chance " + "\n25% chance to not consume ammo");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
 
             if (!Main.dedServ) {
@@ -46,7 +45,7 @@ namespace Consolaria.Content.Items.Armor.Ranged {
         }
 
         public override void UpdateEquip (Player player) {
-            player.GetCritChance(DamageClass.Ranged) += 15;
+            player.GetCritChance(DamageClass.Ranged) += 10;
             player.GetDamage(DamageClass.Ranged) += 0.15f;
         }
 
@@ -78,16 +77,15 @@ namespace Consolaria.Content.Items.Armor.Ranged {
         public int shockwaveTimer;
         public readonly int shockwaveTimerLimit = 300;
 
-        public override void Initialize () 
+        public override void Initialize ()
            => shockwaveTimer = shockwaveTimerLimit;
 
-        public override void ResetEffects () 
+        public override void ResetEffects ()
            => titanPower = false;
-           
+
         public override void PostUpdateEquips () {
             if (!titanPower) return;
-            if (shockwaveTimer == 30)
-            {
+            if (shockwaveTimer == 30) {
                 SoundStyle style = new($"{nameof(Consolaria)}/Assets/Sounds/TitanBlastReload");
                 SoundEngine.PlaySound(style with { Volume = 0.3f, PitchRange = (-0.25f, 0.25f) }, Player.Center);
             }
@@ -95,35 +93,32 @@ namespace Consolaria.Content.Items.Armor.Ranged {
                 shockwaveTimer--;
         }
     }
-          
+
     internal class TitanArmorBonuses : GlobalItem {
 
-		public override bool Shoot(Item item, Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
-		{
+        public override bool Shoot (Item item, Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
             TitanPlayer modPlayer = player.GetModPlayer<TitanPlayer>();
-            ushort type2 = (ushort)ModContent.ProjectileType<TitanBlast>();
+            ushort type2 = (ushort) ModContent.ProjectileType<TitanBlast>();
 
-            if (modPlayer.titanPower && player.ownedProjectileCounts[type2] < 1 && item.DamageType == DamageClass.Ranged &&
-                modPlayer.shockwaveTimer == 0)
-            {
+            if (modPlayer.titanPower && player.ownedProjectileCounts [type2] < 1 && item.DamageType == DamageClass.Ranged &&
+                modPlayer.shockwaveTimer == 0) {
                 SoundEngine.PlaySound(SoundID.DD2_ExplosiveTrapExplode, player.Center);
                 int proj = Projectile.NewProjectile(player.GetSource_ItemUse(item), player.Center, velocity, type2, damage * 10, 7.5f, player.whoAmI);
                 if (Main.netMode == NetmodeID.Server)
                     NetMessage.SendData(MessageID.SyncProjectile, -1, -1, null, proj);
-                //SoundEngine.PlaySound(new SoundStyle($"{nameof(Consolaria)}/Assets/Sounds/Shockwave") { Volume = 0.8f }, player.position);
                 modPlayer.shockwaveTimer = modPlayer.shockwaveTimerLimit;
             }
             return base.Shoot(item, player, source, position, velocity, type, damage, knockback);
-		}
+        }
 
-		public override bool CanConsumeAmmo (Item weapon, Item ammo, Player player) {
+        public override bool CanConsumeAmmo (Item weapon, Item ammo, Player player) {
             float dontConsumeAmmoChance = 0f;
             if (weapon.useAmmo >= 0) {
                 if (player.armor [0].type == ModContent.ItemType<TitanHelmet>() || player.armor [0].type == ModContent.ItemType<AncientTitanHelmet>())
                     dontConsumeAmmoChance += 0.25f;
-                if (player.armor [1].type == ModContent.ItemType<TitanMail>() || player.armor [1].type == ModContent.ItemType<AncientTitanMail>()) 
+                if (player.armor [1].type == ModContent.ItemType<TitanMail>() || player.armor [1].type == ModContent.ItemType<AncientTitanMail>())
                     dontConsumeAmmoChance += 0.2f;
-                if (player.armor [2].type == ModContent.ItemType<TitanLeggings>() || player.armor [2].type == ModContent.ItemType<AncientTitanLeggings>()) 
+                if (player.armor [2].type == ModContent.ItemType<TitanLeggings>() || player.armor [2].type == ModContent.ItemType<AncientTitanLeggings>())
                     dontConsumeAmmoChance += 0.15f;
                 return Main.rand.NextFloat() >= dontConsumeAmmoChance;
             }

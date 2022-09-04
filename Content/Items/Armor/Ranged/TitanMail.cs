@@ -16,7 +16,7 @@ namespace Consolaria.Content.Items.Armor.Ranged {
 
         public override void SetStaticDefaults () {
             DisplayName.SetDefault("Titan Mail");
-            Tooltip.SetDefault("5% increased ranged damage" + "\n15 % increased ranged critical strike chance" + "\n20% chance to not consume ammo");
+            Tooltip.SetDefault("10% increased ranged damage" + "\n15 % increased ranged critical strike chance" + "\n20% chance to not consume ammo");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
 
             if (!Main.dedServ) {
@@ -40,7 +40,7 @@ namespace Consolaria.Content.Items.Armor.Ranged {
 
         public override void UpdateEquip (Player player) {
             player.GetCritChance(DamageClass.Ranged) += 15;
-            player.GetDamage(DamageClass.Ranged) += 0.05f;
+            player.GetDamage(DamageClass.Ranged) += 0.1f;
         }
 
         public override void AddRecipes () {

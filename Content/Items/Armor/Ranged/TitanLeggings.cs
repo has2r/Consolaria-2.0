@@ -16,7 +16,7 @@ namespace Consolaria.Content.Items.Armor.Ranged {
 
         public override void SetStaticDefaults () {
             DisplayName.SetDefault("Titan Leggings");
-            Tooltip.SetDefault("10% increased ranged damage" + "\n10% increased movement speed" + "\n15% chance to not consume ammo");
+            Tooltip.SetDefault("5% increased ranged damage" + "\n10% increased movement speed" + "\n15% chance to not consume ammo");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
 
             if (!Main.dedServ) {
@@ -42,7 +42,7 @@ namespace Consolaria.Content.Items.Armor.Ranged {
 
         public override void UpdateEquip (Player player) {
             player.moveSpeed += 0.1f;
-            player.GetDamage(DamageClass.Ranged) += 0.1f;
+            player.GetDamage(DamageClass.Ranged) += 0.05f;
         }
 
         public override void AddRecipes () {

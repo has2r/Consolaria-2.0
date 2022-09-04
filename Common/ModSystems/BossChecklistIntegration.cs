@@ -58,10 +58,10 @@ namespace Consolaria.Common {
                ModContent.ItemType<CursedStuffing>(),
                $"Use a [i:" + ModContent.ItemType<CursedStuffing>() + "] after summoning pet turkey",
                "Turkor the Ungrateful escapes from the dinner plate!",
-               (SpriteBatch sb, Rectangle rect, Color color) => {
+               (SpriteBatch spriteBatch, Rectangle rect, Color color) => {
                    Texture2D texture = ModContent.Request<Texture2D>("Consolaria/Assets/Textures/Bestiary/Turkor_Bestiary").Value;
                    Vector2 centered = new Vector2(rect.X + (rect.Width / 2) - (texture.Width / 2), rect.Y + (rect.Height / 2) - (texture.Height / 2));
-                   sb.Draw(texture, centered, color);
+                   spriteBatch.Draw(texture, centered, color);
                },
                "Consolaria/Content/NPCs/Bosses/Turkor/TurkortheUngratefulHead_Head_Boss"
             );
@@ -70,7 +70,7 @@ namespace Consolaria.Common {
               Mod,
               "Ocram",
               ModContent.NPCType<Ocram>(),
-              11.9f,
+              12f,
               () => DownedBossSystem.downedOcram,
               () => true,
               new List<int> {

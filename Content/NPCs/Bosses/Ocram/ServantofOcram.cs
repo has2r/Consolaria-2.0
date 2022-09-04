@@ -23,27 +23,24 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
         }
 
         public override void SetDefaults () {
-            int width = 60; int height = width;
+            int width = 54; int height = width;
             NPC.Size = new Vector2(width, height);
 
             NPC.aiStyle = 23;
             AnimationType = NPCID.ServantofCthulhu;
 
-            NPC.lifeMax = 450;
+            NPC.lifeMax = 500;
             NPC.damage = 40;
 
-            NPC.defense = 8;
+            NPC.defense = 10;
             NPC.knockBackResist = 0f;
-
-            NPC.width = 54;
-            NPC.height = 54;
 
             NPC.HitSound = SoundID.NPCHit18;
             NPC.DeathSound = SoundID.NPCHit18;
         }
 
         public override void ScaleExpertStats (int numPlayers, float bossLifeScale) {
-            NPC.lifeMax = 600;
+            NPC.lifeMax = 650;
             NPC.damage = 60;
         }
 

@@ -23,7 +23,7 @@ namespace Consolaria.Content.Items.Summons {
             Item.maxStack = 20;
 
             Item.value = Item.sellPrice(silver: 1);
-            Item.rare = ItemRarityID.Pink;
+            Item.rare = ItemRarityID.Lime;
 
             Item.useAnimation = 30;
             Item.useTime = 30;
@@ -33,7 +33,7 @@ namespace Consolaria.Content.Items.Summons {
         }
 
         public override bool CanUseItem (Player player)
-         => !Main.dayTime && !NPC.AnyNPCs(ModContent.NPCType<Ocram>());
+            => !Main.dayTime && !NPC.AnyNPCs(ModContent.NPCType<Ocram>());
 
         public override bool? UseItem (Player player) {
             if (player.whoAmI == Main.myPlayer) {
@@ -50,8 +50,8 @@ namespace Consolaria.Content.Items.Summons {
 
         public override void AddRecipes () {
             CreateRecipe()
-                .AddRecipeGroup(RecipeGroups.Titanium, 10)
                 .AddIngredient(ItemID.Bone, 15)
+                .AddIngredient(ItemID.Ectoplasm, 10)
                 .AddIngredient(ItemID.SoulofFright, 5)
                 .AddIngredient(ItemID.SoulofMight, 5)
                 .AddIngredient(ItemID.SoulofSight, 5)

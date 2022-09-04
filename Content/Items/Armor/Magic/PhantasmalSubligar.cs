@@ -12,7 +12,7 @@ namespace Consolaria.Content.Items.Armor.Magic
     {
         public override void SetStaticDefaults() {
             DisplayName.SetDefault("Phantasmal Subligar");
-            Tooltip.SetDefault("6% increased magic damage" + "\n12% increased movement speed" + "\nIncreases maximum mana by 30");
+            Tooltip.SetDefault("5% increased magic damage" + "\n12% increased movement speed" + "\nIncreases maximum mana by 30");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
@@ -24,14 +24,14 @@ namespace Consolaria.Content.Items.Armor.Magic
             Item.value = Item.sellPrice(gold: 4);
             Item.rare = ItemRarityID.Lime;
 
-            Item.defense = 10;
+            Item.defense = 12;
         }
 
         public override void UpdateEquip(Player player) {
             player.moveSpeed += 0.12f;
             player.statManaMax2 += 30;
 
-            player.GetDamage(DamageClass.Magic) += 0.06f;
+            player.GetDamage(DamageClass.Magic) += 0.05f;
         }
 
         public override void AddRecipes() {

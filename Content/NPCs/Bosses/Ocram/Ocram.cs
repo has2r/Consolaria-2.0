@@ -84,7 +84,7 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
             AnimationType = 126;
 
             NPC.lifeMax = 35000;
-            NPC.damage = 50;
+            NPC.damage = 60;
 
             NPC.defense = 20;
             NPC.knockBackResist = 0f;
@@ -298,7 +298,7 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
                                     Vector2 vector8 = new Vector2(NPC.position.X + (NPC.width / 2), NPC.position.Y + (NPC.height / 2));
                                     SoundEngine.PlaySound(SoundID.Item33, NPC.position);
                                     float rotation = (float) Math.Atan2(vector8.Y - (Main.player [NPC.target].position.Y + (Main.player [NPC.target].height * 0.5f)), vector8.X - (Main.player [NPC.target].position.X + (Main.player [NPC.target].width * 0.5f)));
-                                    Projectile.NewProjectile(NPC.GetSource_FromAI(), vector8.X, vector8.Y, (float) ((Math.Cos(rotation) * Speed) * -1), (float) ((Math.Sin(rotation) * Speed) * -1), ModContent.ProjectileType<OcramLaser1>(), (int) (NPC.damage * 0.5f), 1.5f);
+                                    Projectile.NewProjectile(NPC.GetSource_FromAI(), vector8.X, vector8.Y, (float) ((Math.Cos(rotation) * Speed) * -1), (float) ((Math.Sin(rotation) * Speed) * -1), ModContent.ProjectileType<OcramLaser1>(), (int) (NPC.damage * 0.65f), 1.5f);
                                     if (NPC.ai [3] >= 70) {
                                         NPC.ai [3] = 0;
                                     }
@@ -354,7 +354,7 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
                                         SoundEngine.PlaySound(SoundID.Item33, NPC.position);
                                         NPC.ai [3] = 0;
                                         Vector2 velocity = Vector2.Normalize(Main.player [NPC.target].Center - NPC.Center) * 10;
-                                        Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, velocity.X - Main.rand.Next(-2, 2), velocity.Y - Main.rand.Next(-2, 2), ModContent.ProjectileType<OcramLaser1>(), (int) (NPC.damage * 0.5f), 1.5f);
+                                        Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, velocity.X - Main.rand.Next(-2, 2), velocity.Y - Main.rand.Next(-2, 2), ModContent.ProjectileType<OcramLaser1>(), (int) (NPC.damage * 0.7f), 1.5f);
                                         if (Main.netMode != NetmodeID.Server) {
                                             int index3 = Dust.NewDust(NPC.Center, 0, 0, DustID.LavaMoss, 0f, 0f, 100, new Color(255, 0, 244), Main.rand.NextFloat(0.8f, 2f));
                                             Main.dust [index3].noGravity = true;
@@ -413,7 +413,7 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
                                 NPC.rotation = (float) Math.Atan2(NPC.velocity.Y, NPC.velocity.X) - 1.57f;
                                 if (bloodMoonMode && NPC.ai[2] % 5 == 0) {
                                     SoundEngine.PlaySound(SoundID.Item33, NPC.position);
-                                    Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, new Vector2(0, 10f).RotatedBy(NPC.rotation), ModContent.ProjectileType<OcramLaser1>(), (int)(NPC.damage * 0.5f), 1.5f);
+                                    Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, new Vector2(0, 10f).RotatedBy(NPC.rotation), ModContent.ProjectileType<OcramLaser1>(), (int)(NPC.damage * 0.65f), 1.5f);
                                 }
                                 if (NPC.ai [2] % 35 == 0) {
                                     SoundEngine.PlaySound(SoundID.NPCDeath45, NPC.position);
@@ -786,7 +786,7 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
                         else {
                             if (NPC.ai [1] == 1f) { //scythe attack dash
                                 if (Main.netMode != NetmodeID.MultiplayerClient) {
-                                    int damage = (int) (NPC.damage * 0.8f);
+                                    int damage = (int) (NPC.damage * 0.85f);
                                     float knockback = 4f;
                                     float speed = 9f;
                                     Vector2 velocity = Vector2.Normalize(Main.player [NPC.target].Center - NPC.Center) * speed;

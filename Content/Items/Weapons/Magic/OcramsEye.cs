@@ -18,7 +18,7 @@ namespace Consolaria.Content.Items.Weapons.Magic {
             Item.Size = new Vector2(width, height);
 
             Item.DamageType = DamageClass.Magic;
-            Item.damage = 60;
+            Item.damage = 68;
             Item.knockBack = 4;
 
             Item.useStyle = ItemUseStyleID.Shoot;
@@ -29,7 +29,7 @@ namespace Consolaria.Content.Items.Weapons.Magic {
             Item.value = Item.buyPrice(gold: 5);
             Item.rare = ItemRarityID.Lime;
 
-            Item.mana = 8;
+            Item.mana = 16;
             Item.UseSound = SoundID.Item33;
 
             Item.noMelee = true;

@@ -40,7 +40,7 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
         }
 
         public override void ScaleExpertStats (int numPlayers, float bossLifeScale) {
-            NPC.lifeMax = 650;
+            NPC.lifeMax = 650 + (int)(numPlayers > 1 ? NPC.lifeMax * 0.1f * numPlayers : 0);
             NPC.damage = 60;
         }
 

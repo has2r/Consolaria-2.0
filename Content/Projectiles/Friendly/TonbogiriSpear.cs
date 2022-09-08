@@ -32,9 +32,11 @@ namespace Consolaria.Content.Projectiles.Friendly {
 
             Projectile.ignoreWater = true;
             Projectile.usesIDStaticNPCImmunity = true;
-            Projectile.idStaticNPCHitCooldown = 3;
+            Projectile.idStaticNPCHitCooldown = 5;
 
             Projectile.alpha = 255;
+
+            Projectile.netImportant = true;
         }
 
         public override void AI () {
@@ -81,6 +83,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
                         dust.noLight = false;
                     }
                 }
+                Projectile.netUpdate = true;
             }
             if (player.itemAnimation == 2) {
                 Projectile.Kill();
@@ -99,12 +102,12 @@ namespace Consolaria.Content.Projectiles.Friendly {
 
         public override void OnHitNPC (NPC target, int damage, float knockback, bool crit) {
             Projectile.direction = ((Main.player [Projectile.owner].Center.X < target.Center.X) ? 1 : (-1));
-            target.AddBuff(BuffID.Venom, 90);
+            target.AddBuff(BuffID.Venom, 180);
         }
 
         public override void OnHitPvp (Player target, int damage, bool crit) {
             Projectile.direction = ((Main.player [Projectile.owner].Center.X < target.Center.X) ? 1 : (-1));
-            target.AddBuff(BuffID.Venom, 90);
+            target.AddBuff(BuffID.Venom, 180);
         }
 
         public override bool PreDraw (ref Color lightColor) {

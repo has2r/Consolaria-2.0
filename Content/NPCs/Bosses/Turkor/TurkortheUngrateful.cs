@@ -60,14 +60,15 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 
 			NPC.HitSound = SoundID.NPCHit7;
 			NPC.DeathSound = SoundID.NPCDeath5;
+			NPC.value = Item.buyPrice(gold: 4);
 
 			NPC.boss = true;
 			NPC.npcSlots = 10f;
 
 			NPC.lavaImmune = true;
 			NPC.noTileCollide = false;
-			NPC.noGravity = false;
 
+			NPC.noGravity = false;
 			NPC.netAlways = true;
 
 			NPC.SpawnWithHigherTime(30);

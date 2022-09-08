@@ -54,15 +54,16 @@ namespace Consolaria.Content.Items.BossDrops.Ocram {
             if (ocramJump) {
                 if (rocketTimer > 0 && ((Player.gravDir == 1f && Player.velocity.Y < 0f) || (Player.gravDir == -1f && Player.velocity.Y > 0f))) {
                     if (Player.gravDir == -1f) Player.height = -6;
-
-                    float size = (Player.jump / 50f + 1f) / 2f;
-                    for (int i = 0; i < 2; i++) {
-                        var dust = Dust.NewDust(new Vector2(Player.position.X, Player.position.Y + (Player.height / 2)), Player.width, 19, DustID.Shadowflame, Player.velocity.X * 0.3f, Player.velocity.Y * 0.3f, 100, default, 1.75f * size);
-                        Main.dust [dust].velocity *= 0.5f * size;
-                        Main.dust [dust].fadeIn = 1.5f * size;
-                        var dust2 = Dust.NewDust(new Vector2(Player.position.X, Player.position.Y + Player.height / 2), Player.width, 32, DustID.Shadowflame, Player.velocity.X * 0.3f, Player.velocity.Y * 0.3f, 120, default, 1.75f * size);
-                        Main.dust [dust2].velocity *= 0.5f * size;
-                        Main.dust [dust2].fadeIn = 1.5f * size;
+                    if (Main.netMode != NetmodeID.Server) {
+                        float size = (Player.jump / 50f + 1f) / 2f;
+                        for (int i = 0; i < 2; i++) {
+                            var dust = Dust.NewDust(new Vector2(Player.position.X, Player.position.Y + (Player.height / 2)), Player.width, 19, DustID.Shadowflame, Player.velocity.X * 0.3f, Player.velocity.Y * 0.3f, 100, default, 1.75f * size);
+                            Main.dust [dust].velocity *= 0.5f * size;
+                            Main.dust [dust].fadeIn = 1.5f * size;
+                            var dust2 = Dust.NewDust(new Vector2(Player.position.X, Player.position.Y + Player.height / 2), Player.width, 32, DustID.Shadowflame, Player.velocity.X * 0.3f, Player.velocity.Y * 0.3f, 120, default, 1.75f * size);
+                            Main.dust [dust2].velocity *= 0.5f * size;
+                            Main.dust [dust2].fadeIn = 1.5f * size;
+                        }
                     }
                 }
                 //  if (Player.velocity.Y == 0f || Player.sliding) canJump = false;
@@ -83,10 +84,10 @@ namespace Consolaria.Content.Items.BossDrops.Ocram {
             if (rocketJumped)
                 return;
 
-            int radius = 120;
-            Vector2 dustPos = new(Player.position.X, Player.position.Y + Player.height / 2);
-            Player.velocity.Y = -18;
             if (Main.netMode != NetmodeID.Server) {
+                Vector2 dustPos = new(Player.position.X, Player.position.Y + Player.height / 2);
+                Player.velocity.Y = -18;
+
                 for (int i = 0; i < 30; i++) {
                     int dust = Dust.NewDust(dustPos, Player.width, 4, DustID.Shadowflame, 0f, -1.5f, 100, default, 1.25f);
                     Main.dust [dust].noGravity = true;
@@ -104,12 +105,12 @@ namespace Consolaria.Content.Items.BossDrops.Ocram {
 
             for (int _npc = 0; _npc < Main.maxNPCs; _npc++) {
                 NPC npc = Main.npc [_npc];
-                if (npc.active && !npc.friendly && npc.life > 0 && !npc.dontTakeDamage && npc.Distance(Player.position) <= radius) {
-                    npc.StrikeNPCNoInteraction(rocketJumpDamage, rocketJumpKnockBack, 0, false, false, false);
-                    //npc.AddBuff(BuffID.ShadowFlame, 180);
+                if (npc.active && !npc.friendly && npc.life > 0 && !npc.dontTakeDamage && npc.Distance(Player.position) <= 120) {
+                    npc.StrikeNPCNoInteraction(rocketJumpDamage, rocketJumpKnockBack, 0, Main.rand.NextBool(4) ? true : false, false, false);
+                    npc.AddBuff(BuffID.ShadowFlame, 180);
                 }
             }
-            SoundEngine.PlaySound(SoundID.Item14 with { Pitch = 0.1f, Volume = 0.7f}, Player.position);
+            SoundEngine.PlaySound(SoundID.Item14 with { Pitch = 0.1f, Volume = 0.7f }, Player.position);
             rocketJumped = true;
         }
 

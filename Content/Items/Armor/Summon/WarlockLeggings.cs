@@ -12,6 +12,7 @@ namespace Consolaria.Content.Items.Armor.Summon {
             DisplayName.SetDefault("Warlock Leggings");
             Tooltip.SetDefault("Increases your max number of minions by 1" + "\n20% increased minion damage" + "\n15% increased movement speed");
 
+            ArmorIDs.Legs.Sets.HidesBottomSkin [Item.legSlot] = true;
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
         }
 

@@ -39,8 +39,8 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 
 			NPCID.Sets.NPCBestiaryDrawModifiers drawModifiers = new NPCID.Sets.NPCBestiaryDrawModifiers(0) {
 				CustomTexturePath = "Consolaria/Assets/Textures/Bestiary/Turkor_Bestiary",
-				PortraitScale = 0.75f,
-				Position = new Vector2(0, 10f),
+				PortraitScale = 1f,
+				Position = new Vector2(30, 18f),
 			};
 			NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, drawModifiers);
 		}
@@ -438,6 +438,8 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 			=> potionType = ItemID.HealingPotion;
 
 		public override void ModifyNPCLoot (NPCLoot npcLoot) {
+			npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<TurkorTrophy>(), 10));
+
 			Conditions.NotExpert notExpert = new Conditions.NotExpert();
 			npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<TurkorBag>()));
 			npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<TurkorRelic>()));
@@ -449,7 +451,6 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 			npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<SpicySauce>(), 2, 15, 34));
 			npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<TurkorMask>(), 7));
 
-			npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<TurkorTrophy>(), 10));
 			npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Wishbone>(), 5));
 		}
 	}

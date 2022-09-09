@@ -134,9 +134,9 @@ namespace Consolaria.Content.NPCs {
 			bool flag = true;
 			while (flag) {
 				float drawPos = (float) Math.Sqrt(drawPosX * drawPosX + drawPosY * drawPosY);
-				if (drawPos < 18f) flag = false;
+				if (drawPos < 28f) flag = false;
 				else {
-					drawPos = 18f / drawPos;
+					drawPos = 28f / drawPos;
 					drawPosX *= drawPos;
 					drawPosY *= drawPos;
 					vector.X += drawPosX;

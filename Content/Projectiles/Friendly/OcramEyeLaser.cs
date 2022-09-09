@@ -80,7 +80,6 @@ namespace Consolaria.Content.Projectiles.Friendly {
                 float rotation = (float)Math.Atan2(Projectile.oldPos[k].Y - Projectile.oldPos[k + 1].Y, Projectile.oldPos[k].X - Projectile.oldPos[k + 1].X);
                 spriteBatch.Draw(texture, drawPos, null, color, rotation, drawOrigin, (Projectile.scale - k / (float)Projectile.oldPos.Length) * 0.75f, effects, 0f);
                 spriteBatch.Draw(texture, drawPos - Projectile.oldPos[k] * 0.5f + Projectile.oldPos[k + 1] * 0.5f, null, color, rotation, drawOrigin, (Projectile.scale - k / (float)Projectile.oldPos.Length) * 0.75f, effects, 0f);
-                //if (k == 1) spriteBatch.Draw(texture, drawPos, null, new Color (150, 90, 150, 0), rotation + (float)Math.PI / 2, drawOrigin, 0.2f + (float)Math.Sin(Projectile.timeLeft / 4) * 0.5f, effects, 0f);
             }
             return true;
         }

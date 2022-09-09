@@ -9,7 +9,7 @@ namespace Consolaria.Content.Items.Weapons.Ranged {
 	public class VolcanicRepeater : ModItem {
 		public override void SetStaticDefaults () {
 			DisplayName.SetDefault("Vulcan Repeater");
-			Tooltip.SetDefault("Transforms any suitable ammo into Vulcan Bolts");
+			Tooltip.SetDefault("Turns arrows into Vulcan Bolts");
 
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
 		}

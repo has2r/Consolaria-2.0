@@ -53,7 +53,7 @@ namespace Consolaria.Content.NPCs {
         public override void SetBestiary (BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement [] {
                 BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Ocean,
-                new FlavorTextBestiaryInfoElement("Since there are no whales to be seen in the oceans, these black'n'white predators will hunt anything else... including you!")
+                new FlavorTextBestiaryInfoElement("Since there are no whales to be seen in these oceans, these black'n'white predators will hunt anything else... including you!")
             });
         }
 

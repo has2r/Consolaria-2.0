@@ -18,7 +18,7 @@ namespace Consolaria.Content.Items.Weapons.Magic {
             Item.Size = new Vector2(width, height);
 
             Item.DamageType = DamageClass.Magic;
-            Item.damage = 68;
+            Item.damage = 72;
             Item.knockBack = 4;
 
             Item.useStyle = ItemUseStyleID.Shoot;

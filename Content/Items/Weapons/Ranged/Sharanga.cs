@@ -8,7 +8,7 @@ namespace Consolaria.Content.Items.Weapons.Ranged {
 	public class Sharanga : ModItem {
 		public override void SetStaticDefaults () {
 			DisplayName.SetDefault("Sharanga");
-			Tooltip.SetDefault("Transforms any suitable ammo into Spectral Arrows");
+			Tooltip.SetDefault("Shoots Spectral Arrows");
 
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
 		}

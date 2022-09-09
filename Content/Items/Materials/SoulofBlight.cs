@@ -33,6 +33,9 @@ namespace Consolaria.Content.Items.Materials
         }
 
         public override void PostUpdate()  
-          =>  Lighting.AddLight(Item.Center, Color.Yellow.ToVector3() * 0.55f * Main.essScale);  
+          =>  Lighting.AddLight(Item.Center, Color.Yellow.ToVector3() * 0.45f * Main.essScale);
+
+        public override Color? GetAlpha(Color lightColor)
+          => new Color (255, 255, 255, 0);
     }
 }

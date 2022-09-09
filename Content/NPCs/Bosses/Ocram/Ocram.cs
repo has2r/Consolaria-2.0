@@ -24,6 +24,9 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
         private int t = 0;
         private int rage;
         private float h = 0.2f;
+        private float accelerationV;
+        private float accelerationR;
+        private float transformR;
         private bool secondPhaseActive = false;
 
         private const int MissileProjectiles = 5;
@@ -36,6 +39,8 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
         private float boomOpacity;
         private float boomOpacityLoss;
         private Color boomColor;
+        private float predictScale;
+        private float predictRotation;
         private Vector2 ocramOldPos;
         private int spawnCheck;
 
@@ -43,6 +48,9 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
         private float [] boomRot = new float [9];
         private float [] boomScale = new float [9];
         private float [] boomSpin = new float [9];
+
+        private Vector2 [] scytheSpawnOffset = new Vector2 [8] {new Vector2 (120, 50), new Vector2(160, 50), new Vector2(-120, -50), new Vector2(-160, -50), new Vector2(50, 120), new Vector2(50, 160), new Vector2(-50, -120), new Vector2(-50, -160)};
+        private float scytheSpawnRotation = Main.rand.NextFloat(0, (float)Math.PI * 2f);
 
         private readonly bool isExpert = Main.expertMode || Main.masterMode;
         private readonly float rad = (float) Math.PI * 2f;
@@ -138,8 +146,7 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
                     Main.dust [index2].position += new Vector2(Main.rand.Next(80, 120), 0).RotatedByRandom(rad);
                     Main.dust [index2].velocity = Vector2.Normalize(NPC.Center - Main.dust [index2].position) * Main.rand.NextFloat(1f, 2f);
                 }
-
-                return;
+                //return;
             }
 
             if (NPC.target < 0 || NPC.target == 255 || Main.player [NPC.target].dead || !Main.player [NPC.target].active) {
@@ -170,38 +177,43 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
                     num319 -= rad;
                 }
             }
-            float num320 = 0.1f;
 
             if (NPC.rotation < num319) {
                 if ((double) (num319 - NPC.rotation) > 3.1) {
-                    NPC.rotation -= num320;
+                    NPC.rotation -= accelerationR;
                 }
                 else {
-                    NPC.rotation += num320;
+                    NPC.rotation += accelerationR;
                 }
             }
             else {
                 if (NPC.rotation > num319) {
                     if ((double) (NPC.rotation - num319) > 3.1) {
-                        NPC.rotation += num320;
+                        NPC.rotation += accelerationR;
                     }
                     else {
-                        NPC.rotation -= num320;
+                        NPC.rotation -= accelerationR;
                     }
                 }
             }
-            if (NPC.rotation > num319 - num320 && NPC.rotation < num319 + num320) {
+            if (accelerationR < 0.1f) accelerationR += 0.005f;
+            if (NPC.rotation > num319 - accelerationR && NPC.rotation < num319 + accelerationR)
+            {
                 NPC.rotation = num319;
             }
-            if (NPC.rotation < 0f) {
+            if (NPC.rotation < 0f)
+            {
                 NPC.rotation += rad;
             }
-            else {
-                if (NPC.rotation > rad) {
+            else
+            {
+                if (NPC.rotation > rad)
+                {
                     NPC.rotation -= rad;
                 }
             }
-            if (NPC.rotation > num319 - num320 && NPC.rotation < num319 + num320) {
+            if (NPC.rotation > num319 - accelerationR && NPC.rotation < num319 + accelerationR)
+            {
                 NPC.rotation = num319;
             }
             if (Main.rand.NextBool(5)) {
@@ -230,8 +242,8 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
             else {
                 if (NPC.ai [0] == 0f) {
                     if (NPC.ai [1] == 0f) {
+                        if (accelerationV < 0.2f) accelerationV += 0.01f;
                         float num322 = 12f;
-                        float num323 = 0.2f;
                         int num324 = 1;
                         if (NPC.position.X + NPC.width / 2 < Main.player [NPC.target].position.X + Main.player [NPC.target].width) {
                             num324 = -1;
@@ -247,33 +259,36 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
                         //adjust velocity.x and y between 12 and -12 depending on player position
 
                         if (NPC.velocity.X < num325) {
-                            NPC.velocity.X = NPC.velocity.X + num323;
+                            NPC.velocity.X = NPC.velocity.X + accelerationV;
                             if (NPC.velocity.X < 0f && num325 > 0f) {
-                                NPC.velocity.X = NPC.velocity.X + num323;
+                                NPC.velocity.X = NPC.velocity.X + accelerationV;
                             }
                         }
                         else {
                             if (NPC.velocity.X > num325) {
-                                NPC.velocity.X = NPC.velocity.X - num323;
+                                NPC.velocity.X = NPC.velocity.X - accelerationV;
                                 if (NPC.velocity.X > 0f && num325 < 0f) {
-                                    NPC.velocity.X = NPC.velocity.X - num323;
+                                    NPC.velocity.X = NPC.velocity.X - accelerationV;
                                 }
                             }
                         }
                         if (NPC.velocity.Y < num326) {
-                            NPC.velocity.Y = NPC.velocity.Y + num323;
+                            NPC.velocity.Y = NPC.velocity.Y + accelerationV;
                             if (NPC.velocity.Y < 0f && num326 > 0f) {
-                                NPC.velocity.Y = NPC.velocity.Y + num323;
+                                NPC.velocity.Y = NPC.velocity.Y + accelerationV;
                             }
                         }
                         else {
                             if (NPC.velocity.Y > num326) {
-                                NPC.velocity.Y = NPC.velocity.Y - num323;
+                                NPC.velocity.Y = NPC.velocity.Y - accelerationV;
                                 if (NPC.velocity.Y > 0f && num326 < 0f) {
-                                    NPC.velocity.Y = NPC.velocity.Y - num323;
+                                    NPC.velocity.Y = NPC.velocity.Y - accelerationV;
                                 }
                             }
                         }
+
+                        if (spawnCheck < 100) return;
+
                         NPC.ai [2] += 1f;
                         if (NPC.ai [2] >= 920f) { //reset the cycle if it's over
                             t = 0;
@@ -420,7 +435,6 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
                             if (NPC.ai [2] >= 740f) { //summon finishes
                                 if (NPC.ai [2] >= 740f) {
                                     NPC.ai [2] = 920;
-                                    SoundEngine.PlaySound(SoundID.Roar with { PitchVariance = 0.15f, MaxInstances = 0 }, NPC.position);
                                     if (Main.netMode != NetmodeID.Server) {
                                         int num23 = 36;
                                         for (int index1 = 0; index1 < num23; ++index1) {
@@ -493,6 +507,17 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
                                     NPC.target = 255;
                                     NPC.rotation = num319;
                                     if (NPC.ai [3] >= 4f) { //dash attack ends after ai[3] reaches 4
+                                        if (Main.netMode != NetmodeID.Server) {
+                                            int num23 = 40;
+                                            for (int index1 = 0; index1 < num23; ++index1) {
+                                                int index2 = Dust.NewDust(new Vector2(NPC.Center.X, NPC.Center.Y), 0, 0, DustID.LavaMoss, 0f, 0f, 100, new Color(255, 0, 244), Main.rand.NextFloat(0.8f, 1.4f));
+                                                Main.dust[index2].noGravity = true;
+                                                Main.dust[index2].noLight = false;
+                                                Main.dust[index2].fadeIn = Main.rand.NextFloat(0, 1f);
+                                                Main.dust[index2].position += new Vector2(Main.rand.Next(60, 100), 0).RotatedByRandom(rad);
+                                                Main.dust[index2].velocity = Vector2.Normalize(NPC.Center - Main.dust[index2].position) * Main.rand.NextFloat(0, 1.5f);
+                                            }
+                                        }
                                         drawTrail = false; //trail deactivates
                                         NPC.ai [1] = 0f;
                                         NPC.ai [3] = 0f;
@@ -505,6 +530,7 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
                         }
                     }
                     if (secondPhaseActive) {
+                        transformR = NPC.rotation;
                         NPC.ai [0] = 1f;
                         NPC.ai [1] = 0f;
                         NPC.ai [2] = 0f;
@@ -528,7 +554,8 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
                                 NPC.ai [2] = 0f;
                             }
                         }
-                        NPC.rotation += NPC.ai [2];
+                        NPC.rotation = transformR + NPC.ai [2]; //overrides rotation checks by remembering previous values
+                        transformR = NPC.rotation;
                         NPC.ai [1] += 1f;
                         if (NPC.ai [1] % 20 == 0 && NPC.ai [0] == 1f) {
                             AddGlow(20f, 0.5f, Color.BlueViolet);
@@ -556,6 +583,7 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
                                 NPC.ai [2] = 0f;
                             }
                             else {
+                                accelerationR = 0;
                                 showEye = true;
                                 SoundEngine.PlaySound(SoundID.NPCHit1, NPC.position);
                                 if (Main.netMode != NetmodeID.Server) {
@@ -786,14 +814,8 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
                                     float knockback = 4f;
                                     float speed = 9f;
                                     Vector2 velocity = Vector2.Normalize(Main.player [NPC.target].Center - NPC.Center) * speed;
-                                    Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.position.X + 120, NPC.position.Y + 50, velocity.X, velocity.Y, ModContent.ProjectileType<OcramScythe>(), damage, knockback);
-                                    Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.position.X + 160, NPC.position.Y + 50, velocity.X, velocity.Y, ModContent.ProjectileType<OcramScythe>(), damage, knockback);
-                                    Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.position.X - 120, NPC.position.Y - 50, velocity.X, velocity.Y, ModContent.ProjectileType<OcramScythe>(), damage, knockback);
-                                    Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.position.X - 160, NPC.position.Y - 50, velocity.X, velocity.Y, ModContent.ProjectileType<OcramScythe>(), damage, knockback);
-                                    Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.position.X + 50, NPC.position.Y + 120, velocity.X, velocity.Y, ModContent.ProjectileType<OcramScythe>(), damage, knockback);
-                                    Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.position.X + 50, NPC.position.Y + 160, velocity.X, velocity.Y, ModContent.ProjectileType<OcramScythe>(), damage, knockback);
-                                    Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.position.X - 50, NPC.position.Y - 120, velocity.X, velocity.Y, ModContent.ProjectileType<OcramScythe>(), damage, knockback);
-                                    Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.position.X - 50, NPC.position.Y - 160, velocity.X, velocity.Y, ModContent.ProjectileType<OcramScythe>(), damage, knockback);
+                                    foreach (Vector2 spawnOffset in scytheSpawnOffset)
+                                        Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center + spawnOffset.RotatedBy(scytheSpawnRotation), velocity, ModContent.ProjectileType<OcramScythe>(), damage, knockback);
                                 }
                                 SoundEngine.PlaySound(SoundID.Roar with { PitchVariance = 0.15f, MaxInstances = 0 }, NPC.position);
                                 NPC.rotation = num319;
@@ -806,6 +828,7 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
                                 num387 = num384 / num387;
                                 NPC.velocity.X = num385 * num387;
                                 NPC.velocity.Y = num386 * num387;
+                                scytheSpawnRotation = Main.rand.NextFloat(0, rad);
                                 NPC.ai [1] = 2f; //switch to pause between dashes
                                 return;
                             }
@@ -813,15 +836,21 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
                                 NPC.ai [2] += 1f; //timer between dashes
                                 if (rage > 45) NPC.ai [2] += 1f;
                                 if (NPC.ai [2] >= 50f) {
-                                    if (Main.netMode != NetmodeID.Server) {
-                                        int num23 = 2;
-                                        for (int index1 = 0; index1 < num23; ++index1) {
-                                            int index2 = Dust.NewDust(new Vector2(NPC.Center.X, NPC.Center.Y), 0, 0, DustID.Shadowflame, 0f, 0f, 100, default, 1f + Main.rand.NextFloat(0, 1.5f));
-                                            Main.dust [index2].noGravity = true;
-                                            Main.dust [index2].noLight = false;
-                                            Main.dust [index2].fadeIn = Main.rand.NextFloat(0, 1f);
-                                            Main.dust [index2].position += new Vector2(Main.rand.Next(80, 120), 0).RotatedByRandom(rad);
-                                            Main.dust [index2].velocity = Vector2.Normalize(NPC.Center - Main.dust [index2].position) * Main.rand.NextFloat(0, 1.5f);
+                                    if (NPC.ai[3] < 4f) {
+                                        if (predictScale < 1f && NPC.ai[2] >= 60 && NPC.ai[2] < 75) predictScale += 0.1f;
+                                        if (predictScale > 0 && NPC.ai[2] >= 85) predictScale -= 0.1f;
+                                        if (Main.netMode != NetmodeID.Server)
+                                        {
+                                            int num23 = 2;
+                                            for (int index1 = 0; index1 < num23; ++index1)
+                                            {
+                                                int index2 = Dust.NewDust(new Vector2(NPC.Center.X, NPC.Center.Y), 0, 0, DustID.Shadowflame, 0f, 0f, 100, default, 1f + Main.rand.NextFloat(0, 1.5f));
+                                                Main.dust[index2].noGravity = true;
+                                                Main.dust[index2].noLight = false;
+                                                Main.dust[index2].fadeIn = Main.rand.NextFloat(0, 1f);
+                                                Main.dust[index2].position += new Vector2(Main.rand.Next(80, 120), 0).RotatedByRandom(rad);
+                                                Main.dust[index2].velocity = Vector2.Normalize(NPC.Center - Main.dust[index2].position) * Main.rand.NextFloat(0, 1.5f);
+                                            }
                                         }
                                     }
                                     NPC.velocity.X = NPC.velocity.X * 0.93f;
@@ -834,6 +863,7 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
                                     }
                                 }
                                 else {
+                                    if (predictScale > 0) predictScale -= 0.5f;
                                     NPC.rotation = (float) Math.Atan2(NPC.velocity.Y, NPC.velocity.X) - 1.57f;
                                 }
                                 if (NPC.ai [2] >= 100f) { //timer runs out
@@ -842,6 +872,7 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
                                     NPC.target = 255;
                                     NPC.rotation = num319;
                                     if (NPC.ai [3] >= 5f) { //scythe attack ends after ai[3] reaches 5
+                                        predictScale = 0;
                                         drawTrail = false; //trail deactivates
                                         rage = 0;
                                         NPC.ai [1] = 0f;
@@ -931,8 +962,9 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
                 }
             }
             if (pulseOpacity > 0f) {
-                Color color2 = NPC.GetAlpha(Color.BlueViolet) * 0.75f;
-                Vector2 pulseOffset = new Vector2(6, 0).RotatedBy(rad * (Math.Sin(NPC.ai [2] / 16) / 2 + 0.5));
+                float multiplier = (float)(Math.Sin(NPC.ai[2] / 16) / 2 + 0.5);
+                Color color2 = NPC.GetAlpha(Color.BlueViolet) * 0.75f * multiplier;
+                Vector2 pulseOffset = new Vector2(10, 0).RotatedBy(rad * multiplier) * multiplier;
                 Main.spriteBatch.Draw(texture, ocramPos + pulseOffset, new Rectangle?(NPC.frame), color2, NPC.rotation, origin, NPC.scale, effects, 0f);
                 Main.spriteBatch.Draw(texture, ocramPos - pulseOffset, new Rectangle?(NPC.frame), color2, NPC.rotation, origin, NPC.scale, effects, 0f);
                 pulseOffset = pulseOffset.RotatedBy(rad / 4) * 0.5f;
@@ -944,7 +976,10 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
                 if (boomOpacity < 0.01f && showEye) AddGlow(1f, 0.95f, Color.BlueViolet);
                 if (boomOpacity < 0.01f) boomOpacity = 0f;
                 for (int i = 0; i < 9; i++) {
-                    if (boomColor == Color.Red) Main.spriteBatch.Draw(boom, ocramPos, null, NPC.GetAlpha(boomColor) * boomOpacity, boomRot [i] + rad / 2, origin, boomScale [i] * 1.5f, effects, 0f);
+                    if (boomColor == Color.Red) {
+                        Main.spriteBatch.Draw(boom, ocramPos, null, NPC.GetAlpha(boomColor) * boomOpacity, boomRot [i] + rad / 2, origin, boomScale [i] * 1.25f, effects, 0f);
+                        Main.spriteBatch.Draw(boom, ocramPos, null, new Color (255, 255, 215, 0) * boomOpacity, boomRot[i] + rad / 2, origin, boomScale[i] * 0.75f, effects, 0f);
+                    }
                     Main.spriteBatch.Draw(boom, ocramPos, null, NPC.GetAlpha(boomColor) * boomOpacity, boomRot [i], origin, boomScale [i], effects, 0f);
                     boomRot [i] += boomSpin [i];
                     boomSpin [i] *= boomOpacityLoss;
@@ -957,8 +992,10 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
             Texture2D eye = (Texture2D) ModContent.Request<Texture2D>("Consolaria/Assets/Textures/NPCs/OcramEye");
             Texture2D glow = (Texture2D) ModContent.Request<Texture2D>("Consolaria/Assets/Textures/NPCs/OcramGlow");
             Texture2D eyeGlow = (Texture2D) ModContent.Request<Texture2D>("Consolaria/Assets/Textures/NPCs/OcramEyeGlow");
+            Texture2D predict = (Texture2D)ModContent.Request<Texture2D>("Consolaria/Assets/Textures/NPCs/OcramPredict");
 
             Vector2 origin = new(eye.Width / 2, eye.Height / 2);
+            Vector2 predictOrigin = new(predict.Width / 2, predict.Height / 2);
             Vector2 ocramPos = NPC.Center - Main.screenPosition;
 
             if (showEye) {
@@ -980,6 +1017,13 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
                 drawColor = new Color(1 * glowOpacity, 0, 0, 0);
                 Main.spriteBatch.Draw(glow, ocramPos, null, drawColor, NPC.rotation, origin, NPC.scale, SpriteEffects.None, 0f);
             }
+            if (predictScale > 0) {
+                predictRotation += 0.1f;
+                if (predictRotation > rad) predictRotation -= rad;
+                foreach (Vector2 spawnOffset in scytheSpawnOffset) {
+                    Main.spriteBatch.Draw(predict, ocramPos + spawnOffset.RotatedBy(scytheSpawnRotation), null, new Color (175, 85, 255, 0), predictRotation, predictOrigin, predictScale * 0.6f, SpriteEffects.None, 0f);
+                }
+            }
         }
 
         public override void HitEffect (int hitDirection, double damage) {
@@ -992,14 +1036,12 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
                     for (int k = 0; k < 20; k++)
                         Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.SeaSnail, 2.5f * hitDirection, -2.5f, 0, default, 0.7f);
 
-                    Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity, ModContent.Find<ModGore>("Consolaria/OcramGore1").Type, 1f);
-                    Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity, ModContent.Find<ModGore>("Consolaria/OcramGore1").Type, 1f);
-                    Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity, ModContent.Find<ModGore>("Consolaria/OcramGore1").Type, 1f);
-                    Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity, ModContent.Find<ModGore>("Consolaria/OcramGore2").Type, 1.2f);
-                    Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity, ModContent.Find<ModGore>("Consolaria/OcramGore2").Type, 1.2f);
-                    Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity, ModContent.Find<ModGore>("Consolaria/OcramGore3").Type, 1f);
-                    Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity, ModContent.Find<ModGore>("Consolaria/OcramGore3").Type, 1f);
-                    Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity, ModContent.Find<ModGore>("Consolaria/OcramGore1").Type, 1f);
+                    for (int i = 0; i < 2; i++) {
+                        Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity, ModContent.Find<ModGore>("Consolaria/OcramGore1").Type, 1f);
+                        Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity, ModContent.Find<ModGore>("Consolaria/OcramGore1").Type, 1f);
+                        Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity, ModContent.Find<ModGore>("Consolaria/OcramGore2").Type, 1.2f);
+                        Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity, ModContent.Find<ModGore>("Consolaria/OcramGore3").Type, 1f);
+                    }
                 }
                 SoundEngine.PlaySound(SoundID.Item14, NPC.Center);
             }
@@ -1012,6 +1054,8 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
             => potionType = ItemID.GreaterHealingPotion;
 
         public override void ModifyNPCLoot (NPCLoot npcLoot) {
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<OcramTrophy>(), 10));
+
             Conditions.NotExpert notExpert = new Conditions.NotExpert();
             npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<OcramBag>()));
             npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<OcramRelic>()));
@@ -1022,8 +1066,6 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
             npcLoot.Add(notExpertRule);
             npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<SoulofBlight>(), 1, 25, 40));
             npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<OcramMask>(), 7));
-
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<OcramTrophy>(), 10));
         }
     }
 }

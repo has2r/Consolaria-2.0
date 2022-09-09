@@ -170,7 +170,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
             short defense = 8;
             NPC.defense = defense;
 
-            NPC.value = Item.buyPrice(gold: 4);
+            NPC.value = Item.buyPrice(silver: 50);
 
             NPC.HitSound = SoundID.NPCHit1;
             NPC.DeathSound = SoundID.NPCDeath8;
@@ -201,7 +201,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
             => bestiaryEntry.Info.AddRange(new List<IBestiaryInfoElement>
             {
                 BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheHallow,
-                new FlavorTextBestiaryInfoElement("A rabbit of such size is troublesome enough, but this monster is capable of reproducing through colorful eggs, spread around the world in Spring for fools to pick up.")
+                new FlavorTextBestiaryInfoElement("As if its size wasn't troublesome enough, this rabbit can reproduce through colorful eggs, spread around the world in Spring for fools to pick up.")
             });
 
         /*public override void ModifyHitPlayer (Player target, ref int damage, ref bool crit) {
@@ -241,6 +241,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
             LepusDropCondition lepusDropCondition = new();
             IItemDropRule conditionalRule = new LeadingConditionRule(lepusDropCondition);
             Conditions.NotExpert notExpert = new();
+            conditionalRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<LepusTrophy>(), 10));
             conditionalRule.OnSuccess(new OneFromRulesRule(1, ItemDropRule.ByCondition(notExpert, ModContent.ItemType<OstaraHat>()), ItemDropRule.ByCondition(notExpert, ModContent.ItemType<OstaraJacket>()), ItemDropRule.ByCondition(notExpert, ModContent.ItemType<OstaraBoots>())));
             conditionalRule.OnSuccess(ItemDropRule.BossBag(ModContent.ItemType<LepusBag>()));
             conditionalRule.OnSuccess(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<LepusRelic>()));
@@ -249,7 +250,6 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus
             conditionalRule.OnSuccess(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<LepusMask>(), 8));
             conditionalRule.OnSuccess(ItemDropRule.ByCondition(notExpert, ItemID.BunnyHood, 10));
             conditionalRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<SuspiciousLookingEgg>()));
-            conditionalRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<LepusTrophy>(), 10));
             LepusDropCondition1 lepusDropCondition2 = new();
             IItemDropRule conditionalRule2 = new LeadingConditionRule(lepusDropCondition2);
             conditionalRule2.OnSuccess(ItemDropRule.Common(ModContent.ItemType<GoldenCarrot>(), minimumDropped: 10, maximumDropped: 20));

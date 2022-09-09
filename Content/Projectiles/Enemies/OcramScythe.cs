@@ -13,7 +13,7 @@ namespace Consolaria.Content.Projectiles.Enemies {
 			DisplayName.SetDefault("Supreme Demon Scythe");
 
 			ProjectileID.Sets.TrailCacheLength [Projectile.type] = 8;
-			ProjectileID.Sets.TrailingMode [Projectile.type] = 0;
+			ProjectileID.Sets.TrailingMode [Projectile.type] = 2;
 		}
 
 		public override void SetDefaults () {
@@ -41,7 +41,7 @@ namespace Consolaria.Content.Projectiles.Enemies {
 			Main.dust [dust2].noGravity = true;
 
 			Projectile.rotation += 2 / rotationTimer;
-			rotationTimer += 0.01f;
+			rotationTimer += 0.05f;
 		}
 
 		public override void Kill (int timeLeft) {
@@ -56,14 +56,14 @@ namespace Consolaria.Content.Projectiles.Enemies {
 
 		public override bool PreDraw (ref Color lightColor) {
 			SpriteBatch spriteBatch = Main.spriteBatch;
-			Texture2D texture = (Texture2D) ModContent.Request<Texture2D>(Texture);
+			Texture2D texture = (Texture2D) ModContent.Request<Texture2D>("Consolaria/Assets/Textures/Projectiles/OcramScythe_Glow");
 			Vector2 drawOrigin = new Vector2(texture.Width * 0.5f, Projectile.height * 0.5f);
 			SpriteEffects effects = (Projectile.spriteDirection == -1) ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
-			for (int k = 0; k < Projectile.oldPos.Length; k++) {
+			for (int k = 0; k < Projectile.oldPos.Length - 1; k++) {
 				Vector2 drawPos = Projectile.oldPos [k] - Main.screenPosition + drawOrigin + new Vector2(0f, Projectile.gfxOffY);
-				Color color = Color.MediumVioletRed * ((Projectile.oldPos.Length - k) / (float) Projectile.oldPos.Length);
-				color = Projectile.GetAlpha(color) * ((Projectile.oldPos.Length - k) / (float) Projectile.oldPos.Length);
-				spriteBatch.Draw(texture, drawPos, null, color, Projectile.rotation, drawOrigin, Projectile.scale - k / (float) Projectile.oldPos.Length, effects, 0f);
+				Color color = new Color(50 - k * 6, 10, 110 + k * 5, 0) * (8 - k) * 0.125f;
+				spriteBatch.Draw(texture, drawPos, null, color, Projectile.oldRot[k], drawOrigin, Projectile.scale - k / (float) Projectile.oldPos.Length, effects, 0f);
+				spriteBatch.Draw(texture, drawPos - Projectile.oldPos[k] * 0.5f + Projectile.oldPos[k + 1] * 0.5f, null, color, Projectile.oldRot[k] * 0.5f + Projectile.oldRot[k + 1] * 0.5f, drawOrigin, Projectile.scale - (k + 0.5f) / (float)Projectile.oldPos.Length, effects, 0f);
 			}
 			return true;
 		}

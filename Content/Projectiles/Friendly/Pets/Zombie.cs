@@ -7,7 +7,7 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
         public override int maxFrames => 7;
 
         public override void SetDefaults () {
-            int width = 26; int height = 52;
+            int width = 26; int height = 50;
             Projectile.Size = new Vector2(width, height);
 
             DrawOffsetX -= 20;

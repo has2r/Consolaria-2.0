@@ -14,6 +14,8 @@ namespace Consolaria.Content.Items.Weapons.Melee {
             Tooltip.SetDefault("'A legendary Japanese spear coated in venom'");
 
             ItemID.Sets.SkipsInitialUseSound [Item.type] = true;
+            ItemID.Sets.Spears [Item.type] = true;
+
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
         }
 
@@ -48,7 +50,8 @@ namespace Consolaria.Content.Items.Weapons.Melee {
             => player.ownedProjectileCounts [Item.shoot] < 1;
 
         public override bool? UseItem (Player player) {
-            if (!Main.dedServ) SoundEngine.PlaySound(SoundID.DD2_GhastlyGlaivePierce, player.position);
+            if (!Main.dedServ && Item.UseSound.HasValue)
+                SoundEngine.PlaySound(Item.UseSound.Value, player.position);
             return null;
         }
 

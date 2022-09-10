@@ -19,12 +19,11 @@ namespace Consolaria.Content.Items.Weapons.Melee {
 
             Item.useStyle = ItemUseStyleID.Swing;
             Item.useTime = Item.useAnimation = 30;
-            Item.autoReuse = false;
+            Item.useTurn = true;
 
             Item.DamageType = DamageClass.Melee;
             Item.damage = 30;
             Item.knockBack = 8;
-            Item.crit = 5;
 
             Item.value = Item.buyPrice(gold: 1, silver: 20);
             Item.rare = ItemRarityID.Orange;
@@ -36,6 +35,6 @@ namespace Consolaria.Content.Items.Weapons.Melee {
             => target.AddBuff(BuffID.Oiled, 600);
 
         public override void OnHitPvp (Player player, Player target, int damage, bool crit)
-           => target.AddBuff(BuffID.Oiled, 600);
+            => target.AddBuff(BuffID.Oiled, 600);
     }
 }

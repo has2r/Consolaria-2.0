@@ -8,7 +8,6 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Items.Weapons.Melee {
 	public class Tizona : ModItem {
 		public override void SetStaticDefaults () {
-			DisplayName.SetDefault("Tizona");
 			Tooltip.SetDefault("Shoots a cursed skull");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
 		}
@@ -18,7 +17,7 @@ namespace Consolaria.Content.Items.Weapons.Melee {
 			Item.Size = new Vector2(width, height);
 
 			Item.useStyle = ItemUseStyleID.Swing;
-			Item.useTime = Item.useAnimation = 18;
+			Item.useTime = Item.useAnimation = 20;
 			Item.autoReuse = true;
 
 			Item.DamageType = DamageClass.Melee;

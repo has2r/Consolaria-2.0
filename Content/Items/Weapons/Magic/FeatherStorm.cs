@@ -37,7 +37,7 @@ namespace Consolaria.Content.Items.Weapons.Magic {
             Item.autoReuse = true;
 
             Item.shoot = ModContent.ProjectileType<SharpFeather>();
-            Item.shootSpeed = 8f;
+            Item.shootSpeed = 10f;
         }
 
         public override bool Shoot (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {

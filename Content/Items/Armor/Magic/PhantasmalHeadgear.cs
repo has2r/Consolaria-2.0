@@ -59,23 +59,31 @@ namespace Consolaria.Content.Items.Armor.Magic {
 
     internal class SpectralPlayer : ModPlayer {
         public bool spectralGuard;
+        public bool spectralAura;
 
         public override void ResetEffects ()
             => spectralGuard = false;
+
+        public override void PreUpdate () {
+            if (!spectralGuard) return;
+
+            Main.NewText(Player.ownedProjectileCounts [ModContent.ProjectileType<SpectralSpirit>()]);
+            if (Player.ownedProjectileCounts [ModContent.ProjectileType<SpectralSpirit>()] >= 6)
+                spectralAura = true;
+            else spectralAura = false;
+        }
     }
 
     internal class ManaPotion : GlobalItem {
         public override void OnConsumeItem (Item item, Player player) {
-            if (player.GetModPlayer<SpectralPlayer>().spectralGuard) {
-                int projectilesCount = Main.rand.Next(3, 6);
-                Vector2 velocity = new Vector2(0, -4);
-                if (item.healMana > 0) {
-                    for (int i = 0; i < projectilesCount; i++) {
-                        Vector2 position = new Vector2(player.position.X + Main.rand.Next(-60, 61), player.position.Y + Main.rand.Next(-40, 41));
-                        Projectile.NewProjectile(player.GetSource_ItemUse(item), position.X, position.Y, velocity.X, velocity.Y + Main.rand.NextFloat(-0.5f, 0.6f), ModContent.ProjectileType<SpectralSpirit>(), 80, 2.5f, player.whoAmI);
-                    }
-                    SoundEngine.PlaySound(SoundID.DD2_BookStaffCast, player.Center);
-                }
+            if (!player.GetModPlayer<SpectralPlayer>().spectralGuard || item.healMana < 0)
+                return;
+
+            if (!player.GetModPlayer<SpectralPlayer>().spectralAura && player.whoAmI == Main.myPlayer) {
+                int randomPosition = Main.rand.Next(-20, 21);
+                for (int i = 0; i < 6; i++)
+                    Projectile.NewProjectile(player.GetSource_ItemUse(item), player.MountedCenter.X + randomPosition, player.MountedCenter.Y + randomPosition, 0f, 0f, ModContent.ProjectileType<SpectralSpirit>(), 0, 0f, player.whoAmI, 1 * i, 0);
+                SoundEngine.PlaySound(SoundID.DD2_BookStaffCast, player.Center);
             }
         }
     }

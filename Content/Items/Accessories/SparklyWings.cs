@@ -29,12 +29,13 @@ namespace Consolaria.Content.Items.Accessories {
             Item.value = Item.sellPrice(gold: 8);
             Item.rare = ItemRarityID.Lime;
 
-            Item.alpha = 70;
             Item.accessory = true;
         }
 
-        public override void VerticalWingSpeeds (Player player, ref float ascentWhenFalling, ref float ascentWhenRising,
-        ref float maxCanAscendMultiplier, ref float maxAscentMultiplier, ref float constantAscend) {
+        public override Color? GetAlpha (Color lightColor)
+            => Color.White;
+
+        public override void VerticalWingSpeeds (Player player, ref float ascentWhenFalling, ref float ascentWhenRising, ref float maxCanAscendMultiplier, ref float maxAscentMultiplier, ref float constantAscend) {
             ascentWhenFalling = 0.65f;
             ascentWhenRising = 0.15f;
             maxCanAscendMultiplier = 1f;

@@ -8,9 +8,7 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Items.Weapons.Ranged {
 	public class EggCannon : ModItem {
 		public override void SetStaticDefaults () {
-			DisplayName.SetDefault("Egg Cannon");
 			Tooltip.SetDefault("'To kill a goblin, you have to break a few eggs'");
-
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
 		}
 
@@ -32,7 +30,6 @@ namespace Consolaria.Content.Items.Weapons.Ranged {
 
 			Item.rare = ItemRarityID.Blue;
 			Item.value = Item.sellPrice(gold: 1);
-
 
 			Item.shoot = ModContent.ProjectileType<EasterEgg>();
 			Item.shootSpeed = 10f;

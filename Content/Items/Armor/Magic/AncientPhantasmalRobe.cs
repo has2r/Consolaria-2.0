@@ -16,7 +16,7 @@ namespace Consolaria.Content.Items.Armor.Magic {
 
         public override void SetStaticDefaults () {
             DisplayName.SetDefault("Ancient Phantasmal Robe");
-            Tooltip.SetDefault("10% increased magic damage" + "\n5% increased magic critical strike chance" + "\nIncreases maximum mana by 50");
+            Tooltip.SetDefault("13% increased magic damage" + "\nIncreases maximum mana by 70");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
         }
@@ -38,10 +38,9 @@ namespace Consolaria.Content.Items.Armor.Magic {
         }
 
         public override void UpdateEquip (Player player) {
-            player.statManaMax2 += 50;
+            player.statManaMax2 += 70;
 
-            player.GetCritChance(DamageClass.Magic) += 5;
-            player.GetDamage(DamageClass.Magic) += 0.1f;
+            player.GetDamage(DamageClass.Magic) += 0.13f;
         }
 
         public override void AddRecipes () {

@@ -30,7 +30,7 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
             AnimationType = NPCID.ServantofCthulhu;
 
             NPC.lifeMax = 500;
-            NPC.damage = 40;
+            NPC.damage = 90;
 
             NPC.defense = 10;
             NPC.knockBackResist = 0f;
@@ -40,8 +40,8 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
         }
 
         public override void ScaleExpertStats (int numPlayers, float bossLifeScale) {
-            NPC.lifeMax = 650 + (int)(numPlayers > 1 ? NPC.lifeMax * 0.1f * numPlayers : 0);
-            NPC.damage = 60;
+            NPC.lifeMax = 650 + (int)(numPlayers > 1 ? NPC.lifeMax * 0.35f * numPlayers : 0);
+            NPC.damage = 115;
         }
 
         public override void SetBestiary (BestiaryDatabase database, BestiaryEntry bestiaryEntry) {

@@ -18,7 +18,7 @@ namespace Consolaria.Content.Items.Weapons.Ranged {
 			int width = 18; int height = 56;
 			Item.Size = new Vector2(width, height);
 
-			Item.damage = 84;
+			Item.damage = 80;
 			Item.DamageType = DamageClass.Ranged;
 
 			Item.useTime = 12;

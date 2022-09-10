@@ -111,8 +111,8 @@ namespace Consolaria.Content.Projectiles.Friendly {
         }
 
         public override bool PreDraw (ref Color lightColor) {
-            SpriteBatch spriteBatch = Main.spriteBatch;
             Player player = Main.player [Projectile.owner];
+            SpriteBatch spriteBatch = Main.spriteBatch;
             Texture2D texture = (Texture2D) ModContent.Request<Texture2D>(Texture);
             Vector2 drawOrigin = new Vector2((Projectile.spriteDirection == 1) ? (texture.Width + 8f) : (-8f), (player.gravDir == 1f) ? (-8f) : (texture.Height + 8f));
             Vector2 position = Projectile.position + new Vector2(Projectile.width, Projectile.height) / 2f + Vector2.UnitY * Projectile.gfxOffY - Main.screenPosition;
@@ -122,17 +122,10 @@ namespace Consolaria.Content.Projectiles.Friendly {
                 spriteEffects = SpriteEffects.FlipVertically;
                 rotation += (float) Math.PI / 2f * Projectile.spriteDirection;
             }
-            spriteBatch.Draw(texture, position, null, lightColor, rotation, drawOrigin, Projectile.scale, spriteEffects, 0f);
-            return false;
-        }
-
-        public override void PostDraw (Color lightColor) {
-            SpriteBatch spriteBatch = Main.spriteBatch;
             Texture2D glow = (Texture2D) ModContent.Request<Texture2D>("Consolaria/Assets/Textures/Projectiles/Tonbogiri_Glow");
             Vector2 glowOrigin = new Vector2(glow.Width / 2, glow.Height / 2);
             glowRotation += 0.1f;
             if (glowRotation > Math.PI * 2f) glowRotation -= (float) Math.PI * 2f;
-
             for (int k = 0; k < Projectile.oldPos.Length - 1; k++) {
                 Vector2 glowPosition = new Vector2(Projectile.width, Projectile.height) / 2f + Vector2.UnitY * Projectile.gfxOffY - Main.screenPosition;
                 float glowRotation = (float) Math.Atan2(Projectile.oldPos [k].Y - Projectile.oldPos [k + 1].Y, Projectile.oldPos [k].X - Projectile.oldPos [k + 1].X);
@@ -140,6 +133,8 @@ namespace Consolaria.Content.Projectiles.Friendly {
                 spriteBatch.Draw(glow, Projectile.oldPos [k] + glowPosition, null, glowColor, glowRotation, glowOrigin, Projectile.scale - k / (float) Projectile.oldPos.Length, spriteEffects, 0f);
                 spriteBatch.Draw(glow, Projectile.oldPos [k] * 0.5f + Projectile.oldPos [k + 1] * 0.5f + glowPosition, null, glowColor, glowRotation, glowOrigin, Projectile.scale - k / (float) Projectile.oldPos.Length, spriteEffects, 0f);
             }
+            spriteBatch.Draw(texture, position, null, lightColor, rotation, drawOrigin, Projectile.scale, spriteEffects, 0f);
+            return false;
         }
     }
 }

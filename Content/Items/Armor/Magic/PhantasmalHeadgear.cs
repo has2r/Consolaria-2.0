@@ -59,7 +59,10 @@ namespace Consolaria.Content.Items.Armor.Magic {
 
     internal class SpectralPlayer : ModPlayer {
         public bool spectralGuard;
-        public bool spectralAura;
+        public int absorptionRadius = 100;
+
+        private bool spectralAura;
+        private int activeTimer;
 
         public override void ResetEffects ()
             => spectralGuard = false;
@@ -67,23 +70,28 @@ namespace Consolaria.Content.Items.Armor.Magic {
         public override void PreUpdate () {
             if (!spectralGuard) return;
 
-            Main.NewText(Player.ownedProjectileCounts [ModContent.ProjectileType<SpectralSpirit>()]);
             if (Player.ownedProjectileCounts [ModContent.ProjectileType<SpectralSpirit>()] >= 6)
                 spectralAura = true;
             else spectralAura = false;
-        }
-    }
 
-    internal class ManaPotion : GlobalItem {
-        public override void OnConsumeItem (Item item, Player player) {
-            if (!player.GetModPlayer<SpectralPlayer>().spectralGuard || item.healMana < 0)
-                return;
+            if (Player.statMana < Player.statManaMax2 * 0.6f) {
+                if (!spectralAura && Player.whoAmI == Main.myPlayer) {
+                    int randomPosition = Main.rand.Next(-20, 21);
+                    for (int i = 0; i < 6; i++)
+                        Projectile.NewProjectile(Player.GetSource_Misc("Spectral Armor"), Player.MountedCenter.X + randomPosition, Player.MountedCenter.Y + randomPosition, 0f, 0f, ModContent.ProjectileType<SpectralSpirit>(), 0, 0f, Player.whoAmI, 1 * i, 0);
+                    SoundEngine.PlaySound(SoundID.DD2_BookStaffCast, Player.Center);
+                }
+            }
 
-            if (!player.GetModPlayer<SpectralPlayer>().spectralAura && player.whoAmI == Main.myPlayer) {
-                int randomPosition = Main.rand.Next(-20, 21);
-                for (int i = 0; i < 6; i++)
-                    Projectile.NewProjectile(player.GetSource_ItemUse(item), player.MountedCenter.X + randomPosition, player.MountedCenter.Y + randomPosition, 0f, 0f, ModContent.ProjectileType<SpectralSpirit>(), 0, 0f, player.whoAmI, 1 * i, 0);
-                SoundEngine.PlaySound(SoundID.DD2_BookStaffCast, player.Center);
+            if (activeTimer > 0) activeTimer--;
+            if (spectralAura && activeTimer <= 0 && Player.statMana < Player.statManaMax2 && Player.whoAmI == Main.myPlayer) {
+                for (int _findNPC = 0; _findNPC < Main.npc.Length; _findNPC++) {
+                    NPC npc = Main.npc [_findNPC];
+                    if (npc.active && !npc.friendly && npc.life > 0 && Vector2.Distance(Player.Center, npc.Center) < absorptionRadius) {
+                        Projectile.NewProjectile(Player.GetSource_Misc("Spectral Armor"), npc.Center.X, npc.Center.Y, 0f, 0f, ModContent.ProjectileType<ManaDrain>(), 0, 0f, Player.whoAmI);
+                        activeTimer = 15;
+                    }
+                }
             }
         }
     }

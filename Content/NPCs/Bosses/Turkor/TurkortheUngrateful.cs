@@ -52,7 +52,7 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 			NPC.lifeMax = 7000;
 			NPC.damage = 40;
 
-			NPC.defense = 0;
+			NPC.defense = 1;
 			NPC.knockBackResist = 0f;
 
 			NPC.aiStyle = -1;
@@ -60,7 +60,7 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 
 			NPC.HitSound = SoundID.NPCHit7;
 			NPC.DeathSound = SoundID.NPCDeath5;
-			NPC.value = Item.buyPrice(gold: 4);
+			NPC.value = Item.buyPrice(gold: 5);
 
 			NPC.boss = true;
 			NPC.npcSlots = 10f;

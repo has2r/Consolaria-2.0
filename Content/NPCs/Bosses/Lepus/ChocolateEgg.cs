@@ -25,7 +25,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
             int width = 20; int height = 26;
             NPC.Size = new Vector2(width, height);
 
-            NPC.aiStyle = 0;
+            NPC.aiStyle = -1;
             NPC.friendly = true;
 
             NPC.damage = 0;

@@ -41,15 +41,15 @@ namespace Consolaria.Content.Projectiles.Friendly {
 			float position = (float) Math.Sqrt((posX * posX + posY * posY));
 			if (position < 50f && Projectile.position.X < player.position.X + player.width && Projectile.position.X + Projectile.width > player.position.X && Projectile.position.Y < player.position.Y + player.height && Projectile.position.Y + Projectile.height > player.position.Y) {
 				if (Projectile.owner == Main.myPlayer) {
-					bonusHealMana = player.manaRegenBuff ? 1 : 0;
-					if (player.manaRegenBonus % 10 == 0) bonusHealMana++;
+					bonusHealMana = 0;
+					if (player.manaRegenBonus > 0) bonusHealMana++;
+					if (player.manaRegenBonus > 20) bonusHealMana++;
+					if (player.HasBuff(BuffID.ManaRegeneration)) bonusHealMana++;
 					int healMana = Main.rand.Next(4, 10) + bonusHealMana;
 					player.ManaEffect(healMana);
 					player.statMana += healMana;
 					NetMessage.SendData(MessageID.ManaEffect, -1, -1, null, Projectile.owner, healMana);
-					player.manaRegenDelay += 15;
 				}
-				SoundEngine.PlaySound(SoundID.DD2_DarkMageHealImpact with { Volume = 0.75f }, Projectile.Center);
 				Projectile.Kill();
 			}
 			position = speed / position;

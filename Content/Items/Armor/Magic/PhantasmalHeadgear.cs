@@ -88,7 +88,7 @@ namespace Consolaria.Content.Items.Armor.Magic {
                     NPC npc = Main.npc [_findNPC];
                     if (npc.active && !npc.friendly && npc.life > 0 && npc.type != NPCID.TargetDummy && Vector2.Distance(Player.Center, npc.Center) < absorptionRadius) {
                         Projectile.NewProjectile(Player.GetSource_Misc("Spectral Armor"), npc.Center.X, npc.Center.Y, 0f, 0f, ModContent.ProjectileType<ManaDrain>(), 0, 0f, Player.whoAmI);
-                        absorptionDelay = 25;
+                        absorptionDelay = 20;
                     }
                 }
             }

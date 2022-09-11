@@ -25,6 +25,8 @@ namespace Consolaria.Content.Projectiles.Enemies {
             Projectile.scale = 1f;
             Projectile.alpha = 255;
 
+            Projectile.width = 6;
+
             Projectile.timeLeft = 900;
             Projectile.penetrate = -1;
 
@@ -35,26 +37,6 @@ namespace Consolaria.Content.Projectiles.Enemies {
             if (Projectile.timeLeft <= 895) Projectile.alpha = 50;
             Lighting.AddLight(Projectile.Center, 0.6f, 0.1f, 0.1f);
         }
-
-        /*public override bool PreDraw (ref Color lightColor) {
-            SpriteBatch spriteBatch = Main.spriteBatch;
-            Texture2D texture = (Texture2D) ModContent.Request<Texture2D>(Texture);
-            Vector2 drawOrigin = new Vector2(texture.Width * 0.5f, Projectile.height * 0.5f);
-            SpriteEffects effects = (Projectile.spriteDirection == -1) ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
-            for (int k = 0; k < Projectile.oldPos.Length; k++) {
-                if (Projectile.timeLeft < 890) {
-                    Vector2 drawPos = Projectile.oldPos [k] - Main.screenPosition + drawOrigin + new Vector2(0f, Projectile.gfxOffY);
-                    Color color = Color.MediumVioletRed * ((Projectile.oldPos.Length - k) / (float) Projectile.oldPos.Length);
-                    color = Projectile.GetAlpha(color) * ((Projectile.oldPos.Length - k) / (float) Projectile.oldPos.Length);
-                    float rotation;
-                    if (k + 1 >= Projectile.oldPos.Length) { rotation = (Projectile.position - Projectile.oldPos [k]).ToRotation() + MathHelper.PiOver2; }
-                    else { rotation = (Projectile.oldPos [k + 1] - Projectile.oldPos [k]).ToRotation() + MathHelper.PiOver2; }
-                    spriteBatch.Draw(texture, drawPos, null, color, rotation, drawOrigin, Projectile.scale - k / (float) Projectile.oldPos.Length, effects, 0f);
-
-                }
-            }
-            return true;
-        }*/
 
         public override bool PreDraw(ref Color lightColor)
         {

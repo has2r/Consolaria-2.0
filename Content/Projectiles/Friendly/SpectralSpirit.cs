@@ -93,13 +93,13 @@ namespace Consolaria.Content.Projectiles.Friendly {
             int length = 40;
             for (int k = 0; k < length; k++) {
                 Vector2 drawPos = player.MountedCenter + new Vector2(Projectile.width, Projectile.height) / 2f + Vector2.UnitY * Projectile.gfxOffY - Main.screenPosition;
-                Vector2 drawPosNew = drawPos + new Vector2(0, distance).RotatedBy(rot + Math.PI * 2 / 3 * Projectile.ai[0] - k * 0.03f);
-                Vector2 drawPosOld = drawPos + new Vector2(0, distance).RotatedBy(rot + Math.PI * 2 / 3 * Projectile.ai[0] - (k - 1) * 0.03f);
+                Vector2 drawPosNew = drawPos + new Vector2(0, distance).RotatedBy(rot + Math.PI * 2 / 3 * Projectile.ai[0] - k * 0.025f);
+                Vector2 drawPosOld = drawPos + new Vector2(0, distance).RotatedBy(rot + Math.PI * 2 / 3 * Projectile.ai[0] - (k - 1) * 0.025f);
                 Color color;
                 if (useCycleColor) color = new Color(240 - cycle * 2, 225 - cycle * 2, cycle * 3, 50);
                 else color = new Color(240 - k * 4, 225 - k * 4, k * 6, 50);
                 float rotation = (float) Math.Atan2(drawPosNew.Y - drawPosOld.Y, drawPosNew.X - drawPosOld.X);
-                spriteBatch.Draw(texture, drawPosNew, null, color * 0.4f, rotation, drawOrigin, Projectile.scale * (length - k) / length, effects, 0f);
+                spriteBatch.Draw(texture, drawPosNew, null, color * 0.3f, rotation, drawOrigin, Projectile.scale * (length - k) / length, effects, 0f);
             }
         }
 

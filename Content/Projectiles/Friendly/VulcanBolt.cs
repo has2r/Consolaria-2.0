@@ -10,7 +10,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
     public class VulcanBolt : ModProjectile {
         public override void SetStaticDefaults () {
             ProjectileID.Sets.TrailCacheLength [Projectile.type] = 12;
-            ProjectileID.Sets.TrailingMode [Projectile.type] = 0;
+            ProjectileID.Sets.TrailingMode [Projectile.type] = 2;
         }
 
         public override void SetDefaults () {
@@ -73,8 +73,8 @@ namespace Consolaria.Content.Projectiles.Friendly {
             for (int k = 0; k < Projectile.oldPos.Length - 1; k++) {
                 Vector2 drawPos = Projectile.oldPos [k] + new Vector2(Projectile.width, Projectile.height) / 2f + Vector2.UnitY * Projectile.gfxOffY - Main.screenPosition;
                 Color color = new Color(200 + k * 5, 150 - k * 10, 0, 50);
-                float rotation = (float) Math.Atan2(Projectile.oldPos [k].Y - Projectile.oldPos [k + 1].Y, Projectile.oldPos [k].X - Projectile.oldPos [k + 1].X);
-                spriteBatch.Draw(texture, drawPos, null, color, rotation, drawOrigin, Projectile.scale - k / (float) Projectile.oldPos.Length, effects, 0f);
+                spriteBatch.Draw(texture, drawPos, null, color * 0.4f, Projectile.oldRot [k] + (float)Math.PI / 2, drawOrigin, Projectile.scale - k / (float) Projectile.oldPos.Length, effects, 0f);
+                spriteBatch.Draw(texture, drawPos - Projectile.oldPos [k] * 0.5f + Projectile.oldPos [k + 1] * 0.4f, null, color * 0.5f, Projectile.oldRot [k] * 0.5f + Projectile.oldRot [k + 1] * 0.5f + (float)Math.PI / 2, drawOrigin, Projectile.scale - k / (float)Projectile.oldPos.Length, effects, 0f);
             }
             return true;
         }

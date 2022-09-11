@@ -180,7 +180,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
             NPC.damage = (int)(NPC.damage * 0.65f);
             if (numPlayers <= 1) return;
             float healthBoost = 0.35f;
-            for (int k = 0; k < numPlayers; k++)
+            for (int k = 1; k < numPlayers; k++)
             {
                 NPC.lifeMax += (int)(NPC.lifeMax * healthBoost);
                 healthBoost += (1 - healthBoost) / 3;

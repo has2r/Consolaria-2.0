@@ -59,7 +59,7 @@ namespace Consolaria.Content.Items.Armor.Magic {
 
     internal class SpectralPlayer : ModPlayer {
         public bool spectralGuard;
-        public int absorptionRadius = 200;
+        public int absorptionRadius = 300;
 
         private bool spectralAura;
         private int absorptionDelay;

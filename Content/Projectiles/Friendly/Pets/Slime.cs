@@ -82,13 +82,17 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
             int frameHeight = texture.Height / Main.projFrames [Projectile.type];
             Rectangle frameRect = new Rectangle(0, texCurrentFrame * frameHeight, texture.Width, frameHeight);
             int offsetY = 8;
-            spriteBatch.Draw(texture, new Vector2(position.X, position.Y - offsetY), frameRect, Main.DiscoColor * 0.8f, 0, drawOrigin, Projectile.scale, spriteEffects, 0f);
+
+            Player player = Main.player[Projectile.owner];
+            Color slimeColor = Main.tenthAnniversaryWorld | Main.drunkWorld | Main.getGoodWorld ? Main.DiscoColor : player.shirtColor;
+
+            spriteBatch.Draw(texture, new Vector2(position.X, position.Y - offsetY), frameRect, slimeColor.MultiplyRGB(lightColor) * 0.8f, 0, drawOrigin, Projectile.scale, spriteEffects, 0f);
             if (isFlying)
             {
                 Rectangle rectangle = frame.GetSourceRectangle(balloon);
                 int width = balloon.Width / framesCountX;
                 rectangle.X = width * (choosenBalloon - 1);
-                spriteBatch.Draw(balloon, new Vector2(position.X, position.Y - offsetY - 62 + 14) + new Vector2(8, 4), rectangle, lightColor, 0, drawOrigin, Projectile.scale, spriteEffects, 1f);
+                spriteBatch.Draw(balloon, new Vector2(position.X, position.Y - offsetY - 62 + 14) + new Vector2(6, 4), rectangle, lightColor, 0, drawOrigin, Projectile.scale, SpriteEffects.None, 1f);
             }
             return false;
         }

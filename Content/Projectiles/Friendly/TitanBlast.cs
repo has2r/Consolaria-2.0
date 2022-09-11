@@ -63,7 +63,9 @@ namespace Consolaria.Content.Projectiles.Friendly {
                     Vector2 direction = Vector2.Subtract(player.Center, center);
                     Vector2 velocity = Vector2.Normalize(direction);
                     direction = Utils.HasNaNs(direction) ? Vector2.Zero : velocity;
-                    player.velocity += direction * 20f;
+                    if (player.velocity.Y == 0) player.velocity.X += direction.X * 12f;
+                    else player.velocity.X += direction.X * 20f;
+                    player.velocity.Y = player.velocity.Y * 0.2f + direction.Y * 20f;
                     if (Utils.HasNaNs(player.velocity))
                     {
                         player.velocity = Vector2.Zero;
@@ -85,6 +87,10 @@ namespace Consolaria.Content.Projectiles.Friendly {
                     Projectile.frameCounter = 0;
                 }
             }
+        }
+
+        public override void OnHitPvp(Player target, int damage, bool crit) {
+            if (damage > 350) damage = 350;
         }
 
         public override Color? GetAlpha(Color lightColor)

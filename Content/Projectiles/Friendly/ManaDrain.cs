@@ -44,6 +44,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
 					bonusHealMana = 0;
 					if (player.manaRegenBonus > 0) bonusHealMana++;
 					if (player.manaRegenBonus > 20) bonusHealMana++;
+					if (player.manaRegenBonus > 35) bonusHealMana++;
 					if (player.HasBuff(BuffID.ManaRegeneration)) bonusHealMana++;
 					int healMana = Main.rand.Next(4, 10) + bonusHealMana;
 					player.ManaEffect(healMana);

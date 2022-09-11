@@ -76,6 +76,8 @@ namespace Consolaria.Content.Items.Armor.Ranged {
         public bool titanPower;
         public int titanBlastTimer;
         public readonly int titanBlastTimerLimit = 300;
+        public float oldMaxFallSpeed;
+        public float newMaxFallSpeed;
 
         public override void Initialize ()
            => titanBlastTimer = titanBlastTimerLimit;
@@ -84,6 +86,12 @@ namespace Consolaria.Content.Items.Armor.Ranged {
            => titanPower = false;
 
         public override void PostUpdateEquips () {
+            if (titanBlastTimer == titanBlastTimerLimit) newMaxFallSpeed = 24;
+
+            if (newMaxFallSpeed > 0) newMaxFallSpeed -= 1;
+
+            Player.maxFallSpeed += newMaxFallSpeed;
+
             if (!titanPower) return;
             if (titanBlastTimer == 30) {
                 SoundStyle style = new($"{nameof(Consolaria)}/Assets/Sounds/TitanBlastReload");
@@ -103,7 +111,9 @@ namespace Consolaria.Content.Items.Armor.Ranged {
             if (modPlayer.titanPower && player.ownedProjectileCounts [type2] < 1 && item.DamageType == DamageClass.Ranged &&
                 modPlayer.titanBlastTimer == 0) {
                 SoundEngine.PlaySound(SoundID.DD2_ExplosiveTrapExplode, player.Center);
-                int proj = Projectile.NewProjectile(player.GetSource_ItemUse(item), player.Center, velocity, type2, damage * 10, 7.5f, player.whoAmI);
+                int blastDamage = damage * 2;
+                if (blastDamage > 500) blastDamage -= (blastDamage - 500) / 2;
+                int proj = Projectile.NewProjectile(player.GetSource_ItemUse(item), player.Center, velocity, type2, blastDamage, 7.5f, player.whoAmI);
                 if (Main.netMode == NetmodeID.Server)
                     NetMessage.SendData(MessageID.SyncProjectile, -1, -1, null, proj);
                 if (Main.netMode != NetmodeID.Server)

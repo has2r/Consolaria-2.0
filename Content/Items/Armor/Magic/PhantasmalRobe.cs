@@ -5,19 +5,17 @@ using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using Consolaria.Content.Items.Materials;
 
-namespace Consolaria.Content.Items.Armor.Magic
-{
+namespace Consolaria.Content.Items.Armor.Magic {
     [AutoloadEquip(EquipType.Body)]
-    public class PhantasmalRobe : ModItem
-    {
-        public override void SetStaticDefaults() {
+    public class PhantasmalRobe : ModItem {
+        public override void SetStaticDefaults () {
             DisplayName.SetDefault("Phantasmal Robe");
-            Tooltip.SetDefault("13% increased magic damage" + "\nIncreases maximum mana by 70");
+            Tooltip.SetDefault("15% increased magic damage" + "\nIncreases maximum mana by 70");
 
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
         }
 
-        public override void SetDefaults() {
+        public override void SetDefaults () {
             int width = 34; int height = 22;
             Item.Size = new Vector2(width, height);
 
@@ -27,13 +25,13 @@ namespace Consolaria.Content.Items.Armor.Magic
             Item.defense = 16;
         }
 
-        public override void UpdateEquip(Player player) {
+        public override void UpdateEquip (Player player) {
             player.statManaMax2 += 70;
 
-            player.GetDamage(DamageClass.Magic) += 0.13f;
+            player.GetDamage(DamageClass.Magic) += 0.15f;
         }
 
-        public override void AddRecipes() {
+        public override void AddRecipes () {
             CreateRecipe()
                 .AddIngredient(ItemID.HallowedPlateMail)
                .AddRecipeGroup(RecipeGroups.Titanium, 12)
@@ -44,4 +42,3 @@ namespace Consolaria.Content.Items.Armor.Magic
         }
     }
 }
-

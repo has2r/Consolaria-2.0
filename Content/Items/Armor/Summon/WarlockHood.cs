@@ -93,7 +93,7 @@ namespace Consolaria.Content.Items.Armor.Summon {
                         _dustCount = _dustCountMax2 + 1;
                     }
                 }
-                SoundEngine.PlaySound(SoundID.NPCDeath55, proj.Center);
+                SoundEngine.PlaySound(SoundID.NPCDeath55, proj.position);
                 Player.statLife += helLife;
                 Player.HealEffect(helLife);
                 NetMessage.SendData(MessageID.SpiritHeal, -1, -1, null, proj.owner, helLife);

@@ -62,7 +62,7 @@ namespace Consolaria.Content.Items.Armor.Magic {
         public int absorptionRadius = 200;
 
         private bool spectralAura;
-        private int activeTimer;
+        private int absorptionDelay;
 
         public override void ResetEffects ()
             => spectralGuard = false;
@@ -82,14 +82,13 @@ namespace Consolaria.Content.Items.Armor.Magic {
                     SoundEngine.PlaySound(SoundID.DD2_BookStaffCast, Player.Center);
                 }
             }
-
-            if (activeTimer > 0) activeTimer--;
-            if (spectralAura && activeTimer <= 0 && Player.statMana < Player.statManaMax2 && Player.whoAmI == Main.myPlayer) {
+            if (absorptionDelay > 0) absorptionDelay--;
+            if (spectralAura && absorptionDelay <= 0 && Player.statMana < Player.statManaMax2 && Player.whoAmI == Main.myPlayer) {
                 for (int _findNPC = 0; _findNPC < Main.npc.Length; _findNPC++) {
                     NPC npc = Main.npc [_findNPC];
-                    if (npc.active && !npc.friendly && npc.life > 0 && Vector2.Distance(Player.Center, npc.Center) < absorptionRadius) {
+                    if (npc.active && !npc.friendly && npc.life > 0 && npc.type != NPCID.TargetDummy && Vector2.Distance(Player.Center, npc.Center) < absorptionRadius) {
                         Projectile.NewProjectile(Player.GetSource_Misc("Spectral Armor"), npc.Center.X, npc.Center.Y, 0f, 0f, ModContent.ProjectileType<ManaDrain>(), 0, 0f, Player.whoAmI);
-                        activeTimer = 20;
+                        absorptionDelay = 25;
                     }
                 }
             }

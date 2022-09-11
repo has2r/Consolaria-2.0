@@ -27,9 +27,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
             Projectile.Size = new Vector2(width, height);
 
             Projectile.friendly = true;
-
             Projectile.penetrate = -1;
-            Projectile.timeLeft = 300;
 
             Projectile.aiStyle = -1;
 
@@ -37,7 +35,6 @@ namespace Consolaria.Content.Projectiles.Friendly {
             Projectile.extraUpdates = 1;
 
             Projectile.scale = 0.5f;
-
             Projectile.timeLeft = 1800;
         }
 
@@ -48,7 +45,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
             if (rot >= Math.PI * 2f) rot -= (float)Math.PI * 2f;
 
             if (Projectile.timeLeft < 20 && distance > 0) distance -= 10;
-            else if (distance < 200) distance += 5;
+            else if (distance < player.GetModPlayer<SpectralPlayer>().absorptionRadius) distance += 5;
 
             Projectile.position = player.MountedCenter + new Vector2(0, distance).RotatedBy(rot + Math.PI * 2 / 3 * Projectile.ai[0]);
 
@@ -57,12 +54,14 @@ namespace Consolaria.Content.Projectiles.Friendly {
             if (cycle >= 80) cycleSwitch = true;
             if (cycle <= 0) cycleSwitch = false;
 
-            if (Main.rand.NextBool(25)) {
-                int dust2 = Dust.NewDust(Projectile.position, 1, 1, DustID.RainbowMk2, 0, 0, 120, new Color(240 - cycle * 2, 225 - cycle * 2, cycle * 3, 50), 0.8f);
-                Main.dust[dust2].position = Projectile.Center;
-                Main.dust[dust2].velocity *= 0.25f;
-                Main.dust[dust2].noLightEmittence = true;
-                Main.dust[dust2].noGravity = true;
+            if (Main.netMode != NetmodeID.Server) {
+                if (Main.rand.NextBool(25)) {
+                    int dust = Dust.NewDust(Projectile.position, 1, 1, DustID.RainbowMk2, 0, 0, 120, new Color(240 - cycle * 2, 225 - cycle * 2, cycle * 3, 50), 0.8f);
+                    Main.dust [dust].position = Projectile.Center;
+                    Main.dust [dust].velocity *= 0.25f;
+                    Main.dust [dust].noLightEmittence = true;
+                    Main.dust [dust].noGravity = true;
+                }
             }
 
             if (!player.active || player.dead) {
@@ -75,10 +74,10 @@ namespace Consolaria.Content.Projectiles.Friendly {
                 for (int dustCount = 16; dustCount > 0; --dustCount) {
                     Vector2 velocity = Projectile.velocity;
                     if (Main.rand.NextBool(2)) {
-                        int dust2 = Dust.NewDust(Projectile.position, 2, 2, DustID.GoldFlame, 0.0f, 0.0f, 75, default, 2.5f);
-                        Main.dust [dust2].velocity = velocity.RotatedBy(15 * (dustCount + 5), new Vector2());
-                        Main.dust [dust2].noGravity = true;
-                        Main.dust [dust2].noLightEmittence = true;
+                        int dust = Dust.NewDust(Projectile.position, 2, 2, DustID.GoldFlame, 0.0f, 0.0f, 75, default, 2.5f);
+                        Main.dust [dust].velocity = velocity.RotatedBy(15 * (dustCount + 5), new Vector2());
+                        Main.dust [dust].noGravity = true;
+                        Main.dust [dust].noLightEmittence = true;
                     }
                 }
             }

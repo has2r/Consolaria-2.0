@@ -74,23 +74,23 @@ namespace Consolaria.Content.Items.Armor.Ranged {
 
     internal class TitanPlayer : ModPlayer {
         public bool titanPower;
-        public int shockwaveTimer;
-        public readonly int shockwaveTimerLimit = 300;
+        public int titanBlastTimer;
+        public readonly int titanBlastTimerLimit = 300;
 
         public override void Initialize ()
-           => shockwaveTimer = shockwaveTimerLimit;
+           => titanBlastTimer = titanBlastTimerLimit;
 
         public override void ResetEffects ()
            => titanPower = false;
 
         public override void PostUpdateEquips () {
             if (!titanPower) return;
-            if (shockwaveTimer == 30) {
+            if (titanBlastTimer == 30) {
                 SoundStyle style = new($"{nameof(Consolaria)}/Assets/Sounds/TitanBlastReload");
                 SoundEngine.PlaySound(style with { Volume = 0.3f, PitchRange = (-0.25f, 0.25f) }, Player.Center);
             }
-            if (shockwaveTimer > 0)
-                shockwaveTimer--;
+            if (titanBlastTimer > 0)
+                titanBlastTimer--;
         }
     }
 
@@ -101,7 +101,7 @@ namespace Consolaria.Content.Items.Armor.Ranged {
             ushort type2 = (ushort) ModContent.ProjectileType<TitanBlast>();
 
             if (modPlayer.titanPower && player.ownedProjectileCounts [type2] < 1 && item.DamageType == DamageClass.Ranged &&
-                modPlayer.shockwaveTimer == 0) {
+                modPlayer.titanBlastTimer == 0) {
                 SoundEngine.PlaySound(SoundID.DD2_ExplosiveTrapExplode, player.Center);
                 int proj = Projectile.NewProjectile(player.GetSource_ItemUse(item), player.Center, velocity, type2, damage * 10, 7.5f, player.whoAmI);
                 if (Main.netMode == NetmodeID.Server)
@@ -119,7 +119,7 @@ namespace Consolaria.Content.Items.Armor.Ranged {
                         Main.dust[dust2].fadeIn = Main.rand.NextFloat(0.4f, 1.4f);
                     }
                 }
-                modPlayer.shockwaveTimer = modPlayer.shockwaveTimerLimit;
+                modPlayer.titanBlastTimer = modPlayer.titanBlastTimerLimit;
             }
             return base.Shoot(item, player, source, position, velocity, type, damage, knockback);
         }

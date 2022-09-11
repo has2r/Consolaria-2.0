@@ -42,7 +42,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
 			if (position < 50f && Projectile.position.X < player.position.X + player.width && Projectile.position.X + Projectile.width > player.position.X && Projectile.position.Y < player.position.Y + player.height && Projectile.position.Y + Projectile.height > player.position.Y) {
 				if (Projectile.owner == Main.myPlayer) {
 					bonusHealMana = player.manaRegenBuff ? 1 : 0;
-					while (player.manaRegenBonus % 10 == 0) bonusHealMana++;
+					if (player.manaRegenBonus % 10 == 0) bonusHealMana++;
 					int healMana = Main.rand.Next(4, 10) + bonusHealMana;
 					player.ManaEffect(healMana);
 					player.statMana += healMana;

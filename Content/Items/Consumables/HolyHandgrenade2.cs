@@ -6,17 +6,16 @@ using Microsoft.Xna.Framework;
 using Terraria.GameContent.Creative;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Consolaria.Content.Items.Consumables
-{
-    public class HolyHandgrenade2 : ModItem
-    {
-        public override void SetStaticDefaults() {
+namespace Consolaria.Content.Items.Consumables {
+    public class HolyHandgrenade2 : ModItem {
+        public override void SetStaticDefaults () {
             DisplayName.SetDefault("Holy Hand Grenade 2");
-            Tooltip.SetDefault("'Goodness gracious'");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 99;
+            Tooltip.SetDefault("A huge explosion that will destroy most tiles" + "\n'Goodness gracious'");
+
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 99;
         }
 
-        public override void SetDefaults() {
+        public override void SetDefaults () {
             int width = 26; int height = 30;
             Item.Size = new Vector2(width, height);
 
@@ -36,12 +35,11 @@ namespace Consolaria.Content.Items.Consumables
             Item.shootSpeed = 4f;
         }
 
-        public override bool PreDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI)
-        {
-            Texture2D texture = TextureAssets.Item[Item.type].Value;
+        public override bool PreDrawInWorld (SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI) {
+            Texture2D texture = TextureAssets.Item [Item.type].Value;
             Rectangle frame;
 
-            if (Main.itemAnimations[Item.type] != null) frame = Main.itemAnimations[Item.type].GetFrame(texture, Main.itemFrameCounter[whoAmI]);
+            if (Main.itemAnimations [Item.type] != null) frame = Main.itemAnimations [Item.type].GetFrame(texture, Main.itemFrameCounter [whoAmI]);
             else frame = texture.Frame();
 
             Vector2 frameOrigin = frame.Size() / 2f;
@@ -57,14 +55,12 @@ namespace Consolaria.Content.Items.Consumables
             if (time >= 1f) time = 2f - time;
             time = time * 0.5f + 0.5f;
 
-            for (float i = 0f; i < 1f; i += 0.25f)
-            {
+            for (float i = 0f; i < 1f; i += 0.25f) {
                 float radians = (i + timer) * MathHelper.TwoPi;
                 spriteBatch.Draw(texture, drawPos + new Vector2(0f, 6f).RotatedBy(radians) * time, frame, new Color(155, 155, 0, 0), 0, frameOrigin, scale, SpriteEffects.None, 0);
             }
 
-            for (float i = 0f; i < 1f; i += 0.34f)
-            {
+            for (float i = 0f; i < 1f; i += 0.34f) {
                 float radians = (i + timer) * MathHelper.TwoPi;
                 spriteBatch.Draw(texture, drawPos + new Vector2(0f, 3f).RotatedBy(radians) * time, frame, new Color(155, 100, 0, 0), 0, frameOrigin, scale, SpriteEffects.None, 0);
             }

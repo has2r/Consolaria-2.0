@@ -82,7 +82,7 @@ namespace Consolaria.Content.NPCs {
             var sharksDropRules = Main.ItemDropsDB.GetRulesForNPCID(NPCID.Shark, true);
             foreach (var sharkDropRule in sharksDropRules)
                 npcLoot.Add(sharkDropRule);
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<GoldenSeaweed>(), 10));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<GoldenSeaweed>(), 20));
         }
 
         public override float SpawnChance (NPCSpawnInfo spawnInfo)

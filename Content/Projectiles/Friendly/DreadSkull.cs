@@ -19,7 +19,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
             Projectile.Size = new Vector2(width, height);
 
             Projectile.DamageType = DamageClass.Melee;
-            Projectile.penetrate = 2;
+            Projectile.penetrate = 1;
 
             AIType = 14;
             Projectile.friendly = true;
@@ -30,7 +30,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
             Projectile.scale = 1f;
             Projectile.light = 0.1f;
 
-            Projectile.timeLeft = 400;
+            Projectile.timeLeft = 420;
         }
 
         public override void AI () {

@@ -68,7 +68,7 @@ namespace Consolaria.Content.NPCs {
         }
 
         public override void ModifyNPCLoot (NPCLoot npcLoot) {
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<PetriDish>(), 25));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<PetriDish>(), 20));
             var slimeDropRules = Main.ItemDropsDB.GetRulesForNPCID(NPCID.CorruptSlime, false);
             foreach (var slimeDropRule in slimeDropRules)
                 npcLoot.Add(slimeDropRule);

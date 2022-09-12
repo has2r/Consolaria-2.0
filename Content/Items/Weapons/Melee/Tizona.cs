@@ -21,7 +21,7 @@ namespace Consolaria.Content.Items.Weapons.Melee {
 			Item.autoReuse = true;
 
 			Item.DamageType = DamageClass.Melee;
-			Item.damage = 102;
+			Item.damage = 104;
 			Item.knockBack = 5;
 			Item.crit = 5;
 

@@ -25,7 +25,7 @@ namespace Consolaria.Content.Items.Consumables {
         }
 
         public override bool CanRightClick ()
-         => true;
+            => true;
 
         public override void RightClick (Player player) {
             int mainDrops = Main.rand.Next(2);

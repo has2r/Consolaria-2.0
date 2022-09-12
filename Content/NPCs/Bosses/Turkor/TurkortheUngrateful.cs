@@ -181,6 +181,8 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 		private float posX = 0f;
 		private float posY = 0f;
 
+		private float spreadAngle = 1f;
+
 		//enraged mode
 		private bool enraged;
 
@@ -329,8 +331,16 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 						posX = Main.player [NPC.target].position.X;
 						posY = Main.player [NPC.target].position.Y;
 						Vector2 Velocity = Vector2.Normalize(Main.player [NPC.target].Center - NPC.Center) * 14;
-						int proj = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, Velocity.X, Velocity.Y, ModContent.ProjectileType<Pointer>(), 0, 1, Main.myPlayer, 0, 0);
+						int proj = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, Velocity, ModContent.ProjectileType<Pointer>(), 0, 1, Main.myPlayer, 0, 0);
 						NetMessage.SendData(MessageID.SyncProjectile, -1, -1, null, proj);
+
+						if (headNumber == 3) {
+							int proj2 = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, Velocity.RotatedBy(spreadAngle), ModContent.ProjectileType<Pointer>(), 0, 1, Main.myPlayer, 0, 0);
+							NetMessage.SendData(MessageID.SyncProjectile, -1, -1, null, proj2);
+							int proj3 = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, Velocity.RotatedBy(-spreadAngle), ModContent.ProjectileType<Pointer>(), 0, 1, Main.myPlayer, 0, 0);
+							NetMessage.SendData(MessageID.SyncProjectile, -1, -1, null, proj3);
+						}
+
 						findPlayer = true;
 					}
 					if (findPlayer && timer >= 160) {
@@ -338,16 +348,32 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 						float rotation0 = (float) Math.Atan2((vector8.Y) - (posY + (Main.player [NPC.target].height * 0.5f)), (vector8.X) - (posX + (Main.player [NPC.target].width * 0.5f)));
 						if (timer % 5 == 0) {
 							SoundEngine.PlaySound(SoundID.Item42, NPC.position);
-							int proj2 = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, 0, 0, ModContent.ProjectileType<TurkorFeather>(), NPC.damage / 2, 1, Main.myPlayer, 0, 0);
-							Main.projectile [proj2].aiStyle = -1;
-							Main.projectile [proj2].velocity.X = (float) (Math.Cos(rotation0) * 18) * -1 + Main.rand.Next(-3, 3);
-							Main.projectile [proj2].velocity.Y = (float) (Math.Sin(rotation0) * 18) * -1 + Main.rand.Next(-3, 3);
-							NetMessage.SendData(MessageID.SyncProjectile, -1, -1, null, proj2);
+							int proj4 = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, 0, 0, ModContent.ProjectileType<TurkorFeather>(), NPC.damage / 3, 1, Main.myPlayer, 0, 0);
+							Main.projectile [proj4].aiStyle = -1;
+							Main.projectile [proj4].velocity.X = (float) (Math.Cos(rotation0) * 18) * -1 + Main.rand.Next(-3, 3);
+							Main.projectile [proj4].velocity.Y = (float) (Math.Sin(rotation0) * 18) * -1 + Main.rand.Next(-3, 3);
+							NetMessage.SendData(MessageID.SyncProjectile, -1, -1, null, proj4);
+
+							if (headNumber == 3) {
+								int proj5 = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, 0, 0, ModContent.ProjectileType<TurkorFeather>(), NPC.damage / 3, 1, Main.myPlayer, 0, 0);
+								Main.projectile[proj5].aiStyle = -1;
+								Main.projectile[proj5].velocity.X = (float)(Math.Cos(rotation0) * 18) * -1 + Main.rand.Next(-3, 3);
+								Main.projectile[proj5].velocity.Y = (float)(Math.Sin(rotation0) * 18) * -1 + Main.rand.Next(-3, 3);
+								Main.projectile[proj5].velocity = Main.projectile[proj5].velocity.RotatedBy(spreadAngle);
+								NetMessage.SendData(MessageID.SyncProjectile, -1, -1, null, proj5);
+
+								int proj6 = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, 0, 0, ModContent.ProjectileType<TurkorFeather>(), NPC.damage / 3, 1, Main.myPlayer, 0, 0);
+								Main.projectile[proj6].aiStyle = -1;
+								Main.projectile[proj6].velocity.X = (float)(Math.Cos(rotation0) * 18) * -1 + Main.rand.Next(-3, 3);
+								Main.projectile[proj6].velocity.Y = (float)(Math.Sin(rotation0) * 18) * -1 + Main.rand.Next(-3, 3);
+								Main.projectile[proj6].velocity = Main.projectile[proj6].velocity.RotatedBy(-spreadAngle);
+								NetMessage.SendData(MessageID.SyncProjectile, -1, -1, null, proj6);
+							}
 						}
 						if (timer >= 180) {
 							posX = 0;
 							posY = 0;
-							timer = 0;
+							timer = NPC.AnyNPCs(turkorHead) ? 0 : 70;
 							findPlayer = false;
 						}
 					}

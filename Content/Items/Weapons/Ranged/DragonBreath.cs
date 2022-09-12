@@ -18,7 +18,7 @@ namespace Consolaria.Content.Items.Weapons.Ranged {
 			int width = 28; int height = 30;
 			Item.Size = new Vector2(width, height);
 
-			Item.damage = 72;
+			Item.damage = 76;
 			Item.DamageType = DamageClass.Ranged;
 
 			Item.useTime = 3;
@@ -34,7 +34,7 @@ namespace Consolaria.Content.Items.Weapons.Ranged {
 			Item.value = Item.sellPrice(gold: 5, silver: 60);
 			Item.rare = ItemRarityID.Lime;
 
-			Item.UseSound = SoundID.Item24;
+			Item.UseSound = SoundID.Item34;
 
 			Item.autoReuse = true;
 			Item.noMelee = true;
@@ -42,7 +42,7 @@ namespace Consolaria.Content.Items.Weapons.Ranged {
 
 		public override void ModifyShootStats (Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback) {
 			Vector2 _velocity = Utils.SafeNormalize(new Vector2(velocity.X, velocity.Y), Vector2.Zero);
-			position += _velocity * 7;
+			position += _velocity * 3;
 			position += new Vector2(-_velocity.Y, _velocity.X) * (-2f * player.direction);
 		}
 

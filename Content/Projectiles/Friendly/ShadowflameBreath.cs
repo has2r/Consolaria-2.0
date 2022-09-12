@@ -40,27 +40,35 @@ namespace Consolaria.Content.Projectiles.Friendly {
                 spawnDust = true;
                 if (Main.netMode != NetmodeID.Server && Projectile.timeLeft % 2 == 0) {
                     for (int index1 = 0; index1 < 2; ++index1) {
-                        int _pos = 4;
-                        int _dust = Dust.NewDust(new Vector2(Projectile.position.X + _pos, Projectile.position.Y + _pos), Projectile.width - _pos * 3, Projectile.height - _pos * 3, DustID.Shadowflame, 0.0f, 0.0f, 125, default, 0.95f);
+                        int pos = 4;
+                        int dust = Dust.NewDust(new Vector2(Projectile.position.X + pos, Projectile.position.Y + pos), Projectile.width - pos * 3, Projectile.height - pos * 3, DustID.Shadowflame, 0.0f, 0.0f, 125, default, 0.95f);
                         if (spawnDust && Main.rand.NextBool(4)) {
-                            Main.dust [_dust].noGravity = true;
-                            Main.dust [_dust].scale *= 2f;
-                            Dust dust1 = Main.dust [_dust];
+                            Main.dust [dust].noGravity = true;
+                            Main.dust [dust].scale *= 2f;
+                            Dust dust1 = Main.dust [dust];
                             dust1.velocity.X = dust1.velocity.X * 2f;
-                            Dust dust2 = Main.dust [_dust];
+                            Dust dust2 = Main.dust [dust];
                             dust2.velocity.Y = dust2.velocity.Y * 2f;
                         }
                         else {
-                            Main.dust [_dust].noGravity = true;
-                            Main.dust [_dust].scale *= 1;
+                            Main.dust [dust].noGravity = true;
+                            Main.dust [dust].scale *= 1;
                         }
-                        Dust dust3 = Main.dust [_dust];
+                        Dust dust3 = Main.dust [dust];
+                        if (Main.rand.NextBool(3)) {
+                            dust3.type = DustID.RainbowMk2;
+                            dust3.color = new Color(30 + Projectile.timeLeft * 3, 10 + Projectile.timeLeft * 2, 80 + Projectile.timeLeft * 4);
+                        }
                         dust3.velocity.X = dust3.velocity.X * 1.2f;
-                        Dust dust4 = Main.dust [_dust];
+                        Dust dust4 = Main.dust [dust];
+                        if (Main.rand.NextBool(3)) {
+                            dust4.type = DustID.RainbowMk2;
+                            dust4.color = new Color(30 + Projectile.timeLeft * 3, 10 + Projectile.timeLeft * 2, 80 + Projectile.timeLeft * 4);
+                        }
                         dust4.velocity.Y = dust4.velocity.Y * 1.2f;
-                        Main.dust [_dust].scale *= scale;
+                        Main.dust [dust].scale *= scale;
                         if (spawnDust)
-                            Main.dust [_dust].velocity += Projectile.velocity;
+                            Main.dust [dust].velocity += Projectile.velocity;
                     }
                 }
             }

@@ -29,6 +29,8 @@ namespace Consolaria.Content.Projectiles.Friendly {
 
             Projectile.scale = 1f;
             Projectile.light = 0.1f;
+
+            Projectile.timeLeft = 400;
         }
 
         public override void AI () {
@@ -46,13 +48,14 @@ namespace Consolaria.Content.Projectiles.Friendly {
             Projectile.spriteDirection = player.direction;
 
             if (Main.netMode != NetmodeID.Server) {
-                for (int _dustCount = 0; _dustCount < 10; _dustCount++) {
-                    int _dust = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, DustID.Shadowflame, Projectile.velocity.X, Projectile.velocity.Y, 100, default, 1.1f);
+                for (int _dustCount = 0; _dustCount < 6; _dustCount++) {
+                    int _dust = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, DustID.Shadowflame, Projectile.velocity.X, Projectile.velocity.Y, 100, default, Main.rand.NextFloat(0.8f, 1.4f));
                     Main.dust [_dust].noGravity = true;
                     Main.dust [_dust].velocity = Projectile.Center - Main.dust [_dust].position;
                     Main.dust [_dust].velocity.Normalize();
                     Main.dust [_dust].velocity *= -5f;
                     Main.dust [_dust].velocity += Projectile.velocity / 2f;
+                    Main.dust [_dust].fadeIn = Main.rand.NextFloat(0.4f, 1.2f);
                 }
             }
 
@@ -84,6 +87,8 @@ namespace Consolaria.Content.Projectiles.Friendly {
             float velY = posY2 * vel2;
             Projectile.velocity.X = (float) ((Projectile.velocity.X * 20.0 + velX) / 21.0);
             Projectile.velocity.Y = (float) ((Projectile.velocity.Y * 20.0 + velY) / 21.0);
+
+            if (Projectile.penetrate == 1 && Projectile.timeLeft > 80) Projectile.timeLeft = 80;
 
             Lighting.AddLight(Projectile.Center, 0.5f, 0.4f, 0.9f);
         }

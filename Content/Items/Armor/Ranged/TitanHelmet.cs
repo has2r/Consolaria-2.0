@@ -86,13 +86,12 @@ namespace Consolaria.Content.Items.Armor.Ranged {
            => titanPower = false;
 
         public override void PostUpdateEquips () {
+            if (!titanPower) return;
+
             if (titanBlastTimer == titanBlastTimerLimit) newMaxFallSpeed = 24;
-
             if (newMaxFallSpeed > 0) newMaxFallSpeed -= 1;
-
             Player.maxFallSpeed += newMaxFallSpeed;
 
-            if (!titanPower) return;
             if (titanBlastTimer == 30) {
                 SoundStyle style = new($"{nameof(Consolaria)}/Assets/Sounds/TitanBlastReload");
                 SoundEngine.PlaySound(style with { Volume = 0.3f, PitchRange = (-0.25f, 0.25f) }, Player.Center);

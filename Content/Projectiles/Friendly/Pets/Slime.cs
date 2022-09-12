@@ -84,7 +84,7 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
             int offsetY = 8;
 
             Player player = Main.player[Projectile.owner];
-            Color slimeColor = Main.tenthAnniversaryWorld | Main.drunkWorld | Main.getGoodWorld ? Main.DiscoColor : player.shirtColor;
+            Color slimeColor = Main.tenthAnniversaryWorld || Main.drunkWorld || Main.getGoodWorld ? Main.DiscoColor : player.shirtColor;
 
             spriteBatch.Draw(texture, new Vector2(position.X, position.Y - offsetY), frameRect, slimeColor.MultiplyRGB(lightColor) * 0.8f, 0, drawOrigin, Projectile.scale, spriteEffects, 0f);
             if (isFlying)

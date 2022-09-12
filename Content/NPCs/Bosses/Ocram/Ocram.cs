@@ -1045,8 +1045,13 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
             }
         }
 
-        public override void OnKill ()
-            => NPC.SetEventFlagCleared(ref DownedBossSystem.downedOcram, -1);
+        public override void OnKill () {
+            NPC.SetEventFlagCleared(ref DownedBossSystem.downedOcram, -1);
+            if (Main.netMode != NetmodeID.MultiplayerClient) {
+                if (Main.bloodMoon && Main.rand.NextBool(10))
+                    Item.NewItem(NPC.GetSource_Loot(), NPC.Center, ModContent.ItemType<Items.Consumables.HolyHandgrenade2>(), Main.rand.Next(5, 11), false, 0, false, false);
+            }
+        }
 
         public override void BossLoot (ref string name, ref int potionType)
             => potionType = ItemID.GreaterHealingPotion;

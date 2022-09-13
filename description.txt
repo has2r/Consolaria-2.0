@@ -1,19 +1,38 @@
-Tons of exclusive mobile and console features are deleted with v1.3. 
-Our aim is to bring this unique content back with improvents in both sprites and code.
+Tons of exclusive mobile and console features were deleted in 1.3. 
+Consolaria brings this unique content back, reworked and rebalanced for modern Terraria.
+It is now finally out for 1.4!
 
-Content list:
-- Ocram as a post-Mech boss with its new shiny Treasure Bag, including an Expert Mode accessory
-- New Ocram weapons and four armor sets: Dragon, Titan, Spectral and Warlock
-- Special music themes for each boss
-- Lepus and Turkor with classic and new unique drops
-- Improved boss AI and expert mode attacks
-- Arch Demon and Arch Wyvern are back with new unique behaviour
-- A bunch of ported exclusive pets
-- Console and mobile enemies with new and improved abilities
-- Many sprites reworked to match 1.3+ standards
-- Chinese New Year removed content
-- Console exclusive vanity - including the Horned God set and many others
-- Japanese exclusive vanity
+This includes:
+- Lepus, Turkor and Ocram - all with brand new AI
+- New and improved loot, including weapons, armors and more
+- Treasure bags, Expert and Master mode drops
+- Music themes for each boss
+- Chinese New Year, Valentine's Day, St. Patrick's Day and Oktoberfest
+- Heart Shrine and Jungle Sanctum
+- Arch Demon, Arch Wyvern and all the other console and mobile enemies
+- Exclusive vanity - including the Horned God set and many others
+- A bunch of ported exclusive pets with extra animations
+- Lots of new and carefully revamped sprites
+- Boss Checklist support
 - Holy Hand Grenade!
 
-Also check our WIP bigger project - [c/228B22:Rise of Ages]! Find its thread in WIP modding section on forums.
+Holiday content is always active by default and can be restricted to the corresponding dates using the config options.
+
+Developers:
+- Has2r - programmer, founder
+- peege_on - spriter, animator, programmer
+- Zerokk - programmer
+- Heretic - spriter, animator, wiki editor
+
+Contributors:
+- DrunkenCat - original boss AIs
+- Synoxsis - Lepus, Turkor and Ocram themes
+- Fyerow and Croul - legacy Ocram theme
+- StrikerRKT - extracting files from various Japanese versions
+- Sparcdoctor - extensive testing and content suggestions
+- CrezyDud - Turkor multiplayer fixes
+- OnesAndZer0s - Jungle Sanctum worldgen
+- CKnight - Master mode Relic sprites
+- Bripe, Obesedog, Nokilos, MeuRan - numerous sprites
+
+Also check out our WIP bigger project - [c/228B22:Rise of Ages]! Find it in the modding section on Terraria Forums or on our Discord.

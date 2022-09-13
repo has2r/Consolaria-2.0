@@ -18,7 +18,7 @@ namespace Consolaria.Content.Projectiles.Friendly
         }
 
         public override void SetDefaults() {
-            int width = 24; int height = width;
+            int width = 12; int height = width;
             Projectile.Size = new Vector2(width, height);
 
             Projectile.DamageType = DamageClass.Generic;
@@ -26,13 +26,29 @@ namespace Consolaria.Content.Projectiles.Friendly
             Projectile.aiStyle = 16;
             Projectile.friendly = true;
 
-            Projectile.penetrate = 1;
+            Projectile.penetrate = -1;
             Projectile.timeLeft = 420;
+
+            DrawOriginOffsetY = -6;
         }
 
         public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection) {
             if (Main.expertMode) {
                 if (target.type >= NPCID.EaterofWorldsHead && target.type <= NPCID.EaterofWorldsTail) damage /= 5;        
+            }
+        }
+        public override void PostAI()
+        {
+            if (Projectile.owner == Main.myPlayer && Projectile.timeLeft <= 3)
+            {
+                Projectile.tileCollide = false;
+                Projectile.alpha = 255;
+                Projectile.position = Projectile.Center;
+                Projectile.width = 600;
+                Projectile.height = 600;
+                Projectile.Center = Projectile.position;
+                Projectile.damage = 600;
+                Projectile.knockBack = 16f;
             }
         }
 

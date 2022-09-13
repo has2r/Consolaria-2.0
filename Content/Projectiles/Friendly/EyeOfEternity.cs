@@ -90,10 +90,10 @@ namespace Consolaria.Content.Projectiles.Friendly {
                 scytheAttack = false;
             }
             if (laserAttack) {
-                if (Projectile.localAI [0] % 4 == 0) {
-                    Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center, Velocity.RotatedByRandom(Math.PI * 0.05f), (ushort) ModContent.ProjectileType<EternalLaser>(), Projectile.damage, 1, Projectile.owner);
-                    SoundEngine.PlaySound(SoundID.Item33 with { Volume = 0.75f }, Projectile.Center);
-                    if (laserCount++ > 4) {
+                if (Projectile.localAI [0] % 6 == 0) {
+                    Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center, Velocity.RotatedByRandom(Math.PI * 0.05f), (ushort) ModContent.ProjectileType<EternalLaser>(), (int)(Projectile.damage * 1.3f), 1, Projectile.owner);
+                    SoundEngine.PlaySound(SoundID.Item33 with { Volume = 0.2f, Pitch = 0.5f }, Projectile.Center);
+                    if (laserCount++ > 3) {
                         laserCount = 0;
                         laserAttack = false;
                     }
@@ -117,7 +117,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
             SpriteBatch spriteBatch = Main.spriteBatch;
             Texture2D texture = (Texture2D) ModContent.Request<Texture2D>("Consolaria/Assets/Textures/Projectiles/EyeOfEternity_Glow");
             Vector2 origin = new Vector2(Projectile.width * 0.5f, Projectile.height * 0.5f);
-            spriteBatch.Draw(texture, Projectile.Center - Main.screenPosition, null, Color.White, glowRotation, origin, 1f, SpriteEffects.FlipHorizontally, 0f);
+            spriteBatch.Draw(texture, Projectile.Center - Main.screenPosition, null, lightColor, glowRotation, origin, 1f, SpriteEffects.FlipHorizontally, 0f);
         }
 
         public override bool PreDraw (ref Color lightColor) {

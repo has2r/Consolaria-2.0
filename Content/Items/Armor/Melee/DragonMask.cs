@@ -83,12 +83,12 @@ namespace Consolaria.Content.Items.Armor.Melee {
                 velocity.Normalize();
                 velocity *= 5.75f;
                 float rotation = MathHelper.ToRadians(15);
-                float projectilesCount = 7;
+                float projectilesCount = 5;
                 ushort type = (ushort) ModContent.ProjectileType<ShadowflameBurst>();
                 if (burstTimer % 5 == 0) {
                     for (int i = 0; i < projectilesCount; i++) {
                         Vector2 perturbedSpeed = velocity.RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (projectilesCount))) * 1.15f;
-                        Projectile.NewProjectile(Player.GetSource_Misc("Dragon Armor"), position, new Vector2(perturbedSpeed.X + Main.rand.NextFloat(-0.25f, 0.25f), perturbedSpeed.Y), type, 150, 2.5f, Player.whoAmI);
+                        Projectile.NewProjectile(Player.GetSource_Misc("Dragon Armor"), position, new Vector2(perturbedSpeed.X + Main.rand.NextFloat(-0.25f, 0.25f), perturbedSpeed.Y), type, 180, 2.5f, Player.whoAmI, 0, i);
                     }
                 }
                 if (velocity.X < 0.3f) Player.direction = -1;

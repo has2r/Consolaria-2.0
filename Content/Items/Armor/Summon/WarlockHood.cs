@@ -1,5 +1,6 @@
 using Consolaria.Content.Items.Materials;
 using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent.Creative;
@@ -91,6 +92,21 @@ namespace Consolaria.Content.Items.Armor.Summon {
                         Main.dust [_dust].velocity = proj.velocity * 0f + vector.SafeNormalize(Vector2.UnitY) * 0.75f;
                         int _dustCountMax2 = _dustCount;
                         _dustCount = _dustCountMax2 + 1;
+                    }
+                    for (int i = 0; i < 12; i++) {
+                        int dust2 = Dust.NewDust(proj.Center, 0, 0, DustID.RainbowMk2, 0, 0, 75, Main.rand.NextBool(2) ? new Color (180, 90, 90, 120) : new Color(150, 70, 180, 120), Main.rand.NextFloat(0.9f, 1.8f));
+                        Main.dust[dust2].position = proj.Center + new Vector2(0, -30).RotatedByRandom(Math.PI * 2f);
+                        Main.dust[dust2].velocity = Vector2.Normalize(Main.dust[dust2].position - proj.Center) * -2.5f;
+                        Main.dust[dust2].fadeIn = 2f;
+                        Main.dust[dust2].noGravity = true;
+                        Main.dust[dust2].noLightEmittence = true;
+
+                        int dust3 = Dust.NewDust(Player.MountedCenter, 0, 0, DustID.RainbowMk2, 0, 0, 75, Main.rand.NextBool(2) ? new Color(180, 90, 90, 120) : new Color(150, 70, 180, 120), Main.rand.NextFloat(0.9f, 1.8f));
+                        Main.dust[dust3].position = Player.MountedCenter + new Vector2(0, -30).RotatedByRandom(Math.PI * 2f);
+                        Main.dust[dust3].velocity = Vector2.Normalize(Main.dust[dust3].position - Player.MountedCenter) * -2.5f;
+                        Main.dust[dust3].fadeIn = 2f;
+                        Main.dust[dust3].noGravity = true;
+                        Main.dust[dust3].noLightEmittence = true;
                     }
                 }
                 SoundEngine.PlaySound(SoundID.NPCDeath55, proj.position);

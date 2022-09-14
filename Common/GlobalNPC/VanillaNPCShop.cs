@@ -6,7 +6,6 @@ namespace Consolaria.Common {
 	class VanillaNPCShop : GlobalNPC {
 		public override void SetupShop (int type, Chest shop, ref int nextSlot) {
 			Player player = Main.player [Main.myPlayer];
-
 			if (type == NPCID.Merchant) {
 				if (SeasonalEvents.isThanksgiving || !SeasonalEvents.enabled) {
 					shop.item [nextSlot].SetDefaults(ModContent.ItemType<Content.Items.Pets.TurkeyFeather>());
@@ -87,6 +86,12 @@ namespace Consolaria.Common {
 					shop.item [nextSlot].SetDefaults(ModContent.ItemType<Content.Items.Vanity.DirndlBlouse>());
 					nextSlot++;
 					shop.item [nextSlot].SetDefaults(ModContent.ItemType<Content.Items.Vanity.DirndlSkirt>());
+					nextSlot++;
+				}
+			}
+			if (type == NPCID.SkeletonMerchant) {
+				if (Main.moonPhase == 0) {
+					shop.item [nextSlot].SetDefaults(ModContent.ItemType<Content.Items.Consumables.Wishbone>());
 					nextSlot++;
 				}
 			}

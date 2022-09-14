@@ -19,7 +19,7 @@ This includes:
 Holiday content is always active by default and can be restricted to the corresponding dates using the config options.
 
 Developers:
-- Has2r - programmer, founder
+- has2r - programmer, founder
 - peege_on - spriter, animator, programmer
 - Zerokk - programmer
 - Heretic - spriter, animator, wiki editor

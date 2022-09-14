@@ -1,8 +1,10 @@
 using Consolaria.Common;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.Chat;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.Items.Consumables {
@@ -36,9 +38,15 @@ namespace Consolaria.Content.Items.Consumables {
             => !SeasonalEvents.allEventsForToday;
 
         public override bool? UseItem (Player player) {
-            if (player.whoAmI == Main.myPlayer) {
+            string text = "The spirits of celebration arise...";
+            if (player.whoAmI == Main.myPlayer && player.itemAnimation >= player.itemAnimationMax) {
                 SeasonalEvents.allEventsForToday = true;
-                Main.NewText("The spirits of celebration arise...", Color.HotPink);
+                if (Main.netMode == NetmodeID.SinglePlayer)
+                    Main.NewText(text, Color.HotPink);
+                else if (Main.netMode == NetmodeID.Server)
+                    ChatHelper.BroadcastChatMessage(NetworkText.FromKey(text), Color.HotPink);
+                if (Main.netMode == NetmodeID.Server)
+                    NetMessage.SendData(MessageID.WorldData);
             }
             return true;
         }

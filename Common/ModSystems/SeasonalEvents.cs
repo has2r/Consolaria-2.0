@@ -19,7 +19,7 @@ namespace Consolaria.Common {
             isValentinesDay = (ConsolariaConfig.Instance.smallEventsEnabled && SeasonalEventsHelper.CheckValentinesDay()) || allEventsForToday;
 
 		public override void PostUpdateTime () {
-			string text = "Events is over!";
+			string text = "The spirits of celebration dissipate...";
 			if (Main.time == 24000.0) {
 				if (allEventsForToday) {
 					allEventsForToday = false;

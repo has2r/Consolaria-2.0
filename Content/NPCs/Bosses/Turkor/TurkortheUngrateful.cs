@@ -484,8 +484,6 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 			npcLoot.Add(notExpertRule);
 			npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<SpicySauce>(), 2, 15, 34));
 			npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<TurkorMask>(), 7));
-
-			npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Wishbone>(), 5));
 		}
 	}
 }

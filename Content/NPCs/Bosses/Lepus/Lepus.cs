@@ -228,7 +228,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
             conditionalRule.OnSuccess(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<LepusMask>(), 8));
             conditionalRule.OnSuccess(ItemDropRule.ByCondition(notExpert, ItemID.BunnyHood, 10));
             conditionalRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<SuspiciousLookingEgg>()));
-            LepusDropCondition1 lepusDropCondition2 = new();
+            RabbitInvasionDropCondition lepusDropCondition2 = new();
             IItemDropRule conditionalRule2 = new LeadingConditionRule(lepusDropCondition2);
             conditionalRule2.OnSuccess(ItemDropRule.Common(ModContent.ItemType<GoldenCarrot>(), minimumDropped: 10, maximumDropped: 20));
             npcLoot.Add(conditionalRule);

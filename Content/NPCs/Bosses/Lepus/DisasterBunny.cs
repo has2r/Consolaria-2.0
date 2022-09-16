@@ -68,10 +68,10 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
         }
 
         public override void ModifyNPCLoot (NPCLoot npcLoot) {
-            LepusDropCondition2 lepusDropCondition = new();
+            LepusDropCondition lepusDropCondition = new();
             IItemDropRule conditionalRule = new LeadingConditionRule(lepusDropCondition);
             conditionalRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<SuspiciousLookingEgg>(), 4));
-            LepusDropCondition1 lepusDropCondition2 = new();
+            RabbitInvasionDropCondition lepusDropCondition2 = new();
             IItemDropRule conditionalRule2 = new LeadingConditionRule(lepusDropCondition2);
             conditionalRule2.OnSuccess(ItemDropRule.Common(ModContent.ItemType<GoldenCarrot>(), 4));
             npcLoot.Add(conditionalRule);
@@ -80,7 +80,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
 
         public override float SpawnChance (NPCSpawnInfo spawnInfo) {
             float spawnChance = DownedBossSystem.downedLepus ? 0.01f : 0.035f;
-            if (SeasonalEvents.enabled) return SeasonalEvents.isEaster ?
+            if (SeasonalEvents.configEnabled) return SeasonalEvents.IsEaster() ?
                     SpawnCondition.OverworldDaySlime.Chance * spawnChance : 0f;
             else return SpawnCondition.OverworldDaySlime.Chance * spawnChance;
         }

@@ -142,7 +142,7 @@ namespace Consolaria.Common {
 		{
 			if (npc.type == NPCID.CrimsonBunny || npc.type == NPCID.CorruptBunny)
 			{
-				LepusDropCondition1 lepusDropCondition2 = new();
+				RabbitInvasionDropCondition lepusDropCondition2 = new();
 				IItemDropRule conditionalRule2 = new LeadingConditionRule(lepusDropCondition2);
 				conditionalRule2.OnSuccess(ItemDropRule.Common(ModContent.ItemType<GoldenCarrot>(), 4));
 				npcLoot.Add(conditionalRule2);

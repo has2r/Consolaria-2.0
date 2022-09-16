@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using System;
 using System.IO;
 using Terraria;
 using Terraria.Chat;
@@ -8,15 +9,11 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
 namespace Consolaria.Common {
-    public class SeasonalEvents : ModSystem {
-        public static bool allEventsForToday;
-        public static bool enabled = ConsolariaConfig.Instance.easterEnabled || ConsolariaConfig.Instance.thanksgivingEnabled || ConsolariaConfig.Instance.smallEventsEnabled || allEventsForToday,
-            isEaster = (ConsolariaConfig.Instance.easterEnabled && SeasonalEventsHelper.CheckEaster()) || allEventsForToday,
-            isThanksgiving = (ConsolariaConfig.Instance.thanksgivingEnabled && SeasonalEventsHelper.CheckThanksgiving()) || allEventsForToday,
-            isChineseNewYear = (ConsolariaConfig.Instance.smallEventsEnabled && SeasonalEventsHelper.CheckChineseNewYear()) || allEventsForToday,
-            isOktoberfest = (ConsolariaConfig.Instance.smallEventsEnabled && SeasonalEventsHelper.CheckOktoberfest()) || allEventsForToday,
-            isSaintPatricksDay = (ConsolariaConfig.Instance.smallEventsEnabled && SeasonalEventsHelper.CheckSaintPatricksDay()) || allEventsForToday,
-            isValentinesDay = (ConsolariaConfig.Instance.smallEventsEnabled && SeasonalEventsHelper.CheckValentinesDay()) || allEventsForToday;
+	public class SeasonalEvents : ModSystem {
+		static DateTime currentDate = DateTime.Now;
+
+		public static bool allEventsForToday;
+		public static bool configEnabled = ConsolariaConfig.Instance.easterEnabled || ConsolariaConfig.Instance.thanksgivingEnabled || ConsolariaConfig.Instance.smallEventsEnabled;
 
 		public override void PostUpdateTime () {
 			string text = "The spirits of celebration dissipate...";
@@ -30,12 +27,32 @@ namespace Consolaria.Common {
 					if (Main.netMode == NetmodeID.Server)
 						NetMessage.SendData(MessageID.WorldData);
 				}
+				if (WishbonePlayer.purchasedWishbone)
+					WishbonePlayer.purchasedWishbone = false;
 			}
 		}
 
+		public static bool IsEaster ()
+			=> (currentDate.Day >= 1 && currentDate.Month == 4) || allEventsForToday;
+
+		public static bool IsThanksgiving ()
+			=> (currentDate.Day >= 1 && currentDate.Month == 11) || allEventsForToday;
+
+		public static bool IsChineseNewYear ()
+			=> ((currentDate.Day >= 20 && currentDate.Month == 1) && (currentDate.Day <= 15 && currentDate.Month == 2)) || allEventsForToday;
+
+		public static bool IsOktoberfest ()
+			=> ((currentDate.Day >= 27 && currentDate.Month == 9) && (currentDate.Day <= 31 && currentDate.Month == 10)) || allEventsForToday;
+
+		public static bool IsPatrickDay ()
+			=> ((currentDate.Day >= 5 && currentDate.Month == 3) && (currentDate.Day <= 31 && currentDate.Month == 3)) || allEventsForToday;
+
+		public static bool IsValentineDay ()
+			=> ((currentDate.Day >= 1 && currentDate.Month == 2) && (currentDate.Day <= 29 && currentDate.Month == 2)) || allEventsForToday;
+
 		public override void OnWorldLoad ()
 			=> allEventsForToday = false;
-		
+
 		public override void OnWorldUnload ()
 			=> allEventsForToday = false;
 
@@ -45,9 +62,8 @@ namespace Consolaria.Common {
 			}
 		}
 
-		public override void LoadWorldData (TagCompound tag) 
+		public override void LoadWorldData (TagCompound tag)
 			=> allEventsForToday = tag.ContainsKey("allEventsForToday");
-		
 
 		public override void NetSend (BinaryWriter writer) {
 			var flags = new BitsByte();
@@ -58,6 +74,24 @@ namespace Consolaria.Common {
 		public override void NetReceive (BinaryReader reader) {
 			BitsByte flags = reader.ReadByte();
 			allEventsForToday = flags [0];
+		}
+	}
+
+	public class WishbonePlayer : ModPlayer {
+		public static bool purchasedWishbone;
+
+		public override void Initialize ()
+			=> purchasedWishbone = false;
+
+		public override void SaveData (TagCompound tag)
+			=> tag.Add("purchasedWishbone", purchasedWishbone);
+
+		public override void LoadData (TagCompound tag)
+			=> purchasedWishbone = tag.GetBool("purchasedWishbone");
+
+		public override void PostBuyItem (NPC vendor, Item [] shopInventory, Item item) {
+			if (vendor.type == NPCID.SkeletonMerchant && item.type == ModContent.ItemType<Content.Items.Consumables.Wishbone>())
+				purchasedWishbone = true;
 		}
 	}
 }

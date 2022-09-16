@@ -230,7 +230,7 @@ namespace Consolaria.Content.NPCs {
 		}
 
 		public override float SpawnChance (NPCSpawnInfo spawnInfo) {
-			if (SeasonalEvents.enabled) return Main.hardMode && SeasonalEvents.isChineseNewYear ? SpawnCondition.Sky.Chance * 0.05f : 0f;
+			if (SeasonalEvents.configEnabled) return Main.hardMode && SeasonalEvents.IsChineseNewYear() ? SpawnCondition.Sky.Chance * 0.05f : 0f;
 			else return Main.hardMode && LanternNight.LanternsUp ? SpawnCondition.Sky.Chance * 0.05f : 0f;
 		}
 	}

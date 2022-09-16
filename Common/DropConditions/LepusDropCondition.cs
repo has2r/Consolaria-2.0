@@ -3,45 +3,28 @@ using Terraria;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ModLoader;
 
-namespace Consolaria.Common
-{
-	public class LepusDropCondition : IItemDropRuleCondition
-	{
-		public bool CanDrop(DropAttemptInfo info)
-		{
-			return !info.IsInSimulation;
-		}
-
-		public bool CanShowItemDropInUI() => true;
-
-		public string GetConditionDescription() => /*"This can be dropped if Lepus is not alive"*/"";
-	}
-
-	public class LepusDropCondition2 : IItemDropRuleCondition
-	{
-		public bool CanDrop(DropAttemptInfo info) 
-		{
+namespace Consolaria.Common {
+	public class LepusDropCondition : IItemDropRuleCondition {
+		public bool CanDrop (DropAttemptInfo info) {
 			if (!info.IsInSimulation)
-			return !NPC.AnyNPCs(ModContent.NPCType<Lepus>()) && !RabbitInvasion.rabbitInvasion;
+				return !NPC.AnyNPCs(ModContent.NPCType<Lepus>()) && !RabbitInvasion.rabbitInvasion;
 			return false;
 		}
 
-		public bool CanShowItemDropInUI() => true;
-		
-		public string GetConditionDescription() => "Drops if Lepus is not present";	
+		public bool CanShowItemDropInUI () => true;
+
+		public string GetConditionDescription () => "Drops if Lepus is not present";
 	}
 
-	public class LepusDropCondition1 : IItemDropRuleCondition
-	{
-		public bool CanDrop(DropAttemptInfo info)
-		{
+	public class RabbitInvasionDropCondition : IItemDropRuleCondition {
+		public bool CanDrop (DropAttemptInfo info) {
 			if (!info.IsInSimulation)
 				return RabbitInvasion.rabbitInvasion;
 			return false;
 		}
 
-		public bool CanShowItemDropInUI() => true;
+		public bool CanShowItemDropInUI () => true;
 
-		public string GetConditionDescription() => "Drops during an invasion of rabbits";
+		public string GetConditionDescription () => "Drops during an invasion of rabbits";
 	}
 }

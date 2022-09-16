@@ -64,7 +64,7 @@ namespace Consolaria.Content.Items.Armor.Melee {
         public override void ResetEffects ()
             => dragonBurst = false;
 
-        public override void PostHurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit) {
+        public override void PostHurt (bool pvp, bool quiet, double damage, int hitDirection, bool crit, int cooldownCounter) {
             if (dragonBurst && !startFlames) {
                 startFlames = true;
                 SoundEngine.PlaySound(SoundID.DD2_PhantomPhoenixShot with { Volume = 0.8f, MaxInstances = 3 }, Player.Center);

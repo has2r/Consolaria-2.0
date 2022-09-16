@@ -74,10 +74,10 @@ namespace Consolaria.Content.Items.Armor.Ranged {
 
     internal class TitanPlayer : ModPlayer {
         public bool titanPower;
+        public float newMaxFallSpeed;
+
         public int titanBlastTimer;
         public readonly int titanBlastTimerLimit = 300;
-        public float oldMaxFallSpeed;
-        public float newMaxFallSpeed;
 
         public override void Initialize ()
            => titanBlastTimer = titanBlastTimerLimit;

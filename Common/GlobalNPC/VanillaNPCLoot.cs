@@ -12,38 +12,27 @@ namespace Consolaria.Common {
 		public override void ModifyNPCLoot (NPC npc, NPCLoot npcLoot) {
 			if (npc.type == NPCID.Harpy) {
 				int itemType = ModContent.ItemType<CursedStuffing>();
-				int chance = 4; // 25%
+				int dropChance = !DownedBossSystem.downedTurkor ? 4 : 10;
+				ThanksgivingDropCondition thanksgivingDropCondition = new ThanksgivingDropCondition();
 
-				if (SeasonalEvents.enabled) {
-					ThanksgivingDropCondition thanksgivingDropCondition = new ThanksgivingDropCondition();
-					IItemDropRule conditionalRule = new LeadingConditionRule(thanksgivingDropCondition);
-					IItemDropRule rule = ItemDropRule.Common(itemType, chance);
-					conditionalRule.OnSuccess(rule);
-					npcLoot.Add(conditionalRule);
-				}
-				else npcLoot.Add(ItemDropRule.Common(itemType, chance));
+				if (SeasonalEvents.configEnabled)
+					npcLoot.Add(ItemDropRule.ByCondition(thanksgivingDropCondition, itemType, dropChance));
+				else npcLoot.Add(ItemDropRule.Common(itemType, dropChance));
 			}
 
 			if (npc.type == NPCID.CorruptBunny || npc.type == NPCID.CrimsonBunny) {
 				int itemType = ModContent.ItemType<SuspiciousLookingEgg>();
-				int chance = 4;
+				int dropChance = 4;
+				LepusDropCondition lepusDropCondition = new LepusDropCondition();
+				EasterDropCondition easterDropCondition = new EasterDropCondition();
 
-				if (SeasonalEvents.enabled) {
-					EasterDropCondition easterDropCondition = new EasterDropCondition();
-					IItemDropRule conditionalRule = new LeadingConditionRule(easterDropCondition);
-					IItemDropRule rule = ItemDropRule.Common(itemType, chance);
-					conditionalRule.OnSuccess(rule);
-					npcLoot.Add(conditionalRule);
+				if (SeasonalEvents.configEnabled) {
+					IItemDropRule easterConditionalRule = new LeadingConditionRule(easterDropCondition);
+					easterConditionalRule.OnSuccess(ItemDropRule.ByCondition(lepusDropCondition, itemType, dropChance));
+					npcLoot.Add(easterConditionalRule);
 				}
-				else {
-					LepusDropCondition2 easterDropCondition = new LepusDropCondition2();
-					IItemDropRule conditionalRule = new LeadingConditionRule(easterDropCondition);
-					IItemDropRule rule = ItemDropRule.Common(itemType, chance);
-					conditionalRule.OnSuccess(rule);
-					npcLoot.Add(conditionalRule);
-				}
+				else npcLoot.Add(ItemDropRule.ByCondition(lepusDropCondition, itemType, dropChance));
 			}
-
 			if (npc.type == NPCID.FireImp)
 				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ShirenHat>(), 250));
 			if (npc.type == NPCID.Werewolf)
@@ -51,26 +40,19 @@ namespace Consolaria.Common {
 			if (npc.type == NPCID.ToxicSludge)
 				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<PetriDish>(), 150));
 			if (NPCID.Sets.Zombies [npc.type])
-				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Brain>(), 1000));
+				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Brain>(), 750));
 		}
 
 		public override void ModifyGlobalLoot (GlobalLoot globalLoot) {
 			int itemType = ModContent.ItemType<RedEnvelope>();
 			int chance = 30;
-			if (SeasonalEvents.enabled) {
-				ChineseNewYearDropCondition chineseNewYearDropCondition = new ChineseNewYearDropCondition();
-				IItemDropRule conditionalRule = new LeadingConditionRule(chineseNewYearDropCondition);
-				IItemDropRule rule = ItemDropRule.Common(itemType, chance);
-				conditionalRule.OnSuccess(rule);
-				globalLoot.Add(conditionalRule);
-			}
-			else {
-				LanternNightDropCondition lanernNightDropCondition = new LanternNightDropCondition();
-				IItemDropRule conditionalRule = new LeadingConditionRule(lanernNightDropCondition);
-				IItemDropRule rule = ItemDropRule.Common(itemType, chance);
-				conditionalRule.OnSuccess(rule);
-				globalLoot.Add(conditionalRule);
-			}
+			ChineseNewYearDropCondition chineseNewYearDropCondition = new ChineseNewYearDropCondition();
+			LanternNightDropCondition lanernNightDropCondition = new LanternNightDropCondition();
+
+			if (SeasonalEvents.configEnabled)
+				globalLoot.Add(ItemDropRule.ByCondition(chineseNewYearDropCondition, itemType, chance));
+			else
+				globalLoot.Add(ItemDropRule.ByCondition(lanernNightDropCondition, itemType, chance / 2));
 		}
 	}
 }

@@ -7,19 +7,19 @@ namespace Consolaria.Common {
 		public override void SetupShop (int type, Chest shop, ref int nextSlot) {
 			Player player = Main.player [Main.myPlayer];
 			if (type == NPCID.Merchant) {
-				if (SeasonalEvents.isThanksgiving || !SeasonalEvents.enabled) {
+				if ((SeasonalEvents.configEnabled && SeasonalEvents.IsThanksgiving()) || !SeasonalEvents.configEnabled) {
 					shop.item [nextSlot].SetDefaults(ModContent.ItemType<Content.Items.Pets.TurkeyFeather>());
 					nextSlot++;
 				}
-				if (SeasonalEvents.isOktoberfest || !SeasonalEvents.enabled && player.HeldItem.type == ItemID.Ale) {
+				if ((SeasonalEvents.configEnabled && SeasonalEvents.IsOktoberfest()) || (!SeasonalEvents.configEnabled && player.HeldItem.type == ItemID.Ale)) {
 					shop.item [nextSlot].SetDefaults(ModContent.ItemType<Content.Items.Consumables.Wiesnbrau>());
 					nextSlot++;
 				}
-				if (SeasonalEvents.isValentinesDay || !SeasonalEvents.enabled && player.HasBuff(BuffID.Lovestruck)) {
+				if ((SeasonalEvents.configEnabled && SeasonalEvents.IsValentineDay()) || (!SeasonalEvents.configEnabled && player.HasBuff(BuffID.Lovestruck))) {
 					shop.item [nextSlot].SetDefaults(ModContent.ItemType<Content.Items.Accessories.ValentineRing>());
 					nextSlot++;
 				}
-				if (SeasonalEvents.isValentinesDay || !SeasonalEvents.enabled && player.HasBuff(BuffID.Lovestruck)) {
+				if ((SeasonalEvents.configEnabled && SeasonalEvents.IsValentineDay()) || (!SeasonalEvents.configEnabled && player.HasBuff(BuffID.Lovestruck))) {
 					shop.item [nextSlot].SetDefaults(ModContent.ItemType<Content.Items.Weapons.Ammo.HeartArrow>());
 					nextSlot++;
 				}
@@ -28,10 +28,12 @@ namespace Consolaria.Common {
 					nextSlot++;
 				}
 			}
+
 			if (type == NPCID.Demolitionist && Main.xMas) {
 				shop.item [nextSlot].SetDefaults(ModContent.ItemType<Content.Items.Weapons.Magic.RomanCandle>());
 				nextSlot++;
 			}
+
 			if (type == NPCID.TravellingMerchant && NPC.downedMechBossAny && Main.moonPhase == 4) {
 				shop.item [nextSlot].SetDefaults(ModContent.ItemType<Content.Items.Vanity.HornedGodMask>());
 				nextSlot++;
@@ -40,6 +42,7 @@ namespace Consolaria.Common {
 				shop.item [nextSlot].SetDefaults(ModContent.ItemType<Content.Items.Vanity.HornedGodBoots>());
 				nextSlot++;
 			}
+
 			if (type == NPCID.Clothier) {
 				if (Main.xMas) {
 					shop.item [nextSlot].SetDefaults(ModContent.ItemType<Content.Items.Vanity.FestiveTopHat>());
@@ -76,7 +79,7 @@ namespace Consolaria.Common {
 						nextSlot++;
 					}
 				}
-				if (SeasonalEvents.isOktoberfest || !SeasonalEvents.enabled && player.HeldItem.type == ItemID.Ale) {
+				if ((SeasonalEvents.configEnabled && SeasonalEvents.IsOktoberfest()) || (!SeasonalEvents.configEnabled && player.HeldItem.type == ItemID.Ale)) {
 					shop.item [nextSlot].SetDefaults(ModContent.ItemType<Content.Items.Vanity.AlpineHat>());
 					nextSlot++;
 					shop.item [nextSlot].SetDefaults(ModContent.ItemType<Content.Items.Vanity.Lederweste>());
@@ -89,11 +92,11 @@ namespace Consolaria.Common {
 					nextSlot++;
 				}
 			}
-			if (type == NPCID.SkeletonMerchant) {
-				if (Main.moonPhase == 0) {
-					shop.item [nextSlot].SetDefaults(ModContent.ItemType<Content.Items.Consumables.Wishbone>());
-					nextSlot++;
-				}
+
+			if (type == NPCID.SkeletonMerchant && !WishbonePlayer.purchasedWishbone) {
+				shop.item [nextSlot].SetDefaults(ModContent.ItemType<Content.Items.Consumables.Wishbone>());
+				shop.item [nextSlot].buyOnce = true;
+				nextSlot++;
 			}
 		}
 	}

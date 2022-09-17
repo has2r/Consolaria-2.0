@@ -32,8 +32,7 @@ namespace Consolaria.Content.Items.Armor.Magic {
         }
 
         public override void SetMatch (bool male, ref int equipSlot, ref bool robes) {
-            var robeSlot = ModContent.GetInstance<AncientPhantasmalRobe>();
-            equipSlot = EquipLoader.GetEquipSlot(Mod, robeSlot.Name, EquipType.Legs);
+            equipSlot = EquipLoader.GetEquipSlot(Mod, Name, EquipType.Legs);
             robes = true;
         }
 

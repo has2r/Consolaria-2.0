@@ -53,6 +53,7 @@ namespace Consolaria.Content.Items.BossDrops.Ocram {
         public override void UpdateEquips () {
             if (ocramJump) {
                 if (rocketTimer > 0 && ((Player.gravDir == 1f && Player.velocity.Y < 0f) || (Player.gravDir == -1f && Player.velocity.Y > 0f))) {
+                    Player.noFallDmg = true;
                     if (Player.gravDir == -1f) Player.height = -6;
                     if (Main.netMode != NetmodeID.Server) {
                         float size = (Player.jump / 50f + 1f) / 2f;
@@ -102,7 +103,6 @@ namespace Consolaria.Content.Items.BossDrops.Ocram {
                     Main.gore [goreIndex].GetAlpha(new Color(75, 0, 130, 100));
                 }
             }
-
             for (int _npc = 0; _npc < Main.maxNPCs; _npc++) {
                 NPC npc = Main.npc [_npc];
                 if (npc.active && !npc.friendly && npc.life > 0 && !npc.dontTakeDamage && npc.Distance(Player.position) <= 120) {

@@ -1,5 +1,8 @@
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -8,12 +11,6 @@ namespace Consolaria.Content.Items.Vanity {
 	[AutoloadEquip(EquipType.Body)]
 
 	public class FabulousDress : ModItem {
-		public override void Load () {
-			string skirtTexture = "Consolaria/Content/Items/Vanity/FabulousDress_Skirt";
-			if (Main.netMode != NetmodeID.Server)
-				EquipLoader.AddEquipTexture(Mod, skirtTexture, EquipType.Front, this);
-		}
-
 		public override void SetStaticDefaults () {
 			DisplayName.SetDefault("Fabulous Dress");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
@@ -27,10 +24,38 @@ namespace Consolaria.Content.Items.Vanity {
 			Item.value = Item.buyPrice(gold: 15);
 			Item.vanity = true;
 		}
+	}
 
-		public override void EquipFrameEffects (Player player, EquipType type) {
-			var skirtSlot = ModContent.GetInstance<FabulousDress>();
-			player.front = (sbyte) EquipLoader.GetEquipSlot(Mod, skirtSlot.Name, EquipType.Front);
+	internal class FabulousSkirt : PlayerDrawLayer {
+		private Asset<Texture2D> dressTexture;
+
+		public override void Load ()
+			=> dressTexture = ModContent.Request<Texture2D>("Consolaria/Content/Items/Vanity/FabulousDress_Skirt");
+
+		public override void Unload ()
+			=> dressTexture = null;
+
+		public override bool GetDefaultVisibility (PlayerDrawSet drawInfo) {
+			if (((drawInfo.drawPlayer.armor [1].type == ModContent.ItemType<FabulousDress>()) && Helper.CanDrawArmorLayer(drawInfo, 11)) ||
+				(drawInfo.drawPlayer.armor [11].type == ModContent.ItemType<FabulousDress>()))
+				return true;
+			return false;
+		}
+
+		public override Position GetDefaultPosition ()
+			=> new AfterParent(PlayerDrawLayers.FrontAccFront);
+
+		protected override void Draw (ref PlayerDrawSet drawInfo) {
+			Player player = drawInfo.drawPlayer;
+			if (player.dead || player.invis || player.front != -1) return;
+
+			Texture2D texture = dressTexture.Value;
+			Vector2 position = drawInfo.Position - Main.screenPosition + new Vector2(player.width / 2 - player.bodyFrame.Width / 2, player.height - player.bodyFrame.Height + 4f) + player.bodyPosition;
+			Vector2 origin = drawInfo.bodyVect;
+
+			DrawData drawData = new DrawData(texture, position.Floor() + origin, player.bodyFrame, drawInfo.colorArmorBody, player.bodyRotation, origin, 1f, drawInfo.playerEffect, 0);
+			drawData.shader = player.cBody;
+			drawInfo.DrawDataCache.Add(drawData);
 		}
 	}
 }

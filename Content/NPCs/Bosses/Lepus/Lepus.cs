@@ -216,23 +216,26 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
             => potionType = NPC.CountNPCS(Type) <= 1 ? ItemID.LesserHealingPotion : -1;
 
         public override void ModifyNPCLoot (NPCLoot npcLoot) {
-            LepusDropCondition lepusDropCondition = new();
-            IItemDropRule conditionalRule = new LeadingConditionRule(lepusDropCondition);
-            Conditions.NotExpert notExpert = new();
-            conditionalRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<LepusTrophy>(), 10));
-            conditionalRule.OnSuccess(new OneFromRulesRule(1, ItemDropRule.ByCondition(notExpert, ModContent.ItemType<OstaraHat>()), ItemDropRule.ByCondition(notExpert, ModContent.ItemType<OstaraJacket>()), ItemDropRule.ByCondition(notExpert, ModContent.ItemType<OstaraBoots>())));
-            conditionalRule.OnSuccess(ItemDropRule.BossBag(ModContent.ItemType<LepusBag>()));
-            conditionalRule.OnSuccess(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<LepusRelic>()));
-            conditionalRule.OnSuccess(ItemDropRule.MasterModeDropOnAllPlayers(ModContent.ItemType<RabbitFoot>(), 4));
-            conditionalRule.OnSuccess(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<EggCannon>(), 2));
-            conditionalRule.OnSuccess(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<LepusMask>(), 8));
-            conditionalRule.OnSuccess(ItemDropRule.ByCondition(notExpert, ItemID.BunnyHood, 10));
-            conditionalRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<SuspiciousLookingEgg>()));
-            RabbitInvasionDropCondition lepusDropCondition2 = new();
-            IItemDropRule conditionalRule2 = new LeadingConditionRule(lepusDropCondition2);
-            conditionalRule2.OnSuccess(ItemDropRule.Common(ModContent.ItemType<GoldenCarrot>(), minimumDropped: 10, maximumDropped: 20));
-            npcLoot.Add(conditionalRule);
-            npcLoot.Add(conditionalRule2);
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<LepusTrophy>(), 10));
+
+            Conditions.NotExpert notExpert = new Conditions.NotExpert();
+            npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<LepusBag>()));
+            npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<LepusRelic>()));
+            npcLoot.Add(ItemDropRule.MasterModeDropOnAllPlayers(ModContent.ItemType<RabbitFoot>(), 4));
+
+            LeadingConditionRule notExpertRule = new LeadingConditionRule(new Conditions.NotExpert());
+            notExpertRule.OnSuccess(new OneFromRulesRule(1, ItemDropRule.ByCondition(notExpert, ModContent.ItemType<OstaraHat>()), ItemDropRule.ByCondition(notExpert, ModContent.ItemType<OstaraJacket>()), ItemDropRule.ByCondition(notExpert, ModContent.ItemType<OstaraBoots>())));
+            npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<EggCannon>(), 2));
+            npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<LepusMask>(), 8));
+            npcLoot.Add(ItemDropRule.ByCondition(notExpert, ItemID.BunnyHood, 50));
+            npcLoot.Add(notExpertRule);
+
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SuspiciousLookingEgg>()));
+
+            //RabbitInvasionDropCondition lepusDropCondition2 = new();
+            //IItemDropRule conditionalRule2 = new LeadingConditionRule(lepusDropCondition2);
+            //conditionalRule2.OnSuccess(ItemDropRule.Common(ModContent.ItemType<GoldenCarrot>(), minimumDropped: 10, maximumDropped: 20));
+            //npcLoot.Add(conditionalRule2);
         }
 
         public override bool CheckDead ()

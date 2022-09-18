@@ -71,11 +71,11 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
             LepusDropCondition lepusDropCondition = new();
             IItemDropRule conditionalRule = new LeadingConditionRule(lepusDropCondition);
             conditionalRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<SuspiciousLookingEgg>(), 4));
-            RabbitInvasionDropCondition lepusDropCondition2 = new();
-            IItemDropRule conditionalRule2 = new LeadingConditionRule(lepusDropCondition2);
-            conditionalRule2.OnSuccess(ItemDropRule.Common(ModContent.ItemType<GoldenCarrot>(), 4));
+            //RabbitInvasionDropCondition lepusDropCondition2 = new();
+            //IItemDropRule conditionalRule2 = new LeadingConditionRule(lepusDropCondition2);
+            //conditionalRule2.OnSuccess(ItemDropRule.Common(ModContent.ItemType<GoldenCarrot>(), 4));
             npcLoot.Add(conditionalRule);
-            npcLoot.Add(conditionalRule2);
+            //npcLoot.Add(conditionalRule2);
         }
 
         public override float SpawnChance (NPCSpawnInfo spawnInfo) {

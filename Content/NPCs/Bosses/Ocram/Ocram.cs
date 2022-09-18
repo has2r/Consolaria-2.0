@@ -110,7 +110,8 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
 
             NPC.alpha = 255;
 
-            if (!Main.dedServ) Music = MusicLoader.GetMusicSlot(Mod, "Assets/Music/Ocram");
+            if (!Main.dedServ) Music = bloodMoonMode ? MusicLoader.GetMusicSlot(Mod, "Assets/Music/EerieOcram") : MusicLoader.GetMusicSlot(Mod, "Assets/Music/Ocram");
+            
         }
 
         public override void ScaleExpertStats (int numPlayers, float bossLifeScale) {
@@ -132,7 +133,6 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
         }
 
         //abandon hope all ye who enter here
-
         public override void AI () {
             if (spawnCheck > 0) Lighting.AddLight(NPC.Center, 0.6f + 0.05f * (100 - spawnCheck), 0.4f, 0.5f);
 
@@ -564,9 +564,9 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
                             SoundEngine.PlaySound(SoundID.NPCDeath43, NPC.position);
                             SoundEngine.PlaySound(Main.rand.NextBool(3) ? SoundID.NPCDeath23 : SoundID.NPCDeath22, NPC.position);
                             if (Main.netMode != NetmodeID.Server) {
-                                Gore.NewGore(NPC.GetSource_FromAI(), NPC.position, new Vector2(Main.rand.Next(-30, 31) * 0.2f, Main.rand.Next(-30, 31) * 0.2f), ModContent.Find<ModGore>("Consolaria/OcramGore1").Type, 1f);
-                                Gore.NewGore(NPC.GetSource_FromAI(), NPC.position, new Vector2(Main.rand.Next(-30, 31) * 0.2f, Main.rand.Next(-30, 31) * 0.2f), ModContent.Find<ModGore>("Consolaria/OcramGore2").Type, 1f);
-                                Gore.NewGore(NPC.GetSource_FromAI(), NPC.position, new Vector2(Main.rand.Next(-30, 31) * 0.2f, Main.rand.Next(-30, 31) * 0.2f), ModContent.Find<ModGore>("Consolaria/OcramGore3").Type, 1f);
+                                Gore.NewGore(NPC.GetSource_FromAI(), NPC.Center, new Vector2(Main.rand.Next(-30, 31) * 0.2f, Main.rand.Next(-30, 31) * 0.2f), ModContent.Find<ModGore>("Consolaria/OcramGore1").Type, 1f);
+                                Gore.NewGore(NPC.GetSource_FromAI(), NPC.Center, new Vector2(Main.rand.Next(-30, 31) * 0.2f, Main.rand.Next(-30, 31) * 0.2f), ModContent.Find<ModGore>("Consolaria/OcramGore2").Type, 1f);
+                                Gore.NewGore(NPC.GetSource_FromAI(), NPC.Center, new Vector2(Main.rand.Next(-30, 31) * 0.2f, Main.rand.Next(-30, 31) * 0.2f), ModContent.Find<ModGore>("Consolaria/OcramGore3").Type, 1f);
 
                                 for (int index1 = 0; index1 < 14; ++index1) {
                                     int index2 = Dust.NewDust(new Vector2(NPC.Center.X, NPC.Center.Y), 0, 0, DustID.Shadowflame, 0f, 0f, 100, default, Main.rand.NextFloat(1f, 2.5f));
@@ -590,9 +590,9 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
                                 SoundEngine.PlaySound(SoundID.NPCHit1, NPC.position);
                                 if (Main.netMode != NetmodeID.Server) {
                                     for (int num373 = 0; num373 < 4; num373++) {
-                                        Gore.NewGore(NPC.GetSource_FromAI(), NPC.position, new Vector2(Main.rand.Next(-30, 31) * 0.2f, Main.rand.Next(-30, 31) * 0.2f), ModContent.Find<ModGore>("Consolaria/OcramGore1").Type, 1f);
-                                        Gore.NewGore(NPC.GetSource_FromAI(), NPC.position, new Vector2(Main.rand.Next(-30, 31) * 0.2f, Main.rand.Next(-30, 31) * 0.2f), ModContent.Find<ModGore>("Consolaria/OcramGore2").Type, 1f);
-                                        Gore.NewGore(NPC.GetSource_FromAI(), NPC.position, new Vector2(Main.rand.Next(-30, 31) * 0.2f, Main.rand.Next(-30, 31) * 0.2f), ModContent.Find<ModGore>("Consolaria/OcramGore3").Type, 1f);
+                                        Gore.NewGore(NPC.GetSource_FromAI(), NPC.Center, new Vector2(Main.rand.Next(-30, 31) * 0.2f, Main.rand.Next(-30, 31) * 0.2f), ModContent.Find<ModGore>("Consolaria/OcramGore1").Type, 1f);
+                                        Gore.NewGore(NPC.GetSource_FromAI(), NPC.Center, new Vector2(Main.rand.Next(-30, 31) * 0.2f, Main.rand.Next(-30, 31) * 0.2f), ModContent.Find<ModGore>("Consolaria/OcramGore2").Type, 1f);
+                                        Gore.NewGore(NPC.GetSource_FromAI(), NPC.Center, new Vector2(Main.rand.Next(-30, 31) * 0.2f, Main.rand.Next(-30, 31) * 0.2f), ModContent.Find<ModGore>("Consolaria/OcramGore3").Type, 1f);
                                     }
                                     for (int num374 = 0; num374 < 20; num374++) {
                                         Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood, Main.rand.Next(-30, 31) * 0.2f, Main.rand.Next(-30, 31) * 0.2f, 0, default, 1f);
@@ -894,23 +894,23 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
                     if (Main.netMode != NetmodeID.MultiplayerClient) {
                         for (int playerIndex = 0; playerIndex < 255; playerIndex++) {
                             if (Main.player [playerIndex].active) {
-                                for (int i = 0; i < MissileProjectiles; i++) {
+                                for (int i = 0; i < MissileProjectiles + Main.rand.Next(0, 6); i++) {
                                     SoundEngine.PlaySound(SoundID.NPCDeath45, NPC.position);
                                     Player player = Main.player [playerIndex];
-                                    int Speed = 10;
+                                    int Speed = 12;
                                     float SpawnX = Main.rand.Next(1000) - 500 + player.Center.X;
-                                    float SpawnY = -1400 + player.Center.Y;
+                                    float SpawnY = -2000 + player.Center.Y;
                                     Vector2 BaseSpawn = new Vector2(SpawnX, SpawnY);
                                     Vector2 BaseVelocity = player.Center - BaseSpawn;
                                     BaseVelocity.Normalize();
                                     BaseVelocity = BaseVelocity * Speed / 2;
                                     Vector2 Spawn = BaseSpawn;
                                     Spawn.X = Spawn.X + i * 30 - (MissileProjectiles * 20);
-                                    Vector2 Velocity = BaseVelocity;
-                                    Velocity = BaseVelocity.RotatedBy(MathHelper.ToRadians(-MissileAngleSpread / 4 + (MissileAngleSpread * i / MissileProjectiles)));
+                                    Vector2 Velocity = BaseVelocity.RotatedBy(MathHelper.ToRadians(-MissileAngleSpread / 4 + (MissileAngleSpread * i / MissileProjectiles)));
                                     Velocity.X = Velocity.X + 2 * Main.rand.NextFloat() - 1.3f;
-                                    int Num33 = Projectile.NewProjectile(NPC.GetSource_FromAI(), Spawn.X, Spawn.Y, Velocity.X, Velocity.Y, ModContent.ProjectileType<OcramSkull>(), (int) (NPC.damage * 0.25f), 1f, Main.myPlayer, 0f, 0f);
+                                    int Num33 = Projectile.NewProjectile(NPC.GetSource_FromAI(), Spawn.X, Spawn.Y, Velocity.X, Velocity.Y, ModContent.ProjectileType<OcramSkull>(), (int) (NPC.damage * 0.25f), 4f);
                                     Main.projectile [Num33].velocity.X = Main.rand.Next(-200, 201) * 0.1f;
+                                    NetMessage.SendData(MessageID.SyncProjectile, -1, -1, null, Num33);
                                     Main.npc [Num33].velocity.Y = Main.rand.Next(-200, 201) * 0.02f;
                                     Main.npc [Num33].netUpdate = true;
                                 }
@@ -1035,10 +1035,10 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
                     for (int k = 0; k < 20; k++)
                         Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.SeaSnail, 2.5f * hitDirection, -2.5f, 0, default, 0.7f);
                     for (int i = 0; i < 2; i++) {
-                        Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity, ModContent.Find<ModGore>("Consolaria/OcramGore1").Type, 1f);
-                        Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity, ModContent.Find<ModGore>("Consolaria/OcramGore1").Type, 1f);
-                        Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity, ModContent.Find<ModGore>("Consolaria/OcramGore2").Type, 1.2f);
-                        Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity, ModContent.Find<ModGore>("Consolaria/OcramGore3").Type, 1f);
+                        Gore.NewGore(NPC.GetSource_Death(), NPC.Center, NPC.velocity, ModContent.Find<ModGore>("Consolaria/OcramGore1").Type, 1f);
+                        Gore.NewGore(NPC.GetSource_Death(), NPC.Center, NPC.velocity, ModContent.Find<ModGore>("Consolaria/OcramGore1").Type, 1f);
+                        Gore.NewGore(NPC.GetSource_Death(), NPC.Center, NPC.velocity, ModContent.Find<ModGore>("Consolaria/OcramGore2").Type, 1.2f);
+                        Gore.NewGore(NPC.GetSource_Death(), NPC.Center, NPC.velocity, ModContent.Find<ModGore>("Consolaria/OcramGore3").Type, 1f);
                     }
                     SoundEngine.PlaySound(SoundID.Item14, NPC.Center);
                 }
@@ -1048,7 +1048,7 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
         public override void OnKill () {
             NPC.SetEventFlagCleared(ref DownedBossSystem.downedOcram, -1);
             if (Main.netMode != NetmodeID.MultiplayerClient) {
-                if (Main.bloodMoon && Main.rand.NextBool(10))
+                if (bloodMoonMode && Main.rand.NextBool(10))
                     Item.NewItem(NPC.GetSource_Loot(), NPC.Center, ModContent.ItemType<Items.Consumables.HolyHandgrenade2>(), Main.rand.Next(5, 11), false, 0, false, false);
             }
         }

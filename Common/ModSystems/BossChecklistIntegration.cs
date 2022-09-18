@@ -82,7 +82,12 @@ namespace Consolaria.Common {
               },
               ModContent.ItemType<SuspiciousLookingSkull>(),
               $"Use a [i:" + ModContent.ItemType<SuspiciousLookingSkull>() + "] at night",
-              "Ocram disappears back into shadows!"
+              "Ocram disappears back into shadows!",
+              (SpriteBatch spriteBatch, Rectangle rect, Color color) => {
+                  Texture2D texture = ModContent.Request<Texture2D>("Consolaria/Assets/Textures/Bestiary/Ocram_Bestiary").Value;
+                  Vector2 centered = new Vector2(rect.X + (rect.Width / 2) - (texture.Width / 2), rect.Y + (rect.Height / 2) - (texture.Height / 2));
+                  spriteBatch.Draw(texture, centered, color);
+              }
             );
         }
     }

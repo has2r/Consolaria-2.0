@@ -35,4 +35,4 @@ Contributors:
 - CKnight - Master mode Relic sprites
 - Bripe, Obesedog, Nokilos, MeuRan - numerous sprites
 
-Also check out our WIP bigger project — Rise of Ages! Find it in the modding section on Terraria Forums or on our Discord.
+Also check out our WIP bigger project - Rise of Ages! Find it in the modding section on Terraria Forums or on our Discord.

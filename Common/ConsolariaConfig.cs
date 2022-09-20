@@ -1,16 +1,12 @@
 ﻿using System.ComponentModel;
 using Terraria.ModLoader.Config;
 
-namespace Consolaria.Common
-{
+namespace Consolaria.Common {
 	[Label("Configuration")]
-	public class ConsolariaConfig : ModConfig
-	{
+	public class ConsolariaConfig : ModConfig {
 		public override ConfigScope Mode => ConfigScope.ClientSide;
-		public static ConsolariaConfig Instance;
 
 		[Header("Seasonal Events")]
-
 		[Label("Restrict seasonal content by system date (Easter)")]
 		[Tooltip("If enabled the relevant items and enemies will only appear during Easter\nApril 1 - April 30")]
 		[DefaultValue(false)]
@@ -28,5 +24,11 @@ namespace Consolaria.Common
 		[DefaultValue(false)]
 		[ReloadRequired]
 		public bool smallEventsEnabled;
+
+		[Header("Miscellaneous")]
+		[Label("Enable vanilla music for Consolaria bosses")]
+		[Tooltip("If enabled the custom soundtrack will be replaced by themes originally used in console versionsd")]
+		[DefaultValue(false)]
+		public bool vanillaBossMusic;
 	}
 }

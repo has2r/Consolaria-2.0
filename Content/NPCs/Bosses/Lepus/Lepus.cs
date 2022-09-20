@@ -171,18 +171,16 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
             FrameHeight = FRAME_HEIGHT;
 
             if (!Main.dedServ)
-                Music = MusicLoader.GetMusicSlot(Mod, MUSIC_PATH);
+                Music = ModContent.GetInstance<ConsolariaConfig>().vanillaBossMusic ? MusicID.UndergroundHallow : MusicLoader.GetMusicSlot(Mod, MUSIC_PATH);
         }
 
-        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
-        {
-            NPC.lifeMax = (int)(NPC.lifeMax * 0.5f * 1.25f);
-            NPC.damage = (int)(NPC.damage * 0.65f);
+        public override void ScaleExpertStats (int numPlayers, float bossLifeScale) {
+            NPC.lifeMax = (int) (NPC.lifeMax * 0.5f * 1.25f);
+            NPC.damage = (int) (NPC.damage * 0.65f);
             if (numPlayers <= 1) return;
             float healthBoost = 0.35f;
-            for (int k = 1; k < numPlayers; k++)
-            {
-                NPC.lifeMax += (int)(NPC.lifeMax * healthBoost);
+            for (int k = 1; k < numPlayers; k++) {
+                NPC.lifeMax += (int) (NPC.lifeMax * healthBoost);
                 healthBoost += (1 - healthBoost) / 3;
             }
         }

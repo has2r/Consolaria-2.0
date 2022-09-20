@@ -73,18 +73,16 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 
 			NPC.SpawnWithHigherTime(30);
 
-			if (!Main.dedServ) Music = MusicLoader.GetMusicSlot(Mod, "Assets/Music/Turkor");
+			if (!Main.dedServ) Music = ModContent.GetInstance<ConsolariaConfig>().vanillaBossMusic ? MusicID.Boss1 : MusicLoader.GetMusicSlot(Mod, "Assets/Music/Turkor");
 		}
 
-		public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
-		{
-			NPC.lifeMax = (int)(NPC.lifeMax * 0.5f * 1.4f);
-			NPC.damage = (int)(NPC.damage * 0.65f);
+		public override void ScaleExpertStats (int numPlayers, float bossLifeScale) {
+			NPC.lifeMax = (int) (NPC.lifeMax * 0.5f * 1.4f);
+			NPC.damage = (int) (NPC.damage * 0.65f);
 			if (numPlayers <= 1) return;
 			float healthBoost = 0.35f;
-			for (int k = 1; k < numPlayers; k++)
-			{
-				NPC.lifeMax += (int)(NPC.lifeMax * healthBoost);
+			for (int k = 1; k < numPlayers; k++) {
+				NPC.lifeMax += (int) (NPC.lifeMax * healthBoost);
 				healthBoost += (1 - healthBoost) / 3;
 			}
 		}

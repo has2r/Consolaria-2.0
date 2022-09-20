@@ -11,9 +11,9 @@ using Terraria.ModLoader.IO;
 namespace Consolaria.Common {
 	public class SeasonalEvents : ModSystem {
 		static DateTime currentDate = DateTime.Now;
-
+    
 		public static bool allEventsForToday;
-		public static bool configEnabled = ConsolariaConfig.Instance.easterEnabled || ConsolariaConfig.Instance.thanksgivingEnabled || ConsolariaConfig.Instance.smallEventsEnabled;
+		public static bool configEnabled = ModContent.GetInstance<ConsolariaConfig>().easterEnabled || ModContent.GetInstance<ConsolariaConfig>().thanksgivingEnabled || ModContent.GetInstance<ConsolariaConfig>().smallEventsEnabled;
 
 		public override void PostUpdateTime () {
 			string text = "The spirits of celebration dissipate...";

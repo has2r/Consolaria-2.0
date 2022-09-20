@@ -68,6 +68,8 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 			NPC.noGravity = true;
 
 			NPC.BossBar = Main.BigBossProgressBar.NeverValid;
+			
+			if (Main.masterMode) NPC.lifeMax = (int)(NPC.lifeMax * 0.798f); 
 		}
 
 		public override void ScaleExpertStats(int numPlayers, float bossLifeScale)

@@ -1033,10 +1033,9 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
                     Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.SeaSnail, hitDirection, -1f, 0, default, 1f);
 
                 if (NPC.life <= 0) {
-                    for (int k = 0; k < 20; k++)
+                    for (int k = 0; k < 30; k++)
                         Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.SeaSnail, 2.5f * hitDirection, -2.5f, 0, default, 0.7f);
-                    for (int i = 0; i < 3; i++) {
-                        Gore.NewGore(NPC.GetSource_Death(), NPC.Center, NPC.velocity, ModContent.Find<ModGore>("Consolaria/OcramGore1").Type, Main.rand.NextFloat(1f, 1.4f));
+                    for (int i = 0; i < 5; i++) {
                         Gore.NewGore(NPC.GetSource_Death(), NPC.Center, NPC.velocity, ModContent.Find<ModGore>("Consolaria/OcramGore1").Type, Main.rand.NextFloat(1f, 1.4f));
                         Gore.NewGore(NPC.GetSource_Death(), NPC.Center, NPC.velocity, ModContent.Find<ModGore>("Consolaria/OcramGore2").Type, Main.rand.NextFloat(1.2f, 1.6f));
                         Gore.NewGore(NPC.GetSource_Death(), NPC.Center, NPC.velocity, ModContent.Find<ModGore>("Consolaria/OcramGore3").Type, Main.rand.NextFloat(1f, 1.4f));

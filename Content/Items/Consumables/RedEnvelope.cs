@@ -37,7 +37,7 @@ namespace Consolaria.Content.Items.Consumables {
                 player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<MythicalRobe>());
             }
 
-            player.QuickSpawnItem(player.GetSource_OpenItem(Type), ItemID.CopperCoin, Main.rand.Next(50, 500));
+            player.QuickSpawnItem(player.GetSource_OpenItem(Type), ItemID.SilverCoin, Main.rand.Next(5, 15));
         }
     }
 }

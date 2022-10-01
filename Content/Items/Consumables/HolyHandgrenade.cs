@@ -40,6 +40,13 @@ namespace Consolaria.Content.Items.Consumables {
                 .AddIngredient(ItemID.BottledWater, 2)
                 .AddTile(TileID.WorkBenches)
                 .Register();
+				
+				CreateRecipe()
+                .AddIngredient(ItemID.Dynamite, 5)
+                .AddIngredient(ItemID.PlatinumBar, 2)
+                .AddIngredient(ItemID.BottledWater, 2)
+                .AddTile(TileID.WorkBenches)
+                .Register();
         }
     }
 }

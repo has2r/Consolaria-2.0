@@ -9,50 +9,76 @@ namespace Consolaria.Content.Projectiles.Friendly {
 		private bool extraRotation;
 
 		public override void SetDefaults () {
-			int width = 16; int height = 24;
+			int width = 15; int height = 25;
 			Projectile.Size = new Vector2(width, height);
 
 			Projectile.DamageType = DamageClass.Ranged;
 
-			Projectile.aiStyle = 16;
 			Projectile.friendly = true;
-			Projectile.hostile = false;
 
-			Projectile.penetrate = 1;
+			Projectile.penetrate = -1;
+			Projectile.timeLeft = 240;
+
 			Projectile.tileCollide = true;
-			Projectile.timeLeft = 180;
 		}
 
 		public override void AI () {
-			if (extraRotation) {
-				Projectile.rotation += 0.2f * Projectile.direction;
-				if (Projectile.timeLeft % 20 == 0)
-					Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.position.X, Projectile.position.Y + 10, 0.0f, Projectile.velocity.Y * 0.5f, ProjectileID.MolotovFire, Projectile.damage / 3, 2f, Projectile.owner);
+			if (Projectile.owner == Main.myPlayer && Projectile.timeLeft <= 5) {
+				Explode();
+				Projectile.Kill();
+			}
+
+			Projectile.ai [0] += 1f;
+			if (Projectile.ai [0] >= 20f && Projectile.tileCollide)
+				Projectile.velocity.Y = Projectile.velocity.Y + 0.15f; // 0.1f for arrow gravity, 0.4f for knife gravity
+			if (Projectile.velocity.Y > 16f)
+				Projectile.velocity.Y = 16f;
+			if (Projectile.velocity.X != 0) {
+				Projectile.rotation += Projectile.velocity.X * 0.1f;
+
+				if (extraRotation) {
+					Projectile.rotation += 0.15f * Projectile.direction;
+					if (Projectile.timeLeft % 20 == 0)
+						Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.position.X, Projectile.position.Y + 10, 0.0f, Projectile.velocity.Y * 0.5f, ProjectileID.MolotovFire, Projectile.damage / 4, 2f, Projectile.owner);
+				}
+			}
+			return;
+		}
+
+		public override void OnHitNPC (NPC target, int damage, float knockback, bool crit) {
+			if (Projectile.timeLeft > 4)
+				Projectile.timeLeft = 4;
+			target.AddBuff(BuffID.OnFire, 180);
+		}
+
+		public override void ModifyHitNPC (NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection) {
+			if (Main.expertMode) {
+				if (target.type >= NPCID.EaterofWorldsHead && target.type <= NPCID.EaterofWorldsTail) damage /= 5;
 			}
 		}
 
-		public override bool OnTileCollide (Vector2 oldVelocity)
-			=> extraRotation = true;
+		public override void ModifyHitPlayer (Player target, ref int damage, ref bool crit)
+			=> damage /= 4;
 
-		public override void OnHitNPC (NPC target, int damage, float knockback, bool crit)
-			=> target.AddBuff(BuffID.OnFire, 180);
+		public override bool OnTileCollide (Vector2 oldVelocity) {
+			extraRotation = true;
+			return false;
+		}
 
-		public override void OnHitPvp (Player target, int damage, bool crit)
-			=> target.AddBuff(BuffID.OnFire, 180);
+		private void Explode () {
+			Projectile.alpha = 255;
+			Projectile.position = Projectile.Center;
+			Projectile.Center = Projectile.position;
+			Projectile.hostile = true;
+			Projectile.maxPenetrate = -1;
+			Projectile.penetrate = -1;
+			Projectile.Resize(120, 120);
+			Projectile.knockBack = 8;
+			Projectile.Damage();
+		}
 
 		public override void Kill (int timeLeft) {
 			SoundEngine.PlaySound(SoundID.Item14, Projectile.position);
-
-			int width = Projectile.width;
-			int height = Projectile.height;
-
-			Projectile.Resize(60, 60);
-
-			Projectile.maxPenetrate = -1;
-			Projectile.penetrate = -1;
-			Projectile.Damage();
-			Projectile.Resize(width, height);
-
 			if (Main.netMode != NetmodeID.Server) {
 				Vector2 target5 = Projectile.Center;
 				for (int num23 = 0; num23 < Projectile.oldPos.Length; num23++) {

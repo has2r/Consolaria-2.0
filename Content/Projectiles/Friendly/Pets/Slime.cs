@@ -29,25 +29,21 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
 
         private int choosenBalloon = 0;
 
-		public override void SendExtraAI(BinaryWriter writer)
-		{
-            writer.Write(choosenBalloon);
-		}
+        public override void SendExtraAI (BinaryWriter writer)
+            => writer.Write(choosenBalloon);
 
-		public override void ReceiveExtraAI(BinaryReader reader)
-		{
-            choosenBalloon = reader.ReadInt32();
-        }
+        public override void ReceiveExtraAI (BinaryReader reader)
+            => choosenBalloon = reader.ReadInt32();
 
-		public override void AI () {
+        public override void AI () {
             Player player = Main.player [Projectile.owner];
             if (!player.dead && player.HasBuff(ModContent.BuffType<Buffs.Slime>()))
                 Projectile.timeLeft = 2;
 
             if (choosenBalloon == 0)
-			{
+
                 choosenBalloon = Main.rand.NextFromList(1, 2, 3, 4, 5, 6);
-            }
+
 
             Projectile.frameCounter = 0;
             Projectile.frame = 8;
@@ -60,7 +56,7 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
             SpriteBatch spriteBatch = Main.spriteBatch;
             Texture2D texture = (Texture2D) ModContent.Request<Texture2D>(Texture);
             int framesCountX = 7;
-            SpriteFrame frame = new SpriteFrame((byte)framesCountX, 1);
+            SpriteFrame frame = new SpriteFrame((byte) framesCountX, 1);
             Texture2D balloon = (Texture2D) ModContent.Request<Texture2D>("Consolaria/Assets/Textures/Projectiles/SlimePet_Balloon");
 
             bool isFlying = Projectile.ai [0] == 1;
@@ -83,12 +79,11 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
             Rectangle frameRect = new Rectangle(0, texCurrentFrame * frameHeight, texture.Width, frameHeight);
             int offsetY = 8;
 
-            Player player = Main.player[Projectile.owner];
+            Player player = Main.player [Projectile.owner];
             Color slimeColor = Main.tenthAnniversaryWorld || Main.drunkWorld || Main.getGoodWorld ? Main.DiscoColor : player.shirtColor;
 
             spriteBatch.Draw(texture, new Vector2(position.X, position.Y - offsetY), frameRect, slimeColor.MultiplyRGB(lightColor) * 0.8f, 0, drawOrigin, Projectile.scale, spriteEffects, 0f);
-            if (isFlying)
-            {
+            if (isFlying) {
                 Rectangle rectangle = frame.GetSourceRectangle(balloon);
                 int width = balloon.Width / framesCountX;
                 rectangle.X = width * (choosenBalloon - 1);

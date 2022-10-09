@@ -122,7 +122,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
                 spriteEffects = SpriteEffects.FlipVertically;
                 rotation += (float) Math.PI / 2f * Projectile.spriteDirection;
             }
-            Texture2D glow = (Texture2D) ModContent.Request<Texture2D>("Consolaria/Assets/Textures/Projectiles/Tonbogiri_Glow");
+            Texture2D glow = (Texture2D) ModContent.Request<Texture2D>("Consolaria/Assets/Textures/Projectiles/LightTrail_1");
             Vector2 glowOrigin = new Vector2(glow.Width / 2, glow.Height / 2);
             glowRotation += 0.1f;
             if (glowRotation > Math.PI * 2f) glowRotation -= (float) Math.PI * 2f;

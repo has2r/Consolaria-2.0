@@ -7,12 +7,10 @@ using Terraria.ModLoader;
 
 namespace Consolaria.Content.Projectiles.Friendly {
     public class ShadowflameBurst : ModProjectile {
-        //public override string Texture => "Consolaria/Assets/Textures/Empty";
-
-        public override void SetStaticDefaults() => Main.projFrames[Projectile.type] = 6;
+        public override void SetStaticDefaults () => Main.projFrames [Projectile.type] = 6;
 
         private readonly int lifeLimit = 40;
-        private float rot;
+        private float drawRotation;
         private float scal;
 
         public override void SetDefaults () {
@@ -28,20 +26,21 @@ namespace Consolaria.Content.Projectiles.Friendly {
             Projectile.timeLeft = lifeLimit;
 
             Projectile.extraUpdates = 1;
+
+            Projectile.usesLocalNPCImmunity = true;
         }
 
         public override void AI () {
             Lighting.AddLight(Projectile.Center, ((255 - Projectile.alpha) * 0.15f) / 255f, ((255 - Projectile.alpha) * 0.45f) / 255f, ((255 - Projectile.alpha) * 0.05f) / 255f);
-            if (Projectile.timeLeft > lifeLimit) 
+            if (Projectile.timeLeft > lifeLimit)
                 Projectile.timeLeft = lifeLimit;
 
             Projectile.frameCounter++;
-            if (Projectile.frameCounter > 6)
-            {
+            if (Projectile.frameCounter > 6) {
                 Projectile.frame++;
                 Projectile.frameCounter = 0;
             }
-            if (Projectile.frame >= Main.projFrames[Projectile.type])
+            if (Projectile.frame >= Main.projFrames [Projectile.type])
                 Projectile.Kill();
 
             if (Projectile.ai [0] > 5f && Projectile.timeLeft > 15) {
@@ -59,19 +58,18 @@ namespace Consolaria.Content.Projectiles.Friendly {
             return;
         }
 
-        public override bool PreDraw(ref Color lightColor)
-        {
+        public override bool PreDraw (ref Color lightColor) {
             SpriteBatch spriteBatch = Main.spriteBatch;
-            Texture2D texture = (Texture2D)ModContent.Request<Texture2D>(Texture);
-            int frameHeight = texture.Height / Main.projFrames[Projectile.type];
+            Texture2D texture = (Texture2D) ModContent.Request<Texture2D>(Texture);
+            int frameHeight = texture.Height / Main.projFrames [Projectile.type];
             Vector2 drawOrigin = new Vector2(texture.Width * 0.5f, frameHeight * 0.5f);
             Vector2 drawPos = Projectile.position + new Vector2(Projectile.width, Projectile.height) / 2f + Vector2.UnitY * Projectile.gfxOffY - Main.screenPosition;
             Rectangle frameRect = new Rectangle(0, Projectile.frame * frameHeight, texture.Width, frameHeight);
             Color color = new Color(60 + Projectile.timeLeft * 4, 40 + Projectile.timeLeft * 4, 90 + Projectile.timeLeft * 4, 50);
-            rot += 0.1f;
-            if (rot >= Math.PI * 2) rot -= (float)Math.PI * 2;
+            drawRotation += 0.1f;
+            if (drawRotation >= Math.PI * 2) drawRotation -= (float) Math.PI * 2;
             if (scal < 3f) scal += 0.1f;
-            if (Projectile.ai[1] == 2) spriteBatch.Draw(texture, drawPos, frameRect, color, rot, drawOrigin, scal, SpriteEffects.None, 0f);
+            if (Projectile.ai [1] == 2) spriteBatch.Draw(texture, drawPos, frameRect, color, drawRotation, drawOrigin, scal, SpriteEffects.None, 0f);
             return false;
         }
 
@@ -82,7 +80,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
             => target.AddBuff(BuffID.ShadowFlame, 300);
 
         public override bool OnTileCollide (Vector2 oldVelocity) {
-            Projectile.Kill();
+            Projectile.timeLeft = 10;
             return false;
         }
     }

@@ -19,8 +19,7 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
             if (!player.dead && player.HasBuff(ModContent.BuffType<Buffs.Cupid>()))
                 Projectile.timeLeft = 2;
 
-            bool turnRight = false; float tilt = 0.025f;
-            FloatingAI(turnRight, tilt);
+            FloatingAI(tilt: 0.0025f);
             int frameTime = 8;
             Animation(frameTime);
             LightColor(new Color(255, 105, 180));

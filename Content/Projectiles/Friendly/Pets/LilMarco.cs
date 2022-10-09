@@ -19,8 +19,7 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
             if (!player.dead && player.HasBuff(ModContent.BuffType<Buffs.LilMarco>()))
                 Projectile.timeLeft = 2;
 
-            bool turnRight = false; float tilt = 0.05f;
-            FloatingAI(turnRight, tilt);
+            FloatingAI(tilt: 0.05f);
             int frameTime = 5;
             Animation(frameTime);
             LightColor(Color.MediumPurple);

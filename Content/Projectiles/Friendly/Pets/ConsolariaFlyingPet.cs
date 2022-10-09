@@ -26,7 +26,7 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
 
 		public override void AI () => CheckPlayer();
 
-		public void FloatingAI (bool changeDirection, float tilt) {
+		public void FloatingAI (float tilt) {
 			Player player = Main.player [Projectile.owner];
 			float movement = 0.05f;
 			for (int i = 0; i < 1000; i++) {

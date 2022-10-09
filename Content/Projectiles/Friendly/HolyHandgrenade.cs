@@ -6,11 +6,9 @@ using Terraria.ModLoader;
 using Terraria.GameContent.Achievements;
 using Terraria.Audio;
 
-namespace Consolaria.Content.Projectiles.Friendly
-{
-    public class HolyHandgrenade : ModProjectile
-    {
-        public override void SetDefaults() {
+namespace Consolaria.Content.Projectiles.Friendly {
+    public class HolyHandgrenade : ModProjectile {
+        public override void SetDefaults () {
             int width = 12; int height = width;
             Projectile.Size = new Vector2(width, height);
 
@@ -25,16 +23,14 @@ namespace Consolaria.Content.Projectiles.Friendly
             DrawOriginOffsetY = -6;
         }
 
-        public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection) {
+        public override void ModifyHitNPC (NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection) {
             if (Main.expertMode) {
-                if (target.type >= NPCID.EaterofWorldsHead && target.type <= NPCID.EaterofWorldsTail) damage /= 5;        
+                if (target.type >= NPCID.EaterofWorldsHead && target.type <= NPCID.EaterofWorldsTail) damage /= 5;
             }
         }
 
-        public override void PostAI()
-        {
-            if (Projectile.owner == Main.myPlayer && Projectile.timeLeft <= 3)
-            {
+        public override void PostAI () {
+            if (Projectile.owner == Main.myPlayer && Projectile.timeLeft <= 3) {
                 Projectile.tileCollide = false;
                 Projectile.alpha = 255;
                 Projectile.position = Projectile.Center;
@@ -46,7 +42,7 @@ namespace Consolaria.Content.Projectiles.Friendly
             }
         }
 
-        public override void Kill(int timeLeft) {
+        public override void Kill (int timeLeft) {
             Vector2 position = Projectile.Center;
 
             SoundEngine.PlaySound(new SoundStyle($"{nameof(Consolaria)}/Assets/Sounds/Hallelujah"), Projectile.position);
@@ -90,22 +86,22 @@ namespace Consolaria.Content.Projectiles.Friendly
             Projectile.position.Y = Projectile.position.Y - Projectile.height / 2;
 
             int explosionRadius = 15;
-            int minTileX = (int)(Projectile.position.X / 16f - explosionRadius);
-            int maxTileX = (int)(Projectile.position.X / 16f + explosionRadius);
-            int minTileY = (int)(Projectile.position.Y / 16f - explosionRadius);
-            int maxTileY = (int)(Projectile.position.Y / 16f + explosionRadius);
-            if (minTileX < 0) minTileX = 0;      
-            if (maxTileX > Main.maxTilesX) maxTileX = Main.maxTilesX;          
-            if (minTileY < 0) minTileY = 0;         
+            int minTileX = (int) (Projectile.position.X / 16f - explosionRadius);
+            int maxTileX = (int) (Projectile.position.X / 16f + explosionRadius);
+            int minTileY = (int) (Projectile.position.Y / 16f - explosionRadius);
+            int maxTileY = (int) (Projectile.position.Y / 16f + explosionRadius);
+            if (minTileX < 0) minTileX = 0;
+            if (maxTileX > Main.maxTilesX) maxTileX = Main.maxTilesX;
+            if (minTileY < 0) minTileY = 0;
             if (maxTileY > Main.maxTilesY) maxTileY = Main.maxTilesY;
-            
+
             bool canKillWalls = false;
             for (int x = minTileX; x <= maxTileX; x++) {
                 for (int y = minTileY; y <= maxTileY; y++) {
                     float diffX = Math.Abs(x - Projectile.position.X / 16f);
                     float diffY = Math.Abs(y - Projectile.position.Y / 16f);
                     double distance = Math.Sqrt((diffX * diffX + diffY * diffY));
-                    if (distance < explosionRadius && Main.tile[x, y] != null && Main.tile[x, y].WallType == 0) {
+                    if (distance < explosionRadius && Main.tile [x, y] != null && Main.tile [x, y].WallType == 0) {
                         canKillWalls = true;
                         break;
                     }
@@ -120,25 +116,25 @@ namespace Consolaria.Content.Projectiles.Friendly
                     double distanceToTile = Math.Sqrt((diffX * diffX + diffY * diffY));
                     if (distanceToTile < explosionRadius) {
                         bool canKillTile = true;
-                        if (Main.tile[i, j] != null && Main.tile[i, j].HasTile) {
+                        if (Main.tile [i, j] != null && Main.tile [i, j].HasTile) {
                             canKillTile = true;
-                            if (Main.tileDungeon[Main.tile[i, j].TileType] || Main.tile[i, j].TileType == 88 || Main.tile[i, j].TileType == 21 || Main.tile[i, j].TileType == 26 || Main.tile[i, j].TileType == 107 || Main.tile[i, j].TileType == 108 || Main.tile[i, j].TileType == 111 || Main.tile[i, j].TileType == 226 || Main.tile[i, j].TileType == 237 || Main.tile[i, j].TileType == 221 || Main.tile[i, j].TileType == 222 || Main.tile[i, j].TileType == 223 || Main.tile[i, j].TileType == 211 || Main.tile[i, j].TileType == 404) 
-                                canKillTile = false;                       
-                            if (!Main.hardMode && Main.tile[i, j].TileType == 58) canKillTile = false;                        
-                            if (!TileLoader.CanExplode(i, j)) canKillTile = false;                           
+                            if (Main.tileDungeon [Main.tile [i, j].TileType] || Main.tile [i, j].TileType == 88 || Main.tile [i, j].TileType == 21 || Main.tile [i, j].TileType == 26 || Main.tile [i, j].TileType == 107 || Main.tile [i, j].TileType == 108 || Main.tile [i, j].TileType == 111 || Main.tile [i, j].TileType == 226 || Main.tile [i, j].TileType == 237 || Main.tile [i, j].TileType == 221 || Main.tile [i, j].TileType == 222 || Main.tile [i, j].TileType == 223 || Main.tile [i, j].TileType == 211 || Main.tile [i, j].TileType == 404)
+                                canKillTile = false;
+                            if (!Main.hardMode && Main.tile [i, j].TileType == 58) canKillTile = false;
+                            if (!TileLoader.CanExplode(i, j)) canKillTile = false;
                             if (canKillTile) {
                                 WorldGen.KillTile(i, j, false, false, false);
-                                if (!Main.tile[i, j].HasTile && Main.netMode != NetmodeID.SinglePlayer)
-                                    NetMessage.SendData(MessageID.TileManipulation, -1, -1, null, 0, i, j, 0f, 0, 0, 0);                             
+                                if (!Main.tile [i, j].HasTile && Main.netMode != NetmodeID.SinglePlayer)
+                                    NetMessage.SendData(MessageID.TileManipulation, -1, -1, null, 0, i, j, 0f, 0, 0, 0);
                             }
                         }
                         if (canKillTile) {
                             for (int x = i - 1; x <= i + 1; x++) {
                                 for (int y = j - 1; y <= j + 1; y++) {
-                                    if (Main.tile[x, y] != null && Main.tile[x, y].WallType > 0 && canKillWalls && WallLoader.CanExplode(x, y, Main.tile[x, y].WallType)) {
+                                    if (Main.tile [x, y] != null && Main.tile [x, y].WallType > 0 && canKillWalls && WallLoader.CanExplode(x, y, Main.tile [x, y].WallType)) {
                                         WorldGen.KillWall(x, y, false);
-                                        if (Main.tile[x, y].WallType == 0 && Main.netMode != NetmodeID.SinglePlayer)
-                                            NetMessage.SendData(MessageID.TileManipulation, -1, -1, null, 2, x, y, 0f, 0, 0, 0);                                      
+                                        if (Main.tile [x, y].WallType == 0 && Main.netMode != NetmodeID.SinglePlayer)
+                                            NetMessage.SendData(MessageID.TileManipulation, -1, -1, null, 2, x, y, 0f, 0, 0, 0);
                                     }
                                 }
                             }

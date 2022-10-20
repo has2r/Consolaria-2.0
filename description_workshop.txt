@@ -16,7 +16,7 @@ This includes:
 [*] Exclusive vanity - including the Horned God set and many others
 [*] A bunch of ported exclusive pets with extra animations
 [*] Lots of new and carefully revamped sprites
-[*] Boss Checklist support
+[*] Boss Checklist and Fargo's Mutant Mod support
 [*] Holy Hand Grenade!
 [/list]
 

@@ -48,7 +48,7 @@ namespace Consolaria.Content.Projectiles.Friendly
         {
             SpriteBatch spriteBatch = Main.spriteBatch;
 
-            Texture2D glow = (Texture2D)ModContent.Request<Texture2D>("Consolaria/Assets/Textures/Projectiles/Tonbogiri_Glow");
+            Texture2D glow = (Texture2D)ModContent.Request<Texture2D>("Consolaria/Assets/Textures/Projectiles/LightTrail_1");
             Vector2 position = Projectile.Center + Vector2.UnitY * Projectile.gfxOffY - Main.screenPosition; // + new Vector2(glow.Width, glow.Height) / 2f
             Vector2 glowOrigin = new Vector2(glow.Width / 2, glow.Height / 2);
 

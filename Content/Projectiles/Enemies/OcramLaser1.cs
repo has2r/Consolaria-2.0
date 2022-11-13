@@ -41,7 +41,7 @@ namespace Consolaria.Content.Projectiles.Enemies {
         public override bool PreDraw(ref Color lightColor)
         {
             SpriteBatch spriteBatch = Main.spriteBatch;
-            Texture2D texture = (Texture2D)ModContent.Request<Texture2D>("Consolaria/Assets/Textures/Projectiles/Tonbogiri_Glow");
+            Texture2D texture = (Texture2D)ModContent.Request<Texture2D>("Consolaria/Assets/Textures/Projectiles/LightTrail_1");
             Vector2 drawOrigin = new Vector2(texture.Width * 0.5f, texture.Height * 0.5f);
             SpriteEffects effects = (Projectile.spriteDirection == -1) ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
             if (Projectile.timeLeft < 890)

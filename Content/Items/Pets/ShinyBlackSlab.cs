@@ -24,7 +24,7 @@ namespace Consolaria.Content.Items.Pets
 			Item.damage = 0;
 			Item.stack = 1;
 			Item.noMelee = true;
-			Item.rare = 3;
+			Item.rare = 5;
 			Item.value = Item.buyPrice(gold: 10);
 			Item.UseSound = SoundID.Item2;
 			Item.shoot = ModContent.ProjectileType<Content.Projectiles.Friendly.Pets.AndroidGuy>();

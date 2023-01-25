@@ -21,7 +21,7 @@ namespace Consolaria.Content.Items.Vanity
 			int width = 38; int height = 34;
 			Item.Size = new Vector2(width, height);
 
-			Item.value = Item.buyPrice(gold: 25);
+			Item.value = Item.sellPrice(silver: 20);
 			Item.vanity = true;
 		}
 	}

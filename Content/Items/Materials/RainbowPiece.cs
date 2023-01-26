@@ -21,7 +21,7 @@ namespace Consolaria.Content.Items.Materials {
             Item.Size = new Vector2(width, height);
 
             Item.rare = ItemRarityID.Blue;
-            Item.maxStack = 999;
+            Item.maxStack = 9999;
             Item.value = Item.sellPrice(silver: 5);
         }
 

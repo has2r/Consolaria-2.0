@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using Terraria;
+using Consolaria.Content.Items.Materials;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -22,6 +23,14 @@ namespace Consolaria.Content.Items.Vanity
 
 			Item.value = Item.sellPrice(silver: 10);
 			Item.vanity = true;
+		}
+
+		public override void AddRecipes () {
+			CreateRecipe()
+				.AddIngredient(ItemID.Silk, 20)
+				.AddIngredient<PurpleThread>(3)
+				.AddTile(TileID.Loom)
+				.Register();
 		}
 	}
 }

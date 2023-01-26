@@ -30,7 +30,7 @@ namespace Consolaria.Content.Items.Materials {
             Item.rare = ItemRarityID.Lime;
             Item.value = Item.sellPrice(gold: 1, silver: 50);
 
-            Item.maxStack = 999;
+            Item.maxStack = 9999;
         }
 
         public override void PostUpdate ()

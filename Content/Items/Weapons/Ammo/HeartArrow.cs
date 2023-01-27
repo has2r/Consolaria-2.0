@@ -23,7 +23,7 @@ namespace Consolaria.Content.Items.Weapons.Ammo {
             Item.knockBack = 3f;
             Item.DamageType = DamageClass.Ranged;
 
-            Item.maxStack = 999;
+            Item.maxStack = 9999;
             Item.consumable = true;
 
             Item.shoot = ModContent.ProjectileType<Projectiles.Friendly.HeartArrow>();

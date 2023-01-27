@@ -27,7 +27,7 @@ namespace Consolaria.Content.Items.BossDrops.Turkor {
             int width = 24; int height = width;
             Item.Size = new Vector2(width, height);
 
-            Item.maxStack = 999;
+            Item.maxStack = 9999;
             Item.consumable = true;
 
             Item.rare = ItemRarityID.Blue;

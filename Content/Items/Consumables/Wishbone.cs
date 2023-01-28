@@ -21,7 +21,7 @@ namespace Consolaria.Content.Items.Consumables {
             int width = 30; int height = 22;
             Item.Size = new Vector2(width, height);
 
-            Item.maxStack = 20;
+            Item.maxStack = 9999;
             Item.UseSound = SoundID.NPCHit2;
 
             Item.value = Item.sellPrice(gold: 1);

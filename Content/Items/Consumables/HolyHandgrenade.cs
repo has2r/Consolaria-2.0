@@ -20,7 +20,7 @@ namespace Consolaria.Content.Items.Consumables {
             Item.DamageType = DamageClass.Generic;
             Item.damage = 600;
 
-            Item.maxStack = 99;
+            Item.maxStack = 9999;
             Item.consumable = true;
             Item.useStyle = ItemUseStyleID.Swing;
             Item.UseSound = SoundID.Item1;

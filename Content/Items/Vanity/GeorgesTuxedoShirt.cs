@@ -12,7 +12,7 @@ namespace Consolaria.Content.Items.Vanity {
 
 	public class GeorgesTuxedoShirt : ModItem {
 		public override void SetStaticDefaults () {
-			DisplayName.SetDefault("Georges Tuxedo Shirt");
+			DisplayName.SetDefault("George's Tuxedo Shirt");
 			Tooltip.SetDefault("'Oh myyy!'");
 
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;

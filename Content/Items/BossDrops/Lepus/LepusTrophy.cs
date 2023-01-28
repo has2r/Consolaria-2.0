@@ -19,7 +19,7 @@ namespace Consolaria.Content.Items.BossDrops.Lepus
 
             Item.DefaultToPlaceableTile(ModContent.TileType<Tiles.LepusTrophy>());
 
-            Item.maxStack = 99;
+            Item.maxStack = 9999;
 
             Item.rare = ItemRarityID.Blue;
             Item.value = Item.buyPrice(gold: 1);

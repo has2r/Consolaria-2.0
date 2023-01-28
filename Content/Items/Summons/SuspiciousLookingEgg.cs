@@ -23,7 +23,7 @@ namespace Consolaria.Content.Items.Summons {
             int width = 26; int height = 28;
             Item.Size = new Vector2(width, height);
 
-            Item.maxStack = 20;
+            Item.maxStack = 9999;
 
             Item.value = Item.sellPrice(silver: 1);
             Item.rare = ItemRarityID.Blue;

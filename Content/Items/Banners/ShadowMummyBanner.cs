@@ -14,7 +14,7 @@ namespace Consolaria.Content.Items.Banners {
 			int width = 10; int height = 24;
 			Item.Size = new Vector2(width, height);
 
-			Item.maxStack = 99;
+			Item.maxStack = 9999;
 
 			Item.DefaultToPlaceableTile(ModContent.TileType<Tiles.Banners>());
 			Item.placeStyle = 4;

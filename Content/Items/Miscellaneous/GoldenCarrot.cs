@@ -32,7 +32,7 @@ namespace Consolaria.Content.Items.Miscellaneous
 			Item.useTurn = true;
 			Item.buffType = 206;
 			Item.buffTime = 3600 * 5;
-			Item.maxStack = 20;
+			Item.maxStack = 9999;
 			Item.width = 18;
 			Item.height = 28;
 			Item.consumable = true;

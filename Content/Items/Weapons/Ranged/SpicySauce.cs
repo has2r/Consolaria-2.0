@@ -21,7 +21,7 @@ namespace Consolaria.Content.Items.Weapons.Ranged {
             Item.DamageType = DamageClass.Ranged;
             Item.noMelee = true;
 
-            Item.maxStack = 999;
+            Item.maxStack = 9999;
             Item.noUseGraphic = true;
 
             Item.consumable = true;

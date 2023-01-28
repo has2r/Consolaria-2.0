@@ -19,7 +19,7 @@ namespace Consolaria.Content.Items.BossDrops.Turkor
 
 			Item.DefaultToPlaceableTile(ModContent.TileType<Tiles.TurkorRelic>());
 
-			Item.maxStack = 99;
+			Item.maxStack = 9999;
 
 			Item.rare = ItemRarityID.Master;
 			Item.value = Item.buyPrice(gold: 1);

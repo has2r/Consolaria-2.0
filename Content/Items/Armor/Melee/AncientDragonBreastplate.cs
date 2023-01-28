@@ -1,4 +1,3 @@
-using Terraria.GameContent.Creative;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -12,7 +11,7 @@ namespace Consolaria.Content.Items.Armor.Melee {
             DisplayName.SetDefault("Ancient Dragon Breastplate");
             Tooltip.SetDefault("10% increased melee damage and critical strike chance" + "\n15% increased melee speed");
 
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
+            SacrificeTotal = 1;
         }
 
         public override void SetDefaults () {

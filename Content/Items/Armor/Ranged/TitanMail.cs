@@ -4,7 +4,6 @@ using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using System;
 using Terraria;
-using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -17,7 +16,7 @@ namespace Consolaria.Content.Items.Armor.Ranged {
         public override void SetStaticDefaults () {
             DisplayName.SetDefault("Titan Mail");
             Tooltip.SetDefault("15% increased ranged damage" + "\n10% increased ranged critical strike chance" + "\n20% chance to not consume ammo");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
+            SacrificeTotal = 1;
 
             if (!Main.dedServ) {
                 mailGlowmask = new(() => ModContent.Request<Texture2D>(Texture + "_Glow"));

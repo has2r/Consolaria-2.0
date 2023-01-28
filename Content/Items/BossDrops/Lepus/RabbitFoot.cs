@@ -1,13 +1,12 @@
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.GameContent.Creative;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.Items.BossDrops.Lepus {
-	public class RabbitFoot : ModItem {
+    public class RabbitFoot : ModItem {
 		public override void SetStaticDefaults () {
 			Tooltip.SetDefault("Summons a baby Lepus" + "\n'Good luck is illusory, but the bunny isn't'");
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
+			SacrificeTotal = 1;
 		}
 
 		public override void SetDefaults () {

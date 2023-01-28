@@ -1,4 +1,3 @@
-using Terraria.GameContent.Creative;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -18,7 +17,7 @@ namespace Consolaria.Content.Items.Armor.Summon {
             DisplayName.SetDefault("Warlock Robe");
             Tooltip.SetDefault("Increases your max number of minions by 1" + "\n20% increased minion damage");
 
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
+            SacrificeTotal = 1;
         }
 
         public override void SetDefaults () {

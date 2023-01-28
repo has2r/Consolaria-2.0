@@ -6,7 +6,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.GameContent;
-using Terraria.GameContent.Creative;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -20,7 +19,7 @@ namespace Consolaria.Content.Items.BossDrops.Turkor {
             ItemID.Sets.BossBag [Type] = true;
             ItemID.Sets.PreHardmodeLikeBossBag [Type] = true;
 
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 3;
+            SacrificeTotal = 3;
         }
 
         public override void SetDefaults () {

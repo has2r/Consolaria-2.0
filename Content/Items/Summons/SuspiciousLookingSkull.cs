@@ -2,7 +2,6 @@ using Consolaria.Content.NPCs.Bosses.Ocram;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
-using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -12,7 +11,7 @@ namespace Consolaria.Content.Items.Summons {
             DisplayName.SetDefault("Suspicious Looking Skull");
             Tooltip.SetDefault("Summons Ocram");
 
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 3;
+            SacrificeTotal = 3;
             ItemID.Sets.SortingPriorityBossSpawns [Type] = 12;
         }
 

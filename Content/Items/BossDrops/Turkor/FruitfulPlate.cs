@@ -1,16 +1,15 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.Items.BossDrops.Turkor {
-	public class FruitfulPlate : ModItem {
+    public class FruitfulPlate : ModItem {
 		public override void SetStaticDefaults () {
 			DisplayName.SetDefault("Fruitful Plate");
 			Tooltip.SetDefault("Summons a fruitful plate mount");
 
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
+			SacrificeTotal = 1;
 		}
 
 		public override void SetDefaults () {

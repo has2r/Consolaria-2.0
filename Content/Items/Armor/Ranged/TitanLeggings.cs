@@ -4,7 +4,6 @@ using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using System;
 using Terraria;
-using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -17,7 +16,7 @@ namespace Consolaria.Content.Items.Armor.Ranged {
         public override void SetStaticDefaults () {
             DisplayName.SetDefault("Titan Leggings");
             Tooltip.SetDefault("10% increased ranged damage" + "\n18% increased movement speed" + "\n15% chance to not consume ammo");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
+            SacrificeTotal = 1;
 
             if (!Main.dedServ) {
                 leggingsGlowmask = new(() => ModContent.Request<Texture2D>(Texture + "_Glow"));

@@ -1,15 +1,14 @@
 using Consolaria.Content.Projectiles.Friendly;
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.Items.Weapons.Melee {
-	public class Tizona : ModItem {
+    public class Tizona : ModItem {
 		public override void SetStaticDefaults () {
 			Tooltip.SetDefault("Shoots a cursed skull");
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
+			SacrificeTotal = 1;
 		}
 
 		public override void SetDefaults () {

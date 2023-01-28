@@ -2,12 +2,11 @@ using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
-using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.Projectiles.Friendly {
-	public class ManaDrain : ModProjectile {
+    public class ManaDrain : ModProjectile {
 		private int cycle;
 		private bool cycleSwitch;
 		private int bonusHealMana;

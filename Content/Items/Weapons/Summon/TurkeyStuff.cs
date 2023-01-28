@@ -1,12 +1,11 @@
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
-using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.Items.Weapons.Summon {
-	public class TurkeyStuff : ModItem {
+    public class TurkeyStuff : ModItem {
 		public override void SetStaticDefaults () {
 			DisplayName.SetDefault("Turkey Staff");
 			Tooltip.SetDefault("Summons a weird turkey to fight for you");
@@ -14,7 +13,7 @@ namespace Consolaria.Content.Items.Weapons.Summon {
 			ItemID.Sets.GamepadWholeScreenUseRange [Item.type] = true;
 			ItemID.Sets.LockOnIgnoresCollision [Item.type] = true;
 
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
+			SacrificeTotal = 1;
 		}
 
 		public override void SetDefaults () {

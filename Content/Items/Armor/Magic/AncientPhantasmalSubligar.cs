@@ -1,7 +1,6 @@
 using Consolaria.Content.Items.Materials;
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -12,7 +11,7 @@ namespace Consolaria.Content.Items.Armor.Magic {
             DisplayName.SetDefault("Ancient Phantasmal Subligar");
             Tooltip.SetDefault("5% increased magic damage" + "\n12% increased movement speed" + "\nIncreases maximum mana by 30");
 
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
+            SacrificeTotal = 1;
         }
 
         public override void SetDefaults () {

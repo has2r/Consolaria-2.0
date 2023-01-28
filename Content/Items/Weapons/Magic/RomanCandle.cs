@@ -1,15 +1,14 @@
 using Consolaria.Content.Projectiles.Friendly;
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.Items.Weapons.Magic {
-	public class RomanCandle : ModItem {
+    public class RomanCandle : ModItem {
 		public override void SetStaticDefaults () {
 			Tooltip.SetDefault("'Fire works!'");
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
+			SacrificeTotal = 1;
 		}
 
 		public override void SetDefaults () {

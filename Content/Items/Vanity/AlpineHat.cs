@@ -1,11 +1,10 @@
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
-using Terraria.GameContent.Creative;
 using Microsoft.Xna.Framework;
 
 namespace Consolaria.Content.Items.Vanity {
-	[AutoloadEquip(EquipType.Head)]
+    [AutoloadEquip(EquipType.Head)]
 
 	public class AlpineHat : ModItem {
 		public override void SetStaticDefaults () {
@@ -13,7 +12,7 @@ namespace Consolaria.Content.Items.Vanity {
 			Tooltip.SetDefault("");
 
 			ArmorIDs.Head.Sets.DrawHatHair [Item.headSlot] = true;
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
+			SacrificeTotal = 1;
 		}
 
 		public override void SetDefaults () {

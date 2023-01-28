@@ -3,7 +3,6 @@ using Consolaria.Content.NPCs.Bosses.Turkor;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
-using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -13,7 +12,7 @@ namespace Consolaria.Content.Items.Summons {
             DisplayName.SetDefault("Cursed Stuffing");
             Tooltip.SetDefault("Summons Turkor the Ungrateful");
 
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 3;
+            SacrificeTotal = 3;
             ItemID.Sets.SortingPriorityBossSpawns [Type] = 12;
         }
 

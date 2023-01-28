@@ -2,7 +2,6 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
-using Terraria.GameContent.Creative;
 using Consolaria.Content.Items.Vanity;
 
 namespace Consolaria.Content.Items.Consumables {
@@ -11,7 +10,7 @@ namespace Consolaria.Content.Items.Consumables {
             DisplayName.SetDefault("Red Envelope");
             Tooltip.SetDefault("{$CommonItemTooltip.RightClickToOpen}");
 
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 3;
+            SacrificeTotal = 3;
         }
 
         public override void SetDefaults () {

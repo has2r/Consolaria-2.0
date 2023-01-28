@@ -2,17 +2,16 @@ using Consolaria.Content.NPCs.Bosses.Turkor;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
-using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.Items.Pets {
-	public class TurkeyFeather : PetItem {
+    public class TurkeyFeather : PetItem {
 		public override void SetStaticDefaults () {
 			DisplayName.SetDefault("Turkey Feather");
 			Tooltip.SetDefault("Summons a pet turkey");
 
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
+			SacrificeTotal = 1;
 		}
 
 		public override void SetDefaults () {

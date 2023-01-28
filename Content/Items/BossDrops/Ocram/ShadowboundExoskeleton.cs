@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.GameContent.Creative;
 using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.Audio;
@@ -14,7 +13,7 @@ namespace Consolaria.Content.Items.BossDrops.Ocram {
             string tapDir = Language.GetTextValue(Main.ReversedUpDownArmorSetBonuses ? "Key.DOWN" : "Key.UP");
             Tooltip.SetDefault("Allows the player to rocket jump" + $"\nDouble tap {tapDir}");
 
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
+            SacrificeTotal = 1;
         }
 
         public override void SetDefaults () {

@@ -3,18 +3,15 @@ using Consolaria.Content.NPCs.Bosses.Lepus;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using Terraria;
 using Terraria.Audio;
-using Terraria.Chat;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
 namespace Consolaria.Common {
-	public class DownedBossSystem : ModSystem {
+    public class DownedBossSystem : ModSystem {
 		public static bool downedLepus = false;
 		public static bool downedTurkor = false;
 		public static bool downedOcram = false;

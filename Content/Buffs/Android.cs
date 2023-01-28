@@ -1,11 +1,9 @@
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 
-namespace Consolaria.Content.Buffs
-{
-	public class Android : ModBuff
+namespace Consolaria.Content.Buffs {
+    public class Android : ModBuff
 	{
 		public override void SetStaticDefaults() 
 		{

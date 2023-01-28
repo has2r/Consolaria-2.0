@@ -1,17 +1,16 @@
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
-using Terraria.GameContent.Creative;
 using Microsoft.Xna.Framework;
 using Consolaria.Content.Items.Materials;
 
 namespace Consolaria.Content.Items.Vanity {
-	[AutoloadEquip(EquipType.Head)]
+    [AutoloadEquip(EquipType.Head)]
 
 	public class MonokumaHead : ModItem {
 		public override void SetStaticDefaults () {
 			DisplayName.SetDefault("Monokuma Head");
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
+			SacrificeTotal = 1;
 		}
 
 		public override void SetDefaults () {

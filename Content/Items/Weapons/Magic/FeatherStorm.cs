@@ -3,7 +3,6 @@ using Terraria;
 using Terraria.ID;
 using Microsoft.Xna.Framework;
 using System;
-using Terraria.GameContent.Creative;
 using Terraria.DataStructures;
 using Consolaria.Content.Projectiles.Friendly;
 
@@ -13,7 +12,7 @@ namespace Consolaria.Content.Items.Weapons.Magic {
             DisplayName.SetDefault("Feather Storm");
             Tooltip.SetDefault("Casts feathers from the sky");
 
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
+            SacrificeTotal = 1;
         }
 
         public override void SetDefaults () {

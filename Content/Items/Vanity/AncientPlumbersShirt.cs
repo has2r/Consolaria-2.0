@@ -1,12 +1,10 @@
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent.Creative;
-using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Consolaria.Content.Items.Vanity
-{
-	[AutoloadEquip(EquipType.Body)]
+namespace Consolaria.Content.Items.Vanity {
+    [AutoloadEquip(EquipType.Body)]
 
 	public class AncientPlumbersShirt : ModItem
 	{

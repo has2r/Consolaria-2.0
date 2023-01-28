@@ -1,6 +1,5 @@
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -10,7 +9,7 @@ namespace Consolaria.Content.Items.Weapons.Melee {
             DisplayName.SetDefault("Great Drumstick");
             Tooltip.SetDefault("Covers enemies in oil" + "\nSet oiled enemies on fire for extra damage" + "\n'I like large fries, but not fried turkey'");
 
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
+            SacrificeTotal = 1;
         }
 
         public override void SetDefaults () {

@@ -1,4 +1,3 @@
-using Terraria.GameContent.Creative;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -18,7 +17,7 @@ namespace Consolaria.Content.Items.Armor.Magic {
             DisplayName.SetDefault("Ancient Phantasmal Robe");
             Tooltip.SetDefault("15% increased magic damage" + "\nIncreases maximum mana by 70");
 
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
+            SacrificeTotal = 1;
         }
 
         public override void SetDefaults () {
@@ -38,7 +37,6 @@ namespace Consolaria.Content.Items.Armor.Magic {
 
         public override void UpdateEquip (Player player) {
             player.statManaMax2 += 70;
-
             player.GetDamage(DamageClass.Magic) += 0.15f;
         }
 

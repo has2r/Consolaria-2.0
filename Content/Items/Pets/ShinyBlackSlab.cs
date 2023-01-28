@@ -1,18 +1,15 @@
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.GameContent.Creative;
-using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Consolaria.Content.Items.Pets 
-{
-	public class ShinyBlackSlab : PetItem 
+namespace Consolaria.Content.Items.Pets {
+    public class ShinyBlackSlab : PetItem 
 	{
 		public override void SetStaticDefaults () 
 		{
 			DisplayName.SetDefault("Shiny Black Slab");
 			Tooltip.SetDefault("Summons a pet android");
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
+			SacrificeTotal = 1;
 		}
 
 		public override void SetDefaults () {

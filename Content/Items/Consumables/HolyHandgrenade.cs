@@ -2,7 +2,6 @@
 using Terraria;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
-using Terraria.GameContent.Creative;
 
 namespace Consolaria.Content.Items.Consumables {
     public class HolyHandgrenade : ModItem {
@@ -10,7 +9,7 @@ namespace Consolaria.Content.Items.Consumables {
             DisplayName.SetDefault("Holy Hand Grenade");
             Tooltip.SetDefault("A huge explosion that will destroy most tiles" + "\n'The Lord's chosen weapon'");
 
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 99;
+            SacrificeTotal = 99;
         }
 
         public override void SetDefaults () {

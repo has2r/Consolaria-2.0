@@ -16,11 +16,10 @@ using Consolaria.Content.Items.Weapons.Magic;
 using Consolaria.Content.Items.Weapons.Melee;
 using Consolaria.Content.Items.Weapons.Summon;
 using Consolaria.Content.Items.Weapons.Ranged;
-using Consolaria.Content.Items.Consumables;
 using System.IO;
 
 namespace Consolaria.Content.NPCs.Bosses.Turkor {
-	[AutoloadBossHead]
+    [AutoloadBossHead]
 	public class TurkortheUngrateful : ModNPC {
 		public override void SetStaticDefaults () {
 			DisplayName.SetDefault("Turkor the Ungrateful");

@@ -1,5 +1,4 @@
 using Microsoft.Xna.Framework;
-using Terraria.GameContent.Creative;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -10,7 +9,7 @@ namespace Consolaria.Content.Items.Weapons.Ammo {
             DisplayName.SetDefault("Spectral Arrow");
             Tooltip.SetDefault("Pierces tiles and enemies, but dissipates quickly in the air");
 
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 99;
+            SacrificeTotal = 99;
         }
 
         public override void SetDefaults () {

@@ -1,5 +1,4 @@
 using Consolaria.Common;
-using Consolaria.Content.Items.Miscellaneous;
 using Consolaria.Content.Items.Summons;
 using Microsoft.Xna.Framework;
 using Terraria;

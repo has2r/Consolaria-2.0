@@ -1,7 +1,6 @@
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
-using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -17,7 +16,7 @@ namespace Consolaria.Content.Items.Materials {
             ItemID.Sets.ItemIconPulse [Item.type] = true;
             ItemID.Sets.ItemNoGravity [Item.type] = true;
 
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 25;
+            SacrificeTotal = 25;
         }
 
         public override void SetDefaults () {

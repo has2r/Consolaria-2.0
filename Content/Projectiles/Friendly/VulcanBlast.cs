@@ -2,11 +2,9 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Consolaria.Content.Projectiles.Friendly
-{
+namespace Consolaria.Content.Projectiles.Friendly {
     public class VulcanBlast : ModProjectile
     {
         private Vector2 direction;

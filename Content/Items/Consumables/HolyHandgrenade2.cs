@@ -3,16 +3,14 @@ using Terraria;
 using Terraria.GameContent;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
-using Terraria.GameContent.Creative;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Consolaria.Content.Items.Consumables {
     public class HolyHandgrenade2 : ModItem {
         public override void SetStaticDefaults () {
-            DisplayName.SetDefault("Holy Hand Grenade 2");
             Tooltip.SetDefault("A huge explosion that will destroy most tiles" + "\n'Goodness gracious'");
 
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 99;
+            SacrificeTotal = 99;
         }
 
         public override void SetDefaults () {

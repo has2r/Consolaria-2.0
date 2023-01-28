@@ -7,7 +7,6 @@ using System;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
-using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -21,7 +20,7 @@ namespace Consolaria.Content.Items.Armor.Ranged {
         public override void SetStaticDefaults () {
             DisplayName.SetDefault("Titan Helmet");
             Tooltip.SetDefault("10% increased ranged damage and critical strike chance " + "\n25% chance to not consume ammo");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
+            SacrificeTotal = 1;
 
             if (!Main.dedServ) {
                 helmetGlowmask = new(() => ModContent.Request<Texture2D>(Texture + "_Glow"));

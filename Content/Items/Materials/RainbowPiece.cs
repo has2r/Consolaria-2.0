@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.Audio;
-using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -13,7 +12,7 @@ namespace Consolaria.Content.Items.Materials {
             DisplayName.SetDefault("Rainbow Piece");
             Tooltip.SetDefault("Combine 5 pieces to craft a pot o' gold");
 
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 50;
+            SacrificeTotal = 50;
         }
 
         public override void SetDefaults () {

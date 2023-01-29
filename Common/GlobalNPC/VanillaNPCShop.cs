@@ -98,6 +98,16 @@ namespace Consolaria.Common {
 				shop.item [nextSlot].buyOnce = true;
 				nextSlot++;
 			}
+
+			if (type == NPCID.Cyborg) {
+				shop.item [nextSlot].SetDefaults(ModContent.ItemType<Content.Items.Pets.ShinyBlackSlab>());
+				nextSlot++;
+			}
+
+			if (type == NPCID.Mechanic && NPC.downedMechBossAny) {
+				shop.item [nextSlot].SetDefaults(ModContent.ItemType<Content.Items.Pets.MysteriousPackage>());
+				nextSlot++;
+			}
 		}
 	}
 }

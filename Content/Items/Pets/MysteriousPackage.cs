@@ -22,7 +22,7 @@ namespace Consolaria.Content.Items.Pets
 			Item.Size = new Vector2(width, height);
 
 			Item.rare = 5;
-			Item.value = Item.sellPrice(gold: 10);
+			Item.value = Item.buyPrice(gold: 50);
 		}
 	}
 }

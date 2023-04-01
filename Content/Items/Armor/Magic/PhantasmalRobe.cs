@@ -8,10 +8,10 @@ namespace Consolaria.Content.Items.Armor.Magic {
     [AutoloadEquip(EquipType.Body)]
     public class PhantasmalRobe : ModItem {
         public override void SetStaticDefaults () {
-            DisplayName.SetDefault("Phantasmal Robe");
-            Tooltip.SetDefault("15% increased magic damage" + "\nIncreases maximum mana by 70");
+            // DisplayName.SetDefault("Phantasmal Robe");
+            // Tooltip.SetDefault("15% increased magic damage" + "\nIncreases maximum mana by 70");
 
-            SacrificeTotal = 1;
+            Item.ResearchUnlockCount = 1;
         }
 
         public override void SetDefaults () {

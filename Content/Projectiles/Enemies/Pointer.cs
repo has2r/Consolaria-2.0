@@ -7,11 +7,9 @@ namespace Consolaria.Content.Projectiles.Enemies {
 	public class Pointer : ModProjectile {
 		float num2 = 3f;
 		public override string Texture => "Consolaria/Assets/Textures/Empty";
+        public override string Name => "";
 
-		public override void SetStaticDefaults ()
-			=> DisplayName.SetDefault("");
-
-		public override void SetDefaults () {
+        public override void SetDefaults () {
 			int width = 10; int height = 20;
 			Projectile.Size = new Vector2(width, height);
 

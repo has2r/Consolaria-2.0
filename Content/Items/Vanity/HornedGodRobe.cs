@@ -11,8 +11,8 @@ namespace Consolaria.Content.Items.Vanity
 	public class HornedGodRobe : ModItem
 	{
 		public override void SetStaticDefaults() {
-			DisplayName.SetDefault("Horned God Robe");
-			Tooltip.SetDefault("'Remnant of an age of wonders'");
+			// DisplayName.SetDefault("Horned God Robe");
+			// Tooltip.SetDefault("'Remnant of an age of wonders'");
 
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}

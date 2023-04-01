@@ -5,11 +5,13 @@ using Terraria.ModLoader;
 
 namespace Consolaria.Content.Projectiles.Friendly {
     public class TitanBlast : ModProjectile {
+        private object info;
+
         public override string Texture => "Consolaria/Assets/Textures/Projectiles/TitanBlast";
 
-        public override void SetStaticDefaults () 
+        public override void SetStaticDefaults ()
             => Main.projFrames [Projectile.type] = 4;
-        
+
 
         public override void SetDefaults () {
             int width = 92; int height = 164;
@@ -68,8 +70,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
             if (Projectile.frame >= 4) {
                 Projectile.Kill();
                 return;
-            }
-            else {
+            } else {
                 if (++Projectile.frameCounter >= Main.projFrames [Projectile.type]) {
                     Projectile.frame++;
                     Projectile.frameCounter = 0;
@@ -77,9 +78,9 @@ namespace Consolaria.Content.Projectiles.Friendly {
             }
         }
 
-        public override void ModifyHitPvp (Player target, ref int damage, ref bool crit) {
-            if (damage > 350) damage = 350;
-            crit = false;
+        public override void ModifyHitPlayer (Player target, ref Player.HurtModifiers modifiers) {
+            if (modifiers.PvP)
+                modifiers.SetMaxDamage(350);
         }
 
         public override Color? GetAlpha (Color lightColor)

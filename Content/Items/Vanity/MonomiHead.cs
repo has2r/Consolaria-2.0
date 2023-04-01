@@ -12,7 +12,7 @@ namespace Consolaria.Content.Items.Vanity
 	public class MonomiHead : ModItem
 	{
 		public override void SetStaticDefaults() {
-			DisplayName.SetDefault("Monomi Head");
+			// DisplayName.SetDefault("Monomi Head");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 

@@ -7,8 +7,8 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Items.Weapons.Ranged {
     public class EggCannon : ModItem {
 		public override void SetStaticDefaults () {
-			Tooltip.SetDefault("'To kill a goblin, you have to break a few eggs'");
-			SacrificeTotal = 1;
+			// Tooltip.SetDefault("'To kill a goblin, you have to break a few eggs'");
+			Item.ResearchUnlockCount = 1;
 		}
 
 		public override void SetDefaults () {

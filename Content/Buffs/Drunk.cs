@@ -6,8 +6,8 @@ namespace Consolaria.Content.Buffs
 	public class Drunk : ModBuff
 	{
 		public override void SetStaticDefaults() {
-			DisplayName.SetDefault("Drunk");
-			Description.SetDefault("Halves all damage taken and dealt.");
+			// DisplayName.SetDefault("Drunk");
+			// Description.SetDefault("Halves all damage taken and dealt.");
 
 			Main.buffNoSave[Type] = true;
 			Main.debuff[Type] = true;
@@ -27,10 +27,10 @@ namespace Consolaria.Content.Buffs
 		public override void ResetEffects()
 			=> drunk = false;
 
-		public override void ModifyHitByNPC(NPC npc, ref int damage, ref bool crit)
+		public override void ModifyHitByNPC(NPC npc, ref Player.HurtModifiers modifiers)
 			=> WhenDrunk(ref damage);
 
-		public override void ModifyHitByProjectile(Projectile proj, ref int damage, ref bool crit)
+		public override void ModifyHitByProjectile(Projectile proj, ref Player.HurtModifiers modifiers)
 			=> WhenDrunk(ref damage);
 
         private void WhenDrunk(ref int damage) {

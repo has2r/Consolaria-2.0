@@ -51,12 +51,12 @@ namespace Consolaria.Content.NPCs {
             });
         }
 
-        public override void OnHitPlayer (Player target, int damage, bool crit) {
+        public override void OnHitPlayer (Player target, Player.HurtInfo hurtInfo) {
             if (Main.rand.NextBool(4))
                 target.AddBuff(BuffID.Bleeding, 60 * 5);
         }
 
-        public override void HitEffect (int hitDirection, double damage) {
+        public override void HitEffect (NPC.HitInfo hit) {
             if (Main.netMode == NetmodeID.Server)
                 return;
 

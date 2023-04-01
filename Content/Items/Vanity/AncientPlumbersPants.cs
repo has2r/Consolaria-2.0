@@ -10,7 +10,7 @@ namespace Consolaria.Content.Items.Vanity {
 	{
 		public override void SetStaticDefaults() 
 		{
-			DisplayName.SetDefault("Ancient Plumber's Pants");
+			// DisplayName.SetDefault("Ancient Plumber's Pants");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 

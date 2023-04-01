@@ -53,8 +53,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
                         Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, DustID.Shadowflame, Projectile.velocity.X * 1.2f, Projectile.velocity.Y * 1.2f, 130, default, 1.5f);
                     }
                 }
-            }
-            else Projectile.ai [0] += 1f;
+            } else Projectile.ai [0] += 1f;
             return;
         }
 
@@ -73,11 +72,13 @@ namespace Consolaria.Content.Projectiles.Friendly {
             return false;
         }
 
-        public override void OnHitNPC (NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC (NPC target, NPC.HitInfo hit, int damageDone)
             => target.AddBuff(BuffID.ShadowFlame, 300);
 
-        public override void OnHitPvp (Player target, int damage, bool crit)
-            => target.AddBuff(BuffID.ShadowFlame, 300);
+        public override void OnHitPlayer (Player target, Player.HurtInfo info) {
+            if (info.PvP)
+                target.AddBuff(BuffID.ShadowFlame, 300);
+        }
 
         public override bool OnTileCollide (Vector2 oldVelocity) {
             Projectile.timeLeft = 10;

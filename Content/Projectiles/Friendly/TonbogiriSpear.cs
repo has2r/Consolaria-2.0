@@ -9,9 +9,9 @@ namespace Consolaria.Content.Projectiles.Friendly {
     public class TonbogiriSpear : ModProjectile {
         private float glowRotation;
 
-        public override void SetStaticDefaults () {
-            DisplayName.SetDefault("Tonbogiri");
+        public override string Name => "Tonbogiri";
 
+        public override void SetStaticDefaults () {
             ProjectileID.Sets.TrailCacheLength [Projectile.type] = 5;
             ProjectileID.Sets.TrailingMode [Projectile.type] = 0;
         }
@@ -100,14 +100,16 @@ namespace Consolaria.Content.Projectiles.Friendly {
             return false;
         }
 
-        public override void OnHitNPC (NPC target, int damage, float knockback, bool crit) {
-            Projectile.direction = ((Main.player [Projectile.owner].Center.X < target.Center.X) ? 1 : (-1));
+        public override void OnHitNPC (NPC target, NPC.HitInfo hit, int damageDone) {
+            Projectile.direction = (Main.player [Projectile.owner].Center.X < target.Center.X) ? 1 : (-1);
             target.AddBuff(BuffID.Venom, 180);
         }
 
-        public override void OnHitPvp (Player target, int damage, bool crit) {
-            Projectile.direction = ((Main.player [Projectile.owner].Center.X < target.Center.X) ? 1 : (-1));
+        public override void OnHitPlayer (Player target, Player.HurtInfo info) {
+            if (info.PvP)
+                Projectile.direction = (Main.player [Projectile.owner].Center.X < target.Center.X) ? 1 : (-1);
             target.AddBuff(BuffID.Venom, 180);
+
         }
 
         public override bool PreDraw (ref Color lightColor) {

@@ -12,7 +12,7 @@ using Terraria.ModLoader.Utilities;
 namespace Consolaria.Content.NPCs {
 	public class AlbinoAntlion : ModNPC {
 		public override void SetStaticDefaults () {
-			DisplayName.SetDefault("Albino Antlion");
+			// DisplayName.SetDefault("Albino Antlion");
 			Main.npcFrameCount [NPC.type] = 5;
 
 			NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData {
@@ -69,7 +69,7 @@ namespace Consolaria.Content.NPCs {
 			return false;
 		}
 
-		public override void HitEffect (int hitDirection, double damage) {
+		public override void HitEffect (NPC.HitInfo hit) {
 			if (Main.netMode == NetmodeID.Server)
 				return;
 

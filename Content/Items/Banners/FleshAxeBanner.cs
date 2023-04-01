@@ -6,8 +6,8 @@ using Terraria.ID;
 namespace Consolaria.Content.Items.Banners {
 	public class FleshAxeBanner : ModItem {
 		public override void SetStaticDefaults () {
-			SacrificeTotal = 1;
-			Tooltip.SetDefault("{$CommonItemTooltip.BannerBonus}Flesh Axe");
+			Item.ResearchUnlockCount = 1;
+			// Tooltip.SetDefault("{$CommonItemTooltip.BannerBonus}Flesh Axe");
 		}
 
 		public override void SetDefaults () {

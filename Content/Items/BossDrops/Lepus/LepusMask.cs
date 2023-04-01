@@ -10,7 +10,7 @@ namespace Consolaria.Content.Items.BossDrops.Lepus
 	public class LepusMask : ModItem
 	{
 		public override void SetStaticDefaults() {
-			DisplayName.SetDefault("Lepus Mask");
+			// DisplayName.SetDefault("Lepus Mask");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 

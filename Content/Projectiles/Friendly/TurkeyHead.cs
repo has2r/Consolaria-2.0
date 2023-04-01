@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Projectiles.Friendly {
     public class TurkeyHead : ModProjectile {
         public override void SetStaticDefaults () {
-            DisplayName.SetDefault("Weird Turkey");
+            // DisplayName.SetDefault("Weird Turkey");
             Main.projPet [Projectile.type] = true;
             Main.projFrames [Projectile.type] = 4;
 
@@ -59,9 +59,9 @@ namespace Consolaria.Content.Projectiles.Friendly {
             return false;
         }
 
-        public override void OnHitNPC (NPC target, int damage, float knockback, bool crit) => OnDamage();
+        public override void OnHitNPC (NPC target, NPC.HitInfo hit, int damageDone) => OnDamage();
 
-        public override void OnHitPvp (Player target, int damage, bool crit) => OnDamage();
+        public override void OnHitPlayer (Player target, Player.HurtInfo info) => OnDamage();
 
         private void OnDamage () {
             Projectile.ai [1] = -1f;

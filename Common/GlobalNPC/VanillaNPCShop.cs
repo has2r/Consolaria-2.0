@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace Consolaria.Common {
 	class VanillaNPCShop : GlobalNPC {
-		public override void SetupShop (int type, Chest shop, ref int nextSlot) {
+		public override void ModifyActiveShop (NPC npc, string shopName, Item[] items) {
 			Player player = Main.player [Main.myPlayer];
 			if (type == NPCID.Merchant) {
 				if ((SeasonalEvents.configEnabled && SeasonalEvents.IsThanksgiving()) || !SeasonalEvents.configEnabled) {

@@ -6,8 +6,8 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Items.Pets {
     public class Brain : PetItem {
 		public override void SetStaticDefaults () {
-			Tooltip.SetDefault("Summons a pet Zombie");
-			SacrificeTotal = 1;
+			// Tooltip.SetDefault("Summons a pet Zombie");
+			Item.ResearchUnlockCount = 1;
 		}
 
 		public override void SetDefaults () {

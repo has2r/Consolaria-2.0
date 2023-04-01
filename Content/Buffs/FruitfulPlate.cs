@@ -6,8 +6,8 @@ namespace Consolaria.Content.Buffs
 	public class FruitfulPlate : ModBuff
 	{
 		public override void SetStaticDefaults() {
-			DisplayName.SetDefault("Fruitful Plate");
-			Description.SetDefault("");
+			// DisplayName.SetDefault("Fruitful Plate");
+			// Description.SetDefault("");
 
 			Main.buffNoTimeDisplay[Type] = true;
 			Main.buffNoSave[Type] = true;

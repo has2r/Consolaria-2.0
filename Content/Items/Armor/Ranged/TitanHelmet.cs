@@ -18,9 +18,9 @@ namespace Consolaria.Content.Items.Armor.Ranged {
         public override void Unload () => helmetGlowmask = null;
 
         public override void SetStaticDefaults () {
-            DisplayName.SetDefault("Titan Helmet");
-            Tooltip.SetDefault("10% increased ranged damage and critical strike chance " + "\n25% chance to not consume ammo");
-            SacrificeTotal = 1;
+            // DisplayName.SetDefault("Titan Helmet");
+            // Tooltip.SetDefault("10% increased ranged damage and critical strike chance " + "\n25% chance to not consume ammo");
+            Item.ResearchUnlockCount = 1;
 
             if (!Main.dedServ) {
                 helmetGlowmask = new(() => ModContent.Request<Texture2D>(Texture + "_Glow"));

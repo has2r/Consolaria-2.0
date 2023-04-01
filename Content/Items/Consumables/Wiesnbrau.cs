@@ -8,10 +8,10 @@ using Terraria.DataStructures;
 namespace Consolaria.Content.Items.Consumables {
     public class Wiesnbrau : ModItem {
 		public override void SetStaticDefaults () {
-			DisplayName.SetDefault("Wiesnbräu");
-			Tooltip.SetDefault("Numbs the user from damage taken but also reduces damage inflicted");
+			// DisplayName.SetDefault("Wiesnbräu");
+			// Tooltip.SetDefault("Numbs the user from damage taken but also reduces damage inflicted");
 
-			SacrificeTotal = 5;
+			Item.ResearchUnlockCount = 5;
 			Main.RegisterItemAnimation(Type, new DrawAnimationVertical(int.MaxValue, 3));
 
 			ItemID.Sets.DrinkParticleColors [Item.type] = new Color [3] {

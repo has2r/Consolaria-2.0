@@ -8,10 +8,10 @@ namespace Consolaria.Content.Items.Armor.Magic {
     [AutoloadEquip(EquipType.Legs)]
     public class AncientPhantasmalSubligar : ModItem {
         public override void SetStaticDefaults () {
-            DisplayName.SetDefault("Ancient Phantasmal Subligar");
-            Tooltip.SetDefault("5% increased magic damage" + "\n12% increased movement speed" + "\nIncreases maximum mana by 30");
+            // DisplayName.SetDefault("Ancient Phantasmal Subligar");
+            // Tooltip.SetDefault("5% increased magic damage" + "\n12% increased movement speed" + "\nIncreases maximum mana by 30");
 
-            SacrificeTotal = 1;
+            Item.ResearchUnlockCount = 1;
         }
 
         public override void SetDefaults () {

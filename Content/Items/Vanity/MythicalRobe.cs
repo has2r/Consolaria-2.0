@@ -17,7 +17,7 @@ namespace Consolaria.Content.Items.Vanity
 		}
 
 		public override void SetStaticDefaults() {
-			DisplayName.SetDefault("Mythical Robe");
+			// DisplayName.SetDefault("Mythical Robe");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 

@@ -7,8 +7,8 @@ namespace Consolaria.Content.Buffs
 	public class Werewolf : ModBuff
 	{
 		public override void SetStaticDefaults() {
-			DisplayName.SetDefault("Pet Werewolf");
-			Description.SetDefault("Man's best friend");
+			// DisplayName.SetDefault("Pet Werewolf");
+			// Description.SetDefault("Man's best friend");
 			Main.buffNoTimeDisplay[Type] = true;
 			Main.vanityPet[Type] = true;
 		}

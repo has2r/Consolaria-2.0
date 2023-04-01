@@ -11,7 +11,7 @@ using Terraria.ModLoader.Utilities;
 namespace Consolaria.Content.NPCs {
     public class SpectralElemental : ModNPC {
         public override void SetStaticDefaults () {
-            DisplayName.SetDefault("Spectral Elemental");
+            // DisplayName.SetDefault("Spectral Elemental");
             Main.npcFrameCount [NPC.type] = 15;
 
             NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData {
@@ -81,7 +81,7 @@ namespace Consolaria.Content.NPCs {
             }
         }
 
-        public override void HitEffect (int hitDirection, double damage) {
+        public override void HitEffect (NPC.HitInfo hit) {
             if (Main.netMode == NetmodeID.Server)
                 return;
 

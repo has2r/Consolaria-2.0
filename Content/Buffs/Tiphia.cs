@@ -7,8 +7,8 @@ namespace Consolaria.Content.Buffs
 	public class Tiphia : ModBuff
 	{
 		public override void SetStaticDefaults() {
-			DisplayName.SetDefault("Tiphia");
-			Description.SetDefault("Don't let it sting you");
+			// DisplayName.SetDefault("Tiphia");
+			// Description.SetDefault("Don't let it sting you");
 			Main.buffNoTimeDisplay[Type] = true;
 			Main.vanityPet[Type] = true;
 		}

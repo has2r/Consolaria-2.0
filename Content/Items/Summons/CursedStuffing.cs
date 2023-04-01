@@ -9,10 +9,10 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Items.Summons {
     public class CursedStuffing : ModItem {
         public override void SetStaticDefaults () {
-            DisplayName.SetDefault("Cursed Stuffing");
-            Tooltip.SetDefault("Summons Turkor the Ungrateful");
+            // DisplayName.SetDefault("Cursed Stuffing");
+            // Tooltip.SetDefault("Summons Turkor the Ungrateful");
 
-            SacrificeTotal = 3;
+            Item.ResearchUnlockCount = 3;
             ItemID.Sets.SortingPriorityBossSpawns [Type] = 12;
         }
 
@@ -45,7 +45,7 @@ namespace Consolaria.Content.Items.Summons {
                 if (Main.netMode != NetmodeID.MultiplayerClient)
                     NPC.SpawnBoss((int) spawnPosition.X, (int) spawnPosition.Y, type, player.whoAmI);
                 else
-                    NetMessage.SendData(MessageID.SpawnBoss, number: player.whoAmI, number2: type);
+                    NetMessage.SendData(MessageID.SpawnBossUseLicenseStartEvent, number: player.whoAmI, number2: type);
             }
             return true;
         }

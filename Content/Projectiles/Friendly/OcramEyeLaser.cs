@@ -9,7 +9,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
     public class OcramEyeLaser : ModProjectile {
 
         public override void SetStaticDefaults () {
-            DisplayName.SetDefault("Ocram Eye Laser");
+            // DisplayName.SetDefault("Ocram Eye Laser");
 
             ProjectileID.Sets.TrailCacheLength [Projectile.type] = 16;
             ProjectileID.Sets.TrailingMode [Projectile.type] = 0;

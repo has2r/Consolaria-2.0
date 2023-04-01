@@ -9,8 +9,8 @@ namespace Consolaria.Content.Items.Vanity {
 
 	public class MonokumaHead : ModItem {
 		public override void SetStaticDefaults () {
-			DisplayName.SetDefault("Monokuma Head");
-			SacrificeTotal = 1;
+			// DisplayName.SetDefault("Monokuma Head");
+			Item.ResearchUnlockCount = 1;
 		}
 
 		public override void SetDefaults () {

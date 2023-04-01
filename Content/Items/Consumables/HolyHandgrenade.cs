@@ -6,10 +6,10 @@ using Microsoft.Xna.Framework;
 namespace Consolaria.Content.Items.Consumables {
     public class HolyHandgrenade : ModItem {
         public override void SetStaticDefaults () {
-            DisplayName.SetDefault("Holy Hand Grenade");
-            Tooltip.SetDefault("A huge explosion that will destroy most tiles" + "\n'The Lord's chosen weapon'");
+            // DisplayName.SetDefault("Holy Hand Grenade");
+            // Tooltip.SetDefault("A huge explosion that will destroy most tiles" + "\n'The Lord's chosen weapon'");
 
-            SacrificeTotal = 99;
+            Item.ResearchUnlockCount = 99;
         }
 
         public override void SetDefaults () {

@@ -6,8 +6,8 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Items.Consumables {
     public class SoulOfBlightInABottle : ModItem {
         public override void SetStaticDefaults () {
-            DisplayName.SetDefault("Soul of Blight in a Bottle");
-            SacrificeTotal = 1;
+            // DisplayName.SetDefault("Soul of Blight in a Bottle");
+            Item.ResearchUnlockCount = 1;
         }
 
         public override void SetDefaults () {

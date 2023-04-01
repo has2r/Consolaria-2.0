@@ -6,8 +6,8 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Items.Pets {
     public class GoldenLantern : PetItem {
 		public override void SetStaticDefaults () {
-			Tooltip.SetDefault("Summons a mythical wyvernling to provide light");
-			SacrificeTotal = 1;
+			// Tooltip.SetDefault("Summons a mythical wyvernling to provide light");
+			Item.ResearchUnlockCount = 1;
 		}
 
 		public override void SetDefaults () {

@@ -7,8 +7,8 @@ namespace Consolaria.Content.Buffs
 	public class Elfa : ModBuff
 	{
 		public override void SetStaticDefaults() {
-			DisplayName.SetDefault("Pet Elfa");
-			Description.SetDefault("A special elf");
+			// DisplayName.SetDefault("Pet Elfa");
+			// Description.SetDefault("A special elf");
 
 			Main.buffNoTimeDisplay[Type] = true;
 			Main.vanityPet[Type] = true;

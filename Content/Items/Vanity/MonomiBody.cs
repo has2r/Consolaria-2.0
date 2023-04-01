@@ -12,7 +12,7 @@ namespace Consolaria.Content.Items.Vanity
 	public class MonomiBody : ModItem
 	{
 		public override void SetStaticDefaults() {
-			DisplayName.SetDefault("Monomi Body");
+			// DisplayName.SetDefault("Monomi Body");
 			ArmorIDs.Body.Sets.HidesTopSkin[Item.bodySlot] = true;
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}

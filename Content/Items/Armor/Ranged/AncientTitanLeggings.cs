@@ -8,10 +8,10 @@ namespace Consolaria.Content.Items.Armor.Ranged {
     [AutoloadEquip(EquipType.Legs)]
     public class AncientTitanLeggings : ModItem {
         public override void SetStaticDefaults () {
-            DisplayName.SetDefault("Ancient Titan Leggings");
-            Tooltip.SetDefault("10% increased ranged damage" + "\n18% increased movement speed" + "\n15% chance to not consume ammo");
+            // DisplayName.SetDefault("Ancient Titan Leggings");
+            // Tooltip.SetDefault("10% increased ranged damage" + "\n18% increased movement speed" + "\n15% chance to not consume ammo");
 
-            SacrificeTotal = 1;
+            Item.ResearchUnlockCount = 1;
         }
 
         public override void SetDefaults () {

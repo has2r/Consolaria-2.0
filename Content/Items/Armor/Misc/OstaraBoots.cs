@@ -10,8 +10,8 @@ namespace Consolaria.Content.Items.Armor.Misc
     public class OstaraBoots : ModItem
     {
         public override void SetStaticDefaults() {
-            DisplayName.SetDefault("Boots of Ostara");
-            Tooltip.SetDefault("Allows the wearer to perform up to 5 bunny hops");
+            // DisplayName.SetDefault("Boots of Ostara");
+            // Tooltip.SetDefault("Allows the wearer to perform up to 5 bunny hops");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }

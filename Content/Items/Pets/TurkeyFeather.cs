@@ -8,10 +8,10 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Items.Pets {
     public class TurkeyFeather : PetItem {
 		public override void SetStaticDefaults () {
-			DisplayName.SetDefault("Turkey Feather");
-			Tooltip.SetDefault("Summons a pet turkey");
+			// DisplayName.SetDefault("Turkey Feather");
+			// Tooltip.SetDefault("Summons a pet turkey");
 
-			SacrificeTotal = 1;
+			Item.ResearchUnlockCount = 1;
 		}
 
 		public override void SetDefaults () {

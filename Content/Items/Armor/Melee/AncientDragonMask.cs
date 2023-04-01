@@ -8,10 +8,10 @@ namespace Consolaria.Content.Items.Armor.Melee {
     [AutoloadEquip(EquipType.Head)]
     public class AncientDragonMask : ModItem {
         public override void SetStaticDefaults () {
-            DisplayName.SetDefault("Ancient Dragon Mask");
-            Tooltip.SetDefault("15% increased melee damage and speed");
+            // DisplayName.SetDefault("Ancient Dragon Mask");
+            // Tooltip.SetDefault("15% increased melee damage and speed");
 
-            SacrificeTotal = 1;
+            Item.ResearchUnlockCount = 1;
         }
 
         public override void SetDefaults () {

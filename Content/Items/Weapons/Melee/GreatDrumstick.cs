@@ -6,10 +6,10 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Items.Weapons.Melee {
     public class GreatDrumstick : ModItem {
         public override void SetStaticDefaults () {
-            DisplayName.SetDefault("Great Drumstick");
-            Tooltip.SetDefault("Covers enemies in oil" + "\nSet oiled enemies on fire for extra damage" + "\n'I like large fries, but not fried turkey'");
+            // DisplayName.SetDefault("Great Drumstick");
+            // Tooltip.SetDefault("Covers enemies in oil" + "\nSet oiled enemies on fire for extra damage" + "\n'I like large fries, but not fried turkey'");
 
-            SacrificeTotal = 1;
+            Item.ResearchUnlockCount = 1;
         }
 
         public override void SetDefaults () {
@@ -30,10 +30,10 @@ namespace Consolaria.Content.Items.Weapons.Melee {
             Item.UseSound = SoundID.Item95;
         }
 
-        public override void OnHitNPC (Player player, NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC (Player player, NPC target, NPC.HitInfo hit, int damageDone)
             => target.AddBuff(BuffID.Oiled, 600);
 
-        public override void OnHitPvp (Player player, Player target, int damage, bool crit)
+        public override void OnHitPvp (Player player, Player target, Player.HurtInfo hurtInfo)
             => target.AddBuff(BuffID.Oiled, 600);
     }
 }

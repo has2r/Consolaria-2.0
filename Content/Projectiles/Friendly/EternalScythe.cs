@@ -37,11 +37,13 @@ namespace Consolaria.Content.Projectiles.Friendly {
 			rotationTimer += 0.01f;
 		}
 
-		public override void OnHitNPC (NPC target, int damage, float knockback, bool crit)
+		public override void OnHitNPC (NPC target, NPC.HitInfo hit, int damageDone)
 			=> target.AddBuff(BuffID.ShadowFlame, 180);
 
-		public override void OnHitPvp (Player target, int damage, bool crit)
-			=> target.AddBuff(BuffID.ShadowFlame, 180);
+		public override void OnHitPlayer (Player target, Player.HurtInfo info) {
+			if (info.PvP)
+				target.AddBuff(BuffID.ShadowFlame, 180);
+		}
 
 		public override Color? GetAlpha (Color lightColor)
 			=> Color.White;

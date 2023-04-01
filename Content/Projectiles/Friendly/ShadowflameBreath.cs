@@ -49,8 +49,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
                             dust1.velocity.X = dust1.velocity.X * 2f;
                             Dust dust2 = Main.dust [dust];
                             dust2.velocity.Y = dust2.velocity.Y * 2f;
-                        }
-                        else {
+                        } else {
                             Main.dust [dust].noGravity = true;
                             Main.dust [dust].scale *= 1;
                         }
@@ -71,15 +70,16 @@ namespace Consolaria.Content.Projectiles.Friendly {
                             Main.dust [dust].velocity += Projectile.velocity;
                     }
                 }
-            }
-            else Projectile.ai [0]++;
+            } else Projectile.ai [0]++;
             Projectile.rotation += 0.3f * Projectile.direction;
         }
 
-        public override void OnHitNPC (NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC (NPC target, NPC.HitInfo hit, int damageDone)
             => target.AddBuff(BuffID.ShadowFlame, 180);
 
-        public override void OnHitPvp (Player target, int damage, bool crit)
-            => target.AddBuff(BuffID.ShadowFlame, 180);
+        public override void OnHitPlayer (Player target, Player.HurtInfo info) {
+            if (info.PvP)
+                target.AddBuff(BuffID.ShadowFlame, 180);
+        }
     }
 }

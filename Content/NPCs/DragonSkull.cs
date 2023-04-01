@@ -10,7 +10,7 @@ using Terraria.ModLoader.Utilities;
 namespace Consolaria.Content.NPCs {
 	public class DragonSkull : ModNPC {
 		public override void SetStaticDefaults () {
-			DisplayName.SetDefault("Dragon Skull");
+			// DisplayName.SetDefault("Dragon Skull");
 			Main.npcFrameCount [NPC.type] = 3;
 
 			NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData {
@@ -74,12 +74,12 @@ namespace Consolaria.Content.NPCs {
 		public override Color? GetAlpha (Color lightColor)
 			=> new Color(255, 255, 255, 200);
 
-		public override void OnHitPlayer (Player target, int damage, bool crit) {
+		public override void OnHitPlayer (Player target, Player.HurtInfo hurtInfo) {
 			if (Main.rand.NextBool(33))
 				target.AddBuff(BuffID.Cursed, 240);
 		}
 
-		public override void HitEffect (int hitDirection, double damage) {
+		public override void HitEffect (NPC.HitInfo hit) {
 			if (Main.netMode == NetmodeID.Server)
 				return;
 

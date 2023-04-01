@@ -8,10 +8,10 @@ namespace Consolaria.Content.Items.Armor.Melee {
     [AutoloadEquip(EquipType.Body)]
     public class AncientDragonBreastplate : ModItem {
         public override void SetStaticDefaults () {
-            DisplayName.SetDefault("Ancient Dragon Breastplate");
-            Tooltip.SetDefault("10% increased melee damage and critical strike chance" + "\n15% increased melee speed");
+            // DisplayName.SetDefault("Ancient Dragon Breastplate");
+            // Tooltip.SetDefault("10% increased melee damage and critical strike chance" + "\n15% increased melee speed");
 
-            SacrificeTotal = 1;
+            Item.ResearchUnlockCount = 1;
         }
 
         public override void SetDefaults () {

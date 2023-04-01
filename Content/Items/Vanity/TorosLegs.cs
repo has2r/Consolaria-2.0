@@ -11,7 +11,7 @@ namespace Consolaria.Content.Items.Vanity
 	public class TorosLegs : ModItem
 	{
 		public override void SetStaticDefaults() {
-			DisplayName.SetDefault("Toro's Legs");
+			// DisplayName.SetDefault("Toro's Legs");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 

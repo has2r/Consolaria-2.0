@@ -9,10 +9,10 @@ namespace Consolaria.Content.Items.Armor.Ranged {
     public class AncientTitanHelmet : ModItem {
 
         public override void SetStaticDefaults () {
-            DisplayName.SetDefault("Ancient Titan Helmet");
-            Tooltip.SetDefault("10% increased ranged damage and critical strike chance " + "\n25% chance to not consume ammo");
+            // DisplayName.SetDefault("Ancient Titan Helmet");
+            // Tooltip.SetDefault("10% increased ranged damage and critical strike chance " + "\n25% chance to not consume ammo");
 
-            SacrificeTotal = 1;
+            Item.ResearchUnlockCount = 1;
         }
 
         public override void SetDefaults () {

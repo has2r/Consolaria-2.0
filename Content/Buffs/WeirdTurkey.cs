@@ -6,8 +6,8 @@ namespace Consolaria.Content.Buffs
 	public class WeirdTurkey : ModBuff
 	{
 		public override void SetStaticDefaults() {
-			DisplayName.SetDefault("Weird Turkey");
-			Description.SetDefault("Weird turkey will fight for you");
+			// DisplayName.SetDefault("Weird Turkey");
+			// Description.SetDefault("Weird turkey will fight for you");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}

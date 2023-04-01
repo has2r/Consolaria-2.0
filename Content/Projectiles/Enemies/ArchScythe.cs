@@ -56,7 +56,7 @@ namespace Consolaria.Content.Projectiles.Enemies {
 			rotationTimer += 0.01f;
 		}
 
-		public override void OnHitPlayer (Player target, int damage, bool crit)
+		public override void OnHitPlayer (Player target, Player.HurtInfo info)
 			=> target.AddBuff(BuffID.OnFire, 180);
 
 		public override void Kill (int timeLeft) {

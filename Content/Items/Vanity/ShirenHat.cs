@@ -11,7 +11,7 @@ namespace Consolaria.Content.Items.Vanity
 	public class ShirenHat : ModItem
 	{
 		public override void SetStaticDefaults() {
-			DisplayName.SetDefault("Shiren Hat");
+			// DisplayName.SetDefault("Shiren Hat");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 

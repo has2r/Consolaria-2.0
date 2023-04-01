@@ -16,7 +16,7 @@ namespace Consolaria.Content.NPCs {
 		private float aiTimer;
 
 		public override void SetStaticDefaults () {
-			DisplayName.SetDefault("Arch Demon");
+			// DisplayName.SetDefault("Arch Demon");
 			Main.npcFrameCount [NPC.type] = 5;
 
 			NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData {
@@ -118,10 +118,10 @@ namespace Consolaria.Content.NPCs {
 			else if (aiTimer >= (300 + Main.rand.Next(300))) aiTimer = 0;
 		}
 
-		public override void OnHitPlayer (Player target, int damage, bool crit)
+		public override void OnHitPlayer (Player target, Player.HurtInfo hurtInfo)
 			=> target.AddBuff(BuffID.OnFire, 180);
 
-		public override void HitEffect (int hitDirection, double damage) {
+		public override void HitEffect (NPC.HitInfo hit) {
 			if (Main.netMode == NetmodeID.Server)
 				return;
 

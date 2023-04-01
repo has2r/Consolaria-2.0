@@ -7,9 +7,9 @@ namespace Consolaria.Content.Items.Pets {
 	{
 		public override void SetStaticDefaults () 
 		{
-			DisplayName.SetDefault("Mysterious Package");
-			Tooltip.SetDefault("Summons a pet drone");
-			SacrificeTotal = 1;
+			// DisplayName.SetDefault("Mysterious Package");
+			// Tooltip.SetDefault("Summons a pet drone");
+			Item.ResearchUnlockCount = 1;
 		}
 
 		public override void SetDefaults () {

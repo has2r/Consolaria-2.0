@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.WorldBuilding;
 
 namespace Consolaria.Common {
     public static class WorldGenHelper {
@@ -19,9 +20,9 @@ namespace Consolaria.Common {
             }
             for (int index1 = 0; index1 < 1000; ++index1) {
                 int x = WorldGen.genRand.Next(minValue, maxValue - width);
-                int y = WorldGen.genRand.Next((int) WorldGen.rockLayerLow, (int) WorldGen.rockLayer + 100);
+                int y = WorldGen.genRand.Next((int) GenVars.rockLayerLow, (int) GenVars.rockLayer + 100);
                 Rectangle rectangle = new(x, y, width, height);
-                if (WorldGen.structures.CanPlace(rectangle, 0)) {
+                if (GenVars.structures.CanPlace(rectangle, 0)) {
                     bool flag = true;
                     for (int index2 = 0; index2 < 1000; ++index2) {
                         Chest chest;

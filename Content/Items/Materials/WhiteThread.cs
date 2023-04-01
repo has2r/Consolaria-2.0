@@ -9,7 +9,7 @@ namespace Consolaria.Content.Items.Materials
     public class WhiteThread : ModItem
     {
         public override void SetStaticDefaults() {
-            DisplayName.SetDefault("White Thread");
+            // DisplayName.SetDefault("White Thread");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 5;
         }
 

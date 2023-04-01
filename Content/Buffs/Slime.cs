@@ -7,8 +7,8 @@ namespace Consolaria.Content.Buffs
 	public class Slime : ModBuff
 	{
 		public override void SetStaticDefaults() {
-			DisplayName.SetDefault("Pet Slime");
-			Description.SetDefault("A real slime ball");
+			// DisplayName.SetDefault("Pet Slime");
+			// Description.SetDefault("A real slime ball");
 			Main.buffNoTimeDisplay[Type] = true;
 			Main.vanityPet[Type] = true;
 		}

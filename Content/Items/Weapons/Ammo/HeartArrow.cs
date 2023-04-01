@@ -9,8 +9,8 @@ namespace Consolaria.Content.Items.Weapons.Ammo {
     public class HeartArrow : ModItem {
 
         public override void SetStaticDefaults() {
-            DisplayName.SetDefault("Heart Arrow"); 
-            Tooltip.SetDefault("'Legendary arrows from cupid himself'" + "\nHas a chance to stun enemies on hit");
+            // DisplayName.SetDefault("Heart Arrow"); 
+            // Tooltip.SetDefault("'Legendary arrows from cupid himself'" + "\nHas a chance to stun enemies on hit");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 99;
         }

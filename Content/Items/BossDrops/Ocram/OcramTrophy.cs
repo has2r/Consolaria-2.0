@@ -9,7 +9,7 @@ namespace Consolaria.Content.Items.BossDrops.Ocram
     public class OcramTrophy : ModItem
     {
         public override void SetStaticDefaults() {
-            DisplayName.SetDefault("Ocram Trophy");
+            // DisplayName.SetDefault("Ocram Trophy");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
         

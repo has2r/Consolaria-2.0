@@ -9,13 +9,13 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Items.Weapons.Melee {
     public class Tonbogiri : ModItem {
         public override void SetStaticDefaults () {
-            DisplayName.SetDefault("Tonbogiri");
-            Tooltip.SetDefault("'A legendary Japanese spear coated in venom'");
+            // DisplayName.SetDefault("Tonbogiri");
+            // Tooltip.SetDefault("'A legendary Japanese spear coated in venom'");
 
             ItemID.Sets.SkipsInitialUseSound [Item.type] = true;
             ItemID.Sets.Spears [Item.type] = true;
 
-            SacrificeTotal = 1;
+            Item.ResearchUnlockCount = 1;
         }
 
         public override void SetDefaults () {

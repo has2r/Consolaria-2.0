@@ -56,7 +56,7 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
         private readonly float rad = (float) Math.PI * 2f;
 
         public override void SetStaticDefaults () {
-            DisplayName.SetDefault("Ocram");
+            // DisplayName.SetDefault("Ocram");
             Main.npcFrameCount [NPC.type] = 6;
             NPCID.Sets.MPAllowedEnemies [Type] = true;
 
@@ -114,7 +114,7 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
             
         }
 
-        public override void ScaleExpertStats (int numPlayers, float bossLifeScale) {
+        public override void ApplyDifficultyAndPlayerScaling (int numPlayers, float balance, float bossAdjustment)/* tModPorter Note: bossLifeScale -> balance (bossAdjustment is different, see the docs for details) */ {
             NPC.lifeMax = (int)(NPC.lifeMax * 0.5f * 1.3f);
             NPC.damage = (int) (NPC.damage * 0.7f);
             if (numPlayers <= 1) return;
@@ -1027,7 +1027,7 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
             }
         }
 
-        public override void HitEffect (int hitDirection, double damage) {
+        public override void HitEffect (NPC.HitInfo hit) {
             if (Main.netMode != NetmodeID.Server) {
                 for (int k = 0; k < damage / NPC.lifeMax * 100; k++)
                     Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.SeaSnail, hitDirection, -1f, 0, default, 1f);

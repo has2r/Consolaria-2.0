@@ -11,7 +11,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
             => ref NPC.ai [0];
 
         public override void SetStaticDefaults () {
-            DisplayName.SetDefault("Lepus Egg");
+            // DisplayName.SetDefault("Lepus Egg");
             NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0) {
                 Hide = true
             };
@@ -44,7 +44,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
             NPC.friendly = false;
         }
 
-        public override void ScaleExpertStats (int numPlayers, float bossLifeScale)
+        public override void ApplyDifficultyAndPlayerScaling (int numPlayers, float balance, float bossAdjustment)/* tModPorter Note: bossLifeScale -> balance (bossAdjustment is different, see the docs for details) */
             => NPC.lifeMax = 50 + (int)(numPlayers > 1 ? NPC.lifeMax * 0.15 * numPlayers : 0);
 
         public override bool? DrawHealthBar (byte hbPosition, ref float scale, ref Vector2 position)
@@ -71,7 +71,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
             }
         }
 
-        public override void HitEffect (int hitDirection, double damage) {
+        public override void HitEffect (NPC.HitInfo hit) {
             int max = 2000;
             Death(Timer >= max);
         }

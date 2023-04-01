@@ -8,8 +8,8 @@ namespace Consolaria.Content.Items.Banners
 	public class AlbinoAntlionBanner : ModItem {
 
 		public override void SetStaticDefaults () {
-			SacrificeTotal = 1;
-			Tooltip.SetDefault("{$CommonItemTooltip.BannerBonus}Albino Antlion");
+			Item.ResearchUnlockCount = 1;
+			// Tooltip.SetDefault("{$CommonItemTooltip.BannerBonus}Albino Antlion");
 		}
 
 		public override void SetDefaults() {

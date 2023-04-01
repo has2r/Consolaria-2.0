@@ -11,10 +11,10 @@ namespace Consolaria.Content.Items.Vanity {
 
 	public class GeorgesTuxedoShirt : ModItem {
 		public override void SetStaticDefaults () {
-			DisplayName.SetDefault("George's Tuxedo Shirt");
-			Tooltip.SetDefault("'Oh myyy!'");
+			// DisplayName.SetDefault("George's Tuxedo Shirt");
+			// Tooltip.SetDefault("'Oh myyy!'");
 
-			SacrificeTotal = 1;
+			Item.ResearchUnlockCount = 1;
 		}
 
 		public override void SetDefaults () {

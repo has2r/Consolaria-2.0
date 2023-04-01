@@ -7,8 +7,8 @@ namespace Consolaria.Content.Buffs {
 	{
 		public override void SetStaticDefaults() 
 		{
-			DisplayName.SetDefault("Android");
-			Description.SetDefault("Beep-Boop");
+			// DisplayName.SetDefault("Android");
+			// Description.SetDefault("Beep-Boop");
 
 			Main.buffNoTimeDisplay[Type] = true;
 			Main.vanityPet[Type] = true;

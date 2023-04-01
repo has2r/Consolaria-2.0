@@ -9,8 +9,8 @@ namespace Consolaria.Content.Items.Vanity {
 
 	public class MonokumaLegs : ModItem {
 		public override void SetStaticDefaults () {
-			DisplayName.SetDefault("Monokuma Legs");
-			SacrificeTotal = 1;
+			// DisplayName.SetDefault("Monokuma Legs");
+			Item.ResearchUnlockCount = 1;
 		}
 
 		public override void SetDefaults () {

@@ -4,6 +4,7 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
@@ -22,8 +23,8 @@ namespace Consolaria.Content.Tiles {
 
             AdjTiles = new int [] { TileID.SoulBottles };
 
-            ModTranslation name = CreateMapEntryName();
-            name.SetDefault("Soul of Blight in a Bottle");
+            LocalizedText name = CreateMapEntryName();
+            // name.SetDefault("Soul of Blight in a Bottle");
             AddMapEntry(new Color(238, 145, 105), name);
 
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);

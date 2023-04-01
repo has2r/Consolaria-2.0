@@ -6,8 +6,8 @@ using Terraria.ID;
 namespace Consolaria.Content.Items.Banners {
 	public class DisasterBunnyBanner : ModItem {
 		public override void SetStaticDefaults () {
-			SacrificeTotal = 1;
-			Tooltip.SetDefault("{$CommonItemTooltip.BannerBonus}Disaster Bunny");
+			Item.ResearchUnlockCount = 1;
+			// Tooltip.SetDefault("{$CommonItemTooltip.BannerBonus}Disaster Bunny");
 		}
 
 		public override void SetDefaults () {

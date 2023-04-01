@@ -7,8 +7,8 @@ namespace Consolaria.Content.Buffs
 	public class GoldenTurtle : ModBuff
 	{
 		public override void SetStaticDefaults() {
-			DisplayName.SetDefault("Golden Turtle");
-			Description.SetDefault("Rare turtle");
+			// DisplayName.SetDefault("Golden Turtle");
+			// Description.SetDefault("Rare turtle");
 			Main.buffNoTimeDisplay[Type] = true;
 			Main.vanityPet[Type] = true;
 		}

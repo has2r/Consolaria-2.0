@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework;
 namespace Consolaria.Content.Items.BossDrops.Turkor {
 	public class TurkorMusicBox : ModItem {
 		public override void SetStaticDefaults () {
-			DisplayName.SetDefault("Music Box (Turkor the Ungrateful)");
+			// DisplayName.SetDefault("Music Box (Turkor the Ungrateful)");
 			MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Assets/Music/Turkor"), ModContent.ItemType<TurkorMusicBox>(), ModContent.TileType<Tiles.TurkorMusicBox>());
 		}
 
@@ -15,7 +15,7 @@ namespace Consolaria.Content.Items.BossDrops.Turkor {
 			Item.Size = new Vector2(width, height);
 
 			Item.accessory = true;
-			Item.canBePlacedInVanityRegardlessOfConditions = true;
+			Item.hasVanityEffects = true;
 
 			Item.rare = ItemRarityID.LightRed;
 			Item.value = Item.sellPrice(gold: 1);

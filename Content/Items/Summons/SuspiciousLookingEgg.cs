@@ -8,10 +8,10 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Items.Summons {
     public class SuspiciousLookingEgg : ModItem {
         public override void SetStaticDefaults () {
-            DisplayName.SetDefault("Suspicious Looking Egg");
-            Tooltip.SetDefault("Summons Lepus");
+            // DisplayName.SetDefault("Suspicious Looking Egg");
+            // Tooltip.SetDefault("Summons Lepus");
 
-            SacrificeTotal = 3;
+            Item.ResearchUnlockCount = 3;
             ItemID.Sets.SortingPriorityBossSpawns [Type] = 12;
         }
 
@@ -41,7 +41,7 @@ namespace Consolaria.Content.Items.Summons {
             if (Main.netMode != NetmodeID.MultiplayerClient)
                 NPC.SpawnOnPlayer(player.whoAmI, type);
             else
-                NetMessage.SendData(MessageID.SpawnBoss, number: player.whoAmI, number2: type);
+                NetMessage.SendData(MessageID.SpawnBossUseLicenseStartEvent, number: player.whoAmI, number2: type);
             return true;
         }
     }

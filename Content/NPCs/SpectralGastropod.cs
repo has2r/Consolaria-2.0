@@ -12,7 +12,7 @@ using Terraria.ModLoader.Utilities;
 namespace Consolaria.Content.NPCs {
 	public class SpectralGastropod : ModNPC {
 		public override void SetStaticDefaults () {
-			DisplayName.SetDefault("Spectrapod");
+			// DisplayName.SetDefault("Spectrapod");
 			Main.npcFrameCount [NPC.type] = 11;
 
 			NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData {
@@ -101,7 +101,7 @@ namespace Consolaria.Content.NPCs {
 			Lighting.AddLight(NPC.Center, new Vector3(0f, 0.7f, 0.9f));
 		}
 
-		public override void HitEffect (int hitDirection, double damage) {
+		public override void HitEffect (NPC.HitInfo hit) {
 			if (Main.netMode == NetmodeID.Server)
 				return;
 

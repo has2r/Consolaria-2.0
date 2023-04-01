@@ -118,7 +118,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
 
             NPCID.Sets.TrailingMode [Type] = 1;
 
-            DisplayName.SetDefault(nameof(Lepus));
+            // DisplayName.SetDefault(nameof(Lepus));
 
             Main.npcFrameCount [Type] = 7;
 
@@ -173,7 +173,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
                 Music = ModContent.GetInstance<ConsolariaConfig>().vanillaBossMusic ? MusicID.UndergroundHallow : MusicLoader.GetMusicSlot(Mod, MUSIC_PATH);
         }
 
-        public override void ScaleExpertStats (int numPlayers, float bossLifeScale) {
+        public override void ApplyDifficultyAndPlayerScaling (int numPlayers, float balance, float bossAdjustment)/* tModPorter Note: bossLifeScale -> balance (bossAdjustment is different, see the docs for details) */ {
             NPC.lifeMax = (int) (NPC.lifeMax * 0.5f * 1.25f);
             NPC.damage = (int) (NPC.damage * 0.65f);
             if (numPlayers <= 1) return;
@@ -445,7 +445,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
             }
         }
 
-        public override void HitEffect (int hitDirection, double damage) {
+        public override void HitEffect (NPC.HitInfo hit) {
             if (Main.netMode == NetmodeID.Server || State == STATE_DEAD_PLAYERS) {
                 return;
             }

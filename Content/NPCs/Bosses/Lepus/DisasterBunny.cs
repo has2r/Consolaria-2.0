@@ -11,7 +11,7 @@ using Terraria.ModLoader.Utilities;
 namespace Consolaria.Content.NPCs.Bosses.Lepus {
     public class DisasterBunny : ModNPC {
         public override void SetStaticDefaults () {
-            DisplayName.SetDefault("Diseaster Bunny");
+            // DisplayName.SetDefault("Diseaster Bunny");
             Main.npcFrameCount [NPC.type] = 7;
 
             NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0) {
@@ -45,7 +45,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
             BannerItem = ModContent.ItemType<Items.Banners.DisasterBunnyBanner>();
         }
 
-		public override void ScaleExpertStats (int numPlayers, float bossLifeScale)
+		public override void ApplyDifficultyAndPlayerScaling (int numPlayers, float balance, float bossAdjustment)/* tModPorter Note: bossLifeScale -> balance (bossAdjustment is different, see the docs for details) */
             => NPC.lifeMax = 105;
 
         public override void SetBestiary (BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
@@ -55,7 +55,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
             });
         }
 
-        public override void HitEffect (int hitDirection, double damage) {
+        public override void HitEffect (NPC.HitInfo hit) {
             if (Main.netMode == NetmodeID.Server)
                 return;
 

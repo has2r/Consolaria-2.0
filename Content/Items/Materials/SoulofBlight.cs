@@ -7,8 +7,8 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Items.Materials {
     public class SoulofBlight : ModItem {
         public override void SetStaticDefaults () {
-            DisplayName.SetDefault("Soul of Blight");
-            Tooltip.SetDefault("'The essence of infected creatures'");
+            // DisplayName.SetDefault("Soul of Blight");
+            // Tooltip.SetDefault("'The essence of infected creatures'");
 
             Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(5, 4));
 
@@ -16,7 +16,7 @@ namespace Consolaria.Content.Items.Materials {
             ItemID.Sets.ItemIconPulse [Item.type] = true;
             ItemID.Sets.ItemNoGravity [Item.type] = true;
 
-            SacrificeTotal = 25;
+            Item.ResearchUnlockCount = 25;
         }
 
         public override void SetDefaults () {

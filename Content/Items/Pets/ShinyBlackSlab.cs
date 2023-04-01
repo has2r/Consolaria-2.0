@@ -7,9 +7,9 @@ namespace Consolaria.Content.Items.Pets {
 	{
 		public override void SetStaticDefaults () 
 		{
-			DisplayName.SetDefault("Shiny Black Slab");
-			Tooltip.SetDefault("Summons a pet android");
-			SacrificeTotal = 1;
+			// DisplayName.SetDefault("Shiny Black Slab");
+			// Tooltip.SetDefault("Summons a pet android");
+			Item.ResearchUnlockCount = 1;
 		}
 
 		public override void SetDefaults () {

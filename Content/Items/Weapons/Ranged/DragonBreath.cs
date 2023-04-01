@@ -7,10 +7,10 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Items.Weapons.Ranged {
     public class DragonBreath : ModItem {
 		public override void SetStaticDefaults () {
-			DisplayName.SetDefault("Dragon's Breath");
-			Tooltip.SetDefault("70% chance to not consume gel");
+			// DisplayName.SetDefault("Dragon's Breath");
+			// Tooltip.SetDefault("70% chance to not consume gel");
 
-			SacrificeTotal = 1;
+			Item.ResearchUnlockCount = 1;
 		}
 
 		public override void SetDefaults () {

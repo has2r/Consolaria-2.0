@@ -19,7 +19,7 @@ namespace Consolaria.Content.NPCs {
 		private bool spawned = false;
 
 		public override void SetStaticDefaults () {
-			DisplayName.SetDefault("Dragon Snatcher");
+			// DisplayName.SetDefault("Dragon Snatcher");
 			Main.npcFrameCount [NPC.type] = 3;
 
 			NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData {
@@ -150,7 +150,7 @@ namespace Consolaria.Content.NPCs {
 			return true;
 		}
 
-		public override void HitEffect (int hitDirection, double damage) {
+		public override void HitEffect (NPC.HitInfo hit) {
 			if (Main.netMode == NetmodeID.Server)
 				return;
 

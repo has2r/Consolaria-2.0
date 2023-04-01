@@ -13,7 +13,7 @@ using Terraria.ModLoader.Utilities;
 namespace Consolaria.Content.NPCs {
 	public class DragonHornet : ModNPC {
 		public override void SetStaticDefaults () {
-			DisplayName.SetDefault("Dragon Hornet");
+			// DisplayName.SetDefault("Dragon Hornet");
 			Main.npcFrameCount [NPC.type] = 3;
 
 			NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData {
@@ -78,10 +78,10 @@ namespace Consolaria.Content.NPCs {
 			}
 		}
 
-		public override void OnHitPlayer (Player target, int damage, bool crit)
+		public override void OnHitPlayer (Player target, Player.HurtInfo hurtInfo)
 			=> target.AddBuff(BuffID.Poisoned, 180);
 
-		public override void HitEffect (int hitDirection, double damage) {
+		public override void HitEffect (NPC.HitInfo hit) {
 			if (Main.netMode == NetmodeID.Server)
 				return;
 

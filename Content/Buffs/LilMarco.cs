@@ -7,8 +7,8 @@ namespace Consolaria.Content.Buffs
 	public class LilMarco : ModBuff
 	{
 		public override void SetStaticDefaults() {
-			DisplayName.SetDefault("Lil' Marco");
-			Description.SetDefault("Evil itself is following you");
+			// DisplayName.SetDefault("Lil' Marco");
+			// Description.SetDefault("Evil itself is following you");
 
 			Main.buffNoTimeDisplay[Type] = true;
 			Main.lightPet [Type] = true;

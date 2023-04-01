@@ -7,13 +7,13 @@ using Terraria.DataStructures;
 namespace Consolaria.Content.Items.Weapons.Summon {
     public class EternityStaff : ModItem {
 		public override void SetStaticDefaults () {
-			DisplayName.SetDefault("Eternity Staff");
-			Tooltip.SetDefault("Summons an eye of eternity to fight for you");
+			// DisplayName.SetDefault("Eternity Staff");
+			// Tooltip.SetDefault("Summons an eye of eternity to fight for you");
 
 			ItemID.Sets.GamepadWholeScreenUseRange [Item.type] = true;
 			ItemID.Sets.LockOnIgnoresCollision [Item.type] = true;
 
-			SacrificeTotal = 1;
+			Item.ResearchUnlockCount = 1;
 		}
 
 		public override void SetDefaults () {

@@ -6,8 +6,8 @@ using Microsoft.Xna.Framework;
 namespace Consolaria.Content.Items.BossDrops.Ocram {
     public class OcramMusicBox : ModItem {
 		public override void SetStaticDefaults () {
-			DisplayName.SetDefault("Music Box (Ocram)");
-			SacrificeTotal = 1;
+			// DisplayName.SetDefault("Music Box (Ocram)");
+			Item.ResearchUnlockCount = 1;
 
 			MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Assets/Music/Ocram"), ModContent.ItemType<OcramMusicBox>(), ModContent.TileType<Tiles.OcramMusicBox>());
 		}
@@ -17,7 +17,7 @@ namespace Consolaria.Content.Items.BossDrops.Ocram {
 			Item.Size = new Vector2(width, height);
 
 			Item.accessory = true;
-			Item.canBePlacedInVanityRegardlessOfConditions = true;
+			Item.hasVanityEffects = true;
 
 			Item.rare = ItemRarityID.LightRed;
 			Item.value = Item.sellPrice(gold: 1);

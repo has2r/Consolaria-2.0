@@ -14,10 +14,10 @@ namespace Consolaria.Content.Items.Armor.Summon {
         }
 
         public override void SetStaticDefaults () {
-            DisplayName.SetDefault("Warlock Robe");
-            Tooltip.SetDefault("Increases your max number of minions by 1" + "\n20% increased minion damage");
+            // DisplayName.SetDefault("Warlock Robe");
+            // Tooltip.SetDefault("Increases your max number of minions by 1" + "\n20% increased minion damage");
 
-            SacrificeTotal = 1;
+            Item.ResearchUnlockCount = 1;
         }
 
         public override void SetDefaults () {

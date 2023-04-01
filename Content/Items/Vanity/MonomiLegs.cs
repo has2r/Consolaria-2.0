@@ -12,7 +12,7 @@ namespace Consolaria.Content.Items.Vanity
 	public class MonomiLegs : ModItem
 	{
 		public override void SetStaticDefaults() {
-			DisplayName.SetDefault("Monomi Legs");
+			// DisplayName.SetDefault("Monomi Legs");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 

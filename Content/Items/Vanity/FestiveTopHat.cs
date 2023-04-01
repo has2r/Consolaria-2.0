@@ -10,8 +10,8 @@ namespace Consolaria.Content.Items.Vanity
 	public class FestiveTopHat : ModItem
 	{
 		public override void SetStaticDefaults() {
-			DisplayName.SetDefault("Festive Top Hat");
-			Tooltip.SetDefault("'Because nothing tops the festive season!'");
+			// DisplayName.SetDefault("Festive Top Hat");
+			// Tooltip.SetDefault("'Because nothing tops the festive season!'");
 
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}

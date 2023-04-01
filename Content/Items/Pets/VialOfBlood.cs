@@ -6,8 +6,8 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Items.Pets {
     public class VialOfBlood : PetItem {
 		public override void SetStaticDefaults () {
-			Tooltip.SetDefault("Summons a pet Bat");
-			SacrificeTotal = 1;
+			// Tooltip.SetDefault("Summons a pet Bat");
+			Item.ResearchUnlockCount = 1;
 		}
 
 		public override void SetDefaults () {

@@ -6,8 +6,8 @@ using Terraria.ID;
 namespace Consolaria.Content.Items.Banners {
 	public class MythicalWyvernBanner : ModItem {
 		public override void SetStaticDefaults () {
-			SacrificeTotal = 1;
-			Tooltip.SetDefault("{$CommonItemTooltip.BannerBonus}Mythical Wyvern");
+			Item.ResearchUnlockCount = 1;
+			// Tooltip.SetDefault("{$CommonItemTooltip.BannerBonus}Mythical Wyvern");
 		}
 
 		public override void SetDefaults () {

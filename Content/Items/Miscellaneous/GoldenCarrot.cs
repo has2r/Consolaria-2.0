@@ -20,7 +20,7 @@ namespace Consolaria.Content.Items.Miscellaneous
 			};
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 5;
 			Main.RegisterItemAnimation(Type, new DrawAnimationVertical(int.MaxValue, 3));
-			Tooltip.SetDefault("Medium improvements to all stats\nIncreases all buffs time by 15 seconds\n'GOLDEN CARROT?! WHAT?!'");
+			// Tooltip.SetDefault("Medium improvements to all stats\nIncreases all buffs time by 15 seconds\n'GOLDEN CARROT?! WHAT?!'");
 		}
 
 		public override void SetDefaults() {

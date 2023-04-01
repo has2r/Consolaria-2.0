@@ -6,8 +6,8 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Items.Weapons.Ranged {
     public class Sharanga : ModItem {
 		public override void SetStaticDefaults () {
-			Tooltip.SetDefault("Shoots Spectral Arrows");
-			SacrificeTotal = 1;
+			// Tooltip.SetDefault("Shoots Spectral Arrows");
+			Item.ResearchUnlockCount = 1;
 		}
 
 		public override void SetDefaults () {

@@ -8,10 +8,10 @@ namespace Consolaria.Content.Items.Vanity {
 
 	public class Lederweste : ModItem {
 		public override void SetStaticDefaults () {
-			DisplayName.SetDefault("Lederweste");
-			Tooltip.SetDefault("");
+			// DisplayName.SetDefault("Lederweste");
+			// Tooltip.SetDefault("");
 
-			SacrificeTotal = 1;
+			Item.ResearchUnlockCount = 1;
 		}
 
 		public override void SetDefaults () {

@@ -9,7 +9,7 @@ namespace Consolaria.Content.Items.BossDrops.Turkor
     public class TurkorTrophy : ModItem
     {
         public override void SetStaticDefaults() {
-            DisplayName.SetDefault("Turkor the Ungrateful Trophy");
+            // DisplayName.SetDefault("Turkor the Ungrateful Trophy");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
         

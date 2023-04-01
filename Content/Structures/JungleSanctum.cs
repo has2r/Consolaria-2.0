@@ -10,7 +10,7 @@ using Consolaria.Common;
 
 namespace Consolaria.Content.Structures {
     public class JungleSanctum : ModSystem {
-        public override void ModifyWorldGenTasks (List<GenPass> tasks, ref float totalWeight) {
+        public override void ModifyWorldGenTasks (List<GenPass> tasks, ref double totalWeight) {
             int index = tasks.FindIndex(genpass => genpass.Name.Equals("Micro Biomes"));
             if (index != -1) {
                 tasks.Insert(index + 1, new JungleSanctumGeneration("Jungle Sanctum", 10f));
@@ -158,7 +158,7 @@ namespace Consolaria.Content.Structures {
                     }
                 }
 
-                WorldGen.structures.AddStructure(new Rectangle(JungleSanctumPositionX, JungleSanctumPositionY, width, height), 2);
+                GenVars.structures.AddStructure(new Rectangle(JungleSanctumPositionX, JungleSanctumPositionY, width, height), 2);
             } while (structureCount != WorldGenHelper.GetWorldSize());
         }
 

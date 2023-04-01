@@ -6,8 +6,8 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Items.Weapons.Ranged {
     public class SpicySauce : ModItem {
         public override void SetStaticDefaults () {
-            Tooltip.SetDefault("Covers enemies in oil" + "\nSet oiled enemies on fire for extra damage");
-            SacrificeTotal = 99;
+            // Tooltip.SetDefault("Covers enemies in oil" + "\nSet oiled enemies on fire for extra damage");
+            Item.ResearchUnlockCount = 99;
         }
 
         public override void SetDefaults () {

@@ -9,7 +9,7 @@ namespace Consolaria.Content.Items.Weapons.Ammo
     public class VulcanBolt : ModItem
     {
         public override void SetStaticDefaults() {
-            DisplayName.SetDefault("Vulcan Bolt");
+            // DisplayName.SetDefault("Vulcan Bolt");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 99;
         }
 

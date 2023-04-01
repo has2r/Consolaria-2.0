@@ -45,20 +45,20 @@ namespace Consolaria.Content.Projectiles.Friendly {
 			return;
 		}
 
-		public override void OnHitNPC (NPC target, int damage, float knockback, bool crit) {
+		public override void OnHitNPC (NPC target, NPC.HitInfo hit, int damageDone) {
 			if (Projectile.timeLeft > 4)
 				Projectile.timeLeft = 4;
 			target.AddBuff(BuffID.OnFire, 180);
 		}
 
-		public override void ModifyHitNPC (NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection) {
+		public override void ModifyHitNPC (NPC target, ref NPC.HitModifiers modifiers) {
 			if (Main.expertMode) {
-				if (target.type >= NPCID.EaterofWorldsHead && target.type <= NPCID.EaterofWorldsTail) damage /= 5;
+				if (target.type >= NPCID.EaterofWorldsHead && target.type <= NPCID.EaterofWorldsTail) modifiers.FinalDamage.Flat *= 0.2f;
 			}
 		}
 
-		public override void ModifyHitPlayer (Player target, ref int damage, ref bool crit)
-			=> damage /= 4;
+		public override void ModifyHitPlayer (Player target, ref Player.HurtModifiers modifiers)
+			=> modifiers.FinalDamage.Flat *= 0.25f;
 
 		public override bool OnTileCollide (Vector2 oldVelocity) {
 			extraRotation = true;

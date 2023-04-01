@@ -86,7 +86,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
 			}
 		}
 
-        public override void OnHitPlayer (Player target, int damage, bool crit) {
+        public override void OnHitPlayer (Player target, Player.HurtInfo info) {
 			short debuffTime = 120;
 			short debuffTime2 = 180;
 			target.AddBuff(BuffID.Slow, Main.expertMode ? debuffTime2 : debuffTime);

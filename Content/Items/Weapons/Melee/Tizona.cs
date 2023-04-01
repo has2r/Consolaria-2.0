@@ -7,8 +7,8 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Items.Weapons.Melee {
     public class Tizona : ModItem {
 		public override void SetStaticDefaults () {
-			Tooltip.SetDefault("Shoots a cursed skull");
-			SacrificeTotal = 1;
+			// Tooltip.SetDefault("Shoots a cursed skull");
+			Item.ResearchUnlockCount = 1;
 		}
 
 		public override void SetDefaults () {

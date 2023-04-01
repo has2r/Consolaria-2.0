@@ -6,8 +6,8 @@ using Microsoft.Xna.Framework;
 namespace Consolaria.Content.Items.Weapons.Melee {
     public class AlbinoMandible : ModItem {
 		public override void SetStaticDefaults () {
-			Tooltip.SetDefault("'Surprisingly aerodynamic...'");
-			SacrificeTotal = 1;
+			// Tooltip.SetDefault("'Surprisingly aerodynamic...'");
+			Item.ResearchUnlockCount = 1;
 		}
 
 		public override void SetDefaults () {

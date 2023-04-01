@@ -60,7 +60,7 @@ namespace Consolaria.Content.NPCs {
 		public override void AI ()
 			=> Lighting.AddLight(NPC.Center, new Vector3(0.8f, 0f, 0.7f));
 
-		public override void OnHitPlayer (Player target, int damage, bool crit) {
+		public override void OnHitPlayer (Player target, Player.HurtInfo hurtInfo) {
 			if (Main.rand.NextBool(5))
 				target.AddBuff(BuffID.Bleeding, 60 * 5);
 
@@ -76,7 +76,7 @@ namespace Consolaria.Content.NPCs {
 			}
 		}
 
-		public override void HitEffect (int hitDirection, double damage) {
+		public override void HitEffect (NPC.HitInfo hit) {
 			if (Main.netMode == NetmodeID.Server)
 				return;
 

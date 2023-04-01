@@ -10,10 +10,10 @@ namespace Consolaria.Content.Items.Armor.Summon {
     [AutoloadEquip(EquipType.Head)]
     public class WarlockHood : ModItem {
         public override void SetStaticDefaults () {
-            DisplayName.SetDefault("Warlock Hood");
-            Tooltip.SetDefault("Increases your max number of minions by 1" + "\n20% increased minion damage");
+            // DisplayName.SetDefault("Warlock Hood");
+            // Tooltip.SetDefault("Increases your max number of minions by 1" + "\n20% increased minion damage");
 
-            SacrificeTotal = 1;
+            Item.ResearchUnlockCount = 1;
         }
 
         public override void SetDefaults () {
@@ -71,7 +71,7 @@ namespace Consolaria.Content.Items.Armor.Summon {
                 healingTimer--;
         }
 
-        public override void OnHitNPCWithProj (Projectile proj, NPC target, int damage, float knockback, bool crit) {
+        public override void OnHitNPCWithProj (Projectile proj, NPC target, NPC.HitInfo hit, int damageDone)/* tModPorter If you don't need the Projectile, consider using OnHitNPC instead */ {
             if (target.type == NPCID.TargetDummy || Player.moonLeech || !necroHealing)
                 return;
 

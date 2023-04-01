@@ -23,7 +23,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
             DrawOriginOffsetY = -6;
         }
 
-        public override void ModifyHitNPC (NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection) {
+        public override void ModifyHitNPC (NPC target, ref NPC.HitModifiers modifiers) {
             if (Main.expertMode) {
                 if (target.type >= NPCID.EaterofWorldsHead && target.type <= NPCID.EaterofWorldsTail) damage /= 5;
             }

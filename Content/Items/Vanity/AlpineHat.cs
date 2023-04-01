@@ -8,11 +8,11 @@ namespace Consolaria.Content.Items.Vanity {
 
 	public class AlpineHat : ModItem {
 		public override void SetStaticDefaults () {
-			DisplayName.SetDefault("Alpine Hat");
-			Tooltip.SetDefault("");
+			// DisplayName.SetDefault("Alpine Hat");
+			// Tooltip.SetDefault("");
 
 			ArmorIDs.Head.Sets.DrawHatHair [Item.headSlot] = true;
-			SacrificeTotal = 1;
+			Item.ResearchUnlockCount = 1;
 		}
 
 		public override void SetDefaults () {

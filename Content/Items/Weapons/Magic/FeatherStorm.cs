@@ -9,10 +9,10 @@ using Consolaria.Content.Projectiles.Friendly;
 namespace Consolaria.Content.Items.Weapons.Magic {
     public class FeatherStorm : ModItem {
         public override void SetStaticDefaults () {
-            DisplayName.SetDefault("Feather Storm");
-            Tooltip.SetDefault("Casts feathers from the sky");
+            // DisplayName.SetDefault("Feather Storm");
+            // Tooltip.SetDefault("Casts feathers from the sky");
 
-            SacrificeTotal = 1;
+            Item.ResearchUnlockCount = 1;
         }
 
         public override void SetDefaults () {

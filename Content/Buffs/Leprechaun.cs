@@ -5,8 +5,8 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Buffs {
 	public class Leprechaun : ModBuff {
 		public override void SetStaticDefaults () {
-			DisplayName.SetDefault("Leprechaun O'Fyffe");
-			Description.SetDefault("Full of coins");
+			// DisplayName.SetDefault("Leprechaun O'Fyffe");
+			// Description.SetDefault("Full of coins");
 
 			Main.buffNoTimeDisplay [Type] = true;
 			Main.vanityPet [Type] = true;

@@ -6,8 +6,8 @@ namespace Consolaria.Content.Items.Vanity {
 	[AutoloadEquip(EquipType.Legs)]
 	public class AncientHerosPants : ModItem {
 		public override void SetStaticDefaults () {
-			DisplayName.SetDefault("Ancient Hero's Pants");
-			SacrificeTotal= 1;
+			// DisplayName.SetDefault("Ancient Hero's Pants");
+			Item.ResearchUnlockCount= 1;
 		}
 
 		public override void SetDefaults () {

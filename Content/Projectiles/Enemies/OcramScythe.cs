@@ -10,7 +10,7 @@ namespace Consolaria.Content.Projectiles.Enemies {
 		private float rotationTimer = (float) Math.PI;
 
 		public override void SetStaticDefaults () {
-			DisplayName.SetDefault("Supreme Demon Scythe");
+			// DisplayName.SetDefault("Supreme Demon Scythe");
 
 			ProjectileID.Sets.TrailCacheLength [Projectile.type] = 8;
 			ProjectileID.Sets.TrailingMode [Projectile.type] = 2;
@@ -68,7 +68,7 @@ namespace Consolaria.Content.Projectiles.Enemies {
 			return true;
 		}
 
-		public override void OnHitPlayer (Player target, int damage, bool crit)
+		public override void OnHitPlayer (Player target, Player.HurtInfo info)
 			=> target.AddBuff(BuffID.ShadowFlame, 180);
 
 		public override Color? GetAlpha (Color lightColor)

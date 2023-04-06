@@ -102,10 +102,11 @@ namespace Consolaria.Content.Items.BossDrops.Ocram {
                     Main.gore [goreIndex].GetAlpha(new Color(75, 0, 130, 100));
                 }
             }
+      
             for (int _npc = 0; _npc < Main.maxNPCs; _npc++) {
                 NPC npc = Main.npc [_npc];
                 if (npc.active && !npc.friendly && npc.life > 0 && !npc.dontTakeDamage && npc.Distance(Player.position) <= 120) {
-                    npc.StrikeNPCNoInteraction(rocketJumpDamage, rocketJumpKnockBack, 0, Main.rand.NextBool(4) ? true : false, false, false);
+                    //npc.StrikeNPCNoInteraction(rocketJumpDamage, rocketJumpKnockBack, 0, Main.rand.NextBool(4) ? true : false, false, false);
                     npc.AddBuff(BuffID.ShadowFlame, 180);
                 }
             }

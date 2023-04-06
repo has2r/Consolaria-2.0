@@ -68,7 +68,7 @@ namespace Consolaria.Content.NPCs {
 				for (int i = 0; i < 10; i++)
 					Dust.NewDust(NPC.position, i, i, DustID.Blood, 2, 2, 100, default, 0.9f);
 
-				int healLife = damage / 5;
+				int healLife = hurtInfo.Damage / 5;
 				if (healLife > 0) {
 					NPC.life += healLife;
 					NPC.HealEffect(healLife, true);
@@ -80,12 +80,12 @@ namespace Consolaria.Content.NPCs {
 			if (Main.netMode == NetmodeID.Server)
 				return;
 
-			Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood, 2.5f * hitDirection, -2.5f, 0, default, 0.7f);
+			Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood, 2.5f * hit.HitDirection, -2.5f, 0, default, 0.7f);
 			if (NPC.life <= 0) {
 				Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity, ModContent.Find<ModGore>("Consolaria/vampgore1").Type, 1f);
 				Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity, ModContent.Find<ModGore>("Consolaria/vampgore2").Type, 1f);
 				for (int i = 0; i < 20; i++)
-					Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood, 2.5f * hitDirection, -2.5f, 0, default, 1f);
+					Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood, 2.5f * hit.HitDirection, -2.5f, 0, default, 1f);
 			}
 		}
 

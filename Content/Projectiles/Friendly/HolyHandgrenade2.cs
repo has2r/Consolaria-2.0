@@ -31,7 +31,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
 
         public override void ModifyHitNPC (NPC target, ref NPC.HitModifiers modifiers) {
             if (Main.expertMode) {
-                if (target.type >= NPCID.EaterofWorldsHead && target.type <= NPCID.EaterofWorldsTail) damage /= 5;
+                if (target.type >= NPCID.EaterofWorldsHead && target.type <= NPCID.EaterofWorldsTail) modifiers.FinalDamage /= 5;
             }
         }
 

@@ -7,9 +7,6 @@ namespace Consolaria.Content.Projectiles.Enemies {
 	public class FireTrail : ModProjectile {
 		public override string Texture => "Consolaria/Assets/Textures/Empty";
 
-		public override void SetStaticDefaults ()
-			=> DisplayName.SetDefault("Fire Trail");
-
 		public override void SetDefaults () {
 			int width = 8; int height = width;
 			Projectile.Size = new Vector2(width, height);

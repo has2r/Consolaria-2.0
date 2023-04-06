@@ -58,13 +58,13 @@ namespace Consolaria.Content.NPCs {
             if (Main.netMode == NetmodeID.Server)
                 return;
 
-            Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.BlueFairy, 2.5f * hitDirection, -2.5f, 100, default, 1f);
+            Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.BlueFairy, 2.5f * hit.HitDirection, -2.5f, 100, default, 1f);
             if (NPC.life <= 0) {
                 Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity / 2f, 11, 1f);
                 Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity / 2f, 12, 1f);
                 Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity / 2f, 13, 1f);
                 for (int i = 0; i < 20; i++)
-                    Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.BlueFairy, 2.5f * hitDirection, -2.5f, 100, default, 1f);
+                    Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.BlueFairy, 2.5f * hit.HitDirection, -2.5f, 100, default, 1f);
             }
         }
 

@@ -85,12 +85,12 @@ namespace Consolaria.Content.NPCs {
 			if (Main.netMode == NetmodeID.Server)
 				return;
 
-			Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.JungleGrass, 2.5f * hitDirection, -2.5f, 0, default, 0.7f);
+			Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.JungleGrass, 2.5f * hit.HitDirection, -2.5f, 0, default, 0.7f);
 			if (NPC.life <= 0) {
 				Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-5, 6), Main.rand.Next(-5, 6)), ModContent.Find<ModGore>("Consolaria/DragonHornetGore").Type);
 				Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-5, 6), Main.rand.Next(-5, 6)), ModContent.Find<ModGore>("Consolaria/DSnatcherGore1").Type);
 				for (int i = 0; i < 20; i++)
-					Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.JungleGrass, 2.5f * hitDirection, -2.5f, 0, default, 1f);
+					Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.JungleGrass, 2.5f * hit.HitDirection, -2.5f, 0, default, 1f);
 			}
 		}
 

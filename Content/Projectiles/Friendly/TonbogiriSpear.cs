@@ -9,8 +9,6 @@ namespace Consolaria.Content.Projectiles.Friendly {
     public class TonbogiriSpear : ModProjectile {
         private float glowRotation;
 
-        public override string Name => "Tonbogiri";
-
         public override void SetStaticDefaults () {
             ProjectileID.Sets.TrailCacheLength [Projectile.type] = 5;
             ProjectileID.Sets.TrailingMode [Projectile.type] = 0;

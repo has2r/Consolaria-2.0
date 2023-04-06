@@ -8,8 +8,6 @@ using System;
 namespace Consolaria.Content.Projectiles.Enemies {
     public class OcramLaser1 : ModProjectile {
 
-        public override string Name => "Ocram Laser";
-
         public override void SetStaticDefaults () {
             ProjectileID.Sets.TrailCacheLength [Projectile.type] = 16;
             ProjectileID.Sets.TrailingMode [Projectile.type] = 0;

@@ -42,7 +42,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
             => hitCounter++;
 
         public override void ModifyHitNPC (NPC target, ref NPC.HitModifiers modifiers)
-            => damage -= (int) (damage * hitCounter * 0.1f);
+            => modifiers.FinalDamage -= (int) (modifiers.FinalDamage.Flat * hitCounter * 0.1f);
 
         public override void Kill (int timeLeft) {
             if (Main.netMode != NetmodeID.Server) {

@@ -60,10 +60,10 @@ namespace Consolaria.Content.NPCs {
             if (Main.netMode == NetmodeID.Server)
                 return;
 
-            Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Demonite, 2.5f * hitDirection, -2.5f, 0, default, 0.7f);
+            Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Demonite, 2.5f * hit.HitDirection, -2.5f, 0, default, 0.7f);
             if (NPC.life <= 0) {
                 for (int i = 0; i < 20; i++)
-                    Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Demonite, 2.5f * hitDirection, -2.5f, 0, default, 1f);
+                    Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Demonite, 2.5f * hit.HitDirection, -2.5f, 0, default, 1f);
             }
         }
 

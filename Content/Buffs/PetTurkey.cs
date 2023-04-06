@@ -6,8 +6,6 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Buffs {
 	public class PetTurkey : ModBuff {
 		public override void SetStaticDefaults () {
-			// DisplayName.SetDefault("Pet Turkey");
-			// Description.SetDefault("Big and meaty turkey");
 
 			Main.buffNoTimeDisplay [Type] = true;
 			Main.vanityPet [Type] = true;

@@ -20,7 +20,6 @@ namespace Consolaria.Content.Tiles {
 			AdjTiles = new int [] { TileID.MusicBoxes };
 
 			LocalizedText name = CreateMapEntryName();
-			// name.SetDefault("Music Box");
 			AddMapEntry(new Color(200, 200, 200), name);
 		}
 

@@ -11,7 +11,6 @@ namespace Consolaria.Content.Projectiles.Friendly {
         private int hitCounter;
 
         public override void SetStaticDefaults () {
-            // DisplayName.SetDefault("Spectral Arrow");
             ProjectileID.Sets.TrailCacheLength [Projectile.type] = 5;
             ProjectileID.Sets.TrailingMode [Projectile.type] = 0;
         }

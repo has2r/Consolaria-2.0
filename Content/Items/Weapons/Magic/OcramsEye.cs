@@ -8,7 +8,6 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Items.Weapons.Magic {
     public class OcramsEye : ModItem {
         public override void SetStaticDefaults () {
-            // DisplayName.SetDefault("Eye of Ocram");
             Item.ResearchUnlockCount = 1;
         }
 

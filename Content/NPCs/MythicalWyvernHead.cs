@@ -15,7 +15,6 @@ using Terraria.GameContent.Events;
 namespace Consolaria.Content.NPCs {
 	public class MythicalWyvernHead : ModNPC {
 		public override void SetStaticDefaults () {
-			// DisplayName.SetDefault("Mythical Wyvern");
 
 			NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData {
 				SpecificallyImmuneTo = new int [] {

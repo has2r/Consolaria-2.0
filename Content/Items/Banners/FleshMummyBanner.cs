@@ -7,7 +7,6 @@ namespace Consolaria.Content.Items.Banners {
 	public class FleshMummyBanner : ModItem {
 		public override void SetStaticDefaults () {
 			Item.ResearchUnlockCount = 1;
-			// Tooltip.SetDefault("{$CommonItemTooltip.BannerBonus}Flesh Mummy");
 		}
 
 		public override void SetDefaults () {

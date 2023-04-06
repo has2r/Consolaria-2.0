@@ -23,7 +23,6 @@ namespace Consolaria.Content.Tiles {
 			TileObjectData.addTile(Type);
 
 			LocalizedText name = CreateMapEntryName();
-			// name.SetDefault("Carriage Lantern");
 			AddMapEntry(new Color(238, 145, 105), name);
 
 			TileID.Sets.DisableSmartCursor [Type] = true;

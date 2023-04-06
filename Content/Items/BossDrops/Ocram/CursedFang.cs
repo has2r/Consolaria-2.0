@@ -5,8 +5,6 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Items.BossDrops.Ocram {
     public class CursedFang : ModItem {
 		public override void SetStaticDefaults () {
-			// DisplayName.SetDefault("Cursed Fang");
-			// Tooltip.SetDefault("Summons a lil' Marco" + "\n'You're my friend now'");
 
 			Item.ResearchUnlockCount = 1;
 		}

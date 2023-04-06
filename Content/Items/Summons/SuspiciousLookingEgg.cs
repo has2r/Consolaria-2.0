@@ -8,8 +8,6 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Items.Summons {
     public class SuspiciousLookingEgg : ModItem {
         public override void SetStaticDefaults () {
-            // DisplayName.SetDefault("Suspicious Looking Egg");
-            // Tooltip.SetDefault("Summons Lepus");
 
             Item.ResearchUnlockCount = 3;
             ItemID.Sets.SortingPriorityBossSpawns [Type] = 12;

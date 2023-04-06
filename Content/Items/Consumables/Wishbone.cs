@@ -9,8 +9,6 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Items.Consumables {
     public class Wishbone : ModItem {
         public override void SetStaticDefaults () {
-            // DisplayName.SetDefault("Wishbone");
-            // Tooltip.SetDefault("Enables all minor seasonal events for one day");
 
             Item.ResearchUnlockCount = 3;
             ItemID.Sets.SortingPriorityBossSpawns [Type] = 12;

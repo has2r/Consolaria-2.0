@@ -14,8 +14,6 @@ namespace Consolaria.Content.Items.Armor.Magic {
         }
 
         public override void SetStaticDefaults () {
-            // DisplayName.SetDefault("Ancient Phantasmal Robe");
-            // Tooltip.SetDefault("15% increased magic damage" + "\nIncreases maximum mana by 70");
 
             Item.ResearchUnlockCount = 1;
         }

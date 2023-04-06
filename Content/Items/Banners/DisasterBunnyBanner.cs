@@ -7,7 +7,6 @@ namespace Consolaria.Content.Items.Banners {
 	public class DisasterBunnyBanner : ModItem {
 		public override void SetStaticDefaults () {
 			Item.ResearchUnlockCount = 1;
-			// Tooltip.SetDefault("{$CommonItemTooltip.BannerBonus}Disaster Bunny");
 		}
 
 		public override void SetDefaults () {

@@ -11,7 +11,6 @@ namespace Consolaria.Content.Projectiles.Friendly
     {
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Easter Bunny");
 
             ProjectileID.Sets.MinionTargettingFeature[Projectile.type] = true;
 

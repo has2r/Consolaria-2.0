@@ -9,7 +9,6 @@ namespace Consolaria.Content.Items.Vanity {
 
 	public class MonokumaBody : ModItem {
 		public override void SetStaticDefaults () {
-			// DisplayName.SetDefault("Monokuma Body");
 			ArmorIDs.Body.Sets.HidesTopSkin [Item.bodySlot] = true;
 
 			Item.ResearchUnlockCount = 1;

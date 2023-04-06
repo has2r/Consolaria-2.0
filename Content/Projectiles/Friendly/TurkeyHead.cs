@@ -7,7 +7,6 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Projectiles.Friendly {
     public class TurkeyHead : ModProjectile {
         public override void SetStaticDefaults () {
-            // DisplayName.SetDefault("Weird Turkey");
             Main.projPet [Projectile.type] = true;
             Main.projFrames [Projectile.type] = 4;
 

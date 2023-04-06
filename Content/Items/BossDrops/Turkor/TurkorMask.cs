@@ -10,7 +10,6 @@ namespace Consolaria.Content.Items.BossDrops.Turkor
 	public class TurkorMask : ModItem
 	{
 		public override void SetStaticDefaults() {
-			// DisplayName.SetDefault("Turkor the Ungrateful Mask");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 

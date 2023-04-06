@@ -8,10 +8,8 @@ using Terraria.Localization;
 namespace Consolaria.Content.Items.BossDrops.Ocram {
     public class ShadowboundExoskeleton : ModItem {
         public override void SetStaticDefaults () {
-            // DisplayName.SetDefault("Shadowbound Exoskeleton");
 
             string tapDir = Language.GetTextValue(Main.ReversedUpDownArmorSetBonuses ? "Key.DOWN" : "Key.UP");
-            // Tooltip.SetDefault("Allows the player to rocket jump" + $"\nDouble tap {tapDir}");
 
             Item.ResearchUnlockCount = 1;
         }

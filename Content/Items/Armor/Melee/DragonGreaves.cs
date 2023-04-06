@@ -8,8 +8,6 @@ namespace Consolaria.Content.Items.Armor.Melee {
     [AutoloadEquip(EquipType.Legs)]
     public class DragonGreaves : ModItem {
         public override void SetStaticDefaults () {
-            // DisplayName.SetDefault("Dragon Greaves");
-            // Tooltip.SetDefault("5% increased melee damage and critical strike chance" + "\n20% increased movement speed");
 
             Item.ResearchUnlockCount = 1;
         }

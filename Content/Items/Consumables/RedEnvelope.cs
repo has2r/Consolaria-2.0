@@ -7,8 +7,6 @@ using Consolaria.Content.Items.Vanity;
 namespace Consolaria.Content.Items.Consumables {
     public class RedEnvelope : ModItem {
         public override void SetStaticDefaults () {
-            // DisplayName.SetDefault("Red Envelope");
-            // Tooltip.SetDefault("{$CommonItemTooltip.RightClickToOpen}");
 
             Item.ResearchUnlockCount = 3;
         }

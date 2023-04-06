@@ -7,8 +7,6 @@ namespace Consolaria.Content.Buffs
 	public class Zombie : ModBuff
 	{
 		public override void SetStaticDefaults() {
-			// DisplayName.SetDefault("Pet Zombie");
-			// Description.SetDefault("Eats brains");
 			Main.buffNoTimeDisplay[Type] = true;
 			Main.vanityPet[Type] = true;
 		}

@@ -22,7 +22,6 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
     [AutoloadBossHead]
 	public class TurkortheUngrateful : ModNPC {
 		public override void SetStaticDefaults () {
-			// DisplayName.SetDefault("Turkor the Ungrateful");
 			Main.npcFrameCount [Type] = 3;
 
 			NPCID.Sets.MPAllowedEnemies [Type] = true;

@@ -6,7 +6,6 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Items.Pets {
     public class GoldenSeaweed : PetItem {
 		public override void SetStaticDefaults () {
-			// Tooltip.SetDefault("Summons a pet Golden Turtle");
 			Item.ResearchUnlockCount = 1;
 		}
 

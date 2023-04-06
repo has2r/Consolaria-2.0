@@ -19,7 +19,6 @@ namespace Consolaria.Content.NPCs {
 		private bool spawned = false;
 
 		public override void SetStaticDefaults () {
-			// DisplayName.SetDefault("Dragon Snatcher");
 			Main.npcFrameCount [NPC.type] = 3;
 
 			NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData {

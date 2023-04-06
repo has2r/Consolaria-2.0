@@ -8,8 +8,6 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Items.Summons {
     public class SuspiciousLookingSkull : ModItem {
         public override void SetStaticDefaults () {
-            // DisplayName.SetDefault("Suspicious Looking Skull");
-            // Tooltip.SetDefault("Summons Ocram");
 
             Item.ResearchUnlockCount = 3;
             ItemID.Sets.SortingPriorityBossSpawns [Type] = 12;

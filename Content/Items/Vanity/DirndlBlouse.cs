@@ -8,8 +8,6 @@ namespace Consolaria.Content.Items.Vanity {
 
 	public class DirndlBlouse : ModItem {
 		public override void SetStaticDefaults () {
-			// DisplayName.SetDefault("Dirndl Blouse");
-			// Tooltip.SetDefault("");
 
 			Item.ResearchUnlockCount = 1;
 		}

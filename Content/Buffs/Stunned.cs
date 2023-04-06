@@ -6,8 +6,6 @@ namespace Consolaria.Content.Buffs {
 	public class Stunned : ModBuff {
 
 		public override void SetStaticDefaults() {
-			// DisplayName.SetDefault("Stunned");
-			// Description.SetDefault("Can't move");
 			Main.buffNoSave[Type] = true;
 			Main.debuff[Type] = true;
 		}

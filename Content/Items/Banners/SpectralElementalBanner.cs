@@ -7,7 +7,6 @@ namespace Consolaria.Content.Items.Banners {
 	public class SpectralElementalBanner : ModItem {
 		public override void SetStaticDefaults () {
 			Item.ResearchUnlockCount = 1;
-			// Tooltip.SetDefault("{$CommonItemTooltip.BannerBonus}Spectral Elemental");
 		}
 
 		public override void SetDefaults () {

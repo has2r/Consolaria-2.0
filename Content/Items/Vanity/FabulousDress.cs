@@ -11,7 +11,6 @@ namespace Consolaria.Content.Items.Vanity {
 
 	public class FabulousDress : ModItem {
 		public override void SetStaticDefaults () {
-			// DisplayName.SetDefault("Fabulous Dress");
 			Item.ResearchUnlockCount = 1;
 		}
 

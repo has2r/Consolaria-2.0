@@ -8,8 +8,6 @@ using Terraria.DataStructures;
 namespace Consolaria.Content.Items.Consumables {
     public class Wiesnbrau : ModItem {
 		public override void SetStaticDefaults () {
-			// DisplayName.SetDefault("Wiesnbräu");
-			// Tooltip.SetDefault("Numbs the user from damage taken but also reduces damage inflicted");
 
 			Item.ResearchUnlockCount = 5;
 			Main.RegisterItemAnimation(Type, new DrawAnimationVertical(int.MaxValue, 3));

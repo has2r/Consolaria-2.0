@@ -6,7 +6,6 @@ using Microsoft.Xna.Framework;
 namespace Consolaria.Content.Items.Consumables {
     public class Squib : ModItem {
         public override void SetStaticDefaults () {
-            // DisplayName.SetDefault("Fiery Cracker");
             Item.ResearchUnlockCount = 99;
         }
 

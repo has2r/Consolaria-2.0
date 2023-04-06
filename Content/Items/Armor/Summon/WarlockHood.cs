@@ -10,8 +10,6 @@ namespace Consolaria.Content.Items.Armor.Summon {
     [AutoloadEquip(EquipType.Head)]
     public class WarlockHood : ModItem {
         public override void SetStaticDefaults () {
-            // DisplayName.SetDefault("Warlock Hood");
-            // Tooltip.SetDefault("Increases your max number of minions by 1" + "\n20% increased minion damage");
 
             Item.ResearchUnlockCount = 1;
         }

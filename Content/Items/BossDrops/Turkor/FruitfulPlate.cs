@@ -6,8 +6,6 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Items.BossDrops.Turkor {
     public class FruitfulPlate : ModItem {
 		public override void SetStaticDefaults () {
-			// DisplayName.SetDefault("Fruitful Plate");
-			// Tooltip.SetDefault("Summons a fruitful plate mount");
 
 			Item.ResearchUnlockCount = 1;
 		}

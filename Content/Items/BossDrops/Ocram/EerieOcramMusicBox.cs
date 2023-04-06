@@ -6,7 +6,6 @@ using Microsoft.Xna.Framework;
 namespace Consolaria.Content.Items.BossDrops.Ocram {
     public class EerieOcramMusicBox : ModItem {
 		public override void SetStaticDefaults () {
-			// DisplayName.SetDefault("Music Box (Eerie Ocram)");
 			Item.ResearchUnlockCount = 1;
 
 			MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Assets/Music/EerieOcram"), ModContent.ItemType<EerieOcramMusicBox>(), ModContent.TileType<Tiles.EerieOcramMusicBox>());

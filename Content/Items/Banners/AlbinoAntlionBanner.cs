@@ -9,7 +9,6 @@ namespace Consolaria.Content.Items.Banners
 
 		public override void SetStaticDefaults () {
 			Item.ResearchUnlockCount = 1;
-			// Tooltip.SetDefault("{$CommonItemTooltip.BannerBonus}Albino Antlion");
 		}
 
 		public override void SetDefaults() {

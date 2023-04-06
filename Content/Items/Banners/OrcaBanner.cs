@@ -7,7 +7,6 @@ namespace Consolaria.Content.Items.Banners {
 	public class OrcaBanner : ModItem {
 		public override void SetStaticDefaults () {
 			Item.ResearchUnlockCount = 1;
-			// Tooltip.SetDefault("{$CommonItemTooltip.BannerBonus}Orca");
 		}
 
 		public override void SetDefaults () {

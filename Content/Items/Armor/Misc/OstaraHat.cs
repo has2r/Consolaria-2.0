@@ -11,8 +11,6 @@ namespace Consolaria.Content.Items.Armor.Misc
 	public class OstaraHat : ModItem
 	{
 		public override void SetStaticDefaults() {
-			// DisplayName.SetDefault("Hat of Ostara");
-			// Tooltip.SetDefault("7% increased movement speed");
 
             ArmorIDs.Head.Sets.DrawHatHair[Item.headSlot] = true;
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;

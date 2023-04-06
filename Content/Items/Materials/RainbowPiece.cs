@@ -9,8 +9,6 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Items.Materials {
     public class RainbowPiece : ModItem {
         public override void SetStaticDefaults () {
-            // DisplayName.SetDefault("Rainbow Piece");
-            // Tooltip.SetDefault("Combine 5 pieces to craft a pot o' gold");
 
             Item.ResearchUnlockCount = 50;
         }

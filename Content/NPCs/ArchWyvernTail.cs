@@ -11,7 +11,6 @@ namespace Consolaria.Content.NPCs
 	public class ArchWyvernTail : ModNPC
 	{
 		public override void SetStaticDefaults() {
-			// DisplayName.SetDefault("Arch Wyvern");
 
 			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0) {
 				Hide = true

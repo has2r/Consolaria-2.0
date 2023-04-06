@@ -11,7 +11,6 @@ namespace Consolaria.Content.Items.Vanity {
 
 	public class ShirenShirt : ModItem {
 		public override void SetStaticDefaults () {
-			// DisplayName.SetDefault("Shiren Shirt");
 			Item.ResearchUnlockCount = 1;
 		}
 

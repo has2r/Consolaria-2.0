@@ -7,8 +7,6 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Items.Weapons.Summon {
     public class TurkeyStuff : ModItem {
 		public override void SetStaticDefaults () {
-			// DisplayName.SetDefault("Turkey Staff");
-			// Tooltip.SetDefault("Summons a weird turkey to fight for you");
 
 			ItemID.Sets.GamepadWholeScreenUseRange [Item.type] = true;
 			ItemID.Sets.LockOnIgnoresCollision [Item.type] = true;

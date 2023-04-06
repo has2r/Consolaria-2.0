@@ -7,8 +7,6 @@ namespace Consolaria.Content.Buffs
 	public class GuineaPig : ModBuff
 	{
 		public override void SetStaticDefaults() {
-			// DisplayName.SetDefault("Guinea Pig");
-			// Description.SetDefault("Simply adorable");
 			Main.buffNoTimeDisplay[Type] = true;
 			Main.vanityPet[Type] = true;
 		}

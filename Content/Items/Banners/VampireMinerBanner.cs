@@ -7,7 +7,6 @@ namespace Consolaria.Content.Items.Banners {
 	public class VampireMinerBanner : ModItem {
 		public override void SetStaticDefaults () {
 			Item.ResearchUnlockCount = 1;
-			// Tooltip.SetDefault("{$CommonItemTooltip.BannerBonus}Vampire Miner");
 		}
 
 		public override void SetDefaults () {

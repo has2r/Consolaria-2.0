@@ -56,7 +56,6 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
         private readonly float rad = (float) Math.PI * 2f;
 
         public override void SetStaticDefaults () {
-            // DisplayName.SetDefault("Ocram");
             Main.npcFrameCount [NPC.type] = 6;
             NPCID.Sets.MPAllowedEnemies [Type] = true;
 

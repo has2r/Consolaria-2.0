@@ -14,8 +14,6 @@ namespace Consolaria.Content.Items.Armor.Ranged {
         public override void Unload () => leggingsGlowmask = null;
 
         public override void SetStaticDefaults () {
-            // DisplayName.SetDefault("Titan Leggings");
-            // Tooltip.SetDefault("10% increased ranged damage" + "\n18% increased movement speed" + "\n15% chance to not consume ammo");
             Item.ResearchUnlockCount = 1;
 
             if (!Main.dedServ) {

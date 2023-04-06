@@ -6,7 +6,6 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Items.Pets {
     public class Beeswax : PetItem {
 		public override void SetStaticDefaults () {
-			// Tooltip.SetDefault("Summons a pet Tiphia");
 			Item.ResearchUnlockCount = 1;
 		}
 

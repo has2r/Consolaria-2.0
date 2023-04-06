@@ -12,7 +12,6 @@ namespace Consolaria.Content.Items.Vanity
 		public override void SetStaticDefaults() 
 		{
 			ArmorIDs.Head.Sets.DrawHatHair[Item.headSlot] = true;
-			// DisplayName.SetDefault("Ancient Plumber's Hat");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 

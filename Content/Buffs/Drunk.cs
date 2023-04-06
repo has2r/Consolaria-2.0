@@ -4,8 +4,6 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Buffs {
 	public class Drunk : ModBuff {
 		public override void SetStaticDefaults () {
-			// DisplayName.SetDefault("Drunk");
-			// Description.SetDefault("Halves all damage taken and dealt.");
 
 			Main.buffNoSave [Type] = true;
 			Main.debuff [Type] = true;

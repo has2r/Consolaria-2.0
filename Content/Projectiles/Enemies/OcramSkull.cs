@@ -7,7 +7,6 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Projectiles.Enemies {
     public class OcramSkull : ModProjectile {
         public override void SetStaticDefaults () {
-            // DisplayName.SetDefault("Dread Skull");
             Main.projFrames [Projectile.type] = 5;
         }
 

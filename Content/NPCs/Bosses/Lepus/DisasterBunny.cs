@@ -11,7 +11,6 @@ using Terraria.ModLoader.Utilities;
 namespace Consolaria.Content.NPCs.Bosses.Lepus {
     public class DisasterBunny : ModNPC {
         public override void SetStaticDefaults () {
-            // DisplayName.SetDefault("Diseaster Bunny");
             Main.npcFrameCount [NPC.type] = 7;
 
             NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0) {

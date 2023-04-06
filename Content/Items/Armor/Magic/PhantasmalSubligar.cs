@@ -8,8 +8,6 @@ namespace Consolaria.Content.Items.Armor.Magic {
     [AutoloadEquip(EquipType.Legs)]
     public class PhantasmalSubligar : ModItem {
         public override void SetStaticDefaults () {
-            // DisplayName.SetDefault("Phantasmal Subligar");
-            // Tooltip.SetDefault("5% increased magic damage" + "\n12% increased movement speed" + "\nIncreases maximum mana by 30");
 
             ArmorIDs.Legs.Sets.HidesBottomSkin [Item.legSlot] = true;
             Item.ResearchUnlockCount = 1;

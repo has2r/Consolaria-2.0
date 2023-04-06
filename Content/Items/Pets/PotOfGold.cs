@@ -7,8 +7,6 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Items.Pets {
     public class PotOfGold : PetItem {
 		public override void SetStaticDefaults () {
-			// DisplayName.SetDefault("Pot O' Gold");
-			// Tooltip.SetDefault("Summons a pet Leprechaun O'Fyffe");
 
 			Item.ResearchUnlockCount = 1;
 		}

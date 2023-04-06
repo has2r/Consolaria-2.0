@@ -12,7 +12,6 @@ namespace Consolaria.Content.Items.Accessories {
         private bool unlockEffects;
 
         public override void SetStaticDefaults () {
-            // Tooltip.SetDefault("");
             Item.ResearchUnlockCount = 1;
         }
 

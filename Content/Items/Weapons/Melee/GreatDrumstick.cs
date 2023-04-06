@@ -6,8 +6,6 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Items.Weapons.Melee {
     public class GreatDrumstick : ModItem {
         public override void SetStaticDefaults () {
-            // DisplayName.SetDefault("Great Drumstick");
-            // Tooltip.SetDefault("Covers enemies in oil" + "\nSet oiled enemies on fire for extra damage" + "\n'I like large fries, but not fried turkey'");
 
             Item.ResearchUnlockCount = 1;
         }

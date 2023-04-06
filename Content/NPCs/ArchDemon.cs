@@ -16,7 +16,6 @@ namespace Consolaria.Content.NPCs {
 		private float aiTimer;
 
 		public override void SetStaticDefaults () {
-			// DisplayName.SetDefault("Arch Demon");
 			Main.npcFrameCount [NPC.type] = 5;
 
 			NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData {

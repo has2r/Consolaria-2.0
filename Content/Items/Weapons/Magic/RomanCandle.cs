@@ -7,7 +7,6 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Items.Weapons.Magic {
     public class RomanCandle : ModItem {
 		public override void SetStaticDefaults () {
-			// Tooltip.SetDefault("'Fire works!'");
 			Item.ResearchUnlockCount = 1;
 		}
 

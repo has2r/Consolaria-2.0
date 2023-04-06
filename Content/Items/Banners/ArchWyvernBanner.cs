@@ -7,7 +7,6 @@ namespace Consolaria.Content.Items.Banners {
 	public class ArchWyvernBanner : ModItem {
 		public override void SetStaticDefaults () {
 			Item.ResearchUnlockCount = 1;
-			// Tooltip.SetDefault("{$CommonItemTooltip.BannerBonus}Arch Wyvern");
 		}
 
 		public override void SetDefaults () {

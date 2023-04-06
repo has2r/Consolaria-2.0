@@ -14,8 +14,6 @@ namespace Consolaria.Content.Items.Armor.Summon {
         }
 
         public override void SetStaticDefaults () {
-            // DisplayName.SetDefault("Ancient Warlock Robe");
-            // Tooltip.SetDefault("Increases your max number of minions by 1" + "\n20% increased minion damage");
 
             Item.ResearchUnlockCount = 1;
         }

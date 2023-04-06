@@ -13,7 +13,6 @@ using Terraria.ModLoader.Utilities;
 namespace Consolaria.Content.NPCs {
 	public class DragonHornet : ModNPC {
 		public override void SetStaticDefaults () {
-			// DisplayName.SetDefault("Dragon Hornet");
 			Main.npcFrameCount [NPC.type] = 3;
 
 			NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData {

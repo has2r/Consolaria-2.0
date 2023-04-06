@@ -10,7 +10,6 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
         private bool isFlying;
 
         public override void SetStaticDefaults () {
-            // DisplayName.SetDefault("Baby Lepus");
 
             Main.projFrames [Projectile.type] = 5;
             Main.projPet [Projectile.type] = true;

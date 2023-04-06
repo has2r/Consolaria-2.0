@@ -11,8 +11,6 @@ namespace Consolaria.Content.Items.Vanity
 	public class GeorgesTuxedoPants : ModItem
 	{
 		public override void SetStaticDefaults() {
-			// DisplayName.SetDefault("George's Tuxedo Pants");
-			// Tooltip.SetDefault("'Oh myyy!'");
 
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}

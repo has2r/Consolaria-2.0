@@ -19,7 +19,6 @@ namespace Consolaria.Content.NPCs
 		private int shootTimer;
 
 		public override void SetStaticDefaults() {
-			// DisplayName.SetDefault("Arch Wyvern");
 
 			NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData {
 				SpecificallyImmuneTo = new int[] {

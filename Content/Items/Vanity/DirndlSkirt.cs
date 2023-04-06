@@ -14,8 +14,6 @@ namespace Consolaria.Content.Items.Vanity {
 		}
 
 		public override void SetStaticDefaults () {
-			// DisplayName.SetDefault("Dirndl Skirt");
-			// Tooltip.SetDefault("");
 			Item.ResearchUnlockCount = 1;
 		}
 

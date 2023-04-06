@@ -7,7 +7,6 @@ namespace Consolaria.Content.Items.Banners {
 	public class ArchDemonBanner : ModItem {
 		public override void SetStaticDefaults () {
 			Item.ResearchUnlockCount = 1;
-			// Tooltip.SetDefault("{$CommonItemTooltip.BannerBonus}Arch Demon");
 		}
 
 		public override void SetDefaults () {

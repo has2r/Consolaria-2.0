@@ -14,8 +14,6 @@ namespace Consolaria.Content.Items.Armor.Ranged {
         public override void Unload () => mailGlowmask = null;
 
         public override void SetStaticDefaults () {
-            // DisplayName.SetDefault("Titan Mail");
-            // Tooltip.SetDefault("15% increased ranged damage" + "\n10% increased ranged critical strike chance" + "\n20% chance to not consume ammo");
             Item.ResearchUnlockCount = 1;
 
             if (!Main.dedServ) {

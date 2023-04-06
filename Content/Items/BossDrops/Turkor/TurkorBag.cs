@@ -13,8 +13,6 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Items.BossDrops.Turkor {
     public class TurkorBag : ModItem {
         public override void SetStaticDefaults () {
-            // DisplayName.SetDefault("Treasure Bag (Turkor the Ungrateful)");
-            // Tooltip.SetDefault("{$CommonItemTooltip.RightClickToOpen}");
 
             ItemID.Sets.BossBag [Type] = true;
             ItemID.Sets.PreHardmodeLikeBossBag [Type] = true;

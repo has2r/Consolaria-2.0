@@ -11,7 +11,6 @@ namespace Consolaria.Content.Items.Vanity
 	public class MythicalLionMask : ModItem
 	{
 		public override void SetStaticDefaults() {
-			// DisplayName.SetDefault("Mythical Lion Mask");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 

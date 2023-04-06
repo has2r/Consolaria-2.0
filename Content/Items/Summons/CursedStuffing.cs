@@ -9,8 +9,6 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Items.Summons {
     public class CursedStuffing : ModItem {
         public override void SetStaticDefaults () {
-            // DisplayName.SetDefault("Cursed Stuffing");
-            // Tooltip.SetDefault("Summons Turkor the Ungrateful");
 
             Item.ResearchUnlockCount = 3;
             ItemID.Sets.SortingPriorityBossSpawns [Type] = 12;

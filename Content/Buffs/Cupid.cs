@@ -7,8 +7,6 @@ namespace Consolaria.Content.Buffs
 	public class Cupid : ModBuff
 	{
 		public override void SetStaticDefaults() {
-			// DisplayName.SetDefault("Pet Cupid");
-			// Description.SetDefault("Loves love");
 
 			Main.buffNoTimeDisplay[Type] = true;
 			Main.lightPet[Type] = true;

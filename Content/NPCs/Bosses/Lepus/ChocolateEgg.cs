@@ -8,7 +8,6 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.NPCs.Bosses.Lepus {
     public class ChocolateEgg : ModNPC {
         public override void SetStaticDefaults () {
-            // DisplayName.SetDefault("Chocolate Egg");
 
             NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData {
                 SpecificallyImmuneTo = new int [] {

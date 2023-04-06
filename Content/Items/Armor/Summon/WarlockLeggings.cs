@@ -8,8 +8,6 @@ namespace Consolaria.Content.Items.Armor.Summon {
     [AutoloadEquip(EquipType.Legs)]
     public class WarlockLeggings : ModItem {
         public override void SetStaticDefaults () {
-            // DisplayName.SetDefault("Warlock Leggings");
-            // Tooltip.SetDefault("Increases your max number of minions by 1" + "\n20% increased minion damage" + "\n15% increased movement speed");
 
             ArmorIDs.Legs.Sets.HidesBottomSkin [Item.legSlot] = true;
             Item.ResearchUnlockCount = 1;

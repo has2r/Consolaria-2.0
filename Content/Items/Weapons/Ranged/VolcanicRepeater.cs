@@ -7,8 +7,6 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Items.Weapons.Ranged {
     public class VolcanicRepeater : ModItem {
 		public override void SetStaticDefaults () {
-			// DisplayName.SetDefault("Vulcan Repeater");
-			// Tooltip.SetDefault("Turns arrows into Vulcan Bolts");
 
 			Item.ResearchUnlockCount = 1;
 		}

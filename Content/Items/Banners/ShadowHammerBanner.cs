@@ -7,7 +7,6 @@ namespace Consolaria.Content.Items.Banners {
 	public class ShadowHammerBanner : ModItem {
 		public override void SetStaticDefaults () {
 			Item.ResearchUnlockCount = 1;
-			// Tooltip.SetDefault("{$CommonItemTooltip.BannerBonus}Shadow Hammer");
 		}
 
 		public override void SetDefaults () {

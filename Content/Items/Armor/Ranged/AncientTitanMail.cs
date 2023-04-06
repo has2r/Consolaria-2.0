@@ -8,8 +8,6 @@ namespace Consolaria.Content.Items.Armor.Ranged {
     [AutoloadEquip(EquipType.Body)]
     public class AncientTitanMail : ModItem {
         public override void SetStaticDefaults () {
-            // DisplayName.SetDefault("Ancient Titan Mail");
-            // Tooltip.SetDefault("15% increased ranged damage" + "\n10 % increased ranged critical strike chance" + "\n20% chance to not consume ammo");
 
             Item.ResearchUnlockCount = 1;
         }

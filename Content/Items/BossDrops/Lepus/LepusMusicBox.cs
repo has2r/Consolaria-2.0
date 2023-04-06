@@ -6,7 +6,6 @@ using Microsoft.Xna.Framework;
 namespace Consolaria.Content.Items.BossDrops.Lepus {
 	public class LepusMusicBox : ModItem {
 		public override void SetStaticDefaults () {
-			// DisplayName.SetDefault("Music Box (Lepus)");
 			MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Assets/Music/Lepus"), ModContent.ItemType<LepusMusicBox>(), ModContent.TileType<Tiles.LepusMusicBox>());
 		}
 

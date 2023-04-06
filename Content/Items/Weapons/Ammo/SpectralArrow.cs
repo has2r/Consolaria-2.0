@@ -6,8 +6,6 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Items.Weapons.Ammo {
     public class SpectralArrow : ModItem {
         public override void SetStaticDefaults () {
-            // DisplayName.SetDefault("Spectral Arrow");
-            // Tooltip.SetDefault("Pierces tiles and enemies, but dissipates quickly in the air");
 
             Item.ResearchUnlockCount = 99;
         }

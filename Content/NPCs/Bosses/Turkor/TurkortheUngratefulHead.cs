@@ -29,7 +29,6 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 		private float rotatepoint = 0;
 
 		public override void SetStaticDefaults () {
-			// DisplayName.SetDefault("Turkor the Ungrateful Head");
 			Main.npcFrameCount [NPC.type] = 4;
 
 			NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData {

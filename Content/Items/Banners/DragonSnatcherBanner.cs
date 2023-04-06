@@ -7,7 +7,6 @@ namespace Consolaria.Content.Items.Banners {
 	public class DragonSnatcherBanner : ModItem {
 		public override void SetStaticDefaults () {
 			Item.ResearchUnlockCount = 1;
-			// Tooltip.SetDefault("{$CommonItemTooltip.BannerBonus}Dragon Snatcher");
 		}
 
 		public override void SetDefaults () {

@@ -7,8 +7,6 @@ using Microsoft.Xna.Framework;
 namespace Consolaria.Content.Items.BossDrops.Lepus {
     public class OstarasGift : ModItem {
         public override void SetStaticDefaults () {
-            // DisplayName.SetDefault("Ostara's Gift");
-            // Tooltip.SetDefault("Enemies have a chance of leaving chocolate eggs on death" + "\nEggs drop life hearts and mana stars when broken");
 
             Item.ResearchUnlockCount = 1;
         }

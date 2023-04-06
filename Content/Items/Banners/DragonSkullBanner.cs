@@ -8,7 +8,6 @@ namespace Consolaria.Content.Items.Banners
 	public class DragonSkullBanner : ModItem {
 		public override void SetStaticDefaults () {
 			Item.ResearchUnlockCount = 1;
-			// Tooltip.SetDefault("{$CommonItemTooltip.BannerBonus}Dragon Skull");
 		}
 
 		public override void SetDefaults () {

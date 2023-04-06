@@ -14,8 +14,6 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Items.BossDrops.Ocram {
     public class OcramBag : ModItem {
         public override void SetStaticDefaults () {
-            // DisplayName.SetDefault("Treasure Bag (Ocram)");
-            // Tooltip.SetDefault("{$CommonItemTooltip.RightClickToOpen}");
 
             ItemID.Sets.BossBag [Type] = true;
             Item.ResearchUnlockCount = 3;

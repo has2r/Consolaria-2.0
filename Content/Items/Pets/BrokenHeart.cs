@@ -6,7 +6,6 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Items.Pets {
     public class BrokenHeart : PetItem {
 		public override void SetStaticDefaults () {
-			// Tooltip.SetDefault("Summons a pet cupid to provide light");
 			Item.ResearchUnlockCount = 1;
 		}
 

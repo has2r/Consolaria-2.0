@@ -7,8 +7,6 @@ namespace Consolaria.Content.Buffs
 	public class Drone : ModBuff
 	{
 		public override void SetStaticDefaults() {
-			// DisplayName.SetDefault("Drone");
-			// Description.SetDefault("A drone is following you");
 
 			Main.buffNoTimeDisplay[Type] = true;
 		}

@@ -10,7 +10,6 @@ namespace Consolaria.Content.Projectiles.Enemies {
 		private float rotationTimer = (float) Math.PI;
 
 		public override void SetStaticDefaults () {
-			// DisplayName.SetDefault("Supreme Demon Scythe");
 
 			ProjectileID.Sets.TrailCacheLength [Projectile.type] = 8;
 			ProjectileID.Sets.TrailingMode [Projectile.type] = 2;

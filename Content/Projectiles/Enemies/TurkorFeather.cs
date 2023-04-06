@@ -9,7 +9,6 @@ using Microsoft.Xna.Framework.Graphics;
 namespace Consolaria.Content.Projectiles.Enemies {
 	public class TurkorFeather : ModProjectile {
 		public override void SetStaticDefaults () {
-			// DisplayName.SetDefault("Turkor's Feather");
 			ProjectileID.Sets.TrailCacheLength [Projectile.type] = 12;
 			ProjectileID.Sets.TrailingMode [Projectile.type] = 0;
 		}

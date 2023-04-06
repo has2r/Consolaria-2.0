@@ -9,7 +9,6 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.NPCs.Bosses.Ocram {
     public class ServantofOcram : ModNPC {
         public override void SetStaticDefaults () {
-            // DisplayName.SetDefault("Servant of Ocram");
             Main.npcFrameCount [NPC.type] = 2;
 
             NPCID.Sets.DontDoHardmodeScaling [Type] = true;

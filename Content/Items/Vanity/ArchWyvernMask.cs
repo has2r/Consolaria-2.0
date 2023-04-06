@@ -10,7 +10,6 @@ namespace Consolaria.Content.Items.Vanity
 	public class ArchWyvernMask : ModItem
 	{
 		public override void SetStaticDefaults() {
-			// DisplayName.SetDefault("Arch Wyvern Mask");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 

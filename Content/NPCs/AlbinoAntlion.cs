@@ -12,7 +12,6 @@ using Terraria.ModLoader.Utilities;
 namespace Consolaria.Content.NPCs {
 	public class AlbinoAntlion : ModNPC {
 		public override void SetStaticDefaults () {
-			// DisplayName.SetDefault("Albino Antlion");
 			Main.npcFrameCount [NPC.type] = 5;
 
 			NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData {

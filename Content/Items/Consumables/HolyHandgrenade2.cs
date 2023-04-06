@@ -8,7 +8,6 @@ using Microsoft.Xna.Framework.Graphics;
 namespace Consolaria.Content.Items.Consumables {
     public class HolyHandgrenade2 : ModItem {
         public override void SetStaticDefaults () {
-            // Tooltip.SetDefault("A huge explosion that will destroy most tiles" + "\n'Goodness gracious'");
 
             Item.ResearchUnlockCount = 99;
         }

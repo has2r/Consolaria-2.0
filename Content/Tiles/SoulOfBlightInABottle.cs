@@ -24,7 +24,6 @@ namespace Consolaria.Content.Tiles {
             AdjTiles = new int [] { TileID.SoulBottles };
 
             LocalizedText name = CreateMapEntryName();
-            // name.SetDefault("Soul of Blight in a Bottle");
             AddMapEntry(new Color(238, 145, 105), name);
 
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);

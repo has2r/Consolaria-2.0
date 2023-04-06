@@ -10,8 +10,6 @@ namespace Consolaria.Content.Items.Armor.Magic {
     [AutoloadEquip(EquipType.Head)]
     public class PhantasmalHeadgear : ModItem {
         public override void SetStaticDefaults () {
-            // DisplayName.SetDefault("Phantasmal Headgear");
-            // Tooltip.SetDefault("10% increased magic damage and critical strike chance" + "\nIncreases maximum mana by 50");
 
             Item.ResearchUnlockCount = 1;
         }

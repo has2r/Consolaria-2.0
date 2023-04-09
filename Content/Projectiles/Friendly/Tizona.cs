@@ -19,6 +19,8 @@ namespace Consolaria.Content.Projectiles.Friendly {
             Projectile.DamageType = DamageClass.Melee;
             // Projectile.aiStyle = 190; 
 
+            Projectile.aiStyle = -1;
+
             Projectile.friendly = true;
             Projectile.tileCollide = true;
 
@@ -36,15 +38,11 @@ namespace Consolaria.Content.Projectiles.Friendly {
         }
 
         public override void AI () {
-            Main.NewText(Projectile.localAI [0], Color.Red);
-            Main.NewText(Projectile.ai [0], Color.Green);
-            Main.NewText(Projectile.ai [1], Color.Yellow);
             SwingAI();     
         }
 
         private void SwingAI () {
             Projectile.localAI [0] += 1f;
-            Projectile.ai [1] += 1f;
             Player player = Main.player [Projectile.owner];
             float num = Projectile.localAI [0] / Projectile.ai [1];
 
@@ -67,7 +65,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
             if (Main.rand.NextFloat() * 1.5f < Projectile.Opacity)
                 Dust.NewDustPerfect(position, 43, velocity * 1f, 100, Color.White * Projectile.Opacity, 1.2f * Projectile.Opacity);
 
-            Projectile.scale *= Projectile.ai [2];
+
           //  if (Projectile.localAI [0] >= Projectile.ai [1])
               //  Projectile.Kill();
         }

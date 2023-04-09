@@ -34,14 +34,9 @@ namespace Consolaria.Content.Items.Weapons.Melee {
 			Item.shootSpeed = 12f;
 		}
 
-        public override bool Shoot (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
-            int _randomCount = Main.rand.Next(1, 3);
-            for (int i = 0; i < _randomCount; i++) {
-                float _randomVel = Main.rand.Next(-15, 15) * 0.035f;
-                velocity += new Vector2(_randomVel, _randomVel);
-                Projectile.NewProjectile(source, position.X, position.Y, velocity.X, velocity.Y, type, damage, knockback, player.whoAmI, 0f, 0f);
-            }
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
+            Projectile.NewProjectile(player.GetSource_ItemUse(Item), position, new Vector2(player.direction, 0f), type, damage, knockback, player.whoAmI, player.direction * player.gravDir, player.itemAnimationMax);
             return false;
         }
-	}
+    }
 }

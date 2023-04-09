@@ -8,18 +8,12 @@ using Terraria.ModLoader;
 
 namespace Consolaria.Content.Projectiles.Friendly {
     public class Tizona : ModProjectile {
-        public override void SetStaticDefaults () 
-         => Main.projFrames [Projectile.type] = 4;
-        
-
         public override void SetDefaults () {
             int width = 16; int height = width;
             Projectile.Size = new Vector2(width, height);
 
             Projectile.DamageType = DamageClass.Melee;
-            Projectile.aiStyle = 190; 
-
-            Projectile.aiStyle = -1;
+            Projectile.aiStyle = 190;
 
             Projectile.friendly = true;
             Projectile.tileCollide = true;
@@ -32,13 +26,10 @@ namespace Consolaria.Content.Projectiles.Friendly {
             Projectile.ownerHitCheckDistance = 300f;
             Projectile.usesOwnerMeleeHitCD = true;
             Projectile.stopsDealingDamageAfterPenetrateHits = true;
-
-            //Projectile.penetrate = -1;
-            Projectile.timeLeft = 720;
         }
 
         public override void AI () {
-            SwingAI();     
+            SwingAI();
         }
 
         private void SwingAI () {
@@ -66,8 +57,8 @@ namespace Consolaria.Content.Projectiles.Friendly {
                 Dust.NewDustPerfect(position, 43, velocity * 1f, 100, Color.White * Projectile.Opacity, 1.2f * Projectile.Opacity);
 
 
-          //  if (Projectile.localAI [0] >= Projectile.ai [1])
-              //  Projectile.Kill();
+            if (Projectile.localAI [0] >= Projectile.ai [1])
+                Projectile.Kill();
         }
 
         public override bool PreDraw (ref Color lightColor) {

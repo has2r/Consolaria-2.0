@@ -17,7 +17,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
             Projectile.Size = new Vector2(width, height);
 
             Projectile.DamageType = DamageClass.Melee;
-            // Projectile.aiStyle = 190; 
+            Projectile.aiStyle = 190; 
 
             Projectile.aiStyle = -1;
 

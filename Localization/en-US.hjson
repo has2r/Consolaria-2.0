@@ -44,7 +44,10 @@ Mods: {
 				Description: The eye of eternity will fight for you
 			}
 
-			FruitfulPlate.DisplayName: Fruitful Plate
+			FruitfulPlate: {
+				DisplayName: Fruitful Plate
+				Description: Mods.Consolaria.Buffs.FruitfulPlate.Description
+			}
 
 			GoldenCarrotDebuff: {
 				DisplayName: Golden Carrot Curse
@@ -128,7 +131,10 @@ Mods: {
 				Tooltip: Allows flight and slow fall
 			}
 
-			ValentineRing.DisplayName: Valentine Ring
+			ValentineRing: {
+				DisplayName: Valentine Ring
+				Tooltip: ""
+			}
 
 			AncientPhantasmalHeadgear: {
 				DisplayName: Ancient Phantasmal Headgear
@@ -466,10 +472,25 @@ Mods: {
 				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
 			}
 
-			LepusMask.DisplayName: Lepus Mask
-			LepusMusicBox.DisplayName: Music Box (Lepus)
-			LepusRelic.DisplayName: Lepus Relic
-			LepusTrophy.DisplayName: Lepus Trophy
+			LepusMask: {
+				DisplayName: Lepus Mask
+				Tooltip: ""
+			}
+
+			LepusMusicBox: {
+				DisplayName: Music Box (Lepus)
+				Tooltip: ""
+			}
+
+			LepusRelic: {
+				DisplayName: Lepus Relic
+				Tooltip: ""
+			}
+
+			LepusTrophy: {
+				DisplayName: Lepus Trophy
+				Tooltip: ""
+			}
 
 			OstarasGift: {
 				DisplayName: Ostara's Gift
@@ -498,17 +519,35 @@ Mods: {
 					'''
 			}
 
-			EerieOcramMusicBox.DisplayName: Music Box (Eerie Ocram)
+			EerieOcramMusicBox: {
+				DisplayName: Music Box (Eerie Ocram)
+				Tooltip: ""
+			}
 
 			OcramBag: {
 				DisplayName: Treasure Bag (Ocram)
 				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
 			}
 
-			OcramMask.DisplayName: Ocram Mask
-			OcramMusicBox.DisplayName: Music Box (Ocram)
-			OcramRelic.DisplayName: Ocram Relic
-			OcramTrophy.DisplayName: Ocram Trophy
+			OcramMask: {
+				DisplayName: Ocram Mask
+				Tooltip: ""
+			}
+
+			OcramMusicBox: {
+				DisplayName: Music Box (Ocram)
+				Tooltip: ""
+			}
+
+			OcramRelic: {
+				DisplayName: Ocram Relic
+				Tooltip: ""
+			}
+
+			OcramTrophy: {
+				DisplayName: Ocram Trophy
+				Tooltip: ""
+			}
 
 			ShadowboundExoskeleton: {
 				DisplayName: Shadowbound Exoskeleton
@@ -534,10 +573,25 @@ Mods: {
 				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
 			}
 
-			TurkorMask.DisplayName: Turkor the Ungrateful Mask
-			TurkorMusicBox.DisplayName: Music Box (Turkor the Ungrateful)
-			TurkorRelic.DisplayName: Turkor the Ungrateful Relic
-			TurkorTrophy.DisplayName: Turkor the Ungrateful Trophy
+			TurkorMask: {
+				DisplayName: Turkor the Ungrateful Mask
+				Tooltip: ""
+			}
+
+			TurkorMusicBox: {
+				DisplayName: Music Box (Turkor the Ungrateful)
+				Tooltip: ""
+			}
+
+			TurkorRelic: {
+				DisplayName: Turkor the Ungrateful Relic
+				Tooltip: ""
+			}
+
+			TurkorTrophy: {
+				DisplayName: Turkor the Ungrateful Trophy
+				Tooltip: ""
+			}
 
 			HolyHandgrenade: {
 				DisplayName: Holy Hand Grenade
@@ -549,7 +603,7 @@ Mods: {
 			}
 
 			HolyHandgrenade2: {
-				DisplayName: Holy Hand Grenade 2
+				DisplayName: Holy Hand Grenade II
 				Tooltip:
 					'''
 					A huge explosion that will destroy most tiles
@@ -562,11 +616,18 @@ Mods: {
 				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
 			}
 
-			SoulOfBlightInABottle.DisplayName: Soul of Blight in a Bottle
-			Squib.DisplayName: Fiery Cracker
+			SoulOfBlightInABottle: {
+				DisplayName: Soul of Blight in a Bottle
+				Tooltip: ""
+			}
+
+			Squib: {
+				DisplayName: Fiery Cracker
+				Tooltip: ""
+			}
 
 			Wiesnbrau: {
-				DisplayName: Wiesnbräu
+				DisplayName: Wiesnbr?u
 				Tooltip: Numbs the user from damage taken but also reduces damage inflicted
 			}
 
@@ -587,7 +648,10 @@ Mods: {
 				Tooltip: "'The essence of infected creatures'"
 			}
 
-			WhiteThread.DisplayName: White Thread
+			WhiteThread: {
+				DisplayName: White Thread
+				Tooltip: ""
+			}
 
 			GoldenCarrot: {
 				DisplayName: Golden Carrot
@@ -684,25 +748,75 @@ Mods: {
 				Tooltip: Summons Ocram
 			}
 
-			AlpineHat.DisplayName: Alpine Hat
-			AncientHerosHat.DisplayName: Ancient Hero's Hat
-			AncientHerosPants.DisplayName: Ancient Hero's Pants
-			AncientHerosShirt.DisplayName: Ancient Hero's Shirt
-			AncientPlumbersHat.DisplayName: Ancient Plumber's Hat
-			AncientPlumbersPants.DisplayName: Ancient Plumber's Pants
-			AncientPlumbersShirt.DisplayName: Ancient Plumber's Shirt
-			ArchDemonMask.DisplayName: Arch Demon Mask
-			ArchWyvernMask.DisplayName: Arch Wyvern Mask
-			DirndlBlouse.DisplayName: Dirndl Blouse
-			DirndlSkirt.DisplayName: Dirndl Skirt
-			FabulousDress.DisplayName: Fabulous Dress
+			AlpineHat: {
+				DisplayName: Alpine Hat
+				Tooltip: ""
+			}
+
+			AncientHerosHat: {
+				DisplayName: Ancient Hero's Hat
+				Tooltip: ""
+			}
+
+			AncientHerosPants: {
+				DisplayName: Ancient Hero's Pants
+				Tooltip: ""
+			}
+
+			AncientHerosShirt: {
+				DisplayName: Ancient Hero's Shirt
+				Tooltip: ""
+			}
+
+			AncientPlumbersHat: {
+				DisplayName: Ancient Plumber's Hat
+				Tooltip: ""
+			}
+
+			AncientPlumbersPants: {
+				DisplayName: Ancient Plumber's Pants
+				Tooltip: ""
+			}
+
+			AncientPlumbersShirt: {
+				DisplayName: Ancient Plumber's Shirt
+				Tooltip: ""
+			}
+
+			ArchDemonMask: {
+				DisplayName: Arch Demon Mask
+				Tooltip: ""
+			}
+
+			ArchWyvernMask: {
+				DisplayName: Arch Wyvern Mask
+				Tooltip: ""
+			}
+
+			DirndlBlouse: {
+				DisplayName: Dirndl Blouse
+				Tooltip: ""
+			}
+
+			DirndlSkirt: {
+				DisplayName: Dirndl Skirt
+				Tooltip: ""
+			}
+
+			FabulousDress: {
+				DisplayName: Fabulous Dress
+				Tooltip: ""
+			}
 
 			FabulousRibbon: {
 				DisplayName: Fabulous Ribbon
 				Tooltip: "'Allows flight and slow fall'"
 			}
 
-			FabulousSlippers.DisplayName: Fabulous Slippers
+			FabulousSlippers: {
+				DisplayName: Fabulous Slippers
+				Tooltip: ""
+			}
 
 			FestiveTopHat: {
 				DisplayName: Festive Top Hat
@@ -739,22 +853,85 @@ Mods: {
 				Tooltip: "'Remnant of an age of wonders'"
 			}
 
-			Lederhosen.DisplayName: Lederhosen
-			Lederweste.DisplayName: Lederweste
-			MonokumaBody.DisplayName: Monokuma Body
-			MonokumaHead.DisplayName: Monokuma Head
-			MonokumaLegs.DisplayName: Monokuma Legs
-			MonomiBody.DisplayName: Monomi Body
-			MonomiHead.DisplayName: Monomi Head
-			MonomiLegs.DisplayName: Monomi Legs
-			MythicalLionMask.DisplayName: Mythical Lion Mask
-			MythicalRobe.DisplayName: Mythical Robe
-			ShirenHat.DisplayName: Shiren Hat
-			ShirenPants.DisplayName: Shiren Pants
-			ShirenShirt.DisplayName: Shiren Shirt
-			TorosBody.DisplayName: Toro's Body
-			TorosHead.DisplayName: Toro's Head
-			TorosLegs.DisplayName: Toro's Legs
+			Lederhosen: {
+				DisplayName: Lederhosen
+				Tooltip: ""
+			}
+
+			Lederweste: {
+				DisplayName: Lederweste
+				Tooltip: ""
+			}
+
+			MonokumaBody: {
+				DisplayName: Monokuma Body
+				Tooltip: ""
+			}
+
+			MonokumaHead: {
+				DisplayName: Monokuma Head
+				Tooltip: ""
+			}
+
+			MonokumaLegs: {
+				DisplayName: Monokuma Legs
+				Tooltip: ""
+			}
+
+			MonomiBody: {
+				DisplayName: Monomi Body
+				Tooltip: ""
+			}
+
+			MonomiHead: {
+				DisplayName: Monomi Head
+				Tooltip: ""
+			}
+
+			MonomiLegs: {
+				DisplayName: Monomi Legs
+				Tooltip: ""
+			}
+
+			MythicalLionMask: {
+				DisplayName: Mythical Lion Mask
+				Tooltip: ""
+			}
+
+			MythicalRobe: {
+				DisplayName: Mythical Robe
+				Tooltip: ""
+			}
+
+			ShirenHat: {
+				DisplayName: Shiren Hat
+				Tooltip: ""
+			}
+
+			ShirenPants: {
+				DisplayName: Shiren Pants
+				Tooltip: ""
+			}
+
+			ShirenShirt: {
+				DisplayName: Shiren Shirt
+				Tooltip: ""
+			}
+
+			TorosBody: {
+				DisplayName: Toro's Body
+				Tooltip: ""
+			}
+
+			TorosHead: {
+				DisplayName: Toro's Head
+				Tooltip: ""
+			}
+
+			TorosLegs: {
+				DisplayName: Toro's Legs
+				Tooltip: ""
+			}
 
 			HeartArrow: {
 				DisplayName: Heart Arrow
@@ -770,14 +947,20 @@ Mods: {
 				Tooltip: Pierces tiles and enemies, but dissipates quickly in the air
 			}
 
-			VulcanBolt.DisplayName: Vulcan Bolt
+			VulcanBolt: {
+				DisplayName: Vulcan Bolt
+				Tooltip: ""
+			}
 
 			FeatherStorm: {
 				DisplayName: Feather Storm
 				Tooltip: Casts feathers from the sky
 			}
 
-			OcramsEye.DisplayName: Eye of Ocram
+			OcramsEye: {
+				DisplayName: Eye of Ocram
+				Tooltip: ""
+			}
 
 			RomanCandle: {
 				DisplayName: Roman Candle
@@ -950,6 +1133,9 @@ Mods: {
 			TurkeyHead.DisplayName: Weird Turkey
 			VulcanBlast.DisplayName: Vulcan Blast
 			VulcanBolt.DisplayName: Vulcan Bolt
+			"Lepus Stomp.DisplayName": Lepus  Stomp
+			.DisplayName: ""
+			Tizona.DisplayName: Tizona
 		}
 
 		Tiles: {

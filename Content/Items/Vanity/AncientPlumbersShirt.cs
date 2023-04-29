@@ -2,10 +2,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ModLoader;
-
-namespace Consolaria.Content.Items.Vanity 
 using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Consolaria.Content.Items.Vanity
 {

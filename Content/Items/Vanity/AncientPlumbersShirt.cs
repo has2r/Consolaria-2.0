@@ -4,13 +4,26 @@ using Terraria.GameContent.Creative;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.Items.Vanity {
+=======
+using Terraria.ID;
+using Terraria.ModLoader;
+
+namespace Consolaria.Content.Items.Vanity
+{
+>>>>>>> Stashed changes
     [AutoloadEquip(EquipType.Body)]
 
 	public class AncientPlumbersShirt : ModItem
 	{
 		public override void SetStaticDefaults() 
 		{
+<<<<<<< Updated upstream
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+=======
+			DisplayName.SetDefault("Ancient Plumber's Shirt");
+			Item.ResearchUnlockCount = 1;
+			ItemID.Sets.ShimmerTransformToItem[Type] = ItemID.PlumbersShirt;
+>>>>>>> Stashed changes
 		}
 
 		public override void SetDefaults() 

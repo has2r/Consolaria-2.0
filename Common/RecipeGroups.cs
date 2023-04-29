@@ -26,18 +26,6 @@ namespace Consolaria
 				.AddIngredient<RainbowPiece>(1)
 				.AddTile(TileID.Furnaces)
 				.Register();
-
-			Recipe.Create(ItemID.PlumbersHat)
-                .AddCustomShimmerResult(ModContent.ItemType<AncientPlumbersHat>())
-                .Register();
-
-			Recipe.Create(ItemID.PlumbersShirt)
-                .AddCustomShimmerResult(ModContent.ItemType<AncientPlumbersShirt>())
-                .Register();
-
-			Recipe.Create(ItemID.PlumbersPants)
-                .AddCustomShimmerResult(ModContent.ItemType<AncientPlumbersPants>())
-                .Register();
 		}
     }
 }

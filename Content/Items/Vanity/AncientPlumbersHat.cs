@@ -12,6 +12,8 @@ namespace Consolaria.Content.Items.Vanity
 		{
 			ArmorIDs.Head.Sets.DrawHatHair[Item.headSlot] = true;
 			Item.ResearchUnlockCount = 1;
+			ItemID.Sets.ShimmerTransformToItem[Type] = ItemID.PlumbersHat;
+			ItemID.Sets.ShimmerTransformToItem[ItemID.PlumbersHat] = Type;
 		}
 
 		public override void SetDefaults() 
@@ -21,14 +23,6 @@ namespace Consolaria.Content.Items.Vanity
 
 			Item.value = Item.sellPrice(silver: 20);
 			Item.vanity = true;
-		}
-
-		public override void AddRecipes() 
-		{
-		CreateRecipe()
-			.AddIngredient(ModContent.ItemType<AncientPlumbersHat>())
-			.AddCustomShimmerResult(ItemID.PlumbersHat)
-			.Register();
 		}
 	}
 }

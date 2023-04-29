@@ -13,6 +13,8 @@ namespace Consolaria.Content.Items.Vanity
 		public override void SetStaticDefaults() 
 		{
 			Item.ResearchUnlockCount = 1;
+			ItemID.Sets.ShimmerTransformToItem[Type] = ItemID.PlumbersShirt;
+			ItemID.Sets.ShimmerTransformToItem[ItemID.PlumbersShirt] = Type;
 		}
 
 		public override void SetDefaults() 
@@ -22,14 +24,6 @@ namespace Consolaria.Content.Items.Vanity
 
 			Item.value = Item.buyPrice(gold: 25);
 			Item.vanity = true;
-		}
-
-		public override void AddRecipes() 
-		{
-		CreateRecipe()
-			.AddIngredient(ModContent.ItemType<AncientPlumbersShirt>())
-			.AddCustomShimmerResult(ItemID.PlumbersShirt)
-			.Register();
 		}
 	}
 }

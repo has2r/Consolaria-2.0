@@ -12,7 +12,6 @@ namespace Consolaria.Content.Items.Vanity
 	{
 		public override void SetStaticDefaults() 
 		{
-			DisplayName.SetDefault("Ancient Plumber's Shirt");
 			Item.ResearchUnlockCount = 1;
 			ItemID.Sets.ShimmerTransformToItem[Type] = ItemID.PlumbersShirt;
 		}

@@ -29,18 +29,15 @@ namespace Consolaria
 
 			Recipe.Create(ItemID.PlumbersHat)
                 .AddCustomShimmerResult(ModContent.ItemType<AncientPlumbersHat>())
-                .Register()
-                .DisableRecipe();
+                .Register();
 
 			Recipe.Create(ItemID.PlumbersShirt)
                 .AddCustomShimmerResult(ModContent.ItemType<AncientPlumbersShirt>())
-                .Register()
-                .DisableRecipe();
+                .Register();
 
 			Recipe.Create(ItemID.PlumbersPants)
                 .AddCustomShimmerResult(ModContent.ItemType<AncientPlumbersPants>())
-                .Register()
-                .DisableRecipe();
+                .Register();
 		}
     }
 }

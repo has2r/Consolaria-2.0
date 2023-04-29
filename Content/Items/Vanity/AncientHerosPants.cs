@@ -1,5 +1,7 @@
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.ID;
+using Consolaria.Content.Items.Materials;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.Items.Vanity 
@@ -25,7 +27,7 @@ namespace Consolaria.Content.Items.Vanity
 		{
 			CreateRecipe()
 				.AddIngredient(ItemID.Silk, 20)
-				.AddIngredient<PurpleThread>(3)
+				.AddIngredient(ModContent.ItemType<PurpleThread>(), 3)
 				.AddTile(TileID.Loom)
 				.Register();
 		}

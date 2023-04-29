@@ -635,7 +635,10 @@ Mods: {
 				Tooltip: Enables all minor seasonal events for one day
 			}
 
-			PurpleThread.DisplayName: Purple Thread
+			PurpleThread: {
+				DisplayName: Purple Thread
+				Tooltip: ""
+			}
 
 			RainbowPiece: {
 				DisplayName: Rainbow Piece

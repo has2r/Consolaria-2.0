@@ -10,6 +10,7 @@ namespace Consolaria.Content.Items.Armor.Magic {
         public override void SetStaticDefaults () {
 
             Item.ResearchUnlockCount = 1;
+            ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<PhantasmalHeadgear>();
         }
 
         public override void SetDefaults () {
@@ -39,16 +40,6 @@ namespace Consolaria.Content.Items.Armor.Magic {
         public override void UpdateArmorSet (Player player) {
             player.setBonus = "Drinking a mana potion unleashes a barrage of homing spirit bolts";
             player.GetModPlayer<SpectralPlayer>().spectralGuard = true;
-        }
-
-        public override void AddRecipes () {
-            CreateRecipe()
-                .AddIngredient(ItemID.AncientHallowedHeadgear)
-                .AddRecipeGroup(RecipeGroups.Titanium, 10)
-                .AddIngredient(ItemID.SoulofFright, 10)
-                .AddIngredient<SoulofBlight>(10)
-                .AddTile(TileID.DemonAltar)
-                .Register();
         }
     }
 }

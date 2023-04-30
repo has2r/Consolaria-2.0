@@ -12,6 +12,7 @@ namespace Consolaria.Content.Items.Armor.Magic {
         public override void SetStaticDefaults () {
 
             Item.ResearchUnlockCount = 1;
+            ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<AncientPhantasmalHeadgear>();
         }
 
         public override void SetDefaults () {
@@ -50,6 +51,7 @@ namespace Consolaria.Content.Items.Armor.Magic {
                 .AddIngredient(ItemID.SoulofFright, 10)
                 .AddIngredient<SoulofBlight>(10)
                 .AddTile(TileID.MythrilAnvil)
+                .DisableDecraft()
                 .Register();
         }
     }

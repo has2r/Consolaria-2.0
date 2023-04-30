@@ -25,7 +25,11 @@ Mods: {
 
 			Drunk: {
 				DisplayName: Drunk
-				Description: Halves all damage taken and dealt.
+				Description:
+					'''
+					50% reduced damage taken
+					50% reduced damage dealt
+					'''
 			}
 
 			EasterBunny: {
@@ -95,12 +99,12 @@ Mods: {
 
 			SmallLepus: {
 				DisplayName: Baby Lepus
-				Description: He can't lay any eggs
+				Description: He can't lay any eggs... Yet!
 			}
 
 			Stunned: {
 				DisplayName: Stunned
-				Description: Can't move
+				Description: Paralyzed by love
 			}
 
 			Tiphia: {
@@ -139,8 +143,9 @@ Mods: {
 				DisplayName: Ancient Phantasmal Headgear
 				Tooltip:
 					'''
-					10% increased magic damage and critical strike chance
 					Increases maximum mana by 50
+					10% increased magic damage
+					10% increased magic critical strike chance
 					'''
 			}
 
@@ -148,8 +153,8 @@ Mods: {
 				DisplayName: Ancient Phantasmal Robe
 				Tooltip:
 					'''
-					15% increased magic damage
 					Increases maximum mana by 70
+					15% increased magic damage
 					'''
 			}
 
@@ -157,9 +162,9 @@ Mods: {
 				DisplayName: Ancient Phantasmal Subligar
 				Tooltip:
 					'''
+					Increases maximum mana by 30
 					5% increased magic damage
 					12% increased movement speed
-					Increases maximum mana by 30
 					'''
 			}
 
@@ -167,8 +172,9 @@ Mods: {
 				DisplayName: Phantasmal Headgear
 				Tooltip:
 					'''
-					10% increased magic damage and critical strike chance
 					Increases maximum mana by 50
+					10% increased magic damage
+					10% increased magic critical strike chance
 					'''
 			}
 
@@ -176,8 +182,8 @@ Mods: {
 				DisplayName: Phantasmal Robe
 				Tooltip:
 					'''
-					15% increased magic damage
 					Increases maximum mana by 70
+					15% increased magic damage
 					'''
 			}
 
@@ -185,9 +191,9 @@ Mods: {
 				DisplayName: Phantasmal Subligar
 				Tooltip:
 					'''
+					Increases maximum mana by 30
 					5% increased magic damage
 					12% increased movement speed
-					Increases maximum mana by 30
 					'''
 			}
 
@@ -195,7 +201,8 @@ Mods: {
 				DisplayName: Ancient Dragon Breastplate
 				Tooltip:
 					'''
-					10% increased melee damage and critical strike chance
+					10% increased melee damage
+					10% increased melee critical strike chance
 					15% increased melee speed
 					'''
 			}
@@ -204,21 +211,27 @@ Mods: {
 				DisplayName: Ancient Dragon Greaves
 				Tooltip:
 					'''
-					5% increased melee damage and critical strike chance
+					5% increased melee damage
+					5% increased melee critical strike chance
 					20% increased movement speed
 					'''
 			}
 
 			AncientDragonMask: {
 				DisplayName: Ancient Dragon Mask
-				Tooltip: 15% increased melee damage and speed
+				Tooltip: 
+					'''
+					15% increased melee damage
+					15% increased melee speed
+					'''
 			}
 
 			DragonBreastplate: {
 				DisplayName: Dragon Breastplate
 				Tooltip:
 					'''
-					10% increased melee damage and critical strike chance
+					10% increased melee damage
+					10% increased melee critical strike chance
 					15% increased melee speed
 					'''
 			}
@@ -227,19 +240,24 @@ Mods: {
 				DisplayName: Dragon Greaves
 				Tooltip:
 					'''
-					5% increased melee damage and critical strike chance
+					5% increased melee damage
+					5% increased melee critical strike chance
 					20% increased movement speed
 					'''
 			}
 
 			DragonMask: {
 				DisplayName: Dragon Mask
-				Tooltip: 15% increased melee damage and speed
+				Tooltip:
+					'''
+					15% increased melee damage
+					15% increased melee speed
+					'''
 			}
 
 			OstaraBoots: {
 				DisplayName: Boots of Ostara
-				Tooltip: Allows the wearer to perform up to 5 bunny hops
+				Tooltip: Allows wearer to perform up to 5 bunny hops
 			}
 
 			OstaraHat: {
@@ -256,7 +274,8 @@ Mods: {
 				DisplayName: Ancient Titan Helmet
 				Tooltip:
 					'''
-					10% increased ranged damage and critical strike chance 
+					10% increased ranged damage
+					10% increased ranged critical strike chance
 					25% chance to not consume ammo
 					'''
 			}
@@ -276,7 +295,7 @@ Mods: {
 				Tooltip:
 					'''
 					15% increased ranged damage
-					10 % increased ranged critical strike chance
+					10% increased ranged critical strike chance
 					20% chance to not consume ammo
 					'''
 			}
@@ -285,7 +304,8 @@ Mods: {
 				DisplayName: Titan Helmet
 				Tooltip:
 					'''
-					10% increased ranged damage and critical strike chance 
+					10% increased ranged damage
+					10% increased ranged critical strike chance
 					25% chance to not consume ammo
 					'''
 			}
@@ -315,7 +335,7 @@ Mods: {
 				Tooltip:
 					'''
 					Increases your max number of minions by 1
-					20% increased minion damage
+					Increases summon damage by 20%
 					'''
 			}
 
@@ -324,7 +344,7 @@ Mods: {
 				Tooltip:
 					'''
 					Increases your max number of minions by 1
-					20% increased minion damage
+					Increases summon damage by 20%
 					15% increased movement speed
 					'''
 			}
@@ -334,7 +354,7 @@ Mods: {
 				Tooltip:
 					'''
 					Increases your max number of minions by 1
-					20% increased minion damage
+					Increases summon damage by 20%
 					'''
 			}
 
@@ -343,7 +363,7 @@ Mods: {
 				Tooltip:
 					'''
 					Increases your max number of minions by 1
-					20% increased minion damage
+					Increases summon damage by 20%
 					'''
 			}
 
@@ -352,7 +372,7 @@ Mods: {
 				Tooltip:
 					'''
 					Increases your max number of minions by 1
-					20% increased minion damage
+					Increases summon damage by 20%
 					15% increased movement speed
 					'''
 			}
@@ -362,7 +382,7 @@ Mods: {
 				Tooltip:
 					'''
 					Increases your max number of minions by 1
-					20% increased minion damage
+					Increases summon damage by 20%
 					'''
 			}
 
@@ -564,7 +584,7 @@ Mods: {
 
 			HornoPlenty: {
 				DisplayName: Horn o' Plenty
-				Tooltip: It is filled with the inexhaustible gifts of celebratory fruits
+				Tooltip: It's filled with the inexhaustible gifts of celebratory fruits
 			}
 
 			TurkorBag: {
@@ -626,7 +646,7 @@ Mods: {
 			}
 
 			Wiesnbrau: {
-				DisplayName: Wiesnbr?u
+				DisplayName: Wiesnbräu
 				Tooltip: Numbs the user from damage taken but also reduces damage inflicted
 			}
 
@@ -939,8 +959,8 @@ Mods: {
 				DisplayName: Heart Arrow
 				Tooltip:
 					'''
-					'Legendary arrows from cupid himself'
 					Has a chance to stun enemies on hit
+					'Legendary arrows from cupid himself'
 					'''
 			}
 
@@ -996,7 +1016,11 @@ Mods: {
 
 			DragonBreath: {
 				DisplayName: Dragon's Breath
-				Tooltip: 70% chance to not consume gel
+				Tooltip:
+					'''
+					Uses gel for ammo
+					70% chance to save ammo
+					'''
 			}
 
 			EggCannon: {

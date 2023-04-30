@@ -10,6 +10,7 @@ namespace Consolaria.Content.Items.Armor.Ranged {
         public override void SetStaticDefaults () {
 
             Item.ResearchUnlockCount = 1;
+            ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<TitanMail>();
         }
 
         public override void SetDefaults () {
@@ -25,16 +26,6 @@ namespace Consolaria.Content.Items.Armor.Ranged {
         public override void UpdateEquip (Player player) {
             player.GetCritChance(DamageClass.Ranged) += 10;
             player.GetDamage(DamageClass.Ranged) += 0.15f;
-        }
-
-        public override void AddRecipes () {
-            CreateRecipe()
-                .AddIngredient(ItemID.AncientHallowedPlateMail)
-               .AddRecipeGroup(RecipeGroups.Titanium, 12)
-                .AddIngredient(ItemID.SoulofSight, 15)
-                .AddIngredient<SoulofBlight>(15)
-                .AddTile(TileID.DemonAltar)
-                .Register();
         }
     }
 }

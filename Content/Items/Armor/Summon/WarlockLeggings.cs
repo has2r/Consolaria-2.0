@@ -11,6 +11,7 @@ namespace Consolaria.Content.Items.Armor.Summon {
 
             ArmorIDs.Legs.Sets.HidesBottomSkin [Item.legSlot] = true;
             Item.ResearchUnlockCount = 1;
+            ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<AncientWarlockLeggings>();
         }
 
         public override void SetDefaults () {
@@ -37,6 +38,7 @@ namespace Consolaria.Content.Items.Armor.Summon {
                 .AddIngredient(ItemID.SoulofNight, 10)
                 .AddIngredient<SoulofBlight>(10)
                 .AddTile(TileID.MythrilAnvil)
+                .DisableDecraft()
                 .Register();
         }
     }

@@ -10,6 +10,7 @@ namespace Consolaria.Content.Items.Armor.Melee {
         public override void SetStaticDefaults () {
 
             Item.ResearchUnlockCount = 1;
+            ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<AncientDragonBreastplate>();
         }
 
         public override void SetDefaults () {
@@ -35,6 +36,7 @@ namespace Consolaria.Content.Items.Armor.Melee {
                 .AddIngredient(ItemID.SoulofMight, 15)
                 .AddIngredient<SoulofBlight>(15)
                 .AddTile(TileID.MythrilAnvil)
+                .DisableDecraft()
                 .Register();
         }
     }

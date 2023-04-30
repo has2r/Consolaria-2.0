@@ -10,6 +10,7 @@ namespace Consolaria.Content.Items.Armor.Melee {
         public override void SetStaticDefaults () {
 
             Item.ResearchUnlockCount = 1;
+            ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<DragonMask>();
         }
 
         public override void SetDefaults () {
@@ -37,16 +38,6 @@ namespace Consolaria.Content.Items.Armor.Melee {
         public override void UpdateArmorSet (Player player) {
             player.setBonus = "Creates a burst of flames after taking damage";
             player.GetModPlayer<DragonPlayer>().dragonBurst = true;
-        }
-
-        public override void AddRecipes () {
-            CreateRecipe()
-                .AddIngredient(ItemID.AncientHallowedMask)
-               .AddRecipeGroup(RecipeGroups.Titanium, 10)
-                .AddIngredient(ItemID.SoulofMight, 10)
-                .AddIngredient<SoulofBlight>(10)
-                .AddTile(TileID.DemonAltar)
-                .Register();
         }
     }
 }

@@ -219,7 +219,7 @@ Mods: {
 
 			AncientDragonMask: {
 				DisplayName: Ancient Dragon Mask
-				Tooltip: 
+				Tooltip:
 					'''
 					15% increased melee damage
 					15% increased melee speed

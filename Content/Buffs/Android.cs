@@ -7,7 +7,6 @@ namespace Consolaria.Content.Buffs {
 	{
 		public override void SetStaticDefaults() 
 		{
-
 			Main.buffNoTimeDisplay[Type] = true;
 			Main.vanityPet[Type] = true;
 		}

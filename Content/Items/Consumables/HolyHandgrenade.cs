@@ -8,6 +8,7 @@ namespace Consolaria.Content.Items.Consumables {
         public override void SetStaticDefaults () {
 
             Item.ResearchUnlockCount = 99;
+            ItemID.Sets.ShimmerTransformToItem [Type] = ModContent.ItemType<HolyHandgrenade2>();
         }
 
         public override void SetDefaults () {

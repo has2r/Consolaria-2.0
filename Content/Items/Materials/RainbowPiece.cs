@@ -9,8 +9,9 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Items.Materials {
     public class RainbowPiece : ModItem {
         public override void SetStaticDefaults () {
-
             Item.ResearchUnlockCount = 50;
+            ItemID.Sets.ShimmerTransformToItem [Type] = ItemID.FallenStar;
+            ItemID.Sets.ShimmerTransformToItem [ItemID.FallenStar] = Type;
         }
 
         public override void SetDefaults () {

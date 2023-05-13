@@ -8,8 +8,8 @@ using Microsoft.Xna.Framework.Graphics;
 namespace Consolaria.Content.Items.Consumables {
     public class HolyHandgrenade2 : ModItem {
         public override void SetStaticDefaults () {
-
             Item.ResearchUnlockCount = 99;
+            ItemID.Sets.ShimmerTransformToItem [Type] = ItemID.Grenade;
         }
 
         public override void SetDefaults () {

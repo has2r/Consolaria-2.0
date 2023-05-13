@@ -8,7 +8,6 @@ using Terraria.GameContent;
 using Terraria.GameContent.Drawing;
 using Terraria.ID;
 using Terraria.ModLoader;
-using static Humanizer.In;
 
 namespace Consolaria.Content.Projectiles.Friendly {
     public class Tizona : ModProjectile {

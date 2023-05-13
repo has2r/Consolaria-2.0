@@ -10,6 +10,7 @@ namespace Consolaria.Content.Items.Armor.Ranged {
         public override void SetStaticDefaults () {
 
             Item.ResearchUnlockCount = 1;
+            ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<TitanLeggings>();
         }
 
         public override void SetDefaults () {
@@ -25,16 +26,6 @@ namespace Consolaria.Content.Items.Armor.Ranged {
         public override void UpdateEquip (Player player) {
             player.moveSpeed += 0.18f;
             player.GetDamage(DamageClass.Ranged) += 0.1f;
-        }
-
-        public override void AddRecipes () {
-            CreateRecipe()
-                .AddIngredient(ItemID.AncientHallowedGreaves)
-               .AddRecipeGroup(RecipeGroups.Titanium, 10)
-                .AddIngredient(ItemID.SoulofSight, 10)
-                .AddIngredient<SoulofBlight>(10)
-                .AddTile(TileID.DemonAltar)
-                .Register();
         }
     }
 }

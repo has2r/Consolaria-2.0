@@ -1,14 +1,14 @@
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.Items.Materials
 {
-    public class WhiteThread : ModItem
+    public class PurpleThread : ModItem
     {
-        public override void SetStaticDefaults() {
+        public override void SetStaticDefaults() 
+        {
             Item.ResearchUnlockCount = 5;
         }
 
@@ -21,9 +21,10 @@ namespace Consolaria.Content.Items.Materials
             Item.value = Item.sellPrice(silver: 4);
         }
 
-        public override void AddRecipes() {
+        public override void AddRecipes() 
+        {
             CreateRecipe()
-                .AddIngredient(ItemID.ShiverthornSeeds, 3)
+                .AddIngredient(ItemID.DeathweedSeeds, 3)
                 .AddTile(TileID.Bottles)
                 .Register();
         }

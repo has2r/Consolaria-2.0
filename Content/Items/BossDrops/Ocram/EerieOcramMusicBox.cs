@@ -7,8 +7,8 @@ namespace Consolaria.Content.Items.BossDrops.Ocram {
     public class EerieOcramMusicBox : ModItem {
 		public override void SetStaticDefaults () {
 			Item.ResearchUnlockCount = 1;
-
 			MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Assets/Music/EerieOcram"), ModContent.ItemType<EerieOcramMusicBox>(), ModContent.TileType<Tiles.EerieOcramMusicBox>());
+			ItemID.Sets.ShimmerTransformToItem[Type] = ItemID.MusicBox;
 		}
 
 		public override void SetDefaults () {

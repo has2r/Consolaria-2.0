@@ -1,5 +1,4 @@
 using Microsoft.Xna.Framework;
-using Terraria.GameContent.Creative;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -10,7 +9,7 @@ namespace Consolaria.Content.Items.Weapons.Ammo {
 
         public override void SetStaticDefaults() {
 
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 99;
+            Item.ResearchUnlockCount = 99;
         }
 
         public override void SetDefaults() {

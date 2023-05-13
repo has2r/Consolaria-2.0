@@ -1,7 +1,6 @@
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
-using Terraria.GameContent.Creative;
 using Microsoft.Xna.Framework;
 
 namespace Consolaria.Content.Items.Vanity
@@ -13,7 +12,7 @@ namespace Consolaria.Content.Items.Vanity
 		public override void SetStaticDefaults() {
 
 			ArmorIDs.Head.Sets.DrawHatHair[Item.headSlot] = true;
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+			Item.ResearchUnlockCount = 1;
 		}
 
 		public override void SetDefaults() {

@@ -15,6 +15,7 @@ namespace Consolaria.Content.Items.Armor.Ranged {
 
         public override void SetStaticDefaults () {
             Item.ResearchUnlockCount = 1;
+            ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<AncientTitanMail>();
 
             if (!Main.dedServ) {
                 mailGlowmask = new(() => ModContent.Request<Texture2D>(Texture + "_Glow"));
@@ -47,6 +48,7 @@ namespace Consolaria.Content.Items.Armor.Ranged {
                 .AddIngredient(ItemID.SoulofSight, 15)
                 .AddIngredient<SoulofBlight>(15)
                 .AddTile(TileID.MythrilAnvil)
+                .DisableDecraft()
                 .Register();
         }
     }

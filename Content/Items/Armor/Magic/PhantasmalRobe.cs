@@ -10,6 +10,7 @@ namespace Consolaria.Content.Items.Armor.Magic {
         public override void SetStaticDefaults () {
 
             Item.ResearchUnlockCount = 1;
+            ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<AncientPhantasmalRobe>();
         }
 
         public override void SetDefaults () {
@@ -31,10 +32,11 @@ namespace Consolaria.Content.Items.Armor.Magic {
         public override void AddRecipes () {
             CreateRecipe()
                 .AddIngredient(ItemID.HallowedPlateMail)
-               .AddRecipeGroup(RecipeGroups.Titanium, 12)
+                .AddRecipeGroup(RecipeGroups.Titanium, 12)
                 .AddIngredient(ItemID.SoulofFright, 15)
                 .AddIngredient<SoulofBlight>(15)
                 .AddTile(TileID.MythrilAnvil)
+                .DisableDecraft()
                 .Register();
         }
     }

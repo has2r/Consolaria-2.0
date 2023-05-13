@@ -25,7 +25,7 @@ namespace Consolaria.Content.NPCs {
             NPC.damage = 40;
             NPC.lifeMax = 120;
 
-            NPC.defense = 20;
+            NPC.defense = 16;
             NPC.knockBackResist = 0.6f;
 
             NPC.HitSound = SoundID.NPCHit31;

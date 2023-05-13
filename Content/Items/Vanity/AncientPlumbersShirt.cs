@@ -2,15 +2,19 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ModLoader;
+using Terraria.ID;
 
-namespace Consolaria.Content.Items.Vanity {
+namespace Consolaria.Content.Items.Vanity
+{
     [AutoloadEquip(EquipType.Body)]
 
 	public class AncientPlumbersShirt : ModItem
 	{
 		public override void SetStaticDefaults() 
 		{
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+			Item.ResearchUnlockCount = 1;
+			ItemID.Sets.ShimmerTransformToItem[Type] = ItemID.PlumbersShirt;
+			ItemID.Sets.ShimmerTransformToItem[ItemID.PlumbersShirt] = Type;
 		}
 
 		public override void SetDefaults() 

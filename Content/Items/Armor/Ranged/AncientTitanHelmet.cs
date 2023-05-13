@@ -7,10 +7,10 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Items.Armor.Ranged {
     [AutoloadEquip(EquipType.Head)]
     public class AncientTitanHelmet : ModItem {
-
         public override void SetStaticDefaults () {
 
             Item.ResearchUnlockCount = 1;
+            ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<TitanHelmet>();
         }
 
         public override void SetDefaults () {
@@ -38,16 +38,6 @@ namespace Consolaria.Content.Items.Armor.Ranged {
         public override void UpdateArmorSet (Player player) {
             player.setBonus = "Using ranged weapons triggers a recoil blast";
             player.GetModPlayer<TitanPlayer>().titanPower = true;
-        }
-
-        public override void AddRecipes () {
-            CreateRecipe()
-                .AddIngredient(ItemID.AncientHallowedHelmet)
-                .AddRecipeGroup(RecipeGroups.Titanium, 10)
-                .AddIngredient(ItemID.SoulofSight, 10)
-                .AddIngredient<SoulofBlight>(10)
-                .AddTile(TileID.DemonAltar)
-                .Register();
         }
     }
 }

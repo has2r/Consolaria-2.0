@@ -10,6 +10,7 @@ namespace Consolaria.Content.Items.Armor.Melee {
         public override void SetStaticDefaults () {
 
             Item.ResearchUnlockCount = 1;
+            ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<DragonBreastplate>();
         }
 
         public override void SetDefaults () {
@@ -26,16 +27,6 @@ namespace Consolaria.Content.Items.Armor.Melee {
             player.GetCritChance(DamageClass.Melee) += 10;
             player.GetDamage(DamageClass.Melee) += 0.1f;
             player.GetAttackSpeed(DamageClass.Melee) += 0.15f;
-        }
-
-        public override void AddRecipes () {
-            CreateRecipe()
-                .AddIngredient(ItemID.AncientHallowedPlateMail)
-                .AddRecipeGroup(RecipeGroups.Titanium, 12)
-                .AddIngredient(ItemID.SoulofMight, 15)
-                .AddIngredient<SoulofBlight>(15)
-                .AddTile(TileID.DemonAltar)
-                .Register();
         }
     }
 }

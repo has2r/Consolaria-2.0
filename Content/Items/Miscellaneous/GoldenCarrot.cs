@@ -2,7 +2,6 @@ using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
-using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -18,8 +17,9 @@ namespace Consolaria.Content.Items.Miscellaneous
 				new Color(241, 234, 83),
 				new Color(186, 143, 23)
 			};
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 5;
+			Item.ResearchUnlockCount = 5;
 			Main.RegisterItemAnimation(Type, new DrawAnimationVertical(int.MaxValue, 3));
+			ItemID.Sets.ShimmerTransformToItem[Type] = ItemID.Ambrosia;
 		}
 
 		public override void SetDefaults() {

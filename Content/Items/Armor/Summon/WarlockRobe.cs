@@ -16,6 +16,7 @@ namespace Consolaria.Content.Items.Armor.Summon {
         public override void SetStaticDefaults () {
 
             Item.ResearchUnlockCount = 1;
+            ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<AncientWarlockRobe>();
         }
 
         public override void SetDefaults () {
@@ -46,6 +47,7 @@ namespace Consolaria.Content.Items.Armor.Summon {
                 .AddIngredient(ItemID.SoulofNight, 15)
                 .AddIngredient<SoulofBlight>(15)
                 .AddTile(TileID.MythrilAnvil)
+                .DisableDecraft()
                 .Register();
         }
     }

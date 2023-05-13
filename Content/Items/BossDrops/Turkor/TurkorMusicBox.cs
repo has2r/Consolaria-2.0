@@ -7,6 +7,7 @@ namespace Consolaria.Content.Items.BossDrops.Turkor {
 	public class TurkorMusicBox : ModItem {
 		public override void SetStaticDefaults () {
 			MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Assets/Music/Turkor"), ModContent.ItemType<TurkorMusicBox>(), ModContent.TileType<Tiles.TurkorMusicBox>());
+			ItemID.Sets.ShimmerTransformToItem[Type] = ItemID.MusicBox;
 		}
 
 		public override void SetDefaults () {

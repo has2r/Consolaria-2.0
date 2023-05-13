@@ -2,7 +2,6 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.GameContent.Creative;
 using System;
 
 namespace Consolaria.Content.Items.Armor.Misc
@@ -13,7 +12,7 @@ namespace Consolaria.Content.Items.Armor.Misc
 		public override void SetStaticDefaults() {
 
             ArmorIDs.Head.Sets.DrawHatHair[Item.headSlot] = true;
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            Item.ResearchUnlockCount = 1;
 		}
 
 		public override void SetDefaults() {

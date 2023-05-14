@@ -25,9 +25,14 @@ namespace Consolaria.Content.Items.Consumables {
             => true;
 
         public override void RightClick (Player player) {
-            int mainDrops = Main.rand.Next(2);
-            if (mainDrops == 0) player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<Squib>(), Main.rand.Next(10, 35));
+            int mainDrops = Main.rand.Next(7);
+            if (mainDrops == 0) player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<Squib>(), Main.rand.Next(10, 25));
             if (mainDrops == 1) player.QuickSpawnItem(player.GetSource_OpenItem(Type), ItemID.ReleaseLantern, Main.rand.Next(3, 10));
+            if (mainDrops == 2) player.QuickSpawnItem(player.GetSource_OpenItem(Type), ItemID.RedRocket, Main.rand.Next(3, 10));
+            if (mainDrops == 3) player.QuickSpawnItem(player.GetSource_OpenItem(Type), ItemID.GreenRocket, Main.rand.Next(3, 10));
+            if (mainDrops == 4) player.QuickSpawnItem(player.GetSource_OpenItem(Type), ItemID.BlueRocket, Main.rand.Next(3, 10));
+            if (mainDrops == 5) player.QuickSpawnItem(player.GetSource_OpenItem(Type), ItemID.YellowRocket, Main.rand.Next(3, 10));
+            if (mainDrops == 6) player.QuickSpawnItem(player.GetSource_OpenItem(Type), ItemID.FireworksBox, Main.rand.Next(1, 1));
 
             if (Main.rand.NextBool(25)) {
                 player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<MythicalLionMask>());

@@ -1,50 +1,48 @@
-Tons of exclusive mobile and console features were deleted in 1.3. 
-Consolaria brings this unique content back, reworked and rebalanced for modern Terraria.
-It is now finally out for  [b]1.4[/b]!
+During the development of Terraria 1.3, tons of exclusive mobile & old-gen console features got removed. [b]Consolaria[/b] is a mod that aims to bring this unique content back - fixed, reworked & rebalanced to the level of modern Terraria.
 
-[h1] Info[/h1]
-
-This includes:
+[b]This includes:[/b]
 [list]
-[*] Lepus, Turkor and Ocram - all with brand new AI
-[*] New and improved loot, including weapons, armors and more
-[*] Treasure bags, Expert and Master mode drops
-[*] Music themes for each boss
-[*] Chinese New Year, Valentine's Day, St. Patrick's Day and Oktoberfest
-[*] Heart Shrine and Jungle Sanctum
-[*] Arch Demon, Arch Wyvern and all the other console and mobile enemies
-[*] Exclusive vanity - including the Horned God set and many others
-[*] A bunch of ported exclusive pets with extra animations
-[*] Lots of new and carefully revamped sprites
-[*] Boss Checklist and Fargo's Mutant Mod support
-[*] Holy Hand Grenade!
+[*][b]Lepus, Turkor & Ocram[/b] - all with brand new AI, Treasure Bags, Master Mode drops & exclusive music themes
+[*][b]New & improved vanilla+ loot[/b] - including weapons, armors, mounts & more
+[*][b]Removed in-game events[/b] - including Chinese New Year, Valentine's Day, St. Patrick's Day & Oktoberfest
+[*][b]Heart Shrine & Jungle Sanctum[/b] underground structures
+[*][b]Removed enemies[/b] - including Arch Demon, Vampire Miner, Shadow Mummy & more
+[*][b]Console-exclusive vanity items[/b] - including the Horned God set, George's set & more
+[*][b]A bunch of console-exclusive pets[/b] - including Guinea Pig, Tiphia, Cupid & more
+[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2669644269]Boss Checklist[/b][/url] & [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2570931073]Fargo's Mutant Mod[/b][/url] support
+[*][b]Legendary Holy Hand Grenade![/b]
 [/list]
 
-Holiday content is always active by default and can be restricted to the corresponding dates using the config options.
+Holiday content is always active by default & can be restricted to the corresponding dates using the config menu.
 
-Developers:
+It is highly recommended to play this mod alongside [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2958674071]Heartbeataria[/url], since both mods complement each other in aim to restore previously unaccessible features making the PC Terraria [b]the most complete experience ever![/b]
+▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+
+Credits:
 [list]
-[*] has2r - programmer, founder
-[*] peege_on - spriter, animator, programmer
-[*] Zerokk - programmer
-[*] Heretic - spriter, animator, wiki editor
+[*][url=https://steamcommunity.com/id/has2r_]Has2r[/url] - programmer, founder
+[*][url=https://steamcommunity.com/id/m_pigeon]Peege•on[/url] - spriter, animator, programmer
+[*][url=https://steamcommunity.com/id/smeqe]Zerokk[/url] - programmer
+[*][url=https://steamcommunity.com/profiles/76561198147015378]Heretic[/url] - spriter, animator, wiki editor
 [/list]
 
-Contributors:
 [list]
-[*] DrunkenCat - original boss AIs
-[*] Synoxsis - Lepus, Turkor and Ocram themes
-[*] Fyerow and Croul - legacy Ocram theme
-[*] StrikerRKT - extracting files from various Japanese versions
-[*] Sparcdoctor - extensive testing and content suggestions
-[*] CrezyDud - Turkor multiplayer fixes
-[*] OnesAndZer0s - Jungle Sanctum worldgen
-[*] CKnight - Master mode Relic sprites
-[*] Bripe, Obesedog, Nokilos, MeuRan - numerous sprites
+[*][b]DrunkenCat[/b] for original boss AIs
+[*][b]Synoxsis[/b] for Lepus, Turkor & Ocram themes
+[*][b]Fyerow & Croul[/b] for legacy Ocram theme
+[*][b]StrikerRKT[/b] for extracting files from various Japanese versions of the game
+[*][b]Sparcdoctor[/b] for testing the mod & suggesting content
+[*][b]CrezyDud[/b] for fixing Turkor in Multiplayer
+[*][b]OnesAndZer0s[/b] for providing Jungle Sanctum worldgen
+[*][b]CKnight, Bripe, MeuRan, minichibis, Nokilos & Obesedog[/b] for providing numerous sprites
+[*][b]KondiU[/b] for fixing & contributing some features
 [/list]
 
-[h1] Our socials[/h1]
-Our [url=https://discord.gg/DTABXbd ]Discord [/url]  
-[url=https://forums.terraria.org/index.php?threads/consolaria.62570/]Consolaria[/url] and  our WIP bigger project -   [url=https://forums.terraria.org/index.php?threads/rise-of-ages-backwoods-and-druids.72219/]Rise of Ages[/url]  on Terraria Forums
-Mod source on [url=https://github.com/has2r/Consolaria-2.0]GitHub[/url]
-Donations on  [url=https://www.buymeacoffee.com/roagang]Buy Me a Coffee ❤️[/url]  
+▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+
+🌐 [url=https://discord.gg/DTABXbd]Discord[/url]
+🌳 [url=https://forums.terraria.org/index.php?threads/consolaria.62570]Forum post[/url]
+🍂 [url=https://forums.terraria.org/index.php?threads/rise-of-ages-backwoods-and-druids.72219]Rise of Ages[/url] - Our WIP bigger project
+🖥 [url=https://github.com/has2r/Consolaria-2.0]Mod source on GitHub[/url]
+
+💟 [url=https://www.buymeacoffee.com/roagang]Donations[/url]  

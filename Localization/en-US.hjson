@@ -662,7 +662,7 @@ Mods: {
 
 			RainbowPiece: {
 				DisplayName: Rainbow Piece
-				Tooltip: Combine 5 pieces to craft a pot o' gold
+				Tooltip: "Used for crafting a Pot O' Gold"
 			}
 
 			SoulofBlight: {

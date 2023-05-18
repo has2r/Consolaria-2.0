@@ -662,7 +662,7 @@ Mods: {
 
 			RainbowPiece: {
 				DisplayName: Rainbow Piece
-				Tooltip: Combine 5 pieces to craft a pot o' gold
+				Tooltip: Used for crafting a Pot O' Gold
 			}
 
 			SoulofBlight: {
@@ -1055,6 +1055,51 @@ Mods: {
 			TurkeyStuff: {
 				DisplayName: Turkey Staff
 				Tooltip: Summons a weird turkey to fight for you
+			}
+
+			GuaPiMao: {
+				DisplayName: Gua Pi Mao
+				Tooltip: ""
+			}
+
+			MythicalDogMask: {
+				DisplayName: Mythical Dog Mask
+				Tooltip: ""
+			}
+
+			MythicalDogPants: {
+				DisplayName: Mythical Dog Pants
+				Tooltip: ""
+			}
+
+			MythicalDogShirt: {
+				DisplayName: Mythical Dog Shirt
+				Tooltip: ""
+			}
+
+			TangSuitPants: {
+				DisplayName: Tang Suit Pants
+				Tooltip: ""
+			}
+
+			TangSuitShirt: {
+				DisplayName: Tang Suit Shirt
+				Tooltip: ""
+			}
+
+			TangYuanHat: {
+				DisplayName: Tang Yuan Hat
+				Tooltip: ""
+			}
+
+			TangYuanPants: {
+				DisplayName: Tang Yuan Pants
+				Tooltip: ""
+			}
+
+			TangYuanShirt: {
+				DisplayName: Tang Yuan Shirt
+				Tooltip: ""
 			}
 		}
 

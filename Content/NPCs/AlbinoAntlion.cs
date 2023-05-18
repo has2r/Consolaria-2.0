@@ -53,7 +53,7 @@ namespace Consolaria.Content.NPCs {
 		public override void SetBestiary (BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement [] {
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Desert,
-				new FlavorTextBestiaryInfoElement("Species of Antlion with a rare mutation show even more aggression, perhaps to compensate their shell being susceptible to sunlight.")
+				new FlavorTextBestiaryInfoElement("Species of antlion with a rare mutation show even more aggression, perhaps to compensate their shell being susceptible to sunlight.")
 			});
 		}
 

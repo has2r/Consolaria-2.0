@@ -8,7 +8,7 @@ namespace Consolaria.Content.Items.Materials {
     public class SoulofBlight : ModItem {
         public override void SetStaticDefaults () {
 
-            Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(5, 4));
+            Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(6, 4));
 
             ItemID.Sets.AnimatesAsSoul [Item.type] = true;
             ItemID.Sets.ItemIconPulse [Item.type] = true;

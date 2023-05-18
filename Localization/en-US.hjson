@@ -662,7 +662,7 @@ Mods: {
 
 			RainbowPiece: {
 				DisplayName: Rainbow Piece
-				Tooltip: "Used for crafting a Pot O' Gold"
+				Tooltip: Used for crafting a Pot O' Gold
 			}
 
 			SoulofBlight: {

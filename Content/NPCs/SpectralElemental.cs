@@ -51,7 +51,7 @@ namespace Consolaria.Content.NPCs {
         public override void SetBestiary (BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement [] {
                 BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.UndergroundHallow,
-                new FlavorTextBestiaryInfoElement("Sometimes released spirits of light would transform chaos elementals into more powerful beings, able to move in and out of the material realm at will while placing explosive spectral runes.")
+                new FlavorTextBestiaryInfoElement("Sometimes free spirits of light would transform chaos elementals into more powerful beings, giving them ability to move in and out of the material realm at their will while summoning some spectral runes.")
             });
         }
 

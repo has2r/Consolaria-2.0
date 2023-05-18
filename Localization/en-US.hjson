@@ -1217,5 +1217,13 @@ Mods: {
 			SoulOfBlightInABottle.MapEntry: Soul of Blight in a Bottle
 			TurkorMusicBox.MapEntry: Music Box
 		}
+
+		Conditions: {
+			SellingDuringThanksgiving: Mods.Consolaria.Conditions.SellingDuringThanksgiving
+			SellingDuringOktoberfest: Mods.Consolaria.Conditions.SellingDuringOktoberfest
+			SellingDuringValentineDay: Mods.Consolaria.Conditions.SellingDuringValentineDay
+			SellingIfMale: Mods.Consolaria.Conditions.SellingIfMale
+			SellingWhenWoman: Mods.Consolaria.Conditions.SellingWhenWoman
+		}
 	}
 }

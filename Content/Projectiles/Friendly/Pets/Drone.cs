@@ -8,7 +8,7 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
         public override bool isLightPet => false;
 
         public override void SetDefaults () {
-            int width = 70; int height = 40;
+            int width = 40; int height = 26;
             Projectile.Size = new Vector2(width, height);
 
             base.SetDefaults();

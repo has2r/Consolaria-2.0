@@ -1,6 +1,11 @@
 Mods: {
 	Consolaria: {
-		Biomes.RabbitInvasionBiome.DisplayName: Rabbit Invasion
+		Biomes: {
+			RabbitInvasionBiome: {
+				DisplayName: Rabbit Invasion
+				TownNPCDialogueName: the Rabbit Invasion Biome
+			}
+		}
 
 		Buffs: {
 			Android: {

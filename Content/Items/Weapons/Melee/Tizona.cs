@@ -27,14 +27,14 @@ namespace Consolaria.Content.Items.Weapons.Melee {
 
 			Item.value = Item.buyPrice(gold: 5, silver: 50);
 			Item.rare = ItemRarityID.Lime;
-			Item.UseSound = SoundID.Item79;
+			Item.UseSound = SoundID.Item1;
 
 			Item.shoot = ModContent.ProjectileType<Projectiles.Friendly.Tizona>();
 			Item.shootSpeed = 12f;
 		}
 
 		public override bool Shoot (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
-			Projectile.NewProjectile(player.GetSource_ItemUse(Item), position, new Vector2(player.direction, 0f), type, damage, knockback, player.whoAmI, player.direction * player.gravDir, player.itemAnimationMax);
+			Projectile.NewProjectile(player.GetSource_ItemUse(Item), position, new Vector2(player.direction, 0f), type, damage, knockback, player.whoAmI, player.direction * player.gravDir, player.itemAnimationMax * 2f);
 			return false;
 		}
 	}

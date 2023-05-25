@@ -1230,5 +1230,36 @@ Mods: {
 			SellingIfMale: Mods.Consolaria.Conditions.SellingIfMale
 			SellingWhenWoman: Mods.Consolaria.Conditions.SellingWhenWoman
 		}
+
+		Configs: {
+			ConsolariaConfig: {
+				DisplayName: Configuration
+
+				Headers: {
+					SeasonalEvents: Seasonal Events
+					Miscellaneous: Miscellaneous
+				}
+
+				easterEnabled: {
+					Label: Restrict seasonal content by system date (Easter)
+					Tooltip: "If enabled the relevant items and enemies will only appear during Easter\nApril 1 - April 30"
+				}
+
+				thanksgivingEnabled: {
+					Label: Restrict seasonal content by system date (Thanksgiving)
+					Tooltip: "If enabled the relevant items and enemies will only appear during Thanksgiving\nNovember 1 - November 30"
+				}
+
+				smallEventsEnabled: {
+					Label: Restrict seasonal content by system date (Other events)
+					Tooltip: "If enabled the relevant items and enemies will only appear during the corresponding holidays or when Wishbone is used"
+				}
+
+				vanillaBossMusic: {
+					Label: Enable vanilla music for Consolaria bosses
+					Tooltip: "If enabled the custom soundtrack will be replaced by themes originally used in console versionsd"
+				}
+			}
+		}
 	}
 }

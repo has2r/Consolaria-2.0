@@ -17,12 +17,9 @@ namespace Consolaria.Common {
                 shop.Add(ModContent.ItemType<Content.Items.Consumables.Wiesnbrau>(), oktoberfestCondition);
                 shop.Add(ModContent.ItemType<Content.Items.Accessories.ValentineRing>(), valentineDayCondition);
                 shop.Add(ModContent.ItemType<Content.Items.Weapons.Ammo.HeartArrow>(), valentineDayCondition);
-                if (DownedBossSystem.downedTurkor) {
+                if (DownedBossSystem.downedTurkor)
                     shop.Add(ModContent.ItemType<Content.Items.Weapons.Ranged.SpicySauce>());
-                }
-            }
-            if (shop.NpcType == NPCID.Demolitionist) {
-                shop.Add(ModContent.ItemType<Content.Items.Weapons.Magic.RomanCandle>(), Condition.Christmas);
+
             }
             if (shop.NpcType == NPCID.TravellingMerchant) {
                 shop.Add(ModContent.ItemType<Content.Items.Vanity.HornedGodMask>(), Condition.DownedMechBossAny, Condition.MoonPhaseFull);
@@ -48,12 +45,12 @@ namespace Consolaria.Common {
                 shop.Add(ModContent.ItemType<Content.Items.Vanity.DirndlBlouse>(), oktoberfestCondition);
                 shop.Add(ModContent.ItemType<Content.Items.Vanity.DirndlSkirt>(), oktoberfestCondition);
             }
-            if (shop.NpcType == NPCID.Cyborg) {
+            if (shop.NpcType == NPCID.Demolitionist)
+                shop.Add(ModContent.ItemType<Content.Items.Weapons.Magic.RomanCandle>(), Condition.Christmas);
+            if (shop.NpcType == NPCID.Cyborg)
                 shop.Add(ModContent.ItemType<Content.Items.Pets.ShinyBlackSlab>());
-            }
-            if (shop.NpcType == NPCID.Mechanic) {
+            if (shop.NpcType == NPCID.Mechanic)
                 shop.Add(ModContent.ItemType<Content.Items.Pets.MysteriousPackage>(), Condition.DownedMechBossAny);
-            }
             if (shop.NpcType == NPCID.SkeletonMerchant) {
                 if (!WishbonePlayer.purchasedWishbone)
                     shop.Add(ModContent.ItemType<Content.Items.Consumables.Wishbone>());

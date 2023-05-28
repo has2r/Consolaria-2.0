@@ -36,8 +36,8 @@ namespace Consolaria.Content.Projectiles.Friendly {
         }
 
         private void SwingAI () {
-            Projectile.localAI [0] += 1f;
             Player player = Main.player [Projectile.owner];
+            Projectile.localAI [0] += 1f;
             float num = Projectile.localAI [0] / Projectile.ai [1];
             // can be changed for funny
             float num2 = 0.8f;

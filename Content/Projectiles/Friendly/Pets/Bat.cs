@@ -5,6 +5,9 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Projectiles.Friendly.Pets {
     public class Bat : ConsolariaFlyingPet {
         public override int maxFrames => 4;
+        public override int PreviewOffsetX => -4;
+		public override int PreviewOffsetY => -30;
+		public override int PreviewSpriteDirection => -1;
         public override bool isLightPet => false;
 
         public override void SetDefaults () {

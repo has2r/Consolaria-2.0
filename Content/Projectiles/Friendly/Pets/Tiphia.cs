@@ -5,6 +5,9 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Projectiles.Friendly.Pets {
     public class Tiphia : ConsolariaFlyingPet {
         public override int maxFrames => 3;
+        public override int PreviewOffsetX => -16;
+		public override int PreviewOffsetY => -12;
+		public override int PreviewSpriteDirection => -1;
         public override bool isLightPet => false;
 
         public override void SetDefaults () {

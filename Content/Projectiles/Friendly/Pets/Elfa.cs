@@ -7,6 +7,9 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Projectiles.Friendly.Pets {
     public class Elfa : ConsolariaPet {
         public override int maxFrames => 9;
+        public override int PreviewFirstFrame => 1;
+		public override int PreviewLastFrame => 8;
+		public override int PreviewSpriteDirection => -1;
 
         public override void SetStaticDefaults () {
             ProjectileID.Sets.TrailCacheLength [Projectile.type] = 12;

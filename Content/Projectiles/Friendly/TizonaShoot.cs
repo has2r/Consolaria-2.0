@@ -36,7 +36,11 @@ namespace Consolaria.Content.Projectiles.Friendly {
 
         private void SwingAI () {
             Player player = Main.player [Projectile.owner];
+            //Main.NewText(Projectile.ai [0], Color.Blue);
+            //Main.NewText(Projectile.ai [1], Color.Red);
+            //Main.NewText(Projectile.ai [2], Color.Green);
             Projectile.localAI [0] += 1f;
+            Projectile.ai [0]++;
             float num = 50f;
             float num2 = 15f;
             float num3 = Projectile.ai [1] + num;
@@ -57,6 +61,8 @@ namespace Consolaria.Content.Projectiles.Friendly {
                 return;
             }
 
+            float fromValue = Projectile.localAI [0] / Projectile.ai [1];
+            float num6 = Utils.Remap(Projectile.localAI [0], Projectile.ai [1] * 0.4f, num4, 0f, 1f);
             Projectile.direction = (Projectile.spriteDirection = (int) Projectile.ai [0]);
             int num7 = 3;
             if (Projectile.damage != 0 && Projectile.localAI [0] >= num5 + num7)
@@ -79,9 +85,9 @@ namespace Consolaria.Content.Projectiles.Friendly {
                     Projectile.damage = 0;
             }
 
-            float fromValue = Projectile.localAI [0] / Projectile.ai [1];
+            fromValue = Projectile.localAI [0] / Projectile.ai [1];
             Projectile.localAI [1] += 1f;
-            float num6 = Utils.Remap(Projectile.localAI [1], Projectile.ai [1] * 0.4f, num4, 0f, 1f);
+            num6 = Utils.Remap(Projectile.localAI [1], Projectile.ai [1] * 0.4f, num4, 0f, 1f);
             Projectile.Center = player.RotatedRelativePoint(player.MountedCenter) - Projectile.velocity + Projectile.velocity * num6 * num6 * num5;
             Projectile.rotation += Projectile.ai [0] * ((float) Math.PI * 2f) * (4f + Projectile.Opacity * 4f) / 90f;
             Projectile.scale = Utils.Remap(Projectile.localAI [0], Projectile.ai [1] + 2f, num4, 1.12f, 1f) * Projectile.ai [2];

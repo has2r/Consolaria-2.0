@@ -1266,7 +1266,7 @@ Mods: {
 
 				vanillaBossMusic: {
 					Label: Enable vanilla music for Consolaria bosses
-					Tooltip: If enabled the custom soundtrack will be replaced by themes originally used in console versionsd
+					Tooltip: If enabled the custom soundtrack will be replaced by themes originally used in console versions
 				}
 			}
 		}

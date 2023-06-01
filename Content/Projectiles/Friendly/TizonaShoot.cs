@@ -17,7 +17,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
             Projectile.Size = new Vector2(width, height);
 
             Projectile.DamageType = DamageClass.Melee;
-            Projectile.aiStyle = 191;
+            //Projectile.aiStyle = 191;
 
             Projectile.friendly = true;
             Projectile.penetrate = 3;
@@ -39,8 +39,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
             //Main.NewText(Projectile.ai [0], Color.Blue);
             //Main.NewText(Projectile.ai [1], Color.Red);
             //Main.NewText(Projectile.ai [2], Color.Green);
-            Projectile.localAI [0] += 1f;
-            Projectile.ai [0]++;
+           // Projectile.ai [0] += 1F;
             float num = 50f;
             float num2 = 15f;
             float num3 = Projectile.ai [1] + num;
@@ -231,13 +230,13 @@ namespace Consolaria.Content.Projectiles.Friendly {
                         spriteBatch.Draw(asset.Value, position, rectangle, value5 * 0.15f * scale2, num6 + Projectile.ai [0] * 0.01f + num9, origin, num, effects, 0f);
                         spriteBatch.Draw(asset.Value, position, rectangle, Color.Lerp(new Color(80, 30, 160), new Color(200, 255, 0), amount) * fromValue * scale * scale2, num6 + num9, origin, num * 0.8f, effects, 0f);
                         spriteBatch.Draw(asset.Value, position, rectangle, value3 * fromValue * scale * MathHelper.Lerp(0.05f, 0.4f, fromValue) * scale2, num6 + num9, origin, num * num2, effects, 0f);
-                        spriteBatch.Draw(asset.Value, position, asset.Frame(1, 4, 0, 3), Color.White * MathHelper.Lerp(0.05f, 0.5f, fromValue) * scale * scale2, num6 + num9, origin, num, effects, 0f);
+                        spriteBatch.Draw(asset.Value, position, asset.Frame(1, 2, 0, 1), Color.White * MathHelper.Lerp(0.05f, 0.5f, fromValue) * scale * scale2, num6 + num9, origin, num, effects, 0f);
                     }
 
                     spriteBatch.Draw(asset.Value, position, rectangle, value5 * 0.15f, num6 + Projectile.ai [0] * 0.01f, origin, num, effects, 0f);
                     spriteBatch.Draw(asset.Value, position, rectangle, Color.Lerp(new Color(80, 30, 160), new Color(200, 255, 0), amount) * num3 * scale, num6, origin, num * 0.8f, effects, 0f);
                     spriteBatch.Draw(asset.Value, position, rectangle, value3 * fromValue * scale * MathHelper.Lerp(0.05f, 0.4f, num3), num6, origin, num * num2, effects, 0f);
-                    spriteBatch.Draw(asset.Value, position, asset.Frame(1, 4, 0, 3), Color.White * MathHelper.Lerp(0.05f, 0.5f, num3) * scale, num6, origin, num, effects, 0f);
+                    spriteBatch.Draw(asset.Value, position, asset.Frame(1, 2, 0, 1), Color.White * MathHelper.Lerp(0.05f, 0.5f, num3) * scale, num6, origin, num, effects, 0f);
                 }
             }
 

@@ -32,7 +32,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
             Projectile.ignoreWater = true;
             Projectile.localNPCHitCooldown = 10;
             Projectile.alpha = 0;
-            Projectile.timeLeft = 300;
+            Projectile.timeLeft = 360;
         }
 
         public override void AI () {
@@ -40,20 +40,18 @@ namespace Consolaria.Content.Projectiles.Friendly {
         }
 
         private void SwingAI () {
-            Projectile.ai[2] = 1f;
             Player player = Main.player [Projectile.owner];
-
-            Projectile.ai[2] = 1f;
 
             float num = 50f;
             float num2 = 15f;
             float num3 = Projectile.ai [1] + num;
             float num4 = num3 + num2;
-            float num5 = 77f;
+            float num5 = 75f;
 
             if (Projectile.localAI [0] == 0f)
                 SoundEngine.PlaySound(SoundID.Item8, Projectile.position);
 
+            Projectile.ai [2] = 1f;
             Projectile.localAI [0] += 1f;
             if (Projectile.damage == 0 && Projectile.localAI [0] < MathHelper.Lerp(num3, num4, 0.5f))
                 Projectile.localAI [0] += 6f;
@@ -65,8 +63,6 @@ namespace Consolaria.Content.Projectiles.Friendly {
                 return;
             }
 
-            float fromValue = Projectile.localAI [0] / Projectile.ai [1];
-            float num6 = Utils.Remap(Projectile.localAI [0], Projectile.ai [1] * 0.4f, num4, 0f, 1f);
             Projectile.direction = (Projectile.spriteDirection = (int) Projectile.ai [0]);
             int num7 = 3;
             if (Projectile.damage != 0 && Projectile.localAI [0] >= num5 + num7)
@@ -89,9 +85,9 @@ namespace Consolaria.Content.Projectiles.Friendly {
                     Projectile.damage = 0;
             }
 
-            fromValue = Projectile.localAI [0] / Projectile.ai [1];
+            float fromValue = Projectile.localAI [0] / Projectile.ai [1];
             Projectile.localAI [1] += 1f;
-            num6 = Utils.Remap(Projectile.localAI [1], Projectile.ai [1] * 0.4f, num4, 0f, 1f);
+            float num6 = Utils.Remap(Projectile.localAI [1], Projectile.ai [1] * 0.4f, num4, 0f, 1f);
             Projectile.Center = player.RotatedRelativePoint(player.MountedCenter) - Projectile.velocity + Projectile.velocity * num6 * num6 * num5;
             Projectile.rotation += Projectile.ai [0] * ((float) Math.PI * 2f) * (4f + Projectile.Opacity * 4f) / 90f;
             Projectile.scale = Utils.Remap(Projectile.localAI [0], Projectile.ai [1] + 2f, num4, 1.12f, 1f) * Projectile.ai [2];
@@ -115,8 +111,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
             if (Projectile.localAI [0] >= MathHelper.Lerp(num3, num4, 0.65f))
                 Projectile.damage = 0;
 
-            float fromValue2 = 1f - (1f - num6) * (1f - num6);
-            num6 = Utils.Remap(Projectile.localAI [0], Projectile.ai [1] / 2f, num4, 0f, 1f);
+            _ = Utils.Remap(Projectile.localAI [0], Projectile.ai [1] / 2f, num4, 0f, 1f);
             Projectile.Opacity = Utils.Remap(Projectile.localAI [0], 0f, Projectile.ai [1] * 0.5f, 0f, 1f) * Utils.Remap(Projectile.localAI [0], num4 - 12f, num4, 1f, 0f);
             if (Projectile.velocity.Length() > 8f) {
                 Projectile.velocity *= 0.94f;
@@ -203,7 +198,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
             Asset<Texture2D> asset = TextureAssets.Projectile [Projectile.type];
             Rectangle rectangle = new Rectangle(0, 0, asset.Width(), asset.Height() / 2);
             Vector2 origin = rectangle.Size() / 2f;
-            float num = Projectile.scale * 2.25f;
+            float num = Projectile.scale * 2f;
             SpriteEffects effects = (!(Projectile.ai [0] >= 0f)) ? SpriteEffects.FlipVertically : SpriteEffects.None;
             float num2 = 0.975f;
             float fromValue = Lighting.GetColor(Projectile.Center.ToTileCoordinates()).ToVector3().Length() / (float) Math.Sqrt(3.0);

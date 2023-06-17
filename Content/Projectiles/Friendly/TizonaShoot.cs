@@ -12,12 +12,17 @@ using Terraria.ModLoader;
 
 namespace Consolaria.Content.Projectiles.Friendly {
     public class TizonaShoot : ModProjectile {
+        public override void SetStaticDefaults() {
+            ProjectileID.Sets.TrailCacheLength[Projectile.type] = 5;
+            ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
+        }
+
         public override void SetDefaults () {
             int width = 30; int height = width;
             Projectile.Size = new Vector2(width, height);
 
             Projectile.DamageType = DamageClass.Melee;
-            //Projectile.aiStyle = 191;
+            Projectile.aiStyle = -1;
 
             Projectile.friendly = true;
             Projectile.penetrate = 3;
@@ -26,7 +31,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
             Projectile.tileCollide = false;
             Projectile.ignoreWater = true;
             Projectile.localNPCHitCooldown = 10;
-            Projectile.alpha = 255;
+            Projectile.alpha = 0;
             Projectile.timeLeft = 300;
         }
 
@@ -35,6 +40,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
         }
 
         private void SwingAI () {
+            Projectile.ai[2] = 1f;
             Player player = Main.player [Projectile.owner];
             //Main.NewText(Projectile.ai [0], Color.Blue);
             //Main.NewText(Projectile.ai [1], Color.Red);
@@ -111,8 +117,6 @@ namespace Consolaria.Content.Projectiles.Friendly {
                 Projectile.damage = 0;
 
             float fromValue2 = 1f - (1f - num6) * (1f - num6);
-            Projectile.rotation = Projectile.velocity.ToRotation();
-            Projectile.scale = Utils.Remap(fromValue2, 0f, 1f, 1.5f, 1f) * Projectile.ai [2];
             num6 = Utils.Remap(Projectile.localAI [0], Projectile.ai [1] / 2f, num4, 0f, 1f);
             Projectile.Opacity = Utils.Remap(Projectile.localAI [0], 0f, Projectile.ai [1] * 0.5f, 0f, 1f) * Utils.Remap(Projectile.localAI [0], num4 - 12f, num4, 1f, 0f);
             if (Projectile.velocity.Length() > 8f) {
@@ -198,20 +202,19 @@ namespace Consolaria.Content.Projectiles.Friendly {
 
         private void DrawLikeTrueNightsEdge (SpriteBatch spriteBatch) {
             Asset<Texture2D> asset = TextureAssets.Projectile [Projectile.type];
-            Rectangle rectangle = asset.Frame(1, 2);
+            Rectangle rectangle = new Rectangle(0, 0, asset.Width(), asset.Height() / 2);
             Vector2 origin = rectangle.Size() / 2f;
-            float num = Projectile.scale * 1.1f;
+            float num = Projectile.scale * 2.25f;
             SpriteEffects effects = (!(Projectile.ai [0] >= 0f)) ? SpriteEffects.FlipVertically : SpriteEffects.None;
             float num2 = 0.975f;
             float fromValue = Lighting.GetColor(Projectile.Center.ToTileCoordinates()).ToVector3().Length() / (float) Math.Sqrt(3.0);
             fromValue = Utils.Remap(fromValue, 0.2f, 1f, 0f, 1f);
             float num3 = MathHelper.Min(0.15f + fromValue * 0.85f, Utils.Remap(Projectile.localAI [0], 30f, 96f, 1f, 0f));
-            _ = Projectile.Size / 2f;
             float num4 = 2f;
             for (float num5 = num4; num5 >= 0f; num5 -= 1f) {
                 if (!(Projectile.oldPos [(int) num5] == Vector2.Zero)) {
                     Vector2 value = Projectile.Center - Projectile.velocity * 0.5f * num5;
-                    float num6 = Projectile.oldRot [(int) num5] + Projectile.ai [0] * ((float) Math.PI * 2f) * 0.1f * (0f - num5);
+                    float num6 = Projectile.rotation + Projectile.ai [0] * ((float) Math.PI * 2f) * 0.1f * (0f - num5);
                     Vector2 position = value - Main.screenPosition;
                     float num7 = 1f - num5 / num4;
                     float scale = Projectile.Opacity * num7 * num7 * 0.85f;

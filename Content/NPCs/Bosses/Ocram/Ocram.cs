@@ -87,10 +87,10 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
             NPC.aiStyle = -1;
             AnimationType = 126;
 
-            NPC.lifeMax = 44000;
+            NPC.lifeMax = 52000;
             NPC.damage = 106;
 
-            NPC.defense = 32;
+            NPC.defense = 35;
             NPC.knockBackResist = 0f;
 
             NPC.value = Item.buyPrice(gold: 15);
@@ -113,7 +113,7 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
             
         }
 
-        public override void ApplyDifficultyAndPlayerScaling (int numPlayers, float balance, float bossAdjustment)/* tModPorter Note: bossLifeScale -> balance (bossAdjustment is different, see the docs for details) */ {
+        public override void ApplyDifficultyAndPlayerScaling (int numPlayers, float balance, float bossAdjustment) {
             NPC.lifeMax = (int)(NPC.lifeMax * 0.5f * 1.3f);
             NPC.damage = (int) (NPC.damage * 0.7f);
             if (numPlayers <= 1) return;

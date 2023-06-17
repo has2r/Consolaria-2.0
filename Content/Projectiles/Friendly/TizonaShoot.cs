@@ -36,10 +36,9 @@ namespace Consolaria.Content.Projectiles.Friendly {
 
         private void SwingAI () {
             Player player = Main.player [Projectile.owner];
-            //Main.NewText(Projectile.ai [0], Color.Blue);
-            //Main.NewText(Projectile.ai [1], Color.Red);
-            //Main.NewText(Projectile.ai [2], Color.Green);
-           // Projectile.ai [0] += 1F;
+
+            Projectile.ai[2] = 1f;
+
             float num = 50f;
             float num2 = 15f;
             float num3 = Projectile.ai [1] + num;

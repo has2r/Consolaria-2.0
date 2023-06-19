@@ -36,9 +36,9 @@ namespace Consolaria.Content.Items.Weapons.Melee {
 		public override bool Shoot (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
 			Projectile.NewProjectile(player.GetSource_ItemUse(Item), position, new Vector2(player.direction, 0f), type, damage, knockback, player.whoAmI, player.direction * player.gravDir, player.itemAnimationMax * 2f);
 			float projectilesCount = 3;
-			float rotation = MathHelper.ToRadians(45);
+			float rotation = MathHelper.ToRadians(60);
 			for (int i = 0; i < projectilesCount; i++) {
-				Vector2 perturbedSpeed = velocity.RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (projectilesCount - 1))) * 1.1f;
+				Vector2 perturbedSpeed = velocity.RotatedBy(MathHelper.Lerp(0, rotation, i / (projectilesCount - 1))) * 1.1f;
 				Projectile.NewProjectile(player.GetSource_ItemUse(Item), position, perturbedSpeed, ModContent.ProjectileType<Projectiles.Friendly.TizonaShoot>(), (int) (damage / projectilesCount), knockback / 2, player.whoAmI, player.direction * player.gravDir, 32f);
 			}
 			return false;

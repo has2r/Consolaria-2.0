@@ -42,7 +42,7 @@ namespace Consolaria.Common {
 			=> ((currentDate.Day >= 20 && currentDate.Month == 1) || (currentDate.Day <= 15 && currentDate.Month == 2)) || allEventsForToday;
 
 		public static bool IsOktoberfest ()
-			=> ((currentDate.Day >= 27 && currentDate.Month == 9) || (currentDate.Day <= 31 && currentDate.Month == 10)) || allEventsForToday;
+			=> ((currentDate.Day >= 27 && currentDate.Month == 9) || (currentDate.Month == 10)) || allEventsForToday;
 
 		public static bool IsPatrickDay ()
 			=> (currentDate.Day >= 5 && currentDate.Month == 3) || allEventsForToday;

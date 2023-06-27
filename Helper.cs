@@ -12,12 +12,12 @@ public static class Helper {
     public static bool NextChance(this UnifiedRandom rand, double chance)
         => rand.NextDouble() <= chance;
 
-    public static string GetPriceText(int price) {
-        int investPrice = price;
+    public static string GetPriceText(long price) {
+        long investPrice = price;
 
         string result = string.Empty;
 
-        int copperCoins = 0, silverCoins = 0, goldCoins = 0, platinumCoins = 0;
+        long copperCoins = 0, silverCoins = 0, goldCoins = 0, platinumCoins = 0;
 
         const int COPPER = 1000000, SILVER = 10000, GOLD = 100, PLATINUM = 1;
 

@@ -131,6 +131,11 @@ Mods: {
 				DisplayName: Pet Zombie
 				Description: Eats brains
 			}
+
+			McMoneypantsBuff: {
+				DisplayName: Fortuned
+				Description: Increases the Luck of the user
+			}
 		}
 
 		Items: {
@@ -1105,6 +1110,11 @@ Mods: {
 			TangYuanShirt: {
 				DisplayName: Tang Yuan Shirt
 				Tooltip: ""
+			}
+
+			McMoneypantsInvitation: {
+				DisplayName: Gilded Invitation
+				Tooltip: Looks like it was intended for someone wealthy
 			}
 		}
 

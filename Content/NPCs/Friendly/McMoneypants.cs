@@ -238,13 +238,15 @@ public class McMoneypants : ModNPC {
         }
 
         McMoneypantsWorldData.SomebodyInvested = false;
+
+        modPlayer.PlayerInvestPrice = McMoneypantPlayerData.startPrice;
     }
 }
 
 public class McMoneypantPlayerData : ModPlayer {
-    private static readonly int _startPrice = Item.buyPrice(gold: 15);
+    internal static readonly int startPrice = Item.buyPrice(gold: 15);
 
-    public int PlayerInvestPrice { get; internal set; } = _startPrice;
+    public int PlayerInvestPrice { get; internal set; } = startPrice;
 
     public bool PlayerInvested { get; internal set; } = false;
 

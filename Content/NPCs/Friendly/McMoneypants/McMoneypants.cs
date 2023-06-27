@@ -156,7 +156,7 @@ public class McMoneypants : ModNPC {
         => Names;
 
     public override string GetChat()
-        => Main.LocalPlayer.GetModPlayer<McMoneypantsPlayerData>().PlayerInvested ? QuotesWhenInvested[Main.rand.Next(QuotesWhenInvested.Count - 1)] : Quotes[Main.rand.Next(Quotes.Count - 1)];
+        => Main.LocalPlayer.GetModPlayer<McMoneypantsPlayerData>().PlayerInvested ? QuotesWhenInvested[Main.rand.Next(QuotesWhenInvested.Count)] : Quotes[Main.rand.Next(Quotes.Count - 1)];
 
     public override void SetChatButtons(ref string button, ref string button2) {
         McMoneypantsPlayerData modPlayer = Main.LocalPlayer.GetModPlayer<McMoneypantsPlayerData>();

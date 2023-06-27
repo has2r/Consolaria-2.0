@@ -209,7 +209,7 @@ public class McMoneypants : ModNPC {
         void UpdateSpawnTime() {
             bool isMorning = Main.dayTime && Main.time == 0;
             if (isMorning)  {
-                bool shouldComeWhen = Main.rand.NextChance(McMoneypantsWorldData.ChanceToSpawn) || McMoneypantsWorldData.SomebodyInvested;
+                bool shouldComeWhen = Main.rand.NextBool(McMoneypantsWorldData.ChanceToSpawn) || McMoneypantsWorldData.SomebodyInvested;
                 if (!isMoneypantsThere && shouldComeWhen) {
                     int minTime = 5400, maxTime = 8100;
                     McMoneypantsWorldData.SpawnTime = Helper.GetRandomSpawnTime(minTime, maxTime);
@@ -320,7 +320,7 @@ public class McMoneypantsWorldData : ModSystem {
 
     public static double SpawnTime { get; internal set; } = double.MaxValue;
 
-    internal static double ChanceToSpawn { get; private set; } = 1f;
+    internal static int ChanceToSpawn { get; private set; }
 
     public override void SaveWorldData(TagCompound tag) {
         tag.Add("isInvested", SomebodyInvested);
@@ -366,8 +366,10 @@ public class McMoneypantsWorldData : ModSystem {
             if (rate < 1.0) {
                 rate = 1.0;
             }
-            ChanceToSpawn = 27000.0 / rate;
-            ChanceToSpawn *= 4.0;
+            ChanceToSpawn = (int)(27000.0 / rate);
+            ChanceToSpawn *= 4;
         }
+
+        UpdateSpawnToChance();
     }
 }

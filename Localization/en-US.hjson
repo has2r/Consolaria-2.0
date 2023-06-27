@@ -131,6 +131,11 @@ Mods: {
 				DisplayName: Pet Zombie
 				Description: Eats brains
 			}
+
+			McMoneypantsBuff: {
+				DisplayName: Fortuned
+				Description: Increases the Luck of the user
+			}
 		}
 
 		Items: {
@@ -1106,6 +1111,11 @@ Mods: {
 				DisplayName: Tang Yuan Shirt
 				Tooltip: ""
 			}
+
+			McMoneypantsInvitation: {
+				DisplayName: Gilded Invitation
+				Tooltip: Looks like it was intended for someone wealthy
+			}
 		}
 
 		NPCs: {
@@ -1149,6 +1159,21 @@ Mods: {
 			SpectralGastropod.DisplayName: Spectrapod
 			SpectralMummy.DisplayName: Spectral Mummy
 			VampireMiner.DisplayName: Vampire Miner
+
+			McMoneypants: {
+				DisplayName: Mc Moneypants
+
+				TownNPCMood: {
+					Content: I am content.
+					NoHome: I hate not having a home.
+					FarFromHome: I am too far from home.
+					LoveSpace: I love having so much space.
+					DislikeCrowded: I dislike how crowded I am.
+					HateCrowded: I hate how crowded I am.
+					LikeNPC_Princess: I like {NPCName}.
+					Princess_LovesNPC: I like {NPCName}.
+				}
+			}
 		}
 
 		Projectiles: {
@@ -1266,7 +1291,7 @@ Mods: {
 
 				vanillaBossMusic: {
 					Label: Enable vanilla music for Consolaria bosses
-					Tooltip: If enabled the custom soundtrack will be replaced by themes originally used in console versionsd
+					Tooltip: If enabled the custom soundtrack will be replaced by themes originally used in console versions
 				}
 			}
 		}

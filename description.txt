@@ -35,5 +35,6 @@ Contributors:
 - CKnight - Master mode Relic sprites
 - Bripe, Obesedog, Nokilos, MeuRan - numerous sprites
 - OrcaRequiem - Orca animation rework
+- Lion8cake - Tizona Zenith graphic and recipe
 
 Also check out our WIP bigger project — Rise of Ages! Find it in the modding section on Terraria Forums or on our Discord.

@@ -237,6 +237,9 @@ public class McMoneypants : ModNPC {
                     int minTime = 5400, maxTime = 8100;
                     McMoneypantsWorldData.SpawnTime = Helper.GetRandomSpawnTime(minTime, maxTime);
                 }
+                else {
+                    McMoneypantsWorldData.SpawnTime = double.MaxValue;
+                }
             }
         }
 

@@ -98,8 +98,8 @@ public class McMoneypants : ModNPC {
                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface
            });
 
-    public override void OnSpawn(IEntitySource source)
-        => ResetInvestedStatus();
+    //public override void OnSpawn(IEntitySource source)
+    //    => ResetInvestedStatus();
 
     #region AI
     public override bool PreAI()
@@ -204,6 +204,8 @@ public class McMoneypants : ModNPC {
 
             ResetTimePassedValue();
 
+            ResetInvestedStatus();
+
             return false;
         }
 
@@ -246,6 +248,8 @@ public class McMoneypants : ModNPC {
                 worldNPC.homeless = true;
                 worldNPC.direction = Main.spawnTileX >= WorldGen.bestX ? -1 : 1;
                 worldNPC.netUpdate = true;
+
+                McMoneypantsWorldData.FirstTimeTravelled = false;
 
                 NotifySpawnInChat(worldNPC);
             }
@@ -336,6 +340,7 @@ public class McMoneypantsWorldData : ModSystem {
     internal static bool GildedInvitationUsed;
 
     public static bool SomebodyInvested { get; internal set; }
+    public static bool FirstTimeTravelled { get; internal set; } = true;
 
     public static double SpawnTime { get; internal set; } = double.MaxValue;
 
@@ -343,6 +348,7 @@ public class McMoneypantsWorldData : ModSystem {
 
     public override void SaveWorldData(TagCompound tag) {
         tag.Add("isInvested", SomebodyInvested);
+        tag.Add("firstTimeTravelled", FirstTimeTravelled);
 
         tag.Add("spawnTime", SpawnTime);
 
@@ -351,6 +357,7 @@ public class McMoneypantsWorldData : ModSystem {
 
     public override void LoadWorldData(TagCompound tag) {
         SomebodyInvested = tag.GetBool("isInvested");
+        FirstTimeTravelled = tag.GetBool("firstTimeTravelled");
 
         SpawnTime = tag.GetDouble("spawnTime");
 
@@ -359,6 +366,7 @@ public class McMoneypantsWorldData : ModSystem {
 
     public override void NetSend(BinaryWriter writer) {
         writer.Write(SomebodyInvested);
+        writer.Write(FirstTimeTravelled);
 
         writer.Write(SpawnTime);
 
@@ -367,6 +375,7 @@ public class McMoneypantsWorldData : ModSystem {
 
     public override void NetReceive(BinaryReader reader) {
         SomebodyInvested = reader.ReadBoolean();
+        FirstTimeTravelled = reader.ReadBoolean();
 
         SpawnTime = reader.ReadDouble();
 
@@ -374,6 +383,8 @@ public class McMoneypantsWorldData : ModSystem {
     }
 
     public override void PostUpdateTime() {
+        Main.NewText(SomebodyInvested + " " + ChanceToSpawn + " " + SpawnTime + " " + Main.LocalPlayer.GetModPlayer<McMoneypantsPlayerData>().PlayerInvested);
+
         if (!GildedInvitationUsed) {
             return;
         }
@@ -381,12 +392,17 @@ public class McMoneypantsWorldData : ModSystem {
         McMoneypants.SpawnNPCRandomly();
 
         void UpdateSpawnToChance() {
-            double rate = Main.dayRate;
-            if (rate < 1.0) {
-                rate = 1.0;
+            if (FirstTimeTravelled) {
+                ChanceToSpawn = 1;
             }
-            ChanceToSpawn = (int)(27000.0 / rate);
-            ChanceToSpawn *= 4;
+            else { 
+                double rate = Main.dayRate;
+                if (rate < 1.0) {
+                    rate = 1.0;
+                }
+                ChanceToSpawn = (int)(27000.0 / rate);
+                ChanceToSpawn *= 4;
+            }
         }
 
         UpdateSpawnToChance();

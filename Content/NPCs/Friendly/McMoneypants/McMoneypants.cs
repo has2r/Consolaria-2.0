@@ -18,6 +18,8 @@ namespace Consolaria.Content.NPCs.Friendly.McMoneypants;
 public class McMoneypants : ModNPC {
     private const double DAY_TIME = 48600.0;
 
+    public const string BUTTON_TEXT = "Invest";
+
     private static double _timePassed;
 
     public List<string> Names { get; private set; }
@@ -44,8 +46,6 @@ public class McMoneypants : ModNPC {
 
     internal static bool DespawnCondition
         => _timePassed >= DAY_TIME;
-
-    public const string BUTTON_TEXT = "Invest";
 
     public override void SetStaticDefaults() {
         int id = Type;

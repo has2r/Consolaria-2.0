@@ -48,7 +48,7 @@ public class McMoneypants : ModNPC {
         => Main.dayTime && Main.time >= McMoneypantsWorldData.SpawnTime && Main.time < DAY_TIME;
 
     internal static bool DespawnCondition
-        => _timePassed >= DAY_TIME;
+        => _timePassed >= (McMoneypantsWorldData.SomebodyInvested ? DAY_TIME / 2.5 : DAY_TIME);
     #endregion
 
     public override void SetStaticDefaults() {

@@ -386,8 +386,6 @@ public class McMoneypantsWorldData : ModSystem {
     }
 
     public override void PostUpdateTime() {
-        Main.NewText(SomebodyInvested + " " + ChanceToSpawn + " " + SpawnTime + " " + Main.LocalPlayer.GetModPlayer<McMoneypantsPlayerData>().PlayerInvested);
-
         if (!GildedInvitationUsed) {
             return;
         }

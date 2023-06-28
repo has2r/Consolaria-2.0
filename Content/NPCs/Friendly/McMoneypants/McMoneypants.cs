@@ -169,7 +169,9 @@ public class McMoneypants : ModNPC {
     #endregion
 
     private bool DespawnNPC() {
-        _timePassed += Main.dayRate;
+        void IncreaseTimePassedValue() {
+            _timePassed += Main.dayRate;
+        }
 
         bool CheckConditions() {
             return DespawnCondition && !Helper.IsNPCOnScreen(NPC.Center) && (!SpawnCondition || McMoneypantsWorldData.SomebodyInvested);
@@ -190,13 +192,17 @@ public class McMoneypants : ModNPC {
             NPC.life = 0;
         }
 
+        void ResetTimePassedValue() {
+            _timePassed = 0.0;
+        }
+
+        IncreaseTimePassedValue();
+
         if (CheckConditions())  {
             NotifyDespawnInChat();
             KillNPC();
 
-            _timePassed = 0.0;
-
-            ResetInvestedStatus();
+            ResetTimePassedValue();
 
             return false;
         }

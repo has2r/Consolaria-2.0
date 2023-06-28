@@ -16,12 +16,15 @@ namespace Consolaria.Content.NPCs.Friendly.McMoneypants;
 
 [AutoloadHead()]
 public class McMoneypants : ModNPC {
+    #region Fields
     private const double DAY_TIME = 48600.0;
 
     public const string BUTTON_TEXT = "Invest";
 
     private static double _timePassed;
+    #endregion
 
+    #region Properties
     public List<string> Names { get; private set; }
         = new List<string>() { "Ryan Gosling",
                                "Adolf Hitler",
@@ -46,6 +49,7 @@ public class McMoneypants : ModNPC {
 
     internal static bool DespawnCondition
         => _timePassed >= DAY_TIME;
+    #endregion
 
     public override void SetStaticDefaults() {
         int id = Type;
@@ -94,8 +98,75 @@ public class McMoneypants : ModNPC {
                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface
            });
 
+    public override void OnSpawn(IEntitySource source)
+        => ResetInvestedStatus();
+
+    #region AI
     public override bool PreAI()
         => DespawnNPC();
+
+    public override void AI()
+        => NPC.homeless = true;
+
+    public override void PostAI() {
+    }
+    #endregion
+
+    #region Visuals
+    public override void HitEffect(NPC.HitInfo hit)
+        => OnHitDusts();
+
+    private void OnHitDusts() {
+        int dustAmount = NPC.life > 0 ? 1 : 5;
+        for (int k = 0; k < dustAmount; k++) {
+            Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.LifeDrain);
+        }
+    }
+    #endregion
+
+    #region Chatbox
+    public override List<string> SetNPCNameList()
+        => Names;
+
+    public override string GetChat()
+        => Main.LocalPlayer.GetModPlayer<McMoneypantsPlayerData>().PlayerInvested ? QuotesWhenInvested[Main.rand.Next(QuotesWhenInvested.Count)] : Quotes[Main.rand.Next(Quotes.Count - 1)];
+
+    public override void SetChatButtons(ref string button, ref string button2) {
+        McMoneypantsPlayerData modPlayer = Main.LocalPlayer.GetModPlayer<McMoneypantsPlayerData>();
+        button = BUTTON_TEXT + (!modPlayer.PlayerInvested ? $" ({Helper.GetPriceText(modPlayer.PlayerInvestPrice)})" : string.Empty);
+    }
+
+    public override void OnChatButtonClicked(bool firstButton, ref string shopName)
+        => OnFirstButtonClick();
+    #endregion
+
+    #region Town NPC
+    public override bool CanTownNPCSpawn(int numTownNPCs)
+        => false;
+
+    public override bool CanGoToStatue(bool toKingStatue) 
+        => !toKingStatue;
+
+    public override void TownNPCAttackStrength(ref int damage, ref float knockback) {
+        damage = 20;
+        knockback = 8f;
+    }
+
+    public override void TownNPCAttackCooldown(ref int cooldown, ref int randExtraCooldown) {
+        cooldown = 12;
+        randExtraCooldown = 20;
+    }
+
+    public override void TownNPCAttackProj(ref int projType, ref int attackDelay) {
+        projType = ProjectileID.GoldCoin;
+        attackDelay = 1;
+    }
+
+    public override void TownNPCAttackProjSpeed(ref float multiplier, ref float gravityCorrection, ref float randomOffset) {
+        multiplier = 6f;
+        randomOffset = 1.5f;
+    }
+    #endregion
 
     private bool DespawnNPC() {
         _timePassed += Main.dayRate;
@@ -131,62 +202,6 @@ public class McMoneypants : ModNPC {
         }
 
         return true;
-    }
-
-    public override void AI()
-        => NPC.homeless = true;
-
-    public override void PostAI() {
-    }
-
-    public override void HitEffect(NPC.HitInfo hit)
-        => OnHitDusts();
-
-    private void OnHitDusts() {
-        int dustAmount = NPC.life > 0 ? 1 : 5;
-        for (int k = 0; k < dustAmount; k++) {
-            Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.LifeDrain);
-        }
-    }
-
-    public override bool CanTownNPCSpawn(int numTownNPCs)
-        => false;
-
-    public override List<string> SetNPCNameList()
-        => Names;
-
-    public override string GetChat()
-        => Main.LocalPlayer.GetModPlayer<McMoneypantsPlayerData>().PlayerInvested ? QuotesWhenInvested[Main.rand.Next(QuotesWhenInvested.Count)] : Quotes[Main.rand.Next(Quotes.Count - 1)];
-
-    public override void SetChatButtons(ref string button, ref string button2) {
-        McMoneypantsPlayerData modPlayer = Main.LocalPlayer.GetModPlayer<McMoneypantsPlayerData>();
-        button = BUTTON_TEXT + (!modPlayer.PlayerInvested ? $" ({Helper.GetPriceText(modPlayer.PlayerInvestPrice)})" : string.Empty);
-    }
-
-    public override void OnChatButtonClicked(bool firstButton, ref string shopName)
-        => OnClick();
-
-    public override bool CanGoToStatue(bool toKingStatue) 
-        => !toKingStatue;
-
-    public override void TownNPCAttackStrength(ref int damage, ref float knockback) {
-        damage = 20;
-        knockback = 8f;
-    }
-
-    public override void TownNPCAttackCooldown(ref int cooldown, ref int randExtraCooldown) {
-        cooldown = 12;
-        randExtraCooldown = 20;
-    }
-
-    public override void TownNPCAttackProj(ref int projType, ref int attackDelay) {
-        projType = ProjectileID.GoldCoin;
-        attackDelay = 1;
-    }
-
-    public override void TownNPCAttackProjSpeed(ref float multiplier, ref float gravityCorrection, ref float randomOffset) {
-        multiplier = 6f;
-        randomOffset = 1.5f;
     }
 
     public static void SpawnNPCRandomly() {
@@ -234,10 +249,7 @@ public class McMoneypants : ModNPC {
         SpawnNPC();
     }
 
-    public override void OnSpawn(IEntitySource source)
-        => ResetInvestedStatus();
-
-    private void OnClick() {
+    private void OnFirstButtonClick() {
         void UpdateChatTextWhenInvested() {
             int lastElementIndex = Quotes.Count - 2;
             Main.npcChatText = Quotes[lastElementIndex];
@@ -293,6 +305,7 @@ public class McMoneypants : ModNPC {
     }
 }
 
+#region Data
 public class McMoneypantsPlayerData : ModPlayer {
     internal static readonly int startPrice = Item.buyPrice(gold: 15);
 
@@ -373,3 +386,4 @@ public class McMoneypantsWorldData : ModSystem {
         UpdateSpawnToChance();
     }
 }
+#endregion

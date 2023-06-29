@@ -29,13 +29,15 @@ public class RedEnvelope : ModItem {
         => true;
 
     public override void RightClick(Player player) {
+        int inviteItemType = ModContent.ItemType<McMoneypantsInvitation>();
         if (Main.rand.NextChance(0.04)) {
-            player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<McMoneypantsInvitation>());
+            player.QuickSpawnItem(player.GetSource_OpenItem(Type), inviteItemType);
         }
 
         float chance = (float)Math.Round(Main.rand.NextDouble(), 1);
 
         Dictionary<float, (int, int)> items = new() {
+            { 0f, (inviteItemType, 1) },
             { 0.1f, (ModContent.ItemType<Squib>(), Main.rand.Next(10, 20)) },
             { 0.2f, (ItemID.ReleaseLantern, Main.rand.Next(3, 10)) },
             { 0.3f, (ItemID.RedRocket, Main.rand.Next(3, 15)) },

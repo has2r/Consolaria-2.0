@@ -16,10 +16,15 @@ namespace Consolaria.Content.NPCs.Friendly.McMoneypants;
 
 [AutoloadHead()]
 public class McMoneypants : ModNPC {
+    #region Fields
     private const double DAY_TIME = 48600.0;
 
-    private static double _timePassed;
+    public const string BUTTON_TEXT = "Invest";
 
+    private static double _timePassed;
+    #endregion
+
+    #region Properties
     public List<string> Names { get; private set; }
         = new List<string>() { "Ryan Gosling",
                                "Adolf Hitler",
@@ -43,9 +48,8 @@ public class McMoneypants : ModNPC {
         => Main.dayTime && Main.time >= McMoneypantsWorldData.SpawnTime && Main.time < DAY_TIME;
 
     internal static bool DespawnCondition
-        => _timePassed >= DAY_TIME;
-
-    public const string BUTTON_TEXT = "Invest";
+        => _timePassed >= (McMoneypantsWorldData.SomebodyInvested ? DAY_TIME / 2.5 : DAY_TIME);
+    #endregion
 
     public override void SetStaticDefaults() {
         int id = Type;
@@ -94,51 +98,21 @@ public class McMoneypants : ModNPC {
                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface
            });
 
+    //public override void OnSpawn(IEntitySource source)
+    //    => ResetInvestedStatus();
+
+    #region AI
     public override bool PreAI()
         => DespawnNPC();
-
-    private bool DespawnNPC() {
-        _timePassed += Main.dayRate;
-
-        bool CheckConditions() {
-            return DespawnCondition && !Helper.IsNPCOnScreen(NPC.Center) && (!SpawnCondition || McMoneypantsWorldData.SomebodyInvested);
-        }
-
-        void NotifyDespawnInChat() {
-            if (Main.netMode == NetmodeID.SinglePlayer) {
-                Main.NewText(Language.GetTextValue("LegacyMisc.35", NPC.FullName), 50, 125, 255);
-            }
-            else {
-                ChatHelper.BroadcastChatMessage(NetworkText.FromKey("LegacyMisc.35", NPC.GetFullNetName()), new Color(50, 125, 255));
-            }
-        }
-
-        void KillNPC() {
-            NPC.active = false;
-            NPC.netSkip = -1;
-            NPC.life = 0;
-        }
-
-        if (CheckConditions())  {
-            NotifyDespawnInChat();
-            KillNPC();
-
-            _timePassed = 0.0;
-
-            ResetInvestedStatus();
-
-            return false;
-        }
-
-        return true;
-    }
 
     public override void AI()
         => NPC.homeless = true;
 
     public override void PostAI() {
     }
+    #endregion
 
+    #region Visuals
     public override void HitEffect(NPC.HitInfo hit)
         => OnHitDusts();
 
@@ -148,10 +122,9 @@ public class McMoneypants : ModNPC {
             Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.LifeDrain);
         }
     }
+    #endregion
 
-    public override bool CanTownNPCSpawn(int numTownNPCs)
-        => false;
-
+    #region Chatbox
     public override List<string> SetNPCNameList()
         => Names;
 
@@ -164,7 +137,12 @@ public class McMoneypants : ModNPC {
     }
 
     public override void OnChatButtonClicked(bool firstButton, ref string shopName)
-        => OnClick();
+        => OnFirstButtonClick();
+    #endregion
+
+    #region Town NPC
+    public override bool CanTownNPCSpawn(int numTownNPCs)
+        => false;
 
     public override bool CanGoToStatue(bool toKingStatue) 
         => !toKingStatue;
@@ -187,6 +165,51 @@ public class McMoneypants : ModNPC {
     public override void TownNPCAttackProjSpeed(ref float multiplier, ref float gravityCorrection, ref float randomOffset) {
         multiplier = 6f;
         randomOffset = 1.5f;
+    }
+    #endregion
+
+    private bool DespawnNPC() {
+        void IncreaseTimePassedValue() {
+            _timePassed += Main.dayRate;
+        }
+
+        bool CheckConditions() {
+            return DespawnCondition && !Helper.IsNPCOnScreen(NPC.Center) && (!SpawnCondition || McMoneypantsWorldData.SomebodyInvested);
+        }
+
+        void NotifyDespawnInChat() {
+            if (Main.netMode == NetmodeID.SinglePlayer) {
+                Main.NewText(Language.GetTextValue("LegacyMisc.35", NPC.FullName), 50, 125, 255);
+            }
+            else {
+                ChatHelper.BroadcastChatMessage(NetworkText.FromKey("LegacyMisc.35", NPC.GetFullNetName()), new Color(50, 125, 255));
+            }
+        }
+
+        void KillNPC() {
+            NPC.active = false;
+            NPC.netSkip = -1;
+            NPC.life = 0;
+        }
+
+        void ResetTimePassedValue() {
+            _timePassed = 0.0;
+        }
+
+        IncreaseTimePassedValue();
+
+        if (CheckConditions())  {
+            NotifyDespawnInChat();
+            KillNPC();
+
+            ResetTimePassedValue();
+
+            ResetInvestedStatus();
+
+            return false;
+        }
+
+        return true;
     }
 
     public static void SpawnNPCRandomly() {
@@ -214,6 +237,9 @@ public class McMoneypants : ModNPC {
                     int minTime = 5400, maxTime = 8100;
                     McMoneypantsWorldData.SpawnTime = Helper.GetRandomSpawnTime(minTime, maxTime);
                 }
+                else {
+                    McMoneypantsWorldData.SpawnTime = double.MaxValue;
+                }
             }
         }
 
@@ -226,6 +252,8 @@ public class McMoneypants : ModNPC {
                 worldNPC.direction = Main.spawnTileX >= WorldGen.bestX ? -1 : 1;
                 worldNPC.netUpdate = true;
 
+                McMoneypantsWorldData.FirstTimeTravelled = false;
+
                 NotifySpawnInChat(worldNPC);
             }
         }
@@ -234,10 +262,7 @@ public class McMoneypants : ModNPC {
         SpawnNPC();
     }
 
-    public override void OnSpawn(IEntitySource source)
-        => ResetInvestedStatus();
-
-    private void OnClick() {
+    private void OnFirstButtonClick() {
         void UpdateChatTextWhenInvested() {
             int lastElementIndex = Quotes.Count - 2;
             Main.npcChatText = Quotes[lastElementIndex];
@@ -293,6 +318,7 @@ public class McMoneypants : ModNPC {
     }
 }
 
+#region Data
 public class McMoneypantsPlayerData : ModPlayer {
     internal static readonly int startPrice = Item.buyPrice(gold: 15);
 
@@ -317,6 +343,7 @@ public class McMoneypantsWorldData : ModSystem {
     internal static bool GildedInvitationUsed;
 
     public static bool SomebodyInvested { get; internal set; }
+    public static bool FirstTimeTravelled { get; internal set; } = true;
 
     public static double SpawnTime { get; internal set; } = double.MaxValue;
 
@@ -324,6 +351,7 @@ public class McMoneypantsWorldData : ModSystem {
 
     public override void SaveWorldData(TagCompound tag) {
         tag.Add("isInvested", SomebodyInvested);
+        tag.Add("firstTimeTravelled", FirstTimeTravelled);
 
         tag.Add("spawnTime", SpawnTime);
 
@@ -332,6 +360,7 @@ public class McMoneypantsWorldData : ModSystem {
 
     public override void LoadWorldData(TagCompound tag) {
         SomebodyInvested = tag.GetBool("isInvested");
+        FirstTimeTravelled = tag.GetBool("firstTimeTravelled");
 
         SpawnTime = tag.GetDouble("spawnTime");
 
@@ -340,6 +369,7 @@ public class McMoneypantsWorldData : ModSystem {
 
     public override void NetSend(BinaryWriter writer) {
         writer.Write(SomebodyInvested);
+        writer.Write(FirstTimeTravelled);
 
         writer.Write(SpawnTime);
 
@@ -348,6 +378,7 @@ public class McMoneypantsWorldData : ModSystem {
 
     public override void NetReceive(BinaryReader reader) {
         SomebodyInvested = reader.ReadBoolean();
+        FirstTimeTravelled = reader.ReadBoolean();
 
         SpawnTime = reader.ReadDouble();
 
@@ -362,14 +393,20 @@ public class McMoneypantsWorldData : ModSystem {
         McMoneypants.SpawnNPCRandomly();
 
         void UpdateSpawnToChance() {
-            double rate = Main.dayRate;
-            if (rate < 1.0) {
-                rate = 1.0;
+            if (FirstTimeTravelled) {
+                ChanceToSpawn = 1;
             }
-            ChanceToSpawn = (int)(27000.0 / rate);
-            ChanceToSpawn *= 4;
+            else { 
+                double rate = Main.dayRate;
+                if (rate < 1.0) {
+                    rate = 1.0;
+                }
+                ChanceToSpawn = (int)(27000.0 / rate);
+                ChanceToSpawn *= 4;
+            }
         }
 
         UpdateSpawnToChance();
     }
 }
+#endregion

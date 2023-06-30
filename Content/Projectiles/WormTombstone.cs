@@ -111,6 +111,7 @@ public class WormTombstoneItem : ModItem {
 
     public override void SetDefaults() {
         Item.CloneDefaults(ItemID.Tombstone);
+        Item.rare = ItemRarityID.Yellow;
 
         Item.DefaultToPlaceableTile(ModContent.TileType<WormTombstoneTile>());
     }

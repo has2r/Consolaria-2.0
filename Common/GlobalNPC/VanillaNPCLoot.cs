@@ -20,6 +20,13 @@ namespace Consolaria.Common {
 				else npcLoot.Add(ItemDropRule.Common(itemType, dropChance));
 			}
 
+			if (System.Array.IndexOf(new int[] { NPCID.EaterofWorldsBody, NPCID.EaterofWorldsHead, NPCID.EaterofWorldsTail }, npc.type) > -1)
+			{
+				LeadingConditionRule leadingConditionRule = new(new Conditions.LegacyHack_IsABoss());
+				leadingConditionRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<SuspiciousLookingApple>(), 20));
+				npcLoot.Add(leadingConditionRule);
+			}
+
 			if (npc.type == NPCID.CorruptBunny || npc.type == NPCID.CrimsonBunny) {
 				int itemType = ModContent.ItemType<SuspiciousLookingEgg>();
 				int dropChance = 4;
@@ -41,6 +48,18 @@ namespace Consolaria.Common {
 				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<PetriDish>(), 150));
 			if (NPCID.Sets.Zombies [npc.type])
 				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Brain>(), 750));
+			if (npc.type == NPCID.DevourerHead)
+				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SuspiciousLookingApple>(), 150));
+			if (npc.type == NPCID.GiantWormHead)
+				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SuspiciousLookingApple>(), 150));
+			if (npc.type == NPCID.SeekerHead)
+				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SuspiciousLookingApple>(), 150));
+			if (npc.type == NPCID.DuneSplicerHead)
+				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SuspiciousLookingApple>(), 150));
+			if (npc.type == NPCID.DiggerHead)
+				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SuspiciousLookingApple>(), 150));
+			if (npc.type == NPCID.TombCrawlerHead)
+				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SuspiciousLookingApple>(), 150));
 		}
 
 		public override void ModifyGlobalLoot (GlobalLoot globalLoot) {

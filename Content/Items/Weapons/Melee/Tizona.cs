@@ -17,7 +17,7 @@ namespace Consolaria.Content.Items.Weapons.Melee {
 			Item.Size = new Vector2(width, height);
 
 			Item.useStyle = ItemUseStyleID.Swing;
-			Item.useTime = Item.useAnimation = 24;
+			Item.useTime = Item.useAnimation = 34;
 
 			Item.noMelee = true;
 			Item.autoReuse = true;
@@ -43,7 +43,7 @@ namespace Consolaria.Content.Items.Weapons.Melee {
 			for (int i = 0; i < projectilesCount; i++) {
 				Vector2 perturbedSpeed = velocity.RotatedBy((MathHelper.Lerp(0, rotation, i / Math.Clamp(projectilesCount - 1, 1, projectilesCount)) - 0.5f) * -player.direction * player.gravDir) * 1.1f;
 				//Vector2 perturbedSpeed = new Vector2(0, -velocity.Length() * player.gravDir).RotatedBy((projectilesCount - 1f - i + 0.5f) * rotation * player.direction * player.gravDir);
-				Projectile.NewProjectile(player.GetSource_ItemUse(Item), position, perturbedSpeed, ModContent.ProjectileType<Projectiles.Friendly.TizonaShoot>(), (int) (damage / projectilesCount), knockback / 2, player.whoAmI, player.direction * player.gravDir, 32f, (projectilesCount - 1 - i) * 12f);
+				Projectile.NewProjectile(player.GetSource_ItemUse(Item), position, perturbedSpeed, ModContent.ProjectileType<Projectiles.Friendly.TizonaShoot>(), damage / 2, knockback / 2, player.whoAmI, player.direction * player.gravDir, 32f, (projectilesCount - 1 - i) * 12f);
 			}
 			return false;
 		}

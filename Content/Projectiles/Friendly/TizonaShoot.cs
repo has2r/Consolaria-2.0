@@ -15,6 +15,9 @@ namespace Consolaria.Content.Projectiles.Friendly {
         private Vector2 _extraVelocity = Vector2.Zero;
         private Vector2 velRem;
 
+        public override string Texture 
+            => "Consolaria/Assets/Textures/Empty";
+
         public override void SetStaticDefaults() {
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = 5;
             ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
@@ -41,7 +44,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
         public override void AI () {
             if (Projectile.ai[2] > 0) {
                 Player player = Main.player[Projectile.owner];
-                Projectile.Center = player.RotatedRelativePoint(player.MountedCenter);
+                Projectile.Center = player.RotatedRelativePoint(player.MountedCenter) - Projectile.velocity;
                 Projectile.ai[2] -= 1;
                 return;
             }

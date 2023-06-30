@@ -27,6 +27,7 @@ namespace Consolaria {
         public override void Unload () {
             var fractalProfiles = (Dictionary<int, FinalFractalProfile>) typeof(FinalFractalHelper).GetField("_fractalProfiles", BindingFlags.NonPublic | BindingFlags.Static).GetValue(null);
             fractalProfiles.Remove(ModContent.ItemType<Tizona>());
+            On_Player.DropTombstone -= On_Player_DropTombstone;
         }
 
         private void On_Player_DropTombstone (On_Player.orig_DropTombstone orig, Player self, long coinsOwned, NetworkText deathText, int hitDirection) {

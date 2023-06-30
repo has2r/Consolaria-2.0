@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.IO;
 
 using Microsoft.Xna.Framework;
+using Terraria.Audio;
 
 namespace Consolaria.Content.NPCs.Friendly.McMoneypants;
 
@@ -45,14 +46,14 @@ public class McMoneypants : ModNPC {
                                
 
     public List<string> Quotes { get; private set; } 
-        = new List<string>() { "I want to be cremated, it's my last hope for a smoking hot body...", //tf?!!
+        = new List<string>() { /*"I want to be cremated, it's my last hope for a smoking hot body...",*/ //tf?!!
                                "To the guy who invented zero - thanks for nothing.",
                                "What was Forrest Gump’s email password? 1forrest1",
-                               "I was wondering why that ball was getting bigger. Then it hit me..",
+                               //"I was wondering why that ball was getting bigger. Then it hit me..",
                                "Waking up this morning was really an eye-opening experience.",
                                "Don't waste money on crypto - just buy my stocks!",
                                "I feel so clean, like a money machine!",
-                               "Trust me, It's not a Ponzi Scheme.",
+                               "Trust me, it's not a Ponzi Scheme.",
                                "Some say even Midas was wearing this suit.",
                                "What a beautiful day to make some money!",
                                "Ferragamo Gold!",
@@ -148,7 +149,7 @@ public class McMoneypants : ModNPC {
     private void OnHitDusts() {
         int dustAmount = NPC.life > 0 ? 1 : 5;
         for (int k = 0; k < dustAmount; k++) {
-            Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.LifeDrain);
+            Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood);
         }
     }
     #endregion
@@ -328,9 +329,34 @@ public class McMoneypants : ModNPC {
             modPlayer.PlayerInvestPrice += Item.buyPrice(gold: 5);
         }
 
+        void SpawnDusts() {
+            Player player = Main.LocalPlayer;
+            int width = player.width, height = player.height;
+
+            int dustType = ModContent.DustType<MoneyDust>();
+            for (int k = 0; k < Main.rand.Next(5, 8); k++) {
+                Dust dust = Dust.NewDustPerfect(Main.LocalPlayer.Center + new Vector2(0f, (float)height * 0.2f) + Main.rand.NextVector2CircularEdge(width, (float)height * 0.6f) * (0.3f + Main.rand.NextFloat() * 0.5f), 
+                                                dustType,
+                                                new Vector2(0f, (0f - Main.rand.NextFloat()) * 0.3f - 1.5f) * 0.5f, 
+                                                Main.rand.Next(80, 130),
+                                                default);
+                dust.fadeIn = 1.1f;
+            }
+        }
+
+        void PlaySound() {
+            SoundStyle style = new($"{nameof(Consolaria)}/Assets/Sounds/MoneyCashSound");
+            SoundEngine.PlaySound(style, NPC.Center);
+        }
+
         AddBuff();
         UpdateInvestInfo();
         UpdateChatTextWhenInvested();
+
+        if (Main.netMode != NetmodeID.Server) { 
+            SpawnDusts();
+            PlaySound();
+        }
     }
 
     private static void ResetInvestedStatus() {

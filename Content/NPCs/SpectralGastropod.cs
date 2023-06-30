@@ -12,7 +12,6 @@ using Terraria.ModLoader.Utilities;
 namespace Consolaria.Content.NPCs {
 	public class SpectralGastropod : ModNPC {
 		public override void SetStaticDefaults () {
-			DisplayName.SetDefault("Spectropod");
 			Main.npcFrameCount [NPC.type] = 11;
 
 			NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData {
@@ -101,17 +100,17 @@ namespace Consolaria.Content.NPCs {
 			Lighting.AddLight(NPC.Center, new Vector3(0f, 0.7f, 0.9f));
 		}
 
-		public override void HitEffect (int hitDirection, double damage) {
+		public override void HitEffect (NPC.HitInfo hit) {
 			if (Main.netMode == NetmodeID.Server)
 				return;
 
-			Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.BlueFairy, 2.5f * hitDirection, -2.5f, 0, default, 0.7f);
+			Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.BlueFairy, 2.5f * hit.HitDirection, -2.5f, 0, default, 0.7f);
 			if (NPC.life <= 0) {
 				Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity / 2, 11, 1f);
 				Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity / 2, 12, 1f);
 				Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity / 2, 13, 1f);
 				for (int i = 0; i < 20; i++)
-					Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.BlueFairy, 2.5f * hitDirection, -2.5f, 0, default, 1f);
+					Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.BlueFairy, 2.5f * hit.HitDirection, -2.5f, 0, default, 1f);
 			}
 		}
 

@@ -24,7 +24,7 @@ namespace Consolaria.Content.Projectiles.Enemies {
 
         public override void AI () => Projectile.velocity *= 0.95f;
 
-        public override void OnHitPlayer (Player target, int damage, bool crit)
+        public override void OnHitPlayer (Player target, Player.HurtInfo info)
             => target.AddBuff(BuffID.OnFire, 180);
     }
 }

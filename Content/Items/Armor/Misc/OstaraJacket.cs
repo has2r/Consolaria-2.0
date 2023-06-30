@@ -1,4 +1,3 @@
-using Terraria.GameContent.Creative;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -10,10 +9,8 @@ namespace Consolaria.Content.Items.Armor.Misc
     public class OstaraJacket : ModItem
     {
         public override void SetStaticDefaults() {
-            DisplayName.SetDefault("Jacket of Ostara");
-            Tooltip.SetDefault("7% increased movement speed");
 
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            Item.ResearchUnlockCount = 1;
         }
 
         public override void SetDefaults() {

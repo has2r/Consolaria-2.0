@@ -9,13 +9,13 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.ModLoader.Utilities;
 using Terraria.GameContent.Bestiary;
 using Consolaria.Content.Items.Pets;
+using Consolaria.Content.Items.Consumables;
 using Consolaria.Common;
 using Terraria.GameContent.Events;
 
 namespace Consolaria.Content.NPCs {
 	public class MythicalWyvernHead : ModNPC {
 		public override void SetStaticDefaults () {
-			DisplayName.SetDefault("Mythical Wyvern");
 
 			NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData {
 				SpecificallyImmuneTo = new int [] {
@@ -217,7 +217,7 @@ namespace Consolaria.Content.NPCs {
 			return false;
 		}
 
-		public override void HitEffect (int hitDirection, double damage) {
+		public override void HitEffect (NPC.HitInfo hit) {
 			if (NPC.life <= 0) {
 				for (int i = 0; i < 4; i++)
 					Gore.NewGore(NPC.GetSource_Death(), NPC.position, Vector2.Zero, Main.rand.Next(61, 64), 1f);
@@ -227,6 +227,7 @@ namespace Consolaria.Content.NPCs {
 		public override void ModifyNPCLoot (NPCLoot npcLoot) {
 			npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<GoldenLantern>(), 20));
 			npcLoot.Add(ItemDropRule.Common(ItemID.SoulofFlight, 1, 5, 20));
+			npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<RedEnvelope>(), 1, 5, 15));
 		}
 
 		public override float SpawnChance (NPCSpawnInfo spawnInfo) {

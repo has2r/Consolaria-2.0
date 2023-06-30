@@ -15,13 +15,13 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 
 		private bool spawn = false;
 		private bool charge {
-			get => NPC.ai[2] == 1f;
-			set => NPC.ai[2] = value ? 1f : 0f;
+			get => NPC.ai [2] == 1f;
+			set => NPC.ai [2] = value ? 1f : 0f;
 		}
 		private bool chase = false;
 		private bool projSpam {
-			get => NPC.ai[3] == 1f;
-			set => NPC.ai[3] = value ? 1f : 0f;
+			get => NPC.ai [3] == 1f;
+			set => NPC.ai [3] = value ? 1f : 0f;
 		}
 		private bool attackingPhase = false;
 
@@ -29,7 +29,6 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 		private float rotatepoint = 0;
 
 		public override void SetStaticDefaults () {
-			DisplayName.SetDefault("Turkor the Ungrateful Head");
 			Main.npcFrameCount [NPC.type] = 4;
 
 			NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData {
@@ -68,19 +67,18 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 			NPC.noGravity = true;
 
 			NPC.BossBar = Main.BigBossProgressBar.NeverValid;
-			
-			if (Main.masterMode) NPC.lifeMax = (int)(NPC.lifeMax * 0.798f); 
+
+			if (Main.masterMode) NPC.lifeMax = (int) (NPC.lifeMax * 0.798f);
 		}
 
-		public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+		public override void ApplyDifficultyAndPlayerScaling (int numPlayers, float balance, float bossAdjustment)/* tModPorter Note: bossLifeScale -> balance (bossAdjustment is different, see the docs for details) */
 		{
-			NPC.lifeMax = (int)(NPC.lifeMax * 0.5f * 1.7f);
-			NPC.damage = (int)(NPC.damage * 0.65f);
+			NPC.lifeMax = (int) (NPC.lifeMax * 0.5f * 1.7f);
+			NPC.damage = (int) (NPC.damage * 0.65f);
 			if (numPlayers <= 1) return;
 			float healthBoost = 0.35f;
-			for (int k = 1; k < numPlayers; k++)
-			{
-				NPC.lifeMax += (int)(NPC.lifeMax * healthBoost);
+			for (int k = 1; k < numPlayers; k++) {
+				NPC.lifeMax += (int) (NPC.lifeMax * healthBoost);
 				healthBoost += (1 - healthBoost) / 3;
 			}
 		}
@@ -93,12 +91,10 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 				if (!projSpam && NPC.velocity.X * NPC.direction < 0 && turntimer < 15) {
 					turntimer++;
 					NPC.frame = GetFrame(4);
-				}
-				else if (hurtFrame > 0) {
+				} else if (hurtFrame > 0) {
 					NPC.frame = GetFrame(3);
 					hurtFrame--;
-				}
-				else {
+				} else {
 					if (NPC.velocity.X * NPC.direction > 0) { turntimer = 0; }
 					NPC.spriteDirection = NPC.direction;
 					if (charge) {
@@ -106,8 +102,7 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 						NPC.frameCounter %= 2;
 						int frame = (int) NPC.frameCounter;
 						NPC.frame.Y = frame * frameHeight;
-					}
-					else if (projSpam && timer % 80 < 20) NPC.frame = GetFrame(2);
+					} else if (projSpam && timer % 80 < 20) NPC.frame = GetFrame(2);
 					else NPC.frame = GetFrame(1);
 				}
 			}
@@ -151,8 +146,7 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 					return;
 				}
 				NPC.netUpdate = true;
-			}
-			else if (!Main.player [NPC.target].dead) NPC.TargetClosest(true);
+			} else if (!Main.player [NPC.target].dead) NPC.TargetClosest(true);
 
 			if (timer > 200 && Main.rand.NextBool(50) && !attackingPhase) {
 				attackingPhase = true;
@@ -252,28 +246,23 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 				if (!chase) {
 					if (Main.player [NPC.target].Center.X - Main.rand.Next(-200, 201) < NPC.Center.X) {
 						if (NPC.velocity.X > -6) NPC.velocity.X -= 0.08f;
-					}
-					else if (Main.player [NPC.target].Center.X - Main.rand.Next(-200, 201) > NPC.Center.X) {
+					} else if (Main.player [NPC.target].Center.X - Main.rand.Next(-200, 201) > NPC.Center.X) {
 						if (NPC.velocity.X < 6) NPC.velocity.X += 0.08f;
 					}
 					if (Main.player [NPC.target].Center.Y - Main.rand.Next(-150, 201) < NPC.Center.Y) {
 						if (NPC.velocity.Y > -6) NPC.velocity.Y -= 0.14f;
-					}
-					else if (Main.player [NPC.target].Center.Y - Main.rand.Next(-150, 201) > NPC.Center.Y) {
+					} else if (Main.player [NPC.target].Center.Y - Main.rand.Next(-150, 201) > NPC.Center.Y) {
 						if (NPC.velocity.Y < 6) NPC.velocity.Y += 0.14f;
 					}
-				}
-				else {
+				} else {
 					if (Main.npc [(int) NPC.ai [1]].Center.X - Main.rand.Next(-200, 201) < NPC.Center.X) {
 						if (NPC.velocity.X > -6) NPC.velocity.X -= 0.08f;
-					}
-					else if (Main.npc [(int) NPC.ai [1]].Center.X - Main.rand.Next(-200, 201) > NPC.Center.X) {
+					} else if (Main.npc [(int) NPC.ai [1]].Center.X - Main.rand.Next(-200, 201) > NPC.Center.X) {
 						if (NPC.velocity.X < 6) NPC.velocity.X += 0.08f;
 					}
 					if (Main.npc [(int) NPC.ai [1]].Center.Y - Main.rand.Next(-150, 201) < NPC.Center.Y) {
 						if (NPC.velocity.Y > -6) NPC.velocity.Y -= 0.14f;
-					}
-					else if (Main.npc [(int) NPC.ai [1]].Center.Y - Main.rand.Next(-150, 201) > NPC.Center.Y) {
+					} else if (Main.npc [(int) NPC.ai [1]].Center.Y - Main.rand.Next(-150, 201) > NPC.Center.Y) {
 						if (NPC.velocity.Y < 6) NPC.velocity.Y += 0.14f;
 					}
 				}
@@ -287,7 +276,7 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 			}
 		}
 
-		public override void HitEffect (int hitDirection, double damage) {
+		public override void HitEffect (NPC.HitInfo hit) {
 			if (Main.netMode == NetmodeID.Server)
 				return;
 
@@ -301,7 +290,7 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 					Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), ModContent.Find<ModGore>("Consolaria/TurkorFeatherGore").Type);
 				}
 				for (int k = 0; k < 10; k++) {
-					int dust_ = Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Bone, 3f * hitDirection, -3f, 0, default, 2f);
+					int dust_ = Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Bone, 3f * hit.HitDirection, -3f, 0, default, 2f);
 					Main.dust [dust_].velocity *= 0.2f;
 				}
 			}

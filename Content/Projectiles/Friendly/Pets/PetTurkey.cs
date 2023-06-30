@@ -7,9 +7,13 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Projectiles.Friendly.Pets {
     public class PetTurkey : ModProjectile {
         public override void SetStaticDefaults () {
-            DisplayName.SetDefault("Turkey");
             Main.projFrames [Projectile.type] = 8;
             Main.projPet [Projectile.type] = true;
+
+            ProjectileID.Sets.CharacterPreviewAnimations[Projectile.type] = ProjectileID.Sets.SimpleLoop(0, 4)
+				.WithOffset(-13, 0)
+				.WithSpriteDirection(1)
+                .WhenNotSelected(0, 0);
         }
 
         public override void SetDefaults () {

@@ -1,7 +1,6 @@
 using Consolaria.Content.Items.Materials;
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -9,10 +8,9 @@ namespace Consolaria.Content.Items.Armor.Melee {
     [AutoloadEquip(EquipType.Head)]
     public class AncientDragonMask : ModItem {
         public override void SetStaticDefaults () {
-            DisplayName.SetDefault("Ancient Dragon Mask");
-            Tooltip.SetDefault("15% increased melee damage and speed");
 
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
+            Item.ResearchUnlockCount = 1;
+            ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<DragonMask>();
         }
 
         public override void SetDefaults () {
@@ -40,16 +38,6 @@ namespace Consolaria.Content.Items.Armor.Melee {
         public override void UpdateArmorSet (Player player) {
             player.setBonus = "Creates a burst of flames after taking damage";
             player.GetModPlayer<DragonPlayer>().dragonBurst = true;
-        }
-
-        public override void AddRecipes () {
-            CreateRecipe()
-                .AddIngredient(ItemID.AncientHallowedMask)
-               .AddRecipeGroup(RecipeGroups.Titanium, 10)
-                .AddIngredient(ItemID.SoulofMight, 10)
-                .AddIngredient<SoulofBlight>(10)
-                .AddTile(TileID.DemonAltar)
-                .Register();
         }
     }
 }

@@ -6,6 +6,9 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Projectiles.Friendly.Pets {
     public class Werewolf : ConsolariaPet {
         public override int maxFrames => 20;
+        public override int PreviewFirstFrame => 2;
+		public override int PreviewLastFrame => 14;
+		public override int PreviewSpriteDirection => -1;
 
         public override void SetDefaults () {
             int width = 30; int height = 50;

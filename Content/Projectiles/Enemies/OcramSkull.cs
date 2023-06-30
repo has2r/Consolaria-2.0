@@ -7,7 +7,6 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Projectiles.Enemies {
     public class OcramSkull : ModProjectile {
         public override void SetStaticDefaults () {
-            DisplayName.SetDefault("Dread Skull");
             Main.projFrames [Projectile.type] = 5;
         }
 
@@ -50,7 +49,7 @@ namespace Consolaria.Content.Projectiles.Enemies {
             Lighting.AddLight(Projectile.Center, 0.5f, 0.4f, 0.9f);
         }
 
-        public override void OnHitPlayer (Player target, int damage, bool crit)
+        public override void OnHitPlayer (Player target, Player.HurtInfo info)
             => target.AddBuff(BuffID.ShadowFlame, 180);
 
         public override void Kill (int timeLeft) {

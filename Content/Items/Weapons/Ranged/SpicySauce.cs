@@ -1,14 +1,12 @@
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.Items.Weapons.Ranged {
     public class SpicySauce : ModItem {
         public override void SetStaticDefaults () {
-            Tooltip.SetDefault("Covers enemies in oil" + "\nSet oiled enemies on fire for extra damage");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 99;
+            Item.ResearchUnlockCount = 99;
         }
 
         public override void SetDefaults () {

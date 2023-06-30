@@ -11,7 +11,6 @@ namespace Consolaria.Content.Projectiles.Friendly {
         private int hitCounter;
 
         public override void SetStaticDefaults () {
-            DisplayName.SetDefault("Spectral Arrow");
             ProjectileID.Sets.TrailCacheLength [Projectile.type] = 5;
             ProjectileID.Sets.TrailingMode [Projectile.type] = 0;
         }
@@ -38,11 +37,11 @@ namespace Consolaria.Content.Projectiles.Friendly {
         public override void AI ()
             => Projectile.velocity *= 0.975f;
 
-        public override void OnHitNPC (NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC (NPC target, NPC.HitInfo hit, int damageDone)
             => hitCounter++;
 
-        public override void ModifyHitNPC (NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
-            => damage -= (int) (damage * hitCounter * 0.1f);
+        public override void ModifyHitNPC (NPC target, ref NPC.HitModifiers modifiers)
+            => modifiers.FinalDamage -= (int) (modifiers.FinalDamage.Flat * hitCounter * 0.1f);
 
         public override void Kill (int timeLeft) {
             if (Main.netMode != NetmodeID.Server) {

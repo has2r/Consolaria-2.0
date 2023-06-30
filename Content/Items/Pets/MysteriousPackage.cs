@@ -1,18 +1,13 @@
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.GameContent.Creative;
-using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Consolaria.Content.Items.Pets 
-{
-	public class MysteriousPackage : PetItem 
+namespace Consolaria.Content.Items.Pets {
+    public class MysteriousPackage : PetItem 
 	{
 		public override void SetStaticDefaults () 
 		{
-			DisplayName.SetDefault("Mysterious Package");
-			Tooltip.SetDefault("Summons a pet drone");
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
+			Item.ResearchUnlockCount = 1;
 		}
 
 		public override void SetDefaults () {
@@ -22,7 +17,7 @@ namespace Consolaria.Content.Items.Pets
 			Item.Size = new Vector2(width, height);
 
 			Item.rare = 5;
-			Item.value = Item.sellPrice(gold: 10);
+			Item.value = Item.buyPrice(gold: 50);
 		}
 	}
 }

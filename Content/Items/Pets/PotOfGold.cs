@@ -1,17 +1,14 @@
 using Consolaria.Content.Items.Materials;
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.Items.Pets {
-	public class PotOfGold : PetItem {
+    public class PotOfGold : PetItem {
 		public override void SetStaticDefaults () {
-			DisplayName.SetDefault("Pot O' Gold");
-			Tooltip.SetDefault("Summons a pet Leprechaun O'Fyffe");
 
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
+			Item.ResearchUnlockCount = 1;
 		}
 
 		public override void SetDefaults () {

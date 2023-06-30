@@ -53,14 +53,14 @@ namespace Consolaria.Content.NPCs {
 		public override void SetBestiary (BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement [] {
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Underground,
-				new FlavorTextBestiaryInfoElement("Evidence indicates that some spelunkers got bitten by vampire bats before passing away... and now their rotten remains are out for blood.")
+				new FlavorTextBestiaryInfoElement("Evidence indicates that some spelunkers got bitten by vampire bats before passing away... Now their rotten remains are looking for some fresh blood.")
 			});
 		}
 
 		public override void AI ()
 			=> Lighting.AddLight(NPC.Center, new Vector3(0.8f, 0f, 0.7f));
 
-		public override void OnHitPlayer (Player target, int damage, bool crit) {
+		public override void OnHitPlayer (Player target, Player.HurtInfo hurtInfo) {
 			if (Main.rand.NextBool(5))
 				target.AddBuff(BuffID.Bleeding, 60 * 5);
 
@@ -68,7 +68,7 @@ namespace Consolaria.Content.NPCs {
 				for (int i = 0; i < 10; i++)
 					Dust.NewDust(NPC.position, i, i, DustID.Blood, 2, 2, 100, default, 0.9f);
 
-				int healLife = damage / 5;
+				int healLife = hurtInfo.Damage / 5;
 				if (healLife > 0) {
 					NPC.life += healLife;
 					NPC.HealEffect(healLife, true);
@@ -76,16 +76,16 @@ namespace Consolaria.Content.NPCs {
 			}
 		}
 
-		public override void HitEffect (int hitDirection, double damage) {
+		public override void HitEffect (NPC.HitInfo hit) {
 			if (Main.netMode == NetmodeID.Server)
 				return;
 
-			Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood, 2.5f * hitDirection, -2.5f, 0, default, 0.7f);
+			Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood, 2.5f * hit.HitDirection, -2.5f, 0, default, 0.7f);
 			if (NPC.life <= 0) {
 				Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity, ModContent.Find<ModGore>("Consolaria/vampgore1").Type, 1f);
 				Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity, ModContent.Find<ModGore>("Consolaria/vampgore2").Type, 1f);
 				for (int i = 0; i < 20; i++)
-					Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood, 2.5f * hitDirection, -2.5f, 0, default, 1f);
+					Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood, 2.5f * hit.HitDirection, -2.5f, 0, default, 1f);
 			}
 		}
 

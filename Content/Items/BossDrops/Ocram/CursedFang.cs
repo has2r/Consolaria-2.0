@@ -1,15 +1,12 @@
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.GameContent.Creative;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.Items.BossDrops.Ocram {
-	public class CursedFang : ModItem {
+    public class CursedFang : ModItem {
 		public override void SetStaticDefaults () {
-			DisplayName.SetDefault("Cursed Fang");
-			Tooltip.SetDefault("Summons a lil' Marco" + "\n'You're my friend now'");
 
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
+			Item.ResearchUnlockCount = 1;
 		}
 
 		public override void SetDefaults () {

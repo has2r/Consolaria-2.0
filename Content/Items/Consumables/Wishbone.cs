@@ -2,7 +2,6 @@ using Consolaria.Common;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Chat;
-using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -10,10 +9,8 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Items.Consumables {
     public class Wishbone : ModItem {
         public override void SetStaticDefaults () {
-            DisplayName.SetDefault("Wishbone");
-            Tooltip.SetDefault("Enables all minor seasonal events for one day");
 
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 3;
+            Item.ResearchUnlockCount = 3;
             ItemID.Sets.SortingPriorityBossSpawns [Type] = 12;
         }
 

@@ -1,15 +1,13 @@
 using Consolaria.Content.Projectiles.Friendly;
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.Items.Weapons.Ranged {
-	public class EggCannon : ModItem {
+    public class EggCannon : ModItem {
 		public override void SetStaticDefaults () {
-			Tooltip.SetDefault("'To kill a goblin, you have to break a few eggs'");
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
+			Item.ResearchUnlockCount = 1;
 		}
 
 		public override void SetDefaults () {

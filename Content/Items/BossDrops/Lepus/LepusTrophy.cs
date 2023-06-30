@@ -9,7 +9,6 @@ namespace Consolaria.Content.Items.BossDrops.Lepus
     public class LepusTrophy : ModItem
     {
         public override void SetStaticDefaults() {
-            DisplayName.SetDefault("Lepus Trophy");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 

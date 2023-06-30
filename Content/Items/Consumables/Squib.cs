@@ -2,13 +2,11 @@
 using Terraria;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
-using Terraria.GameContent.Creative;
 
 namespace Consolaria.Content.Items.Consumables {
     public class Squib : ModItem {
         public override void SetStaticDefaults () {
-            DisplayName.SetDefault("Fiery Cracker");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 99;
+            Item.ResearchUnlockCount = 99;
         }
 
         public override void SetDefaults () {

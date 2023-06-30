@@ -3,7 +3,6 @@ using Consolaria.Content.Projectiles.Friendly;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
-using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -11,10 +10,9 @@ namespace Consolaria.Content.Items.Armor.Magic {
     [AutoloadEquip(EquipType.Head)]
     public class PhantasmalHeadgear : ModItem {
         public override void SetStaticDefaults () {
-            DisplayName.SetDefault("Phantasmal Headgear");
-            Tooltip.SetDefault("10% increased magic damage and critical strike chance" + "\nIncreases maximum mana by 50");
 
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
+            Item.ResearchUnlockCount = 1;
+            ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<AncientPhantasmalHeadgear>();
         }
 
         public override void SetDefaults () {
@@ -53,6 +51,7 @@ namespace Consolaria.Content.Items.Armor.Magic {
                 .AddIngredient(ItemID.SoulofFright, 10)
                 .AddIngredient<SoulofBlight>(10)
                 .AddTile(TileID.MythrilAnvil)
+                .DisableDecraft()
                 .Register();
         }
     }

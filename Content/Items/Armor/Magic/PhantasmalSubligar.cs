@@ -1,7 +1,6 @@
 using Consolaria.Content.Items.Materials;
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -9,11 +8,10 @@ namespace Consolaria.Content.Items.Armor.Magic {
     [AutoloadEquip(EquipType.Legs)]
     public class PhantasmalSubligar : ModItem {
         public override void SetStaticDefaults () {
-            DisplayName.SetDefault("Phantasmal Subligar");
-            Tooltip.SetDefault("5% increased magic damage" + "\n12% increased movement speed" + "\nIncreases maximum mana by 30");
 
             ArmorIDs.Legs.Sets.HidesBottomSkin [Item.legSlot] = true;
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
+            Item.ResearchUnlockCount = 1;
+            ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<AncientPhantasmalSubligar>();
         }
 
         public override void SetDefaults () {
@@ -40,6 +38,7 @@ namespace Consolaria.Content.Items.Armor.Magic {
                 .AddIngredient(ItemID.SoulofFright, 10)
                 .AddIngredient<SoulofBlight>(10)
                 .AddTile(TileID.MythrilAnvil)
+                .DisableDecraft()
                 .Register();
         }
     }

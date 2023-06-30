@@ -3,7 +3,6 @@ using Consolaria.Content.Projectiles.Friendly;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
-using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -11,10 +10,9 @@ namespace Consolaria.Content.Items.Armor.Melee {
     [AutoloadEquip(EquipType.Head)]
     public class DragonMask : ModItem {
         public override void SetStaticDefaults () {
-            DisplayName.SetDefault("Dragon Mask");
-            Tooltip.SetDefault("15% increased melee damage and speed");
 
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
+            Item.ResearchUnlockCount = 1;
+            ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<AncientDragonMask>();
         }
 
         public override void SetDefaults () {
@@ -51,6 +49,7 @@ namespace Consolaria.Content.Items.Armor.Melee {
                 .AddIngredient(ItemID.SoulofMight, 10)
                 .AddIngredient<SoulofBlight>(10)
                 .AddTile(TileID.MythrilAnvil)
+                .DisableDecraft()
                 .Register();
         }
     }
@@ -64,7 +63,7 @@ namespace Consolaria.Content.Items.Armor.Melee {
         public override void ResetEffects ()
             => dragonBurst = false;
 
-        public override void PostHurt (bool pvp, bool quiet, double damage, int hitDirection, bool crit, int cooldownCounter) {
+        public override void PostHurt (Player.HurtInfo info) {
             if (dragonBurst && !startFlames) {
                 startFlames = true;
                 SoundEngine.PlaySound(SoundID.DD2_PhantomPhoenixShot with { Volume = 0.8f, MaxInstances = 3 }, Player.Center);

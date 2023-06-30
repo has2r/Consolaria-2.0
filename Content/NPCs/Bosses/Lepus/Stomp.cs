@@ -8,10 +8,9 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
 		public override string Texture
 			=> "Consolaria/Assets/Textures/Empty";
 
-		public override void SetStaticDefaults ()
-			=> DisplayName.SetDefault("Lepus Stomp");
+        public override string Name => "Lepus Stomp";
 
-		public override void SetDefaults () {
+        public override void SetDefaults () {
 			Projectile.width = 30;
 			Projectile.height = 30;
 
@@ -86,7 +85,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
 			}
 		}
 
-        public override void OnHitPlayer (Player target, int damage, bool crit) {
+        public override void OnHitPlayer (Player target, Player.HurtInfo info) {
 			short debuffTime = 120;
 			short debuffTime2 = 180;
 			target.AddBuff(BuffID.Slow, Main.expertMode ? debuffTime2 : debuffTime);

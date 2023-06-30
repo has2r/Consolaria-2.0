@@ -1,17 +1,14 @@
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
-using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.Items.Weapons.Ranged {
-	public class DragonBreath : ModItem {
+    public class DragonBreath : ModItem {
 		public override void SetStaticDefaults () {
-			DisplayName.SetDefault("Dragon's Breath");
-			Tooltip.SetDefault("70% chance to not consume gel");
 
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
+			Item.ResearchUnlockCount = 1;
 		}
 
 		public override void SetDefaults () {

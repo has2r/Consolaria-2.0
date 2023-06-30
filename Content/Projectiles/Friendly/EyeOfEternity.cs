@@ -17,7 +17,6 @@ namespace Consolaria.Content.Projectiles.Friendly {
         private Vector2 Velocity;
 
         public override void SetStaticDefaults () {
-            DisplayName.SetDefault("Eye of Eternity");
             Main.projPet [Projectile.type] = true;
 
             ProjectileID.Sets.CultistIsResistantTo [Projectile.type] = true;

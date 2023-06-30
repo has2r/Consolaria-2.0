@@ -4,7 +4,6 @@ using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using System;
 using Terraria;
-using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -15,9 +14,8 @@ namespace Consolaria.Content.Items.Armor.Ranged {
         public override void Unload () => leggingsGlowmask = null;
 
         public override void SetStaticDefaults () {
-            DisplayName.SetDefault("Titan Leggings");
-            Tooltip.SetDefault("10% increased ranged damage" + "\n18% increased movement speed" + "\n15% chance to not consume ammo");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
+            Item.ResearchUnlockCount = 1;
+            ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<AncientTitanLeggings>();
 
             if (!Main.dedServ) {
                 leggingsGlowmask = new(() => ModContent.Request<Texture2D>(Texture + "_Glow"));
@@ -52,6 +50,7 @@ namespace Consolaria.Content.Items.Armor.Ranged {
                 .AddIngredient(ItemID.SoulofSight, 10)
                 .AddIngredient<SoulofBlight>(10)
                 .AddTile(TileID.MythrilAnvil)
+                .DisableDecraft()
                 .Register();
         }
     }

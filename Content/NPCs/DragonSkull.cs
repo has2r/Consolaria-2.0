@@ -10,7 +10,6 @@ using Terraria.ModLoader.Utilities;
 namespace Consolaria.Content.NPCs {
 	public class DragonSkull : ModNPC {
 		public override void SetStaticDefaults () {
-			DisplayName.SetDefault("Dragon Skull");
 			Main.npcFrameCount [NPC.type] = 3;
 
 			NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData {
@@ -74,31 +73,31 @@ namespace Consolaria.Content.NPCs {
 		public override Color? GetAlpha (Color lightColor)
 			=> new Color(255, 255, 255, 200);
 
-		public override void OnHitPlayer (Player target, int damage, bool crit) {
+		public override void OnHitPlayer (Player target, Player.HurtInfo hurtInfo) {
 			if (Main.rand.NextBool(33))
 				target.AddBuff(BuffID.Cursed, 240);
 		}
 
-		public override void HitEffect (int hitDirection, double damage) {
+		public override void HitEffect (NPC.HitInfo hit) {
 			if (Main.netMode == NetmodeID.Server)
 				return;
 
 			if (NPC.life <= 0) {
 				for (int k = 0; k < 20; k++) {
-					Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Bone, 2.5f * hitDirection, -2.5f, 0, default, 0.7f);
-					Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Bone, 2.5f * hitDirection, -2.5f, 0, default, 0.7f);
-					Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Bone, 2.5f * hitDirection, -2.5f, 0, default, 0.7f);
-					Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Bone, 2.5f * hitDirection, -2.5f, 0, default, 0.7f);
-					Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Bone, 2.5f * hitDirection, -2.5f, 0, default, 0.7f);
-					Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Bone, 2.5f * hitDirection, -2.5f, 0, default, 0.7f);
-					Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Bone, 2.5f * hitDirection, -2.5f, 0, default, 0.7f);
+					Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Bone, 2.5f * hit.HitDirection, -2.5f, 0, default, 0.7f);
+					Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Bone, 2.5f * hit.HitDirection, -2.5f, 0, default, 0.7f);
+					Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Bone, 2.5f * hit.HitDirection, -2.5f, 0, default, 0.7f);
+					Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Bone, 2.5f * hit.HitDirection, -2.5f, 0, default, 0.7f);
+					Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Bone, 2.5f * hit.HitDirection, -2.5f, 0, default, 0.7f);
+					Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Bone, 2.5f * hit.HitDirection, -2.5f, 0, default, 0.7f);
+					Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Bone, 2.5f * hit.HitDirection, -2.5f, 0, default, 0.7f);
 				}
 			}
 			else {
-				for (int k = 0; k < damage / NPC.lifeMax * 50.0; k++) {
-					Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Bone, hitDirection, -1f, 0, default, 0.7f);
-					Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Bone, hitDirection, -1f, 0, default, 0.7f);
-					Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Bone, hitDirection, -1f, 0, default, 0.7f);
+				for (int k = 0; k < hit.Damage / NPC.lifeMax * 50.0; k++) {
+					Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Bone, hit.HitDirection, -1f, 0, default, 0.7f);
+					Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Bone, hit.HitDirection, -1f, 0, default, 0.7f);
+					Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Bone, hit.HitDirection, -1f, 0, default, 0.7f);
 				}
 			}
 		}

@@ -1,14 +1,12 @@
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.Items.Pets {
-	public class BrokenHeart : PetItem {
+    public class BrokenHeart : PetItem {
 		public override void SetStaticDefaults () {
-			Tooltip.SetDefault("Summons a pet cupid to provide light");
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
+			Item.ResearchUnlockCount = 1;
 		}
 
 		public override void SetDefaults () {

@@ -2,15 +2,13 @@ using Consolaria.Content.Projectiles.Friendly;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
-using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.Items.Weapons.Magic {
     public class OcramsEye : ModItem {
         public override void SetStaticDefaults () {
-            DisplayName.SetDefault("Eye of Ocram");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
+            Item.ResearchUnlockCount = 1;
         }
 
         public override void SetDefaults () {

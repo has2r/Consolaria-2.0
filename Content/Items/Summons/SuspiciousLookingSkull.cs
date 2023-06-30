@@ -2,17 +2,14 @@ using Consolaria.Content.NPCs.Bosses.Ocram;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
-using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.Items.Summons {
     public class SuspiciousLookingSkull : ModItem {
         public override void SetStaticDefaults () {
-            DisplayName.SetDefault("Suspicious Looking Skull");
-            Tooltip.SetDefault("Summons Ocram");
 
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 3;
+            Item.ResearchUnlockCount = 3;
             ItemID.Sets.SortingPriorityBossSpawns [Type] = 12;
         }
 
@@ -43,7 +40,7 @@ namespace Consolaria.Content.Items.Summons {
                 if (Main.netMode != NetmodeID.MultiplayerClient)
                     NPC.SpawnOnPlayer(player.whoAmI, type);
                 else
-                    NetMessage.SendData(MessageID.SpawnBoss, number: player.whoAmI, number2: type);
+                    NetMessage.SendData(MessageID.SpawnBossUseLicenseStartEvent, number: player.whoAmI, number2: type);
             }
             return true;
         }

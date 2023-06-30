@@ -1,14 +1,12 @@
 ﻿using Terraria.ID;
 using Terraria;
 using Terraria.ModLoader;
-using Terraria.GameContent.Creative;
 using Microsoft.Xna.Framework;
 
 namespace Consolaria.Content.Items.Weapons.Melee {
-	public class AlbinoMandible : ModItem {
+    public class AlbinoMandible : ModItem {
 		public override void SetStaticDefaults () {
-			Tooltip.SetDefault("'Surprisingly aerodynamic...'");
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
+			Item.ResearchUnlockCount = 1;
 		}
 
 		public override void SetDefaults () {

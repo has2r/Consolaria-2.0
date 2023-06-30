@@ -6,9 +6,7 @@ using Terraria.ID;
 namespace Consolaria.Content.Items.Banners {
 	public class SpectralGastropodBanner : ModItem {
 		public override void SetStaticDefaults () {
-			DisplayName.SetDefault("Spectropod Banner");
-			SacrificeTotal = 1;
-			Tooltip.SetDefault("{$CommonItemTooltip.BannerBonus}Spectropod");
+			Item.ResearchUnlockCount = 1;
 		}
 
 		public override void SetDefaults () {

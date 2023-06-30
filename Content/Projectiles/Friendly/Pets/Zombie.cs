@@ -5,6 +5,10 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Projectiles.Friendly.Pets {
     public class Zombie : ConsolariaPet {
         public override int maxFrames => 7;
+        public override int PreviewLastFrame => 3;
+        public override int PreviewOffsetX => 0;
+		public override int PreviewOffsetY => 0;
+		public override int PreviewSpriteDirection => -1;
 
         public override void SetDefaults () {
             int width = 26; int height = 50;

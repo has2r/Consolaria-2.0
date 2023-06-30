@@ -6,8 +6,7 @@ using Terraria.ID;
 namespace Consolaria.Content.Items.Banners {
 	public class ArchDemonBanner : ModItem {
 		public override void SetStaticDefaults () {
-			SacrificeTotal = 1;
-			Tooltip.SetDefault("{$CommonItemTooltip.BannerBonus}Arch Demon");
+			Item.ResearchUnlockCount = 1;
 		}
 
 		public override void SetDefaults () {

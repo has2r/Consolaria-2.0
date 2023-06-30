@@ -7,8 +7,6 @@ namespace Consolaria.Content.Buffs
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Easter bunny");
-			Description.SetDefault("The easter bunny will fight for you");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}

@@ -1,6 +1,5 @@
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -11,9 +10,8 @@ namespace Consolaria.Content.Items.Vanity
 	public class TorosBody : ModItem
 	{
 		public override void SetStaticDefaults() {
-			DisplayName.SetDefault("Toro's Body");
 			ArmorIDs.Body.Sets.HidesTopSkin[Item.bodySlot] = true;
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+			Item.ResearchUnlockCount = 1;
 		}
 
 		public override void SetDefaults() {

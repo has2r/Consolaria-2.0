@@ -7,8 +7,6 @@ namespace Consolaria.Content.Buffs
 	public class Bat : ModBuff
 	{
 		public override void SetStaticDefaults() {
-			DisplayName.SetDefault("Bat");
-			Description.SetDefault("Out for blood");
 			Main.buffNoTimeDisplay[Type] = true;
 			Main.vanityPet[Type] = true;
 		}

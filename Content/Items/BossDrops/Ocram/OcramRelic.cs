@@ -9,7 +9,6 @@ namespace Consolaria.Content.Items.BossDrops.Ocram
 	public class OcramRelic : ModItem
 	{
 		public override void SetStaticDefaults() {
-			DisplayName.SetDefault("Ocram Relic");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 

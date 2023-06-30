@@ -1,4 +1,3 @@
-using Terraria.GameContent.Creative;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -15,10 +14,9 @@ namespace Consolaria.Content.Items.Armor.Magic {
         }
 
         public override void SetStaticDefaults () {
-            DisplayName.SetDefault("Ancient Phantasmal Robe");
-            Tooltip.SetDefault("15% increased magic damage" + "\nIncreases maximum mana by 70");
 
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
+            Item.ResearchUnlockCount = 1;
+            ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<PhantasmalRobe>();
         }
 
         public override void SetDefaults () {
@@ -38,18 +36,7 @@ namespace Consolaria.Content.Items.Armor.Magic {
 
         public override void UpdateEquip (Player player) {
             player.statManaMax2 += 70;
-
             player.GetDamage(DamageClass.Magic) += 0.15f;
-        }
-
-        public override void AddRecipes () {
-            CreateRecipe()
-                .AddIngredient(ItemID.AncientHallowedPlateMail)
-               .AddRecipeGroup(RecipeGroups.Titanium, 12)
-                .AddIngredient(ItemID.SoulofFright, 15)
-                .AddIngredient<SoulofBlight>(15)
-                .AddTile(TileID.DemonAltar)
-                .Register();
         }
     }
 }

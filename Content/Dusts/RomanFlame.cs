@@ -1,10 +1,8 @@
-using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Consolaria.Content.Dusts
-{
-	public class RomanFlame : ModDust
+namespace Consolaria.Content.Dusts {
+    public class RomanFlame : ModDust
 	{
 		public override void OnSpawn(Dust dust) {
 			dust.noLight = false;

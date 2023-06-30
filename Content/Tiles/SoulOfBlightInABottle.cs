@@ -4,6 +4,7 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
@@ -22,8 +23,7 @@ namespace Consolaria.Content.Tiles {
 
             AdjTiles = new int [] { TileID.SoulBottles };
 
-            ModTranslation name = CreateMapEntryName();
-            name.SetDefault("Soul of Blight in a Bottle");
+            LocalizedText name = CreateMapEntryName();
             AddMapEntry(new Color(238, 145, 105), name);
 
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);
@@ -47,16 +47,16 @@ namespace Consolaria.Content.Tiles {
             int uniqueAnimationFrame = Main.tileFrame [Type] + i;
             if (i % 1 == 0)
                 uniqueAnimationFrame += 2;
-            if (i % 3 == 0)
+            if (i % 4 == 0)
                 uniqueAnimationFrame += 2;
-            uniqueAnimationFrame %= 3;
+            uniqueAnimationFrame %= 4;
 
             frameXOffset = uniqueAnimationFrame * animationFrameWidth;
         }
 
         public override void AnimateTile (ref int frame, ref int frameCounter) {
             frameCounter++;
-            if (frameCounter >= 6) {
+            if (frameCounter >= 7.2) {
                 frameCounter = 0;
                 if (++frame >= 3) {
                     frame = 0;

@@ -1,16 +1,14 @@
 using Terraria.ModLoader;
 using Terraria;
 using Terraria.ID;
-using Terraria.GameContent.Creative;
 using Microsoft.Xna.Framework;
 
 namespace Consolaria.Content.Items.BossDrops.Ocram {
-	public class EerieOcramMusicBox : ModItem {
+    public class EerieOcramMusicBox : ModItem {
 		public override void SetStaticDefaults () {
-			DisplayName.SetDefault("Music Box (Eerie Ocram)");
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
-
+			Item.ResearchUnlockCount = 1;
 			MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Assets/Music/EerieOcram"), ModContent.ItemType<EerieOcramMusicBox>(), ModContent.TileType<Tiles.EerieOcramMusicBox>());
+			ItemID.Sets.ShimmerTransformToItem[Type] = ItemID.MusicBox;
 		}
 
 		public override void SetDefaults () {
@@ -18,7 +16,7 @@ namespace Consolaria.Content.Items.BossDrops.Ocram {
 			Item.Size = new Vector2(width, height);
 
 			Item.accessory = true;
-			Item.canBePlacedInVanityRegardlessOfConditions = true;
+			Item.hasVanityEffects = true;
 
 			Item.rare = ItemRarityID.LightRed;
 			Item.value = Item.sellPrice(gold: 1);

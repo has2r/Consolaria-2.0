@@ -9,7 +9,6 @@ namespace Consolaria.Content.Items.BossDrops.Lepus
 	public class LepusRelic : ModItem
 	{
 		public override void SetStaticDefaults() {
-			DisplayName.SetDefault("Lepus Relic");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 

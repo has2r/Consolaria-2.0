@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.GameContent.Creative;
 using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.Audio;
@@ -9,12 +8,10 @@ using Terraria.Localization;
 namespace Consolaria.Content.Items.BossDrops.Ocram {
     public class ShadowboundExoskeleton : ModItem {
         public override void SetStaticDefaults () {
-            DisplayName.SetDefault("Shadowbound Exoskeleton");
 
             string tapDir = Language.GetTextValue(Main.ReversedUpDownArmorSetBonuses ? "Key.DOWN" : "Key.UP");
-            Tooltip.SetDefault("Allows the player to rocket jump" + $"\nDouble tap {tapDir}");
 
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
+            Item.ResearchUnlockCount = 1;
         }
 
         public override void SetDefaults () {
@@ -103,10 +100,11 @@ namespace Consolaria.Content.Items.BossDrops.Ocram {
                     Main.gore [goreIndex].GetAlpha(new Color(75, 0, 130, 100));
                 }
             }
+      
             for (int _npc = 0; _npc < Main.maxNPCs; _npc++) {
                 NPC npc = Main.npc [_npc];
                 if (npc.active && !npc.friendly && npc.life > 0 && !npc.dontTakeDamage && npc.Distance(Player.position) <= 120) {
-                    npc.StrikeNPCNoInteraction(rocketJumpDamage, rocketJumpKnockBack, 0, Main.rand.NextBool(4) ? true : false, false, false);
+                    //npc.StrikeNPCNoInteraction(rocketJumpDamage, rocketJumpKnockBack, 0, Main.rand.NextBool(4) ? true : false, false, false);
                     npc.AddBuff(BuffID.ShadowFlame, 180);
                 }
             }

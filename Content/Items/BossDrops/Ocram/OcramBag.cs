@@ -7,7 +7,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.GameContent;
-using Terraria.GameContent.Creative;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -15,11 +14,9 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Items.BossDrops.Ocram {
     public class OcramBag : ModItem {
         public override void SetStaticDefaults () {
-            DisplayName.SetDefault("Treasure Bag (Ocram)");
-            Tooltip.SetDefault("{$CommonItemTooltip.RightClickToOpen}");
 
             ItemID.Sets.BossBag [Type] = true;
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 3;
+            Item.ResearchUnlockCount = 3;
         }
 
         public override void SetDefaults () {

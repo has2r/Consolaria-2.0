@@ -8,7 +8,6 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.NPCs.Bosses.Lepus {
     public class ChocolateEgg : ModNPC {
         public override void SetStaticDefaults () {
-            DisplayName.SetDefault("Chocolate Egg");
 
             NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData {
                 SpecificallyImmuneTo = new int [] {
@@ -60,7 +59,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
             if (damage < 1) damage = 1;
         }
 
-        public override void HitEffect (int hitDirection, double damage) {
+        public override void HitEffect (NPC.HitInfo hit) {
             if (NPC.life <= 0) {
                 int item = Item.NewItem(NPC.GetSource_Death(), NPC.Center, 0, 0, ItemID.Star, Main.rand.Next(1, 3), false, 0, false, false);
                 if (Main.netMode == NetmodeID.MultiplayerClient && item >= 0)

@@ -10,6 +10,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
         public override void SetStaticDefaults () => Main.projFrames [Projectile.type] = 6;
 
         private readonly int lifeLimit = 40;
+        private int hitCounter;
         private float drawRotation;
         private float scal;
 
@@ -28,6 +29,10 @@ namespace Consolaria.Content.Projectiles.Friendly {
             Projectile.extraUpdates = 1;
 
             Projectile.usesLocalNPCImmunity = true;
+            Projectile.localNPCHitCooldown = -1;
+
+            Projectile.ownerHitCheck = true;
+            Projectile.ownerHitCheckDistance = 100;
         }
 
         public override void AI () {
@@ -53,8 +58,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
                         Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, DustID.Shadowflame, Projectile.velocity.X * 1.2f, Projectile.velocity.Y * 1.2f, 130, default, 1.5f);
                     }
                 }
-            }
-            else Projectile.ai [0] += 1f;
+            } else Projectile.ai [0] += 1f;
             return;
         }
 
@@ -73,11 +77,18 @@ namespace Consolaria.Content.Projectiles.Friendly {
             return false;
         }
 
-        public override void OnHitNPC (NPC target, int damage, float knockback, bool crit)
-            => target.AddBuff(BuffID.ShadowFlame, 300);
+        public override void OnHitNPC (NPC target, NPC.HitInfo hit, int damageDone) {
+            hitCounter++;
+            target.AddBuff(BuffID.ShadowFlame, 300);
+        }
 
-        public override void OnHitPvp (Player target, int damage, bool crit)
-            => target.AddBuff(BuffID.ShadowFlame, 300);
+        public override void OnHitPlayer (Player target, Player.HurtInfo info) {
+            if (info.PvP)
+                target.AddBuff(BuffID.ShadowFlame, 300);
+        }
+
+        public override void ModifyHitNPC (NPC target, ref NPC.HitModifiers modifiers) 
+            => modifiers.FinalDamage -= (int) (modifiers.FinalDamage.Flat * hitCounter * 0.15f);
 
         public override bool OnTileCollide (Vector2 oldVelocity) {
             Projectile.timeLeft = 10;

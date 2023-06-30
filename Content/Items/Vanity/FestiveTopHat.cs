@@ -2,7 +2,6 @@ using Terraria.ModLoader;
 using Terraria;
 using Terraria.ID;
 using Microsoft.Xna.Framework;
-using Terraria.GameContent.Creative;
 
 namespace Consolaria.Content.Items.Vanity
 {
@@ -10,10 +9,8 @@ namespace Consolaria.Content.Items.Vanity
 	public class FestiveTopHat : ModItem
 	{
 		public override void SetStaticDefaults() {
-			DisplayName.SetDefault("Festive Top Hat");
-			Tooltip.SetDefault("'Because nothing tops the festive season!'");
 
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+			Item.ResearchUnlockCount = 1;
 		}
 
 		public override void SetDefaults() {

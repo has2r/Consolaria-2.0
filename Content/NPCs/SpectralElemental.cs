@@ -11,7 +11,6 @@ using Terraria.ModLoader.Utilities;
 namespace Consolaria.Content.NPCs {
     public class SpectralElemental : ModNPC {
         public override void SetStaticDefaults () {
-            DisplayName.SetDefault("Spectral Elemental");
             Main.npcFrameCount [NPC.type] = 15;
 
             NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData {
@@ -52,7 +51,7 @@ namespace Consolaria.Content.NPCs {
         public override void SetBestiary (BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement [] {
                 BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.UndergroundHallow,
-                new FlavorTextBestiaryInfoElement("Sometimes released spirits of light would transform chaos elementals into more powerful beings, able to move in and out of the material realm at will while placing explosive spectral runes.")
+                new FlavorTextBestiaryInfoElement("Sometimes free spirits of light would transform chaos elementals into more powerful beings, giving them ability to move in and out of the material realm at their will while summoning some spectral runes.")
             });
         }
 
@@ -81,14 +80,14 @@ namespace Consolaria.Content.NPCs {
             }
         }
 
-        public override void HitEffect (int hitDirection, double damage) {
+        public override void HitEffect (NPC.HitInfo hit) {
             if (Main.netMode == NetmodeID.Server)
                 return;
 
-            Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.FrostHydra, 2.5f * hitDirection, -2.5f, 0, default, 0.8f);
+            Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.FrostHydra, 2.5f * hit.HitDirection, -2.5f, 0, default, 0.8f);
             if (NPC.life <= 0) {
                 for (int i = 0; i < 25; i++)
-                    Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.FrostHydra, 2.5f * hitDirection, -2.5f, 0, default, 1f);
+                    Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.FrostHydra, 2.5f * hit.HitDirection, -2.5f, 0, default, 1f);
             }
         }
 

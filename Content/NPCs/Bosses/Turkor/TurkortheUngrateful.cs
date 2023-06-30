@@ -16,14 +16,12 @@ using Consolaria.Content.Items.Weapons.Magic;
 using Consolaria.Content.Items.Weapons.Melee;
 using Consolaria.Content.Items.Weapons.Summon;
 using Consolaria.Content.Items.Weapons.Ranged;
-using Consolaria.Content.Items.Consumables;
 using System.IO;
 
 namespace Consolaria.Content.NPCs.Bosses.Turkor {
-	[AutoloadBossHead]
+    [AutoloadBossHead]
 	public class TurkortheUngrateful : ModNPC {
 		public override void SetStaticDefaults () {
-			DisplayName.SetDefault("Turkor the Ungrateful");
 			Main.npcFrameCount [Type] = 3;
 
 			NPCID.Sets.MPAllowedEnemies [Type] = true;
@@ -76,7 +74,7 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 			if (!Main.dedServ) Music = ModContent.GetInstance<ConsolariaConfig>().vanillaBossMusic ? MusicID.Boss1 : MusicLoader.GetMusicSlot(Mod, "Assets/Music/Turkor");
 		}
 
-		public override void ScaleExpertStats (int numPlayers, float bossLifeScale) {
+		public override void ApplyDifficultyAndPlayerScaling (int numPlayers, float balance, float bossAdjustment)/* tModPorter Note: bossLifeScale -> balance (bossAdjustment is different, see the docs for details) */ {
 			NPC.lifeMax = (int) (NPC.lifeMax * 0.5f * 1.4f);
 			NPC.damage = (int) (NPC.damage * 0.65f);
 			if (numPlayers <= 1) return;
@@ -450,7 +448,7 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 			}
 		}
 
-		public override void HitEffect (int hitDirection, double damage) {
+		public override void HitEffect (NPC.HitInfo hit) {
 			if (Main.netMode == NetmodeID.Server)
 				return;
 

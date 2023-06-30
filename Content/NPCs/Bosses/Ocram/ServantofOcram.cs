@@ -9,7 +9,6 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.NPCs.Bosses.Ocram {
     public class ServantofOcram : ModNPC {
         public override void SetStaticDefaults () {
-            DisplayName.SetDefault("Servant of Ocram");
             Main.npcFrameCount [NPC.type] = 2;
 
             NPCID.Sets.DontDoHardmodeScaling [Type] = true;
@@ -39,7 +38,7 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
             NPC.DeathSound = SoundID.NPCHit18;
         }
 
-        public override void ScaleExpertStats (int numPlayers, float bossLifeScale) {
+        public override void ApplyDifficultyAndPlayerScaling (int numPlayers, float balance, float bossAdjustment)/* tModPorter Note: bossLifeScale -> balance (bossAdjustment is different, see the docs for details) */ {
             NPC.lifeMax = 650 + (int)(numPlayers > 1 ? NPC.lifeMax * 0.35f * numPlayers : 0);
             NPC.damage = 115;
         }
@@ -73,16 +72,16 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
             return true;
         }
 
-        public override void HitEffect (int hitDirection, double damage) {
+        public override void HitEffect (NPC.HitInfo hit) {
             if (Main.netMode == NetmodeID.Server)
                 return;
 
             for (int i = 0; i < 3; i++)
-                Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Shadowflame, hitDirection, -1f, 0, default, 1f);
+                Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Shadowflame, hit.HitDirection, -1f, 0, default, 1f);
             if (NPC.life <= 0) {
                 Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity * 0.75f, ModContent.Find<ModGore>("Consolaria/Servant_Gore").Type, 0.75f);
                 for (int j = 0; j < 12; j++)
-                    Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Shadowflame, hitDirection, -1f, 0, default, 1f);
+                    Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Shadowflame, hit.HitDirection, -1f, 0, default, 1f);
             }
         }
 

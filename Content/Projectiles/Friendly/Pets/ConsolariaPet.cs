@@ -2,15 +2,26 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.Projectiles.Friendly.Pets {
 	public abstract class ConsolariaPet : ModProjectile {
 		public virtual int maxFrames => 0;
+		public virtual int PreviewFirstFrame => 0;
+		public virtual int PreviewLastFrame => 0;
+		public virtual int PreviewOffsetX => 0;
+		public virtual int PreviewOffsetY => 0;
+		public virtual int PreviewSpriteDirection => 1;
 
 		public override void SetStaticDefaults () {
 			Main.projPet [Projectile.type] = true;
 			Main.projFrames [Projectile.type] = maxFrames;
+
+			ProjectileID.Sets.CharacterPreviewAnimations[Projectile.type] = ProjectileID.Sets.SimpleLoop(PreviewFirstFrame, PreviewLastFrame)
+				.WithOffset(PreviewOffsetX, PreviewOffsetY)
+				.WithSpriteDirection(PreviewSpriteDirection)
+                .WhenNotSelected(0, 0);
 		}
 
 		public override void SetDefaults () {

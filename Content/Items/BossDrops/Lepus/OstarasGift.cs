@@ -3,15 +3,12 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using Consolaria.Content.NPCs.Bosses.Lepus;
 using Microsoft.Xna.Framework;
-using Terraria.GameContent.Creative;
 
 namespace Consolaria.Content.Items.BossDrops.Lepus {
     public class OstarasGift : ModItem {
         public override void SetStaticDefaults () {
-            DisplayName.SetDefault("Ostara's Gift");
-            Tooltip.SetDefault("Enemies have a chance of leaving chocolate eggs on death" + "\nEggs drop life hearts and mana stars when broken");
 
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
+            Item.ResearchUnlockCount = 1;
         }
 
         public override void SetDefaults () {
@@ -35,12 +32,12 @@ namespace Consolaria.Content.Items.BossDrops.Lepus {
         public override void ResetEffects ()
             => chocolateEgg = false;
 
-        public override void OnHitNPC (Item item, NPC target, int damage, float knockback, bool crit) {
+        public override void OnHitNPCWithItem (Item item, NPC target, NPC.HitInfo hit, int damageDone)/* tModPorter If you don't need the Item, consider using OnHitNPC instead */ {
             if (chocolateEgg && target.type != ModContent.NPCType<ChocolateEgg>() && target.life <= 0 && !NPCID.Sets.CountsAsCritter [target.type] && Main.rand.NextBool(2))
                 NPC.NewNPC(target.GetSource_Loot(), (int) target.Center.X, (int) target.Center.Y, ModContent.NPCType<ChocolateEgg>());
         }
 
-        public override void OnHitNPCWithProj (Projectile proj, NPC target, int damage, float knockback, bool crit) {
+        public override void OnHitNPCWithProj (Projectile proj, NPC target, NPC.HitInfo hit, int damageDone)/* tModPorter If you don't need the Projectile, consider using OnHitNPC instead */ {
             if (chocolateEgg && target.type != ModContent.NPCType<ChocolateEgg>() && target.life <= 0 && !NPCID.Sets.CountsAsCritter [target.type] && Main.rand.NextBool(2))
                 NPC.NewNPC(target.GetSource_Loot(), (int) target.Center.X, (int) target.Center.Y, ModContent.NPCType<ChocolateEgg>());
         }

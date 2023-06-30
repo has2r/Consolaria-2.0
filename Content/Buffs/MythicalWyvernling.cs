@@ -7,8 +7,6 @@ namespace Consolaria.Content.Buffs
 	public class MythicalWyvernling : ModBuff
 	{
 		public override void SetStaticDefaults() {
-			DisplayName.SetDefault("Mythical Wyvernling");
-			Description.SetDefault("A mythical wyvernling is following you");
 
 			Main.buffNoTimeDisplay[Type] = true;
 			Main.lightPet[Type] = true;

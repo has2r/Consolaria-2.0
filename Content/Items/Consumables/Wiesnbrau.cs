@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using Terraria.GameContent.Creative;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -7,12 +6,10 @@ using Consolaria.Content.Buffs;
 using Terraria.DataStructures;
 
 namespace Consolaria.Content.Items.Consumables {
-	public class Wiesnbrau : ModItem {
+    public class Wiesnbrau : ModItem {
 		public override void SetStaticDefaults () {
-			DisplayName.SetDefault("Wiesnbräu");
-			Tooltip.SetDefault("Numbs the user from damage taken but also reduces damage inflicted");
 
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 5;
+			Item.ResearchUnlockCount = 5;
 			Main.RegisterItemAnimation(Type, new DrawAnimationVertical(int.MaxValue, 3));
 
 			ItemID.Sets.DrinkParticleColors [Item.type] = new Color [3] {

@@ -1,7 +1,6 @@
 using Consolaria.Content.Items.Materials;
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -9,10 +8,9 @@ namespace Consolaria.Content.Items.Armor.Magic {
     [AutoloadEquip(EquipType.Head)]
     public class AncientPhantasmalHeadgear : ModItem {
         public override void SetStaticDefaults () {
-            DisplayName.SetDefault("Ancient Phantasmal Headgear");
-            Tooltip.SetDefault("10% increased magic damage and critical strike chance" + "\nIncreases maximum mana by 50");
 
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
+            Item.ResearchUnlockCount = 1;
+            ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<PhantasmalHeadgear>();
         }
 
         public override void SetDefaults () {
@@ -42,16 +40,6 @@ namespace Consolaria.Content.Items.Armor.Magic {
         public override void UpdateArmorSet (Player player) {
             player.setBonus = "Drinking a mana potion unleashes a barrage of homing spirit bolts";
             player.GetModPlayer<SpectralPlayer>().spectralGuard = true;
-        }
-
-        public override void AddRecipes () {
-            CreateRecipe()
-                .AddIngredient(ItemID.AncientHallowedHeadgear)
-                .AddRecipeGroup(RecipeGroups.Titanium, 10)
-                .AddIngredient(ItemID.SoulofFright, 10)
-                .AddIngredient<SoulofBlight>(10)
-                .AddTile(TileID.DemonAltar)
-                .Register();
         }
     }
 }

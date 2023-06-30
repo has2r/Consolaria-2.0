@@ -12,7 +12,7 @@ using Consolaria.Common;
 
 namespace Consolaria.Content.Structures {
     public class HeartShrine : ModSystem {
-        public override void ModifyWorldGenTasks (List<GenPass> tasks, ref float totalWeight) {
+        public override void ModifyWorldGenTasks (List<GenPass> tasks, ref double totalWeight) {
             int index = tasks.FindIndex(genpass => genpass.Name.Equals("Micro Biomes"));
             if (index != -1) {
                 tasks.Insert(index + 1, new HeartShrineGeneration("Heart Shrine", 10f));
@@ -96,7 +96,7 @@ namespace Consolaria.Content.Structures {
                 if (chestIndex != -1)
                     AddHeartShrineLoot(Main.chest [chestIndex].item);
 
-                WorldGen.structures.AddStructure(new Rectangle(heartShrinePositionX, heartShrinePositionY, width, height), 2);
+                GenVars.structures.AddStructure(new Rectangle(heartShrinePositionX, heartShrinePositionY, width, height), 2);
             } while (structureCount != WorldGenHelper.GetWorldSize());
         }
 

@@ -4,7 +4,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.GameContent;
-using Terraria.GameContent.Creative;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -12,13 +11,11 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Items.BossDrops.Lepus {
     public class LepusBag : ModItem {
         public override void SetStaticDefaults () {
-            DisplayName.SetDefault("Treasure Bag (Lepus)");
-            Tooltip.SetDefault("{$CommonItemTooltip.RightClickToOpen}");
 
             ItemID.Sets.BossBag [Type] = true;
             ItemID.Sets.PreHardmodeLikeBossBag [Type] = true;
 
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 3;
+            Item.ResearchUnlockCount = 3;
         }
 
         public override void SetDefaults () {

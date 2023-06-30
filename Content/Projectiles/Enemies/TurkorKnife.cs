@@ -7,7 +7,6 @@ using Microsoft.Xna.Framework.Graphics;
 namespace Consolaria.Content.Projectiles.Enemies {
 	public class TurkorKnife : ModProjectile {
 		public override void SetStaticDefaults () {
-			DisplayName.SetDefault("Turkor's Knife");
 
 			ProjectileID.Sets.TrailCacheLength [Projectile.type] = 10;
 			ProjectileID.Sets.TrailingMode [Projectile.type] = 0;

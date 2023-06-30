@@ -1,7 +1,6 @@
 using Consolaria.Content.Items.Materials;
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -9,10 +8,9 @@ namespace Consolaria.Content.Items.Armor.Melee {
     [AutoloadEquip(EquipType.Legs)]
     public class DragonGreaves : ModItem {
         public override void SetStaticDefaults () {
-            DisplayName.SetDefault("Dragon Greaves");
-            Tooltip.SetDefault("5% increased melee damage and critical strike chance" + "\n20% increased movement speed");
 
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
+            Item.ResearchUnlockCount = 1;
+            ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<AncientDragonGreaves>();
         }
 
         public override void SetDefaults () {
@@ -38,6 +36,7 @@ namespace Consolaria.Content.Items.Armor.Melee {
                 .AddIngredient(ItemID.SoulofMight, 10)
                 .AddIngredient<SoulofBlight>(10)
                 .AddTile(TileID.MythrilAnvil)
+                .DisableDecraft()
                 .Register();
         }
     }

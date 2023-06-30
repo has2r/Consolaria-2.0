@@ -85,6 +85,8 @@ StyleCopReport.xml
 *.pidb
 *.svclog
 *.scc
+*.suo
+*.bin
 
 # Chutzpah Test files
 _Chutzpah*
@@ -364,3 +366,11 @@ obj/Consolaria.csproj.nuget.dgspec.json
 .vs/Consolaria/v17/fileList.bin
 .vs/Consolaria/DesignTimeBuild/.dtbcache.v2
 .vs/Consolaria/v17/.futdcache.v1
+obj/Debug/net6.0/Consolaria.GeneratedMSBuildEditorConfig.editorconfig
+obj/Debug/net6.0/Consolaria.csproj.AssemblyReference.cache
+.vs/Consolaria/v17/fileList.bin
+.vs/Consolaria/v17/.suo
+.vs/Consolaria/DesignTimeBuild/.dtbcache.v2
+.vs/Consolaria/v17/.suo
+.vs/Consolaria/DesignTimeBuild/.dtbcache.v2
+obj/Debug/net6.0/Consolaria.csproj.AssemblyReference.cache

@@ -8,8 +8,7 @@ namespace Consolaria.Content.Items.Banners
 	public class AlbinoChargerBanner : ModItem {
 
 		public override void SetStaticDefaults () {
-			SacrificeTotal = 1;
-			Tooltip.SetDefault("{$CommonItemTooltip.BannerBonus}Albino Charger");
+			Item.ResearchUnlockCount = 1;
 		}
 
 		public override void SetDefaults() {

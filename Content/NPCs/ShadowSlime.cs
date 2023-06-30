@@ -51,19 +51,19 @@ namespace Consolaria.Content.NPCs {
             });
         }
 
-        public override void OnHitPlayer (Player target, int damage, bool crit) {
+        public override void OnHitPlayer (Player target, Player.HurtInfo hurtInfo) {
             if (Main.rand.NextBool(4))
                 target.AddBuff(BuffID.Blackout, 60 * Main.rand.Next(4, 8));
         }
 
-        public override void HitEffect (int hitDirection, double damage) {
+        public override void HitEffect (NPC.HitInfo hit) {
             if (Main.netMode == NetmodeID.Server)
                 return;
 
-            Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Demonite, 2.5f * hitDirection, -2.5f, 0, default, 0.7f);
+            Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Demonite, 2.5f * hit.HitDirection, -2.5f, 0, default, 0.7f);
             if (NPC.life <= 0) {
                 for (int i = 0; i < 20; i++)
-                    Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Demonite, 2.5f * hitDirection, -2.5f, 0, default, 1f);
+                    Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Demonite, 2.5f * hit.HitDirection, -2.5f, 0, default, 1f);
             }
         }
 

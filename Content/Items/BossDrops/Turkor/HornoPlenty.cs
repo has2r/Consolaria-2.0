@@ -9,8 +9,6 @@ namespace Consolaria.Content.Items.BossDrops.Turkor
 	public class HornoPlenty : ModItem
 	{		
 		public override void SetStaticDefaults() {
-			DisplayName.SetDefault("Horn o' Plenty");
-            Tooltip.SetDefault("It is filled with the inexhaustible gifts of celebratory fruits");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 

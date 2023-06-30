@@ -7,6 +7,9 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Projectiles.Friendly.Pets {
 	public abstract class ConsolariaFlyingPet : ModProjectile {
 		public virtual int maxFrames => 0;
+		public virtual int PreviewOffsetX => 0;
+		public virtual int PreviewOffsetY => 0;
+		public virtual int PreviewSpriteDirection => 1;
 		public virtual bool isLightPet => false;
 
 		public override void SetStaticDefaults () {
@@ -14,6 +17,11 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
 
 			Main.projFrames [Projectile.type] = maxFrames;
 			ProjectileID.Sets.LightPet [Projectile.type] = isLightPet;
+
+			ProjectileID.Sets.CharacterPreviewAnimations[Projectile.type] = ProjectileID.Sets.SimpleLoop(0, maxFrames)
+				.WithOffset(PreviewOffsetX, PreviewOffsetY)
+				.WithSpriteDirection(PreviewSpriteDirection)
+                .WithCode(DelegateMethods.CharacterPreview.Float);
 		}
 
 		public override void SetDefaults () {

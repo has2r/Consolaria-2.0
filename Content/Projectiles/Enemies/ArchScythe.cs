@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
@@ -6,10 +7,7 @@ using Terraria.ModLoader;
 
 namespace Consolaria.Content.Projectiles.Enemies {
 	public class ArchScythe : ModProjectile {
-		private float rotationTimer = 3.14f;
-
-		public override void SetStaticDefaults ()
-			=> DisplayName.SetDefault("Arch Scythe");
+		private float rotationTimer = (float)Math.PI;
 
 		public override void SetDefaults () {
 			int width = 48; int height = width;
@@ -56,7 +54,7 @@ namespace Consolaria.Content.Projectiles.Enemies {
 			rotationTimer += 0.01f;
 		}
 
-		public override void OnHitPlayer (Player target, int damage, bool crit)
+		public override void OnHitPlayer (Player target, Player.HurtInfo info)
 			=> target.AddBuff(BuffID.OnFire, 180);
 
 		public override void Kill (int timeLeft) {

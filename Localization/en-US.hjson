@@ -1,0 +1,1328 @@
+Mods: {
+	Consolaria: {
+		Biomes: {
+			RabbitInvasionBiome: {
+				DisplayName: Rabbit Invasion
+				TownNPCDialogueName: the Rabbit Invasion Biome
+			}
+		}
+
+		Buffs: {
+			Android: {
+				DisplayName: Android
+				Description: Beep-Boop
+			}
+
+			Bat: {
+				DisplayName: Bat
+				Description: Out for blood
+			}
+
+			Cupid: {
+				DisplayName: Pet Cupid
+				Description: Loves love
+			}
+
+			Drone: {
+				DisplayName: Drone
+				Description: A drone is following you
+			}
+
+			Drunk: {
+				DisplayName: Drunk
+				Description:
+					'''
+					50% reduced damage taken
+					50% reduced damage dealt
+					'''
+			}
+
+			EasterBunny: {
+				DisplayName: Easter bunny
+				Description: The easter bunny will fight for you
+			}
+
+			Elfa: {
+				DisplayName: Pet Elfa
+				Description: A special elf
+			}
+
+			EyeOfEternity: {
+				DisplayName: Eye of Eternity
+				Description: The eye of eternity will fight for you
+			}
+
+			FruitfulPlate: {
+				DisplayName: Fruitful Plate
+				Description: Mods.Consolaria.Buffs.FruitfulPlate.Description
+			}
+
+			GoldenCarrotDebuff: {
+				DisplayName: Golden Carrot Curse
+				Description:
+					'''
+					Cannot eat anymore golden carrots
+					Defense is slightly decreased
+					'I TOLD YOU THE CARROT WAS GOLD, I TOLD YOU!!!'
+					'''
+			}
+
+			GoldenTurtle: {
+				DisplayName: Golden Turtle
+				Description: Rare turtle
+			}
+
+			GuineaPig: {
+				DisplayName: Guinea Pig
+				Description: Simply adorable
+			}
+
+			Leprechaun: {
+				DisplayName: Leprechaun O'Fyffe
+				Description: Full of coins
+			}
+
+			LilMarco: {
+				DisplayName: Lil' Marco
+				Description: Evil itself is following you
+			}
+
+			MythicalWyvernling: {
+				DisplayName: Mythical Wyvernling
+				Description: A mythical wyvernling is following you
+			}
+
+			PetTurkey: {
+				DisplayName: Pet Turkey
+				Description: Big and meaty turkey
+			}
+
+			Slime: {
+				DisplayName: Pet Slime
+				Description: A real slime ball
+			}
+
+			SmallLepus: {
+				DisplayName: Baby Lepus
+				Description: He can't lay any eggs... Yet!
+			}
+
+			Stunned: {
+				DisplayName: Stunned
+				Description: Paralyzed by love
+			}
+
+			Tiphia: {
+				DisplayName: Tiphia
+				Description: Don't let it sting you
+			}
+
+			WeirdTurkey: {
+				DisplayName: Weird Turkey
+				Description: Weird turkey will fight for you
+			}
+
+			Werewolf: {
+				DisplayName: Pet Werewolf
+				Description: Man's best friend
+			}
+
+			Zombie: {
+				DisplayName: Pet Zombie
+				Description: Eats brains
+			}
+
+			McMoneypantsBuff: {
+				DisplayName: Fortuned
+				Description: Increases the Luck of the user
+			}
+
+			Worm: {
+				DisplayName: Worm
+				Description: Mods.Consolaria.Buffs.Worm.Description
+			}
+
+			OldLady: {
+				DisplayName: Old Lady
+				Description: Mods.Consolaria.Buffs.OldLady.Description
+			}
+		}
+
+		Items: {
+			SparklyWings: {
+				DisplayName: Sparkly Wings
+				Tooltip: Allows flight and slow fall
+			}
+
+			ValentineRing: {
+				DisplayName: Valentine Ring
+				Tooltip: ""
+			}
+
+			AncientPhantasmalHeadgear: {
+				DisplayName: Ancient Phantasmal Headgear
+				Tooltip:
+					'''
+					Increases maximum mana by 50
+					10% increased magic damage
+					10% increased magic critical strike chance
+					'''
+			}
+
+			AncientPhantasmalRobe: {
+				DisplayName: Ancient Phantasmal Robe
+				Tooltip:
+					'''
+					Increases maximum mana by 70
+					15% increased magic damage
+					'''
+			}
+
+			AncientPhantasmalSubligar: {
+				DisplayName: Ancient Phantasmal Subligar
+				Tooltip:
+					'''
+					Increases maximum mana by 30
+					5% increased magic damage
+					12% increased movement speed
+					'''
+			}
+
+			PhantasmalHeadgear: {
+				DisplayName: Phantasmal Headgear
+				Tooltip:
+					'''
+					Increases maximum mana by 50
+					10% increased magic damage
+					10% increased magic critical strike chance
+					'''
+			}
+
+			PhantasmalRobe: {
+				DisplayName: Phantasmal Robe
+				Tooltip:
+					'''
+					Increases maximum mana by 70
+					15% increased magic damage
+					'''
+			}
+
+			PhantasmalSubligar: {
+				DisplayName: Phantasmal Subligar
+				Tooltip:
+					'''
+					Increases maximum mana by 30
+					5% increased magic damage
+					12% increased movement speed
+					'''
+			}
+
+			AncientDragonBreastplate: {
+				DisplayName: Ancient Dragon Breastplate
+				Tooltip:
+					'''
+					10% increased melee damage
+					10% increased melee critical strike chance
+					15% increased melee speed
+					'''
+			}
+
+			AncientDragonGreaves: {
+				DisplayName: Ancient Dragon Greaves
+				Tooltip:
+					'''
+					5% increased melee damage
+					5% increased melee critical strike chance
+					20% increased movement speed
+					'''
+			}
+
+			AncientDragonMask: {
+				DisplayName: Ancient Dragon Mask
+				Tooltip:
+					'''
+					15% increased melee damage
+					15% increased melee speed
+					'''
+			}
+
+			DragonBreastplate: {
+				DisplayName: Dragon Breastplate
+				Tooltip:
+					'''
+					10% increased melee damage
+					10% increased melee critical strike chance
+					15% increased melee speed
+					'''
+			}
+
+			DragonGreaves: {
+				DisplayName: Dragon Greaves
+				Tooltip:
+					'''
+					5% increased melee damage
+					5% increased melee critical strike chance
+					20% increased movement speed
+					'''
+			}
+
+			DragonMask: {
+				DisplayName: Dragon Mask
+				Tooltip:
+					'''
+					15% increased melee damage
+					15% increased melee speed
+					'''
+			}
+
+			OstaraBoots: {
+				DisplayName: Boots of Ostara
+				Tooltip: Allows wearer to perform up to 5 bunny hops
+			}
+
+			OstaraHat: {
+				DisplayName: Hat of Ostara
+				Tooltip: 7% increased movement speed
+			}
+
+			OstaraJacket: {
+				DisplayName: Jacket of Ostara
+				Tooltip: 7% increased movement speed
+			}
+
+			AncientTitanHelmet: {
+				DisplayName: Ancient Titan Helmet
+				Tooltip:
+					'''
+					10% increased ranged damage
+					10% increased ranged critical strike chance
+					25% chance to not consume ammo
+					'''
+			}
+
+			AncientTitanLeggings: {
+				DisplayName: Ancient Titan Leggings
+				Tooltip:
+					'''
+					10% increased ranged damage
+					18% increased movement speed
+					15% chance to not consume ammo
+					'''
+			}
+
+			AncientTitanMail: {
+				DisplayName: Ancient Titan Mail
+				Tooltip:
+					'''
+					15% increased ranged damage
+					10% increased ranged critical strike chance
+					20% chance to not consume ammo
+					'''
+			}
+
+			TitanHelmet: {
+				DisplayName: Titan Helmet
+				Tooltip:
+					'''
+					10% increased ranged damage
+					10% increased ranged critical strike chance
+					25% chance to not consume ammo
+					'''
+			}
+
+			TitanLeggings: {
+				DisplayName: Titan Leggings
+				Tooltip:
+					'''
+					10% increased ranged damage
+					18% increased movement speed
+					15% chance to not consume ammo
+					'''
+			}
+
+			TitanMail: {
+				DisplayName: Titan Mail
+				Tooltip:
+					'''
+					15% increased ranged damage
+					10% increased ranged critical strike chance
+					20% chance to not consume ammo
+					'''
+			}
+
+			AncientWarlockHood: {
+				DisplayName: Ancient Warlock Hood
+				Tooltip:
+					'''
+					Increases your max number of minions by 1
+					Increases summon damage by 20%
+					'''
+			}
+
+			AncientWarlockLeggings: {
+				DisplayName: Ancient Warlock Leggings
+				Tooltip:
+					'''
+					Increases your max number of minions by 1
+					Increases summon damage by 20%
+					15% increased movement speed
+					'''
+			}
+
+			AncientWarlockRobe: {
+				DisplayName: Ancient Warlock Robe
+				Tooltip:
+					'''
+					Increases your max number of minions by 1
+					Increases summon damage by 20%
+					'''
+			}
+
+			WarlockHood: {
+				DisplayName: Warlock Hood
+				Tooltip:
+					'''
+					Increases your max number of minions by 1
+					Increases summon damage by 20%
+					'''
+			}
+
+			WarlockLeggings: {
+				DisplayName: Warlock Leggings
+				Tooltip:
+					'''
+					Increases your max number of minions by 1
+					Increases summon damage by 20%
+					15% increased movement speed
+					'''
+			}
+
+			WarlockRobe: {
+				DisplayName: Warlock Robe
+				Tooltip:
+					'''
+					Increases your max number of minions by 1
+					Increases summon damage by 20%
+					'''
+			}
+
+			AlbinoAntlionBanner: {
+				DisplayName: Albino Antlion Banner
+				Tooltip: "{$CommonItemTooltip.BannerBonus}Albino Antlion"
+			}
+
+			AlbinoChargerBanner: {
+				DisplayName: Albino Charger Banner
+				Tooltip: "{$CommonItemTooltip.BannerBonus}Albino Charger"
+			}
+
+			ArchDemonBanner: {
+				DisplayName: Arch Demon Banner
+				Tooltip: "{$CommonItemTooltip.BannerBonus}Arch Demon"
+			}
+
+			ArchWyvernBanner: {
+				DisplayName: Arch Wyvern Banner
+				Tooltip: "{$CommonItemTooltip.BannerBonus}Arch Wyvern"
+			}
+
+			DisasterBunnyBanner: {
+				DisplayName: Disaster Bunny Banner
+				Tooltip: "{$CommonItemTooltip.BannerBonus}Disaster Bunny"
+			}
+
+			DragonHornetBanner: {
+				DisplayName: Dragon Hornet Banner
+				Tooltip: "{$CommonItemTooltip.BannerBonus}Dragon Hornet"
+			}
+
+			DragonSkullBanner: {
+				DisplayName: Dragon Skull Banner
+				Tooltip: "{$CommonItemTooltip.BannerBonus}Dragon Skull"
+			}
+
+			DragonSnatcherBanner: {
+				DisplayName: Dragon Snatcher Banner
+				Tooltip: "{$CommonItemTooltip.BannerBonus}Dragon Snatcher"
+			}
+
+			FleshAxeBanner: {
+				DisplayName: Flesh Axe Banner
+				Tooltip: "{$CommonItemTooltip.BannerBonus}Flesh Axe"
+			}
+
+			FleshMummyBanner: {
+				DisplayName: Flesh Mummy Banner
+				Tooltip: "{$CommonItemTooltip.BannerBonus}Flesh Mummy"
+			}
+
+			FleshSlimeBanner: {
+				DisplayName: Flesh Slime Banner
+				Tooltip: "{$CommonItemTooltip.BannerBonus}Flesh Slime"
+			}
+
+			MythicalWyvernBanner: {
+				DisplayName: Mythical Wyvern Banner
+				Tooltip: "{$CommonItemTooltip.BannerBonus}Mythical Wyvern"
+			}
+
+			OrcaBanner: {
+				DisplayName: Orca Banner
+				Tooltip: "{$CommonItemTooltip.BannerBonus}Orca"
+			}
+
+			ShadowHammerBanner: {
+				DisplayName: Shadow Hammer Banner
+				Tooltip: "{$CommonItemTooltip.BannerBonus}Shadow Hammer"
+			}
+
+			ShadowMummyBanner: {
+				DisplayName: Shadow Mummy Banner
+				Tooltip: "{$CommonItemTooltip.BannerBonus}Shadow Mummy"
+			}
+
+			ShadowSlimeBanner: {
+				DisplayName: Shadow Slime Banner
+				Tooltip: "{$CommonItemTooltip.BannerBonus}Shadow Slime"
+			}
+
+			SpectralElementalBanner: {
+				DisplayName: Spectral Elemental Banner
+				Tooltip: "{$CommonItemTooltip.BannerBonus}Spectral Elemental"
+			}
+
+			SpectralGastropodBanner: {
+				DisplayName: Spectropod Banner
+				Tooltip: "{$CommonItemTooltip.BannerBonus}Spectropod"
+			}
+
+			SpectralMummyBanner: {
+				DisplayName: Spectral Mummy Banner
+				Tooltip: "{$CommonItemTooltip.BannerBonus}Spectral Mummy"
+			}
+
+			VampireMinerBanner: {
+				DisplayName: Vampire Miner Banner
+				Tooltip: "{$CommonItemTooltip.BannerBonus}Vampire Miner"
+			}
+
+			LepusBag: {
+				DisplayName: Treasure Bag (Lepus)
+				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
+			}
+
+			LepusMask: {
+				DisplayName: Lepus Mask
+				Tooltip: ""
+			}
+
+			LepusMusicBox: {
+				DisplayName: Music Box (Lepus)
+				Tooltip: ""
+			}
+
+			LepusRelic: {
+				DisplayName: Lepus Relic
+				Tooltip: ""
+			}
+
+			LepusTrophy: {
+				DisplayName: Lepus Trophy
+				Tooltip: ""
+			}
+
+			OstarasGift: {
+				DisplayName: Ostara's Gift
+				Tooltip:
+					'''
+					Enemies have a chance of leaving chocolate eggs on death
+					Eggs drop life hearts and mana stars when broken
+					'''
+			}
+
+			RabbitFoot: {
+				DisplayName: Rabbit Foot
+				Tooltip:
+					'''
+					Summons a baby Lepus
+					'Good luck is illusory, but the bunny isn't'
+					'''
+			}
+
+			CursedFang: {
+				DisplayName: Cursed Fang
+				Tooltip:
+					'''
+					Summons a lil' Marco
+					'You're my friend now'
+					'''
+			}
+
+			EerieOcramMusicBox: {
+				DisplayName: Music Box (Eerie Ocram)
+				Tooltip: ""
+			}
+
+			OcramBag: {
+				DisplayName: Treasure Bag (Ocram)
+				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
+			}
+
+			OcramMask: {
+				DisplayName: Ocram Mask
+				Tooltip: ""
+			}
+
+			OcramMusicBox: {
+				DisplayName: Music Box (Ocram)
+				Tooltip: ""
+			}
+
+			OcramRelic: {
+				DisplayName: Ocram Relic
+				Tooltip: ""
+			}
+
+			OcramTrophy: {
+				DisplayName: Ocram Trophy
+				Tooltip: ""
+			}
+
+			ShadowboundExoskeleton: {
+				DisplayName: Shadowbound Exoskeleton
+				Tooltip:
+					'''
+					Allows the player to rocket jump
+					Double tap UP
+					'''
+			}
+
+			FruitfulPlate: {
+				DisplayName: Fruitful Plate
+				Tooltip: Summons a fruitful plate mount
+			}
+
+			HornoPlenty: {
+				DisplayName: Horn o' Plenty
+				Tooltip: It's filled with the inexhaustible gifts of celebratory fruits
+			}
+
+			TurkorBag: {
+				DisplayName: Treasure Bag (Turkor the Ungrateful)
+				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
+			}
+
+			TurkorMask: {
+				DisplayName: Turkor the Ungrateful Mask
+				Tooltip: ""
+			}
+
+			TurkorMusicBox: {
+				DisplayName: Music Box (Turkor the Ungrateful)
+				Tooltip: ""
+			}
+
+			TurkorRelic: {
+				DisplayName: Turkor the Ungrateful Relic
+				Tooltip: ""
+			}
+
+			TurkorTrophy: {
+				DisplayName: Turkor the Ungrateful Trophy
+				Tooltip: ""
+			}
+
+			HolyHandgrenade: {
+				DisplayName: Holy Hand Grenade
+				Tooltip:
+					'''
+					A huge explosion that will destroy most tiles
+					'The Lord's chosen weapon'
+					'''
+			}
+
+			HolyHandgrenade2: {
+				DisplayName: Holy Hand Grenade II
+				Tooltip:
+					'''
+					A huge explosion that will destroy most tiles
+					'Goodness gracious'
+					'''
+			}
+
+			RedEnvelope: {
+				DisplayName: Red Envelope
+				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
+			}
+
+			SoulOfBlightInABottle: {
+				DisplayName: Soul of Blight in a Bottle
+				Tooltip: ""
+			}
+
+			Squib: {
+				DisplayName: Fiery Cracker
+				Tooltip: ""
+			}
+
+			Wiesnbrau: {
+				DisplayName: Wiesnbräu
+				Tooltip: Numbs the user from damage taken but also reduces damage inflicted
+			}
+
+			Wishbone: {
+				DisplayName: Wishbone
+				Tooltip: Enables all minor seasonal events for one day
+			}
+
+			PurpleThread: {
+				DisplayName: Purple Thread
+				Tooltip: ""
+			}
+
+			RainbowPiece: {
+				DisplayName: Rainbow Piece
+				Tooltip: Used for crafting a Pot O' Gold
+			}
+
+			SoulofBlight: {
+				DisplayName: Soul of Blight
+				Tooltip: "'The essence of infected creatures'"
+			}
+
+			WhiteThread: {
+				DisplayName: White Thread
+				Tooltip: ""
+			}
+
+			GoldenCarrot: {
+				DisplayName: Golden Carrot
+				Tooltip:
+					'''
+					Medium improvements to all stats
+					Increases all buffs time by 15 seconds
+					'GOLDEN CARROT?! WHAT?!'
+					'''
+			}
+
+			Beeswax: {
+				DisplayName: Beeswax
+				Tooltip: Summons a pet Tiphia
+			}
+
+			Brain: {
+				DisplayName: Brain
+				Tooltip: Summons a pet Zombie
+			}
+
+			BrokenHeart: {
+				DisplayName: Broken Heart
+				Tooltip: Summons a pet cupid to provide light
+			}
+
+			Cabbage: {
+				DisplayName: Cabbage
+				Tooltip: Summons a pet Guinea Pig
+			}
+
+			GoldenLantern: {
+				DisplayName: Golden Lantern
+				Tooltip: Summons a mythical wyvernling to provide light
+			}
+
+			GoldenSeaweed: {
+				DisplayName: Golden Seaweed
+				Tooltip: Summons a pet Golden Turtle
+			}
+
+			HolidayBauble: {
+				DisplayName: Holiday Bauble
+				Tooltip: Summons a pet Elfa
+			}
+
+			MysteriousPackage: {
+				DisplayName: Mysterious Package
+				Tooltip: Summons a pet drone
+			}
+
+			PetriDish: {
+				DisplayName: Petri Dish
+				Tooltip: Summons a pet Slime
+			}
+
+			PotOfGold: {
+				DisplayName: Pot O' Gold
+				Tooltip: Summons a pet Leprechaun O'Fyffe
+			}
+
+			ShinyBlackSlab: {
+				DisplayName: Shiny Black Slab
+				Tooltip: Summons a pet android
+			}
+
+			TurkeyFeather: {
+				DisplayName: Turkey Feather
+				Tooltip: Summons a pet turkey
+			}
+
+			VialOfBlood: {
+				DisplayName: Vial Of Blood
+				Tooltip: Summons a pet Bat
+			}
+
+			WolfFang: {
+				DisplayName: Wolf Fang
+				Tooltip: Summons a pet Werewolf
+			}
+
+			CursedStuffing: {
+				DisplayName: Cursed Stuffing
+				Tooltip: Summons Turkor the Ungrateful
+			}
+
+			SuspiciousLookingEgg: {
+				DisplayName: Suspicious Looking Egg
+				Tooltip: Summons Lepus
+			}
+
+			SuspiciousLookingSkull: {
+				DisplayName: Suspicious Looking Skull
+				Tooltip: Summons Ocram
+			}
+
+			AlpineHat: {
+				DisplayName: Alpine Hat
+				Tooltip: ""
+			}
+
+			AncientHerosHat: {
+				DisplayName: Ancient Hero's Hat
+				Tooltip: ""
+			}
+
+			AncientHerosPants: {
+				DisplayName: Ancient Hero's Pants
+				Tooltip: ""
+			}
+
+			AncientHerosShirt: {
+				DisplayName: Ancient Hero's Shirt
+				Tooltip: ""
+			}
+
+			AncientPlumbersHat: {
+				DisplayName: Ancient Plumber's Hat
+				Tooltip: ""
+			}
+
+			AncientPlumbersPants: {
+				DisplayName: Ancient Plumber's Pants
+				Tooltip: ""
+			}
+
+			AncientPlumbersShirt: {
+				DisplayName: Ancient Plumber's Shirt
+				Tooltip: ""
+			}
+
+			ArchDemonMask: {
+				DisplayName: Arch Demon Mask
+				Tooltip: ""
+			}
+
+			ArchWyvernMask: {
+				DisplayName: Arch Wyvern Mask
+				Tooltip: ""
+			}
+
+			DirndlBlouse: {
+				DisplayName: Dirndl Blouse
+				Tooltip: ""
+			}
+
+			DirndlSkirt: {
+				DisplayName: Dirndl Skirt
+				Tooltip: ""
+			}
+
+			FabulousDress: {
+				DisplayName: Fabulous Dress
+				Tooltip: ""
+			}
+
+			FabulousRibbon: {
+				DisplayName: Fabulous Ribbon
+				Tooltip: "'Allows flight and slow fall'"
+			}
+
+			FabulousSlippers: {
+				DisplayName: Fabulous Slippers
+				Tooltip: ""
+			}
+
+			FestiveTopHat: {
+				DisplayName: Festive Top Hat
+				Tooltip: "'Because nothing tops the festive season!'"
+			}
+
+			GeorgesHat: {
+				DisplayName: George's Tuxedo Hat
+				Tooltip: "'Oh myyy!'"
+			}
+
+			GeorgesTuxedoPants: {
+				DisplayName: George's Tuxedo Pants
+				Tooltip: "'Oh myyy!'"
+			}
+
+			GeorgesTuxedoShirt: {
+				DisplayName: George's Tuxedo Shirt
+				Tooltip: "'Oh myyy!'"
+			}
+
+			HornedGodBoots: {
+				DisplayName: Horned God Boots
+				Tooltip: "'Remnant of an age of wonders'"
+			}
+
+			HornedGodMask: {
+				DisplayName: Horned God Mask
+				Tooltip: "'Remnant of an age of wonders'"
+			}
+
+			HornedGodRobe: {
+				DisplayName: Horned God Robe
+				Tooltip: "'Remnant of an age of wonders'"
+			}
+
+			Lederhosen: {
+				DisplayName: Lederhosen
+				Tooltip: ""
+			}
+
+			Lederweste: {
+				DisplayName: Lederweste
+				Tooltip: ""
+			}
+
+			MonokumaBody: {
+				DisplayName: Monokuma Body
+				Tooltip: ""
+			}
+
+			MonokumaHead: {
+				DisplayName: Monokuma Head
+				Tooltip: ""
+			}
+
+			MonokumaLegs: {
+				DisplayName: Monokuma Legs
+				Tooltip: ""
+			}
+
+			MonomiBody: {
+				DisplayName: Monomi Body
+				Tooltip: ""
+			}
+
+			MonomiHead: {
+				DisplayName: Monomi Head
+				Tooltip: ""
+			}
+
+			MonomiLegs: {
+				DisplayName: Monomi Legs
+				Tooltip: ""
+			}
+
+			MythicalLionMask: {
+				DisplayName: Mythical Lion Mask
+				Tooltip: ""
+			}
+
+			MythicalRobe: {
+				DisplayName: Mythical Robe
+				Tooltip: ""
+			}
+
+			ShirenHat: {
+				DisplayName: Shiren Hat
+				Tooltip: ""
+			}
+
+			ShirenPants: {
+				DisplayName: Shiren Pants
+				Tooltip: ""
+			}
+
+			ShirenShirt: {
+				DisplayName: Shiren Shirt
+				Tooltip: ""
+			}
+
+			TorosBody: {
+				DisplayName: Toro's Body
+				Tooltip: ""
+			}
+
+			TorosHead: {
+				DisplayName: Toro's Head
+				Tooltip: ""
+			}
+
+			TorosLegs: {
+				DisplayName: Toro's Legs
+				Tooltip: ""
+			}
+
+			HeartArrow: {
+				DisplayName: Heart Arrow
+				Tooltip:
+					'''
+					Has a chance to stun enemies on hit
+					'Legendary arrows from cupid himself'
+					'''
+			}
+
+			SpectralArrow: {
+				DisplayName: Spectral Arrow
+				Tooltip: Pierces tiles and enemies, but dissipates quickly in the air
+			}
+
+			VulcanBolt: {
+				DisplayName: Vulcan Bolt
+				Tooltip: ""
+			}
+
+			FeatherStorm: {
+				DisplayName: Feather Storm
+				Tooltip: Casts feathers from the sky
+			}
+
+			OcramsEye: {
+				DisplayName: Eye of Ocram
+				Tooltip: ""
+			}
+
+			RomanCandle: {
+				DisplayName: Roman Candle
+				Tooltip: "'Fire works!'"
+			}
+
+			AlbinoMandible: {
+				DisplayName: Albino Mandible
+				Tooltip: "'Surprisingly aerodynamic...'"
+			}
+
+			GreatDrumstick: {
+				DisplayName: Great Drumstick
+				Tooltip:
+					'''
+					Covers enemies in oil
+					Set oiled enemies on fire for extra damage
+					'I like large fries, but not fried turkey'
+					'''
+			}
+
+			Tizona: {
+				DisplayName: Tizona
+				Tooltip: Shoots a cursed skull
+			}
+
+			Tonbogiri: {
+				DisplayName: Tonbogiri
+				Tooltip: "'A legendary Japanese spear coated in venom'"
+			}
+
+			DragonBreath: {
+				DisplayName: Dragon's Breath
+				Tooltip:
+					'''
+					Uses gel for ammo
+					70% chance to save ammo
+					'''
+			}
+
+			EggCannon: {
+				DisplayName: Egg Cannon
+				Tooltip: "'To kill a goblin, you have to break a few eggs'"
+			}
+
+			Sharanga: {
+				DisplayName: Sharanga
+				Tooltip: Shoots Spectral Arrows
+			}
+
+			SpicySauce: {
+				DisplayName: Spicy Sauce
+				Tooltip:
+					'''
+					Covers enemies in oil
+					Set oiled enemies on fire for extra damage
+					'''
+			}
+
+			VolcanicRepeater: {
+				DisplayName: Vulcan Repeater
+				Tooltip: Turns arrows into Vulcan Bolts
+			}
+
+			EternityStaff: {
+				DisplayName: Eternity Staff
+				Tooltip: Summons an eye of eternity to fight for you
+			}
+
+			TurkeyStuff: {
+				DisplayName: Turkey Staff
+				Tooltip: Summons a weird turkey to fight for you
+			}
+
+			GuaPiMao: {
+				DisplayName: Gua Pi Mao
+				Tooltip: ""
+			}
+
+			MythicalDogMask: {
+				DisplayName: Mythical Dog Mask
+				Tooltip: ""
+			}
+
+			MythicalDogPants: {
+				DisplayName: Mythical Dog Pants
+				Tooltip: ""
+			}
+
+			MythicalDogShirt: {
+				DisplayName: Mythical Dog Shirt
+				Tooltip: ""
+			}
+
+			TangSuitPants: {
+				DisplayName: Tang Suit Pants
+				Tooltip: ""
+			}
+
+			TangSuitShirt: {
+				DisplayName: Tang Suit Shirt
+				Tooltip: ""
+			}
+
+			TangYuanHat: {
+				DisplayName: Tang Yuan Hat
+				Tooltip: ""
+			}
+
+			TangYuanPants: {
+				DisplayName: Tang Yuan Pants
+				Tooltip: ""
+			}
+
+			TangYuanShirt: {
+				DisplayName: Tang Yuan Shirt
+				Tooltip: ""
+			}
+
+			McMoneypantsInvitation: {
+				DisplayName: Gilded Invitation
+				Tooltip: Looks like it was intended for someone wealthy
+			}
+
+			SuspiciousLookingApple: {
+				DisplayName: Suspicious Looking Apple
+				Tooltip: ""
+			}
+
+			OldWalkingStick: {
+				DisplayName: Old Walking Stick
+				Tooltip: ""
+			}
+
+			WormTombstoneItem: {
+				DisplayName: Worm Tombstone
+				Tooltip: ""
+			}
+		}
+
+		NPCs: {
+			AlbinoAntlion.DisplayName: Albino Antlion
+			AlbinoCharger.DisplayName: Albino Charger
+			ArchDemon.DisplayName: Arch Demon
+			ArchWyvernBody1.DisplayName: Arch Wyvern
+			ArchWyvernBody2.DisplayName: Arch Wyvern
+			ArchWyvernBody3.DisplayName: Arch Wyvern
+			ArchWyvernHead.DisplayName: Arch Wyvern
+			ArchWyvernLegs.DisplayName: Arch Wyvern
+			ArchWyvernTail.DisplayName: Arch Wyvern
+			BigEgg.DisplayName: Lepus Egg
+			ChocolateEgg.DisplayName: Chocolate Egg
+			DisasterBunny.DisplayName: Diseaster Bunny
+			Lepus.DisplayName: Lepus
+			SmallEgg.DisplayName: Lepus Egg
+			Ocram.DisplayName: Ocram
+			ServantofOcram.DisplayName: Servant of Ocram
+			TurkorNeck.DisplayName: Turkor Neck
+			TurkortheUngrateful.DisplayName: Turkor the Ungrateful
+			TurkortheUngratefulHead.DisplayName: Turkor the Ungrateful Head
+			DragonHornet.DisplayName: Dragon Hornet
+			DragonSkull.DisplayName: Dragon Skull
+			DragonSnatcher.DisplayName: Dragon Snatcher
+			FleshAxe.DisplayName: Flesh Axe
+			FleshMummy.DisplayName: Flesh Mummy
+			FleshSlime.DisplayName: Flesh Slime
+			GiantAlbinoCharger.DisplayName: Giant Albino Charger
+			MythicalWyvernBody.DisplayName: Mythical Wyvern
+			MythicalWyvernBody2.DisplayName: Mythical Wyvern
+			MythicalWyvernBody3.DisplayName: Mythical Wyvern
+			MythicalWyvernHead.DisplayName: Mythical Wyvern
+			MythicalWyvernLegs.DisplayName: Mythical Wyvern
+			MythicalWyvernTail.DisplayName: Mythical Wyvern
+			Orca.DisplayName: Orca
+			ShadowHammer.DisplayName: Shadow Hammer
+			ShadowMummy.DisplayName: Shadow Mummy
+			ShadowSlime.DisplayName: Shadow Slime
+			SpectralElemental.DisplayName: Spectral Elemental
+			SpectralGastropod.DisplayName: Spectropod
+			SpectralMummy.DisplayName: Spectral Mummy
+			VampireMiner.DisplayName: Vampire Miner
+
+			McMoneypants: {
+				DisplayName: Mc MoneyPants
+
+				TownNPCMood: {
+					Content: I am content.
+					NoHome: I hate not having a home.
+					FarFromHome: I am too far from home.
+					LoveSpace: I love having so much space.
+					DislikeCrowded: I dislike how crowded I am.
+					HateCrowded: I hate how crowded I am.
+					LikeNPC_Princess: I like {NPCName}.
+					Princess_LovesNPC: I like {NPCName}.
+				}
+			}
+		}
+
+		Projectiles: {
+			Stomp.DisplayName: Lepus Stomp
+			ArchFlames.DisplayName: Arch Flames
+			ArchScythe.DisplayName: Arch Scythe
+			FireTrail.DisplayName: Fire Trail
+			OcramLaser1.DisplayName: Ocram Laser
+			OcramLaser2.DisplayName: Ocram Laser
+			OcramScythe.DisplayName: Supreme Demon Scythe
+			OcramSkull.DisplayName: Dread Skull
+			SpectralBomb.DisplayName: Spectral Bomb
+			SpectrallBall.DisplayName: Spectrall Ball
+			TurkorFeather.DisplayName: Turkor's Feather
+			TurkorKnife.DisplayName: Turkor's Knife
+			AlbinoMandible.DisplayName: Albino Mandible
+			DreadSkull.DisplayName: Dread Skull
+			EasterBunny.DisplayName: Easter Bunny
+			EasterEgg.DisplayName: Easter Egg
+			EternalLaser.DisplayName: Eternal Laser
+			EternalScythe.DisplayName: Eternal Scythe
+			EyeOfEternity.DisplayName: Eye of Eternity
+			HeartArrow.DisplayName: Heart Arrow
+			HolyHandgrenade.DisplayName: Holy Handgrenade
+			HolyHandgrenade2.DisplayName: Holy Handgrenade2
+			ManaDrain.DisplayName: Mana Drain
+			OcramEyeGlow.DisplayName: Ocram Eye Glow
+			OcramEyeLaser.DisplayName: Ocram Eye Laser
+			AndroidGuy.DisplayName: Android Guy
+			Bat.DisplayName: Bat
+			Cupid.DisplayName: Cupid
+			Drone.DisplayName: Drone
+			Elfa.DisplayName: Elfa
+			GoldenTurtle.DisplayName: Golden Turtle
+			GuineaPig.DisplayName: Guinea Pig
+			Leprechaun.DisplayName: Leprechaun
+			LilMarco.DisplayName: Lil Marco
+			MythicalWyvernling.DisplayName: Mythical Wyvernling
+			PetTurkey.DisplayName: Turkey
+			Slime.DisplayName: Slime
+			SmallLepus.DisplayName: Baby Lepus
+			Tiphia.DisplayName: Tiphia
+			Werewolf.DisplayName: Werewolf
+			Zombie.DisplayName: Zombie
+			RomanFlame.DisplayName: Roman Flame
+			RomanFlameFinal.DisplayName: Roman Flame Final
+			RomanFlameMid.DisplayName: Roman Flame Mid
+			ShadowflameBreath.DisplayName: Shadowflame Breath
+			ShadowflameBurst.DisplayName: Shadowflame Burst
+			SharpFeather.DisplayName: Sharp Feather
+			SpectralArrow.DisplayName: Spectral Arrow
+			SpectralSpirit.DisplayName: Spectral Spirit
+			SpicyExplosion.DisplayName: Spicy Explosion
+			SpicySauce.DisplayName: Spicy Sauce
+			Squib.DisplayName: Squib
+			TitanBlast.DisplayName: Titan Blast
+			TonbogiriSpear.DisplayName: Tonbogiri
+			TurkeyHead.DisplayName: Weird Turkey
+			VulcanBlast.DisplayName: Vulcan Blast
+			VulcanBolt.DisplayName: Vulcan Bolt
+			"Lepus Stomp.DisplayName": Lepus  Stomp
+			.DisplayName: ""
+			Tizona.DisplayName: Tizona
+			TizonaShoot.DisplayName: Tizona
+			Worm.DisplayName: Worm
+			OldLady.DisplayName: Old Lady
+			WormTombstone.DisplayName: Worm Tombstone
+		}
+
+		Tiles: {
+			EerieOcramMusicBox.MapEntry: Music Box
+			LepusMusicBox.MapEntry: Music Box
+			OcramMusicBox.MapEntry: Music Box
+			SanctumLantern.MapEntry: Carriage Lantern
+			SoulOfBlightInABottle.MapEntry: Soul of Blight in a Bottle
+			TurkorMusicBox.MapEntry: Music Box
+			WormTombstoneTile.MapEntry: Worm Tombstone
+		}
+
+		Conditions: {
+			SellingDuringThanksgiving: Mods.Consolaria.Conditions.SellingDuringThanksgiving
+			SellingDuringOktoberfest: Mods.Consolaria.Conditions.SellingDuringOktoberfest
+			SellingDuringValentineDay: Mods.Consolaria.Conditions.SellingDuringValentineDay
+			SellingIfMale: Mods.Consolaria.Conditions.SellingIfMale
+			SellingWhenWoman: Mods.Consolaria.Conditions.SellingWhenWoman
+		}
+
+		Configs: {
+			ConsolariaConfig: {
+				DisplayName: Configuration
+
+				Headers: {
+					SeasonalEvents: Seasonal Events
+					Miscellaneous: Miscellaneous
+				}
+
+				easterEnabled: {
+					Label: Restrict seasonal content by system date (Easter)
+					Tooltip:
+						'''
+						If enabled the relevant items and enemies will only appear during Easter
+						April 1 - April 30
+						'''
+				}
+
+				thanksgivingEnabled: {
+					Label: Restrict seasonal content by system date (Thanksgiving)
+					Tooltip:
+						'''
+						If enabled the relevant items and enemies will only appear during Thanksgiving
+						November 1 - November 30
+						'''
+				}
+
+				smallEventsEnabled: {
+					Label: Restrict seasonal content by system date (Other events)
+					Tooltip: If enabled the relevant items and enemies will only appear during the corresponding holidays or when Wishbone is used
+				}
+
+				vanillaBossMusic: {
+					Label: Enable vanilla music for Consolaria bosses
+					Tooltip: If enabled the custom soundtrack will be replaced by themes originally used in console versions
+				}
+			}
+		}
+	}
+}

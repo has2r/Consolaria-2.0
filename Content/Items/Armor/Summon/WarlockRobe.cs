@@ -1,4 +1,3 @@
-using Terraria.GameContent.Creative;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -15,10 +14,9 @@ namespace Consolaria.Content.Items.Armor.Summon {
         }
 
         public override void SetStaticDefaults () {
-            DisplayName.SetDefault("Warlock Robe");
-            Tooltip.SetDefault("Increases your max number of minions by 1" + "\n20% increased minion damage");
 
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
+            Item.ResearchUnlockCount = 1;
+            ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<AncientWarlockRobe>();
         }
 
         public override void SetDefaults () {
@@ -49,6 +47,7 @@ namespace Consolaria.Content.Items.Armor.Summon {
                 .AddIngredient(ItemID.SoulofNight, 15)
                 .AddIngredient<SoulofBlight>(15)
                 .AddTile(TileID.MythrilAnvil)
+                .DisableDecraft()
                 .Register();
         }
     }

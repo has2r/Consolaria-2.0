@@ -1,12 +1,10 @@
-﻿using Microsoft.Xna.Framework;
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using System;
 
-namespace Consolaria.Content.Dusts
-{
-	public class Lepus : ModDust
+namespace Consolaria.Content.Dusts {
+    public class Lepus : ModDust
 	{
 		public override void OnSpawn(Dust dust)
 		{

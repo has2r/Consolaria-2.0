@@ -10,7 +10,6 @@ namespace Consolaria.Content.NPCs
 	public class ArchWyvernLegs : ModNPC
 	{
 		public override void SetStaticDefaults() {
-			DisplayName.SetDefault("Arch Wyvern");
 
 			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0) {
 				Hide = true
@@ -72,7 +71,7 @@ namespace Consolaria.Content.NPCs
 			return false;
 		}
 
-		public override void HitEffect(int hitDirection, double damage) {
+		public override void HitEffect(NPC.HitInfo hit) {
 			if (NPC.life <= 0) {
 				for (int i = 0; i < 4; i++)
 					Gore.NewGore(NPC.GetSource_Death(), NPC.position, Vector2.Zero, Main.rand.Next(61, 64), 1f);

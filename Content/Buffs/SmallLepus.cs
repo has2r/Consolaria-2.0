@@ -5,8 +5,6 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Buffs {
 	public class SmallLepus : ModBuff {
 		public override void SetStaticDefaults () {
-			DisplayName.SetDefault("Baby Lepus");
-			Description.SetDefault("He can't lay any eggs");
 
 			Main.buffNoTimeDisplay [Type] = true;
 			Main.vanityPet [Type] = true;

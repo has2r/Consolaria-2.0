@@ -8,16 +8,16 @@ namespace Consolaria.Common {
     public class ConsolePlayer : ModPlayer {
         private bool killedByOcram;
 
-        public override void OnRespawn (Player player)
+        public override void OnRespawn ()
             => killedByOcram = false;
 
-        public override void OnHitByNPC (NPC npc, int damage, bool crit) {
-            if (npc.type == ModContent.NPCType<Ocram>() && JustDied(damage))
+        public override void OnHitByNPC (NPC npc, Player.HurtInfo hurtInfo) {
+            if (npc.type == ModContent.NPCType<Ocram>() && JustDied(hurtInfo.Damage))
                 killedByOcram = true;
         }
 
-        public override void OnHitByProjectile (Projectile proj, int damage, bool crit) {
-            if ((proj.type == ModContent.ProjectileType<OcramLaser1>() || proj.type == ModContent.ProjectileType<OcramLaser2>() || proj.type == ModContent.ProjectileType<OcramScythe>() || proj.type == ModContent.ProjectileType<OcramSkull>()) && JustDied(damage))
+        public override void OnHitByProjectile (Projectile proj, Player.HurtInfo hurtInfo) {
+            if ((proj.type == ModContent.ProjectileType<OcramLaser1>() || proj.type == ModContent.ProjectileType<OcramLaser2>() || proj.type == ModContent.ProjectileType<OcramScythe>() || proj.type == ModContent.ProjectileType<OcramSkull>()) && JustDied(hurtInfo.Damage))
                 killedByOcram = true;
         }
 

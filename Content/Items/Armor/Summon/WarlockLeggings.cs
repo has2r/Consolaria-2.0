@@ -1,7 +1,6 @@
 using Consolaria.Content.Items.Materials;
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -9,11 +8,10 @@ namespace Consolaria.Content.Items.Armor.Summon {
     [AutoloadEquip(EquipType.Legs)]
     public class WarlockLeggings : ModItem {
         public override void SetStaticDefaults () {
-            DisplayName.SetDefault("Warlock Leggings");
-            Tooltip.SetDefault("Increases your max number of minions by 1" + "\n20% increased minion damage" + "\n15% increased movement speed");
 
             ArmorIDs.Legs.Sets.HidesBottomSkin [Item.legSlot] = true;
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
+            Item.ResearchUnlockCount = 1;
+            ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<AncientWarlockLeggings>();
         }
 
         public override void SetDefaults () {
@@ -40,6 +38,7 @@ namespace Consolaria.Content.Items.Armor.Summon {
                 .AddIngredient(ItemID.SoulofNight, 10)
                 .AddIngredient<SoulofBlight>(10)
                 .AddTile(TileID.MythrilAnvil)
+                .DisableDecraft()
                 .Register();
         }
     }

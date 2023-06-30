@@ -6,8 +6,7 @@ using Terraria.ID;
 namespace Consolaria.Content.Items.Banners {
 	public class SpectralMummyBanner : ModItem {
 		public override void SetStaticDefaults () {
-			SacrificeTotal = 1;
-			Tooltip.SetDefault("{$CommonItemTooltip.BannerBonus}Spectral Mummy");
+			Item.ResearchUnlockCount = 1;
 		}
 
 		public override void SetDefaults () {

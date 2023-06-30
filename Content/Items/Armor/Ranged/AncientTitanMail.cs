@@ -1,7 +1,6 @@
 using Consolaria.Content.Items.Materials;
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -9,10 +8,9 @@ namespace Consolaria.Content.Items.Armor.Ranged {
     [AutoloadEquip(EquipType.Body)]
     public class AncientTitanMail : ModItem {
         public override void SetStaticDefaults () {
-            DisplayName.SetDefault("Ancient Titan Mail");
-            Tooltip.SetDefault("15% increased ranged damage" + "\n10 % increased ranged critical strike chance" + "\n20% chance to not consume ammo");
 
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
+            Item.ResearchUnlockCount = 1;
+            ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<TitanMail>();
         }
 
         public override void SetDefaults () {
@@ -28,16 +26,6 @@ namespace Consolaria.Content.Items.Armor.Ranged {
         public override void UpdateEquip (Player player) {
             player.GetCritChance(DamageClass.Ranged) += 10;
             player.GetDamage(DamageClass.Ranged) += 0.15f;
-        }
-
-        public override void AddRecipes () {
-            CreateRecipe()
-                .AddIngredient(ItemID.AncientHallowedPlateMail)
-               .AddRecipeGroup(RecipeGroups.Titanium, 12)
-                .AddIngredient(ItemID.SoulofSight, 15)
-                .AddIngredient<SoulofBlight>(15)
-                .AddTile(TileID.DemonAltar)
-                .Register();
         }
     }
 }

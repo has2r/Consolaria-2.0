@@ -10,7 +10,6 @@ namespace Consolaria.Content.Items.Vanity
 	public class ArchDemonMask : ModItem
 	{
 		public override void SetStaticDefaults() {
-			DisplayName.SetDefault("Arch Demon Mask");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 

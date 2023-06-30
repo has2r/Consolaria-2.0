@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 using Terraria.Audio;
-using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -11,10 +10,9 @@ namespace Consolaria.Content.Items.Armor.Summon {
     [AutoloadEquip(EquipType.Head)]
     public class WarlockHood : ModItem {
         public override void SetStaticDefaults () {
-            DisplayName.SetDefault("Warlock Hood");
-            Tooltip.SetDefault("Increases your max number of minions by 1" + "\n20% increased minion damage");
 
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
+            Item.ResearchUnlockCount = 1;
+            ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<AncientWarlockHood>();
         }
 
         public override void SetDefaults () {
@@ -51,6 +49,7 @@ namespace Consolaria.Content.Items.Armor.Summon {
                 .AddIngredient(ItemID.SoulofNight, 10)
                 .AddIngredient<SoulofBlight>(10)
                 .AddTile(TileID.MythrilAnvil)
+                .DisableDecraft()
                 .Register();
         }
     }
@@ -72,7 +71,7 @@ namespace Consolaria.Content.Items.Armor.Summon {
                 healingTimer--;
         }
 
-        public override void OnHitNPCWithProj (Projectile proj, NPC target, int damage, float knockback, bool crit) {
+        public override void OnHitNPCWithProj (Projectile proj, NPC target, NPC.HitInfo hit, int damageDone)/* tModPorter If you don't need the Projectile, consider using OnHitNPC instead */ {
             if (target.type == NPCID.TargetDummy || Player.moonLeech || !necroHealing)
                 return;
 

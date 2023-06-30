@@ -10,7 +10,6 @@ namespace Consolaria.Content.Items.BossDrops.Ocram
 	public class OcramMask : ModItem
 	{
 		public override void SetStaticDefaults() {
-			DisplayName.SetDefault("Ocram Mask");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 

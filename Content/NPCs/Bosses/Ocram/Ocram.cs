@@ -56,7 +56,6 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
         private readonly float rad = (float) Math.PI * 2f;
 
         public override void SetStaticDefaults () {
-            DisplayName.SetDefault("Ocram");
             Main.npcFrameCount [NPC.type] = 6;
             NPCID.Sets.MPAllowedEnemies [Type] = true;
 
@@ -88,10 +87,10 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
             NPC.aiStyle = -1;
             AnimationType = 126;
 
-            NPC.lifeMax = 44000;
+            NPC.lifeMax = 52000;
             NPC.damage = 106;
 
-            NPC.defense = 32;
+            NPC.defense = 35;
             NPC.knockBackResist = 0f;
 
             NPC.value = Item.buyPrice(gold: 15);
@@ -114,7 +113,7 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
             
         }
 
-        public override void ScaleExpertStats (int numPlayers, float bossLifeScale) {
+        public override void ApplyDifficultyAndPlayerScaling (int numPlayers, float balance, float bossAdjustment) {
             NPC.lifeMax = (int)(NPC.lifeMax * 0.5f * 1.3f);
             NPC.damage = (int) (NPC.damage * 0.7f);
             if (numPlayers <= 1) return;
@@ -1027,14 +1026,14 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
             }
         }
 
-        public override void HitEffect (int hitDirection, double damage) {
+        public override void HitEffect (NPC.HitInfo hit) {
             if (Main.netMode != NetmodeID.Server) {
-                for (int k = 0; k < damage / NPC.lifeMax * 100; k++)
-                    Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.SeaSnail, hitDirection, -1f, 0, default, 1f);
+                for (int k = 0; k < hit.Damage / NPC.lifeMax * 100; k++)
+                    Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.SeaSnail, hit.HitDirection, -1f, 0, default, 1f);
 
                 if (NPC.life <= 0) {
                     for (int k = 0; k < 30; k++)
-                        Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.SeaSnail, 2.5f * hitDirection, -2.5f, 0, default, 0.7f);
+                        Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.SeaSnail, 2.5f * hit.HitDirection, -2.5f, 0, default, 0.7f);
                     for (int i = 0; i < 5; i++) {
                         Gore.NewGore(NPC.GetSource_Death(), NPC.Center, NPC.velocity, ModContent.Find<ModGore>("Consolaria/OcramGore1").Type, Main.rand.NextFloat(1f, 1.4f));
                         Gore.NewGore(NPC.GetSource_Death(), NPC.Center, NPC.velocity, ModContent.Find<ModGore>("Consolaria/OcramGore2").Type, Main.rand.NextFloat(1.2f, 1.6f));

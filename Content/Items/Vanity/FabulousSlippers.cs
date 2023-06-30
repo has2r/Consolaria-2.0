@@ -11,7 +11,6 @@ namespace Consolaria.Content.Items.Vanity
 	public class FabulousSlippers : ModItem
 	{
 		public override void SetStaticDefaults() {
-			DisplayName.SetDefault("Fabulous Slippers");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 

@@ -1,7 +1,6 @@
 using Consolaria.Content.Items.Materials;
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -9,10 +8,9 @@ namespace Consolaria.Content.Items.Armor.Summon {
     [AutoloadEquip(EquipType.Head)]
     public class AncientWarlockHood : ModItem {
         public override void SetStaticDefaults () {
-            DisplayName.SetDefault("Ancient Warlock Hood");
-            Tooltip.SetDefault("Increases your max number of minions by 1" + "\n20% increased minion damage");
 
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId [Type] = 1;
+            Item.ResearchUnlockCount = 1;
+            ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<WarlockHood>();
         }
 
         public override void SetDefaults () {
@@ -40,16 +38,6 @@ namespace Consolaria.Content.Items.Armor.Summon {
         public override void UpdateArmorSet (Player player) {
             player.setBonus = "Enemies killed by minions heal the player";
             player.GetModPlayer<WarlockPlayer>().necroHealing = true;
-        }
-
-        public override void AddRecipes () {
-            CreateRecipe()
-                .AddIngredient(ItemID.AncientHallowedHood)
-                .AddRecipeGroup(RecipeGroups.Titanium, 10)
-                .AddIngredient(ItemID.SoulofNight, 10)
-                .AddIngredient<SoulofBlight>(10)
-                .AddTile(TileID.DemonAltar)
-                .Register();
         }
     }
 }

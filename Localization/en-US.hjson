@@ -134,17 +134,17 @@ Mods: {
 
 			McMoneypantsBuff: {
 				DisplayName: Fortuned
-				Description: Increases the Luck of the user
+				Description: You are feeling pretty lucky
 			}
 
 			Worm: {
-				DisplayName: Worm
-				Description: Mods.Consolaria.Buffs.Worm.Description
+				DisplayName: Pet Worm
+				Description: Not for the fishes
 			}
 
 			OldLady: {
-				DisplayName: Old Lady
-				Description: Mods.Consolaria.Buffs.OldLady.Description
+				DisplayName: Pet Old Lady
+				Description: Don't judge on the looks
 			}
 		}
 
@@ -1129,17 +1129,17 @@ Mods: {
 
 			SuspiciousLookingApple: {
 				DisplayName: Suspicious Looking Apple
-				Tooltip: ""
+				Tooltip: Summons a pet Worm
 			}
 
 			OldWalkingStick: {
 				DisplayName: Old Walking Stick
-				Tooltip: ""
+				Tooltip: Summons a pet Old Lady
 			}
 
 			WormTombstoneItem: {
-				DisplayName: Worm Tombstone
-				Tooltip: ""
+				DisplayName: Strange Looking Tombstone
+				Tooltip: A Tombstone that kinda looks like a worm, right?
 			}
 		}
 
@@ -1259,13 +1259,13 @@ Mods: {
 			TurkeyHead.DisplayName: Weird Turkey
 			VulcanBlast.DisplayName: Vulcan Blast
 			VulcanBolt.DisplayName: Vulcan Bolt
-			"Lepus Stomp.DisplayName": Lepus  Stomp
+			"Lepus Stomp.DisplayName": Lepus Stomp
 			.DisplayName: ""
 			Tizona.DisplayName: Tizona
 			TizonaShoot.DisplayName: Tizona
 			Worm.DisplayName: Worm
 			OldLady.DisplayName: Old Lady
-			WormTombstone.DisplayName: Worm Tombstone
+			WormTombstone.DisplayName: Strange Looking Tombstone
 		}
 
 		Tiles: {
@@ -1275,7 +1275,7 @@ Mods: {
 			SanctumLantern.MapEntry: Carriage Lantern
 			SoulOfBlightInABottle.MapEntry: Soul of Blight in a Bottle
 			TurkorMusicBox.MapEntry: Music Box
-			WormTombstoneTile.MapEntry: Worm Tombstone Tile
+			WormTombstoneTile.MapEntry: Tombstone
 		}
 
 		Conditions: {

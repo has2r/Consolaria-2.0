@@ -1138,7 +1138,7 @@ Mods: {
 			}
 
 			WormTombstoneItem: {
-				DisplayName: Worm Tombstone Item
+				DisplayName: Worm Tombstone
 				Tooltip: ""
 			}
 		}

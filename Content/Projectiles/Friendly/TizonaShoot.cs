@@ -51,7 +51,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
             float inertia = 12f;
 
             if (foundTarget) {
-                if (distanceFromTarget > 40f && distanceFromTarget < 300f) {
+                if (distanceFromTarget > 40f && distanceFromTarget < 200f) {
                     Vector2 direction = targetCenter - Projectile.Center;
                     direction.Normalize();
                     direction *= speed;

@@ -27,7 +27,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
             Projectile.aiStyle = -1;
 
             Projectile.friendly = true;
-            Projectile.penetrate = 3;
+            Projectile.penetrate = 2;
 
             Projectile.usesLocalNPCImmunity = true;
             Projectile.tileCollide = false;

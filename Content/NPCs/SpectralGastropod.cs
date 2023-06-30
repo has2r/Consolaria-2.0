@@ -12,7 +12,7 @@ using Terraria.ModLoader.Utilities;
 namespace Consolaria.Content.NPCs {
 	public class SpectralGastropod : ModNPC {
 		public override void SetStaticDefaults () {
-			DisplayName.SetDefault("Spectrapod");
+			DisplayName.SetDefault("Spectropod");
 			Main.npcFrameCount [NPC.type] = 11;
 
 			NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData {

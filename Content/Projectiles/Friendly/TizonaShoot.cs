@@ -13,6 +13,7 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Projectiles.Friendly {
     public class TizonaShoot : ModProjectile {
         private Vector2 _extraVelocity = Vector2.Zero;
+        private Vector2 velRem;
 
         public override void SetStaticDefaults() {
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = 5;
@@ -38,6 +39,13 @@ namespace Consolaria.Content.Projectiles.Friendly {
         }
 
         public override void AI () {
+            if (Projectile.ai[2] > 0) {
+                Player player = Main.player[Projectile.owner];
+                Projectile.Center = player.RotatedRelativePoint(player.MountedCenter);
+                Projectile.ai[2] -= 1;
+                return;
+            }
+
             SwingAI();
 
             Player owner = Main.player[Projectile.owner];
@@ -110,12 +118,13 @@ namespace Consolaria.Content.Projectiles.Friendly {
             float num2 = 15f;
             float num3 = Projectile.ai [1] + num;
             float num4 = num3 + num2;
-            float num5 = 75f;
+            float num5 = 75f; // duration?
 
-            if (Projectile.localAI [0] == 0f)
+            if (Projectile.localAI [0] == 0f) {
                 SoundEngine.PlaySound(SoundID.Item8, Projectile.position);
+                velRem = Projectile.velocity;
+            }
 
-            Projectile.ai [2] = 0.75f;
             Projectile.localAI [0] += 1f;
             if (Projectile.damage == 0 && Projectile.localAI [0] < MathHelper.Lerp(num3, num4, 0.5f))
                 Projectile.localAI [0] += 6f;
@@ -151,23 +160,24 @@ namespace Consolaria.Content.Projectiles.Friendly {
 
             float fromValue = Projectile.localAI [0] / Projectile.ai [1];
             Projectile.localAI [1] += 1f;
-            float num6 = Utils.Remap(Projectile.localAI [1], Projectile.ai [1] * 0.4f, num4, 0f, 1f);
-            Projectile.Center = player.RotatedRelativePoint(player.MountedCenter) - Projectile.velocity + Projectile.velocity * num6 * num6 * num5 + Projectile.velocity * 15f;
+            float num6 = Utils.Remap(Projectile.localAI [1], Projectile.ai [1] * 0.4f, num4, 0f, 1.6f);
+            Projectile.Center = player.RotatedRelativePoint(player.MountedCenter) - Projectile.velocity + Projectile.velocity * num6 * num6 * num5 + velRem * 8f;
             Projectile.rotation += Projectile.ai [0] * ((float) Math.PI * 2f) * (4f + Projectile.Opacity * 4f) / 90f;
-            Projectile.scale = Utils.Remap(Projectile.localAI [0], Projectile.ai [1] + 2f, num4, 1.12f, 1f) * Projectile.ai [2];
+            Projectile.scale = Utils.Remap(Projectile.localAI [0], Projectile.ai [1] + 2f, num4, 1.12f, 1f) * 0.75f;
             float f = Projectile.rotation + Main.rand.NextFloatDirection() * ((float) Math.PI / 2f) * 0.7f;
             Vector2 position3 = Projectile.Center + f.ToRotationVector2() * 50f * Projectile.scale;
             if (Main.rand.NextBool(10)) {
-                Dust dust = Dust.NewDustPerfect(position3, 14, null, 150, default, 1.4f);
+                Dust dust = Dust.NewDustPerfect(position3, 14, null, 150, default, 1.1f);
                 dust.noLight = (dust.noLightEmittence = true);
             }
 
             for (int i = 0; i < 3f * Projectile.Opacity; i++) {
-                Vector2 value = Projectile.velocity.SafeNormalize(Vector2.UnitX);
-                int num11 = 27;
-                Dust dust2 = Dust.NewDustPerfect(position3, num11, Projectile.velocity * 0.2f + value * 3f, 100, default, 1.4f);
-                dust2.noGravity = true;
-                dust2.customData = Projectile.Opacity * 0.2f;
+                if (Main.rand.NextBool(4)) {
+                    Vector2 value = Projectile.velocity.SafeNormalize(Vector2.UnitX);
+                    Dust dust2 = Dust.NewDustPerfect(position3, 27, Projectile.velocity * 0.2f + value * 3f, 100, default, 1.2f);
+                    dust2.noGravity = true;
+                    dust2.customData = Projectile.Opacity * 0.2f;
+                }
             }
 
 
@@ -203,14 +213,11 @@ namespace Consolaria.Content.Projectiles.Friendly {
             Color value2 = new Color(200, 191, 231);
             Color value3 = new Color(15, 84, 125);
             Lighting.AddLight(Projectile.Center + Projectile.rotation.ToRotationVector2() * 50f * Projectile.scale, value2.ToVector3());
-            for (int j = 0; j < 2; j++) {
-                if (Main.rand.NextFloat() < Projectile.Opacity + 0.1f) {
-                    Color.Lerp(Color.Lerp(Color.Lerp(value3, value2, Utils.Remap(fromValue, 0f, 0.6f, 0f, 1f)), Color.White, Utils.Remap(fromValue, 0.6f, 0.8f, 0f, 0.5f)), Color.White, Main.rand.NextFloat() * 0.3f);
-                    Dust dust3 = Dust.NewDustPerfect(position6, 27, Projectile.velocity * 0.7f, 100, default(Color) * Projectile.Opacity, 0.8f * Projectile.Opacity);
-                    dust3.scale *= 0.7f;
-                    dust3.velocity += player.velocity * 0.1f;
-                    dust3.position -= dust3.velocity * 6f;
-                }
+            if (Main.rand.NextFloat() < Projectile.Opacity - 0.3f) {
+                Color.Lerp(Color.Lerp(Color.Lerp(value3, value2, Utils.Remap(fromValue, 0f, 0.6f, 0f, 1f)), Color.White, Utils.Remap(fromValue, 0.6f, 0.8f, 0f, 0.5f)), Color.White, Main.rand.NextFloat() * 0.3f);
+                Dust dust3 = Dust.NewDustPerfect(position6, 27, Projectile.velocity * 0.6f, 100, default(Color) * Projectile.Opacity, 0.6f * Projectile.Opacity);
+                dust3.velocity += player.velocity * 0.1f;
+                dust3.position -= dust3.velocity * 6f;
             }
         }
 
@@ -221,6 +228,11 @@ namespace Consolaria.Content.Projectiles.Friendly {
             if (v.Length() < num2 && Collision.CanHit(Projectile.Center, 0, 0, targetHitbox.Center.ToVector2(), 0, 0))
                 return true;
             return false;
+        }
+
+        public override bool? CanDamage() {
+            if (Projectile.localAI[0] == 0) return false;
+            return null;
         }
 
         public override void ModifyHitNPC (NPC target, ref NPC.HitModifiers modifiers) {
@@ -287,6 +299,8 @@ namespace Consolaria.Content.Projectiles.Friendly {
         }
 
         public override bool PreDraw (ref Color lightColor) {
+            if (Projectile.localAI[0] == 0)
+                return false;
             SpriteBatch spriteBatch = Main.spriteBatch;
             DrawLikeTrueNightsEdge(spriteBatch);
             return false;

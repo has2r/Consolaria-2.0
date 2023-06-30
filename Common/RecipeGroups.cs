@@ -3,6 +3,7 @@ using Consolaria.Content.Items.Vanity;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Consolaria.Content.Items.Weapons.Melee;
 
 namespace Consolaria
 {
@@ -27,5 +28,18 @@ namespace Consolaria
 				.AddTile(TileID.Furnaces)
 				.Register();
 		}
-    }
+
+		public override void PostAddRecipes()
+		{
+			for (int i = 0; i < Recipe.numRecipes; i++)
+			{
+				Recipe recipe = Main.recipe[i];
+
+				if (recipe.HasResult(ItemID.Zenith))
+				{
+					recipe.AddIngredient(ModContent.ItemType<Tizona>());
+				}
+			}
+		}
+	}
 }

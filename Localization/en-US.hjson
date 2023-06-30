@@ -1275,7 +1275,7 @@ Mods: {
 			SanctumLantern.MapEntry: Carriage Lantern
 			SoulOfBlightInABottle.MapEntry: Soul of Blight in a Bottle
 			TurkorMusicBox.MapEntry: Music Box
-			WormTombstoneTile.MapEntry: Worm Tombstone Tile
+			WormTombstoneTile.MapEntry: Worm Tombstone
 		}
 
 		Conditions: {

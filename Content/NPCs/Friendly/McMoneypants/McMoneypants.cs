@@ -378,6 +378,12 @@ public class McMoneypantsWorldData : ModSystem {
 
     internal static int ChanceToSpawn { get; private set; }
 
+    public override void OnWorldLoad()
+        => ResetValues();
+
+    public override void OnWorldUnload()
+        => ResetValues();
+
     public override void SaveWorldData(TagCompound tag) {
         tag.Add("isInvested", SomebodyInvested);
         tag.Add("firstTimeTravelled", FirstTimeTravelled);
@@ -415,6 +421,11 @@ public class McMoneypantsWorldData : ModSystem {
     }
 
     public override void PostUpdateTime() {
+        Main.NewText(SomebodyInvested + " " +
+                     FirstTimeTravelled + " " +
+                     SpawnTime + " " +
+                     GildedInvitationUsed);
+
         if (!GildedInvitationUsed) {
             return;
         }
@@ -436,6 +447,16 @@ public class McMoneypantsWorldData : ModSystem {
         }
 
         UpdateSpawnToChance();
+    }
+
+    private void ResetValues() {
+        GildedInvitationUsed = SomebodyInvested = false;
+
+        FirstTimeTravelled = true;
+
+        SpawnTime = double.MaxValue;
+
+        ChanceToSpawn = 0;
     }
 }
 #endregion

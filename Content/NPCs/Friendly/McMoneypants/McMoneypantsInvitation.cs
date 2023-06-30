@@ -38,6 +38,7 @@ public class McMoneypantsInvitation : ModItem {
         if (McMoneypantsWorldData.GildedInvitationUsed) {
             return false;
         }
+
         string text = "The invitation flies away to its recipient...";
         if (player.whoAmI == Main.myPlayer && player.itemAnimation >= player.itemAnimationMax) {
             if (Main.netMode == NetmodeID.SinglePlayer) {
@@ -46,7 +47,7 @@ public class McMoneypantsInvitation : ModItem {
             else if (Main.netMode == NetmodeID.Server) {
                 ChatHelper.BroadcastChatMessage(NetworkText.FromKey(text), Color.HotPink);
             }
-            NPC.SetEventFlagCleared(ref McMoneypantsWorldData.GildedInvitationUsed, -1);
+            McMoneypantsWorldData.GildedInvitationUsed = true;
             if (Main.netMode == NetmodeID.Server) {
                 NetMessage.SendData(MessageID.WorldData);
             }

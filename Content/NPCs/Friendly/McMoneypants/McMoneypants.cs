@@ -56,7 +56,7 @@ public class McMoneypants : ModNPC {
                                "Trust me, it's not a Ponzi Scheme.",
                                "Some say even Midas was wearing this suit.",
                                "What a beautiful day to make some money!",
-                               "Ferragamo Gold!",
+                               "Ferragamo Gold!", //quote when invested and the button is clicked
                                "No money phrase" };
 
     public List<string> QuotesWhenInvested { get; private set; }
@@ -70,7 +70,7 @@ public class McMoneypants : ModNPC {
         => Main.dayTime && Main.time >= McMoneypantsWorldData.SpawnTime && Main.time < DAY_TIME;
 
     internal static bool DespawnCondition
-        => _timePassed >= (McMoneypantsWorldData.SomebodyInvested ? DAY_TIME / 2.5 : DAY_TIME);
+        => _timePassed >= (McMoneypantsWorldData.SomebodyInvested ? DAY_TIME / 2 : DAY_TIME);
     #endregion
 
     public override void SetStaticDefaults() {
@@ -159,7 +159,7 @@ public class McMoneypants : ModNPC {
         => Names;
 
     public override string GetChat()
-        => Main.LocalPlayer.GetModPlayer<McMoneypantsPlayerData>().PlayerInvested ? QuotesWhenInvested[Main.rand.Next(QuotesWhenInvested.Count)] : Quotes[Main.rand.Next(Quotes.Count - 1)];
+        => Main.LocalPlayer.GetModPlayer<McMoneypantsPlayerData>().PlayerInvested ? QuotesWhenInvested[Main.rand.Next(QuotesWhenInvested.Count)] : Quotes[Main.rand.Next(Quotes.Count - 2)];
 
     public override void SetChatButtons(ref string button, ref string button2) {
         McMoneypantsPlayerData modPlayer = Main.LocalPlayer.GetModPlayer<McMoneypantsPlayerData>();

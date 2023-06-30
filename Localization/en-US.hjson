@@ -1161,7 +1161,7 @@ Mods: {
 			VampireMiner.DisplayName: Vampire Miner
 
 			McMoneypants: {
-				DisplayName: Mc Moneypants
+				DisplayName: Mc MoneyPants
 
 				TownNPCMood: {
 					Content: I am content.

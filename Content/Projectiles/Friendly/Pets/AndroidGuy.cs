@@ -9,6 +9,10 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets
     public class AndroidGuy : ConsolariaPet
 	{
         public override int maxFrames => 9;
+        public override int PreviewFirstFrame => 1;
+		public override int PreviewLastFrame => 5;
+        public override int PreviewOffsetX => -3;
+		public override int PreviewSpriteDirection => -1;
 
         public override void SetStaticDefaults () 
 		{

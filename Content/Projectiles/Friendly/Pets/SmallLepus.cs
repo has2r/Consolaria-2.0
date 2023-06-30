@@ -13,6 +13,11 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
 
             Main.projFrames [Projectile.type] = 5;
             Main.projPet [Projectile.type] = true;
+
+        ProjectileID.Sets.CharacterPreviewAnimations[Projectile.type] = ProjectileID.Sets.SimpleLoop(0, 3)
+				.WithOffset(-13, 0)
+				.WithSpriteDirection(1)
+                .WhenNotSelected(0, 0); //I don't understand why tf tModloader is ignoring this line when it's directly copied from ExampleMod
         }
 
         public override void SetDefaults () {

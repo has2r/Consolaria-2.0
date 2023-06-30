@@ -6,7 +6,6 @@ using Terraria.Chat;
 using Terraria.Localization;
 using Terraria.ModLoader.IO;
 using Terraria.DataStructures;
-
 using System.Collections.Generic;
 using System.IO;
 
@@ -26,23 +25,45 @@ public class McMoneypants : ModNPC {
 
     #region Properties
     public List<string> Names { get; private set; }
-        = new List<string>() { "Ryan Gosling",
-                               "Adolf Hitler",
-                               "Savelii Andrusovich" };
+        = new List<string>() { "Ryan",                  //gosling
+                               "Adolf",                 //um
+                               "Alfred",
+                               "Bernard",
+                               "Charles",
+                               "John",
+                               "Jeff",
+                               "Joseph",
+                               "Jack",                  //jack ma
+                               "Goldman",               //literally orwell
+                               "Henry",
+                               "Larry",
+                               "Ludwig",
+                               "Warren",
+                               "William",
+                               "Theodore",              //bombastic
+                               "Savelii" };             //savelii andrusovich\
+                               
 
     public List<string> Quotes { get; private set; } 
-        = new List<string>() { "I want to be cremated as it is my last hope for a smoking hot body.",
-                               "To the guy who invented zero, thanks for nothing.",
+        = new List<string>() { "I want to be cremated, it's my last hope for a smoking hot body...", //tf?!!
+                               "To the guy who invented zero - thanks for nothing.",
                                "What was Forrest Gump’s email password? 1forrest1",
-                               "I was wondering why the ball was getting bigger. Then it hit me.",
-                               "Waking up this morning was an eye-opening experience.",
-                               "Invested phrase",
+                               "I was wondering why that ball was getting bigger. Then it hit me..",
+                               "Waking up this morning was really an eye-opening experience.",
+                               "Don't waste money on crypto - just buy my stocks!",
+                               "I feel so clean, like a money machine!",
+                               "Trust me, It's not a Ponzi Scheme.",
+                               "Some say even Midas was wearing this suit.",
+                               "What a beautiful day to make some money!",
+                               "Ferragamo Gold!",
                                "No money phrase" };
 
     public List<string> QuotesWhenInvested { get; private set; }
         = new List<string>() { "INVESTED!",
-                               "INVESTED!!",
-                               "INVESTED!!!" };
+                               "INVEST! INVEST! INVEST!",
+                               "Multiplying money in-progress...",
+                               "MONEY!",
+                               "PUMP & DUMP!" };
 
     internal static bool SpawnCondition
         => Main.dayTime && Main.time >= McMoneypantsWorldData.SpawnTime && Main.time < DAY_TIME;
@@ -68,6 +89,13 @@ public class McMoneypants : ModNPC {
         NPCID.Sets.HatOffsetY[id] = 0;
 
         NPCID.Sets.NoTownNPCHappiness[id] = true;
+
+        NPCID.Sets.NPCBestiaryDrawModifiers value = new(0)  {
+			Velocity = 1f,
+			Direction = -1
+		};
+
+	    NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
     }
 
     public override void SetDefaults() {
@@ -95,7 +123,8 @@ public class McMoneypants : ModNPC {
 
     public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         => bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] { 
-               BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface
+               BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
+               new FlavorTextBestiaryInfoElement("WIP - to add late"),
            });
 
     //public override void OnSpawn(IEntitySource source)

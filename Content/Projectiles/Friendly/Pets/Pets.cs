@@ -31,7 +31,7 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
         public override void SetDefaults() {
             DrawOriginOffsetY = -5;
 
-            int width = 20, height = 40;
+            int width = 36, height = 40;
             Projectile.Size = new Vector2(width, height);
 
             base.SetDefaults();

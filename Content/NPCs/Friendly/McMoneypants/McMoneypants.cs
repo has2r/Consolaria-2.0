@@ -5,7 +5,6 @@ using Terraria.GameContent.Bestiary;
 using Terraria.Chat;
 using Terraria.Localization;
 using Terraria.ModLoader.IO;
-using Terraria.DataStructures;
 using System.Collections.Generic;
 using System.IO;
 

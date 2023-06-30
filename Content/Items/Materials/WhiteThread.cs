@@ -1,11 +1,9 @@
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Consolaria.Content.Items.Materials
-{
+namespace Consolaria.Content.Items.Materials {
     public class WhiteThread : ModItem
     {
         public override void SetStaticDefaults() {

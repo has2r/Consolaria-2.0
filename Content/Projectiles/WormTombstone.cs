@@ -1,10 +1,4 @@
-﻿using Consolaria.Content.Projectiles.Friendly.Pets;
-
-using Microsoft.Xna.Framework;
-
-using System;
-using System.Collections.Generic;
-using System.Reflection;
+﻿using Microsoft.Xna.Framework;
 
 using Terraria;
 using Terraria.DataStructures;

@@ -1,9 +1,7 @@
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.Projectiles.Friendly.Pets {

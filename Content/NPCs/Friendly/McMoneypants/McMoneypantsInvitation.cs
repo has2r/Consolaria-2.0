@@ -1,5 +1,3 @@
-using Consolaria.Content.NPCs.Friendly.McMoneypants;
-
 using Microsoft.Xna.Framework;
 
 using Terraria;

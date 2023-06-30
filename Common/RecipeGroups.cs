@@ -1,13 +1,11 @@
 using Consolaria.Content.Items.Materials;
-using Consolaria.Content.Items.Vanity;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Consolaria.Content.Items.Weapons.Melee;
 
-namespace Consolaria
-{
-	public class RecipeGroups : ModSystem
+namespace Consolaria {
+    public class RecipeGroups : ModSystem
 	{
 		public static RecipeGroup Titanium; 
 

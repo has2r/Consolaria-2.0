@@ -35,6 +35,9 @@ public class McMoneypantsInvitation : ModItem {
     }
 
     public override bool? UseItem(Player player) {
+        if (McMoneypantsWorldData.GildedInvitationUsed) {
+            return false;
+        }
         string text = "The invitation flies away to its recipient...";
         if (player.whoAmI == Main.myPlayer && player.itemAnimation >= player.itemAnimationMax) {
             if (Main.netMode == NetmodeID.SinglePlayer) {

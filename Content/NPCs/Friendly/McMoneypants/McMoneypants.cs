@@ -90,13 +90,12 @@ public class McMoneypants : ModNPC {
 
         NPCID.Sets.NoTownNPCHappiness[id] = true;
 
-        NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0) 
-			{
-				Velocity = 1f,
-				Direction = -1
-			};
+        NPCID.Sets.NPCBestiaryDrawModifiers value = new(0)  {
+			Velocity = 1f,
+			Direction = -1
+		};
 
-			NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
+	    NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
     }
 
     public override void SetDefaults() {
@@ -125,7 +124,7 @@ public class McMoneypants : ModNPC {
     public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         => bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] { 
                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
-               new Terraria.GameContent.Bestiary.FlavorTextBestiaryInfoElement("WIP - to add late"),
+               new FlavorTextBestiaryInfoElement("WIP - to add late"),
            });
 
     //public override void OnSpawn(IEntitySource source)

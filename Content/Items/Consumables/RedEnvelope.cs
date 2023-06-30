@@ -29,31 +29,31 @@ public class RedEnvelope : ModItem {
         => true;
 
     public override void RightClick(Player player) {
-        int inviteItemType = ModContent.ItemType<McMoneypantsInvitation>();
         if (Main.rand.NextChance(0.04)) {
-            player.QuickSpawnItem(player.GetSource_OpenItem(Type), inviteItemType);
+            player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<McMoneypantsInvitation>());
         }
+
+        player.QuickSpawnItem(player.GetSource_OpenItem(Type), ItemID.SilverCoin, Main.rand.Next(5, 15));
 
         float chance = (float)Math.Round(Main.rand.NextDouble(), 1);
 
         Dictionary<float, (int, int)> items = new() {
-            { 0f, (inviteItemType, 1) },
-            { 0.1f, (ModContent.ItemType<Squib>(), Main.rand.Next(10, 20)) },
-            { 0.2f, (ItemID.ReleaseLantern, Main.rand.Next(3, 10)) },
-            { 0.3f, (ItemID.RedRocket, Main.rand.Next(3, 15)) },
-            { 0.4f, (ItemID.GreenRocket, Main.rand.Next(3, 15)) },
-            { 0.5f, (ItemID.BlueRocket, Main.rand.Next(3, 15)) },
-            { 0.6f, (ItemID.YellowRocket, Main.rand.Next(3, 15)) },
-            { 0.7f, (ItemID.FireworksBox, 1) },
+            { 0f, (ModContent.ItemType<Squib>(), Main.rand.Next(10, 20)) },
+            { 0.1f, (ItemID.ReleaseLantern, Main.rand.Next(3, 10)) },
+            { 0.2f, (ItemID.RedRocket, Main.rand.Next(3, 15)) },
+            { 0.3f, (ItemID.GreenRocket, Main.rand.Next(3, 15)) },
+            { 0.4f, (ItemID.BlueRocket, Main.rand.Next(3, 15)) },
+            { 0.5f, (ItemID.YellowRocket, Main.rand.Next(3, 15)) },
+            { 0.6f, (ItemID.FireworksBox, 1) },
         };
-        player.QuickSpawnItem(player.GetSource_OpenItem(Type), ItemID.SilverCoin, Main.rand.Next(5, 15));
-
-        if (chance <= 0.7f) {
+        if (chance <= 0.6f) {
             player.QuickSpawnItem(player.GetSource_OpenItem(Type), items[chance].Item1, items[chance].Item2);
             return;
         }
 
         Dictionary<float, int[]> vanityItems = new() {
+            { 0.7f, new int[] { ModContent.ItemType<MythicalLionMask>(),
+                                ModContent.ItemType<MythicalRobe>() } },
             { 0.8f, new int[] { ModContent.ItemType<GuaPiMao>(),
                                 ModContent.ItemType<TangSuitShirt>(),
                                 ModContent.ItemType<TangSuitPants>() } },

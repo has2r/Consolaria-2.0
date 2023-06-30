@@ -33,22 +33,22 @@ namespace Consolaria.Common {
 		}
 
 		public static bool IsEaster ()
-			=> (currentDate.Day >= 1 && currentDate.Month == 4) || allEventsForToday;
+			=> currentDate.Month == 4 || allEventsForToday;
 
 		public static bool IsThanksgiving ()
-			=> (currentDate.Day >= 1 && currentDate.Month == 11) || allEventsForToday;
+			=> currentDate.Month == 11 || allEventsForToday;
 
 		public static bool IsChineseNewYear ()
-			=> ((currentDate.Day >= 20 && currentDate.Month == 1) && (currentDate.Day <= 15 && currentDate.Month == 2)) || allEventsForToday;
+			=> ((currentDate.Day >= 20 && currentDate.Month == 1) || (currentDate.Day <= 15 && currentDate.Month == 2)) || allEventsForToday;
 
 		public static bool IsOktoberfest ()
-			=> ((currentDate.Day >= 27 && currentDate.Month == 9) && (currentDate.Day <= 31 && currentDate.Month == 10)) || allEventsForToday;
+			=> ((currentDate.Day >= 27 && currentDate.Month == 9) || (currentDate.Month == 10)) || allEventsForToday;
 
 		public static bool IsPatrickDay ()
-			=> ((currentDate.Day >= 5 && currentDate.Month == 3) && (currentDate.Day <= 31 && currentDate.Month == 3)) || allEventsForToday;
+			=> (currentDate.Day >= 5 && currentDate.Month == 3) || allEventsForToday;
 
 		public static bool IsValentineDay ()
-			=> ((currentDate.Day >= 1 && currentDate.Month == 2) && (currentDate.Day <= 29 && currentDate.Month == 2)) || allEventsForToday;
+			=> currentDate.Month == 2 || allEventsForToday;
 
 		public override void OnWorldLoad ()
 			=> allEventsForToday = false;

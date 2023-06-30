@@ -23,7 +23,7 @@ namespace Consolaria.Common {
 			if (System.Array.IndexOf(new int[] { NPCID.EaterofWorldsBody, NPCID.EaterofWorldsHead, NPCID.EaterofWorldsTail }, npc.type) > -1)
 			{
 				LeadingConditionRule leadingConditionRule = new(new Conditions.LegacyHack_IsABoss());
-				leadingConditionRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<SuspiciousLookingApple>(), 20));
+				leadingConditionRule.OnSuccess(ItemDropRule.ByCondition(new Conditions.NotExpert(), ModContent.ItemType<SuspiciousLookingApple>(), 20));
 				npcLoot.Add(leadingConditionRule);
 			}
 

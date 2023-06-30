@@ -50,13 +50,13 @@ namespace Consolaria.Content.Projectiles.Friendly {
             Vector2 position = Projectile.Center + offset.ToRotationVector2() * 84f * Projectile.scale;
             Vector2 velocity = (offset + Projectile.ai [0] * ((float) Math.PI / 2f)).ToRotationVector2();
             if (Main.rand.NextFloat() < Projectile.Opacity) {
-                Dust dust = Dust.NewDustPerfect(Projectile.Center + offset.ToRotationVector2() * (Main.rand.NextFloat() * 80f * Projectile.scale + 20f * Projectile.scale), DustID.RainbowMk2, velocity * 1f, 50, Color.Lerp(Color.Purple, Color.Red, Main.rand.NextFloat() * 0.1f), 0.4f);
+                Dust dust = Dust.NewDustPerfect(Projectile.Center + offset.ToRotationVector2() * (Main.rand.NextFloat() * 80f * Projectile.scale + 20f * Projectile.scale), 27, velocity * 1f, 50, new Color(200, 191, 231), 0.4f);
                 dust.fadeIn = 0.3f + Main.rand.NextFloat() * 0.15f;
                 dust.noGravity = true;
             }
 
             if (Main.rand.NextFloat() * 1.5f < Projectile.Opacity) {
-                Dust dust2 = Dust.NewDustPerfect(position, DustID.RainbowMk2, velocity * 1.5f, 100, Color.Lerp(new Color (255, 130, 130), new Color(130, 100, 180), num) * Projectile.Opacity, Projectile.Opacity);
+                Dust dust2 = Dust.NewDustPerfect(position, 27, velocity * 1.5f, 100, new Color(200, 191, 231) * Projectile.Opacity, Projectile.Opacity);
                 dust2.noGravity = true;
             }
 
@@ -114,10 +114,10 @@ namespace Consolaria.Content.Projectiles.Friendly {
             float amount = num3;
             float fromValue = Lighting.GetColor(Projectile.Center.ToTileCoordinates()).ToVector3().Length() / (float) Math.Sqrt(3.0);
             fromValue = Utils.Remap(fromValue, 0.2f, 1f, 0f, 1f);
-            Color value = Color.Lerp(new Color(95, 90, 185, 240), new Color(215, 40, 45, 240), amount); //near sword
+            Color value = Color.Lerp(new Color(95, 90, 185, 240), new Color(200, 191, 231), amount); //near sword
             spriteBatch.Draw(texture, vector, rectangle, value * fromValue * num3, Projectile.rotation + Projectile.ai [0] * ((float) Math.PI / 4f) * -1f * (1f - num2), origin, num, effects, 0f);
-            Color value2 = Color.Lerp(new Color(115, 110, 200, 220), new Color(225, 90, 40, 220), amount); //central part
-            Color color = Color.Lerp(new Color(120, 130, 220, 220), new Color(200, 60, 30, 220), amount); //main color
+            Color value2 = Color.Lerp(new Color(115, 110, 200, 220), Color.Purple, amount); //central part
+            Color color = Color.Lerp(new Color(120, 130, 220, 220), new Color(200, 191, 231), amount); //main color
             Color value3 = Color.White * num3 * 0.5f;
             value3.A = (byte) (value3.A * (1f - fromValue));
             Color value4 = value3 * fromValue * 0.5f;

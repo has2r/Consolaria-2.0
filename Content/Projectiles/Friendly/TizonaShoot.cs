@@ -100,7 +100,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
 
             for (int i = 0; i < 3f * Projectile.Opacity; i++) {
                 Vector2 value = Projectile.velocity.SafeNormalize(Vector2.UnitX);
-                int num11 = (Main.rand.NextFloat() < Projectile.Opacity) ? 75 : 27;
+                int num11 = 27;
                 Dust dust2 = Dust.NewDustPerfect(position3, num11, Projectile.velocity * 0.2f + value * 3f, 100, default, 1.4f);
                 dust2.noGravity = true;
                 dust2.customData = Projectile.Opacity * 0.2f;
@@ -131,12 +131,6 @@ namespace Consolaria.Content.Projectiles.Friendly {
                     if (!flag2)
                         Projectile.localAI [1] = 1f;
                 }
-
-                if (Projectile.localAI [1] == 1f && Projectile.velocity.Length() > 8f)
-                    Projectile.velocity *= 0.8f;
-
-                if (Projectile.localAI [1] == 1f)
-                    Projectile.velocity *= 0.88f;
             }
 
             float num13 = Projectile.rotation + Main.rand.NextFloatDirection() * ((float) Math.PI / 2f) * 0.9f;
@@ -148,30 +142,10 @@ namespace Consolaria.Content.Projectiles.Friendly {
             for (int j = 0; j < 2; j++) {
                 if (Main.rand.NextFloat() < Projectile.Opacity + 0.1f) {
                     Color.Lerp(Color.Lerp(Color.Lerp(value3, value2, Utils.Remap(fromValue, 0f, 0.6f, 0f, 1f)), Color.White, Utils.Remap(fromValue, 0.6f, 0.8f, 0f, 0.5f)), Color.White, Main.rand.NextFloat() * 0.3f);
-                    Dust dust3 = Dust.NewDustPerfect(position6, 107, Projectile.velocity * 0.7f, 100, default(Color) * Projectile.Opacity, 0.8f * Projectile.Opacity);
+                    Dust dust3 = Dust.NewDustPerfect(position6, 27, Projectile.velocity * 0.7f, 100, default(Color) * Projectile.Opacity, 0.8f * Projectile.Opacity);
                     dust3.scale *= 0.7f;
                     dust3.velocity += player.velocity * 0.1f;
                     dust3.position -= dust3.velocity * 6f;
-                }
-            }
-
-            if (Projectile.damage == 0) {
-                Projectile.localAI [0] += 3f;
-                Projectile.velocity *= 0.76f;
-            }
-
-            if (Projectile.localAI [0] < 10f && (Projectile.localAI [1] == 1f || Projectile.damage == 0)) {
-                Projectile.localAI [0] += 1f;
-                Projectile.velocity *= 0.85f;
-                for (int k = 0; k < 2; k++) {
-                    float num14 = Main.rand.NextFloatDirection();
-                    float num15 = 1f - Math.Abs(num14);
-                    num13 = Projectile.rotation + num14 * ((float) Math.PI / 2f) * 0.9f;
-                    position6 = Projectile.Center + num13.ToRotationVector2() * 50f * Projectile.scale;
-                    Color.Lerp(Color.Lerp(Color.Lerp(value3, value2, Utils.Remap(fromValue, 0f, 0.6f, 0f, 1f)), Color.White, Utils.Remap(fromValue, 0.6f, 0.8f, 0f, 0.5f)), Color.White, Main.rand.NextFloat() * 0.3f);
-                    Dust dust4 = Dust.NewDustPerfect(position6, 107, Projectile.velocity.RotatedBy(num14 * ((float) Math.PI / 4f)) * 0.2f * Main.rand.NextFloat(), 100, default(Color), 1.4f * num15);
-                    dust4.velocity += player.velocity * 0.1f;
-                    dust4.position -= dust4.velocity * Main.rand.NextFloat() * 3f;
                 }
             }
         }
@@ -195,10 +169,10 @@ namespace Consolaria.Content.Projectiles.Friendly {
         }
 
         private void DrawLikeTrueNightsEdge (SpriteBatch spriteBatch) {
-            Asset<Texture2D> asset = TextureAssets.Projectile [Projectile.type];
-            Rectangle rectangle = new Rectangle(0, 0, asset.Width(), asset.Height() / 2);
+            Asset<Texture2D> asset = TextureAssets.Projectile [973];
+            Rectangle rectangle = asset.Frame(1, 4);
             Vector2 origin = rectangle.Size() / 2f;
-            float num = Projectile.scale * 1.5f;
+            float num = Projectile.scale * 0.75f;
             SpriteEffects effects = (!(Projectile.ai [0] >= 0f)) ? SpriteEffects.FlipVertically : SpriteEffects.None;
             float num2 = 0.975f;
             float fromValue = Lighting.GetColor(Projectile.Center.ToTileCoordinates()).ToVector3().Length() / (float) Math.Sqrt(3.0);
@@ -227,13 +201,13 @@ namespace Consolaria.Content.Projectiles.Friendly {
                         spriteBatch.Draw(asset.Value, position, rectangle, value5 * 0.15f * scale2, num6 + Projectile.ai [0] * 0.01f + num9, origin, num, effects, 0f);
                         spriteBatch.Draw(asset.Value, position, rectangle, Color.Lerp(new Color(140, 50, 200, 200), new Color(220, 50, 200, 200), amount) * fromValue * scale * scale2, num6 + num9, origin, num * 0.8f, effects, 0f);
                         spriteBatch.Draw(asset.Value, position, rectangle, value3 * fromValue * scale * MathHelper.Lerp(0.05f, 0.4f, fromValue) * scale2, num6 + num9, origin, num * num2, effects, 0f);
-                        spriteBatch.Draw(asset.Value, position, asset.Frame(1, 2, 0, 1), Color.White * MathHelper.Lerp(0.05f, 0.5f, fromValue) * scale * scale2, num6 + num9, origin, num, effects, 0f);
+                        spriteBatch.Draw(asset.Value, position, asset.Frame(1, 4, 0, 1), new Color(200, 191, 231) * MathHelper.Lerp(0.05f, 0.5f, fromValue) * scale * scale2, num6 + num9, origin, num, effects, 0f);
                     }
 
                     spriteBatch.Draw(asset.Value, position, rectangle, value5 * 0.15f, num6 + Projectile.ai [0] * 0.01f, origin, num, effects, 0f);
                     spriteBatch.Draw(asset.Value, position, rectangle, Color.Lerp(new Color(140, 50, 200, 200), new Color(220, 50, 200, 200), amount) * num3 * scale, num6, origin, num * 0.8f, effects, 0f);
                     spriteBatch.Draw(asset.Value, position, rectangle, value3 * fromValue * scale * MathHelper.Lerp(0.05f, 0.4f, num3), num6, origin, num * num2, effects, 0f);
-                    spriteBatch.Draw(asset.Value, position, asset.Frame(1, 2, 0, 1), Color.White * MathHelper.Lerp(0.05f, 0.5f, num3) * scale, num6, origin, num, effects, 0f);
+                    spriteBatch.Draw(asset.Value, position, asset.Frame(1, 4, 0, 1), new Color(200, 191, 231) * MathHelper.Lerp(0.05f, 0.5f, num3) * scale, num6, origin, num, effects, 0f);
                 }
             }
 

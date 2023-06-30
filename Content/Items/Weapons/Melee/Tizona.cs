@@ -1,4 +1,7 @@
 using Microsoft.Xna.Framework;
+
+using System;
+
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -38,7 +41,7 @@ namespace Consolaria.Content.Items.Weapons.Melee {
 			float projectilesCount = 3;
 			float rotation = MathHelper.ToRadians(60);
 			for (int i = 0; i < projectilesCount; i++) {
-				Vector2 perturbedSpeed = velocity.RotatedBy(MathHelper.Lerp(0, rotation, i / (projectilesCount - 1))) * 1.1f;
+				Vector2 perturbedSpeed = velocity.RotatedBy(MathHelper.Lerp(0, rotation, i / Math.Clamp(projectilesCount - 1, 1, projectilesCount)) - 0.5f) * 1.1f;
 				Projectile.NewProjectile(player.GetSource_ItemUse(Item), position, perturbedSpeed, ModContent.ProjectileType<Projectiles.Friendly.TizonaShoot>(), (int) (damage / projectilesCount), knockback / 2, player.whoAmI, player.direction * player.gravDir, 32f);
 			}
 			return false;

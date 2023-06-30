@@ -115,7 +115,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
             if (Projectile.localAI [0] == 0f)
                 SoundEngine.PlaySound(SoundID.Item8, Projectile.position);
 
-            Projectile.ai [2] = 1f;
+            Projectile.ai [2] = 0.75f;
             Projectile.localAI [0] += 1f;
             if (Projectile.damage == 0 && Projectile.localAI [0] < MathHelper.Lerp(num3, num4, 0.5f))
                 Projectile.localAI [0] += 6f;

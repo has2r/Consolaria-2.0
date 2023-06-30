@@ -136,6 +136,16 @@ Mods: {
 				DisplayName: Fortuned
 				Description: Increases the Luck of the user
 			}
+
+			Worm: {
+				DisplayName: Worm
+				Description: Mods.Consolaria.Buffs.Worm.Description
+			}
+
+			OldLady: {
+				DisplayName: Old Lady
+				Description: Mods.Consolaria.Buffs.OldLady.Description
+			}
 		}
 
 		Items: {
@@ -1116,6 +1126,21 @@ Mods: {
 				DisplayName: Gilded Invitation
 				Tooltip: Looks like it was intended for someone wealthy
 			}
+
+			SuspiciousLookingApple: {
+				DisplayName: Suspicious Looking Apple
+				Tooltip: ""
+			}
+
+			OldWalkingStick: {
+				DisplayName: Old Walking Stick
+				Tooltip: ""
+			}
+
+			WormTombstoneItem: {
+				DisplayName: Worm Tombstone Item
+				Tooltip: ""
+			}
 		}
 
 		NPCs: {
@@ -1238,6 +1263,9 @@ Mods: {
 			.DisplayName: ""
 			Tizona.DisplayName: Tizona
 			TizonaShoot.DisplayName: Tizona
+			Worm.DisplayName: Worm
+			OldLady.DisplayName: Old Lady
+			WormTombstone.DisplayName: Worm Tombstone
 		}
 
 		Tiles: {
@@ -1247,6 +1275,7 @@ Mods: {
 			SanctumLantern.MapEntry: Carriage Lantern
 			SoulOfBlightInABottle.MapEntry: Soul of Blight in a Bottle
 			TurkorMusicBox.MapEntry: Music Box
+			WormTombstoneTile.MapEntry: Worm Tombstone Tile
 		}
 
 		Conditions: {

@@ -447,11 +447,6 @@ public class McMoneypantsWorldData : ModSystem {
     }
 
     public override void PostUpdateTime() {
-        Main.NewText(SomebodyInvested + " " +
-                     FirstTimeTravelled + " " +
-                     SpawnTime + " " +
-                     GildedInvitationUsed);
-
         if (!GildedInvitationUsed) {
             return;
         }

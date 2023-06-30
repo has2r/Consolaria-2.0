@@ -47,11 +47,11 @@ namespace Consolaria.Content.Projectiles.Friendly {
         }
 
         private void MoveSlowlyToClosestTarget(bool foundTarget, float distanceFromTarget, Vector2 targetCenter) {
-            float speed = 2f;
-            float inertia = 7f;
+            float speed = 3f;
+            float inertia = 12f;
 
             if (foundTarget) {
-                if (distanceFromTarget > 40f) {
+                if (distanceFromTarget > 40f && distanceFromTarget < 300f) {
                     Vector2 direction = targetCenter - Projectile.Center;
                     direction.Normalize();
                     direction *= speed;
@@ -60,8 +60,10 @@ namespace Consolaria.Content.Projectiles.Friendly {
                 }
             }
 
-            Projectile.velocity += _extraVelocity;
-            _extraVelocity = Vector2.Zero;
+            if (Projectile.velocity.Length() > 4f) {
+                Projectile.velocity += _extraVelocity;
+                _extraVelocity = Vector2.Zero;
+            }
         }
 
         private void SearchForTargets(Player owner, out bool foundTarget, out float distanceFromTarget, out Vector2 targetCenter) {
@@ -228,6 +230,8 @@ namespace Consolaria.Content.Projectiles.Friendly {
             particleOrchestraSettings.PositionInWorld = positionInWorld;
             ParticleOrchestraSettings settings = particleOrchestraSettings;
             ParticleOrchestrator.RequestParticleSpawn(clientOnly: false, ParticleOrchestraType.NightsEdge, settings, Projectile.owner);
+
+            target.AddBuff(BuffID.ShadowFlame, 60);
         }
 
         private void DrawLikeTrueNightsEdge (SpriteBatch spriteBatch) {

@@ -27,7 +27,6 @@ Credits:
 [/list]
 
 [list]
-<<<<<<< HEAD
 [*][b]DrunkenCat[/b] for original boss AIs
 [*][b]Synoxsis[/b] for Lepus, Turkor & Ocram themes
 [*][b]Fyerow & Croul[/b] for legacy Ocram theme
@@ -37,18 +36,6 @@ Credits:
 [*][b]OnesAndZer0s[/b] for providing Jungle Sanctum worldgen
 [*][b]CKnight, Bripe, MeuRan, minichibis, Nokilos & Obesedog[/b] for providing numerous sprites
 [*][b]KondiU[/b] for fixing & contributing some features
-=======
-[*] DrunkenCat - original boss AIs
-[*] Synoxsis - Lepus, Turkor and Ocram themes
-[*] Fyerow and Croul - legacy Ocram theme
-[*] StrikerRKT - extracting files from various Japanese versions
-[*] Sparcdoctor - extensive testing and content suggestions
-[*] CrezyDud - Turkor multiplayer fixes
-[*] OnesAndZer0s - Jungle Sanctum worldgen
-[*] CKnight - Master mode Relic sprites
-[*] Bripe, Obesedog, Nokilos, MeuRan - numerous sprites
-[*] Lion8cake - Tizona Zenith graphic and recipe
->>>>>>> main
 [/list]
 
 ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁

@@ -1,5 +1,7 @@
 Mods: {
 	Consolaria: {
+		Others.NPCTitle: "{0} {1}"
+
 		Biomes: {
 			RabbitInvasionBiome: {
 				DisplayName: Rabbit Invasion

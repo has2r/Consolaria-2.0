@@ -60,9 +60,19 @@ public class WormTombstone : ModProjectile {
 
 public class WormTombstoneTile : ModTile {
     public override void SetStaticDefaults() {
+        TileID.Sets.HasOutlines[Type] = true;
+        TileID.Sets.DisableSmartCursor[Type] = true;
+
         Main.tileSign[Type] = true;
         Main.tileLighted[Type] = true;
         Main.tileFrameImportant[Type] = true;
+
+        LocalizedText name = CreateMapEntryName();
+        AddMapEntry(new Color(192, 192, 192), name);
+
+        DustType = DustID.Stone;
+
+        AdjTiles = new int[] { TileID.Tombstones };
 
         TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
         TileObjectData.newTile.Origin = new Point16(0, 1);
@@ -72,13 +82,6 @@ public class WormTombstoneTile : ModTile {
         TileObjectData.newTile.DrawYOffset = 2;
 
         TileObjectData.addTile(Type);
-
-        LocalizedText name = CreateMapEntryName();
-        AddMapEntry(new Color(192, 192, 192), name);
-
-        DustType = DustID.Stone;
-
-        AdjTiles = new int[] { TileID.Tombstones };
     }
 
     public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings)

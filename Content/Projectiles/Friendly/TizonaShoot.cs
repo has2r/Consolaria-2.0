@@ -246,7 +246,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
             ParticleOrchestraSettings settings = particleOrchestraSettings;
             ParticleOrchestrator.RequestParticleSpawn(clientOnly: false, ParticleOrchestraType.NightsEdge, settings, Projectile.owner);
 
-            target.AddBuff(BuffID.ShadowFlame, 60);
+            //target.AddBuff(BuffID.ShadowFlame, 60);
         }
 
         private void DrawLikeTrueNightsEdge (SpriteBatch spriteBatch) {
@@ -268,9 +268,9 @@ namespace Consolaria.Content.Projectiles.Friendly {
                     float num7 = 1f - num5 / num4;
                     float scale = Projectile.Opacity * num7 * num7 * 0.85f;
                     float amount = Projectile.timeLeft / 360;
-                    Color value2 = Color.Lerp(new Color(115, 70, 165, 120), new Color(135, 40, 165, 120), amount);
+                    Color value2 = Color.Lerp(new Color(65, 30, 135, 160), new Color(135, 40, 165, 120), amount); //further big part
                     spriteBatch.Draw(asset.Value, position, rectangle, value2 * num3 * scale, num6 + Projectile.ai [0] * ((float) Math.PI / 4f) * -1f, origin, num * num2, effects, 0f);
-                    Color value3 = Color.Lerp(new Color(105, 100, 170, 180), new Color(125, 90, 140, 100), amount);
+                    Color value3 = Color.Lerp(new Color(145, 40, 115, 120), new Color(125, 90, 140, 120), amount); //closer big part
                     Color value4 = Color.White * scale * 0.5f;
                     value4.A = (byte) (value4.A * (1f - num3));
                     Color value5 = value4 * num3 * 0.5f;
@@ -280,13 +280,13 @@ namespace Consolaria.Content.Projectiles.Friendly {
                     for (float num9 = (float) Math.PI * -2f + (float) Math.PI * 2f / num8; num9 < 0f; num9 += (float) Math.PI * 2f / num8) {
                         float scale2 = Utils.Remap(num9, (float) Math.PI * -2f, 0f, 0f, 0.5f);
                         spriteBatch.Draw(asset.Value, position, rectangle, value5 * 0.15f * scale2, num6 + Projectile.ai [0] * 0.01f + num9, origin, num, effects, 0f);
-                        spriteBatch.Draw(asset.Value, position, rectangle, Color.Lerp(new Color(140, 50, 200, 200), new Color(220, 50, 200, 200), amount) * fromValue * scale * scale2, num6 + num9, origin, num * 0.8f, effects, 0f);
+                        spriteBatch.Draw(asset.Value, position, rectangle, Color.Lerp(new Color(80, 50, 200, 200), new Color(220, 50, 200, 200), amount) * fromValue * scale * scale2, num6 + num9, origin, num * 0.8f, effects, 0f); //transparent parts
                         spriteBatch.Draw(asset.Value, position, rectangle, value3 * fromValue * scale * MathHelper.Lerp(0.05f, 0.4f, fromValue) * scale2, num6 + num9, origin, num * num2, effects, 0f);
-                        spriteBatch.Draw(asset.Value, position, asset.Frame(1, 4, 0, 1), new Color(200, 191, 231) * MathHelper.Lerp(0.05f, 0.5f, fromValue) * scale * scale2, num6 + num9, origin, num, effects, 0f);
+                        spriteBatch.Draw(asset.Value, position, asset.Frame(1, 4, 0, 1), new Color(230, 191, 191) * MathHelper.Lerp(0.05f, 0.5f, fromValue) * scale * scale2, num6 + num9, origin, num, effects, 0f);
                     }
 
                     spriteBatch.Draw(asset.Value, position, rectangle, value5 * 0.15f, num6 + Projectile.ai [0] * 0.01f, origin, num, effects, 0f);
-                    spriteBatch.Draw(asset.Value, position, rectangle, Color.Lerp(new Color(140, 50, 200, 200), new Color(220, 50, 200, 200), amount) * num3 * scale, num6, origin, num * 0.8f, effects, 0f);
+                    spriteBatch.Draw(asset.Value, position, rectangle, Color.Lerp(new Color(140, 50, 200, 200), new Color(220, 50, 200, 200), amount) * num3 * scale, num6, origin, num * 0.8f, effects, 0f); //part near sparkle
                     spriteBatch.Draw(asset.Value, position, rectangle, value3 * fromValue * scale * MathHelper.Lerp(0.05f, 0.4f, num3), num6, origin, num * num2, effects, 0f);
                     spriteBatch.Draw(asset.Value, position, asset.Frame(1, 4, 0, 1), new Color(200, 191, 231) * MathHelper.Lerp(0.05f, 0.5f, num3) * scale, num6, origin, num, effects, 0f);
                 }

@@ -12,7 +12,7 @@ namespace Consolaria.Content.Items.Weapons.Melee {
 		public bool TizonaIsUsed { get; internal set; }
 
         public override void PostUpdate() {
-            if (Player.inventory[Player.selectedItem].type == ModContent.ItemType<Tizona>() && Player.itemAnimation == Player.itemAnimationMax - 1) {
+            if (Player.inventory[Player.selectedItem].type == ModContent.ItemType<Tizona>() && Player.ItemAnimationJustStarted) {
 				TizonaIsUsed = !TizonaIsUsed;
             }
         }

@@ -17,11 +17,11 @@ namespace Consolaria.Content.NPCs.Friendly.McMoneypants;
 [AutoloadHead()]
 public class McMoneypants : ModNPC {
     #region Fields
-    private static string _lastName = null;
-
     private const double DAY_TIME = 48600.0;
 
     public const string BUTTON_TEXT = "Invest";
+
+    private static string _lastName = null;
 
     private static double _timePassed;
     #endregion

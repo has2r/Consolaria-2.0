@@ -147,13 +147,32 @@ public class McMoneypants : ModNPC {
     #endregion
 
     #region Visuals
-    public override void HitEffect(NPC.HitInfo hit)
-        => OnHitDusts();
+    public override void HitEffect(NPC.HitInfo hit) {
+        OnHitDusts();
+        SpawnGoresOnDeath();
+    }
 
     private void OnHitDusts() {
         int dustAmount = NPC.life > 0 ? 1 : 5;
         for (int k = 0; k < dustAmount; k++) {
             Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood);
+        }
+    }
+
+    private void SpawnGoresOnDeath() {
+        if (Main.netMode != NetmodeID.Server && NPC.life <= 0) {
+            string variant = "";
+            if (NPC.IsShimmerVariant) {
+                variant += "_Shimmer";
+            }
+            int headGore = Mod.Find<ModGore>($"McMoneypantsGore1{variant}").Type;
+            int armGore = Mod.Find<ModGore>($"McMoneypantsGore2{variant}").Type;
+            int legGore = Mod.Find<ModGore>($"McMoneypantsGore3{variant}").Type;
+            Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity, headGore, 1f);
+            Gore.NewGore(NPC.GetSource_Death(), NPC.position + new Vector2(0, 20), NPC.velocity, armGore);
+            Gore.NewGore(NPC.GetSource_Death(), NPC.position + new Vector2(0, 20), NPC.velocity, armGore);
+            Gore.NewGore(NPC.GetSource_Death(), NPC.position + new Vector2(0, 34), NPC.velocity, legGore);
+            Gore.NewGore(NPC.GetSource_Death(), NPC.position + new Vector2(0, 34), NPC.velocity, legGore);
         }
     }
     #endregion

@@ -37,6 +37,12 @@ public class RedEnvelope : ModItem {
 
         float chance = (float)Math.Round(Main.rand.NextDouble(), 1);
 
+        if (chance > 0.6f) {
+            if (!Main.rand.NextChance(0.3)) {
+                chance = (float)Math.Round((double)Main.rand.NextFloat(0f, 0.6f), 1);
+            }
+        }
+
         Dictionary<float, (int, int)> items = new() {
             { 0f, (ModContent.ItemType<Squib>(), Main.rand.Next(10, 20)) },
             { 0.1f, (ItemID.ReleaseLantern, Main.rand.Next(3, 10)) },

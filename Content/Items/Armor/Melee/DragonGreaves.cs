@@ -8,7 +8,6 @@ namespace Consolaria.Content.Items.Armor.Melee {
     [AutoloadEquip(EquipType.Legs)]
     public class DragonGreaves : ModItem {
         public override void SetStaticDefaults () {
-
             Item.ResearchUnlockCount = 1;
             ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<AncientDragonGreaves>();
         }

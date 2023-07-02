@@ -4,10 +4,10 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.Items.Pets {
-    public class HolidayBauble : PetItem {
-		public override void SetStaticDefaults () {
-			Item.ResearchUnlockCount = 1;
-		}
+	public class HolidayBauble : PetItem {
+		public override void SetStaticDefaults ()
+			=> Item.ResearchUnlockCount = 1;
+
 
 		public override void SetDefaults () {
 			Item.DefaultToVanitypet(ModContent.ProjectileType<Projectiles.Friendly.Pets.Elfa>(), ModContent.BuffType<Buffs.Elfa>());

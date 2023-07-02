@@ -48,17 +48,7 @@ namespace Consolaria.Common {
 				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<PetriDish>(), 150));
 			if (NPCID.Sets.Zombies [npc.type])
 				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Brain>(), 750));
-			if (npc.type == NPCID.DevourerHead)
-				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SuspiciousLookingApple>(), 150));
-			if (npc.type == NPCID.GiantWormHead)
-				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SuspiciousLookingApple>(), 150));
-			if (npc.type == NPCID.SeekerHead)
-				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SuspiciousLookingApple>(), 150));
-			if (npc.type == NPCID.DuneSplicerHead)
-				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SuspiciousLookingApple>(), 150));
-			if (npc.type == NPCID.DiggerHead)
-				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SuspiciousLookingApple>(), 150));
-			if (npc.type == NPCID.TombCrawlerHead)
+			if (npc.type == NPCID.DevourerHead || npc.type == NPCID.GiantWormHead || npc.type == NPCID.SeekerHead || npc.type == NPCID.DuneSplicerHead || npc.type == NPCID.DiggerHead || npc.type == NPCID.TombCrawlerHead)
 				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SuspiciousLookingApple>(), 150));
 		}
 

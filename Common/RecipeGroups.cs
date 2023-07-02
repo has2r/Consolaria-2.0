@@ -5,21 +5,18 @@ using Terraria.ModLoader;
 using Consolaria.Content.Items.Weapons.Melee;
 
 namespace Consolaria {
-    public class RecipeGroups : ModSystem
-	{
-		public static RecipeGroup Titanium; 
+	public class RecipeGroups : ModSystem {
+		public static RecipeGroup Titanium;
 
-		public override void Unload()
+		public override void Unload ()
 			=> Titanium = null;
 
-		public override void AddRecipeGroups() 
-		{
+		public override void AddRecipeGroups () {
 			Titanium = new RecipeGroup(() => "Adamantite or Titanium Bar", ItemID.AdamantiteBar, ItemID.TitaniumBar);
 			RecipeGroup.RegisterGroup("Consolaria:TitaniumRecipeGroup", Titanium);
 		}
 
-		public override void AddRecipes() 
-		{
+		public override void AddRecipes () {
 			Recipe.Create(ItemID.RainbowBrick, 10)
 				.AddIngredient(ItemID.StoneBlock, 10)
 				.AddIngredient<RainbowPiece>(1)
@@ -27,14 +24,11 @@ namespace Consolaria {
 				.Register();
 		}
 
-		public override void PostAddRecipes()
-		{
-			for (int i = 0; i < Recipe.numRecipes; i++)
-			{
-				Recipe recipe = Main.recipe[i];
+		public override void PostAddRecipes () {
+			for (int i = 0; i < Recipe.numRecipes; i++) {
+				Recipe recipe = Main.recipe [i];
 
-				if (recipe.HasResult(ItemID.Zenith))
-				{
+				if (recipe.HasResult(ItemID.Zenith)) {
 					recipe.AddIngredient(ModContent.ItemType<Tizona>());
 				}
 			}

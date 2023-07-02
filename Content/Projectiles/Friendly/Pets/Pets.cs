@@ -32,7 +32,7 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
             Victory
         }
 
-        private const int IDLE_MAXTIME = 200;
+        private const int IDLE_MAXTIME = 3600;
 
         public const WormSoundType BORING = WormSoundType.Boring;
         public const WormSoundType BYE = WormSoundType.Bye;
@@ -51,7 +51,7 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
         public Player Player
             => Main.player[_itself.owner];
 
-        public int GetBoredTimer {
+        public int GetBoredd {
             get => _idleTimer;
             set {
                 if (_itself.velocity.Length() <= 1f) {
@@ -97,7 +97,7 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
 
         private void UpdateValues() {
             CDBetweenQuotes--;
-            GetBoredTimer++;
+            GetBoredd++;
         }
 
         internal void PlayWormSound(WormSoundType soundType, Action whenPlayed = null, bool noQueue = false) {

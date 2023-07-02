@@ -577,6 +577,8 @@ public class McMoneypantsAttackProjectile : ModProjectile {
 
         Projectile.timeLeft = 1200;
         Projectile.ignoreWater = true;
+
+        DrawOriginOffsetY = 2;
     }
 
     public override bool PreAI() {

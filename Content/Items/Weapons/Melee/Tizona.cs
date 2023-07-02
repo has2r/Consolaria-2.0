@@ -59,5 +59,11 @@ namespace Consolaria.Content.Items.Weapons.Melee {
 			}
 			return false;
 		}
-	}
+
+        public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
+            => target.AddBuff(BuffID.ShadowFlame, 180);
+
+        public override void OnHitPvp(Player player, Player target, Player.HurtInfo hurtInfo)
+			=> target.AddBuff(BuffID.ShadowFlame, 180);
+    }
 }

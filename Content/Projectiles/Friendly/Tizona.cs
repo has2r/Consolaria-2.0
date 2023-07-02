@@ -6,6 +6,7 @@ using System;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.GameContent.Drawing;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.Projectiles.Friendly {
@@ -70,6 +71,14 @@ namespace Consolaria.Content.Projectiles.Friendly {
             particleOrchestraSettings.PositionInWorld = positionInWorld;
             ParticleOrchestraSettings settings = particleOrchestraSettings;
             ParticleOrchestrator.RequestParticleSpawn(clientOnly: false, ParticleOrchestraType.NightsEdge, settings, Projectile.owner);
+        }
+
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+            => target.AddBuff(BuffID.ShadowFlame, 180);
+
+        public override void OnHitPlayer(Player target, Player.HurtInfo info) {
+            if (info.PvP)
+                target.AddBuff(BuffID.ShadowFlame, 180);
         }
 
         private void DrawLikeNightsEdge (SpriteBatch spriteBatch) {

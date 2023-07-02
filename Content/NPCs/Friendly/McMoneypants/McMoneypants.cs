@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 using System.Collections.Generic;
 using System.IO;
@@ -6,6 +7,7 @@ using System.IO;
 using Terraria;
 using Terraria.Audio;
 using Terraria.Chat;
+using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.Localization;
@@ -24,6 +26,8 @@ public class McMoneypants : ModNPC {
     private static string _lastName = null;
 
     private static double _timePassed;
+
+    private static Profiles.StackedNPCProfile _NPCProfile;
     #endregion
 
     #region Properties
@@ -99,7 +103,12 @@ public class McMoneypants : ModNPC {
 			Direction = -1
 		};
 
-	    NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
+	    NPCID.Sets.NPCBestiaryDrawOffset.Add(id, value);
+
+        _NPCProfile = new Profiles.StackedNPCProfile(
+            new Profiles.DefaultNPCProfile(Texture, NPCHeadLoader.GetHeadSlot(HeadTexture), Texture + "_Party")
+            //new Profiles.DefaultNPCProfile(Texture + "_Shimmer", ShimmerHeadIndex, Texture + "_Shimmer_Party")
+        );
     }
 
     public override void SetDefaults() {
@@ -194,6 +203,9 @@ public class McMoneypants : ModNPC {
     #endregion
 
     #region Town NPC
+    public override ITownNPCProfile TownNPCProfile()
+        => _NPCProfile;
+
     public override bool CanTownNPCSpawn(int numTownNPCs)
         => false;
 
@@ -211,7 +223,7 @@ public class McMoneypants : ModNPC {
     }
 
     public override void TownNPCAttackProj(ref int projType, ref int attackDelay) {
-        projType = ProjectileID.GoldCoin;
+        projType = ModContent.ProjectileType<McMoneypantsAttackProjectile>();
         attackDelay = 1;
     }
 
@@ -529,6 +541,161 @@ public class McMoneypantsWorldData : ModSystem {
         SpawnTime = double.MaxValue;
 
         ChanceToSpawn = 0;
+    }
+}
+#endregion
+
+#region NPC's Attack
+public class McMoneypantsAttackProjectile : ModProjectile {
+    private Vector2 _extraVelocity = Vector2.Zero;
+    private float _glowTimer;
+
+    public bool JustSpawned {
+        get => Projectile.localAI[0] == 1f;
+        set => Projectile.localAI[0] = value ? 1f : 0f;
+    }
+
+    public bool CanDamageEnemies {
+        get => Projectile.localAI[1] == 1f;
+        set => Projectile.localAI[1] = value ? 1f : 0f;
+    }
+
+    public bool Collided {
+        get => Projectile.ai[0] == 1f;
+        set => Projectile.ai[0] = value ? 1f : 0f;
+    }
+
+    public override string Texture
+        => $"Terraria/Images/Item_{ItemID.GoldCoin}";
+
+    public override void SetDefaults() {
+        Projectile.friendly = true;
+        Projectile.penetrate = 1;
+
+        int width = 12, height = 16;
+        Projectile.Size = new Vector2(width, height);
+
+        Projectile.timeLeft = 1200;
+        Projectile.ignoreWater = true;
+    }
+
+    public override bool PreAI() {
+        if (!JustSpawned) {
+            JustSpawned = true;
+
+            Projectile.velocity.Y -= 5f;
+        }
+
+        return true;
+    }
+
+    public override void AI() {
+        CanDamageEnemies = Projectile.timeLeft < 1100;
+
+        Player owner = Main.player[Projectile.owner];
+        Helper.SearchForTargets(Projectile, owner, out bool foundTarget, out float distanceFromTarget, out Vector2 targetCenter);
+
+        bool isMoving = false;
+
+        Projectile.rotation += Projectile.velocity.Length() * (!foundTarget ? 0.05f : 0.2f);
+
+        if (Collided) {
+            Projectile.velocity *= 0.8f;
+
+            if (CanDamageEnemies) {
+                isMoving = MoveSlowlyToClosestTarget(foundTarget, distanceFromTarget, targetCenter);
+
+                _glowTimer += 0.375f * (isMoving ? 1f : -0.5f);
+            }
+        }
+        if (!isMoving) {
+            Projectile.velocity.Y += 0.6f;
+            if (Projectile.velocity.Y > 16f) {
+                Projectile.velocity.Y = 16f;
+            }
+        }
+    }
+
+    public override bool? CanDamage()
+        => CanDamageEnemies;
+
+    private bool MoveSlowlyToClosestTarget(bool foundTarget, float distanceFromTarget, Vector2 targetCenter) {
+        float speed = 6f;
+        float inertia = 11f;
+
+        if (foundTarget) {
+            if (distanceFromTarget < 150f) {
+                Vector2 direction = targetCenter - Projectile.Center;
+                direction.Normalize();
+                direction *= speed;
+
+                _extraVelocity = (_extraVelocity * (inertia - 1) + direction) / inertia;
+                Projectile.velocity += _extraVelocity;
+                _extraVelocity = Vector2.Zero;
+
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public override bool OnTileCollide(Vector2 oldVelocity) {
+        Collided = true;
+
+        return false;
+    }
+
+    private class Explosion : ModProjectile {
+        public override string Texture 
+            => "Consolaria/Assets/Textures/Empty";
+
+        public override void SetDefaults() {
+            Projectile.ignoreWater = true;
+
+            Projectile.friendly = true;
+
+            Projectile.timeLeft = 2;
+
+            Projectile.Size = new Vector2(100, 100);
+        }
+    }
+ 
+    public override void Kill(int timeLeft) {
+        if (Main.myPlayer == Projectile.owner) {
+            Projectile.NewProjectileDirect(Projectile.GetSource_FromAI(), Projectile.Center, Vector2.Zero, ModContent.ProjectileType<Explosion>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
+        }
+
+
+        for (int i = 0; i < 10; i++) {
+            int dustIndex = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, 31, 0f, 0f, 100, default(Color), 2f);
+            Main.dust[dustIndex].velocity *= 1.4f;
+        }
+        for (int i = 0; i < 10; i++) {
+            int dustIndex = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, 6, 0f, 0f, 100, default(Color), 3f);
+            Main.dust[dustIndex].noGravity = true;
+            Main.dust[dustIndex].velocity *= 5f;
+            dustIndex = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, 6, 0f, 0f, 100, default(Color), 2f);
+            Main.dust[dustIndex].velocity *= 3f;
+        }
+        int goreIndex = Gore.NewGore(Projectile.GetSource_FromAI(), new Vector2(Projectile.position.X + Projectile.width / 2 - 24f, Projectile.position.Y + Projectile.height / 2 - 24f), default(Vector2), Main.rand.Next(61, 64), 1f);
+        Main.gore[goreIndex].scale = 1.5f;
+        Main.gore[goreIndex].velocity.X = Main.gore[goreIndex].velocity.X + 1.5f;
+        Main.gore[goreIndex].velocity.Y = Main.gore[goreIndex].velocity.Y + 1.5f;
+        goreIndex = Gore.NewGore(Projectile.GetSource_FromAI(), new Vector2(Projectile.position.X + Projectile.width / 2 - 24f, Projectile.position.Y + Projectile.height / 2 - 24f), default(Vector2), Main.rand.Next(61, 64), 1f);
+        Main.gore[goreIndex].scale = 1.5f;
+        Main.gore[goreIndex].velocity.X = Main.gore[goreIndex].velocity.X - 1.5f;
+        Main.gore[goreIndex].velocity.Y = Main.gore[goreIndex].velocity.Y + 1.5f;
+    }
+
+    public override bool PreDraw(ref Color lightColor) {
+        Texture2D bloomTex = ModContent.Request<Texture2D>("Consolaria/Assets/Textures/GlowAlpha").Value;
+        Color bloomColor = Color.Lerp(Color.Transparent, new Color(255, 50, 15, 0), _glowTimer);
+        for (int i = 0; i < 3; i++) {
+            Main.spriteBatch.Draw(bloomTex, Projectile.Center - Main.screenPosition, null, bloomColor, Projectile.rotation, bloomTex.Size() / 2f, 0.4f, 0, 0f);
+        }
+
+        return true;
     }
 }
 #endregion

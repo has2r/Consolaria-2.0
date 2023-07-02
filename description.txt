@@ -22,18 +22,6 @@ Credits:
 - Zerokk - programmer
 - Heretic - spriter, animator, wiki editor
 
-<<<<<<< HEAD
-- DrunkenCat for original boss AIs
-- Synoxsis for Lepus, Turkor & Ocram themes
-- Fyerow & Croul for legacy Ocram theme
-- StrikerRKT for extracting files from various Japanese versions of the game
-- Sparcdoctor for testing the mod & suggesting content
-- CrezyDud for fixing Turkor in Multiplayer
-- OnesAndZer0s for providing Jungle Sanctum worldgen
-- CKnight, Bripe, MeuRan, minichibis, Nokilos & Obesedog for providing numerous sprites
-- KondiU for fixing & contributing some features
-▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
-=======
 Contributors:
 - DrunkenCat - original boss AIs
 - Synoxsis - Lepus, Turkor and Ocram themes
@@ -46,7 +34,8 @@ Contributors:
 - Bripe, Obesedog, Nokilos, MeuRan - numerous sprites
 - OrcaRequiem - Orca animation rework
 - Lion8cake - Tizona Zenith graphic and recipe
->>>>>>> main
+▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+
 
 Discord: https://discord.gg/DTABXbd
 Forum post: https://forums.terraria.org/index.php?threads/consolaria.62570

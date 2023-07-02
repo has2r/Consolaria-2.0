@@ -2,7 +2,6 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
-using Consolaria.Content.Items.Materials;
 
 namespace Consolaria.Content.Items.Armor.Magic {
     [AutoloadEquip(EquipType.Body)]

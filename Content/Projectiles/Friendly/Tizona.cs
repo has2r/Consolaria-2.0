@@ -6,7 +6,6 @@ using System;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.GameContent.Drawing;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.Projectiles.Friendly {
@@ -114,10 +113,10 @@ namespace Consolaria.Content.Projectiles.Friendly {
             float amount = num3;
             float fromValue = Lighting.GetColor(Projectile.Center.ToTileCoordinates()).ToVector3().Length() / (float) Math.Sqrt(3.0);
             fromValue = Utils.Remap(fromValue, 0.2f, 1f, 0f, 1f);
-            Color value = Color.Lerp(new Color(181, 106, 255, 220), new Color(151, 118, 220, 220), amount); //near sword
+            Color value = Color.Lerp(new Color(80, 70, 210, 220), new Color(180, 60, 140, 220), amount); //last part
             spriteBatch.Draw(texture, vector, rectangle, value * fromValue * num3, Projectile.rotation + Projectile.ai[0] * ((float)Math.PI / 4f) * -1f * (1f - num2), origin, num, effects, 0f);
-            Color value2 = Color.Lerp(Color.Purple, new Color(141, 98, 221, 220), amount) * 1.25f; //central part
-            Color color = Color.Lerp(new Color(181, 106, 255, 220), new Color(151, 118, 220, 220), amount) * 1.25f; //main color
+            Color value2 = Color.Lerp(new Color(210, 60, 80, 220), new Color(70, 30, 240, 220), amount) * 1.25f; //central part
+            Color color = Color.Lerp(new Color(80, 70, 210, 220), new Color(181, 106, 255, 220), amount) * 1.25f; //main color
             Color value3 = Color.White * num3 * 0.5f;
             value3.A = (byte) (value3.A * (1f - fromValue));
             Color value4 = value3 * fromValue * 0.5f;

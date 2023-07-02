@@ -5,7 +5,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.Items.Vanity {
-    [AutoloadEquip(EquipType.Body)]
+	[AutoloadEquip(EquipType.Body)]
 
 	public class MonokumaBody : ModItem {
 		public override void SetStaticDefaults () {

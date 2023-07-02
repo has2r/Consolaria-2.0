@@ -17,9 +17,9 @@ It is highly recommended to play this mod alongside Heartbeataria, since both mo
 ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
 
 Credits:
-- Has2r - programmer, founder
-- Peege•on - spriter, animator, programmer
-- Zerokk - programmer
+- has2r - programmer, founder
+- peege•on - spriter, animator, programmer
+- smeqe - programmer
 - Heretic - spriter, animator, wiki editor
 
 Contributors:

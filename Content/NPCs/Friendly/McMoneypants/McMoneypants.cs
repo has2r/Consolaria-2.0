@@ -565,8 +565,8 @@ public class McMoneypantsAttackProjectile : ModProjectile {
         set => Projectile.ai[0] = value ? 1f : 0f;
     }
 
-    public override string Texture
-        => $"Terraria/Images/Item_{ItemID.GoldCoin}";
+    public override void SetStaticDefaults()
+        => Main.projFrames[Type] = 8;
 
     public override void SetDefaults() {
         Projectile.friendly = true;
@@ -589,6 +589,15 @@ public class McMoneypantsAttackProjectile : ModProjectile {
         }
 
         return true;
+    }
+
+    public override void PostAI() {
+        if (++Projectile.frameCounter > 4) {
+            Projectile.frameCounter = 0;
+            if (++Projectile.frame > Main.projFrames[Type]) {
+                Projectile.frame = 0;
+            }
+        }
     }
 
     public override void AI() {

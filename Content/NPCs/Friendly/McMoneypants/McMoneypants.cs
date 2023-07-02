@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
+using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -60,10 +61,7 @@ public class McMoneypants : ModNPC {
                                "I feel so clean, like a money machine!",
                                "Trust me, it's not a Ponzi Scheme.",
                                "Some say even Midas was wearing this suit.",
-                               "What a beautiful day to make some money!",
-                               "Ferragamo Gold!",
-                               "Already invested",
-                               "No money phrase" };
+                               "What a beautiful day to make some money!" };
 
     public List<string> QuotesWhenInvested { get; private set; }
         = new List<string>() { "INVESTED!",
@@ -71,6 +69,15 @@ public class McMoneypants : ModNPC {
                                "Multiplying money in-progress...",
                                "MONEY!",
                                "PUMP & DUMP!" };
+
+    public List<string> QuotesOnButtonClickWhenFirstTimeInvested { get; private set; }
+        = new List<string>() { "Ferragamo Gold!" };
+
+    public List<string> QuotesOnButtonClickWhenPlayerHasNoMoney { get; private set; }
+        = new List<string>() { "No money phrase" };
+
+    public List<string> QuotesOnButtonClickWhenAlreadyInvested { get; private set; }
+        = new List<string>() { "Already invested" };
 
     internal static bool SpawnCondition
         => Main.dayTime && Main.time >= McMoneypantsWorldData.SpawnTime && Main.time < DAY_TIME;
@@ -353,21 +360,16 @@ public class McMoneypants : ModNPC {
     }
 
     private void OnFirstButtonClick() {
-        void UpdateChatText(int index) {
-            int lastElementIndex = index;
-            Main.npcChatText = Quotes[lastElementIndex];
-        }
-
         Player player = Main.LocalPlayer;
         McMoneypantsPlayerData modPlayer = player.GetModPlayer<McMoneypantsPlayerData>();
 
         if (modPlayer.PlayerInvested) {
-            UpdateChatText(Quotes.Count - 2);
+            Main.npcChatText = QuotesOnButtonClickWhenAlreadyInvested[Main.rand.Next(QuotesOnButtonClickWhenAlreadyInvested.Count)];
 
             return;
         }
         if (!player.BuyItem(modPlayer.PlayerInvestPrice)) {
-            UpdateChatText(Quotes.Count - 1);
+            Main.npcChatText = QuotesOnButtonClickWhenPlayerHasNoMoney[Main.rand.Next(QuotesOnButtonClickWhenPlayerHasNoMoney.Count)];
 
             return;
         }
@@ -406,7 +408,8 @@ public class McMoneypants : ModNPC {
 
         AddBuff();
         UpdateInvestInfo();
-        UpdateChatText(Quotes.Count - 3);
+
+        Main.npcChatText = QuotesOnButtonClickWhenFirstTimeInvested[Main.rand.Next(QuotesOnButtonClickWhenFirstTimeInvested.Count)];
 
         if (Main.netMode != NetmodeID.Server) { 
             SpawnDusts();

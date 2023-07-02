@@ -143,12 +143,12 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
 
         private void PlayIncomingSound() {
             bool isThereAnyInvasion = Main.invasionProgress != -1;
-            if (!Main.bloodMoon && !Main.eclipse && !isThereAnyInvasion) {
-                _eventStarted = false;
-            }
-
             if (Main.bloodMoon || Main.eclipse || isThereAnyInvasion) {
                 _eventStarted = true;
+            }
+
+            if (!Main.bloodMoon && !Main.eclipse && !isThereAnyInvasion) {
+                _eventStarted = false;
             }
 
             if (!_eventStarted) {

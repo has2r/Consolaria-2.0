@@ -68,7 +68,7 @@ public class CustomChristmsTreeTopPlacer : ModPlayer {
             }
             if (tile.TileFrameY == 6 && topperItem.TopperType == TopperItem.TopperItemType.Topper4) {
                 return false;
-            }
+            } 
 
             return true;
         }

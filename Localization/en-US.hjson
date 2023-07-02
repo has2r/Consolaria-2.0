@@ -1038,11 +1038,7 @@ Mods: {
 
 			DragonBreath: {
 				DisplayName: Dragon's Breath
-				Tooltip:
-					'''
-					Uses gel for ammo
-					70% chance to save ammo
-					'''
+				Tooltip: ""
 			}
 
 			EggCannon: {

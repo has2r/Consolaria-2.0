@@ -29,15 +29,22 @@ namespace Consolaria.Content.Projectiles.Friendly {
             Projectile.penetrate = 4;
             Projectile.timeLeft = 110;
 
-            Projectile.tileCollide = true;
             Projectile.extraUpdates = 2;
 
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = -1;
+
+			Projectile.ArmorPenetration = 15;
         }
 
 		public override bool? CanDamage()
 			=> Projectile.timeLeft > 27;
+
+        public override bool OnTileCollide(Vector2 oldVelocity) {
+			Projectile.velocity = Vector2.Zero;
+
+            return false;
+        }
 
         public override void AI () {
            	Projectile.localAI[0] += 1f;
@@ -161,13 +168,13 @@ namespace Consolaria.Content.Projectiles.Friendly {
 		}
 
 		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) {
-            target.AddBuff(BuffID.ShadowFlame, 180);
+            target.AddBuff(BuffID.ShadowFlame, 600);
 			Projectile.damage = (int)(Projectile.damage * 0.8f);
 		}
 
         public override void OnHitPlayer (Player target, Player.HurtInfo info) {
 			if (info.PvP) {
-				target.AddBuff(BuffID.ShadowFlame, 180);
+				target.AddBuff(BuffID.ShadowFlame, 600);
 				Projectile.damage = (int)(Projectile.damage * 0.8f);
 			}
         }

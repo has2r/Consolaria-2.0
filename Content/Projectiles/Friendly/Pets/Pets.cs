@@ -1,4 +1,6 @@
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+
 using System;
 using System.Linq;
 
@@ -231,10 +233,21 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
         public override void SetDefaults() {
             DrawOriginOffsetY = 3;
 
-            int width = 20, height = 52;
+            int width = 40, height = 52;
             Projectile.Size = new Vector2(width, height);
 
             base.SetDefaults();
+        }
+
+        public override bool PreDraw(ref Color lightColor) {
+            Texture2D texture = (Texture2D)ModContent.Request<Texture2D>(Texture);
+            Vector2 position = new Vector2(Projectile.Center.X, Projectile.Center.Y) - Main.screenPosition;
+            Vector2 drawOrigin = new Vector2(Projectile.width * 0.5f, Projectile.height * 0.5f);
+            var spriteEffects = Projectile.direction > 0 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+            int frameHeight = texture.Height / Main.projFrames[Projectile.type];
+            Rectangle frameRect = new Rectangle(0, Projectile.frame * frameHeight, texture.Width, frameHeight);
+            Main.EntitySpriteDraw(texture, position, frameRect, lightColor, Projectile.rotation, drawOrigin, Projectile.scale, spriteEffects, 0);
+            return false;
         }
 
         public override bool PreAI() {
@@ -251,6 +264,13 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
             }
 
             return true;
+        }
+
+        public override void PostAI() {
+            if (Projectile.wet && Projectile.lavaWet && Main.netMode != NetmodeID.Server && Main.GameUpdateCount % 40 == 0) {
+                SoundStyle style = SoundID.ScaryScream;
+                SoundEngine.PlaySound(style, Projectile.Center);
+            }
         }
     }
 

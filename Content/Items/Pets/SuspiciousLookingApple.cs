@@ -15,7 +15,7 @@ public class SuspiciousLookingApple : PetItem  {
 		int width = 22, height = 24;
 		Item.Size = new Vector2(width, height);
 
-        Item.rare = ItemRarityID.Pink;
+        Item.rare = ItemRarityID.Green;
         Item.value = Item.sellPrice(gold: 3);
     }
 }

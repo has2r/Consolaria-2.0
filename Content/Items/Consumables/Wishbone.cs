@@ -9,7 +9,6 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Items.Consumables {
     public class Wishbone : ModItem {
         public override void SetStaticDefaults () {
-
             Item.ResearchUnlockCount = 3;
             ItemID.Sets.SortingPriorityBossSpawns [Type] = 12;
         }

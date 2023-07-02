@@ -2,7 +2,6 @@
 using Terraria.ModLoader.Config;
 
 namespace Consolaria.Common {
-	[Label("Configuration")]
 	public class ConsolariaConfig : ModConfig {
 		public override ConfigScope Mode => ConfigScope.ServerSide;
 

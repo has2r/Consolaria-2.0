@@ -8,7 +8,6 @@ namespace Consolaria.Content.Items.Armor.Melee {
     [AutoloadEquip(EquipType.Body)]
     public class DragonBreastplate : ModItem {
         public override void SetStaticDefaults () {
-
             Item.ResearchUnlockCount = 1;
             ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<AncientDragonBreastplate>();
         }

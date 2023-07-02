@@ -1,10 +1,8 @@
 ﻿using Consolaria.Common;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Content;
 using System;
 using Terraria;
-using Terraria.GameContent;
 using Terraria.GameContent.Drawing;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -31,9 +29,9 @@ namespace Consolaria.Content.Projectiles.Friendly {
             Projectile.stopsDealingDamageAfterPenetrateHits = true;
         }
 
-        public override void AI () {
-            SwingAI();
-        }
+        public override void AI () 
+            => SwingAI();
+        
 
         private void SwingAI () {
             Player player = Main.player [Projectile.owner];
@@ -79,34 +77,6 @@ namespace Consolaria.Content.Projectiles.Friendly {
         public override void OnHitPlayer(Player target, Player.HurtInfo info) {
             if (info.PvP)
                 target.AddBuff(BuffID.ShadowFlame, 180);
-        }
-
-        private void DrawLikeNightsEdge (SpriteBatch spriteBatch) {
-            Vector2 vector = Projectile.Center - Main.screenPosition;
-            Asset<Texture2D> asset = TextureAssets.Projectile [Projectile.type];
-            Rectangle rectangle = asset.Frame(1, 4);
-            Vector2 origin = rectangle.Size() / 2f;
-            float num = Projectile.scale * 1.1f;
-            SpriteEffects effects = (!(Projectile.ai [0] >= 0f)) ? SpriteEffects.FlipVertically : SpriteEffects.None;
-            float num2 = Projectile.localAI [0] / Projectile.ai [1];
-            float scale = Utils.Remap(num2, 0f, 0.6f, 0f, 1f) * Utils.Remap(num2, 0.6f, 1f, 1f, 0f);
-            float num3 = 0.975f;
-            float fromValue = Lighting.GetColor(Projectile.Center.ToTileCoordinates()).ToVector3().Length() / (float) Math.Sqrt(3.0);
-            fromValue = Utils.Remap(fromValue, 0.2f, 1f, 0f, 1f);
-            Color value = new Color(40, 20, 60);
-            spriteBatch.Draw(asset.Value, vector, rectangle, value * fromValue * scale, Projectile.rotation + Projectile.ai [0] * ((float) Math.PI / 4f) * -1f * (1f - num2), origin, num * num3, effects, 0f);
-            Color color = new Color(80, 40, 180);
-            Color value2 = Color.White * scale * 0.5f;
-            value2.A = (byte) ((float) (int) value2.A * (1f - fromValue));
-            Color value3 = value2 * fromValue * 0.5f;
-            value3.G = (byte) ((float) (int) value3.G * fromValue);
-            value3.R = (byte) ((float) (int) value3.R * (0.25f + fromValue * 0.75f));
-            spriteBatch.Draw(asset.Value, vector, rectangle, value3 * 0.15f, Projectile.rotation + Projectile.ai [0] * 0.01f, origin, num, effects, 0f);
-            spriteBatch.Draw(asset.Value, vector, rectangle, new Color(80, 30, 160) * fromValue * scale * 0.3f, Projectile.rotation, origin, num * 0.8f, effects, 0f);
-            spriteBatch.Draw(asset.Value, vector, rectangle, color * fromValue * scale * 0.7f, Projectile.rotation, origin, num * num3, effects, 0f);
-            spriteBatch.Draw(asset.Value, vector, asset.Frame(1, 4, 0, 3), Microsoft.Xna.Framework.Color.White * 0.3f * scale * (1f - fromValue * 0.7f), Projectile.rotation + Projectile.ai [0] * 0.01f, origin, num, effects, 0f);
-            Vector2 drawpos = vector + (Projectile.rotation + Utils.Remap(num2, 0f, 1f, 0f, (float) Math.PI / 2f) * Projectile.ai [0]).ToRotationVector2() * ((float) asset.Width() * 0.5f - 4f) * num;
-            DrawHelper.DrawPrettyStarSparkle(Projectile.Opacity, SpriteEffects.None, drawpos, new Color(255, 255, 255, 0) * scale * 0.5f, color, num2, 0f, 0.5f, 0.5f, 1f, (float) Math.PI / 4f, new Vector2(2f, 2f), Vector2.One);
         }
 
         private void DrawLikeExcalibur (SpriteBatch spriteBatch) {

@@ -9,7 +9,7 @@ namespace Consolaria.Content.Items.Consumables {
     public class HolyHandgrenade2 : ModItem {
         public override void SetStaticDefaults () {
             Item.ResearchUnlockCount = 99;
-            ItemID.Sets.ShimmerTransformToItem [Type] = ItemID.Grenade;
+            ItemID.Sets.ShimmerTransformToItem [Type] = ItemID.PoopBlock;
         }
 
         public override void SetDefaults () {

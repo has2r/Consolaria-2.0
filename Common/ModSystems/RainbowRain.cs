@@ -16,7 +16,7 @@ namespace Consolaria.Common {
             }
         }
 
-        private int RainbowDropDenominator () {
+        private static int RainbowDropDenominator () {
             if (SeasonalEvents.configEnabled)
                 return SeasonalEvents.IsPatrickDay() ? 3 : 0;
             else return Main.raining ? 5 : 0;

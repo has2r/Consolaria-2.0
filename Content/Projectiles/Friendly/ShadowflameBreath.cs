@@ -13,8 +13,6 @@ namespace Consolaria.Content.Projectiles.Friendly {
         public override string Texture
 			=> $"Terraria/Images/Projectile_85";
 
-        private bool spawnDust;
-
         public override void SetStaticDefaults() {
             Main.projFrames[Type] = 4;
         }
@@ -28,14 +26,14 @@ namespace Consolaria.Content.Projectiles.Friendly {
             Projectile.ignoreWater = true;
             Projectile.friendly = true;
 
-            Projectile.penetrate = 5;
+            Projectile.penetrate = 4;
             Projectile.timeLeft = 110;
 
             Projectile.tileCollide = true;
             Projectile.extraUpdates = 2;
 
-            Projectile.usesIDStaticNPCImmunity = true;
-            Projectile.idStaticNPCHitCooldown = 8;
+            Projectile.usesLocalNPCImmunity = true;
+            Projectile.localNPCHitCooldown = -1;
         }
 
 		public override bool? CanDamage()
@@ -55,17 +53,17 @@ namespace Consolaria.Content.Projectiles.Friendly {
 			int num4 = 80;
 			int num5 = num4;
 
-			if (Projectile.localAI[0] < (float)num5 && Main.rand.NextFloat() < 0.25f) {
+			if (Projectile.localAI[0] < (float)num5 && Main.rand.NextFloat() < 0.15f) {
 				short num6 = DustID.Shadowflame;
-				Dust dust = Dust.NewDustDirect(Projectile.Center + Main.rand.NextVector2Circular(60f, 60f) * Utils.Remap(Projectile.localAI[0], 0f, 72f, 0.5f, 1f), 4, 4, num6, Projectile.velocity.X * 0.2f, Projectile.velocity.Y * 0.2f, 100);
+				Dust dust = Dust.NewDustDirect(Projectile.Center + Main.rand.NextVector2Circular(30f, 30f) * Utils.Remap(Projectile.localAI[0], 0f, 72f, 0.5f, 1f), 4, 4, num6, Projectile.velocity.X * 0.2f, Projectile.velocity.Y * 0.2f, 150);
 				if (Main.rand.NextBool(4)) {
 					dust.noGravity = true;
-					dust.scale *= 1.5f;
+					dust.scale *= 1.6f;
 					dust.velocity.X *= 2f;
 					dust.velocity.Y *= 2f;
 				}
 				else {
-					dust.scale *= 1.25f;
+					dust.scale *= 0.8f;
 				}
 
 				dust.scale *= 1.25f;
@@ -74,14 +72,14 @@ namespace Consolaria.Content.Projectiles.Friendly {
 				dust.customData = 1;
 			}
 
-			if (num4 > 0 && Projectile.localAI[0] >= (float)num4 && Main.rand.NextFloat() < 0.5f) {
+			if (num4 > 0 && Projectile.localAI[0] >= (float)num4 && Main.rand.NextFloat() < 0.25f) {
 				Vector2 center = Main.player[Projectile.owner].Center;
 				Vector2 vector = (Projectile.Center - center).SafeNormalize(Vector2.Zero).RotatedByRandom(0.19634954631328583) * 7f;
 				short num7 = 14;
 				Dust dust2 = Dust.NewDustDirect(Projectile.Center + Main.rand.NextVector2Circular(50f, 50f) - vector * 2f, 4, 4, num7, 0f, 0f, 150);
 				dust2.noGravity = true;
 				dust2.velocity = vector;
-				dust2.scale *= 1.1f + Main.rand.NextFloat() * 0.2f;
+				dust2.scale *= 0.9f + Main.rand.NextFloat() * 0.2f;
 				dust2.customData = -0.3f - 0.15f * Main.rand.NextFloat();
 			}
         }
@@ -109,11 +107,11 @@ namespace Consolaria.Content.Projectiles.Friendly {
 			float num2 = 12f;
 			float fromMax = num + num2;
 			Texture2D value = TextureAssets.Projectile[proj.type].Value;
-			Microsoft.Xna.Framework.Color transparent = Microsoft.Xna.Framework.Color.Transparent;
-            Color color = new Microsoft.Xna.Framework.Color(142, 30, 255, 200);
-			Color color2 = new Microsoft.Xna.Framework.Color(75, 15, 255, 70);
-			Microsoft.Xna.Framework.Color color3 = Microsoft.Xna.Framework.Color.Lerp(color2, color, 0.25f);
-			Microsoft.Xna.Framework.Color color4 = new Microsoft.Xna.Framework.Color(65, 26, 84, 150);
+			Color transparent = Color.Transparent;
+            Color color = new Color(82, 80, 195, 200);
+			Color color2 = new Color(160, 115, 190, 80);
+			Color color3 = Color.Lerp(color2, color, 0.25f);
+			Color color4 = new Color(56, 56, 164, 150);
 			float num3 = 0.35f;
 			float num4 = 0.7f;
 			float num5 = 0.85f;
@@ -126,19 +124,19 @@ namespace Consolaria.Content.Projectiles.Friendly {
 			float num9 = Math.Min(proj.localAI[0], 20f);
 			float num10 = Utils.Remap(proj.localAI[0], 0f, fromMax, 0f, 1f);
 			float num11 = Utils.Remap(num10, 0.2f, 0.5f, 0.25f, 1f);
-			Microsoft.Xna.Framework.Rectangle rectangle = value.Frame(1, verticalFrames, 0, (int)Utils.Remap(num10, 0.5f, 1f, 3f, 5f));
+			Rectangle rectangle = value.Frame(1, verticalFrames, 0, (int)Utils.Remap(num10, 0.5f, 1f, 3f, 5f));
 			if (!(num10 < 1f))
 				return;
 
 			for (int i = 0; i < 2; i++) {
 				for (float num12 = 1f; num12 >= 0f; num12 -= num6) {
-					transparent = ((num10 < 0.1f) ? Microsoft.Xna.Framework.Color.Lerp(Microsoft.Xna.Framework.Color.Transparent, color, Utils.GetLerpValue(0f, 0.1f, num10, clamped: true)) : ((num10 < 0.2f) ? Microsoft.Xna.Framework.Color.Lerp(color, color2, Utils.GetLerpValue(0.1f, 0.2f, num10, clamped: true)) : ((num10 < num3) ? color2 : ((num10 < num4) ? Microsoft.Xna.Framework.Color.Lerp(color2, color3, Utils.GetLerpValue(num3, num4, num10, clamped: true)) : ((num10 < num5) ? Microsoft.Xna.Framework.Color.Lerp(color3, color4, Utils.GetLerpValue(num4, num5, num10, clamped: true)) : ((!(num10 < 1f)) ? Microsoft.Xna.Framework.Color.Transparent : Microsoft.Xna.Framework.Color.Lerp(color4, Microsoft.Xna.Framework.Color.Transparent, Utils.GetLerpValue(num5, 1f, num10, clamped: true))))))));
+					transparent = ((num10 < 0.1f) ? Color.Lerp(Color.Transparent, color, Utils.GetLerpValue(0f, 0.1f, num10, clamped: true)) : ((num10 < 0.2f) ? Color.Lerp(color, color2, Utils.GetLerpValue(0.1f, 0.2f, num10, clamped: true)) : ((num10 < num3) ? color2 : ((num10 < num4) ? Color.Lerp(color2, color3, Utils.GetLerpValue(num3, num4, num10, clamped: true)) : ((num10 < num5) ? Color.Lerp(color3, color4, Utils.GetLerpValue(num4, num5, num10, clamped: true)) : ((!(num10 < 1f)) ? Color.Transparent : Color.Lerp(color4, Color.Transparent, Utils.GetLerpValue(num5, 1f, num10, clamped: true))))))));
 					float num13 = (1f - num12) * Utils.Remap(num10, 0f, 0.2f, 0f, 1f);
 					Vector2 vector = proj.Center - Main.screenPosition + proj.velocity * (0f - num9) * num12;
-					Microsoft.Xna.Framework.Color color5 = transparent * num13;
-					Microsoft.Xna.Framework.Color value2 = color5;
-					value2.G /= 2;
-					value2.B /= 2;
+					Color color5 = transparent * num13;
+					Color value2 = color5;
+					//value2.G /= 2;
+					//value2.B /= 2;
 					value2.A = (byte)Math.Min((float)(int)color5.A + 80f * num13, 255f);
 					Utils.Remap(proj.localAI[0], 20f, fromMax, 0f, 1f);
 
@@ -162,12 +160,16 @@ namespace Consolaria.Content.Projectiles.Friendly {
 			}
 		}
 
-        public override void OnHitNPC (NPC target, NPC.HitInfo hit, int damageDone)
-            => target.AddBuff(BuffID.ShadowFlame, 180);
+		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) {
+            target.AddBuff(BuffID.ShadowFlame, 180);
+			Projectile.damage = (int)(Projectile.damage * 0.8f);
+		}
 
         public override void OnHitPlayer (Player target, Player.HurtInfo info) {
-            if (info.PvP)
-                target.AddBuff(BuffID.ShadowFlame, 180);
+			if (info.PvP) {
+				target.AddBuff(BuffID.ShadowFlame, 180);
+				Projectile.damage = (int)(Projectile.damage * 0.8f);
+			}
         }
     }
 }

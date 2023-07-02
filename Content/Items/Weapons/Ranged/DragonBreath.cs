@@ -15,11 +15,11 @@ namespace Consolaria.Content.Items.Weapons.Ranged {
 			int width = 28; int height = 30;
 			Item.Size = new Vector2(width, height);
 
-			Item.damage = 76;
+			Item.damage = 46;
 			Item.DamageType = DamageClass.Ranged;
 
-			Item.useTime = 3;
-			Item.useAnimation = 18;
+			Item.useTime = 4;
+			Item.useAnimation = 24;
 
 			Item.shoot = ModContent.ProjectileType<Projectiles.Friendly.ShadowflameBreath>();
 			Item.shootSpeed = 6.5f;
@@ -44,11 +44,11 @@ namespace Consolaria.Content.Items.Weapons.Ranged {
 		}
 
 		public override bool Shoot (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
-			int _randomCount = Main.rand.Next(1, 4);
+			int _randomCount = Main.rand.Next(1, 3);
 			for (int i = 0; i < _randomCount; i++) {
 				float _randomVel = Main.rand.Next(-15, 15) * 0.035f;
 				velocity += new Vector2(_randomVel, _randomVel);
-				Projectile.NewProjectile(source, position.X, position.Y, velocity.X, velocity.Y, type, damage, knockback, player.whoAmI, 0f, 0f);
+				Projectile.NewProjectile(source, position.X, position.Y, velocity.X, velocity.Y, type, damage / 2, knockback, player.whoAmI, 0f, 0f);
 			}
 			return false;
 		}

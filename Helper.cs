@@ -9,6 +9,43 @@ using Terraria.Utilities;
 namespace Consolaria; 
 
 public static class Helper {
+    public static void SearchForTargets(Projectile projectile, Player owner, out bool foundTarget, out float distanceFromTarget, out Vector2 targetCenter) {
+		distanceFromTarget = 700f;
+		targetCenter = projectile.position;
+		foundTarget = false;
+
+		if (owner.HasMinionAttackTargetNPC) {
+			NPC npc = Main.npc[owner.MinionAttackTargetNPC];
+			float between = Vector2.Distance(npc.Center, projectile.Center);
+
+			if (between < 2000f) {
+				distanceFromTarget = between;
+				targetCenter = npc.Center;
+				foundTarget = true;
+			}
+		}
+
+		if (!foundTarget) {
+			for (int i = 0; i < Main.maxNPCs; i++) {
+				NPC npc = Main.npc[i];
+
+				if (npc.CanBeChasedBy()) {
+					float between = Vector2.Distance(npc.Center, projectile.Center);
+					bool closest = Vector2.Distance(projectile.Center, targetCenter) > between;
+					bool inRange = between < distanceFromTarget;
+					bool lineOfSight = Collision.CanHitLine(projectile.position, projectile.width, projectile.height, npc.position, npc.width, npc.height);
+					bool closeThroughWall = between < 100f;
+
+					if (((closest && inRange) || !foundTarget) && (lineOfSight || closeThroughWall)) {
+						distanceFromTarget = between;
+						targetCenter = npc.Center;
+						foundTarget = true;
+					}
+				}
+			}
+		}
+	}
+
     public static bool NextChance(this UnifiedRandom rand, double chance)
         => rand.NextDouble() <= chance;
 

@@ -52,7 +52,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
             SwingAI();
 
             Player owner = Main.player[Projectile.owner];
-            SearchForTargets(owner, out bool foundTarget, out float distanceFromTarget, out Vector2 targetCenter);
+            Helper.SearchForTargets(Projectile, owner, out bool foundTarget, out float distanceFromTarget, out Vector2 targetCenter);
 
             MoveSlowlyToClosestTarget(foundTarget, distanceFromTarget, targetCenter);
         }
@@ -76,43 +76,6 @@ namespace Consolaria.Content.Projectiles.Friendly {
                 _extraVelocity = Vector2.Zero;
             }
         }
-
-        private void SearchForTargets(Player owner, out bool foundTarget, out float distanceFromTarget, out Vector2 targetCenter) {
-			distanceFromTarget = 700f;
-			targetCenter = Projectile.position;
-			foundTarget = false;
-
-			if (owner.HasMinionAttackTargetNPC) {
-				NPC npc = Main.npc[owner.MinionAttackTargetNPC];
-				float between = Vector2.Distance(npc.Center, Projectile.Center);
-
-				if (between < 2000f) {
-					distanceFromTarget = between;
-					targetCenter = npc.Center;
-					foundTarget = true;
-				}
-			}
-
-			if (!foundTarget) {
-				for (int i = 0; i < Main.maxNPCs; i++) {
-					NPC npc = Main.npc[i];
-
-					if (npc.CanBeChasedBy()) {
-						float between = Vector2.Distance(npc.Center, Projectile.Center);
-						bool closest = Vector2.Distance(Projectile.Center, targetCenter) > between;
-						bool inRange = between < distanceFromTarget;
-						bool lineOfSight = Collision.CanHitLine(Projectile.position, Projectile.width, Projectile.height, npc.position, npc.width, npc.height);
-						bool closeThroughWall = between < 100f;
-
-						if (((closest && inRange) || !foundTarget) && (lineOfSight || closeThroughWall)) {
-							distanceFromTarget = between;
-							targetCenter = npc.Center;
-							foundTarget = true;
-						}
-					}
-				}
-			}
-		}
 
         private void SwingAI () {
             Player player = Main.player [Projectile.owner];

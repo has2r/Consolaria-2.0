@@ -38,6 +38,9 @@ namespace Consolaria.Content.Projectiles.Friendly {
             Projectile.idStaticNPCHitCooldown = 6;
         }
 
+		public override bool? CanDamage()
+			=> Projectile.timeLeft > 30;
+
         public override void AI () {
            	Projectile.localAI[0] += 1f;
 			int num = 90;
@@ -84,7 +87,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
         }
 
         public override void ModifyDamageHitbox(ref Rectangle hitbox) {
-            int num = (int)Utils.Remap(Projectile.localAI[0], 0f, 72f, 10f, 40f);
+            int num = (int)Utils.Remap(Projectile.localAI[0], 0f, 60f, 10f, 40f);
             hitbox.Inflate(num, num);
         }
 

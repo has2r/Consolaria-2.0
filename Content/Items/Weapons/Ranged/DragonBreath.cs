@@ -39,7 +39,7 @@ namespace Consolaria.Content.Items.Weapons.Ranged {
 
 		public override void ModifyShootStats (Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback) {
 			Vector2 _velocity = Utils.SafeNormalize(new Vector2(velocity.X, velocity.Y), Vector2.Zero);
-			position += _velocity * 3;
+			position += _velocity * 30f;
 			position += new Vector2(-_velocity.Y, _velocity.X) * (-2f * player.direction);
 		}
 

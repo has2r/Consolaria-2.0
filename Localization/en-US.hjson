@@ -1268,6 +1268,8 @@ Mods: {
 			Worm.DisplayName: Worm
 			OldLady.DisplayName: Old Lady
 			WormTombstone.DisplayName: Strange Looking Tombstone
+			McMoneypantsAttackProjectile.DisplayName: Mc Moneypants Attack Projectile
+			Explosion.DisplayName: Explosion
 		}
 
 		Tiles: {

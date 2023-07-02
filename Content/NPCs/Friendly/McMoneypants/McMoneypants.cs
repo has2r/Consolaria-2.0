@@ -605,7 +605,7 @@ public class McMoneypantsAttackProjectile : ModProjectile {
             if (CanDamageEnemies) {
                 isMoving = MoveSlowlyToClosestTarget(foundTarget, distanceFromTarget, targetCenter);
 
-                _glowTimer += 0.375f * (isMoving ? 1f : -0.5f);
+                _glowTimer += 0.375f * (isMoving ? 0.5f : -1f);
             }
         }
         if (!isMoving) {

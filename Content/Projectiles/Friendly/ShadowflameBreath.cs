@@ -27,7 +27,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
             Projectile.friendly = true;
 
             Projectile.penetrate = 4;
-            Projectile.timeLeft = 110;
+            Projectile.timeLeft = 120;
 
             Projectile.extraUpdates = 2;
 
@@ -169,13 +169,13 @@ namespace Consolaria.Content.Projectiles.Friendly {
 
 		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) {
             target.AddBuff(BuffID.ShadowFlame, 600);
-			Projectile.damage = (int)(Projectile.damage * 0.8f);
+			Projectile.damage = (int)(Projectile.damage * 0.75f);
 		}
 
         public override void OnHitPlayer (Player target, Player.HurtInfo info) {
 			if (info.PvP) {
 				target.AddBuff(BuffID.ShadowFlame, 600);
-				Projectile.damage = (int)(Projectile.damage * 0.8f);
+				Projectile.damage = (int)(Projectile.damage * 0.75f);
 			}
         }
     }

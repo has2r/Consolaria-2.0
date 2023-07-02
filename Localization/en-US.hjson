@@ -1143,6 +1143,16 @@ Mods: {
 				DisplayName: Strange Looking Tombstone
 				Tooltip: A Tombstone that kinda looks like a worm, right?
 			}
+
+			Topper505: {
+				DisplayName: 505 Topper
+				Tooltip: ""
+			}
+
+			StarTopper4: {
+				DisplayName: Star Topper 4
+				Tooltip: ""
+			}
 		}
 
 		NPCs: {

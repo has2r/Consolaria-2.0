@@ -178,7 +178,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
             (num13 + Projectile.ai [0] * ((float) Math.PI / 2f)).ToRotationVector2();
             Color value2 = new Color(200, 191, 231);
             Color value3 = new Color(15, 84, 125);
-            Lighting.AddLight(Projectile.Center + Projectile.rotation.ToRotationVector2() * 50f * Projectile.scale, value2.ToVector3());
+            //Lighting.AddLight(Projectile.Center + Projectile.rotation.ToRotationVector2() * 50f * Projectile.scale, value2.ToVector3());
             if (Main.rand.NextFloat() < Projectile.Opacity - 0.3f) {
                 Color.Lerp(Color.Lerp(Color.Lerp(value3, value2, Utils.Remap(fromValue, 0f, 0.6f, 0f, 1f)), Color.White, Utils.Remap(fromValue, 0.6f, 0.8f, 0f, 0.5f)), Color.White, Main.rand.NextFloat() * 0.3f);
                 Dust dust3 = Dust.NewDustPerfect(position6, 27, Projectile.velocity * 0.6f, 100, default(Color) * Projectile.Opacity, 0.6f * Projectile.Opacity);

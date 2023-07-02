@@ -201,6 +201,12 @@ namespace Consolaria.Content.Projectiles.Friendly {
             return null;
         }
 
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+            => target.AddBuff(BuffID.ShadowFlame, 180);
+
+        public override void OnHitPlayer(Player target, Player.HurtInfo info)
+            => target.AddBuff(BuffID.ShadowFlame, 180);
+
         public override void ModifyHitNPC (NPC target, ref NPC.HitModifiers modifiers) {
             ParticleOrchestraSettings particleOrchestraSettings;
             Vector2 positionInWorld = Main.rand.NextVector2FromRectangle(target.Hitbox);
@@ -223,6 +229,10 @@ namespace Consolaria.Content.Projectiles.Friendly {
             fromValue = Utils.Remap(fromValue, 0.2f, 1f, 0f, 1f);
             float num3 = MathHelper.Min(0.15f + fromValue * 0.85f, Utils.Remap(Projectile.localAI [0], 30f, 96f, 1f, 0f));
             float num4 = 2f;
+            Color color = new Microsoft.Xna.Framework.Color(142, 30, 255, 200);
+            Color color2 = new Microsoft.Xna.Framework.Color(75, 15, 255, 70);
+            Microsoft.Xna.Framework.Color value2 = Microsoft.Xna.Framework.Color.Lerp(color2, color, 0.25f);
+            Microsoft.Xna.Framework.Color color4 = new Microsoft.Xna.Framework.Color(65, 26, 84, 150);
             for (float num5 = num4; num5 >= 0f; num5 -= 1f) {
                 if (!(Projectile.oldPos [(int) num5] == Vector2.Zero)) {
                     Vector2 value = Projectile.Center - Projectile.velocity * 0.5f * num5;
@@ -231,9 +241,10 @@ namespace Consolaria.Content.Projectiles.Friendly {
                     float num7 = 1f - num5 / num4;
                     float scale = Projectile.Opacity * num7 * num7 * 0.85f;
                     float amount = Projectile.timeLeft / 360;
-                    Color value2 = Color.Lerp(new Color(65, 30, 135, 160), new Color(135, 40, 165, 120), amount); //further big part
+
+                    //Color value2 = Color.Lerp(new Color(65, 30, 135, 160), new Color(135, 40, 165, 120), amount); //further big part
                     spriteBatch.Draw(asset.Value, position, rectangle, value2 * num3 * scale, num6 + Projectile.ai [0] * ((float) Math.PI / 4f) * -1f, origin, num * num2, effects, 0f);
-                    Color value3 = Color.Lerp(new Color(145, 40, 115, 120), new Color(125, 90, 140, 120), amount); //closer big part
+                    Color value3 = Color.Lerp(value2, color, amount); //closer big part
                     Color value4 = Color.White * scale * 0.5f;
                     value4.A = (byte) (value4.A * (1f - num3));
                     Color value5 = value4 * num3 * 0.5f;
@@ -243,15 +254,15 @@ namespace Consolaria.Content.Projectiles.Friendly {
                     for (float num9 = (float) Math.PI * -2f + (float) Math.PI * 2f / num8; num9 < 0f; num9 += (float) Math.PI * 2f / num8) {
                         float scale2 = Utils.Remap(num9, (float) Math.PI * -2f, 0f, 0f, 0.5f);
                         spriteBatch.Draw(asset.Value, position, rectangle, value5 * 0.15f * scale2, num6 + Projectile.ai [0] * 0.01f + num9, origin, num, effects, 0f);
-                        spriteBatch.Draw(asset.Value, position, rectangle, Color.Lerp(new Color(80, 50, 200, 200), new Color(220, 50, 200, 200), amount) * fromValue * scale * scale2, num6 + num9, origin, num * 0.8f, effects, 0f); //transparent parts
+                        spriteBatch.Draw(asset.Value, position, rectangle, Color.Lerp(color, color4, amount) * fromValue * scale * scale2, num6 + num9, origin, num * 0.8f, effects, 0f); //transparent parts
                         spriteBatch.Draw(asset.Value, position, rectangle, value3 * fromValue * scale * MathHelper.Lerp(0.05f, 0.4f, fromValue) * scale2, num6 + num9, origin, num * num2, effects, 0f);
-                        spriteBatch.Draw(asset.Value, position, asset.Frame(1, 4, 0, 1), new Color(230, 191, 191) * MathHelper.Lerp(0.05f, 0.5f, fromValue) * scale * scale2, num6 + num9, origin, num, effects, 0f);
+                        spriteBatch.Draw(asset.Value, position, asset.Frame(1, 4, 0, 1), Color.Lerp(color, color4, amount) * MathHelper.Lerp(0.05f, 0.5f, fromValue) * scale * scale2, num6 + num9, origin, num, effects, 0f);
                     }
 
                     spriteBatch.Draw(asset.Value, position, rectangle, value5 * 0.15f, num6 + Projectile.ai [0] * 0.01f, origin, num, effects, 0f);
-                    spriteBatch.Draw(asset.Value, position, rectangle, Color.Lerp(new Color(140, 50, 200, 200), new Color(220, 50, 200, 200), amount) * num3 * scale, num6, origin, num * 0.8f, effects, 0f); //part near sparkle
+                    spriteBatch.Draw(asset.Value, position, rectangle, Color.Lerp(Color.Lerp(color, color4, amount), new Color(220, 50, 200, 200), amount) * num3 * scale, num6, origin, num * 0.8f, effects, 0f); //part near sparkle
                     spriteBatch.Draw(asset.Value, position, rectangle, value3 * fromValue * scale * MathHelper.Lerp(0.05f, 0.4f, num3), num6, origin, num * num2, effects, 0f);
-                    spriteBatch.Draw(asset.Value, position, asset.Frame(1, 4, 0, 1), new Color(200, 191, 231) * MathHelper.Lerp(0.05f, 0.5f, num3) * scale, num6, origin, num, effects, 0f);
+                    spriteBatch.Draw(asset.Value, position, asset.Frame(1, 4, 0, 1), Color.Lerp(color, color4, amount) * MathHelper.Lerp(0.05f, 0.5f, num3) * scale, num6, origin, num, effects, 0f);
                 }
             }
 
@@ -261,7 +272,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
 
             Vector2 drawpos = Projectile.Center - Main.screenPosition + (Projectile.rotation + 213f / 452f * Projectile.ai [0]).ToRotationVector2() * (asset.Width() * 0.5f - 4f) * num * num10;
             float scale3 = MathHelper.Min(num3, MathHelper.Lerp(1f, fromValue, Utils.Remap(Projectile.localAI [0], 0f, 80f, 0f, 1f)));
-            DrawHelper.DrawPrettyStarSparkle(Projectile.Opacity, SpriteEffects.None, drawpos, new Color(255, 255, 255, 0) * Projectile.Opacity * 0.5f * scale3, new Color(200, 100, 200) * scale3, Projectile.Opacity, 0f, 1f, 1f, 2f, (float) Math.PI / 4f, new Vector2(1.2f, 1.2f), Vector2.One);
+            DrawHelper.DrawPrettyStarSparkle(Projectile.Opacity, SpriteEffects.None, drawpos, Color.Lerp(color, color4, num2)  * Projectile.Opacity * 0.5f * scale3, new Color(200, 100, 200) * scale3, Projectile.Opacity, 0f, 1f, 1f, 2f, (float) Math.PI / 4f, new Vector2(1.2f, 1.2f), Vector2.One);
         }
 
         public override bool PreDraw (ref Color lightColor) {

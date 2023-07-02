@@ -92,10 +92,11 @@ namespace Consolaria.Content.Projectiles.Friendly {
             float amount = num3;
             float fromValue = Lighting.GetColor(Projectile.Center.ToTileCoordinates()).ToVector3().Length() / (float) Math.Sqrt(3.0);
             fromValue = Utils.Remap(fromValue, 0.2f, 1f, 0f, 1f);
-            Color value = Color.Lerp(new Color(80, 70, 210, 220), new Color(180, 60, 140, 220), amount); //last part
+            Color value = new Microsoft.Xna.Framework.Color(142, 30, 255, 200);
+            Color value2 = new Microsoft.Xna.Framework.Color(75, 15, 255, 70);
+            Microsoft.Xna.Framework.Color color = Microsoft.Xna.Framework.Color.Lerp(value2, value, 0.25f);
+            Microsoft.Xna.Framework.Color color4 = new Microsoft.Xna.Framework.Color(65, 26, 84, 150);
             spriteBatch.Draw(texture, vector, rectangle, value * fromValue * num3, Projectile.rotation + Projectile.ai[0] * ((float)Math.PI / 4f) * -1f * (1f - num2), origin, num, effects, 0f);
-            Color value2 = Color.Lerp(new Color(210, 60, 80, 220), new Color(70, 30, 240, 220), amount) * 1.25f; //central part
-            Color color = Color.Lerp(new Color(80, 70, 210, 220), new Color(181, 106, 255, 220), amount) * 1.25f; //main color
             Color value3 = Color.White * num3 * 0.5f;
             value3.A = (byte) (value3.A * (1f - fromValue));
             Color value4 = value3 * fromValue * 0.5f;
@@ -104,18 +105,18 @@ namespace Consolaria.Content.Projectiles.Friendly {
             spriteBatch.Draw(texture, vector, rectangle, value4 * 0.15f, Projectile.rotation + Projectile.ai [0] * 0.01f, origin, num, effects, 0f);
             spriteBatch.Draw(texture, vector, rectangle, color * fromValue * num3 * 0.3f, Projectile.rotation, origin, num, effects, 0f);
             spriteBatch.Draw(texture, vector, rectangle, value2 * fromValue * num3 * 0.5f, Projectile.rotation, origin, num * num4, effects, 0f);
-            spriteBatch.Draw(texture, vector, texture.Frame(1, 4, 0, 3), Color.White * 0.6f * num3, Projectile.rotation + Projectile.ai [0] * 0.01f, origin, num, effects, 0f);
-            spriteBatch.Draw(texture, vector, texture.Frame(1, 4, 0, 3), Color.White * 0.5f * num3, Projectile.rotation + Projectile.ai [0] * -0.05f, origin, num * 0.8f, effects, 0f);
-            spriteBatch.Draw(texture, vector, texture.Frame(1, 4, 0, 3), Color.White * 0.4f * num3, Projectile.rotation + Projectile.ai [0] * -0.1f, origin, num * 0.6f, effects, 0f);
+            spriteBatch.Draw(texture, vector, texture.Frame(1, 4, 0, 3), value * 0.6f * num3, Projectile.rotation + Projectile.ai [0] * 0.01f, origin, num, effects, 0f);
+            spriteBatch.Draw(texture, vector, texture.Frame(1, 4, 0, 3), value2 * 0.5f * num3, Projectile.rotation + Projectile.ai [0] * -0.05f, origin, num * 0.8f, effects, 0f);
+            spriteBatch.Draw(texture, vector, texture.Frame(1, 4, 0, 3), color4 * 0.4f * num3, Projectile.rotation + Projectile.ai [0] * -0.1f, origin, num * 0.6f, effects, 0f);
             float scaleFactor = num * 0.75f;
             for (float num5 = 0f; num5 < 12f; num5 += 1f) {
                 float num6 = Projectile.rotation + Projectile.ai [0] * num5 * ((float) Math.PI * -2f) * 0.025f + Utils.Remap(num2, 0f, 0.6f, 0f, 0.9f) * Projectile.ai [0];
                 Vector2 drawpos = vector + num6.ToRotationVector2() * (texture.Width * 0.5f - 6f) * num;
                 float scale = num5 / 12f;
-                DrawHelper.DrawPrettyStarSparkle(Projectile.Opacity, SpriteEffects.None, drawpos, Color.Lerp(new Color(255, 190, 190, 0), new Color(190, 180, 255, 0), num2) * num3 * 2f * scale, color, num2, 0f, 0.5f, 0.5f, 1f, num6, new Vector2(0f, Utils.Remap(num2, 0f, 1f, 3f, 0f)) * scaleFactor, Vector2.One * scaleFactor);
+                DrawHelper.DrawPrettyStarSparkle(Projectile.Opacity, SpriteEffects.None, drawpos, Color.Lerp(value, color4, num2) * num3 * 2f * scale, color, num2, 0f, 0.5f, 0.5f, 1f, num6, new Vector2(0f, Utils.Remap(num2, 0f, 1f, 3f, 0f)) * scaleFactor, Vector2.One * scaleFactor);
             }
             Vector2 drawpos2 = vector + (Projectile.rotation + Utils.Remap(num2, 0f, 0.6f, 0f, 0.9f) * Projectile.ai [0]).ToRotationVector2() * (texture.Width * 0.5f - 4f) * num;
-            DrawHelper.DrawPrettyStarSparkle(Projectile.Opacity, SpriteEffects.None, drawpos2, Color.Lerp(new Color(255, 190, 190, 0), new Color(190, 180, 255, 0), num2) * num3 * 1.5f, color, num2, 0f, 0.5f, 0.5f, 1f, 0f, new Vector2(2f, Utils.Remap(num2, 0f, 1f, 4f, 1f)) * scaleFactor, Vector2.One * scaleFactor);
+            DrawHelper.DrawPrettyStarSparkle(Projectile.Opacity, SpriteEffects.None, drawpos2, Color.Lerp(value, color4, num2) * num3 * 1.5f, color, num2, 0f, 0.5f, 0.5f, 1f, 0f, new Vector2(2f, Utils.Remap(num2, 0f, 1f, 4f, 1f)) * scaleFactor, Vector2.One * scaleFactor);
         }
         public override bool PreDraw (ref Color lightColor) {
             SpriteBatch spriteBatch = Main.spriteBatch;

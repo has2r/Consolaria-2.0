@@ -39,7 +39,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
         }
 
 		public override bool? CanDamage()
-			=> Projectile.timeLeft > 30;
+			=> Projectile.timeLeft > 27;
 
         public override void AI () {
            	Projectile.localAI[0] += 1f;

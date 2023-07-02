@@ -59,10 +59,10 @@ namespace Consolaria.Content.Items.Weapons.Ranged {
 			=> new Vector2(-6, 0);
 
 		public override bool CanConsumeAmmo (Item ammo, Player player)
-			=> player.itemAnimation <= player.itemTimeMax && Main.rand.NextChance(0.5);
+			=> player.itemAnimation <= player.itemTimeMax && Main.rand.NextChance(0.3);
 
         public override void ModifyTooltips(List<TooltipLine> tooltips) {
-            TooltipLine tooltip = new(Mod, "Flamethrower Tooltip", Language.GetTextValue("ItemTooltip.Flamethrower") + "\n" + Language.GetTextValue("ItemTooltip.CandyCornRifle").Replace("33", "50"));
+            TooltipLine tooltip = new(Mod, "Flamethrower Tooltip", Language.GetTextValue("ItemTooltip.Flamethrower") + "\n" + Language.GetTextValue("ItemTooltip.CandyCornRifle").Replace("33", "70"));
             tooltips.Add(tooltip);
         }
     }

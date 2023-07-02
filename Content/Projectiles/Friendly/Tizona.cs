@@ -79,7 +79,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
                 target.AddBuff(BuffID.ShadowFlame, 180);
         }
 
-        private void DrawLikeExcalibur (SpriteBatch spriteBatch) {
+         private void DrawLikeExcalibur (SpriteBatch spriteBatch) {
             Vector2 vector = Projectile.Center - Main.screenPosition;
             Texture2D texture = (Texture2D) ModContent.Request<Texture2D>(Texture);
             Rectangle rectangle = texture.Frame(1, 4);
@@ -118,6 +118,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
             Vector2 drawpos2 = vector + (Projectile.rotation + Utils.Remap(num2, 0f, 0.6f, 0f, 0.9f) * Projectile.ai [0]).ToRotationVector2() * (texture.Width * 0.5f - 4f) * num;
             DrawHelper.DrawPrettyStarSparkle(Projectile.Opacity, SpriteEffects.None, drawpos2, Color.Lerp(value, color4, num2) * num3 * 1.5f, color, num2, 0f, 0.5f, 0.5f, 1f, 0f, new Vector2(2f, Utils.Remap(num2, 0f, 1f, 4f, 1f)) * scaleFactor, Vector2.One * scaleFactor);
         }
+
         public override bool PreDraw (ref Color lightColor) {
             SpriteBatch spriteBatch = Main.spriteBatch;
             DrawLikeExcalibur(spriteBatch);

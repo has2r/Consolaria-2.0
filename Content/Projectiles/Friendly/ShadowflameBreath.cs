@@ -35,7 +35,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
             Projectile.extraUpdates = 2;
 
             Projectile.usesIDStaticNPCImmunity = true;
-            Projectile.idStaticNPCHitCooldown = 6;
+            Projectile.idStaticNPCHitCooldown = 8;
         }
 
 		public override bool? CanDamage()

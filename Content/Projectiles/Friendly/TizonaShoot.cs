@@ -218,7 +218,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
             //target.AddBuff(BuffID.ShadowFlame, 60);
         }
 
-        private void DrawLikeTrueNightsEdge (SpriteBatch spriteBatch) {
+       private void DrawLikeTrueNightsEdge (SpriteBatch spriteBatch) {
             Asset<Texture2D> asset = TextureAssets.Projectile [973];
             Rectangle rectangle = asset.Frame(1, 4);
             Vector2 origin = rectangle.Size() / 2f;

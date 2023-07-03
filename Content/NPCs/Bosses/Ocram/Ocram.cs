@@ -90,7 +90,7 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
             NPC.lifeMax = 52000;
             NPC.damage = 106;
 
-            NPC.defense = 35;
+            NPC.defense = 32;
             NPC.knockBackResist = 0f;
 
             NPC.value = Item.buyPrice(gold: 15);

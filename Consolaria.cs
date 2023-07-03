@@ -15,6 +15,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent;
 using Consolaria.Content.Items.Miscellaneous;
+using Terraria.WorldBuilding;
 
 namespace Consolaria {
     public class Consolaria : Mod {
@@ -30,7 +31,9 @@ namespace Consolaria {
 
             On_Player.DropTombstone += On_Player_DropTombstone;
             On_WorldGen.dropXmasTree += On_WorldGen_dropXmasTree;
+            On_SceneMetrics.ExportTileCountsToMain += On_SceneMetrics_ExportTileCountsToMain;
         }
+
 
         public override void Unload () {
             var fractalProfiles = (Dictionary<int, FinalFractalProfile>) typeof(FinalFractalHelper).GetField("_fractalProfiles", BindingFlags.NonPublic | BindingFlags.Static).GetValue(null);
@@ -38,6 +41,32 @@ namespace Consolaria {
 
             On_Player.DropTombstone -= On_Player_DropTombstone;
             On_WorldGen.dropXmasTree -= On_WorldGen_dropXmasTree;
+            On_SceneMetrics.ExportTileCountsToMain -= On_SceneMetrics_ExportTileCountsToMain;
+        }
+
+		private void On_SceneMetrics_ExportTileCountsToMain(On_SceneMetrics.orig_ExportTileCountsToMain orig, SceneMetrics self) {
+			orig(self);
+
+            Point point = Main.LocalPlayer.Center.ToTileCoordinates();
+            int extraTombstones = 0;
+            Rectangle tileRectangle = new(point.X - Main.buffScanAreaWidth / 2, point.Y - Main.buffScanAreaHeight / 2, Main.buffScanAreaWidth, Main.buffScanAreaHeight);
+            tileRectangle = WorldUtils.ClampToWorld(tileRectangle);
+            for (int i = tileRectangle.Left; i < tileRectangle.Right; i++) {
+                for (int j = tileRectangle.Top; j < tileRectangle.Bottom; j++) {
+                    if (!tileRectangle.Contains(i, j))
+                        continue;
+
+                    if (Main.tile[i, j].TileType == ModContent.TileType<WormTombstoneTile>())  {
+                        extraTombstones++;
+                    }
+                }
+            }
+
+            self.GraveyardTileCount += extraTombstones;
+
+            if (self.GraveyardTileCount > SceneMetrics.GraveyardTileMin) {
+                self.HasSunflower = false;
+            }
         }
 
         private void On_Player_DropTombstone (On_Player.orig_DropTombstone orig, Player self, long coinsOwned, NetworkText deathText, int hitDirection) {

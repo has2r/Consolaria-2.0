@@ -10,10 +10,14 @@ using Terraria.Audio;
 using Terraria.Chat;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
+using Terraria.GameContent.ItemDropRules;
+
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
+
+using Consolaria.Content.Items.Vanity;
 
 namespace Consolaria.Content.NPCs.Friendly.McMoneypants;
 
@@ -146,6 +150,11 @@ public class McMoneypants : ModNPC {
                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
                new FlavorTextBestiaryInfoElement("WIP - to add later"),
            });
+
+    public override void ModifyNPCLoot(NPCLoot npcLoot) {
+			npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<PrestigiousTopHat>()));
+		}
+    
     #endregion
 
     //public override void OnSpawn(IEntitySource source)

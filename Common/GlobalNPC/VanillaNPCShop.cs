@@ -44,6 +44,7 @@ namespace Consolaria.Common {
                 shop.Add(ModContent.ItemType<Content.Items.Vanity.AlpineHat>(), oktoberfestCondition);
                 shop.Add(ModContent.ItemType<Content.Items.Vanity.Lederweste>(), oktoberfestCondition);
                 shop.Add(ModContent.ItemType<Content.Items.Vanity.Lederhosen>(), oktoberfestCondition);
+                shop.Add(ModContent.ItemType<Content.Items.Vanity.OktoberLocks>(), oktoberfestCondition);                
                 shop.Add(ModContent.ItemType<Content.Items.Vanity.DirndlBlouse>(), oktoberfestCondition);
                 shop.Add(ModContent.ItemType<Content.Items.Vanity.DirndlSkirt>(), oktoberfestCondition);
             }

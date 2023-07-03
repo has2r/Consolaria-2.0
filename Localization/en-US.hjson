@@ -1149,6 +1149,11 @@ Mods: {
 				DisplayName: Star Topper 4
 				Tooltip: ""
 			}
+
+			OktoberLocks: {
+				DisplayName: Oktober Locks
+				Tooltip: ""
+			}
 		}
 
 		NPCs: {

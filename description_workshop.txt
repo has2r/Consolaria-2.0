@@ -20,9 +20,9 @@ It is highly recommended to play this mod alongside [url=https://steamcommunity.
 
 Credits:
 [list]
-[*][url=https://steamcommunity.com/id/has2r_]Has2r[/url] - programmer, founder
-[*][url=https://steamcommunity.com/id/m_pigeon]Peege•on[/url] - spriter, animator, programmer
-[*][url=https://steamcommunity.com/id/smeqe]Zerokk[/url] - programmer
+[*][url=https://steamcommunity.com/id/has2r_]has2r[/url] - programmer, founder
+[*][url=https://steamcommunity.com/id/m_pigeon]peege•on[/url] - spriter, animator, programmer
+[*][url=https://steamcommunity.com/id/smeqe]smeqe[/url] - programmer
 [*][url=https://steamcommunity.com/profiles/76561198147015378]Heretic[/url] - spriter, animator, wiki editor
 [/list]
 
@@ -35,7 +35,9 @@ Credits:
 [*][b]CrezyDud[/b] for fixing Turkor in Multiplayer
 [*][b]OnesAndZer0s[/b] for providing Jungle Sanctum worldgen
 [*][b]CKnight, Bripe, MeuRan, minichibis, Nokilos & Obesedog[/b] for providing numerous sprites
+[*][b]Bripe, Obesedog, Nokilos, MeuRan[/b] - numerous sprites
 [*][b]KondiU[/b] for fixing & contributing some features
+[*][b]Lion8cake[/b] - Tizona Zenith graphic and recipe
 [/list]
 
 ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁

@@ -72,6 +72,7 @@ public class CustomChristmsTreeTopPlacer : ModPlayer {
 
         if (CheckOtherConditions(Player.tileTargetX, Player.tileTargetY)) {
             Player.ApplyItemTime(selectedItem);
+            Player.ConsumeItem(selectedItem.type);
             WorldGen.dropXmasTree(Player.tileTargetX, Player.tileTargetY, 0);
 
             void setXmasTree(int x, int y) {

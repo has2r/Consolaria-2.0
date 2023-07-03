@@ -148,7 +148,7 @@ public class McMoneypants : ModNPC {
     public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         => bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] { 
                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
-               new FlavorTextBestiaryInfoElement("WIP - to add later"),
+               new FlavorTextBestiaryInfoElement("Flamboyant and charismatic, Mc MoneyPants is a fine baron willing to make anyone's life easier... For a price!"), //brainstorming intensifies
            });
 
     public override void ModifyNPCLoot(NPCLoot npcLoot) {

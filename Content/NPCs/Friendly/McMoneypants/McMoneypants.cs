@@ -144,7 +144,7 @@ public class McMoneypants : ModNPC {
     public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         => bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] { 
                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
-               new FlavorTextBestiaryInfoElement("WIP - to add late"),
+               new FlavorTextBestiaryInfoElement("WIP - to add later"),
            });
     #endregion
 

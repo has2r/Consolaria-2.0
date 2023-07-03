@@ -10,7 +10,7 @@ namespace Consolaria.Common {
             var oktoberfestCondition = new Condition("Mods.Consolaria.Conditions.SellingDuringOktoberfest", () => (SeasonalEvents.configEnabled && SeasonalEvents.IsOktoberfest()) || (!SeasonalEvents.configEnabled && player.HeldItem.type == ItemID.Ale));
             var valentineDayCondition = new Condition("Mods.Consolaria.Conditions.SellingDuringValentineDay", () => (SeasonalEvents.configEnabled && SeasonalEvents.IsValentineDay()) || (!SeasonalEvents.configEnabled && player.HasBuff(BuffID.Lovestruck)));
             var isMaleCondition = new Condition("Mods.Consolaria.Conditions.SellingIfMale", () => player.Male);
-            var isFemaleCondition = new Condition("Mods.Consolaria.Conditions.SellingWhenWoman", () => !player.Male);
+            var womanMoment = new Condition("Mods.Consolaria.Conditions.SellingWhenWoman", () => !player.Male);
 
             if (shop.NpcType == NPCID.Merchant) {
                 shop.Add(ModContent.ItemType<Content.Items.Pets.TurkeyFeather>(), thanksgivingCondition);
@@ -38,14 +38,18 @@ namespace Consolaria.Common {
                 shop.Add(ModContent.ItemType<Content.Items.Vanity.GeorgesHat>(), isMaleCondition);
                 shop.Add(ModContent.ItemType<Content.Items.Vanity.GeorgesTuxedoShirt>(), isMaleCondition);
                 shop.Add(ModContent.ItemType<Content.Items.Vanity.GeorgesTuxedoPants>(), isMaleCondition);
-                shop.Add(ModContent.ItemType<Content.Items.Vanity.FabulousRibbon>(), isFemaleCondition);
-                shop.Add(ModContent.ItemType<Content.Items.Vanity.FabulousDress>(), isFemaleCondition);
-                shop.Add(ModContent.ItemType<Content.Items.Vanity.FabulousSlippers>(), isFemaleCondition);
+                shop.Add(ModContent.ItemType<Content.Items.Vanity.FabulousRibbon>(), womanMoment);
+                shop.Add(ModContent.ItemType<Content.Items.Vanity.FabulousDress>(), womanMoment);
+                shop.Add(ModContent.ItemType<Content.Items.Vanity.FabulousSlippers>(), womanMoment);
                 shop.Add(ModContent.ItemType<Content.Items.Vanity.AlpineHat>(), oktoberfestCondition);
                 shop.Add(ModContent.ItemType<Content.Items.Vanity.Lederweste>(), oktoberfestCondition);
                 shop.Add(ModContent.ItemType<Content.Items.Vanity.Lederhosen>(), oktoberfestCondition);
                 shop.Add(ModContent.ItemType<Content.Items.Vanity.DirndlBlouse>(), oktoberfestCondition);
                 shop.Add(ModContent.ItemType<Content.Items.Vanity.DirndlSkirt>(), oktoberfestCondition);
+            }
+            if (shop.NpcType == NPCID.SantaClaus) {
+                shop.Add(ModContent.ItemType<Content.Items.Miscellaneous.StarTopper4>());
+                shop.Add(ModContent.ItemType<Content.Items.Miscellaneous.Topper505>());
             }
             if (shop.NpcType == NPCID.Demolitionist)
                 shop.Add(ModContent.ItemType<Content.Items.Weapons.Magic.RomanCandle>(), Condition.Christmas);

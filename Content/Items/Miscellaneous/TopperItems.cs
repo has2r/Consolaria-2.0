@@ -1,12 +1,9 @@
-using System;
 using System.Collections.Generic;
 
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
-
-using static Terraria.ModLoader.PlayerDrawLayer;
 
 namespace Consolaria.Content.Items.Miscellaneous; 
 

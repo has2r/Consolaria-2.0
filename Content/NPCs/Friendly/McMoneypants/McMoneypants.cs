@@ -52,32 +52,44 @@ public class McMoneypants : ModNPC {
                                
 
     public List<string> Quotes { get; private set; } 
-        = new List<string>() { /*"I want to be cremated, it's my last hope for a smoking hot body...",*/ //tf?!!
-                               "To the guy who invented zero - thanks for nothing.",
-                               "What was Forrest Gump’s email password? 1forrest1",
-                               //"I was wondering why that ball was getting bigger. Then it hit me..",
-                               "Waking up this morning was really an eye-opening experience.",
-                               "Don't waste money on crypto - just buy my stocks!",
+        = new List<string>() { "Honestly, a penny for my thoughts really isn't that much.",
+                               "If I had a nickel for every monster I saw last night, I'd be even more rich and a little less scared.",
+                               "Those blasted slimes keep trying to swallow my coins!",
+                               $"If money makes the world go round, {Main.worldName} is looking very poor indeed. Let's change it!",
                                "I feel so clean, like a money machine!",
-                               "Trust me, it's not a Ponzi Scheme.",
-                               "Some say even Midas was wearing this suit.",
-                               "What a beautiful day to make some money!" };
+                               "You know what I like about gold? I have a lot of it!",
+                               $"{Main.LocalPlayer.name}, one thing I can promise you is that I never ask my clients to judge me on my winners. I ask them to judge me on my losers, because I have so few.",
+                               "When those rare dirt blocks go up in price, I'm going to make millions!",
+							   "My financial advice? Don't shoot your coins out of that awful gun.",
+                               "Bitcoin? Why would I ever beat a coin?" };
 
     public List<string> QuotesWhenInvested { get; private set; }
-        = new List<string>() { "INVESTED!",
-                               "INVEST! INVEST! INVEST!",
+        = new List<string>() { "Time is money. So come again tomorrow to spend some!",
+                               "Trust me, it's not a Ponzi scheme.",
                                "Multiplying money in-progress...",
-                               "MONEY!",
-                               "PUMP & DUMP!" };
+                               "How many times do I have to say it? No refunds!",
+                               "Where's my pen? Don't tell me you took it after signing the contract!",
+                               "Pleasure doing business! I'll be back in a day so that we can renew our deal.",
+							   "For the last time, stop asking me about inflation!",
+                               "Pump it! No, dump it! Oh, it's you again." };
 
     public List<string> QuotesOnButtonClickWhenFirstTimeInvested { get; private set; }
-        = new List<string>() { "Ferragamo Gold!" };
+        = new List<string>() { "Ferragamo Gold!",
+							   "A bargain is struck, up goes your luck.",
+							   $"Today is your lucky day, {Main.LocalPlayer.name}",
+							   "A great investment! Lucky you are!" };
 
     public List<string> QuotesOnButtonClickWhenPlayerHasNoMoney { get; private set; }
-        = new List<string>() { "No money phrase" };
+        = new List<string>() { $"Sorry, {Main.LocalPlayer.name}, I can't give credit! Come back when you're a little – mmmm – richer.",
+							   "I'm not running a charity, you know...",
+							   "Show me the money, then we'll talk.",
+							   "No, you can't pay in vouchers." };
 
     public List<string> QuotesOnButtonClickWhenAlreadyInvested { get; private set; }
-        = new List<string>() { "Already invested" };
+        = new List<string>() { "There is no such thing as enough gold, but I've had enough of you today.",
+							   "Sorry, but my pockets are already full.",
+							   "You're all lucked out for the day.",
+							   "Now, don't get too greedy unless you want to end up like that Greek fella." };
 
     internal static bool SpawnCondition
         => Main.dayTime && Main.time >= McMoneypantsWorldData.SpawnTime && Main.time < DAY_TIME;

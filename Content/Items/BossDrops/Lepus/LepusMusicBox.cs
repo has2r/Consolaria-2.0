@@ -14,6 +14,7 @@ namespace Consolaria.Content.Items.BossDrops.Lepus {
 		public override void SetDefaults () {
 			int width = 24; int height = width;
 			Item.Size = new Vector2(width, height);
+			Item.maxStack = 1;
 
 			Item.accessory = true;
 			Item.hasVanityEffects = true;

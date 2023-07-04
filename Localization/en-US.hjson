@@ -1145,11 +1145,6 @@ Mods: {
 				Tooltip: ""
 			}
 
-			OktoberLocks: {
-				DisplayName: Oktober Locks
-				Tooltip: ""
-			}
-
 			PrestigiousTopHat: {
 				DisplayName: Prestigious Top Hat
 				Tooltip: Smells like a fresh bill!

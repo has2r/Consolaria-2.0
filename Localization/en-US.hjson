@@ -677,11 +677,6 @@ Mods: {
 				Tooltip: Enables all minor seasonal events for one day
 			}
 
-			PurpleThread: {
-				DisplayName: Purple Thread
-				Tooltip: ""
-			}
-
 			RainbowPiece: {
 				DisplayName: Rainbow Piece
 				Tooltip: Used for crafting a Pot O' Gold
@@ -1148,6 +1143,16 @@ Mods: {
 			StarTopper4: {
 				DisplayName: Star Topper 4
 				Tooltip: ""
+			}
+
+			OktoberLocks: {
+				DisplayName: Oktober Locks
+				Tooltip: ""
+			}
+
+			PrestigiousTopHat: {
+				DisplayName: Prestigious Top Hat
+				Tooltip: Smells like a fresh bill!
 			}
 		}
 

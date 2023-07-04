@@ -10,10 +10,14 @@ using Terraria.Audio;
 using Terraria.Chat;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
+using Terraria.GameContent.ItemDropRules;
+
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
+
+using Consolaria.Content.Items.Vanity;
 
 namespace Consolaria.Content.NPCs.Friendly.McMoneypants;
 
@@ -156,8 +160,13 @@ public class McMoneypants : ModNPC {
     public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         => bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] { 
                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
-               new FlavorTextBestiaryInfoElement("WIP - to add late"),
+               new FlavorTextBestiaryInfoElement("Flamboyant and charismatic, Mc MoneyPants is a fine baron willing to make anyone's life easier... For a price!"), //brainstorming intensifies
            });
+
+    public override void ModifyNPCLoot(NPCLoot npcLoot) {
+			npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<PrestigiousTopHat>()));
+		}
+    
     #endregion
 
     //public override void OnSpawn(IEntitySource source)

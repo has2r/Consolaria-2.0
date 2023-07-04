@@ -29,6 +29,7 @@ namespace Consolaria.Common {
             if (shop.NpcType == NPCID.Clothier) {
                 shop.Add(ModContent.ItemType<Content.Items.Pets.OldWalkingStick>());
                 shop.Add(ModContent.ItemType<Content.Items.Vanity.FestiveTopHat>(), Condition.Christmas);
+                shop.Add(ModContent.ItemType<Content.Items.Vanity.ShirenHat>(), Condition.MoonPhaseNew);
                 shop.Add(ModContent.ItemType<Content.Items.Vanity.ShirenShirt>(), Condition.MoonPhaseNew);
                 shop.Add(ModContent.ItemType<Content.Items.Vanity.ShirenPants>(), Condition.MoonPhaseNew);
                 shop.Add(ModContent.ItemType<Content.Items.Vanity.TorosHead>(), Condition.BloodMoon);
@@ -43,6 +44,7 @@ namespace Consolaria.Common {
                 shop.Add(ModContent.ItemType<Content.Items.Vanity.AlpineHat>(), oktoberfestCondition);
                 shop.Add(ModContent.ItemType<Content.Items.Vanity.Lederweste>(), oktoberfestCondition);
                 shop.Add(ModContent.ItemType<Content.Items.Vanity.Lederhosen>(), oktoberfestCondition);
+                shop.Add(ModContent.ItemType<Content.Items.Vanity.OktoberLocks>(), oktoberfestCondition);                
                 shop.Add(ModContent.ItemType<Content.Items.Vanity.DirndlBlouse>(), oktoberfestCondition);
                 shop.Add(ModContent.ItemType<Content.Items.Vanity.DirndlSkirt>(), oktoberfestCondition);
             }

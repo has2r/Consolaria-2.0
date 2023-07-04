@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 namespace Consolaria.Content.Items.BossDrops.Lepus {
 	public class LepusMusicBox : ModItem {
 		public override void SetStaticDefaults () {
+			Item.ResearchUnlockCount = 1;
 			MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Assets/Music/Lepus"), ModContent.ItemType<LepusMusicBox>(), ModContent.TileType<Tiles.LepusMusicBox>());
 			ItemID.Sets.ShimmerTransformToItem[Type] = ItemID.MusicBox;
 		}
@@ -13,6 +14,7 @@ namespace Consolaria.Content.Items.BossDrops.Lepus {
 		public override void SetDefaults () {
 			int width = 24; int height = width;
 			Item.Size = new Vector2(width, height);
+			Item.maxStack = 1;
 
 			Item.accessory = true;
 			Item.hasVanityEffects = true;

@@ -103,7 +103,7 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
                 spriteBatch.Draw(balloon, new Vector2(position.X, position.Y - offsetY - 62 + 14) + new Vector2(6, 4), rectangle, lightColor, 0, drawOrigin, Projectile.scale, SpriteEffects.None, 1f);
             }
             spriteBatch.End();
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, RasterizerState.CullCounterClockwise, (Effect)null, Main.GameViewMatrix.TransformationMatrix);
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, RasterizerState.CullCounterClockwise, null, Main.GameViewMatrix.TransformationMatrix);
             return false;
         }
     }

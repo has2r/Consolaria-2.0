@@ -43,5 +43,6 @@ namespace Consolaria.Content.Tiles {
 			if (Main.netMode == NetmodeID.MultiplayerClient && item >= 0)
 				NetMessage.SendData(MessageID.SyncItem, -1, -1, null, item, 1f, 0f, 0f, 0, 0, 0);
 		}
+
 	}
 }

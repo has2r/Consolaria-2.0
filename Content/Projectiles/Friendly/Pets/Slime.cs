@@ -1,8 +1,10 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+
 using System.IO;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -13,7 +15,7 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
             Main.projPet [Projectile.type] = true;
 
             ProjectileID.Sets.CharacterPreviewAnimations[Projectile.type] = ProjectileID.Sets.SimpleLoop(0, 6)
-				.WithOffset(-2, 0)
+				.WithOffset(84, 42)
 				.WithSpriteDirection(1)
                 .WhenNotSelected(0, 0);
         }
@@ -87,7 +89,15 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
             Player player = Main.player [Projectile.owner];
             Color slimeColor = Main.tenthAnniversaryWorld || Main.drunkWorld || Main.getGoodWorld ? Main.DiscoColor : player.shirtColor;
 
-            spriteBatch.Draw(texture, new Vector2(position.X, position.Y - offsetY), frameRect, slimeColor.MultiplyRGB(lightColor) * 0.8f, 0, drawOrigin, Projectile.scale, spriteEffects, 0f);
+            int intendedShader = player.cPet;
+            spriteBatch.End();
+            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, default, default, Main.Transform);
+            DrawData value = new(texture, new Vector2(position.X, position.Y - offsetY), frameRect, slimeColor.MultiplyRGB(lightColor) * 0.8f, 0, drawOrigin, Projectile.scale, spriteEffects, 0f);
+            GameShaders.Armor.Apply(intendedShader, Projectile, value);
+            value.Draw(spriteBatch);
+            spriteBatch.End();
+            spriteBatch.Begin();
+
             if (isFlying) {
                 Rectangle rectangle = frame.GetSourceRectangle(balloon);
                 int width = balloon.Width / framesCountX;

@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
+using Terraria.Enums;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -19,6 +20,11 @@ namespace Consolaria.Content.Tiles {
             TileObjectData.newTile.Height = 2;
             TileObjectData.newTile.CoordinateHeights = new int [] { 16, 16 };
             TileObjectData.newTile.StyleHorizontal = true;
+            TileObjectData.newAlternate.CopyFrom(TileObjectData.newTile);
+            TileObjectData.newAlternate.AnchorTop = new AnchorData(AnchorType.Platform, TileObjectData.newTile.Width, 0);
+            TileObjectData.newAlternate.DrawYOffset = -8;
+            TileObjectData.newAlternate.DrawFlipHorizontal = false;
+            TileObjectData.addAlternate(0);
             TileObjectData.addTile(Type);
 
             AdjTiles = new int [] { TileID.SoulBottles };
@@ -28,6 +34,15 @@ namespace Consolaria.Content.Tiles {
 
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);
             TileID.Sets.DisableSmartCursor [Type] = true;
+        }
+
+        		
+        public override void SetDrawPositions(int i, int j, ref int width, ref int offsetY, ref int height, ref short tileFrameX, ref short tileFrameY) {
+            if ((Framing.GetTileSafely(i, j - 1).HasTile && TileID.Sets.Platforms[Framing.GetTileSafely(i, j - 1).TileType]) ||
+                (Framing.GetTileSafely(i, j - 2).HasTile && TileID.Sets.Platforms[Framing.GetTileSafely(i, j - 2).TileType]) ||
+                (Framing.GetTileSafely(i, j - 3).HasTile && TileID.Sets.Platforms[Framing.GetTileSafely(i, j - 3).TileType])) {
+				offsetY += -8;
+            }
         }
 
         private readonly int animationFrameWidth = 18;

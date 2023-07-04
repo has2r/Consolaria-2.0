@@ -222,7 +222,7 @@ public class McMoneypants : ModNPC {
 
     public override void SetChatButtons(ref string button, ref string button2) {
         McMoneypantsPlayerData modPlayer = Main.LocalPlayer.GetModPlayer<McMoneypantsPlayerData>();
-        button = BUTTON_TEXT + (!modPlayer.PlayerInvested ? $" ({Helper.GetPriceText(modPlayer.PlayerInvestPrice)})" : string.Empty);
+        button = BUTTON_TEXT + (!modPlayer.PlayerInvested ? $" ({Helper.GetPriceText(modPlayer.PlayerInvestPrice, true)})" : string.Empty);
     }
 
     public override void OnChatButtonClicked(bool firstButton, ref string shopName)

@@ -19,6 +19,7 @@ using Terraria.WorldBuilding;
 using Consolaria.Content.Tiles;
 using Consolaria.Content.Projectiles.Friendly.Miscellaneous;
 using Consolaria.Content.Items.Placeable;
+using Terraria.GameContent.Drawing;
 
 namespace Consolaria {
     public class Consolaria : Mod {

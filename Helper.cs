@@ -49,7 +49,7 @@ public static class Helper {
     public static bool NextChance(this UnifiedRandom rand, double chance)
         => rand.NextDouble() <= chance;
 
-    public static string GetPriceText(long price) {
+    public static string GetPriceText(long price, bool ignoreCopperCoins = false) {
         long investPrice = price;
 
         string result = string.Empty;
@@ -74,7 +74,7 @@ public static class Helper {
             platinumCoins = investPrice;
         }
 
-        if (copperCoins > 0) {
+        if (copperCoins > 0 && !ignoreCopperCoins) {
             string goldCoinText = Lang.inter[15].Value;
             result += " " + copperCoins + " " + goldCoinText;
         }

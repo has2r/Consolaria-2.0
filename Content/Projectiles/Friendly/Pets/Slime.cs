@@ -91,7 +91,7 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
 
             int intendedShader = player.cPet;
             spriteBatch.End();
-            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, default, default, Main.Transform);
+            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, RasterizerState.CullCounterClockwise, default, Main.GameViewMatrix.TransformationMatrix);
             DrawData value = new(texture, new Vector2(position.X, position.Y - offsetY), frameRect, slimeColor.MultiplyRGB(lightColor) * 0.8f, 0, drawOrigin, Projectile.scale, spriteEffects, 0f);
             GameShaders.Armor.Apply(intendedShader, Projectile, value);
             value.Draw(spriteBatch);

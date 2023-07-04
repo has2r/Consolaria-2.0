@@ -1164,6 +1164,11 @@ Mods: {
 				DisplayName: Candied Fruit
 				Tooltip: ""
 			}
+
+			MythicalWyvernKite: {
+				DisplayName: Mythical Wyvern Kite
+				Tooltip: ""
+			}
 		}
 
 		NPCs: {
@@ -1293,6 +1298,7 @@ Mods: {
 			Explosion.DisplayName: Explosion
 			ExampleKiteProjectile.DisplayName: Example Kite Projectile
 			MythicalWyvernProjectile.DisplayName: Mythical Wyvern Projectile
+			MythicalWyvernKiteProjectile.DisplayName: Mythical Wyvern Kite Projectile
 		}
 
 		Tiles: {

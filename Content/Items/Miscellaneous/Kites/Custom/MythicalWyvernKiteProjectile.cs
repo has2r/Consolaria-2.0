@@ -4,7 +4,7 @@ using Terraria;
 
 namespace Consolaria.Content.Items.Miscellaneous.Kites.Custom;
 
-public sealed class MythicalWyvernProjectile : BaseKiteProjectile {
+public sealed class MythicalWyvernKiteProjectile : BaseKiteProjectile {
     protected override KiteInfo SetKiteInfo()
         => new() {
             SegmentsCount = 11,

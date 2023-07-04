@@ -8,6 +8,8 @@ using System;
 using System.Collections.Generic;
 using Consolaria.Content.Items.Vanity;
 using Consolaria.Content.NPCs.Friendly.McMoneypants;
+using Terraria.ModLoader.IO;
+using Consolaria.Content.Items.Miscellaneous.Kites.Custom;
 
 namespace Consolaria.Content.Items.Consumables;
 
@@ -57,21 +59,12 @@ public class RedEnvelope : ModItem {
             return;
         }
 
-        Dictionary<float, int[]> vanityItems = new() {
-            { 0.7f, new int[] { ModContent.ItemType<MythicalLionMask>(),
-                                ModContent.ItemType<MythicalRobe>() } },
-            { 0.8f, new int[] { ModContent.ItemType<GuaPiMao>(),
-                                ModContent.ItemType<TangSuitShirt>(),
-                                ModContent.ItemType<TangSuitPants>() } },
-            { 0.9f, new int[] { ModContent.ItemType<MythicalDogMask>(),
-                                ModContent.ItemType<MythicalDogShirt>(),
-                                ModContent.ItemType<MythicalDogPants>() } },
-            { 1f, new int[] { ModContent.ItemType<TangYuanHat>(),
-                              ModContent.ItemType<TangYuanShirt>(),
-                              ModContent.ItemType<TangYuanPants>() } },
-        };
-        foreach (int itemIds in vanityItems[chance]) {
-            player.QuickSpawnItem(player.GetSource_OpenItem(Type), itemIds);
+        if (Main.rand.NextBool()) {
+            player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<MythicalLionMask>());
+            player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<MythicalLionMask>());
+            return;
         }
+
+        player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<MythicalWyvernKite>());
     }
 }

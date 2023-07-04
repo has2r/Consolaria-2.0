@@ -50,7 +50,7 @@ public class RedEnvelope : ModItem {
             { 0.3f, (ItemID.GreenRocket, Main.rand.Next(3, 15)) },
             { 0.4f, (ItemID.BlueRocket, Main.rand.Next(3, 15)) },
             { 0.5f, (ItemID.YellowRocket, Main.rand.Next(3, 15)) },
-            { 0.6f, (ItemID.FireworksBox, 1) },
+            { 0.6f, (ModContent.ItemType<CandiedFruit>(), 1) },
         };
         if (chance <= 0.6f) {
             player.QuickSpawnItem(player.GetSource_OpenItem(Type), items[chance].Item1, items[chance].Item2);

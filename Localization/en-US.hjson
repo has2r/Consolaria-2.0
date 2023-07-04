@@ -1159,6 +1159,11 @@ Mods: {
 				DisplayName: Example Kite
 				Tooltip: ""
 			}
+
+			CandiedFruit: {
+				DisplayName: Candied Fruit
+				Tooltip: ""
+			}
 		}
 
 		NPCs: {

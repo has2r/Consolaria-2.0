@@ -1,6 +1,6 @@
 ## Info
 
-During the development of Terraria 1.3, tons of exclusive mobile & old-gen console features got removed. **Consolaria** is a mod that aims to bring this unique content back - fixed, reworked & rebalanced to the level of modern Terraria.
+Tons of exclusive mobile & old-gen console features were removed with the release of Terraria 1.3. Consolaria brings this unique content back, reworked and rebalanced for modern Terraria.
 
 This includes:
 - **Lepus, Turkor & Ocram** - all with brand new AI, Treasure Bags, Master Mode drops & music themes
@@ -13,7 +13,7 @@ This includes:
 - **[Boss Checklist](https://steamcommunity.com/sharedfiles/filedetails/?id=2669644269)** & **[Fargo's Mutant Mod](https://steamcommunity.com/sharedfiles/filedetails/?id=2570931073)** support
 - **Holy Hand Grenade!**
 
-Holiday content is always active by default & can be restricted to the corresponding dates using the config menu.
+Holiday content is always active by default and can be restricted to the corresponding dates using the config menu.
 
 Also try [Heartbeataria](https://steamcommunity.com/sharedfiles/filedetails/?id=2958674071) for content from Chinese editions of the game: together, the mods make PC Terraria the most complete experience ever!
 

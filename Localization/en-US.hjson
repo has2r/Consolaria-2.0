@@ -468,6 +468,11 @@ Mods: {
 				Tooltip: "{$CommonItemTooltip.BannerBonus}Mythical Wyvern"
 			}
 
+			MythicalWyvern: {
+				DisplayName: Mythical Wyvern Kite
+				Tooltip: ""
+			}
+
 			OrcaBanner: {
 				DisplayName: Orca Banner
 				Tooltip: "{$CommonItemTooltip.BannerBonus}Orca"
@@ -1154,6 +1159,16 @@ Mods: {
 				DisplayName: Example Kite
 				Tooltip: ""
 			}
+
+			CandiedFruit: {
+				DisplayName: Candied Fruit
+				Tooltip: ""
+			}
+
+			MythicalWyvernKite: {
+				DisplayName: Mythical Wyvern Kite
+				Tooltip: ""
+			}
 		}
 
 		NPCs: {
@@ -1282,6 +1297,8 @@ Mods: {
 			McMoneypantsAttackProjectile.DisplayName: Mc Moneypants Attack Projectile
 			Explosion.DisplayName: Explosion
 			ExampleKiteProjectile.DisplayName: Example Kite Projectile
+			MythicalWyvernProjectile.DisplayName: Mythical Wyvern Projectile
+			MythicalWyvernKiteProjectile.DisplayName: Mythical Wyvern Kite Projectile
 		}
 
 		Tiles: {

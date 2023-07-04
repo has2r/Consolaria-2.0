@@ -1,13 +1,16 @@
 using Microsoft.Xna.Framework;
 
+using System.Collections.Generic;
+
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.Enums;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.Items.Miscellaneous.Kites;
 
-public abstract class BaseKite : ModItem {
+public abstract class BaseKiteItem : ModItem {
 	public sealed override void SetStaticDefaults() {
         Item.ResearchUnlockCount = 1;
     }
@@ -29,4 +32,9 @@ public abstract class BaseKite : ModItem {
 
     public sealed override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         => true;
+
+    public sealed override void ModifyTooltips(List<TooltipLine> tooltips) {
+        TooltipLine tooltip = new(Mod, "Kite Tooltip", Language.GetTextValue("CommonItemTooltip.Kite").Replace("<right>", "Right Click"));
+        tooltips.Add(tooltip);
+    }
 }

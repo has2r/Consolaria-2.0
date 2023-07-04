@@ -1,12 +1,14 @@
 using Microsoft.Xna.Framework;
 
+using Terraria;
+
 namespace Consolaria.Content.Items.Miscellaneous.Kites.Custom;
 
-public sealed class ExampleKiteProjectile : BaseKiteProjectile {
+public sealed class MythicalWyvernKiteProjectile : BaseKiteProjectile {
     protected override KiteInfo SetKiteInfo()
         => new() {
-            SegmentsCount = 12,
-            SegmentsCountToDraw = 12,
+            SegmentsCount = 11,
+            SegmentsCountToDraw = 11,
             LengthBetweenBodySegments = 22f,
             BodyXPositionOffset = -12,
             HeadYPositionOffset = -6,
@@ -21,7 +23,9 @@ public sealed class ExampleKiteProjectile : BaseKiteProjectile {
     protected override float SetHeadRotation()
         => MathHelper.Pi / 8f * (float)Projectile.spriteDirection;
 
-    protected override Color SetLineColor()
-        => Color.Red;
+    protected override Color SetLineColor() {
+        float f = (float)((double)Main.GlobalTimeWrappedHourly * 5.0 % 5.0);
+        return Color.Lerp(new Color(194, 9, 9), new Color(249, 194, 16), f <= 0.5f ? f / 0.5f : (1f - (f - 0.5f) / 0.5f));
+    }
 }
 

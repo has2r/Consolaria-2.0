@@ -1154,6 +1154,11 @@ Mods: {
 				DisplayName: Prestigious Top Hat
 				Tooltip: Smells like a fresh bill!
 			}
+
+			ExampleKite: {
+				DisplayName: Example Kite
+				Tooltip: ""
+			}
 		}
 
 		NPCs: {
@@ -1281,6 +1286,7 @@ Mods: {
 			WormTombstone.DisplayName: Strange Looking Tombstone
 			McMoneypantsAttackProjectile.DisplayName: Mc Moneypants Attack Projectile
 			Explosion.DisplayName: Explosion
+			ExampleKiteProjectile.DisplayName: Example Kite Projectile
 		}
 
 		Tiles: {

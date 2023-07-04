@@ -49,8 +49,8 @@ namespace Consolaria.Common {
                 shop.Add(ModContent.ItemType<Content.Items.Vanity.DirndlSkirt>(), oktoberfestCondition);
             }
             if (shop.NpcType == NPCID.SantaClaus) {
-                shop.Add(ModContent.ItemType<Content.Items.Miscellaneous.StarTopper4>());
-                shop.Add(ModContent.ItemType<Content.Items.Miscellaneous.Topper505>());
+                shop.Add(ModContent.ItemType<Content.Items.Placeable.StarTopper4>());
+                shop.Add(ModContent.ItemType<Content.Items.Placeable.Topper505>());
             }
             if (shop.NpcType == NPCID.Demolitionist)
                 shop.Add(ModContent.ItemType<Content.Items.Weapons.Magic.RomanCandle>(), Condition.Christmas);

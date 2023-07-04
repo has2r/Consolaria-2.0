@@ -163,9 +163,8 @@ public class McMoneypants : ModNPC {
                new FlavorTextBestiaryInfoElement("Flamboyant and charismatic, Mc MoneyPants is a fine baron willing to make anyone's life easier... For a price!"), //brainstorming intensifies
            });
 
-    public override void ModifyNPCLoot(NPCLoot npcLoot) {
-			npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<PrestigiousTopHat>()));
-		}
+    public override void ModifyNPCLoot(NPCLoot npcLoot)
+	    => npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<PrestigiousTopHat>()));
     
     #endregion
 

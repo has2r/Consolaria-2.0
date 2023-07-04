@@ -8,7 +8,7 @@ namespace Consolaria.Content.Items.Placeable;
 
 public class WormTombstoneItem : ModItem {
     public override string Texture
-        => $"Consolaria/Content/Projectiles/WormTombstone";
+        => $"Consolaria/Content/Projectiles/Friendly/Miscellaneous/WormTombstone";
 
     public override void SetDefaults() {
         Item.CloneDefaults(ItemID.Tombstone);

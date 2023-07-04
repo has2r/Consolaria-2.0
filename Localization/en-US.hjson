@@ -468,6 +468,11 @@ Mods: {
 				Tooltip: "{$CommonItemTooltip.BannerBonus}Mythical Wyvern"
 			}
 
+			MythicalWyvern: {
+				DisplayName: Mythical Wyvern Kite
+				Tooltip: ""
+			}
+
 			OrcaBanner: {
 				DisplayName: Orca Banner
 				Tooltip: "{$CommonItemTooltip.BannerBonus}Orca"
@@ -1287,6 +1292,7 @@ Mods: {
 			McMoneypantsAttackProjectile.DisplayName: Mc Moneypants Attack Projectile
 			Explosion.DisplayName: Explosion
 			ExampleKiteProjectile.DisplayName: Example Kite Projectile
+			MythicalWyvernProjectile.DisplayName: Mythical Wyvern Projectile
 		}
 
 		Tiles: {

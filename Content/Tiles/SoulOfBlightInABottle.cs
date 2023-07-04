@@ -1,5 +1,10 @@
+using Consolaria.Content.Items.Placeable;
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+
+using System.Collections.Generic;
+
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -22,7 +27,7 @@ namespace Consolaria.Content.Tiles {
             TileObjectData.newTile.StyleHorizontal = true;
             TileObjectData.newAlternate.CopyFrom(TileObjectData.newTile);
             TileObjectData.newAlternate.AnchorTop = new AnchorData(AnchorType.Platform, TileObjectData.newTile.Width, 0);
-            TileObjectData.newAlternate.DrawYOffset = -8;
+            TileObjectData.newAlternate.DrawYOffset = -9;
             TileObjectData.newAlternate.DrawFlipHorizontal = false;
             TileObjectData.addAlternate(0);
             TileObjectData.addTile(Type);
@@ -87,7 +92,8 @@ namespace Consolaria.Content.Tiles {
             return base.KillSound(i, j, fail);
         }
 
-        public override void KillMultiTile (int i, int j, int frameX, int frameY)
-            => Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 48, 48, ModContent.ItemType<Items.Consumables.SoulOfBlightInABottle>());
+        public override IEnumerable<Item> GetItemDrops(int i, int j){
+            yield return new Item(ModContent.ItemType<Items.Consumables.SoulOfBlightInABottle>());
+        }
     }
 }

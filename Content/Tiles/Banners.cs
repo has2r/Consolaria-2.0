@@ -118,8 +118,9 @@ namespace Consolaria.Content.Tiles
 			default:
 			return;
 			}
-			if (itemType != -1)
+			if (itemType != -1 && Framing.GetTileSafely(i, j - 1).HasTile && Framing.GetTileSafely(i, j - 1).TileType == Type) {
 				Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 48, itemType);
+			}
 		}
 
 		public override void NearbyEffects (int i, int j, bool closer) {

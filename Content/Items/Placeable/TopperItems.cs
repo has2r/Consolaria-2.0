@@ -5,7 +5,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace Consolaria.Content.Items.Miscellaneous; 
+namespace Consolaria.Content.Items.Placeable; 
 
 public abstract class TopperItem : ModItem {
     public enum TopperItemType {

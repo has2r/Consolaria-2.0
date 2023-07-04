@@ -92,7 +92,8 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
             int intendedShader = player.cPet;
             spriteBatch.End();
             var matrix = Main.gameMenu ? Main.UIScaleMatrix : Main.GameViewMatrix.TransformationMatrix;
-            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, default, default, matrix);
+            var samplerMode = Main.gameMenu ? SamplerState.AnisotropicClamp : Main.DefaultSamplerState;
+            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, samplerMode, DepthStencilState.None, default, default, matrix);
 
             DrawData value = new(texture, new Vector2(position.X, position.Y - offsetY), frameRect, slimeColor.MultiplyRGB(lightColor) * 0.8f, 0, drawOrigin, Projectile.scale, spriteEffects, 0f);
             GameShaders.Armor.Apply(intendedShader, Projectile, value);
@@ -104,8 +105,9 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
                 rectangle.X = width * (choosenBalloon - 1);
                 spriteBatch.Draw(balloon, new Vector2(position.X, position.Y - offsetY - 62 + 14) + new Vector2(6, 4), rectangle, lightColor, 0, drawOrigin, Projectile.scale, SpriteEffects.None, 1f);
             }
+
             spriteBatch.End();
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, RasterizerState.CullCounterClockwise, null, matrix);
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, samplerMode, DepthStencilState.None, RasterizerState.CullCounterClockwise, null, matrix);
             return false;
         }
     }

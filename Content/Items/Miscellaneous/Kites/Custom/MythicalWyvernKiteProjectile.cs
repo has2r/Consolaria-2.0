@@ -25,7 +25,7 @@ public sealed class MythicalWyvernKiteProjectile : BaseKiteProjectile {
 
     protected override Color SetLineColor() {
         float f = (float)((double)Main.GlobalTimeWrappedHourly * 5.0 % 5.0);
-        return Color.Lerp(new Color(194, 9, 9), new Color(249, 194, 16), (double)f <= 0.5 ? f / 0.5f : (float)(1.0 - ((double)f - 0.5) / 0.5));
+        return Color.Lerp(new Color(194, 9, 9), new Color(249, 194, 16), f <= 0.5f ? f / 0.5f : (1f - (f - 0.5f) / 0.5f));
     }
 }
 

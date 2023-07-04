@@ -95,8 +95,6 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
             DrawData value = new(texture, new Vector2(position.X, position.Y - offsetY), frameRect, slimeColor.MultiplyRGB(lightColor) * 0.8f, 0, drawOrigin, Projectile.scale, spriteEffects, 0f);
             GameShaders.Armor.Apply(intendedShader, Projectile, value);
             value.Draw(spriteBatch);
-            spriteBatch.End();
-            spriteBatch.Begin();
 
             if (isFlying) {
                 Rectangle rectangle = frame.GetSourceRectangle(balloon);
@@ -104,6 +102,8 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
                 rectangle.X = width * (choosenBalloon - 1);
                 spriteBatch.Draw(balloon, new Vector2(position.X, position.Y - offsetY - 62 + 14) + new Vector2(6, 4), rectangle, lightColor, 0, drawOrigin, Projectile.scale, SpriteEffects.None, 1f);
             }
+            spriteBatch.End();
+            spriteBatch.Begin();
             return false;
         }
     }

@@ -25,9 +25,10 @@ namespace Consolaria.Content.Tiles {
             TileObjectData.newTile.Height = 2;
             TileObjectData.newTile.CoordinateHeights = new int [] { 16, 16 };
             TileObjectData.newTile.StyleHorizontal = true;
+            TileObjectData.newTile.DrawYOffset = -2;
             TileObjectData.newAlternate.CopyFrom(TileObjectData.newTile);
             TileObjectData.newAlternate.AnchorTop = new AnchorData(AnchorType.Platform, TileObjectData.newTile.Width, 0);
-            TileObjectData.newAlternate.DrawYOffset = -9;
+            TileObjectData.newAlternate.DrawYOffset = -8;
             TileObjectData.newAlternate.DrawFlipHorizontal = false;
             TileObjectData.addAlternate(0);
             TileObjectData.addTile(Type);
@@ -46,7 +47,7 @@ namespace Consolaria.Content.Tiles {
             if ((Framing.GetTileSafely(i, j - 1).HasTile && TileID.Sets.Platforms[Framing.GetTileSafely(i, j - 1).TileType]) ||
                 (Framing.GetTileSafely(i, j - 2).HasTile && TileID.Sets.Platforms[Framing.GetTileSafely(i, j - 2).TileType]) ||
                 (Framing.GetTileSafely(i, j - 3).HasTile && TileID.Sets.Platforms[Framing.GetTileSafely(i, j - 3).TileType])) {
-				offsetY += -8;
+				offsetY += -10;
             }
         }
 
@@ -56,11 +57,6 @@ namespace Consolaria.Content.Tiles {
             r = 0.8f;
             g = 0.7f;
             b = 0.75f;
-        }
-
-        public override void SetSpriteEffects (int i, int j, ref SpriteEffects spriteEffects) {
-            if (i % 2 == 1)
-                spriteEffects = SpriteEffects.FlipHorizontally;
         }
 
         public override void AnimateIndividualTile (int type, int i, int j, ref int frameXOffset, ref int frameYOffset) {

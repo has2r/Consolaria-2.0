@@ -27,7 +27,7 @@ public abstract class BaseKiteProjectile : ModProjectile {
     protected Player Owner
         => Main.player[Projectile.owner];
 
-    protected ref float KiteLength
+    protected ref float CurrentKiteLength
         => ref Projectile.ai[0];
     #endregion
 
@@ -91,12 +91,12 @@ public abstract class BaseKiteProjectile : ModProjectile {
 
         float halfKiteLength = SetKiteInfo().MaxLength / 2f;
         if (Projectile.owner == Main.myPlayer && Projectile.extraUpdates == 0) {
-            float netUpdateValue1 = KiteLength;
-            if (KiteLength == 0f) {
-                KiteLength = halfKiteLength;
+            float netUpdateValue1 = CurrentKiteLength;
+            if (CurrentKiteLength == 0f) {
+                CurrentKiteLength = halfKiteLength;
             }
 
-            float netUpdateValue2 = KiteLength;
+            float netUpdateValue2 = CurrentKiteLength;
             if (Main.mouseRight) {
                 netUpdateValue2 -= 5f;
             }
@@ -105,7 +105,7 @@ public abstract class BaseKiteProjectile : ModProjectile {
                 netUpdateValue2 += 5f;
             }
 
-            KiteLength = MathHelper.Clamp(netUpdateValue2, SetKiteInfo().MinLength, SetKiteInfo().MaxLength);
+            CurrentKiteLength = MathHelper.Clamp(netUpdateValue2, SetKiteInfo().MinLength, SetKiteInfo().MaxLength);
             if (netUpdateValue1 != netUpdateValue2) {
                 Projectile.netUpdate = true;
             }
@@ -184,7 +184,7 @@ public abstract class BaseKiteProjectile : ModProjectile {
 
         Projectile.velocity.X *= 0.98f;
         float num10 = Projectile.Distance(vector);
-        float num11 = KiteLength;
+        float num11 = CurrentKiteLength;
         if (num10 > num11) {
             Vector2 vector2 = Projectile.DirectionTo(vector);
             float scaleFactor = num10 - num11;

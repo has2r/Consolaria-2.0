@@ -32,6 +32,6 @@ public class CandiedFruit : ModItem {
 
     public sealed override void ModifyTooltips(List<TooltipLine> tooltips) {
         TooltipLine tooltip = new(Mod, "Food Tooltip", Language.GetTextValue("CommonItemTooltip.MediumStats"));
-        tooltips.Add(tooltip);
+        tooltips.Insert(2, tooltip);
     }
 }

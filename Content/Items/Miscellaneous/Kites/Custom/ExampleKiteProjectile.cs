@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 namespace Consolaria.Content.Items.Miscellaneous.Kites.Custom;
 
 public sealed class ExampleKiteProjectile : BaseKiteProjectile {
-    protected override KiteInfo KiteInfo()
+    protected override KiteInfo SetKiteInfo()
         => new() {
             SegmentsCount = 12,
             SegmentsCountToDraw = 12,
@@ -20,5 +20,8 @@ public sealed class ExampleKiteProjectile : BaseKiteProjectile {
 
     protected override float SetHeadRotation()
         => MathHelper.Pi / 8f * (float)Projectile.spriteDirection;
+
+    protected override Color SetLineColor()
+        => Color.Red;
 }
 

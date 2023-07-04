@@ -29,8 +29,6 @@ public abstract class BaseKiteProjectile : ModProjectile {
 
     protected ref float KiteLength
         => ref Projectile.ai[0];
-
-	protected abstract KiteInfo KiteInfo();
     #endregion
 
     #region TML Hooks
@@ -72,11 +70,17 @@ public abstract class BaseKiteProjectile : ModProjectile {
 	#endregion
 
 	#region Custom
-	protected virtual float SetSegmentRotation()
+	protected virtual KiteInfo SetKiteInfo()
+		=> new();
+
+    protected virtual float SetSegmentRotation()
 		=> 0f;
 
     protected virtual float SetHeadRotation()
 		=> 8f;
+
+    protected virtual Color SetLineColor()
+		=> Color.White;
 
     private void UpdateKite() {
 		Projectile.timeLeft = 60;
@@ -85,7 +89,7 @@ public abstract class BaseKiteProjectile : ModProjectile {
             return;
         }
 
-        float halfKiteLength = KiteInfo().MaxLength / 2f;
+        float halfKiteLength = SetKiteInfo().MaxLength / 2f;
         if (Projectile.owner == Main.myPlayer && Projectile.extraUpdates == 0) {
             float netUpdateValue1 = KiteLength;
             if (KiteLength == 0f) {
@@ -101,7 +105,7 @@ public abstract class BaseKiteProjectile : ModProjectile {
                 netUpdateValue2 += 5f;
             }
 
-            KiteLength = MathHelper.Clamp(netUpdateValue2, KiteInfo().MinLength, KiteInfo().MaxLength);
+            KiteLength = MathHelper.Clamp(netUpdateValue2, SetKiteInfo().MinLength, SetKiteInfo().MaxLength);
             if (netUpdateValue1 != netUpdateValue2) {
                 Projectile.netUpdate = true;
             }
@@ -191,7 +195,7 @@ public abstract class BaseKiteProjectile : ModProjectile {
                 Projectile.velocity.Y -= 0.15f;
 
             Projectile.velocity.X += vector2.X * 0.2f;
-            if (num11 == KiteInfo().MinLength && Projectile.owner == Main.myPlayer)
+            if (num11 == SetKiteInfo().MinLength && Projectile.owner == Main.myPlayer)
             {
                 Projectile.Kill();
 
@@ -233,17 +237,17 @@ public abstract class BaseKiteProjectile : ModProjectile {
 		bool flag = true;
 		bool flag2 = false;
 
-        int num = KiteInfo().SegmentsCount;
+        int num = SetKiteInfo().SegmentsCount;
         int num12 = 500; //something
         float num2 = SetSegmentRotation();
-        int num3 = KiteInfo().SegmentsCountToDraw;
-        float num5 = KiteInfo().LengthBetweenBodySegments;
+        int num3 = SetKiteInfo().SegmentsCountToDraw;
+        float num5 = SetKiteInfo().LengthBetweenBodySegments;
 		float num6 = SetHeadRotation();
-        int num7 = KiteInfo().BodyXPositionOffset;
-        int num8 = KiteInfo().HeadYPositionOffset;
-        int num9 = KiteInfo().LengthBetweenTailSegments;
-        int num10 = KiteInfo().TailLength;
-        int num11 = KiteInfo().WindResistance;
+        int num7 = SetKiteInfo().BodyXPositionOffset;
+        int num8 = SetKiteInfo().HeadYPositionOffset;
+        int num9 = SetKiteInfo().LengthBetweenTailSegments;
+        int num10 = SetKiteInfo().TailLength;
+        int num11 = SetKiteInfo().WindResistance;
 
 		SpriteEffects effects = (Projectile.spriteDirection != 1) ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
 		Rectangle rectangle = value.Frame(Main.projFrames[Type], 1, Projectile.frame);
@@ -344,7 +348,7 @@ public abstract class BaseKiteProjectile : ModProjectile {
 			if (!flag3)
 				value4.Height = (int)num19;
 
-			Color color2 = Lighting.GetColor(center.ToTileCoordinates());
+			Color color2 = SetLineColor().MultiplyRGB(Lighting.GetColor(center.ToTileCoordinates()));
             Main.EntitySpriteDraw(value3, vector + new Vector2(Owner.direction * 6f, 2f) - Main.screenPosition, value4, color2, rotation, origin2, 1f, SpriteEffects.None);
 		}
 
@@ -418,7 +422,7 @@ public abstract class BaseKiteProjectile : ModProjectile {
 					float num35 = v.Length();
 					if (!(num35 < 2f)) {
 						float rotation2 = v.ToRotation() - (float)Math.PI / 2f;
-                        Main.EntitySpriteDraw(value3, vector3 - Main.screenPosition, value10, alpha, rotation2, origin2, new Vector2(1f, num35 / (float)value10.Height), SpriteEffects.None);
+                        Main.EntitySpriteDraw(value3, vector3 - Main.screenPosition, value10, SetLineColor().MultiplyRGB(alpha), rotation2, origin2, new Vector2(1f, num35 / (float)value10.Height), SpriteEffects.None);
 					}
 				}
 			}

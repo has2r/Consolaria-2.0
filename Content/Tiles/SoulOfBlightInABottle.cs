@@ -47,9 +47,9 @@ namespace Consolaria.Content.Tiles {
             int uniqueAnimationFrame = Main.tileFrame [Type] + i;
             if (i % 1 == 0)
                 uniqueAnimationFrame += 2;
-            if (i % 4 == 0)
+            if (i % 3 == 0)
                 uniqueAnimationFrame += 2;
-            uniqueAnimationFrame %= 4;
+            uniqueAnimationFrame %= 3;
 
             frameXOffset = uniqueAnimationFrame * animationFrameWidth;
         }

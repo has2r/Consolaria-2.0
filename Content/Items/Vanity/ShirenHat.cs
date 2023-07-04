@@ -15,7 +15,7 @@ namespace Consolaria.Content.Items.Vanity {
 			Item.Size = new Vector2(width, height);
 
 			Item.rare = ItemRarityID.White;
-			Item.value = Item.buyPrice(gold: 25);
+			Item.value = Item.buyPrice(silver: 20);
 			Item.vanity = true;
 		}
 	}

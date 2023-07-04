@@ -9,7 +9,6 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.ModLoader.Utilities;
 using Terraria.GameContent.Bestiary;
 using Consolaria.Content.Items.Pets;
-using Consolaria.Content.Items.Consumables;
 using Consolaria.Common;
 using Terraria.GameContent.Events;
 
@@ -227,7 +226,6 @@ namespace Consolaria.Content.NPCs {
 		public override void ModifyNPCLoot (NPCLoot npcLoot) {
 			npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<GoldenLantern>(), 20));
 			npcLoot.Add(ItemDropRule.Common(ItemID.SoulofFlight, 1, 5, 20));
-			npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<RedEnvelope>(), 1, 5, 15));
 		}
 
 		public override float SpawnChance (NPCSpawnInfo spawnInfo) {

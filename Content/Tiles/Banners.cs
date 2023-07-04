@@ -22,11 +22,15 @@ namespace Consolaria.Content.Tiles
 
 			TileObjectData.newTile.StyleHorizontal = true;
 			TileObjectData.newTile.AnchorTop = new AnchorData(AnchorType.SolidTile | AnchorType.SolidSide | AnchorType.SolidBottom, TileObjectData.newTile.Width, 0);
-			TileObjectData.addTile(Type);
+            TileObjectData.newTile.StyleWrapLimit = 118;
+            TileObjectData.addTile(Type);
 
-			TileID.Sets.DisableSmartCursor [Type] = true;
+            TileID.Sets.SwaysInWindBasic [Type] = true;
+
+            TileID.Sets.DisableSmartCursor [Type] = true;
 			AddMapEntry(new Color(233, 207, 94), Language.GetText("MapObject.Banner"));
-		}
+            AdjTiles = new int [] { TileID.Banners };
+        }
 
 		public override void KillMultiTile (int i, int j, int frameX, int frameY) {
 			int bannerType = frameX / 18;

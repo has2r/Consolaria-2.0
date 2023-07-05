@@ -163,6 +163,11 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
         public override void SetStaticDefaults() {
             Main.projFrames[Type] = 8;
 
+            ProjectileID.Sets.CharacterPreviewAnimations[Type] = ProjectileID.Sets.SimpleLoop(5, 3)
+				.WithOffset(-4, 0)
+				.WithSpriteDirection(-1)
+                .WhenNotSelected(4, 0);
+
             base.SetStaticDefaults();
         }
 

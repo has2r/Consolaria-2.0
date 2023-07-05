@@ -15,7 +15,7 @@ public class OldWalkingStick : PetItem  {
 		int width = 32, height = 28;
 		Item.Size = new Vector2(width, height);
 
-        Item.rare = ItemRarityID.Pink;
+        Item.rare = ItemRarityID.Blue;
         Item.value = Item.buyPrice(platinum: 1);
     }
 }

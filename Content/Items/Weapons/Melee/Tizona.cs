@@ -12,7 +12,7 @@ namespace Consolaria.Content.Items.Weapons.Melee {
 		public bool TizonaIsUsed { get; internal set; }
 
         public override void PostUpdate() {
-            if (Player.inventory[Player.selectedItem].type == ModContent.ItemType<Tizona>() && Player.itemAnimation == Player.itemAnimationMax - 1) {
+            if (Player.inventory[Player.selectedItem].type == ModContent.ItemType<Tizona>() && Player.ItemAnimationJustStarted) {
 				TizonaIsUsed = !TizonaIsUsed;
             }
         }
@@ -34,9 +34,8 @@ namespace Consolaria.Content.Items.Weapons.Melee {
 			Item.shootsEveryUse = true;
 
 			Item.DamageType = DamageClass.Melee;
-			Item.damage = 104;
+			Item.damage = 87;
 			Item.knockBack = 5;
-			Item.crit = 5;
 
 			Item.value = Item.buyPrice(gold: 5, silver: 50);
 			Item.rare = ItemRarityID.Lime;
@@ -54,10 +53,16 @@ namespace Consolaria.Content.Items.Weapons.Melee {
 				for (int i = 0; i < projectilesCount; i++) {
 					Vector2 perturbedSpeed = velocity.RotatedBy((MathHelper.Lerp(0, rotation, i / Math.Clamp(projectilesCount - 1, 1, projectilesCount)) - 0.5f) * -player.direction * player.gravDir) * 1.1f;
 					//Vector2 perturbedSpeed = new Vector2(0, -velocity.Length() * player.gravDir).RotatedBy((projectilesCount - 1f - i + 0.5f) * rotation * player.direction * player.gravDir);
-					Projectile.NewProjectile(player.GetSource_ItemUse(Item), position, perturbedSpeed, ModContent.ProjectileType<Projectiles.Friendly.TizonaShoot>(), damage / 2, knockback / 2, player.whoAmI, player.direction * player.gravDir, 32f, (projectilesCount - 1 - i) * 12f);
+					Projectile.NewProjectile(player.GetSource_ItemUse(Item), position, perturbedSpeed, ModContent.ProjectileType<Projectiles.Friendly.TizonaShoot>(), damage, knockback / 2, player.whoAmI, player.direction * player.gravDir, 32f, (projectilesCount - 1 - i) * 12f);
 				}
 			}
 			return false;
 		}
-	}
+
+        public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
+            => target.AddBuff(BuffID.ShadowFlame, 180);
+
+        public override void OnHitPvp(Player player, Player target, Player.HurtInfo hurtInfo)
+			=> target.AddBuff(BuffID.ShadowFlame, 180);
+    }
 }

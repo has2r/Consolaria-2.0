@@ -52,7 +52,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
             SwingAI();
 
             Player owner = Main.player[Projectile.owner];
-            SearchForTargets(owner, out bool foundTarget, out float distanceFromTarget, out Vector2 targetCenter);
+            Helper.SearchForTargets(Projectile, owner, out bool foundTarget, out float distanceFromTarget, out Vector2 targetCenter);
 
             MoveSlowlyToClosestTarget(foundTarget, distanceFromTarget, targetCenter);
         }
@@ -76,43 +76,6 @@ namespace Consolaria.Content.Projectiles.Friendly {
                 _extraVelocity = Vector2.Zero;
             }
         }
-
-        private void SearchForTargets(Player owner, out bool foundTarget, out float distanceFromTarget, out Vector2 targetCenter) {
-			distanceFromTarget = 700f;
-			targetCenter = Projectile.position;
-			foundTarget = false;
-
-			if (owner.HasMinionAttackTargetNPC) {
-				NPC npc = Main.npc[owner.MinionAttackTargetNPC];
-				float between = Vector2.Distance(npc.Center, Projectile.Center);
-
-				if (between < 2000f) {
-					distanceFromTarget = between;
-					targetCenter = npc.Center;
-					foundTarget = true;
-				}
-			}
-
-			if (!foundTarget) {
-				for (int i = 0; i < Main.maxNPCs; i++) {
-					NPC npc = Main.npc[i];
-
-					if (npc.CanBeChasedBy()) {
-						float between = Vector2.Distance(npc.Center, Projectile.Center);
-						bool closest = Vector2.Distance(Projectile.Center, targetCenter) > between;
-						bool inRange = between < distanceFromTarget;
-						bool lineOfSight = Collision.CanHitLine(Projectile.position, Projectile.width, Projectile.height, npc.position, npc.width, npc.height);
-						bool closeThroughWall = between < 100f;
-
-						if (((closest && inRange) || !foundTarget) && (lineOfSight || closeThroughWall)) {
-							distanceFromTarget = between;
-							targetCenter = npc.Center;
-							foundTarget = true;
-						}
-					}
-				}
-			}
-		}
 
         private void SwingAI () {
             Player player = Main.player [Projectile.owner];
@@ -215,7 +178,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
             (num13 + Projectile.ai [0] * ((float) Math.PI / 2f)).ToRotationVector2();
             Color value2 = new Color(200, 191, 231);
             Color value3 = new Color(15, 84, 125);
-            Lighting.AddLight(Projectile.Center + Projectile.rotation.ToRotationVector2() * 50f * Projectile.scale, value2.ToVector3());
+            //Lighting.AddLight(Projectile.Center + Projectile.rotation.ToRotationVector2() * 50f * Projectile.scale, value2.ToVector3());
             if (Main.rand.NextFloat() < Projectile.Opacity - 0.3f) {
                 Color.Lerp(Color.Lerp(Color.Lerp(value3, value2, Utils.Remap(fromValue, 0f, 0.6f, 0f, 1f)), Color.White, Utils.Remap(fromValue, 0.6f, 0.8f, 0f, 0.5f)), Color.White, Main.rand.NextFloat() * 0.3f);
                 Dust dust3 = Dust.NewDustPerfect(position6, 27, Projectile.velocity * 0.6f, 100, default(Color) * Projectile.Opacity, 0.6f * Projectile.Opacity);
@@ -249,7 +212,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
             //target.AddBuff(BuffID.ShadowFlame, 60);
         }
 
-        private void DrawLikeTrueNightsEdge (SpriteBatch spriteBatch) {
+       private void DrawLikeTrueNightsEdge (SpriteBatch spriteBatch) {
             Asset<Texture2D> asset = TextureAssets.Projectile [973];
             Rectangle rectangle = asset.Frame(1, 4);
             Vector2 origin = rectangle.Size() / 2f;

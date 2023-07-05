@@ -33,7 +33,7 @@ public class McMoneypantsInvitation : ModItem {
     }
 
     public override bool? UseItem(Player player) {
-        if (McMoneypantsWorldData.GildedInvitationUsed) {
+        if (McMoneypantsWorldData.isGildedInvitationUsed) {
             return false;
         }
 
@@ -45,7 +45,7 @@ public class McMoneypantsInvitation : ModItem {
             else if (Main.netMode == NetmodeID.Server) {
                 ChatHelper.BroadcastChatMessage(NetworkText.FromKey(text), Color.SpringGreen);
             }
-            McMoneypantsWorldData.GildedInvitationUsed = true;
+            McMoneypantsWorldData.isGildedInvitationUsed = true;
             if (Main.netMode == NetmodeID.Server) {
                 NetMessage.SendData(MessageID.WorldData);
             }

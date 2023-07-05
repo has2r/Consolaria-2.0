@@ -1,15 +1,23 @@
-﻿using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
-using Terraria.GameContent.Bestiary;
-using Terraria.Chat;
-using Terraria.Localization;
-using Terraria.ModLoader.IO;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 
-using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.Audio;
+using Terraria.Chat;
+using Terraria.GameContent;
+using Terraria.GameContent.Bestiary;
+using Terraria.GameContent.ItemDropRules;
+
+using Terraria.ID;
+using Terraria.Localization;
+using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
+
+using Consolaria.Content.Items.Vanity;
 
 namespace Consolaria.Content.NPCs.Friendly.McMoneypants;
 
@@ -20,50 +28,72 @@ public class McMoneypants : ModNPC {
 
     public const string BUTTON_TEXT = "Invest";
 
+    private static string _lastName = null;
+
     private static double _timePassed;
+
+    private static Profiles.StackedNPCProfile _NPCProfile;
     #endregion
 
     #region Properties
     public List<string> Names { get; private set; }
-        = new List<string>() { "Ryan",                  //gosling
-                               "Adolf",                 //um
-                               "Alfred",
-                               "Bernard",
-                               "Charles",
-                               "John",
-                               "Jeff",
-                               "Joseph",
-                               "Jack",                  //jack ma
-                               "Goldman",               //literally orwell
-                               "Henry",
-                               "Larry",
-                               "Ludwig",
-                               "Warren",
-                               "William",
-                               "Theodore",              //bombastic
-                               "Savelii" };             //savelii andrusovich\
+        = new List<string>() { "Milburn",  
+                               "Scrooge", 
+                               "Patrick",
+                               "Jordan",
+                               "Benny",
+                               "Carter",
+                               "Ulysses",
+                               "Thomas",
+                               "Jeff",           
+                               "Mark",        
+                               "Bill",
+                               "Gabe",
+                               "Steve",
+                               "Walter",
+                               "Rich",
+                               "George" };
                                
 
     public List<string> Quotes { get; private set; } 
-        = new List<string>() { /*"I want to be cremated, it's my last hope for a smoking hot body...",*/ //tf?!!
-                               "To the guy who invented zero - thanks for nothing.",
-                               "What was Forrest Gump’s email password? 1forrest1",
-                               //"I was wondering why that ball was getting bigger. Then it hit me..",
-                               "Waking up this morning was really an eye-opening experience.",
-                               "Don't waste money on crypto - just buy my stocks!",
+        = new List<string>() { "Honestly, a penny for my thoughts really isn't that much.",
+                               "If I had a nickel for every monster I saw last night, I'd be even more rich and a little less scared.",
+                               "Those blasted slimes keep trying to swallow my coins!",
+                               $"If money makes the world go round, {Main.worldName} is looking very poor indeed. Let's change it!",
                                "I feel so clean, like a money machine!",
-                               "Trust me, it's not a Ponzi Scheme.",
-                               "Some say even Midas was wearing this suit.",
-                               "What a beautiful day to make some money!",
-                               "Ferragamo Gold!", //quote when invested and the button is clicked
-                               "No money phrase" };
+                               "You know what I like about gold? I have a lot of it!",
+                               $"{Main.LocalPlayer.name}, one thing I can promise you is that I never ask my clients to judge me on my winners. I ask them to judge me on my losers, because I have so few.",
+                               "When those rare dirt blocks go up in price, I'm going to make millions!",
+							   "My financial advice? Don't shoot your coins out of that awful gun.",
+                               "Bitcoin? Why would I ever beat a coin?" };
 
     public List<string> QuotesWhenInvested { get; private set; }
-        = new List<string>() { "INVESTED!",
-                               "INVEST! INVEST! INVEST!",
+        = new List<string>() { "Time is money. So come again tomorrow to spend some!",
+                               "Trust me, it's not a Ponzi scheme.",
                                "Multiplying money in-progress...",
-                               "MONEY!",
-                               "PUMP & DUMP!" };
+                               "How many times do I have to say it? No refunds!",
+                               "Where's my pen? Don't tell me you took it after signing the contract!",
+                               "Pleasure doing business! I'll be back in a day so that we can renew our deal.",
+							   "For the last time, stop asking me about inflation!",
+                               "Pump it! No, dump it! Oh, it's you again." };
+
+    public List<string> QuotesOnButtonClickWhenFirstTimeInvested { get; private set; }
+        = new List<string>() { "Ferragamo Gold!",
+							   "A bargain is struck, up goes your luck.",
+							   $"Today is your lucky day, {Main.LocalPlayer.name}",
+							   "A great investment! Lucky you are!" };
+
+    public List<string> QuotesOnButtonClickWhenPlayerHasNoMoney { get; private set; }
+        = new List<string>() { $"Sorry, {Main.LocalPlayer.name}, I can't give credit! Come back when you're a little – mmmm – richer.",
+							   "I'm not running a charity, you know...",
+							   "Show me the money, then we'll talk.",
+							   "No, you can't pay in vouchers." };
+
+    public List<string> QuotesOnButtonClickWhenAlreadyInvested { get; private set; }
+        = new List<string>() { "There is no such thing as enough gold, but I've had enough of you today.",
+							   "Sorry, but my pockets are already full.",
+							   "You're all lucked out for the day.",
+							   "Now, don't get too greedy unless you want to end up like that Greek fella." };
 
     internal static bool SpawnCondition
         => Main.dayTime && Main.time >= McMoneypantsWorldData.SpawnTime && Main.time < DAY_TIME;
@@ -72,6 +102,7 @@ public class McMoneypants : ModNPC {
         => _timePassed >= (McMoneypantsWorldData.SomebodyInvested ? DAY_TIME / 2 : DAY_TIME);
     #endregion
 
+    #region Defaults
     public override void SetStaticDefaults() {
         int id = Type;
 
@@ -95,7 +126,12 @@ public class McMoneypants : ModNPC {
 			Direction = -1
 		};
 
-	    NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
+	    NPCID.Sets.NPCBestiaryDrawOffset.Add(id, value);
+
+        _NPCProfile = new Profiles.StackedNPCProfile(
+            new Profiles.DefaultNPCProfile(Texture, NPCHeadLoader.GetHeadSlot(HeadTexture), Texture + "_Party")
+            //new Profiles.DefaultNPCProfile(Texture + "_Shimmer", ShimmerHeadIndex, Texture + "_Shimmer_Party")
+        );
     }
 
     public override void SetDefaults() {
@@ -124,8 +160,13 @@ public class McMoneypants : ModNPC {
     public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         => bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] { 
                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
-               new FlavorTextBestiaryInfoElement("WIP - to add late"),
+               new FlavorTextBestiaryInfoElement("Flamboyant and charismatic, Mc MoneyPants is a fine baron willing to make anyone's life easier... For a price!"), //brainstorming intensifies
            });
+
+    public override void ModifyNPCLoot(NPCLoot npcLoot)
+	    => npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<PrestigiousTopHat>()));
+    
+    #endregion
 
     //public override void OnSpawn(IEntitySource source)
     //    => ResetInvestedStatus();
@@ -142,13 +183,32 @@ public class McMoneypants : ModNPC {
     #endregion
 
     #region Visuals
-    public override void HitEffect(NPC.HitInfo hit)
-        => OnHitDusts();
+    public override void HitEffect(NPC.HitInfo hit) {
+        OnHitDusts();
+        SpawnGoresOnDeath();
+    }
 
     private void OnHitDusts() {
         int dustAmount = NPC.life > 0 ? 1 : 5;
         for (int k = 0; k < dustAmount; k++) {
             Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood);
+        }
+    }
+
+    private void SpawnGoresOnDeath() {
+        if (Main.netMode != NetmodeID.Server && NPC.life <= 0) {
+            string variant = "";
+            if (NPC.IsShimmerVariant) {
+                variant += "_Shimmer";
+            }
+            int headGore = Mod.Find<ModGore>($"McMoneypantsGore1{variant}").Type;
+            int armGore = Mod.Find<ModGore>($"McMoneypantsGore2{variant}").Type;
+            int legGore = Mod.Find<ModGore>($"McMoneypantsGore3{variant}").Type;
+            Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity, headGore, 1f);
+            Gore.NewGore(NPC.GetSource_Death(), NPC.position + new Vector2(0, 20), NPC.velocity, armGore);
+            Gore.NewGore(NPC.GetSource_Death(), NPC.position + new Vector2(0, 20), NPC.velocity, armGore);
+            Gore.NewGore(NPC.GetSource_Death(), NPC.position + new Vector2(0, 34), NPC.velocity, legGore);
+            Gore.NewGore(NPC.GetSource_Death(), NPC.position + new Vector2(0, 34), NPC.velocity, legGore);
         }
     }
     #endregion
@@ -162,7 +222,7 @@ public class McMoneypants : ModNPC {
 
     public override void SetChatButtons(ref string button, ref string button2) {
         McMoneypantsPlayerData modPlayer = Main.LocalPlayer.GetModPlayer<McMoneypantsPlayerData>();
-        button = BUTTON_TEXT + (!modPlayer.PlayerInvested ? $" ({Helper.GetPriceText(modPlayer.PlayerInvestPrice)})" : string.Empty);
+        button = BUTTON_TEXT + (!modPlayer.PlayerInvested ? $" ({Helper.GetPriceText(modPlayer.PlayerInvestPrice, true)})" : string.Empty);
     }
 
     public override void OnChatButtonClicked(bool firstButton, ref string shopName)
@@ -170,6 +230,9 @@ public class McMoneypants : ModNPC {
     #endregion
 
     #region Town NPC
+    public override ITownNPCProfile TownNPCProfile()
+        => _NPCProfile;
+
     public override bool CanTownNPCSpawn(int numTownNPCs)
         => false;
 
@@ -187,7 +250,7 @@ public class McMoneypants : ModNPC {
     }
 
     public override void TownNPCAttackProj(ref int projType, ref int attackDelay) {
-        projType = ProjectileID.GoldCoin;
+        projType = ModContent.ProjectileType<McMoneypantsAttackProjectile>();
         attackDelay = 1;
     }
 
@@ -197,21 +260,25 @@ public class McMoneypants : ModNPC {
     }
     #endregion
 
+    #region Custom
     private bool DespawnNPC() {
         void IncreaseTimePassedValue() {
             _timePassed += Main.dayRate;
         }
 
         bool CheckConditions() {
-            return DespawnCondition && !Helper.IsNPCOnScreen(NPC.Center) && (!SpawnCondition || McMoneypantsWorldData.SomebodyInvested);
+            return DespawnCondition && !Helper.IsNPCOnScreen(NPC.Center) && (!SpawnCondition || McMoneypantsWorldData.InvestedNextTravel);
         }
 
         void NotifyDespawnInChat() {
             if (Main.netMode == NetmodeID.SinglePlayer) {
-                Main.NewText(Language.GetTextValue("LegacyMisc.35", NPC.FullName), 50, 125, 255);
+                string text = Language.GetTextValue("LegacyMisc.35", NPC.FullName).Replace(NPC.FullName.Replace(NPC.GivenName, string.Empty), " Mc MoneyPants");
+                Main.NewText(text, 50, 125, 255);
             }
-            else {
-                ChatHelper.BroadcastChatMessage(NetworkText.FromKey("LegacyMisc.35", NPC.GetFullNetName()), new Color(50, 125, 255));
+            else
+            {
+                NetworkText text = NetworkText.FromKey("LegacyMisc.35", NetworkText.FromKey("Mods.Consolaria.Others.NPCTitle", NetworkText.FromLiteral(NPC.GivenName), NetworkText.FromKey(Lang.GetNPCName(NPC.netID).Key)));
+                ChatHelper.BroadcastChatMessage(text, new Color(50, 125, 255));
             }
         }
 
@@ -219,6 +286,10 @@ public class McMoneypants : ModNPC {
             NPC.active = false;
             NPC.netSkip = -1;
             NPC.life = 0;
+        }
+
+        void SaveNPCName() {
+            _lastName = NPC.GivenName;
         }
 
         void ResetTimePassedValue() {
@@ -229,11 +300,14 @@ public class McMoneypants : ModNPC {
 
         if (CheckConditions())  {
             NotifyDespawnInChat();
-            KillNPC();
+
+            SaveNPCName();
 
             ResetTimePassedValue();
 
-            ResetInvestedStatus();
+            ResetInvestedStatus(NPC);
+
+            KillNPC();
 
             return false;
         }
@@ -251,17 +325,19 @@ public class McMoneypants : ModNPC {
 
         void NotifySpawnInChat(NPC npc) {
             if (Main.netMode == NetmodeID.SinglePlayer) {
-                Main.NewText(Language.GetTextValue("Announcement.HasArrived", npc.FullName), 50, 125, 255);
+                string text = Language.GetTextValue("Announcement.HasArrived", npc.FullName).Replace(npc.FullName.Replace(npc.GivenName, string.Empty), " Mc MoneyPants");
+                Main.NewText(text, 50, 125, 255);
             }
             else {
-                ChatHelper.BroadcastChatMessage(NetworkText.FromKey("Announcement.HasArrived", npc.GetFullNetName()), new Color(50, 125, 255));
+                NetworkText text = NetworkText.FromKey("Announcement.HasArrived", NetworkText.FromKey("Mods.Consolaria.Others.NPCTitle", NetworkText.FromLiteral(npc.GivenName), NetworkText.FromKey(Lang.GetNPCName(npc.netID).Key)));
+                ChatHelper.BroadcastChatMessage(text, new Color(50, 125, 255));
             }
         }
 
         void UpdateSpawnTime() {
             bool isMorning = Main.dayTime && Main.time == 0;
             if (isMorning)  {
-                bool shouldComeWhen = Main.rand.NextBool(McMoneypantsWorldData.ChanceToSpawn) || McMoneypantsWorldData.SomebodyInvested;
+                bool shouldComeWhen = Main.rand.NextBool(McMoneypantsWorldData.ChanceToSpawn) || McMoneypantsWorldData.InvestedNextTravel;
                 if (!isMoneypantsThere && shouldComeWhen) {
                     int minTime = 5400, maxTime = 8100;
                     McMoneypantsWorldData.SpawnTime = Helper.GetRandomSpawnTime(minTime, maxTime);
@@ -270,6 +346,10 @@ public class McMoneypants : ModNPC {
                     McMoneypantsWorldData.SpawnTime = double.MaxValue;
                 }
             }
+        }
+
+        string ChooseRandomName(List<string> names) {
+            return names[Main.rand.Next(names.Count)];
         }
 
         void SpawnNPC() {
@@ -281,7 +361,15 @@ public class McMoneypants : ModNPC {
                 worldNPC.direction = Main.spawnTileX >= WorldGen.bestX ? -1 : 1;
                 worldNPC.netUpdate = true;
 
-                McMoneypantsWorldData.FirstTimeTravelled = false;
+                if (McMoneypantsWorldData.DidntTravelYet) {
+                    McMoneypantsWorldData.DidntTravelYet = false;
+                }
+                else {
+                    McMoneypants modNPC = worldNPC.ModNPC as McMoneypants;
+                    List<string> names = modNPC.Names;
+                    string lastName = _lastName, name = lastName ?? ChooseRandomName(names);
+                    worldNPC.GivenName = name;
+                }
 
                 NotifySpawnInChat(worldNPC);
             }
@@ -292,26 +380,16 @@ public class McMoneypants : ModNPC {
     }
 
     private void OnFirstButtonClick() {
-        void UpdateChatTextWhenInvested() {
-            int lastElementIndex = Quotes.Count - 2;
-            Main.npcChatText = Quotes[lastElementIndex];
-        }
-
-        void UpdateChatTextWhenNoMoney() {
-            int lastElementIndex = Quotes.Count - 1;
-            Main.npcChatText = Quotes[lastElementIndex];
-        }
-
         Player player = Main.LocalPlayer;
         McMoneypantsPlayerData modPlayer = player.GetModPlayer<McMoneypantsPlayerData>();
 
         if (modPlayer.PlayerInvested) {
-            UpdateChatTextWhenInvested();
+            Main.npcChatText = QuotesOnButtonClickWhenAlreadyInvested[Main.rand.Next(QuotesOnButtonClickWhenAlreadyInvested.Count)];
 
             return;
         }
         if (!player.BuyItem(modPlayer.PlayerInvestPrice)) {
-            UpdateChatTextWhenNoMoney();
+            Main.npcChatText = QuotesOnButtonClickWhenPlayerHasNoMoney[Main.rand.Next(QuotesOnButtonClickWhenPlayerHasNoMoney.Count)];
 
             return;
         }
@@ -321,7 +399,7 @@ public class McMoneypants : ModNPC {
         }
 
         void UpdateInvestInfo() {
-            McMoneypantsWorldData.SomebodyInvested = true;
+            McMoneypantsWorldData.InvestedNextTravel = McMoneypantsWorldData.SomebodyInvested = true;
 
             modPlayer.PlayerInvested = true;
             modPlayer.PlayerInvestPrice += modPlayer.PlayerInvestPrice / 3;
@@ -350,7 +428,8 @@ public class McMoneypants : ModNPC {
 
         AddBuff();
         UpdateInvestInfo();
-        UpdateChatTextWhenInvested();
+
+        Main.npcChatText = QuotesOnButtonClickWhenFirstTimeInvested[Main.rand.Next(QuotesOnButtonClickWhenFirstTimeInvested.Count)];
 
         if (Main.netMode != NetmodeID.Server) { 
             SpawnDusts();
@@ -358,18 +437,21 @@ public class McMoneypants : ModNPC {
         }
     }
 
-    private static void ResetInvestedStatus() {
+    private static void ResetInvestedStatus(NPC npc) {
         McMoneypantsPlayerData modPlayer = Main.LocalPlayer.GetModPlayer<McMoneypantsPlayerData>();
         if (modPlayer.PlayerInvested) {
-            modPlayer.PlayerInvested = false;
+            modPlayer.PlayerInvested = McMoneypantsWorldData.SomebodyInvested = false;
 
             return;
         }
 
-        McMoneypantsWorldData.SomebodyInvested = false;
+        _lastName = null;
+
+        McMoneypantsWorldData.InvestedNextTravel = false;
 
         modPlayer.PlayerInvestPrice = McMoneypantsPlayerData.startPrice;
     }
+    #endregion
 }
 
 #region Data
@@ -394,10 +476,11 @@ public class McMoneypantsPlayerData : ModPlayer {
 }
 
 public class McMoneypantsWorldData : ModSystem {
-    internal static bool GildedInvitationUsed;
+    internal static bool isGildedInvitationUsed;
 
-    public static bool SomebodyInvested { get; internal set; }
-    public static bool FirstTimeTravelled { get; internal set; } = true;
+    public static bool InvestedNextTravel { get; internal set; }
+    public static bool SomebodyInvested { get; internal set; } 
+    public static bool DidntTravelYet { get; internal set; } = true;
 
     public static double SpawnTime { get; internal set; } = double.MaxValue;
 
@@ -410,50 +493,54 @@ public class McMoneypantsWorldData : ModSystem {
         => ResetValues();
 
     public override void SaveWorldData(TagCompound tag) {
-        tag.Add("isInvested", SomebodyInvested);
-        tag.Add("firstTimeTravelled", FirstTimeTravelled);
+        tag.Add("inviteIsUsed", isGildedInvitationUsed);
+
+        tag.Add("isInvested", InvestedNextTravel);
+        tag.Add("isInvested2", SomebodyInvested);
+        tag.Add("firstTimeTravelled", DidntTravelYet);
 
         tag.Add("spawnTime", SpawnTime);
-
-        tag.Add("inviteUsed", GildedInvitationUsed);
     }
 
     public override void LoadWorldData(TagCompound tag) {
-        SomebodyInvested = tag.GetBool("isInvested");
-        FirstTimeTravelled = tag.GetBool("firstTimeTravelled");
+        isGildedInvitationUsed = tag.GetBool("inviteIsUsed");
+
+        InvestedNextTravel = tag.GetBool("isInvested");
+        SomebodyInvested = tag.GetBool("isInvested2");
+        DidntTravelYet = tag.GetBool("firstTimeTravelled");
 
         SpawnTime = tag.GetDouble("spawnTime");
-
-        GildedInvitationUsed = tag.GetBool("inviteUsed");
     }
 
     public override void NetSend(BinaryWriter writer) {
+        writer.Write(isGildedInvitationUsed);
+
+        writer.Write(InvestedNextTravel);
         writer.Write(SomebodyInvested);
-        writer.Write(FirstTimeTravelled);
+        writer.Write(DidntTravelYet);
 
         writer.Write(SpawnTime);
-
-        writer.Write(GildedInvitationUsed);
     }
 
     public override void NetReceive(BinaryReader reader) {
+        isGildedInvitationUsed = reader.ReadBoolean();
+
+        InvestedNextTravel = reader.ReadBoolean();
         SomebodyInvested = reader.ReadBoolean();
-        FirstTimeTravelled = reader.ReadBoolean();
+        DidntTravelYet = reader.ReadBoolean();
 
         SpawnTime = reader.ReadDouble();
-
-        GildedInvitationUsed = reader.ReadBoolean();
     }
 
     public override void PostUpdateTime() {
-        if (!GildedInvitationUsed) {
+        if (!isGildedInvitationUsed) {
             return;
         }
 
         McMoneypants.SpawnNPCRandomly();
 
         void UpdateSpawnToChance() {
-            if (FirstTimeTravelled) {
+            if (DidntTravelYet) {
                 ChanceToSpawn = 1;
             }
             else { 
@@ -469,14 +556,180 @@ public class McMoneypantsWorldData : ModSystem {
         UpdateSpawnToChance();
     }
 
-    private void ResetValues() {
-        GildedInvitationUsed = SomebodyInvested = false;
+    private static void ResetValues() {
+        isGildedInvitationUsed = InvestedNextTravel = SomebodyInvested = false;
 
-        FirstTimeTravelled = true;
+        DidntTravelYet = true;
 
         SpawnTime = double.MaxValue;
 
         ChanceToSpawn = 0;
+    }
+}
+#endregion
+
+#region NPC's Attack
+public class McMoneypantsAttackProjectile : ModProjectile {
+    private Vector2 _extraVelocity = Vector2.Zero;
+    private float _glowTimer;
+
+    public bool JustSpawned {
+        get => Projectile.localAI[0] == 1f;
+        set => Projectile.localAI[0] = value ? 1f : 0f;
+    }
+
+    public bool CanDamageEnemies {
+        get => Projectile.localAI[1] == 1f;
+        set => Projectile.localAI[1] = value ? 1f : 0f;
+    }
+
+    public bool Collided {
+        get => Projectile.ai[0] == 1f;
+        set => Projectile.ai[0] = value ? 1f : 0f;
+    }
+
+    public override void SetStaticDefaults()
+        => Main.projFrames[Type] = 8;
+
+    public override void SetDefaults() {
+        Projectile.friendly = true;
+        Projectile.penetrate = 1;
+
+        int width = 12, height = 16;
+        Projectile.Size = new Vector2(width, height);
+
+        Projectile.timeLeft = 1200;
+        Projectile.ignoreWater = true;
+
+        DrawOriginOffsetY = 2;
+    }
+
+    public override bool PreAI() {
+        if (!JustSpawned) {
+            JustSpawned = true;
+
+            Projectile.velocity.Y -= 5f;
+        }
+
+        return true;
+    }
+
+    public override void PostAI() {
+        if (++Projectile.frameCounter > 4) {
+            Projectile.frameCounter = 0;
+            if (++Projectile.frame > Main.projFrames[Type]) {
+                Projectile.frame = 0;
+            }
+        }
+    }
+
+    public override void AI() {
+        CanDamageEnemies = Projectile.timeLeft < 1100;
+
+        Player owner = Main.player[Projectile.owner];
+        Helper.SearchForTargets(Projectile, owner, out bool foundTarget, out float distanceFromTarget, out Vector2 targetCenter);
+
+        bool isMoving = false;
+
+        Projectile.rotation += Projectile.velocity.Length() * (!foundTarget ? 0.05f : 0.2f);
+
+        if (Collided) {
+            Projectile.velocity *= 0.8f;
+
+            if (CanDamageEnemies) {
+                isMoving = MoveSlowlyToClosestTarget(foundTarget, distanceFromTarget, targetCenter);
+
+                _glowTimer += 0.375f * (isMoving ? 0.5f : -1f);
+            }
+        }
+        if (!isMoving) {
+            Projectile.velocity.Y += 0.6f;
+            if (Projectile.velocity.Y > 16f) {
+                Projectile.velocity.Y = 16f;
+            }
+        }
+    }
+
+    public override bool? CanDamage()
+        => CanDamageEnemies;
+
+    private bool MoveSlowlyToClosestTarget(bool foundTarget, float distanceFromTarget, Vector2 targetCenter) {
+        float speed = 6f;
+        float inertia = 11f;
+
+        if (foundTarget) {
+            if (distanceFromTarget < 150f) {
+                Vector2 direction = targetCenter - Projectile.Center;
+                direction.Normalize();
+                direction *= speed;
+
+                _extraVelocity = (_extraVelocity * (inertia - 1) + direction) / inertia;
+                Projectile.velocity += _extraVelocity;
+                _extraVelocity = Vector2.Zero;
+
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public override bool OnTileCollide(Vector2 oldVelocity) {
+        Collided = true;
+
+        return false;
+    }
+
+    private class Explosion : ModProjectile {
+        public override string Texture 
+            => "Consolaria/Assets/Textures/Empty";
+
+        public override void SetDefaults() {
+            Projectile.ignoreWater = true;
+
+            Projectile.friendly = true;
+
+            Projectile.timeLeft = 2;
+
+            Projectile.Size = new Vector2(100, 100);
+        }
+    }
+ 
+    public override void Kill(int timeLeft) {
+        if (Main.myPlayer == Projectile.owner) {
+            Projectile.NewProjectileDirect(Projectile.GetSource_FromAI(), Projectile.Center, Vector2.Zero, ModContent.ProjectileType<Explosion>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
+        }
+
+
+        for (int i = 0; i < 10; i++) {
+            int dustIndex = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, 31, 0f, 0f, 100, default(Color), 2f);
+            Main.dust[dustIndex].velocity *= 1.4f;
+        }
+        for (int i = 0; i < 10; i++) {
+            int dustIndex = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, 6, 0f, 0f, 100, default(Color), 3f);
+            Main.dust[dustIndex].noGravity = true;
+            Main.dust[dustIndex].velocity *= 5f;
+            dustIndex = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, 6, 0f, 0f, 100, default(Color), 2f);
+            Main.dust[dustIndex].velocity *= 3f;
+        }
+        int goreIndex = Gore.NewGore(Projectile.GetSource_FromAI(), new Vector2(Projectile.position.X + Projectile.width / 2 - 24f, Projectile.position.Y + Projectile.height / 2 - 24f), default(Vector2), Main.rand.Next(61, 64), 1f);
+        Main.gore[goreIndex].scale = 1.5f;
+        Main.gore[goreIndex].velocity.X = Main.gore[goreIndex].velocity.X + 1.5f;
+        Main.gore[goreIndex].velocity.Y = Main.gore[goreIndex].velocity.Y + 1.5f;
+        goreIndex = Gore.NewGore(Projectile.GetSource_FromAI(), new Vector2(Projectile.position.X + Projectile.width / 2 - 24f, Projectile.position.Y + Projectile.height / 2 - 24f), default(Vector2), Main.rand.Next(61, 64), 1f);
+        Main.gore[goreIndex].scale = 1.5f;
+        Main.gore[goreIndex].velocity.X = Main.gore[goreIndex].velocity.X - 1.5f;
+        Main.gore[goreIndex].velocity.Y = Main.gore[goreIndex].velocity.Y + 1.5f;
+    }
+
+    public override bool PreDraw(ref Color lightColor) {
+        Texture2D bloomTex = ModContent.Request<Texture2D>("Consolaria/Assets/Textures/GlowAlpha").Value;
+        Color bloomColor = Color.Lerp(Color.Transparent, new Color(255, 50, 15, 0), _glowTimer);
+        for (int i = 0; i < 3; i++) {
+            Main.spriteBatch.Draw(bloomTex, Projectile.Center - Main.screenPosition, null, bloomColor, Projectile.rotation, bloomTex.Size() / 2f, 0.4f, 0, 0f);
+        }
+
+        return true;
     }
 }
 #endregion

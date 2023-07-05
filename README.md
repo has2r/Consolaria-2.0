@@ -1,38 +1,49 @@
-## During the development of Terraria 1.3, tons of exclusive mobile & old-gen console features got removed. **Consolaria** is a mod that aims to bring this unique content back - fixed, reworked & rebalanced to the level of modern Terraria.
+## Info
 
-**This includes:**
-- **Lepus, Turkor & Ocram** - all with brand new AI, Treasure Bags, Master Mode drops & exclusive music themes
-- **New & improved vanilla+ loot** - including weapons, armors, mounts & more
-- **Removed in-game events** - including Chinese New Year, Valentine's Day, St. Patrick's Day & Oktoberfest
-- **Heart Shrine & Jungle Sanctum** underground structures
-- **Removed enemies** - including Arch Demon, Vampire Miner, Shadow Mummy & more
-- **Console-exclusive vanity items** - including the Horned God set, George's set & more
-- **A bunch of console-exclusive pets** - including Guinea Pig, Tiphia, Cupid & more
+Tons of exclusive mobile & old-gen console features were removed with the release of Terraria 1.3. Consolaria brings this unique content back, reworked and rebalanced for modern Terraria.
+
+This includes:
+- **Lepus, Turkor & Ocram** - all with brand new AI, Treasure Bags, Master Mode drops & music themes
+- **New & improved loot** - including weapons, armors and more
+- **In-game events** - Chinese New Year, Valentine's Day, St. Patrick's Day & Oktoberfest
+- **Heart Shrine and Jungle Sanctum** structures
+- **Arch Wyvern, Vampire Miner, Shadow Mummy** and all the other removed enemies
+- **Exclusive vanity items** - including the Horned God set, George's set & many others
+- **A variety of ported pets**, complete with extra animations
 - **[Boss Checklist](https://steamcommunity.com/sharedfiles/filedetails/?id=2669644269)** & **[Fargo's Mutant Mod](https://steamcommunity.com/sharedfiles/filedetails/?id=2570931073)** support
-- **Legendary Holy Hand Grenade!**
+- **Holy Hand Grenade!**
 
-Holiday content is always active by default & can be restricted to the corresponding dates using the config menu.
+Holiday content is always active by default and can be restricted to the corresponding dates using the config menu.
 
-It is highly recommended to play this mod alongside [Heartbeataria](https://steamcommunity.com/sharedfiles/filedetails/?id=2958674071), since both mods complement each other in aim to restore previously unaccessible features making the PC Terraria **the most complete experience ever!**
-▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+Also try [Heartbeataria](https://steamcommunity.com/sharedfiles/filedetails/?id=2958674071) for content from Chinese editions of the game: together, the mods make PC Terraria the most complete experience ever!
 
-Credits:
-- [Has2r](https://steamcommunity.com/id/has2r_) - programmer, founder
-- [Peege•on](https://steamcommunity.com/id/m_pigeon) - spriter, animator, programmer
-- [Zerokk](https://steamcommunity.com/id/smeqe) - programmer
+## Credits
+
+Developers:
+- [has2r](https://steamcommunity.com/id/has2r_) - programmer, founder
+- [peege_on](https://steamcommunity.com/id/m_pigeon) - spriter, animator, programmer
+- [smeqe](https://steamcommunity.com/id/smeqe) - programmer
 - [Heretic](https://steamcommunity.com/profiles/76561198147015378) - spriter, animator, wiki editor
 
-- **DrunkenCat** for original boss AIs
-- **Synoxsis** for Lepus, Turkor & Ocram themes
-- **Fyerow & Croul** for legacy Ocram theme
-- **StrikerRKT** for extracting files from various Japanese versions of the game
-- **Sparcdoctor** for testing the mod & suggesting content
-- **CrezyDud** for fixing Turkor in Multiplayer
-- **OnesAndZer0s** for providing Jungle Sanctum worldgen
-- **CKnight, Bripe, MeuRan, minichibis, Nokilos & Obesedog** for providing numerous sprites
-- **KondiU** for fixing & contributing some features
+Contributors:
+- **DrunkenCat** - original boss AIs
+- **Synoxsis** - Lepus, Turkor & Ocram themes
+- **Fyerow & Croul** - legacy Ocram theme
+- **KondiU** - plentiful code additions and parity changes
+- **StrikerRKT** - extracting files from Japanese versions of the game
+- **Sparcdoctor** - extensive testing and content suggestions
+- **CrezyDud** - Turkor multiplayer fixes
+- **OnesAndZer0s** - Jungle Sanctum worldgen
+- **CKnight** - Master mode Relic sprites
+- **Bripe, Obesedog, Nokilos, MeuRan** - numerous sprites
+- **OrcaRequiem** - Orca animation rework
+- **minichibis** - Dragon Hornet sprite
+- **cleo.** - Mythical Wyvern kite sprite
+- **Lion8cake** - Zenith projectile & recipe patch for Tizona
+- **Gaerzi** - calendar code optimisation
+- **Efromomr** - some Mc MoneyPants interaction quotes
 
-▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+## Links
 
 🌐 [Discord](https://discord.gg/DTABXbd)
 🌳 [Forum post](https://forums.terraria.org/index.php?threads/consolaria.62570)

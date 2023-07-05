@@ -1,5 +1,7 @@
 Mods: {
 	Consolaria: {
+		Others.NPCTitle: "{0} {1}"
+
 		Biomes: {
 			RabbitInvasionBiome: {
 				DisplayName: Rabbit Invasion
@@ -466,6 +468,11 @@ Mods: {
 				Tooltip: "{$CommonItemTooltip.BannerBonus}Mythical Wyvern"
 			}
 
+			MythicalWyvern: {
+				DisplayName: Mythical Wyvern Kite
+				Tooltip: ""
+			}
+
 			OrcaBanner: {
 				DisplayName: Orca Banner
 				Tooltip: "{$CommonItemTooltip.BannerBonus}Orca"
@@ -673,11 +680,6 @@ Mods: {
 			Wishbone: {
 				DisplayName: Wishbone
 				Tooltip: Enables all minor seasonal events for one day
-			}
-
-			PurpleThread: {
-				DisplayName: Purple Thread
-				Tooltip: ""
 			}
 
 			RainbowPiece: {
@@ -1026,7 +1028,7 @@ Mods: {
 
 			Tizona: {
 				DisplayName: Tizona
-				Tooltip: Shoots a cursed skull
+				Tooltip: ""
 			}
 
 			Tonbogiri: {
@@ -1036,11 +1038,7 @@ Mods: {
 
 			DragonBreath: {
 				DisplayName: Dragon's Breath
-				Tooltip:
-					'''
-					Uses gel for ammo
-					70% chance to save ammo
-					'''
+				Tooltip: ""
 			}
 
 			EggCannon: {
@@ -1140,6 +1138,36 @@ Mods: {
 			WormTombstoneItem: {
 				DisplayName: Strange Looking Tombstone
 				Tooltip: A Tombstone that kinda looks like a worm, right?
+			}
+
+			Topper505: {
+				DisplayName: 505 Topper
+				Tooltip: ""
+			}
+
+			StarTopper4: {
+				DisplayName: Star Topper 4
+				Tooltip: ""
+			}
+
+			PrestigiousTopHat: {
+				DisplayName: Prestigious Top Hat
+				Tooltip: Smells like a fresh bill!
+			}
+
+			ExampleKite: {
+				DisplayName: Example Kite
+				Tooltip: ""
+			}
+
+			CandiedFruit: {
+				DisplayName: Candied Fruit
+				Tooltip: ""
+			}
+
+			MythicalWyvernKite: {
+				DisplayName: Mythical Wyvern Kite
+				Tooltip: ""
 			}
 		}
 
@@ -1266,6 +1294,11 @@ Mods: {
 			Worm.DisplayName: Worm
 			OldLady.DisplayName: Old Lady
 			WormTombstone.DisplayName: Strange Looking Tombstone
+			McMoneypantsAttackProjectile.DisplayName: Mc Moneypants Attack Projectile
+			Explosion.DisplayName: Explosion
+			ExampleKiteProjectile.DisplayName: Example Kite Projectile
+			MythicalWyvernProjectile.DisplayName: Mythical Wyvern Projectile
+			MythicalWyvernKiteProjectile.DisplayName: Mythical Wyvern Kite Projectile
 		}
 
 		Tiles: {

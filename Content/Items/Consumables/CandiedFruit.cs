@@ -21,7 +21,6 @@ public class CandiedFruit : ModItem {
 		Item.ResearchUnlockCount = 5;
 
 		Main.RegisterItemAnimation(Type, new DrawAnimationVertical(int.MaxValue, 3));
-		//ItemID.Sets.ShimmerTransformToItem[Type] = ItemID.Ambrosia;
 	}
 
 	public override void SetDefaults() {

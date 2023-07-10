@@ -1,20 +1,5 @@
--Ported mod to 1.4.4
--Added Mc MoneyPants NPC and related items
--Added 4 pets: Old Lady, Worm, Android and Drone; and related items
--Added 2 Christmas Tree toppers: 505 topper and Star Topper 4
--Added Shimmer transmutation recipes to Ancient variants of armor sets
--Removed pre-1.4.4 crafting recipes to Ancient variants of armor sets
--Added Ancient Hero and Ancient Plumber vanity sets, available using Shimmer
--Changed Red Envelope loot pool
--Added Mythical Wyvern Kite and Candied Fruit
--Reworked Tizona and Dragon's Breath
--Changed Zenith crafting recipe and projectiles to include Tizona
--Buffed Ocram
--Updated and fixed several sprites
--Updated mod description
--Cleaned up the code
--Gambled away Kickstarter funding for the update
--Fixed some typos and language inconsistencies
--Fixed Rainbow Brick recipe
--Fixed unresearchable and stackable music boxes
--Fixed dyes not being applicable to the Slime pet
+- Added а config option for Zenith changes (on by default)
+- Added back crafting recipes for Ancient armor variants
+- Fixed Ancient Phantasmal armor set bonus inconsistency?
+- Updated Boss Checklist compatibility 
+- Fixed Quality of Life compatibility issue that affected Merchant's shop

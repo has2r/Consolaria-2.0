@@ -14,7 +14,6 @@ namespace Consolaria.Content.Items.Armor.Summon {
         }
 
         public override void SetStaticDefaults () {
-
             Item.ResearchUnlockCount = 1;
             ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<AncientWarlockRobe>();
         }

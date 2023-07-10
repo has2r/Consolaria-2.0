@@ -4,14 +4,13 @@ using Terraria.ModLoader;
 
 namespace Consolaria.Common {
     class VanillaNPCShop : GlobalNPC {
-        public override void ModifyShop (NPCShop shop) {
-            Player player = Main.player [Main.myPlayer];
-            var thanksgivingCondition = new Condition("Mods.Consolaria.Conditions.SellingDuringThanksgiving", () => (SeasonalEvents.configEnabled && SeasonalEvents.IsThanksgiving()) || !SeasonalEvents.configEnabled);
-            var oktoberfestCondition = new Condition("Mods.Consolaria.Conditions.SellingDuringOktoberfest", () => (SeasonalEvents.configEnabled && SeasonalEvents.IsOktoberfest()) || (!SeasonalEvents.configEnabled && player.HeldItem.type == ItemID.Ale));
-            var valentineDayCondition = new Condition("Mods.Consolaria.Conditions.SellingDuringValentineDay", () => (SeasonalEvents.configEnabled && SeasonalEvents.IsValentineDay()) || (!SeasonalEvents.configEnabled && player.HasBuff(BuffID.Lovestruck)));
-            var isMaleCondition = new Condition("Mods.Consolaria.Conditions.SellingIfMale", () => player.Male);
-            var womanMoment = new Condition("Mods.Consolaria.Conditions.SellingWhenWoman", () => !player.Male);
+        public static Condition thanksgivingCondition = new Condition("Mods.Consolaria.Conditions.SellingDuringThanksgiving", () => (SeasonalEvents.configEnabled && SeasonalEvents.IsThanksgiving()) || !SeasonalEvents.configEnabled);
+        public static Condition oktoberfestCondition = new Condition("Mods.Consolaria.Conditions.SellingDuringOktoberfest", () => (SeasonalEvents.configEnabled && SeasonalEvents.IsOktoberfest()) || (!SeasonalEvents.configEnabled && Main.LocalPlayer.HeldItem.type == ItemID.Ale));
+        public static Condition valentineDayCondition = new Condition("Mods.Consolaria.Conditions.SellingDuringValentineDay", () => (SeasonalEvents.configEnabled && SeasonalEvents.IsValentineDay()) || (!SeasonalEvents.configEnabled && Main.LocalPlayer.HasBuff(BuffID.Lovestruck)));
+        public static Condition isMaleCondition = new Condition("Mods.Consolaria.Conditions.SellingIfMale", () => Main.LocalPlayer.Male);
+        public static Condition womanMoment = new Condition("Mods.Consolaria.Conditions.SellingWhenWoman", () => !Main.LocalPlayer.Male);
 
+        public override void ModifyShop (NPCShop shop) {
             if (shop.NpcType == NPCID.Merchant) {
                 shop.Add(ModContent.ItemType<Content.Items.Pets.TurkeyFeather>(), thanksgivingCondition);
                 shop.Add(ModContent.ItemType<Content.Items.Consumables.Wiesnbrau>(), oktoberfestCondition);

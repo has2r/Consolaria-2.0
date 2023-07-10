@@ -1,4 +1,3 @@
-using Consolaria.Content.Projectiles;
 using Consolaria.Content.Projectiles.Friendly.Pets;
 using Microsoft.Xna.Framework;
 using System;
@@ -14,12 +13,11 @@ using System.Reflection;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent;
-using Consolaria.Content.Items.Miscellaneous;
 using Terraria.WorldBuilding;
 using Consolaria.Content.Tiles;
 using Consolaria.Content.Projectiles.Friendly.Miscellaneous;
 using Consolaria.Content.Items.Placeable;
-using Terraria.GameContent.Drawing;
+using Consolaria.Common;
 
 namespace Consolaria {
     public class Consolaria : Mod {
@@ -28,10 +26,11 @@ namespace Consolaria {
                 return;
             }
 
-            TextureAssets.XmasTree[3] = ModContent.Request<Texture2D>("Consolaria/Assets/Textures/Tiles/Xmas_3");
+            TextureAssets.XmasTree [3] = ModContent.Request<Texture2D>("Consolaria/Assets/Textures/Tiles/Xmas_3");
 
             var fractalProfiles = (Dictionary<int, FinalFractalProfile>) typeof(FinalFractalHelper).GetField("_fractalProfiles", BindingFlags.NonPublic | BindingFlags.Static).GetValue(null);
-            fractalProfiles.Add(ModContent.ItemType<Tizona>(), new FinalFractalProfile(70f, new Color(132, 122, 224))); //Color up for debate
+            if (!ModContent.GetInstance<ConsolariaConfig>().dontTouchZenith)
+                fractalProfiles.Add(ModContent.ItemType<Tizona>(), new FinalFractalProfile(70f, new Color(132, 122, 224))); //Color up for debate
 
             On_Player.DropTombstone += On_Player_DropTombstone;
             On_WorldGen.dropXmasTree += On_WorldGen_dropXmasTree;

@@ -1,3 +1,4 @@
+using Consolaria.Content.Items.Materials;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -7,7 +8,6 @@ namespace Consolaria.Content.Items.Armor.Magic {
     [AutoloadEquip(EquipType.Head)]
     public class AncientPhantasmalHeadgear : ModItem {
         public override void SetStaticDefaults () {
-
             Item.ResearchUnlockCount = 1;
             ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<PhantasmalHeadgear>();
         }
@@ -37,8 +37,19 @@ namespace Consolaria.Content.Items.Armor.Magic {
             => player.armorEffectDrawOutlines = true;
 
         public override void UpdateArmorSet (Player player) {
-            player.setBonus = "Drinking a mana potion unleashes a barrage of homing spirit bolts";
+            player.setBonus = "Siphons mana out of nearby enemies";
             player.GetModPlayer<SpectralPlayer>().spectralGuard = true;
+        }
+
+        public override void AddRecipes () {
+            CreateRecipe()
+                .AddIngredient(ItemID.AncientHallowedHeadgear)
+                .AddRecipeGroup(RecipeGroups.Titanium, 10)
+                .AddIngredient(ItemID.SoulofFright, 10)
+                .AddIngredient<SoulofBlight>(10)
+                .AddTile(TileID.MythrilAnvil)
+                .DisableDecraft()
+                .Register();
         }
     }
 }

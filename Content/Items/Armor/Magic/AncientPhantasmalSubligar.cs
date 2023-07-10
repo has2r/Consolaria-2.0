@@ -1,3 +1,4 @@
+using Consolaria.Content.Items.Materials;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -7,7 +8,6 @@ namespace Consolaria.Content.Items.Armor.Magic {
     [AutoloadEquip(EquipType.Legs)]
     public class AncientPhantasmalSubligar : ModItem {
         public override void SetStaticDefaults () {
-
             Item.ResearchUnlockCount = 1;
             ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<PhantasmalSubligar>();
         }
@@ -27,6 +27,17 @@ namespace Consolaria.Content.Items.Armor.Magic {
             player.statManaMax2 += 30;
 
             player.GetDamage(DamageClass.Magic) += 0.05f;
+        }
+
+        public override void AddRecipes () {
+            CreateRecipe()
+                .AddIngredient(ItemID.AncientHallowedGreaves)
+                .AddRecipeGroup(RecipeGroups.Titanium, 10)
+                .AddIngredient(ItemID.SoulofFright, 10)
+                .AddIngredient<SoulofBlight>(10)
+                .AddTile(TileID.MythrilAnvil)
+                .DisableDecraft()
+                .Register();
         }
     }
 }

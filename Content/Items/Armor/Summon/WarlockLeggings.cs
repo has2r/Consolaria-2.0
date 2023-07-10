@@ -8,9 +8,9 @@ namespace Consolaria.Content.Items.Armor.Summon {
     [AutoloadEquip(EquipType.Legs)]
     public class WarlockLeggings : ModItem {
         public override void SetStaticDefaults () {
+            Item.ResearchUnlockCount = 1;
 
             ArmorIDs.Legs.Sets.HidesBottomSkin [Item.legSlot] = true;
-            Item.ResearchUnlockCount = 1;
             ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<AncientWarlockLeggings>();
         }
 

@@ -1184,12 +1184,40 @@ Mods: {
 			BigEgg.DisplayName: Lepus Egg
 			ChocolateEgg.DisplayName: Chocolate Egg
 			DisasterBunny.DisplayName: Diseaster Bunny
-			Lepus.DisplayName: Lepus
+
+			Lepus: {
+				DisplayName: Lepus
+
+				BossChecklistIntegration: {
+					SpawnInfo: Use a [i:5642] at day time
+					DespawnMessage: Lepus jumps away into sunset!
+				}
+			}
+
 			SmallEgg.DisplayName: Lepus Egg
-			Ocram.DisplayName: Ocram
+
+			Ocram: {
+				DisplayName: Ocram
+
+				BossChecklistIntegration: {
+					SpawnInfo: Use a [i:5643] at night
+					DespawnMessage: Ocram disappears back into shadows!
+				}
+			}
+
 			ServantofOcram.DisplayName: Servant of Ocram
 			TurkorNeck.DisplayName: Turkor Neck
-			TurkortheUngrateful.DisplayName: Turkor the Ungrateful
+
+			TurkortheUngrateful: {
+				DisplayName: Turkor the Ungrateful
+
+				BossChecklistIntegration: {
+					EntryName: Turkor The Ungrateful
+					SpawnInfo: Use a [i:5641] after summoning a pet turkey
+					DespawnMessage: Turkor the Ungrateful escapes from the dinner plate!
+				}
+			}
+
 			TurkortheUngratefulHead.DisplayName: Turkor the Ungrateful Head
 			DragonHornet.DisplayName: Dragon Hornet
 			DragonSkull.DisplayName: Dragon Skull
@@ -1354,6 +1382,11 @@ Mods: {
 				vanillaBossMusic: {
 					Label: Enable vanilla music for Consolaria bosses
 					Tooltip: If enabled the custom soundtrack will be replaced by themes originally used in console versions
+				}
+
+				dontTouchZenith: {
+					Label: Diseble Tizona integration in Zenith
+					Tooltip: If enabled, Tizona will not be added to Zenith's recipe and will not be displayed in swords pool
 				}
 			}
 		}

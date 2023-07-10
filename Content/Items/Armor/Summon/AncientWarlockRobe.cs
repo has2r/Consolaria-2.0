@@ -2,6 +2,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
+using Consolaria.Content.Items.Materials;
 
 namespace Consolaria.Content.Items.Armor.Summon {
     [AutoloadEquip(EquipType.Body)]
@@ -13,7 +14,6 @@ namespace Consolaria.Content.Items.Armor.Summon {
         }
 
         public override void SetStaticDefaults () {
-
             Item.ResearchUnlockCount = 1;
             ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<WarlockRobe>();
         }
@@ -36,6 +36,17 @@ namespace Consolaria.Content.Items.Armor.Summon {
         public override void UpdateEquip (Player player) {
             player.maxMinions += 1;
             player.GetDamage(DamageClass.Summon) += 0.2f;
+        }
+
+        public override void AddRecipes () {
+            CreateRecipe()
+                .AddIngredient(ItemID.AncientHallowedPlateMail)
+                .AddRecipeGroup(RecipeGroups.Titanium, 12)
+                .AddIngredient(ItemID.SoulofNight, 15)
+                .AddIngredient<SoulofBlight>(15)
+                .AddTile(TileID.MythrilAnvil)
+                .DisableDecraft()
+                .Register();
         }
     }
 }

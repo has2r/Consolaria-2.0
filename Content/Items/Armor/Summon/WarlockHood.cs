@@ -10,7 +10,6 @@ namespace Consolaria.Content.Items.Armor.Summon {
     [AutoloadEquip(EquipType.Head)]
     public class WarlockHood : ModItem {
         public override void SetStaticDefaults () {
-
             Item.ResearchUnlockCount = 1;
             ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<AncientWarlockHood>();
         }

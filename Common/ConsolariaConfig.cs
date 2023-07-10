@@ -21,5 +21,9 @@ namespace Consolaria.Common {
 		[Header("Miscellaneous")]
 		[DefaultValue(false)]
 		public bool vanillaBossMusic;
-	}
+
+        [DefaultValue(false)]
+        [ReloadRequired]
+        public bool dontTouchZenith;
+    }
 }

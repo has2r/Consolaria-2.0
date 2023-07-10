@@ -8,7 +8,6 @@ namespace Consolaria.Content.Items.Armor.Melee {
     [AutoloadEquip(EquipType.Head)]
     public class AncientDragonMask : ModItem {
         public override void SetStaticDefaults () {
-
             Item.ResearchUnlockCount = 1;
             ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<DragonMask>();
         }
@@ -46,7 +45,7 @@ namespace Consolaria.Content.Items.Armor.Melee {
                .AddRecipeGroup(RecipeGroups.Titanium, 10)
                 .AddIngredient(ItemID.SoulofMight, 10)
                 .AddIngredient<SoulofBlight>(10)
-                .AddTile(TileID.MythrilAnvil)
+                .AddTile(TileID.DemonAltar)
                 .DisableDecraft()
                 .Register();
         }

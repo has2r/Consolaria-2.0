@@ -8,7 +8,6 @@ namespace Consolaria.Content.Items.Armor.Summon {
     [AutoloadEquip(EquipType.Head)]
     public class AncientWarlockHood : ModItem {
         public override void SetStaticDefaults () {
-
             Item.ResearchUnlockCount = 1;
             ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<WarlockHood>();
         }
@@ -46,7 +45,7 @@ namespace Consolaria.Content.Items.Armor.Summon {
                 .AddRecipeGroup(RecipeGroups.Titanium, 10)
                 .AddIngredient(ItemID.SoulofNight, 10)
                 .AddIngredient<SoulofBlight>(10)
-                .AddTile(TileID.MythrilAnvil)
+                .AddTile(TileID.DemonAltar)
                 .DisableDecraft()
                 .Register();
         }

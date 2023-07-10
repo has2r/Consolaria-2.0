@@ -1,5 +1,1 @@
-- Added а config option for Zenith changes (on by default)
-- Added back crafting recipes for Ancient armor variants
-- Fixed Ancient Phantasmal armor set bonus inconsistency?
-- Updated Boss Checklist compatibility 
-- Fixed Quality of Life compatibility issue that affected Merchant's shop
+- Nothing to say, sorry

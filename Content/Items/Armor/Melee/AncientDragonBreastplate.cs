@@ -34,7 +34,7 @@ namespace Consolaria.Content.Items.Armor.Melee {
                 .AddRecipeGroup(RecipeGroups.Titanium, 12)
                 .AddIngredient(ItemID.SoulofMight, 15)
                 .AddIngredient<SoulofBlight>(15)
-                .AddTile(TileID.MythrilAnvil)
+                .AddTile(TileID.DemonAltar)
                 .DisableDecraft()
                 .Register();
         }

@@ -1385,7 +1385,7 @@ Mods: {
 				}
 
 				dontTouchZenith: {
-					Label: Diseble Tizona integration in Zenith
+					Label: Disable Tizona integration in Zenith
 					Tooltip: If enabled, Tizona will not be added to Zenith's recipe and will not be displayed in swords pool
 				}
 			}

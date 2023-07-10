@@ -44,7 +44,7 @@ namespace Consolaria.Content.Items.Armor.Magic {
                 .AddRecipeGroup(RecipeGroups.Titanium, 12)
                 .AddIngredient(ItemID.SoulofFright, 15)
                 .AddIngredient<SoulofBlight>(15)
-                .AddTile(TileID.MythrilAnvil)
+                .AddTile(TileID.DemonAltar)
                 .DisableDecraft()
                 .Register();
         }

@@ -33,7 +33,7 @@ namespace Consolaria.Content.Items.Armor.Ranged {
                .AddRecipeGroup(RecipeGroups.Titanium, 10)
                 .AddIngredient(ItemID.SoulofSight, 10)
                 .AddIngredient<SoulofBlight>(10)
-                .AddTile(TileID.MythrilAnvil)
+                .AddTile(TileID.DemonAltar)
                 .DisableDecraft()
                 .Register();
         }

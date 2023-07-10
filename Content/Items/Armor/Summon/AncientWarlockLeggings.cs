@@ -35,7 +35,7 @@ namespace Consolaria.Content.Items.Armor.Summon {
                .AddRecipeGroup(RecipeGroups.Titanium, 10)
                 .AddIngredient(ItemID.SoulofNight, 10)
                 .AddIngredient<SoulofBlight>(10)
-                .AddTile(TileID.MythrilAnvil)
+                .AddTile(TileID.DemonAltar)
                 .DisableDecraft()
                 .Register();
         }

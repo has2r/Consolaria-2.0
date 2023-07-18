@@ -9,11 +9,20 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using Terraria;
+using Terraria.Achievements;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Consolaria.Common {
     public class CrossContentIntegration : ModSystem {
+
+        private int bossTypeLepus = ModContent.NPCType<Lepus>();
+        private int bossTypeTurkor = ModContent.NPCType<TurkortheUngrateful>();
+        private int bossTypeOcram = ModContent.NPCType<Ocram>();
+
         public override void PostSetupContent () {
+<<<<<<< Updated upstream
             if (ModLoader.TryGetMod("BossChecklist", out Mod bossChecklist)) {
 
                 if (bossChecklist.Version < new Version(1, 3, 1)) {
@@ -28,6 +37,38 @@ namespace Consolaria.Common {
                     () => DownedBossSystem.downedLepus,
                     () => true,
                     new List<int> {
+=======
+            DoBossChecklistIntegration();
+            DoFargosIntegration();
+            DoAchievementModIntegration();
+        }
+        private void DoBossChecklistIntegration () {
+            if (!ModLoader.TryGetMod("BossChecklist", out Mod bossChecklistMod)) {
+                return;
+            }
+            if (bossChecklistMod.Version < new Version(1, 6)) {
+                return;
+            }
+
+            string lepusInternalName = "Lepus";
+            string turkorInternalName = "Turkor";
+            string ocramInternalName = "Ocram";
+
+            float lepusWeight = 1.8f;
+            float turkorWeight = 5.75f;
+            float ocramWeight = 12f;
+
+            Func<bool> downedLepus = () => DownedBossSystem.downedLepus;
+            Func<bool> downedTurkor = () => DownedBossSystem.downedTurkor;
+            Func<bool> downedOcram = () => DownedBossSystem.downedOcram;
+
+            int lepusSpawnItem = ModContent.ItemType<SuspiciousLookingEgg>();
+            int turkorSpawnItem = ModContent.ItemType<CursedStuffing>();
+            int ocramSpawnItem = ModContent.ItemType<SuspiciousLookingSkull>();
+
+            List<int> lepusCollectibles = new List<int>()
+            {
+>>>>>>> Stashed changes
                     ModContent.ItemType<LepusMask>(),
                     ModContent.ItemType<LepusTrophy>(),
                     ModContent.ItemType<LepusMusicBox>(),
@@ -94,6 +135,11 @@ namespace Consolaria.Common {
                 fargos.Call("AddSummon", 5.75f, "Consolaria", "CursedStuffing", () => DownedBossSystem.downedLepus, 180000);
                 fargos.Call("AddSummon", 12f, "Consolaria", "SuspiciousLookingSkull", () => DownedBossSystem.downedLepus, 500000);
             }
+        }
+
+        private void DoAchievementModIntegration () {
+            if (ModLoader.TryGetMod("TMLAchievements", out Mod achievement))
+                achievement.Call("AddAchievement", this, "LepusAchievement", AchievementCategory.Slayer, "Consolaria/Assets/Achievements/LepusAchievement", null, false, true, 5f, new string [] { "Kill_" + bossTypeLepus });
         }
     }
 }

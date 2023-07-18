@@ -1,7 +1,11 @@
 displayName = Consolaria
 author = RoA Gang (has2r, peege.on, smeqe, Heretic)
 
+<<<<<<< Updated upstream
 version = 2.1.0.1
+=======
+version = 2.1.0.4
+>>>>>>> Stashed changes
 homepage = https://forums.terraria.org/index.php?threads/consolaria.62570/
 
 hideCode = false

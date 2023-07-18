@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 -Ported mod to 1.4.4
 -Added Mc MoneyPants NPC and related items
 -Added 4 pets: Old Lady, Worm, Android and Drone; and related items
@@ -18,3 +19,8 @@
 -Fixed Rainbow Brick recipe
 -Fixed unresearchable and stackable music boxes
 -Fixed dyes not being applicable to the Slime pet
+=======
+- Fixed tile duplication glitch 
+- Added russian localization 
+- Added Achievements with Achievement Mod support
+>>>>>>> Stashed changes

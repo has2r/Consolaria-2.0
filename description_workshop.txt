@@ -30,6 +30,7 @@ Developers:
 [*][url=https://steamcommunity.com/profiles/76561198147015378]Heretic[/url] - spriter, animator, wiki editor
 [/list]
 
+Contributors:
 [list]
 [*][b]DrunkenCat[/b] - original boss AIs
 [*][b]Synoxsis[/b] - Lepus, Turkor & Ocram themes
@@ -47,6 +48,7 @@ Developers:
 [*][b]Lion8cake[/b] - Zenith projectile & recipe patch for Tizona
 [*][b]Gaerzi[/b] - calendar code optimisation
 [*][b]Efromomr[/b] - some Mc MoneyPants interaction quotes
+[*][b]HenryChe[/b] - Russian localization
 [/list]
 
 [h1]Links[/h1]

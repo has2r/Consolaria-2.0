@@ -42,6 +42,7 @@ Contributors:
 - **Lion8cake** - Zenith projectile & recipe patch for Tizona
 - **Gaerzi** - calendar code optimisation
 - **Efromomr** - some Mc MoneyPants interaction quotes
+- **HenryChe** - Russian localization
 
 ## Links
 

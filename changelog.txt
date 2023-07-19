@@ -1,3 +1,3 @@
-- Added Russian localization
+- Added Russian localization (temporarily missing Mc MoneyPants quotes)
 - Fixed tile duplication glitch 
 - Fixed Shadowbound Exoskeleton not dealing damage

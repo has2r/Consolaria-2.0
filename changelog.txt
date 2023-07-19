@@ -1,2 +1,3 @@
+- Added Russian localization
 - Fixed tile duplication glitch 
-- Added russian localization
+- Fixed Shadowbound Exoskeleton not dealing damage

@@ -17,7 +17,7 @@ Mods: {
 
 			Bat: {
 				DisplayName: Летучая мышь
-				Description: Жаждет кровью
+				Description: Жаждет крови
 			}
 
 			Cupid: {
@@ -55,15 +55,15 @@ Mods: {
 			}
 
 			FruitfulPlate: {
-				DisplayName: Фруктовая Тарелка
-				Description: Полная вкусных фруктов!
+				DisplayName: Плодородная Тарелка
+				Description: Вы - коронное блюдо
 			}
 
 			GoldenCarrotDebuff: {
 				DisplayName: Проклятие Золотой Моркови
 				Description:
 					'''
-					Вам больше нельзя есть золотые моркови
+					Вы больше не можете есть золотую морковь
 					Защита слегка понижена
 					'Я ЖЕ ТЕБЕ ГОВОРИЛ МОРКОВЬ ЗОЛОТАЯ, Я ГОВОРИЛ!!!'
 					'''
@@ -90,13 +90,13 @@ Mods: {
 			}
 
 			MythicalWyvernling: {
-				DisplayName: Мистическая Виверна
-				Description: Мистическая Виверна следует за вами
+				DisplayName: Мифическая Виверна
+				Description: Мифическая Виверна следует за вами
 			}
 
 			PetTurkey: {
 				DisplayName: Индейка
-				Description: Большая и мясная индейка
+				Description: Большая и мясистая индейка
 			}
 
 			Slime: {
@@ -106,7 +106,7 @@ Mods: {
 
 			SmallLepus: {
 				DisplayName: Детеныш Лепус
-				Description: Он не может высаживать никаких яиц... Пока что!
+				Description: Он не может класть яиц... Пока что!
 			}
 
 			Stunned: {
@@ -116,7 +116,7 @@ Mods: {
 
 			Tiphia: {
 				DisplayName: Тифия
-				Description: Не позволь ей ужалить вас
+				Description: Не позвольте ей ужалить вас
 			}
 
 			WeirdTurkey: {
@@ -135,8 +135,8 @@ Mods: {
 			}
 
 			McMoneypantsBuff: {
-				DisplayName: Удачливый
-				Description: Вы себя чуствуешь довольно удачливым
+				DisplayName: Везучий
+				Description: Вы чуствуете себя довольно удачливым
 			}
 
 			Worm: {
@@ -162,7 +162,7 @@ Mods: {
 			}
 
 			AncientPhantasmalHeadgear: {
-				DisplayName: Древний Призрачный Головной Убор
+				DisplayName: Древний Фантазмальный Головной Убор
 				Tooltip:
 					'''
 					Увеличает максимальный запас маны на 50
@@ -172,7 +172,7 @@ Mods: {
 			}
 
 			AncientPhantasmalRobe: {
-				DisplayName: Древняя Призрачная Роба
+				DisplayName: Древняя Фантазмальная Роба
 				Tooltip:
 					'''
 					Увеличает максимальный запас маны на 70
@@ -181,17 +181,17 @@ Mods: {
 			}
 
 			AncientPhantasmalSubligar: {
-				DisplayName: Древние Призрачные Штиблеты
+				DisplayName: Древние Фантазмальные Штиблеты
 				Tooltip:
 					'''
 					Увеличает максимальный запас маны на 30
 					Магический урон увеличен на 5%
-					Скорость ходьбы увеличена на 12%
+					Скорость передвижения увеличена на 12%
 					'''
 			}
 
 			PhantasmalHeadgear: {
-				DisplayName: Призрачный Головной Убор
+				DisplayName: Фантазмальный Головной Убор
 				Tooltip:
 					'''
 					Увеличает максимальный запас маны на 50
@@ -201,7 +201,7 @@ Mods: {
 			}
 
 			PhantasmalRobe: {
-				DisplayName: Призрачная Роба
+				DisplayName: Фантазмальная Роба
 				Tooltip:
 					'''
 					Увеличает максимальный запас маны на 70
@@ -210,12 +210,12 @@ Mods: {
 			}
 
 			PhantasmalSubligar: {
-				DisplayName: Призрачные Штиблеты
+				DisplayName: Фантазмальные Штиблеты
 				Tooltip:
 					'''
 					Увеличает максимальный запас маны на 30
 					Магический урон увеличен на 5%
-					Скорость ходьбы увеличена на 12%
+					Скорость передвижения увеличена на 12%
 					'''
 			}
 
@@ -230,17 +230,17 @@ Mods: {
 			}
 
 			AncientDragonGreaves: {
-				DisplayName: Древние Драконие Поножи
+				DisplayName: Древние Драконьи Поножи
 				Tooltip:
 					'''
 					Урон ближнего боя увеличен на 5%
 					Увеличен шанс критического удара ближнего боя на 5%
-					Скорость ходьбы увеличена на 20%
+					Скорость передвижения увеличена на 20%
 					'''
 			}
 
 			AncientDragonMask: {
-				DisplayName: Древняя Драконяя Маска
+				DisplayName: Древняя Драконья Маска
 				Tooltip:
 					'''
 					Урон ближнего боя увеличен на 15%
@@ -259,17 +259,17 @@ Mods: {
 			}
 
 			DragonGreaves: {
-				DisplayName: Драконие Поножи
+				DisplayName: Драконьи Поножи
 				Tooltip:
 					'''
 					Урон ближнего боя увеличен на 5%
 					Увеличен шанс критического удара ближнего боя на 5%
-					Скорость ходьбы увеличена на 20%
+					Скорость передвижения увеличена на 20%
 					'''
 			}
 
 			DragonMask: {
-				DisplayName: Драконяя Маска
+				DisplayName: Драконья Маска
 				Tooltip:
 					'''
 					Урон ближнего боя увеличен на 15%
@@ -284,16 +284,16 @@ Mods: {
 
 			OstaraHat: {
 				DisplayName: Шляпа Остары
-				Tooltip: Скорость ходьбы увеличена на 7%
+				Tooltip: Скорость передвижения увеличена на 7%
 			}
 
 			OstaraJacket: {
 				DisplayName: Куртка Остары
-				Tooltip: Скорость ходьбы увеличена на 7%
+				Tooltip: Скорость передвижения увеличена на 7%
 			}
 
 			AncientTitanHelmet: {
-				DisplayName: Древний Титановый Шлем
+				DisplayName: Древний Титанический Шлем
 				Tooltip:
 					'''
 					Урон дальнего боя увеличен на 10%
@@ -303,17 +303,17 @@ Mods: {
 			}
 
 			AncientTitanLeggings: {
-				DisplayName: Древние Титановые Поножи
+				DisplayName: Древние Титанические Поножи
 				Tooltip:
 					'''
 					Урон дальнего боя увеличен на 10%
-					Скорость ходьбы увеличена на 18%
+					Скорость передвижения увеличена на 18%
 					Шанс не потратить снаряды увеличен на 15%
 					'''
 			}
 
 			AncientTitanMail: {
-				DisplayName: Древний Титановый Нагрудник
+				DisplayName: Древний Титанический Нагрудник
 				Tooltip:
 					'''
 					Урон дальнего боя увеличен на 10%
@@ -323,7 +323,7 @@ Mods: {
 			}
 
 			TitanHelmet: {
-				DisplayName: Титановый Шлем
+				DisplayName: Титанический Шлем
 				Tooltip:
 					'''
 					Урон дальнего боя увеличен на 10%
@@ -333,17 +333,17 @@ Mods: {
 			}
 
 			TitanLeggings: {
-				DisplayName: Титановые Поножи
+				DisplayName: Титанические Поножи
 				Tooltip:
 					'''
 					Урон дальнего боя увеличен на 10%
-					Скорость ходьбы увеличена на 18%
+					Скорость передвижения увеличена на 18%
 					Шанс не потратить снаряды увеличен на 15%
 					'''
 			}
 
 			TitanMail: {
-				DisplayName: Титановый Нагрудник
+				DisplayName: Титанический Нагрудник
 				Tooltip:
 					'''
 					Урон дальнего боя увеличен на 10%
@@ -356,7 +356,7 @@ Mods: {
 				DisplayName: Древний Капюшон Чернокнижника
 				Tooltip:
 					'''
-					Увеличивает призываемое число миньонов на 1
+					Увеличивает максимальное количество миньонов на 1
 					Урон призывателя увеличен на 20%
 					'''
 			}
@@ -365,9 +365,9 @@ Mods: {
 				DisplayName: Древние Поножи Чернокнижника
 				Tooltip:
 					'''
-					Увеличивает призываемое число миньонов на 1
+					Увеличивает максимальное количество миньонов на 1
 					Урон призывателя увеличен на 20%
-					Скорость ходьбы увеличена на 15%
+					Скорость передвижения увеличена на 15%
 					'''
 			}
 
@@ -375,7 +375,7 @@ Mods: {
 				DisplayName: Древняя Роба Чернокнижника
 				Tooltip:
 					'''
-					Увеличивает призываемое число миньонов на 1
+					Увеличивает максимальное количество миньонов на 1
 					Урон призывателя увеличен на 20%
 					'''
 			}
@@ -384,7 +384,7 @@ Mods: {
 				DisplayName: Капюшон Чернокнижника
 				Tooltip:
 					'''
-					Увеличивает призываемое число миньонов на 1
+					Увеличивает максимальное количество миньонов на 1
 					Урон призывателя увеличен на 20%
 					'''
 			}
@@ -393,9 +393,9 @@ Mods: {
 				DisplayName: Поножи Чернокнижника
 				Tooltip:
 					'''
-					Увеличивает призываемое число миньонов на 1
+					Увеличивает максимальное количество миньонов на 1
 					Урон призывателя увеличен на 20%
-					Скорость ходьбы увеличена на 15%
+					Скорость передвижения увеличена на 15%
 					'''
 			}
 
@@ -403,7 +403,7 @@ Mods: {
 				DisplayName: Роба Чернокнижника
 				Tooltip:
 					'''
-					Увеличивает призываемое число миньонов на 1
+					Увеличивает максимальное количество миньонов на 1
 					Урон призывателя увеличен на 20%
 					'''
 			}
@@ -434,17 +434,17 @@ Mods: {
 			}
 
 			DragonHornetBanner: {
-				DisplayName: Баннер Драконего Шершня
+				DisplayName: Баннер Драконьего Шершня
 				Tooltip: "{$CommonItemTooltip.BannerBonus}Драконий Шершень"
 			}
 
 			DragonSkullBanner: {
-				DisplayName: Баннер Драконего Черепа
+				DisplayName: Баннер Драконьего Черепа
 				Tooltip: "{$CommonItemTooltip.BannerBonus}Драконий Череп"
 			}
 
 			DragonSnatcherBanner: {
-				DisplayName: Баннер Драконего Хватателя
+				DisplayName: Баннер Драконьего Хватателя
 				Tooltip: "{$CommonItemTooltip.BannerBonus}Драконий Хвататель"
 			}
 
@@ -464,12 +464,12 @@ Mods: {
 			}
 
 			MythicalWyvernBanner: {
-				DisplayName: Баннер Мистической Виверны
-				Tooltip: "{$CommonItemTooltip.BannerBonus}Мистическая Виверна"
+				DisplayName: Баннер Мифической Виверны
+				Tooltip: "{$CommonItemTooltip.BannerBonus}Мифическая Виверна"
 			}
 
 			MythicalWyvern: {
-				DisplayName: Воздушная Мистическая Виверна
+				DisplayName: Воздушный змей «Мифическая Виверна»
 				Tooltip: ""
 			}
 
@@ -494,8 +494,8 @@ Mods: {
 			}
 
 			SpectralElementalBanner: {
-				DisplayName: Баннер Спектрального Элементаля Хаоса
-				Tooltip: "{$CommonItemTooltip.BannerBonus}Спектральный Элементаль Хаоса"
+				DisplayName: Баннер Спектрального Элементаля
+				Tooltip: "{$CommonItemTooltip.BannerBonus}Спектральный Элементаль"
 			}
 
 			SpectralGastropodBanner: {
@@ -509,7 +509,7 @@ Mods: {
 			}
 
 			VampireMinerBanner: {
-				DisplayName: Баннер Шахтёр-Вампира
+				DisplayName: Баннер Шахтёра-Вампира
 				Tooltip: "{$CommonItemTooltip.BannerBonus}Шахтёр-Вампир"
 			}
 
@@ -542,8 +542,8 @@ Mods: {
 				DisplayName: Подарок Остары
 				Tooltip:
 					'''
-					У врагов есть шанс оставлять шоколадные яйца при смерти
-					Из яиц выпадают сердечки жизни и звездочки маны когда разбиты
+					У врагов есть шанс оставить шоколадные яйца при смерти
+					Из яиц выпадают сердца жизни и звезды маны
 					'''
 			}
 
@@ -552,7 +552,7 @@ Mods: {
 				Tooltip:
 					'''
 					Призывает Детеныша Лепуса
-					'Хорошая удача иллюзорная, но заяц нет'
+					'Удача - это иллюзия, но кролик - нет'
 					'''
 			}
 
@@ -560,7 +560,7 @@ Mods: {
 				DisplayName: Проклятый Клык
 				Tooltip:
 					'''
-					Призывает Маленького Марко
+					Призывает Мелкого Марко
 					'Ты теперь мой друг'
 					'''
 			}
@@ -596,22 +596,22 @@ Mods: {
 			}
 
 			ShadowboundExoskeleton: {
-				DisplayName: Затемненный Экзоскелет
+				DisplayName: Экзоскелет Привязанных Теней
 				Tooltip:
 					'''
 					Позволяет игроку делать ракетный прыжок
-					Нажмите ВВЕРХ два раза
+					Нажмите ВВЕРХ дважды
 					'''
 			}
 
 			FruitfulPlate: {
-				DisplayName: Фруктовая Тарелка
-				Tooltip: Призывает ездовую фруктовую тарелку
+				DisplayName: Плодородная Тарелка
+				Tooltip: Призывает ездовую плодородную тарелку
 			}
 
 			HornoPlenty: {
 				DisplayName: Рог Изобилия
-				Tooltip: Оно наполнено неистощимыми подарками праздничных фруктов
+				Tooltip: Наполнен неистощаемыми подарками из праздничных плодов
 			}
 
 			TurkorBag: {
@@ -625,7 +625,7 @@ Mods: {
 			}
 
 			TurkorMusicBox: {
-				DisplayName: Music Box (Туркор Неблагодарный)
+				DisplayName: Музыкальная Шкатулка (Туркор Неблагодарный)
 				Tooltip: ""
 			}
 
@@ -653,7 +653,7 @@ Mods: {
 				Tooltip:
 					'''
 					Огромный взрыв который уничтожит большинство блоков
-					'Господи'
+					'Господи...'
 					'''
 			}
 
@@ -668,18 +668,18 @@ Mods: {
 			}
 
 			Squib: {
-				DisplayName: Огненный Крекер
-				Tooltip: ""
+				DisplayName: Петарда
+				Tooltip: "'Я и сам петард, и отлично могу бумкать'"
 			}
 
 			Wiesnbrau: {
-				DisplayName: Wiesnbräu
-				Tooltip: Numbs the user from damage taken but also reduces damage inflicted
+				DisplayName: Фестивальное Пиво
+				Tooltip: Снижает как получаемый, так и наносимый урон
 			}
 
 			Wishbone: {
-				DisplayName: Дужка
-				Tooltip: Включает все маленькие сезонные события на один день
+				DisplayName: Кость Желаний
+				Tooltip: Активирует все меньшие сезонные события на один день
 			}
 
 			RainbowPiece: {
@@ -719,7 +719,7 @@ Mods: {
 
 			BrokenHeart: {
 				DisplayName: Разбитое Сердце
-				Tooltip: Призывает Купидона которая излучает свет
+				Tooltip: Призывает Купидона, излучающего свет
 			}
 
 			Cabbage: {
@@ -729,7 +729,7 @@ Mods: {
 
 			GoldenLantern: {
 				DisplayName: Золотой Фонарь
-				Tooltip: Призывает Мистическую Виверну которая излучает свет
+				Tooltip: Призывает Мифическую Виверну, излучающую свет
 			}
 
 			GoldenSeaweed: {
@@ -744,7 +744,7 @@ Mods: {
 
 			MysteriousPackage: {
 				DisplayName: Таинственная Посылка
-				Tooltip: Призывает Дрона
+				Tooltip: Призывает Дрон
 			}
 
 			PetriDish: {
@@ -758,7 +758,7 @@ Mods: {
 			}
 
 			ShinyBlackSlab: {
-				DisplayName: Блестящая Чёрная Пластина
+				DisplayName: Блестящий Чёрный Кирпич
 				Tooltip: Призывает Андроида
 			}
 
@@ -774,7 +774,7 @@ Mods: {
 
 			WolfFang: {
 				DisplayName: Волчий Клык
-				Tooltip: Призывает Обортня
+				Tooltip: Призывает Оборотня
 			}
 
 			CursedStuffing: {
@@ -808,22 +808,22 @@ Mods: {
 			}
 
 			AncientHerosShirt: {
-				DisplayName: Древняя Кофта Героя
+				DisplayName: Древняя Рубашка Героя
 				Tooltip: ""
 			}
 
 			AncientPlumbersHat: {
-				DisplayName: Древняя Шляпа Сантехника
+				DisplayName: Древняя Шляпа Водопроводчика
 				Tooltip: ""
 			}
 
 			AncientPlumbersPants: {
-				DisplayName: Древние Штаны Сантехника
+				DisplayName: Древние Штаны Водопроводчика
 				Tooltip: ""
 			}
 
 			AncientPlumbersShirt: {
-				DisplayName: Древняя Кофта Сантехника
+				DisplayName: Древняя Рубашка Водопроводчика
 				Tooltip: ""
 			}
 
@@ -838,12 +838,12 @@ Mods: {
 			}
 
 			DirndlBlouse: {
-				DisplayName: Широкое платье в сборку
+				DisplayName: Платье Дирндль
 				Tooltip: ""
 			}
 
 			DirndlSkirt: {
-				DisplayName: Широкая юбка в сборку
+				DisplayName: Юбка Дирндль
 				Tooltip: ""
 			}
 
@@ -864,7 +864,7 @@ Mods: {
 
 			FestiveTopHat: {
 				DisplayName: Праздничный Цилиндр
-				Tooltip: "'Потому что ничто не превосходит праздничный сезон!'"
+				Tooltip: "'Выше него - только праздничная ёлка!'"
 			}
 
 			GeorgesHat: {
@@ -898,12 +898,12 @@ Mods: {
 			}
 
 			Lederhosen: {
-				DisplayName: Ледерхозен
+				DisplayName: Ледерхозе
 				Tooltip: ""
 			}
 
 			Lederweste: {
-				DisplayName: Кожанный Жилет
+				DisplayName: Ледервест
 				Tooltip: ""
 			}
 
@@ -938,27 +938,27 @@ Mods: {
 			}
 
 			MythicalLionMask: {
-				DisplayName: Маска Мистического Льва
+				DisplayName: Маска Мифического Льва
 				Tooltip: ""
 			}
 
 			MythicalRobe: {
-				DisplayName: Мистическая Роба
+				DisplayName: Мифическая Роба
 				Tooltip: ""
 			}
 
 			ShirenHat: {
-				DisplayName: Шляпа Shiren
+				DisplayName: Шляпа Ширена
 				Tooltip: ""
 			}
 
 			ShirenPants: {
-				DisplayName: Штаны Shiren
+				DisplayName: Штаны Ширена
 				Tooltip: ""
 			}
 
 			ShirenShirt: {
-				DisplayName: Кофта Shiren
+				DisplayName: Кофта Ширена
 				Tooltip: ""
 			}
 
@@ -981,24 +981,24 @@ Mods: {
 				DisplayName: Сердечная Стрела
 				Tooltip:
 					'''
-					Есть шанс оглушить врагов при ударе
-					'Легендарные стрелы от самого Купидона'
+					Может оглушить врага при попадании
+					'Легендарные стрелы самого Купидона'
 					'''
 			}
 
 			SpectralArrow: {
 				DisplayName: Спектральная Стрела
-				Tooltip: Прокаливает блоки и врагов, но быстро рассеивается в воздухе
+				Tooltip: Проходит сквозь блоки и врагов, но быстро рассеивается в воздухе
 			}
 
 			VulcanBolt: {
-				DisplayName: Вулканный Выстрел
+				DisplayName: Вулканический Болт
 				Tooltip: ""
 			}
 
 			FeatherStorm: {
 				DisplayName: Перьевая Буря
-				Tooltip: Выбрасывает перья с неба
+				Tooltip: Сбрасывает перья с неба
 			}
 
 			OcramsEye: {
@@ -1008,12 +1008,12 @@ Mods: {
 
 			RomanCandle: {
 				DisplayName: Римская Свеча
-				Tooltip: "'Огонь работает!'"
+				Tooltip: ""
 			}
 
 			AlbinoMandible: {
-				DisplayName: Челюсть Муравьного Льва Альбиноса
-				Tooltip: "'Удивительно аэродинамичное...'"
+				DisplayName: Челюсть Муравьиного Льва Альбиноса
+				Tooltip: "'Удивительно аэродинамична...'"
 			}
 
 			GreatDrumstick: {
@@ -1021,7 +1021,7 @@ Mods: {
 				Tooltip:
 					'''
 					Покрывает врагов маслом
-					Подожгите врагов которые в масле для дополнительного урона
+					Подожгите их, чтобы нанести дополнительный урон
 					'Я люблю большую картошку фри, но не жареную индейку'
 					'''
 			}
@@ -1033,7 +1033,7 @@ Mods: {
 
 			Tonbogiri: {
 				DisplayName: Тонбогири
-				Tooltip: "'Легендарное Японское копье покрытое ядом'"
+				Tooltip: "'Легендарное японское копье, покрытое ядом'"
 			}
 
 			DragonBreath: {
@@ -1056,23 +1056,23 @@ Mods: {
 				Tooltip:
 					'''
 					Покрывает врагов маслом
-					Подожгите врагов которые в масле для дополнительного урона
+					Подожгите их, чтобы нанести дополнительный урон
 					'''
 			}
 
 			VolcanicRepeater: {
-				DisplayName: Вулканный самострел
-				Tooltip: Превращает стрелы в Вулканные ВыстрелыTurns arrows into Vulcan Bolts
+				DisplayName: Вулканический самострел
+				Tooltip: Превращает стрелы в Вулканические Болты
 			}
 
 			EternityStaff: {
 				DisplayName: Посох Вечности
-				Tooltip: Призывает Глаз Вечности который будет сражаться за вас
+				Tooltip: Призывает Глаз Вечности, который будет сражаться за вас
 			}
 
 			TurkeyStuff: {
 				DisplayName: Посох Индейки
-				Tooltip: Призывает Странную Индейку которая будет сражаться за вас
+				Tooltip: Призывает Странную Индейку, которая будет сражаться за вас
 			}
 
 			GuaPiMao: {
@@ -1081,17 +1081,17 @@ Mods: {
 			}
 
 			MythicalDogMask: {
-				DisplayName: Маска Мистической Собаки
+				DisplayName: Маска Мифической Собаки
 				Tooltip: ""
 			}
 
 			MythicalDogPants: {
-				DisplayName: Штаны Мистической Собаки
+				DisplayName: Штаны Мифической Собаки
 				Tooltip: ""
 			}
 
 			MythicalDogShirt: {
-				DisplayName: Кофта Мистической Собаки
+				DisplayName: Кофта Мифической Собаки
 				Tooltip: ""
 			}
 
@@ -1122,7 +1122,7 @@ Mods: {
 
 			McMoneypantsInvitation: {
 				DisplayName: Позолоченное Приглашение
-				Tooltip: Похоже что это было предназначено для кого-то богатого
+				Tooltip: Похоже что, оно было предназначено для кого-то богатого
 			}
 
 			SuspiciousLookingApple: {
@@ -1137,7 +1137,7 @@ Mods: {
 
 			WormTombstoneItem: {
 				DisplayName: Подозрительно Выглядящее Надгробие
-				Tooltip: Надгробие которое выглядит слегка как червяк, правда?
+				Tooltip: Надгробие, которое слегка похоже на чевяка, правда?
 			}
 
 			Topper505: {
@@ -1166,7 +1166,7 @@ Mods: {
 			}
 
 			MythicalWyvernKite: {
-				DisplayName: Воздушная Мистическая Виверна
+				DisplayName: Воздушный змей «Мифическая Виверна»
 				Tooltip: ""
 			}
 		}
@@ -1213,8 +1213,8 @@ Mods: {
 
 				BossChecklistIntegration: {
 					EntryName: Туркор Неблагодарный
-					SpawnInfo: Используйте [i:5641] после того как вы призвали Индейку
-					DespawnMessage: Туркор Неблагодарный исбегает из обеденной тарелки!
+					SpawnInfo: Используйте [i:5641] когда за вами следует Индейка
+					DespawnMessage: Туркор Неблагодарный сбегает с обеденной тарелки!
 				}
 			}
 
@@ -1226,17 +1226,17 @@ Mods: {
 			FleshMummy.DisplayName: Мумия из Плоти
 			FleshSlime.DisplayName: Слизень из Плоти
 			GiantAlbinoCharger.DisplayName: Большой Муравьиный Воитель Альбинос
-			MythicalWyvernBody.DisplayName: Мистическая Виверна
-			MythicalWyvernBody2.DisplayName: Мистическая Виверна
-			MythicalWyvernBody3.DisplayName: Мистическая Виверна
-			MythicalWyvernHead.DisplayName: Мистическая Виверна
-			MythicalWyvernLegs.DisplayName: Мистическая Виверна
-			MythicalWyvernTail.DisplayName: Мистическая Виверна
+			MythicalWyvernBody.DisplayName: Мифическая Виверна
+			MythicalWyvernBody2.DisplayName: Мифическая Виверна
+			MythicalWyvernBody3.DisplayName: Мифическая Виверна
+			MythicalWyvernHead.DisplayName: Мифическая Виверна
+			MythicalWyvernLegs.DisplayName: Мифическая Виверна
+			MythicalWyvernTail.DisplayName: Мифическая Виверна
 			Orca.DisplayName: Касатка
 			ShadowHammer.DisplayName: Теневой Молот
 			ShadowMummy.DisplayName: Теневая Мумия
 			ShadowSlime.DisplayName: Теневой Слизень
-			SpectralElemental.DisplayName: Спектральный Элементаль Хаоса
+			SpectralElemental.DisplayName: Спектральный Элементаль
 			SpectralGastropod.DisplayName: Спектральный Брюхоног
 			SpectralMummy.DisplayName: Спектральная Мумия
 			VampireMiner.DisplayName: Шахтёр-Вампир
@@ -1279,8 +1279,8 @@ Mods: {
 			EyeOfEternity.DisplayName: Глаз Вечности
 			HeartArrow.DisplayName: Сердечная Стрела
 			HolyHandgrenade.DisplayName: Святая Граната
-			HolyHandgrenade2.DisplayName: Святая Граната 2
-			ManaDrain.DisplayName: Снижение Маны
+			HolyHandgrenade2.DisplayName: Святая Граната II
+			ManaDrain.DisplayName: Высасывание Маны
 			OcramEyeGlow.DisplayName: Свечение Глаза Окрама
 			OcramEyeLaser.DisplayName: Лазер Глаза Окрама
 			AndroidGuy.DisplayName: Андроид
@@ -1292,7 +1292,7 @@ Mods: {
 			GuineaPig.DisplayName: Морская Свинка
 			Leprechaun.DisplayName: Лепрекон
 			LilMarco.DisplayName: Мелкий Марко
-			MythicalWyvernling.DisplayName: Мистическая Виверна
+			MythicalWyvernling.DisplayName: Мифическая Виверна
 			PetTurkey.DisplayName: Индейка
 			Slime.DisplayName: Слизень
 			SmallLepus.DisplayName: Детеныш Лепус
@@ -1309,12 +1309,12 @@ Mods: {
 			SpectralSpirit.DisplayName: Спектральный Дух
 			SpicyExplosion.DisplayName: Острый Взрыв
 			SpicySauce.DisplayName: Острый Соус
-			Squib.DisplayName: Патрон
-			TitanBlast.DisplayName: Титановый Взрыв
+			Squib.DisplayName: Петарда
+			TitanBlast.DisplayName: Титанический Взрыв
 			TonbogiriSpear.DisplayName: Тонбогири
 			TurkeyHead.DisplayName: Странная Индейка
-			VulcanBlast.DisplayName: Вулканный Взрыв
-			VulcanBolt.DisplayName: Вулканный Выстрел
+			VulcanBlast.DisplayName: Вулканический Взрыв
+			VulcanBolt.DisplayName: Вулканический Болт
 			"Lepus Stomp.DisplayName": Ступ Лепуса
 			.DisplayName: ""
 			Tizona.DisplayName: Тизона
@@ -1322,11 +1322,11 @@ Mods: {
 			Worm.DisplayName: Червяк
 			OldLady.DisplayName: Старушка
 			WormTombstone.DisplayName: Подозрительно Выглядящее Надгробие
-			McMoneypantsAttackProjectile.DisplayName: Mc Moneypants Attack Projectile
+			McMoneypantsAttackProjectile.DisplayName: Атака Мак МаниПэнтса
 			Explosion.DisplayName: Взрыв
-			ExampleKiteProjectile.DisplayName: Example Kite Projectile
-			MythicalWyvernProjectile.DisplayName: Mythical Wyvern Projectile
-			MythicalWyvernKiteProjectile.DisplayName: Mythical Wyvern Kite Projectile
+			ExampleKiteProjectile.DisplayName: Пример Воздушного Змея
+			MythicalWyvernProjectile.DisplayName: Мифическая Виверна
+			MythicalWyvernKiteProjectile.DisplayName: Воздушный змей «Мифическая Виверна»
 		}
 
 		Tiles: {
@@ -1360,7 +1360,7 @@ Mods: {
 					Label: Ограничить сезонный контент по системной дате (Пасха)
 					Tooltip:
 						'''
-						Если включено соответствуиющие вещи и враги будут появляться только в Пасху
+						При включении соответствующие предметы и враги будут появляться только в Пасху
 						1 Апреля - 30 Апреля
 						'''
 				}
@@ -1369,24 +1369,24 @@ Mods: {
 					Label: Ограничить сезонный контент по системной дате (День Благодарения)
 					Tooltip:
 						'''
-						Если включено соответствуиющие вещи и враги будут появляться только в День Благодарения
+						При включении соответствующие предметы и враги будут появляться только в День Благодарения
 						1 Ноября - 30 Ноября
 						'''
 				}
 
 				smallEventsEnabled: {
 					Label: Ограничить сезонный контент по системной дате (Другие события)
-					Tooltip: Если включено соответствуиющие вещи и враги будут появляться только в соответствуиющие праздники или когда используется Дужка
+					Tooltip: При включении определенные предметы и враги будут появляться только в соответствующие праздники, или после использования Кости Желаний
 				}
 
 				vanillaBossMusic: {
 					Label: Включить ванильную музыку для боссов из Consolaria
-					Tooltip: Если включено, кастомная музыка будет изменена на музыку которая была оригинально использованая в консольных версиях
+					Tooltip: При включении музыкальные треки из мода будут заменены на те, которые были изначально использованы в консольных версиях
 				}
 
 				dontTouchZenith: {
 					Label: Отключить интеграцию Тизоны в Зените
-					Tooltip: Если включено, Тизона не будет добавлена в рецепт Зенита и не будет показыватся когда используется меч
+					Tooltip: При включении Тизона не будет добавлена в рецепт Зенита и не будет отображаться как один из мечей при его использовании
 				}
 			}
 		}

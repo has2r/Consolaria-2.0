@@ -8,9 +8,7 @@ using Terraria.Localization;
 namespace Consolaria.Content.Items.BossDrops.Ocram {
     public class ShadowboundExoskeleton : ModItem {
         public override void SetStaticDefaults () {
-
             string tapDir = Language.GetTextValue(Main.ReversedUpDownArmorSetBonuses ? "Key.DOWN" : "Key.UP");
-
             Item.ResearchUnlockCount = 1;
         }
 
@@ -64,7 +62,6 @@ namespace Consolaria.Content.Items.BossDrops.Ocram {
                         }
                     }
                 }
-                //  if (Player.velocity.Y == 0f || Player.sliding) canJump = false;
                 if (rocketCooldown > 50) {
                     rocketJumped = false;
                     rocketCooldown = 0;
@@ -100,11 +97,11 @@ namespace Consolaria.Content.Items.BossDrops.Ocram {
                     Main.gore [goreIndex].GetAlpha(new Color(75, 0, 130, 100));
                 }
             }
-      
+
             for (int _npc = 0; _npc < Main.maxNPCs; _npc++) {
                 NPC npc = Main.npc [_npc];
                 if (npc.active && !npc.friendly && npc.life > 0 && !npc.dontTakeDamage && npc.Distance(Player.position) <= 120) {
-                    //npc.StrikeNPCNoInteraction(rocketJumpDamage, rocketJumpKnockBack, 0, Main.rand.NextBool(4) ? true : false, false, false);
+                    npc.SimpleStrikeNPC(rocketJumpDamage, Player.direction, false, rocketJumpKnockBack, DamageClass.Melee, false, 0, false);
                     npc.AddBuff(BuffID.ShadowFlame, 180);
                 }
             }

@@ -9,13 +9,19 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using Terraria.Achievements;
 using Terraria.ModLoader;
 
 namespace Consolaria.Common {
     public class CrossContentIntegration : ModSystem {
+        private int bossTypeLepus = ModContent.NPCType<Lepus>();
+        private int bossTypeTurkor = ModContent.NPCType<TurkortheUngrateful>();
+        private int bossTypeOcram = ModContent.NPCType<Ocram>();
+
         public override void PostSetupContent () {
             DoBossChecklistIntegration();
             DoFargosIntegration();
+            DoAchievementModIntegration();
         }
         private void DoBossChecklistIntegration () {
             if (!ModLoader.TryGetMod("BossChecklist", out Mod bossChecklistMod)) {
@@ -36,10 +42,6 @@ namespace Consolaria.Common {
             Func<bool> downedLepus = () => DownedBossSystem.downedLepus;
             Func<bool> downedTurkor = () => DownedBossSystem.downedTurkor;
             Func<bool> downedOcram = () => DownedBossSystem.downedOcram;
-
-            int bossTypeLepus = ModContent.NPCType<Lepus>();
-            int bossTypeTurkor = ModContent.NPCType<TurkortheUngrateful>();
-            int bossTypeOcram = ModContent.NPCType<Ocram>();
 
             int lepusSpawnItem = ModContent.ItemType<SuspiciousLookingEgg>();
             int turkorSpawnItem = ModContent.ItemType<CursedStuffing>();
@@ -127,6 +129,11 @@ namespace Consolaria.Common {
                 fargos.Call("AddSummon", 5.75f, "Consolaria", "CursedStuffing", () => DownedBossSystem.downedLepus, 180000);
                 fargos.Call("AddSummon", 12f, "Consolaria", "SuspiciousLookingSkull", () => DownedBossSystem.downedLepus, 500000);
             }
+        }
+
+        private void DoAchievementModIntegration () {
+            if (ModLoader.TryGetMod("TMLAchievements", out Mod achievement))
+                achievement.Call("AddAchievement", this, "LepusAchievement", AchievementCategory.Slayer, "Consolaria/Assets/Achievements/LepusAchievement", null, false, true, 5f, new string [] { "Kill_" + bossTypeLepus });
         }
     }
 }

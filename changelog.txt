@@ -1,1 +1,2 @@
-- Nothing to say, sorry
+- Fixed tile duplication glitch 
+- Added russian localization

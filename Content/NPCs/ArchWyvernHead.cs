@@ -62,8 +62,9 @@ namespace Consolaria.Content.NPCs
 			NPC.netAlways = true;
 
 			NPC.alpha = 255;
+            NPC.value = Item.buyPrice(gold: 1, silver: 75);
 
-			Banner = NPC.type;
+            Banner = NPC.type;
 			BannerItem = ModContent.ItemType<Items.Banners.ArchWyvernBanner>();
 		}
 
@@ -86,11 +87,11 @@ namespace Consolaria.Content.NPCs
 			if (player.dead && NPC.timeLeft > 300) NPC.timeLeft = 300;	
 
 			shootTimer++;
-			if (shootTimer >= 50 && shootTimer % 5 == 0) {
-				Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X + 5, NPC.Center.Y, NPC.velocity.X * 2f, NPC.velocity.Y * 2f, ModContent.ProjectileType<ArchFlames>(), NPC.damage / 2, 4f, 255, 0, 0);
-				SoundEngine.PlaySound(SoundID.Item20, NPC.position);
+			if (shootTimer >= 75 && shootTimer % 30 == 0) {
+				Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X + 5, NPC.Center.Y, NPC.velocity.X * 1.25f, NPC.velocity.Y * 1.25f, ModContent.ProjectileType<ArchFlames>(), NPC.damage / 2, 4f, 255);
+				SoundEngine.PlaySound(SoundID.Item20 with { MaxInstances = 1 }, NPC.position);
 			}
-			if (shootTimer >= 70) shootTimer = 0;
+			if (shootTimer >= 150) shootTimer = 0;
 
 			if (Main.netMode != NetmodeID.MultiplayerClient) {
 				if (NPC.ai[0] == 0f) {

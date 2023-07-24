@@ -58,8 +58,9 @@ namespace Consolaria.Content.NPCs {
 			NPC.netAlways = true;
 
 			NPC.alpha = 255;
+            NPC.value = Item.buyPrice(gold: 1, silver: 30);
 
-			Banner = NPC.type;
+            Banner = NPC.type;
 			BannerItem = ModContent.ItemType<Items.Banners.MythicalWyvernBanner>();
 		}
 

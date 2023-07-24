@@ -22,10 +22,14 @@ namespace Consolaria.Content.Buffs {
 		public override void ResetEffects ()
 			=> drunk = false;
 
-		public override void ModifyHitByNPC (NPC npc, ref Player.HurtModifiers modifiers)
-			=> modifiers.FinalDamage *= 0.5f;
+		public override void ModifyHitByNPC (NPC npc, ref Player.HurtModifiers modifiers) {
+			if (drunk)
+				modifiers.FinalDamage *= 0.5f;
+		}
 
-		public override void ModifyHitByProjectile (Projectile proj, ref Player.HurtModifiers modifiers)
-			=> modifiers.FinalDamage *= 0.5f;
+		public override void ModifyHitByProjectile (Projectile proj, ref Player.HurtModifiers modifiers) {
+			if (drunk)
+				modifiers.FinalDamage *= 0.5f;
+		}
 	}
 }

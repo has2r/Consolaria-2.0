@@ -8,7 +8,7 @@ namespace Consolaria.Content.Items.BossDrops.Turkor {
 		public override void SetStaticDefaults () {
 			Item.ResearchUnlockCount = 1;
 			MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Assets/Music/Turkor"), ModContent.ItemType<TurkorMusicBox>(), ModContent.TileType<Tiles.TurkorMusicBox>());
-			ItemID.Sets.ShimmerTransformToItem[Type] = ItemID.MusicBox;
+			ItemID.Sets.ShimmerTransformToItem [Type] = ItemID.MusicBox;
 		}
 
 		public override void SetDefaults () {
@@ -21,7 +21,7 @@ namespace Consolaria.Content.Items.BossDrops.Turkor {
 
 			Item.rare = ItemRarityID.LightRed;
 			Item.value = Item.sellPrice(gold: 1);
-			Item.DefaultToPlaceableTile(ModContent.TileType<Tiles.TurkorMusicBox>());
+			Item.DefaultToMusicBox(ModContent.TileType<Tiles.TurkorMusicBox>(), 0);
 		}
 	}
 }

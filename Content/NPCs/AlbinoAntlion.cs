@@ -80,8 +80,12 @@ namespace Consolaria.Content.NPCs {
 			}
 		}
 
-		public override void ModifyNPCLoot (NPCLoot npcLoot)
-			=> npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AlbinoMandible>(), 30));
+		public override void ModifyNPCLoot (NPCLoot npcLoot) {
+			npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AlbinoMandible>(), 30));
+            var antlionsDropRules = Main.ItemDropsDB.GetRulesForNPCID(NPCID.Antlion, false);
+            foreach (var antlionsDropRule in antlionsDropRules)
+                npcLoot.Add(antlionsDropRule);
+        }
 
 		public override float SpawnChance (NPCSpawnInfo spawnInfo)
 			=> SpawnCondition.OverworldDayDesert.Chance * 0.025f;

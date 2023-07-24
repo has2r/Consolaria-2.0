@@ -79,7 +79,7 @@ namespace Consolaria.Content.NPCs {
         }
 
         public override void ModifyNPCLoot (NPCLoot npcLoot) {
-            var sharksDropRules = Main.ItemDropsDB.GetRulesForNPCID(NPCID.Shark, true);
+            var sharksDropRules = Main.ItemDropsDB.GetRulesForNPCID(NPCID.Shark, false);
             foreach (var sharkDropRule in sharksDropRules)
                 npcLoot.Add(sharkDropRule);
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<GoldenSeaweed>(), 20));

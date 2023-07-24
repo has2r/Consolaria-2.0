@@ -14,10 +14,6 @@ using Terraria.ModLoader;
 
 namespace Consolaria.Common {
     public class CrossContentIntegration : ModSystem {
-        private int bossTypeLepus = ModContent.NPCType<Lepus>();
-        private int bossTypeTurkor = ModContent.NPCType<TurkortheUngrateful>();
-        private int bossTypeOcram = ModContent.NPCType<Ocram>();
-
         public override void PostSetupContent () {
             DoBossChecklistIntegration();
             DoFargosIntegration();
@@ -89,7 +85,7 @@ namespace Consolaria.Common {
                 lepusInternalName,
                 lepusWeight,
                 downedLepus,
-                bossTypeLepus,
+                ModContent.NPCType<Lepus>(),
                 new Dictionary<string, object>() {
                     ["spawnItems"] = lepusSpawnItem,
                     ["collectibles"] = lepusCollectibles
@@ -101,7 +97,7 @@ namespace Consolaria.Common {
                turkorInternalName,
                turkorWeight,
                downedTurkor,
-               bossTypeTurkor,
+               ModContent.NPCType<TurkortheUngrateful>(),
                new Dictionary<string, object>() {
                    ["spawnItems"] = turkorSpawnItem,
                    ["collectibles"] = turkorCollectibles,
@@ -114,7 +110,7 @@ namespace Consolaria.Common {
                ocramInternalName,
                ocramWeight,
                downedOcram,
-               bossTypeOcram,
+               ModContent.NPCType<Ocram>(),
                new Dictionary<string, object>() {
                    ["spawnItems"] = ocramSpawnItem,
                    ["collectibles"] = ocramCollectibles,
@@ -133,7 +129,7 @@ namespace Consolaria.Common {
 
         private void DoAchievementModIntegration () {
             if (ModLoader.TryGetMod("TMLAchievements", out Mod achievement))
-                achievement.Call("AddAchievement", this, "LepusAchievement", AchievementCategory.Slayer, "Consolaria/Assets/Achievements/LepusAchievement", null, false, true, 5f, new string [] { "Kill_" + bossTypeLepus });
+                achievement.Call("AddAchievement", this, "LepusAchievement", AchievementCategory.Slayer, "Consolaria/Assets/Achievements/LepusAchievement", null, false, true, 5f, new string [] { "Kill_" + ModContent.NPCType<Lepus>() });
         }
     }
 }

@@ -103,7 +103,7 @@ namespace Consolaria.Content.NPCs {
 			}
 
 			if (timer == 100 && player.Distance(NPC.Center) < 250f) {
-				Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, new Vector2(6f, -6f).RotatedBy(NPC.rotation + 180), ProjectileID.JungleSpike, NPC.damage / 2, 1, player.whoAmI);
+				Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, new Vector2(6f, -6f).RotatedBy(NPC.rotation + 180), ProjectileID.Stinger, NPC.damage / 2, 1, player.whoAmI);
 				NPC.netUpdate = true;
 			}
 

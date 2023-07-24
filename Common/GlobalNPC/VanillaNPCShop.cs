@@ -9,6 +9,7 @@ namespace Consolaria.Common {
         public static Condition valentineDayCondition = new Condition("Mods.Consolaria.Conditions.SellingDuringValentineDay", () => (SeasonalEvents.configEnabled && SeasonalEvents.IsValentineDay()) || (!SeasonalEvents.configEnabled && Main.LocalPlayer.HasBuff(BuffID.Lovestruck)));
         public static Condition isMaleCondition = new Condition("Mods.Consolaria.Conditions.SellingIfMale", () => Main.LocalPlayer.Male);
         public static Condition womanMoment = new Condition("Mods.Consolaria.Conditions.SellingWhenWoman", () => !Main.LocalPlayer.Male);
+        public static Condition wishboneCooldown = new Condition("Mods.Consolaria.Conditions.SellingWhenWoman", () => !WishbonePlayer.purchasedWishbone);
 
         public override void ModifyShop (NPCShop shop) {
             if (shop.NpcType == NPCID.Merchant) {
@@ -54,8 +55,12 @@ namespace Consolaria.Common {
             if (shop.NpcType == NPCID.Mechanic)
                 shop.Add(ModContent.ItemType<Content.Items.Pets.MysteriousPackage>(), Condition.DownedMechBossAny);
             if (shop.NpcType == NPCID.SkeletonMerchant) {
-                if (!WishbonePlayer.purchasedWishbone)
-                    shop.Add(ModContent.ItemType<Content.Items.Consumables.Wishbone>());
+                shop.Add(ModContent.ItemType<Content.Items.Consumables.Wishbone>(), wishboneCooldown);
+                shop.FinishSetup();
+            }
+            if (shop.NpcType == NPCID.ArmsDealer) {
+                if (DownedBossSystem.downedOcram)
+                    shop.Add(ModContent.ItemType<Content.Items.Weapons.Ammo.SpectralArrow>());
             }
         }
     }

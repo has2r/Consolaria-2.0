@@ -5,10 +5,8 @@ using Terraria.ModLoader;
 
 namespace Consolaria.Content.Items.Weapons.Ammo {
     public class SpectralArrow : ModItem {
-        public override void SetStaticDefaults () {
-
-            Item.ResearchUnlockCount = 99;
-        }
+        public override void SetStaticDefaults ()
+            => Item.ResearchUnlockCount = 99;
 
         public override void SetDefaults () {
             int width = 26; int height = 30;

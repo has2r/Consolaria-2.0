@@ -21,7 +21,7 @@ namespace Consolaria.Content.Items.BossDrops.Lepus {
 
 			Item.rare = ItemRarityID.LightRed;
 			Item.value = Item.sellPrice(gold: 1);
-			Item.DefaultToPlaceableTile(ModContent.TileType<Tiles.LepusMusicBox>());
-		}
+            Item.DefaultToMusicBox(ModContent.TileType<Tiles.LepusMusicBox>(), 0);
+        }
 	}
 }

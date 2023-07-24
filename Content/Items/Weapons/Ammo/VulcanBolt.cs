@@ -1,18 +1,11 @@
 using Microsoft.Xna.Framework;
-using Terraria.GameContent.Creative;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Consolaria.Content.Items.Weapons.Ammo
-{
-    public class VulcanBolt : ModItem
-    {
-        public override void SetStaticDefaults() {
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 99;
-        }
-
-        public override void SetDefaults() {
+namespace Consolaria.Content.Items.Weapons.Ammo {
+    public class VulcanBolt : ModItem {
+        public override void SetDefaults () {
             int width = 26; int height = 30;
             Item.Size = new Vector2(width, height);
 

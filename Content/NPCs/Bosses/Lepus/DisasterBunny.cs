@@ -42,9 +42,12 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
 
             Banner = NPC.type;
             BannerItem = ModContent.ItemType<Items.Banners.DisasterBunnyBanner>();
+
+            if (!NPC.AnyNPCs(ModContent.NPCType<Lepus>()))
+                NPC.value = Item.buyPrice(silver: 5);
         }
 
-		public override void ApplyDifficultyAndPlayerScaling (int numPlayers, float balance, float bossAdjustment)/* tModPorter Note: bossLifeScale -> balance (bossAdjustment is different, see the docs for details) */
+		public override void ApplyDifficultyAndPlayerScaling (int numPlayers, float balance, float bossAdjustment)
             => NPC.lifeMax = 105;
 
         public override void SetBestiary (BestiaryDatabase database, BestiaryEntry bestiaryEntry) {

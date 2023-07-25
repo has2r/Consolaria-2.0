@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent.Bestiary;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Utilities;
@@ -63,6 +64,7 @@ namespace Consolaria.Content.NPCs {
         }
 
         public override void ModifyNPCLoot (NPCLoot npcLoot) {
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Weapons.Melee.AlbinoMandible>(), 30));
             var antlionsDropRules = Main.ItemDropsDB.GetRulesForNPCID(NPCID.WalkingAntlion, false);
             foreach (var antlionsDropRule in antlionsDropRules)
                 npcLoot.Add(antlionsDropRule);

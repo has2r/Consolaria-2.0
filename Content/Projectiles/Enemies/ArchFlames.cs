@@ -20,7 +20,7 @@ namespace Consolaria.Content.Projectiles.Enemies {
             Projectile.tileCollide = false;
             Projectile.ignoreWater = true;
 
-            Projectile.extraUpdates = 2;
+            Projectile.extraUpdates = 1;
         }
 
         public override void AI () {

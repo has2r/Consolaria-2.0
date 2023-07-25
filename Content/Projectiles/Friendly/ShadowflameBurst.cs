@@ -10,7 +10,6 @@ namespace Consolaria.Content.Projectiles.Friendly {
         public override void SetStaticDefaults () => Main.projFrames [Projectile.type] = 6;
 
         private readonly int lifeLimit = 40;
-        private int hitCounter;
         private float drawRotation;
         private float scal;
 
@@ -78,17 +77,16 @@ namespace Consolaria.Content.Projectiles.Friendly {
         }
 
         public override void OnHitNPC (NPC target, NPC.HitInfo hit, int damageDone) {
-            hitCounter++;
             target.AddBuff(BuffID.ShadowFlame, 300);
+            Projectile.damage = (int)(Projectile.damage * 0.5f);
         }
 
         public override void OnHitPlayer (Player target, Player.HurtInfo info) {
-            if (info.PvP)
+            if (info.PvP) {
                 target.AddBuff(BuffID.ShadowFlame, 300);
+                Projectile.damage = (int)(Projectile.damage * 0.5f);
+            }
         }
-
-        public override void ModifyHitNPC (NPC target, ref NPC.HitModifiers modifiers) 
-            => modifiers.FinalDamage -= (int) (modifiers.FinalDamage.Flat * hitCounter * 0.15f);
 
         public override bool OnTileCollide (Vector2 oldVelocity) {
             Projectile.timeLeft = 10;

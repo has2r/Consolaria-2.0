@@ -20,7 +20,7 @@ namespace Consolaria.Content.Items.Consumables {
             Item.maxStack = 9999;
             Item.UseSound = SoundID.NPCHit2;
 
-            Item.value = Item.sellPrice(gold: 1);
+            Item.value = Item.sellPrice(gold: 3);
             Item.rare = ItemRarityID.Orange;
 
             Item.useAnimation = 18;

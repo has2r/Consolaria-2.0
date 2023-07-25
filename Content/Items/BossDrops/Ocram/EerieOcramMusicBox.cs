@@ -21,7 +21,7 @@ namespace Consolaria.Content.Items.BossDrops.Ocram {
 
 			Item.rare = ItemRarityID.LightRed;
 			Item.value = Item.sellPrice(gold: 1);
-			Item.DefaultToPlaceableTile(ModContent.TileType<Tiles.EerieOcramMusicBox>());
-		}
+            Item.DefaultToMusicBox(ModContent.TileType<Tiles.OcramMusicBox>(), 0);
+        }
 	}
 }

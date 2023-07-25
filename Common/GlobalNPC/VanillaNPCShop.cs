@@ -55,8 +55,8 @@ namespace Consolaria.Common {
             if (shop.NpcType == NPCID.Mechanic)
                 shop.Add(ModContent.ItemType<Content.Items.Pets.MysteriousPackage>(), Condition.DownedMechBossAny);
             if (shop.NpcType == NPCID.SkeletonMerchant) {
-                shop.Add(ModContent.ItemType<Content.Items.Consumables.Wishbone>(), wishboneCooldown);
-                shop.FinishSetup();
+                int wishBone = ModContent.ItemType<Content.Items.Consumables.Wishbone>();
+                shop.Add(wishBone, wishboneCooldown);
             }
             if (shop.NpcType == NPCID.ArmsDealer) {
                 if (DownedBossSystem.downedOcram)

@@ -87,11 +87,11 @@ namespace Consolaria.Content.NPCs
 			if (player.dead && NPC.timeLeft > 300) NPC.timeLeft = 300;	
 
 			shootTimer++;
-			if (shootTimer >= 75 && shootTimer % 30 == 0) {
+			if (shootTimer >= 90 && shootTimer % 3 == 0) {
 				Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X + 5, NPC.Center.Y, NPC.velocity.X * 1.25f, NPC.velocity.Y * 1.25f, ModContent.ProjectileType<ArchFlames>(), NPC.damage / 2, 4f, 255);
 				SoundEngine.PlaySound(SoundID.Item20 with { MaxInstances = 1 }, NPC.position);
 			}
-			if (shootTimer >= 150) shootTimer = 0;
+			if (shootTimer >= 120) shootTimer = 0;
 
 			if (Main.netMode != NetmodeID.MultiplayerClient) {
 				if (NPC.ai[0] == 0f) {

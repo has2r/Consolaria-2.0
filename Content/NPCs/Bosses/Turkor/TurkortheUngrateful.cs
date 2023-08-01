@@ -17,6 +17,8 @@ using Consolaria.Content.Items.Weapons.Melee;
 using Consolaria.Content.Items.Weapons.Summon;
 using Consolaria.Content.Items.Weapons.Ranged;
 using System.IO;
+using Terraria.Chat;
+using Terraria.Localization;
 
 namespace Consolaria.Content.NPCs.Bosses.Turkor {
     [AutoloadBossHead]
@@ -221,9 +223,33 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 		public override void AI () {
 			Player player = Main.player [NPC.target];
 
-			if (NPC.localAI [0] == 0f) {
+            NPC.TargetClosest(true);
+            int target = NPC.target;
+            bool flag = target < 0 || target == 255;
+            player = Main.player[target];
+            if (player.dead || flag) {
+                NPC.TargetClosest();
+                player = Main.player[NPC.target];
+                if (player.dead || flag) {
+                    NPC.life = 0;
+                    NPC.HitEffect(0, 10.0);
+                    NPC.active = false;
+                    if (Main.netMode == NetmodeID.Server) {
+                        NetMessage.SendData(MessageID.DamageNPC, -1, -1, null, NPC.whoAmI, -1f, 0f, 0f, 0, 0, 0);
+                    }
+                    return;
+                }
+            }
+
+            if (NPC.localAI [0] == 0f) {
 				NPC.localAI [0] = 1f;
-				float x = player.position.X + Main.rand.NextFloat(50f, 150f) * 5f * (Main.rand.NextBool() ? -1f : 1f);
+                SoundEngine.PlaySound(SoundID.Roar, NPC.Center);
+                string typeName = NPC.TypeName;
+                if (Main.netMode == 0)
+                    Main.NewText(Language.GetTextValue("Announcement.HasAwoken", typeName), 175, 75);
+                else if (Main.netMode == 2)
+                    ChatHelper.BroadcastChatMessage(NetworkText.FromKey("Announcement.HasAwoken", NPC.GetTypeNetName()), new Color(175, 75, 255));
+                float x = player.position.X + Main.rand.NextFloat(50f, 150f) * 5f * (Main.rand.NextBool() ? -1f : 1f);
 				int y = GetFirstTileFloor((int) x / 16, (int) (NPC.Center.Y / 16f) + 3);
 				Vector2 position = new Vector2 { X = x, Y = y * 16f };
 				NPC.position = position;
@@ -241,27 +267,6 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 
 			int dust = Dust.NewDust(new Vector2(NPC.position.X, NPC.position.Y - 20), NPC.width, NPC.height, DustID.Smoke, 0f, -6f, 60, Color.White, 1f);
 			Main.dust [dust].velocity *= 0.2f;
-
-			NPC.TargetClosest(true);
-			int target = NPC.target;
-			bool flag = target < 0 || target == 255;
-			player = Main.player[target];
-			if (player.dead || flag)
-			{
-				NPC.TargetClosest();
-				player = Main.player[NPC.target];
-				if (player.dead || flag)
-				{
-					NPC.life = 0;
-					NPC.HitEffect(0, 10.0);
-					NPC.active = false;
-					if (Main.netMode == NetmodeID.Server)
-					{
-						NetMessage.SendData(MessageID.DamageNPC, -1, -1, null, NPC.whoAmI, -1f, 0f, 0f, 0, 0, 0);
-					}
-					return;
-				}
-			}
 
 			bool isNotMpClient = (Main.netMode != NetmodeID.MultiplayerClient);
 

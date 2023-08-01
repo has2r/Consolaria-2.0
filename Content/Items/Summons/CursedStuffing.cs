@@ -1,4 +1,5 @@
 using Consolaria.Content.Buffs;
+using Consolaria.Content.NPCs.Bosses.Ocram;
 using Consolaria.Content.NPCs.Bosses.Turkor;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -36,14 +37,9 @@ namespace Consolaria.Content.Items.Summons {
         public override bool? UseItem (Player player) {
             if (player.whoAmI == Main.myPlayer) {
                 player.ClearBuff(ModContent.BuffType<PetTurkey>());
-                SoundEngine.PlaySound(SoundID.Roar);
 
                 int type = ModContent.NPCType<TurkortheUngrateful>();
-                Vector2 spawnPosition = new Vector2(player.position.X + 400, player.position.Y - 200);
-                if (Main.netMode != NetmodeID.MultiplayerClient)
-                    NPC.SpawnBoss((int) spawnPosition.X, (int) spawnPosition.Y, type, player.whoAmI);
-                else
-                    NetMessage.SendData(MessageID.SpawnBossUseLicenseStartEvent, number: player.whoAmI, number2: type);
+                NPC.NewNPC(player.GetSource_FromThis(), (int)player.Center.X, (int)player.Center.Y, type);
             }
             return true;
         }

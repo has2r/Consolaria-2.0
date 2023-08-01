@@ -12,10 +12,12 @@ using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.Audio;
+using Terraria.Chat;
 using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.NPCs.Bosses.Ocram {
@@ -133,11 +135,22 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
 
         //abandon hope all ye who enter here
         public override void AI () {
+            if (NPC.target < 0 || NPC.target == 255 || Main.player[NPC.target].dead || !Main.player[NPC.target].active) {
+                NPC.TargetClosest(true);
+            }
+
             if (spawnCheck > 0) Lighting.AddLight(NPC.Center, 0.6f + 0.05f * (100 - spawnCheck), 0.4f, 0.5f);
 
             if (spawnCheck < 100) {
                 if (spawnCheck == 0) {
-                    NPC.Center = Main.player [NPC.target].Center - new Vector2(0f, 1150f);
+                    string typeName = NPC.TypeName;
+                    if (Main.netMode == 0)
+                        Main.NewText(Language.GetTextValue("Announcement.HasAwoken", typeName), 175, 75);
+                    else if (Main.netMode == 2)
+                        ChatHelper.BroadcastChatMessage(NetworkText.FromKey("Announcement.HasAwoken", NPC.GetTypeNetName()), new Color(175, 75, 255));
+
+                    SoundEngine.PlaySound(new SoundStyle($"{nameof(Consolaria)}/Assets/Sounds/OcramRoar"), NPC.position);
+                    NPC.position -= new Vector2(0f, 1150f);
                     NPC.velocity = new Vector2(0, 50f);
                 }
                 if (spawnCheck == 1) AddGlow(20f, 0.95f, Color.Red);
@@ -153,10 +166,6 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
                     Main.dust [index2].position += new Vector2(Main.rand.Next(80, 120), 0).RotatedByRandom(rad);
                     Main.dust [index2].velocity = Vector2.Normalize(NPC.Center - Main.dust [index2].position) * Main.rand.NextFloat(1f, 2f);
                 }
-            }
-
-            if (NPC.target < 0 || NPC.target == 255 || Main.player [NPC.target].dead || !Main.player [NPC.target].active) {
-                NPC.TargetClosest(true);
             }
 
             if (Main.expertMode) {

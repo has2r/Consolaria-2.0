@@ -34,13 +34,8 @@ namespace Consolaria.Content.Items.Summons {
 
         public override bool? UseItem (Player player) {
             if (player.whoAmI == Main.myPlayer) {
-                SoundEngine.PlaySound(new SoundStyle($"{nameof(Consolaria)}/Assets/Sounds/OcramRoar"), player.position);
-
                 int type = ModContent.NPCType<Ocram>();
-                if (Main.netMode != NetmodeID.MultiplayerClient)
-                    NPC.SpawnOnPlayer(player.whoAmI, type);
-                else
-                    NetMessage.SendData(MessageID.SpawnBossUseLicenseStartEvent, number: player.whoAmI, number2: type);
+                NPC.NewNPC(player.GetSource_FromThis(), (int)player.Center.X, (int)player.Center.Y, type);
             }
             return true;
         }

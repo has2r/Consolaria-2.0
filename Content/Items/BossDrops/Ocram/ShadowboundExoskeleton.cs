@@ -8,9 +8,7 @@ using Terraria.Localization;
 namespace Consolaria.Content.Items.BossDrops.Ocram {
     public class ShadowboundExoskeleton : ModItem {
         public static int ItemMeleeDamage = 90;
-        public static string TapDirection = Language.GetTextValue(Main.ReversedUpDownArmorSetBonuses ? "Key.DOWN" : "Key.UP");
-
-        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ItemMeleeDamage, TapDirection);
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ItemMeleeDamage, Language.GetTextValue(Main.ReversedUpDownArmorSetBonuses ? "Key.DOWN" : "Key.UP"));
 
         public override void SetDefaults () {
             int width = 30; int height = width;
@@ -30,8 +28,8 @@ namespace Consolaria.Content.Items.BossDrops.Ocram {
     internal class RocketJumpPlayer : ModPlayer {
         public bool ocramJump;
 
-        private int rocketJumpDamage = 90;
-        private float rocketJumpKnockBack = 6f;
+        private readonly float rocketJumpKnockBack = 6f;
+
         private bool rocketJumped;
         private int rocketTimer, rocketCooldown;
 
@@ -93,7 +91,7 @@ namespace Consolaria.Content.Items.BossDrops.Ocram {
             for (int _npc = 0; _npc < Main.maxNPCs; _npc++) {
                 NPC npc = Main.npc [_npc];
                 if (npc.active && !npc.friendly && npc.life > 0 && !npc.dontTakeDamage && npc.Distance(Player.position) <= 120) {
-                    npc.SimpleStrikeNPC(rocketJumpDamage, Player.direction, false, rocketJumpKnockBack, DamageClass.Melee, false, 0, false);
+                    npc.SimpleStrikeNPC(ShadowboundExoskeleton.ItemMeleeDamage, Player.direction, false, rocketJumpKnockBack, DamageClass.Melee, false, 0, false);
                     npc.AddBuff(BuffID.ShadowFlame, 180);
                 }
             }

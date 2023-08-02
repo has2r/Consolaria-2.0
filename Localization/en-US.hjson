@@ -1143,12 +1143,12 @@ Mods: {
 
 			Topper505: {
 				DisplayName: 505 Topper
-				Tooltip: ""
+				Tooltip: "{0}"
 			}
 
 			StarTopper4: {
 				DisplayName: Star Topper 4
-				Tooltip: ""
+				Tooltip: "{0}"
 			}
 
 			PrestigiousTopHat: {

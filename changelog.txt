@@ -1,0 +1,10 @@
+- Fixed bosses appearing on the edge of the world when summoned using cheats
+- Fixed multiple issues related to placing and breaking Music Boxes
+- Fixed Tizona projectile missing its texture unless True Night's Edge has been used
+- Fixed Albino Chargers dropping regular Mandible Blades 
+- Fixed Vulcan Bolts still being a researchable item in Journey Mode 
+- Fixed Shadowbound Exoskeleton receiving weapon prefixes instead of accessory prefixes 
+- Fixed Mc MoneyPants immediately respawning after being killed
+- Fixed Christmas tree topper description appearing below item price
+
+Special thanks to TOMKA for reporting the majority of issues addressed in these last two updates

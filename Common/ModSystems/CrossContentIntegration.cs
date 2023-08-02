@@ -64,6 +64,7 @@ namespace Consolaria.Common {
                     ModContent.ItemType<OcramMask>(),
                     ModContent.ItemType<OcramTrophy>(),
                     ModContent.ItemType<OcramMusicBox>(),
+                    ModContent.ItemType<EerieOcramMusicBox>(),
                     ModContent.ItemType<OcramRelic>(),
                     ModContent.ItemType<CursedFang>()
             };

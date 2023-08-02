@@ -96,7 +96,7 @@ public class McMoneypants : ModNPC {
 							   "Now, don't get too greedy unless you want to end up like that Greek fella." };
 
     internal static bool SpawnCondition
-        => Main.dayTime && Main.time >= McMoneypantsWorldData.SpawnTime && Main.time < DAY_TIME;
+        => !McMoneypantsWorldData.Travelled && Main.dayTime && Main.time >= McMoneypantsWorldData.SpawnTime && Main.time < DAY_TIME;
 
     internal static bool DespawnCondition
         => _timePassed >= (McMoneypantsWorldData.SomebodyInvested ? DAY_TIME / 2 : DAY_TIME);
@@ -165,7 +165,7 @@ public class McMoneypants : ModNPC {
 
     public override void ModifyNPCLoot(NPCLoot npcLoot)
 	    => npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<PrestigiousTopHat>()));
-    
+
     #endregion
 
     //public override void OnSpawn(IEntitySource source)
@@ -283,6 +283,8 @@ public class McMoneypants : ModNPC {
         }
 
         void KillNPC() {
+            McMoneypantsWorldData.Travelled = false;
+
             NPC.active = false;
             NPC.netSkip = -1;
             NPC.life = 0;
@@ -340,6 +342,7 @@ public class McMoneypants : ModNPC {
                 bool shouldComeWhen = Main.rand.NextBool(McMoneypantsWorldData.ChanceToSpawn) || McMoneypantsWorldData.InvestedNextTravel;
                 if (!isMoneypantsThere && shouldComeWhen) {
                     int minTime = 5400, maxTime = 8100;
+                    McMoneypantsWorldData.Travelled = false;
                     McMoneypantsWorldData.SpawnTime = Helper.GetRandomSpawnTime(minTime, maxTime);
                 }
                 else {
@@ -354,6 +357,8 @@ public class McMoneypants : ModNPC {
 
         void SpawnNPC() {
             if (!isMoneypantsThere && Helper.CanTownNPCSpawn(SpawnCondition)) {
+                McMoneypantsWorldData.Travelled = true;
+
                 int npc = NPC.NewNPC(Terraria.Entity.GetSource_TownSpawn(), Main.spawnTileX * 16, Main.spawnTileY * 16, thisNPCType, 1);
 
                 NPC worldNPC = Main.npc[npc];
@@ -424,6 +429,7 @@ public class McMoneypants : ModNPC {
         void PlaySound() {
             SoundStyle style = new($"{nameof(Consolaria)}/Assets/Sounds/MoneyCashSound");
             SoundEngine.PlaySound(style, NPC.Center);
+			SoundEngine.PlaySound(SoundID.Coins with { Pitch = -0.3f }, NPC.Center);
         }
 
         AddBuff();
@@ -479,7 +485,8 @@ public class McMoneypantsWorldData : ModSystem {
     internal static bool isGildedInvitationUsed;
 
     public static bool InvestedNextTravel { get; internal set; }
-    public static bool SomebodyInvested { get; internal set; } 
+    public static bool SomebodyInvested { get; internal set; }
+    public static bool Travelled { get; internal set; }
     public static bool DidntTravelYet { get; internal set; } = true;
 
     public static double SpawnTime { get; internal set; } = double.MaxValue;
@@ -497,6 +504,7 @@ public class McMoneypantsWorldData : ModSystem {
 
         tag.Add("isInvested", InvestedNextTravel);
         tag.Add("isInvested2", SomebodyInvested);
+        tag.Add("travelled", Travelled);
         tag.Add("firstTimeTravelled", DidntTravelYet);
 
         tag.Add("spawnTime", SpawnTime);
@@ -507,6 +515,7 @@ public class McMoneypantsWorldData : ModSystem {
 
         InvestedNextTravel = tag.GetBool("isInvested");
         SomebodyInvested = tag.GetBool("isInvested2");
+        Travelled = tag.GetBool("travelled");
         DidntTravelYet = tag.GetBool("firstTimeTravelled");
 
         SpawnTime = tag.GetDouble("spawnTime");
@@ -517,6 +526,7 @@ public class McMoneypantsWorldData : ModSystem {
 
         writer.Write(InvestedNextTravel);
         writer.Write(SomebodyInvested);
+        writer.Write(Travelled);
         writer.Write(DidntTravelYet);
 
         writer.Write(SpawnTime);
@@ -527,6 +537,7 @@ public class McMoneypantsWorldData : ModSystem {
 
         InvestedNextTravel = reader.ReadBoolean();
         SomebodyInvested = reader.ReadBoolean();
+        Travelled = reader.ReadBoolean();
         DidntTravelYet = reader.ReadBoolean();
 
         SpawnTime = reader.ReadDouble();

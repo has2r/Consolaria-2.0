@@ -1,7 +1,6 @@
 using Consolaria.Content.NPCs.Bosses.Ocram;
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -33,15 +32,8 @@ namespace Consolaria.Content.Items.Summons {
             => !Main.dayTime && !NPC.AnyNPCs(ModContent.NPCType<Ocram>());
 
         public override bool? UseItem (Player player) {
-            if (player.whoAmI == Main.myPlayer) {
-                SoundEngine.PlaySound(new SoundStyle($"{nameof(Consolaria)}/Assets/Sounds/OcramRoar"), player.position);
-
-                int type = ModContent.NPCType<Ocram>();
-                if (Main.netMode != NetmodeID.MultiplayerClient)
-                    NPC.SpawnOnPlayer(player.whoAmI, type);
-                else
-                    NetMessage.SendData(MessageID.SpawnBossUseLicenseStartEvent, number: player.whoAmI, number2: type);
-            }
+            if (player.whoAmI == Main.myPlayer)
+                NPC.NewNPC(player.GetSource_FromThis(), (int) player.Center.X, (int) player.Center.Y, ModContent.NPCType<Ocram>());
             return true;
         }
 

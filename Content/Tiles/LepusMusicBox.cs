@@ -15,7 +15,8 @@ namespace Consolaria.Content.Tiles {
 			TileObjectData.newTile.Origin = new Point16(0, 1);
 			TileObjectData.newTile.LavaDeath = false;
 			TileObjectData.newTile.DrawYOffset = 2;
-			TileObjectData.addTile(Type);
+            TileObjectData.newTile.StyleLineSkip = 2;
+            TileObjectData.addTile(Type);
 
 			AdjTiles = new int [] { TileID.MusicBoxes };
 

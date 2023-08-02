@@ -7,18 +7,14 @@ using Terraria.Localization;
 
 namespace Consolaria.Content.Items.BossDrops.Ocram {
     public class ShadowboundExoskeleton : ModItem {
-        public override void SetStaticDefaults () {
-            string tapDir = Language.GetTextValue(Main.ReversedUpDownArmorSetBonuses ? "Key.DOWN" : "Key.UP");
-            Item.ResearchUnlockCount = 1;
-        }
+        public static int ItemMeleeDamage = 90;
+        public static string TapDirection = Language.GetTextValue(Main.ReversedUpDownArmorSetBonuses ? "Key.DOWN" : "Key.UP");
+
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ItemMeleeDamage, TapDirection);
 
         public override void SetDefaults () {
             int width = 30; int height = width;
             Item.Size = new Vector2(width, height);
-
-            Item.DamageType = DamageClass.Melee;
-            Item.damage = 90;
-            Item.knockBack = 6f;
 
             Item.value = Item.sellPrice(gold: 4);
             Item.rare = ItemRarityID.Lime;
@@ -27,18 +23,15 @@ namespace Consolaria.Content.Items.BossDrops.Ocram {
             Item.accessory = true;
         }
 
-        public override void UpdateAccessory (Player player, bool hideVisual) {
-            player.GetModPlayer<RocketJumpPlayer>().ocramJump = true;
-            player.GetModPlayer<RocketJumpPlayer>().rocketJumpDamage = Item.damage;
-            player.GetModPlayer<RocketJumpPlayer>().rocketJumpKnockBack = Item.knockBack;
-        }
+        public override void UpdateAccessory (Player player, bool hideVisual)
+            => player.GetModPlayer<RocketJumpPlayer>().ocramJump = true;
     }
 
     internal class RocketJumpPlayer : ModPlayer {
         public bool ocramJump;
-        public int rocketJumpDamage;
-        public float rocketJumpKnockBack;
 
+        private int rocketJumpDamage = 90;
+        private float rocketJumpKnockBack = 6f;
         private bool rocketJumped;
         private int rocketTimer, rocketCooldown;
 
@@ -70,8 +63,7 @@ namespace Consolaria.Content.Items.BossDrops.Ocram {
                 if (rocketJumped) {
                     rocketTimer++;
                     rocketCooldown++;
-                }
-                else rocketTimer = 0;
+                } else rocketTimer = 0;
             }
         }
 
@@ -113,12 +105,12 @@ namespace Consolaria.Content.Items.BossDrops.Ocram {
             for (int i = 0; i < 4; i++) {
                 bool JustPressed = false;
                 switch (i) {
-                    case 0:
-                        JustPressed = (Player.controlDown && Player.releaseDown);
-                        break;
-                    case 1:
-                        JustPressed = (Player.controlUp && Player.releaseUp);
-                        break;
+                case 0:
+                JustPressed = (Player.controlDown && Player.releaseDown);
+                break;
+                case 1:
+                JustPressed = (Player.controlUp && Player.releaseUp);
+                break;
                 }
                 if (JustPressed && Player.doubleTapCardinalTimer [i] > 0 && JustPressed && Player.doubleTapCardinalTimer [i] < 15)
                     KeyDoubleTap(i);

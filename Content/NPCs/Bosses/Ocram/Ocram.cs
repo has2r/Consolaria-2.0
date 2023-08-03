@@ -150,8 +150,9 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
                         ChatHelper.BroadcastChatMessage(NetworkText.FromKey("Announcement.HasAwoken", NPC.GetTypeNetName()), new Color(175, 75, 255));
 
                     SoundEngine.PlaySound(new SoundStyle($"{nameof(Consolaria)}/Assets/Sounds/OcramRoar"), NPC.position);
-                    NPC.position -= new Vector2(0f, 1150f);
+                    NPC.Center = Main.player[NPC.target].Center - new Vector2(0f, 1150f);
                     NPC.velocity = new Vector2(0, 50f);
+                    NPC.netUpdate = true;
                 }
                 if (spawnCheck == 1) AddGlow(20f, 0.95f, Color.Red);
                 if (NPC.alpha > 0) NPC.alpha -= 10;

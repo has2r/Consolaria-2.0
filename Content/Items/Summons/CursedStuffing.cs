@@ -35,13 +35,6 @@ namespace Consolaria.Content.Items.Summons {
             => player.HasBuff(ModContent.BuffType<PetTurkey>()) && !NPC.AnyNPCs(ModContent.NPCType<TurkortheUngrateful>());
 
         public override bool? UseItem (Player player) {
-<<<<<<< Updated upstream
-            if (player.whoAmI == Main.myPlayer) {
-                player.ClearBuff(ModContent.BuffType<PetTurkey>());
-
-                int type = ModContent.NPCType<TurkortheUngrateful>();
-                NPC.NewNPC(player.GetSource_FromThis(), (int)player.Center.X, (int)player.Center.Y, type);
-=======
             player.ClearBuff(ModContent.BuffType<PetTurkey>());
             int type = ModContent.NPCType<TurkortheUngrateful>();
             if (Main.netMode != NetmodeID.MultiplayerClient) {
@@ -50,7 +43,6 @@ namespace Consolaria.Content.Items.Summons {
                 if (Main.netMode == NetmodeID.Server && npc < Main.maxNPCs) {
                     NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, npc);
                 }
->>>>>>> Stashed changes
             }
             return true;
         }

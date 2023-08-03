@@ -8,7 +8,6 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Items.Summons {
     public class SuspiciousLookingEgg : ModItem {
         public override void SetStaticDefaults () {
-
             Item.ResearchUnlockCount = 3;
             ItemID.Sets.SortingPriorityBossSpawns [Type] = 12;
         }

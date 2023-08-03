@@ -24,7 +24,8 @@ namespace Consolaria.Content.NPCs {
 				Velocity = 1f
 			};
 			NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
-		}
+            NPCID.Sets.ShimmerTransformToNPC [NPC.type] = NPCID.UndeadMiner;
+        }
 
 		public override void SetDefaults () {
 			int width = 40; int height = width;

@@ -7,7 +7,6 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Items.Summons {
     public class SuspiciousLookingSkull : ModItem {
         public override void SetStaticDefaults () {
-
             Item.ResearchUnlockCount = 3;
             ItemID.Sets.SortingPriorityBossSpawns [Type] = 12;
         }
@@ -32,8 +31,13 @@ namespace Consolaria.Content.Items.Summons {
             => !Main.dayTime && !NPC.AnyNPCs(ModContent.NPCType<Ocram>());
 
         public override bool? UseItem (Player player) {
-            if (player.whoAmI == Main.myPlayer)
-                NPC.NewNPC(player.GetSource_FromThis(), (int) player.Center.X, (int) player.Center.Y, ModContent.NPCType<Ocram>());
+            if (player.whoAmI == Main.myPlayer) {
+                int type = ModContent.NPCType<Ocram>();
+                if (Main.netMode != NetmodeID.MultiplayerClient)
+                    NPC.SpawnOnPlayer(player.whoAmI, type);
+                else
+                    NetMessage.SendData(MessageID.SpawnBossUseLicenseStartEvent, number: player.whoAmI, number2: type);
+            }
             return true;
         }
 

@@ -31,12 +31,13 @@ namespace Consolaria.Content.Items.Summons {
             => !Main.dayTime && !NPC.AnyNPCs(ModContent.NPCType<Ocram>());
 
         public override bool? UseItem (Player player) {
-            if (player.whoAmI == Main.myPlayer) {
-                int type = ModContent.NPCType<Ocram>();
-                if (Main.netMode != NetmodeID.MultiplayerClient)
-                    NPC.SpawnOnPlayer(player.whoAmI, type);
-                else
-                    NetMessage.SendData(MessageID.SpawnBossUseLicenseStartEvent, number: player.whoAmI, number2: type);
+            int type = ModContent.NPCType<Ocram>();
+            if (Main.netMode != NetmodeID.MultiplayerClient) {
+                int npc = NPC.NewNPC(player.GetSource_ItemUse(Item), (int) player.Center.X, (int) player.Center.Y, type);
+                Main.npc [npc].target = player.whoAmI;
+                if (Main.netMode == NetmodeID.Server && npc < Main.maxNPCs) {
+                    NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, npc);
+                }
             }
             return true;
         }

@@ -32,14 +32,14 @@ namespace Consolaria.Content.Items.Summons {
             => player.HasBuff(ModContent.BuffType<PetTurkey>()) && !NPC.AnyNPCs(ModContent.NPCType<TurkortheUngrateful>());
 
         public override bool? UseItem (Player player) {
-            if (player.whoAmI == Main.myPlayer) {
-                player.ClearBuff(ModContent.BuffType<PetTurkey>());
-                int type = ModContent.NPCType<TurkortheUngrateful>();
-                Vector2 spawnPosition = new Vector2((int) player.Center.X, player.Center.Y);
-                if (Main.netMode != NetmodeID.MultiplayerClient)
-                    NPC.SpawnOnPlayer(player.whoAmI, type);
-                else
-                    NetMessage.SendData(MessageID.SpawnBossUseLicenseStartEvent, number: player.whoAmI, number2: type);
+            player.ClearBuff(ModContent.BuffType<PetTurkey>());
+            int type = ModContent.NPCType<TurkortheUngrateful>();
+            if (Main.netMode != NetmodeID.MultiplayerClient) {
+                int npc = NPC.NewNPC(player.GetSource_ItemUse(Item), (int) player.Center.X, (int) player.Center.Y, type);
+                Main.npc [npc].target = player.whoAmI;
+                if (Main.netMode == NetmodeID.Server && npc < Main.maxNPCs) {
+                    NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, npc);
+                }
             }
             return true;
         }

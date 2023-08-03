@@ -1,1 +1,1 @@
-- Fixed bosses not spawning correctly in multiplayer
+- Improved boss spawning in multiplayer

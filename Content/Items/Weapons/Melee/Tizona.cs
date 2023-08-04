@@ -55,7 +55,8 @@ namespace Consolaria.Content.Items.Weapons.Melee {
 				for (int i = 0; i < projectilesCount; i++) {
 					Vector2 perturbedSpeed = velocity.RotatedBy((MathHelper.Lerp(0, rotation, i / Math.Clamp(projectilesCount - 1, 1, projectilesCount)) - 0.5f) * -player.direction * player.gravDir) * 1.1f;
 					Projectile.NewProjectile(source, position, perturbedSpeed, ModContent.ProjectileType<Projectiles.Friendly.TizonaShoot>(), damage, knockback / 2, player.whoAmI, player.direction * player.gravDir, 32f, (projectilesCount - 1 - i) * 12f);
-				}
+                    NetMessage.SendData(MessageID.PlayerControls, -1, -1, null, player.whoAmI);
+                }
 			}
 			return false;
 		}

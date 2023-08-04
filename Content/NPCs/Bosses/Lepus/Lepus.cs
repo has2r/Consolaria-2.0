@@ -229,6 +229,13 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
 
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SuspiciousLookingEgg>()));
 
+            //DrunkWorldCondition drunkWorldCondition = new DrunkWorldCondition();
+            //npcLoot.Add(ItemDropRule.ByCondition(drunkWorldCondition, ItemID.SoulofMight, 300, 3));
+
+            //HardSeedsCondition hardSeedsCondition = new HardSeedsCondition();
+            //npcLoot.Add(new OneFromRulesRule(300, ItemDropRule.ByCondition(hardSeedsCondition, ItemID.NinjaHood, ItemID.NinjaShirt, ItemID.NinjaPants)));
+
+
             //RabbitInvasionDropCondition lepusDropCondition2 = new();
             //IItemDropRule conditionalRule2 = new LeadingConditionRule(lepusDropCondition2);
             //conditionalRule2.OnSuccess(ItemDropRule.Common(ModContent.ItemType<GoldenCarrot>(), minimumDropped: 10, maximumDropped: 20));

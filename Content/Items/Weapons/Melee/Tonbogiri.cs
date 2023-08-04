@@ -9,7 +9,6 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Items.Weapons.Melee {
     public class Tonbogiri : ModItem {
         public override void SetStaticDefaults () {
-
             ItemID.Sets.SkipsInitialUseSound [Item.type] = true;
             ItemID.Sets.Spears [Item.type] = true;
 

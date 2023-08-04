@@ -1,4 +1,5 @@
-﻿using Consolaria.Content.Items.Vanity;
+﻿using Consolaria.Common;
+using Consolaria.Content.Items.Vanity;
 using Consolaria.Content.Projectiles.Enemies;
 using Microsoft.Xna.Framework;
 using System;
@@ -133,8 +134,13 @@ namespace Consolaria.Content.NPCs {
 			}
 		}
 
-		public override void ModifyNPCLoot (NPCLoot npcLoot)
-			=> npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ArchDemonMask>(), 15));
+		public override void ModifyNPCLoot (NPCLoot npcLoot) {
+			npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ArchDemonMask>(), 15));
+
+            DrunkWorldCondition drunkWorldCondition = new DrunkWorldCondition();
+            npcLoot.Add(ItemDropRule.ByCondition(drunkWorldCondition, ItemID.CrystalShard, 1, 4, 9));
+            npcLoot.Add(ItemDropRule.ByCondition(drunkWorldCondition, ItemID.CrystalStorm, 400));
+        }
 
 		public override float SpawnChance (NPCSpawnInfo spawnInfo)
 			=> SpawnCondition.Underworld.Chance * 0.002f;

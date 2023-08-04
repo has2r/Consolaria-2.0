@@ -87,7 +87,7 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
             int offsetY = 8;
 
             Player player = Main.player [Projectile.owner];
-            Color slimeColor = Main.tenthAnniversaryWorld || Main.drunkWorld || Main.getGoodWorld ? Main.DiscoColor : player.shirtColor;
+            Color slimeColor = Main.tenthAnniversaryWorld || Main.drunkWorld || Main.getGoodWorld || Main.zenithWorld ? Main.DiscoColor : player.shirtColor;
 
             int intendedShader = player.cPet;
             spriteBatch.End();

@@ -5,10 +5,6 @@ using Microsoft.Xna.Framework;
 
 namespace Consolaria.Content.Items.Weapons.Melee {
     public class AlbinoMandible : ModItem {
-		public override void SetStaticDefaults () {
-			Item.ResearchUnlockCount = 1;
-		}
-
 		public override void SetDefaults () {
 			int width = 32; int height = 16;
 			Item.Size = new Vector2(width, height);

@@ -5,11 +5,6 @@ using Terraria.ModLoader;
 
 namespace Consolaria.Content.Items.Weapons.Melee {
     public class GreatDrumstick : ModItem {
-        public override void SetStaticDefaults () {
-
-            Item.ResearchUnlockCount = 1;
-        }
-
         public override void SetDefaults () {
             int width = 38; int height = 42;
             Item.Size = new Vector2(width, height);

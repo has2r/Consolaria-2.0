@@ -222,56 +222,54 @@ namespace Consolaria.Content.Projectiles.Friendly {
 
         private void DrawLikeTrueNightsEdge (SpriteBatch spriteBatch) {
             Texture2D texture = (Texture2D) ModContent.Request<Texture2D>(Texture);
-            Rectangle rectangle = texture.Frame(1, 4);
+            Rectangle rectangle = texture.Frame(1, Main.projFrames [Type]);
             Vector2 origin = rectangle.Size() / 2f;
-            float num = Projectile.scale * 0.75f;
+            float projectileScale = Projectile.scale * 0.75f;
             SpriteEffects effects = (!(Projectile.ai [0] >= 0f)) ? SpriteEffects.FlipVertically : SpriteEffects.None;
-            float num2 = 0.975f;
+            float projectileUnscale = 0.975f;
             float fromValue = Lighting.GetColor(Projectile.Center.ToTileCoordinates()).ToVector3().Length() / (float) Math.Sqrt(3.0);
             fromValue = Utils.Remap(fromValue, 0.2f, 1f, 0f, 1f);
-            float num3 = MathHelper.Min(0.15f + fromValue * 0.85f, Utils.Remap(Projectile.localAI [0], 30f, 96f, 1f, 0f));
-            float num4 = 2f;
-            for (float num5 = num4; num5 >= 0f; num5 -= 1f) {
-                if (!(Projectile.oldPos [(int) num5] == Vector2.Zero)) {
-                    Vector2 value = Projectile.Center - Projectile.velocity * 0.5f * num5;
-                    float num6 = Projectile.rotation + Projectile.ai [0] * ((float) Math.PI * 2f) * 0.1f * (0f - num5);
+            float colorLerp = MathHelper.Min(0.15f + fromValue * 0.85f, Utils.Remap(Projectile.localAI [0], 30f, 96f, 1f, 0f));
+            for (float i = 2; i >= 0f; i -= 1f) {
+                if (!(Projectile.oldPos [(int) i] == Vector2.Zero)) {
+                    Vector2 value = Projectile.Center - Projectile.velocity * 0.5f * i;
+                    float projectileRotation = Projectile.rotation + Projectile.ai [0] * ((float) Math.PI * 2f) * 0.1f * (0f - i);
                     Vector2 position = value - Main.screenPosition;
-                    float num7 = 1f - num5 / num4;
-                    float scale = Projectile.Opacity * num7 * num7 * 0.85f;
+                    float changeOpacity = 1f - i / 2;
+                    float scale = Projectile.Opacity * changeOpacity * changeOpacity * 0.85f;
                     float amount = Projectile.timeLeft / 360;
                     Color value2 = Color.Lerp(new Color(65, 30, 135, 160), new Color(135, 40, 165, 120), amount); //further big part
-                    spriteBatch.Draw(texture, position, rectangle, value2 * num3 * scale, num6 + Projectile.ai [0] * ((float) Math.PI / 4f) * -1f, origin, num * num2, effects, 0f);
+                    spriteBatch.Draw(texture, position, rectangle, value2 * colorLerp * scale, projectileRotation + Projectile.ai [0] * ((float) Math.PI / 4f) * -1f, origin, projectileScale * projectileUnscale, effects, 0f);
                     Color value3 = Color.Lerp(new Color(145, 40, 115, 120), new Color(125, 90, 140, 120), amount); //closer big part
                     Color value4 = Color.White * scale * 0.5f;
-                    value4.A = (byte) (value4.A * (1f - num3));
-                    Color value5 = value4 * num3 * 0.5f;
-                    value5.G = (byte) (value5.G * num3);
-                    value5.R = (byte) (value5.R * (0.25f + num3 * 0.75f));
-                    float num8 = 3f;
-                    for (float num9 = (float) Math.PI * -2f + (float) Math.PI * 2f / num8; num9 < 0f; num9 += (float) Math.PI * 2f / num8) {
-                        float scale2 = Utils.Remap(num9, (float) Math.PI * -2f, 0f, 0f, 0.5f);
-                        spriteBatch.Draw(texture, position, rectangle, value5 * 0.15f * scale2, num6 + Projectile.ai [0] * 0.01f + num9, origin, num, effects, 0f);
-                        spriteBatch.Draw(texture, position, rectangle, Color.Lerp(new Color(80, 50, 200, 200), new Color(220, 50, 200, 200), amount) * fromValue * scale * scale2, num6 + num9, origin, num * 0.8f, effects, 0f); //transparent parts
-                        spriteBatch.Draw(texture, position, rectangle, value3 * fromValue * scale * MathHelper.Lerp(0.05f, 0.4f, fromValue) * scale2, num6 + num9, origin, num * num2, effects, 0f);
-                        spriteBatch.Draw(texture, position, texture.Frame(1, 4, 0, 1), new Color(230, 191, 191) * MathHelper.Lerp(0.05f, 0.5f, fromValue) * scale * scale2, num6 + num9, origin, num, effects, 0f);
+                    value4.A = (byte) (value4.A * (1f - colorLerp));
+                    Color value5 = value4 * colorLerp * 0.5f;
+                    value5.G = (byte) (value5.G * colorLerp);
+                    value5.R = (byte) (value5.R * (0.25f + colorLerp * 0.75f));
+                    for (float k = (float) Math.PI * -2f + (float) Math.PI * 2f / 3f; k < 0f; k += (float) Math.PI * 2f / 3f) {
+                        float scale2 = Utils.Remap(k, (float) Math.PI * -2f, 0f, 0f, 0.5f);
+                        spriteBatch.Draw(texture, position, rectangle, value5 * 0.15f * scale2, projectileRotation + Projectile.ai [0] * 0.01f + k, origin, projectileScale, effects, 0f);
+                        spriteBatch.Draw(texture, position, rectangle, Color.Lerp(new Color(80, 50, 200, 200), new Color(220, 50, 200, 200), amount) * fromValue * scale * scale2, projectileRotation + k, origin, projectileScale * 0.8f, effects, 0f); //transparent parts
+                        spriteBatch.Draw(texture, position, rectangle, value3 * fromValue * scale * MathHelper.Lerp(0.05f, 0.4f, fromValue) * scale2, projectileRotation + k, origin, projectileScale * projectileUnscale, effects, 0f);
+                        spriteBatch.Draw(texture, position, texture.Frame(1, 4, 0, 1), new Color(230, 191, 191) * MathHelper.Lerp(0.05f, 0.5f, fromValue) * scale * scale2, projectileRotation + k, origin, projectileScale, effects, 0f);
                     }
 
-                    spriteBatch.Draw(texture, position, rectangle, value5 * 0.15f, num6 + Projectile.ai [0] * 0.01f, origin, num, effects, 0f);
-                    spriteBatch.Draw(texture, position, rectangle, Color.Lerp(new Color(140, 50, 200, 200), new Color(220, 50, 200, 200), amount) * num3 * scale, num6, origin, num * 0.8f, effects, 0f); //part near sparkle
-                    spriteBatch.Draw(texture, position, rectangle, value3 * fromValue * scale * MathHelper.Lerp(0.05f, 0.4f, num3), num6, origin, num * num2, effects, 0f);
-                    spriteBatch.Draw(texture, position, texture.Frame(1, 4, 0, 1), new Color(200, 191, 231) * MathHelper.Lerp(0.05f, 0.5f, num3) * scale, num6, origin, num, effects, 0f);
+                    spriteBatch.Draw(texture, position, rectangle, value5 * 0.15f, projectileRotation + Projectile.ai [0] * 0.01f, origin, projectileScale, effects, 0f);
+                    spriteBatch.Draw(texture, position, rectangle, Color.Lerp(new Color(140, 50, 200, 200), new Color(220, 50, 200, 200), amount) * colorLerp * scale, projectileRotation, origin, projectileScale * 0.8f, effects, 0f); //part near sparkle
+                    spriteBatch.Draw(texture, position, rectangle, value3 * fromValue * scale * MathHelper.Lerp(0.05f, 0.4f, colorLerp), projectileRotation, origin, projectileScale * projectileUnscale, effects, 0f);
+                    spriteBatch.Draw(texture, position, texture.Frame(1, 4, 0, 1), new Color(200, 191, 231) * MathHelper.Lerp(0.05f, 0.5f, colorLerp) * scale, projectileRotation, origin, projectileScale, effects, 0f);
                 }
             }
 
-            float num10 = 1f - Projectile.localAI [0] * 1f / 80f;
-            if (num10 < 0.5f)
-                num10 = 0.5f;
+            float drawBounds = 1f - Projectile.localAI [0] * 1f / 80f;
+            if (drawBounds < 0.5f)
+                drawBounds = 0.5f;
 
-            Vector2 drawpos = Projectile.Center - Main.screenPosition + (Projectile.rotation + 213f / 452f * Projectile.ai [0]).ToRotationVector2() * (texture.Width * 0.5f - 4f) * num * num10;
-            float scale3 = MathHelper.Min(num3, MathHelper.Lerp(1f, fromValue, Utils.Remap(Projectile.localAI [0], 0f, 80f, 0f, 1f)));
+            Vector2 drawpos = Projectile.Center - Main.screenPosition + (Projectile.rotation + 213f / 452f * Projectile.ai [0]).ToRotationVector2() * (texture.Width * 0.5f - 4f) * projectileScale * drawBounds;
+            float scale3 = MathHelper.Min(colorLerp, MathHelper.Lerp(1f, fromValue, Utils.Remap(Projectile.localAI [0], 0f, 80f, 0f, 1f)));
             DrawHelper.DrawPrettyStarSparkle(Projectile.Opacity, SpriteEffects.None, drawpos, new Color(255, 255, 255, 0) * Projectile.Opacity * 0.5f * scale3, new Color(200, 100, 200) * scale3, Projectile.Opacity, 0f, 1f, 1f, 2f, (float) Math.PI / 4f, new Vector2(1.2f, 1.2f), Vector2.One);
         }
-      
+
         public override bool PreDraw (ref Color lightColor) {
             if (Projectile.localAI [0] == 0)
                 return false;

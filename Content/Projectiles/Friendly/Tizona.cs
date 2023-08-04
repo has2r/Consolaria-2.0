@@ -87,7 +87,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
         private void DrawLikeExcalibur (SpriteBatch spriteBatch) {
             Vector2 position = Projectile.Center - Main.screenPosition;
             Texture2D texture = (Texture2D) ModContent.Request<Texture2D>(Texture);
-            Rectangle sourceRectangle = texture.Frame(1, 4);
+            Rectangle sourceRectangle = texture.Frame(1, Main.projFrames [Type]);
             Vector2 origin = sourceRectangle.Size() / 2f;
             float projectileScale = Projectile.scale * 1.1f;
             SpriteEffects effects = (!(Projectile.ai [0] >= 0f)) ? SpriteEffects.FlipVertically : SpriteEffects.None;

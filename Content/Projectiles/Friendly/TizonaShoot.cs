@@ -16,6 +16,8 @@ namespace Consolaria.Content.Projectiles.Friendly {
         public override void SetStaticDefaults () {
             ProjectileID.Sets.TrailCacheLength [Projectile.type] = 5;
             ProjectileID.Sets.TrailingMode [Projectile.type] = 0;
+
+            Main.projFrames [Type] = 4;
         }
 
         public override void SetDefaults () {
@@ -26,14 +28,17 @@ namespace Consolaria.Content.Projectiles.Friendly {
             Projectile.aiStyle = -1;
 
             Projectile.friendly = true;
+            Projectile.tileCollide = false;
             Projectile.penetrate = 2;
 
             Projectile.usesLocalNPCImmunity = true;
-            Projectile.tileCollide = false;
             Projectile.ignoreWater = true;
             Projectile.localNPCHitCooldown = 10;
+
             Projectile.alpha = 0;
             Projectile.timeLeft = 360;
+
+            Projectile.noEnchantmentVisuals = true;
         }
 
         public override void AI () {
@@ -173,12 +178,17 @@ namespace Consolaria.Content.Projectiles.Friendly {
             (num13 + Projectile.ai [0] * ((float) Math.PI / 2f)).ToRotationVector2();
             Color value2 = new Color(200, 191, 231);
             Color value3 = new Color(15, 84, 125);
-            //Lighting.AddLight(Projectile.Center + Projectile.rotation.ToRotationVector2() * 50f * Projectile.scale, value2.ToVector3());
+
             if (Main.rand.NextFloat() < Projectile.Opacity - 0.3f) {
                 Color.Lerp(Color.Lerp(Color.Lerp(value3, value2, Utils.Remap(fromValue, 0f, 0.6f, 0f, 1f)), Color.White, Utils.Remap(fromValue, 0.6f, 0.8f, 0f, 0.5f)), Color.White, Main.rand.NextFloat() * 0.3f);
                 Dust dust3 = Dust.NewDustPerfect(position6, 27, Projectile.velocity * 0.6f, 100, default(Color) * Projectile.Opacity, 0.6f * Projectile.Opacity);
                 dust3.velocity += player.velocity * 0.1f;
                 dust3.position -= dust3.velocity * 6f;
+            }
+
+            for (float i = -MathHelper.PiOver4; i <= MathHelper.PiOver4; i += MathHelper.PiOver2) {
+                Rectangle rectangle = Utils.CenteredRectangle(Projectile.Center + (Projectile.rotation + i).ToRotationVector2() * 70f * Projectile.scale, new Vector2(60f * Projectile.scale, 60f * Projectile.scale));
+                Projectile.EmitEnchantmentVisualsAt(rectangle.TopLeft(), rectangle.Width, rectangle.Height);
             }
         }
 
@@ -196,15 +206,18 @@ namespace Consolaria.Content.Projectiles.Friendly {
             return null;
         }
 
-        public override void ModifyHitNPC (NPC target, ref NPC.HitModifiers modifiers) {
-            ParticleOrchestraSettings particleOrchestraSettings;
-            Vector2 positionInWorld = Main.rand.NextVector2FromRectangle(target.Hitbox);
-            particleOrchestraSettings = default(ParticleOrchestraSettings);
-            particleOrchestraSettings.PositionInWorld = positionInWorld;
-            ParticleOrchestraSettings settings = particleOrchestraSettings;
-            ParticleOrchestrator.RequestParticleSpawn(clientOnly: false, ParticleOrchestraType.NightsEdge, settings, Projectile.owner);
+        public override void OnHitNPC (NPC target, NPC.HitInfo hit, int damageDone) {
+            ParticleOrchestrator.RequestParticleSpawn(clientOnly: false, ParticleOrchestraType.NightsEdge,
+            new ParticleOrchestraSettings { PositionInWorld = Main.rand.NextVector2FromRectangle(target.Hitbox) }, Projectile.owner);
+            hit.HitDirection = (Main.player [Projectile.owner].Center.X < target.Center.X) ? 1 : (-1);
+            target.AddBuff(BuffID.ShadowFlame, 180);
+        }
 
-            target.AddBuff(BuffID.ShadowFlame, 60);
+        public override void OnHitPlayer (Player target, Player.HurtInfo info) {
+            ParticleOrchestrator.RequestParticleSpawn(clientOnly: false, ParticleOrchestraType.NightsEdge,
+            new ParticleOrchestraSettings { PositionInWorld = Main.rand.NextVector2FromRectangle(target.Hitbox) }, Projectile.owner);
+            info.HitDirection = (Main.player [Projectile.owner].Center.X < target.Center.X) ? 1 : (-1);
+            if (info.PvP) target.AddBuff(BuffID.ShadowFlame, 180);
         }
 
         private void DrawLikeTrueNightsEdge (SpriteBatch spriteBatch) {

@@ -15,6 +15,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
                 Hide = true
             };
             NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, value);
+
             NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData {
                 SpecificallyImmuneTo = new int [] {
                     BuffID.Confused,
@@ -22,6 +23,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
                     BuffID.Venom
                 }
             };
+            NPCID.Sets.DebuffImmunitySets.Add(Type, debuffData);
         }
 
         public override void SetDefaults () {
@@ -43,8 +45,8 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
             NPC.friendly = false;
         }
 
-        public override void ApplyDifficultyAndPlayerScaling (int numPlayers, float balance, float bossAdjustment)/* tModPorter Note: bossLifeScale -> balance (bossAdjustment is different, see the docs for details) */
-            => NPC.lifeMax = 50 + (int)(numPlayers > 1 ? NPC.lifeMax * 0.15 * numPlayers : 0);
+        public override void ApplyDifficultyAndPlayerScaling (int numPlayers, float balance, float bossAdjustment)
+            => NPC.lifeMax = 50 + (int) (numPlayers > 1 ? NPC.lifeMax * 0.15 * numPlayers : 0);
 
         public override bool? DrawHealthBar (byte hbPosition, ref float scale, ref Vector2 position)
             => false;

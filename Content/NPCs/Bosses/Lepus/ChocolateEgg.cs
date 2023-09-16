@@ -14,6 +14,8 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
                     BuffID.Confused
                 }
             };
+            NPCID.Sets.DebuffImmunitySets.Add(Type, debuffData);
+
             NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0) {
                 Hide = true
             };

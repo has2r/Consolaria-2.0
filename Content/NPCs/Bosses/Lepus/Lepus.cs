@@ -21,6 +21,10 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.NPCs.Bosses.Lepus {
     [AutoloadBossHead]
     internal class Lepus : ConsolariaModBoss {
+        public static LocalizedText BestiaryText {
+            get; private set;
+        }
+
         private enum States {
             Appearance,
             Appearance2,
@@ -118,13 +122,12 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
 
             NPCID.Sets.TrailingMode [Type] = 1;
 
-            // DisplayName.SetDefault(nameof(Lepus));
-
             Main.npcFrameCount [Type] = 7;
 
             NPCID.Sets.MPAllowedEnemies [Type] = true;
 
             NPCID.Sets.BossBestiaryPriority.Add(Type);
+
             NPCID.Sets.NPCBestiaryDrawModifiers value = new(0) {
                 CustomTexturePath = "Consolaria/Assets/Textures/Bestiary/Lepus_Bestiary",
                 Position = new Vector2(24f, 12f),
@@ -133,12 +136,14 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
                 PortraitScale = 1f,
                 Scale = 1f
             };
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
+
             NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData {
                 SpecificallyImmuneTo = new int [] {
                     BuffID.Confused
                 }
             };
-            NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
+            BestiaryText = this.GetLocalization("Bestiary");
         }
 
         public override void SetDefaults () {
@@ -173,7 +178,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
                 Music = ModContent.GetInstance<ConsolariaConfig>().vanillaBossMusic ? MusicID.UndergroundHallow : MusicLoader.GetMusicSlot(Mod, MUSIC_PATH);
         }
 
-        public override void ApplyDifficultyAndPlayerScaling (int numPlayers, float balance, float bossAdjustment)/* tModPorter Note: bossLifeScale -> balance (bossAdjustment is different, see the docs for details) */ {
+        public override void ApplyDifficultyAndPlayerScaling (int numPlayers, float balance, float bossAdjustment) {
             NPC.lifeMax = (int) (NPC.lifeMax * 0.5f * 1.25f);
             NPC.damage = (int) (NPC.damage * 0.65f);
             if (numPlayers <= 1) return;
@@ -188,7 +193,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
             => bestiaryEntry.Info.AddRange(new List<IBestiaryInfoElement>
             {
                 BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheHallow,
-                new FlavorTextBestiaryInfoElement("As if its size wasn't troublesome enough, this rabbit can reproduce through colorful eggs, spread around the world in Spring for fools to pick up.")
+                new FlavorTextBestiaryInfoElement(BestiaryText.ToString())
             });
 
         public override void OnKill () {
@@ -199,8 +204,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
                 string text = "Bunnies are retreating!";
                 if (Main.netMode == NetmodeID.SinglePlayer) {
                     Main.NewText(text, new Color(50, 255, 130));
-                }
-                else if (Main.netMode == NetmodeID.Server) {
+                } else if (Main.netMode == NetmodeID.Server) {
                     ChatHelper.BroadcastChatMessage(NetworkText.FromKey(text), new Color(50, 255, 130));
                 }
             }
@@ -349,8 +353,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
                 if (Opacity < 1f) {
                     Opacity += 0.025f;
                 }
-            }
-            else {
+            } else {
                 if (Opacity > 0f) {
                     Opacity -= 0.01f;
                 }
@@ -476,8 +479,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
                 Vector2 center = Main.player [NPC.target].Center;
                 if (StateTimer != -1f) {
                     NPC.Center = center - new Vector2(0f, offsetY);
-                }
-                else {
+                } else {
                     NPC.Center = center - new Vector2(Main.rand.Next(50, 150) * (Main.rand.NextBool() ? 1 : -1), offsetY);
                 }
             }
@@ -491,8 +493,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
             if (NPC.Opacity > 0f) {
                 NPC.Opacity -= 0.01f;
                 NPC.Opacity *= 0.9f;
-            }
-            else {
+            } else {
                 ChangeState(STATE_APPEARANCE, -1f);
                 NPC.netUpdate = true;
             }
@@ -567,19 +568,16 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
                             NPC.netUpdate = true;
                             return;
                         }
-                    }
-                    else {
+                    } else {
                         JumpCount++;
                     }
                     ChangeState(STATE_JUMP);
                     NPC.netUpdate = true;
-                }
-                else if (StateTimer >= attackTime / 3) {
+                } else if (StateTimer >= attackTime / 3) {
                     AdvancedJumped = false;
                     AdvancedJumped2 = false;
                 }
-            }
-            else {
+            } else {
                 NPC.TargetClosest(true);
             }
         }
@@ -606,16 +604,14 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
                     ChangeState(STATE_JUMP2, jumpStrength);
                     NPC.netUpdate = true;
                     return;
-                }
-                else if (StateTimer % 3 == 0) {
+                } else if (StateTimer % 3 == 0) {
                     Vector2 eyeCenter = NPC.Center + new Vector2(12 * NPC.direction, -12);
                     int dust2 = Dust.NewDust(NPC.position - new Vector2(20, 20), NPC.width + 40, NPC.height + 40, DustID.Smoke, 0, 0, 75, Color.HotPink, Main.rand.NextFloat(1.2f, 1.7f));
                     Main.dust [dust2].position = eyeCenter + new Vector2(0, -80).RotatedByRandom(Math.PI * 2f);
                     Main.dust [dust2].velocity = Vector2.Normalize(Main.dust [dust2].position - eyeCenter) * -2f;
                     Main.dust [dust2].fadeIn = 1f;
                 }
-            }
-            else {
+            } else {
                 if (!JustSpawned && !flag) {
                     Dusts();
                 }
@@ -819,8 +815,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
                         NPC.Opacity -= 0.01f;
                         NPC.Opacity *= 0.9f;
                     }
-                }
-                else {
+                } else {
                     NPC.life = 0;
                     NPC.HitEffect(0, 10.0);
                     NPC.active = false;
@@ -835,8 +830,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
                         NetMessage.SendData(MessageID.DamageNPC, -1, -1, null, NPC.whoAmI, -1f, 0f, 0f, 0, 0, 0);
                     }
                 }
-            }
-            else if (++StateTimer >= 150) {
+            } else if (++StateTimer >= 150) {
                 if (NPC.velocity.Y == 0f && JumpCount <= 5) {
                     SoundEngine.PlaySound(SoundID.DoubleJump, NPC.position);
                     NPC.velocity.Y -= Main.rand.NextFloat(2f, 5f) * Main.rand.NextFloat(1.1f, 1.75f) * 0.5f * (JumpCount + 3) / 2;

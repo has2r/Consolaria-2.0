@@ -7,10 +7,8 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Items.Armor.Melee {
     [AutoloadEquip(EquipType.Head)]
     public class AncientDragonMask : ModItem {
-        public override void SetStaticDefaults () {
-            Item.ResearchUnlockCount = 1;
-            ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<DragonMask>();
-        }
+        public override void SetStaticDefaults ()
+            => ItemID.Sets.ShimmerTransformToItem [Type] = ModContent.ItemType<DragonMask>();
 
         public override void SetDefaults () {
             int width = 30; int height = 26;
@@ -35,7 +33,7 @@ namespace Consolaria.Content.Items.Armor.Melee {
             => player.armorEffectDrawShadow = true;
 
         public override void UpdateArmorSet (Player player) {
-            player.setBonus = "Creates a burst of flames after taking damage";
+            player.setBonus = DragonMask.SetBonusText.ToString();
             player.GetModPlayer<DragonPlayer>().dragonBurst = true;
         }
 

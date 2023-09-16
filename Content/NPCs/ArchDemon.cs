@@ -9,11 +9,16 @@ using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Utilities;
 
 namespace Consolaria.Content.NPCs {
 	public class ArchDemon : ModNPC {
+		public static LocalizedText BestiaryText {
+			get; private set;
+		}
+
 		private float aiTimer;
 
 		public override void SetStaticDefaults () {
@@ -33,6 +38,7 @@ namespace Consolaria.Content.NPCs {
 				Velocity = 1f
 			};
 			NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
+			BestiaryText = this.GetLocalization("Bestiary");
 		}
 
 		public override void SetDefaults () {
@@ -62,7 +68,7 @@ namespace Consolaria.Content.NPCs {
 		public override void SetBestiary (BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement [] {
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheUnderworld,
-				new FlavorTextBestiaryInfoElement("Particularly powerful demons live long enough for their body to turn into a withered husk.")
+				new FlavorTextBestiaryInfoElement(BestiaryText.ToString())
 			});
 		}
 
@@ -101,21 +107,17 @@ namespace Consolaria.Content.NPCs {
 					vel2_ = vel_ / vel2_;
 					velX *= vel2_;
 					velY *= vel2_;
-					ushort pro = (ushort) Projectile.NewProjectile(NPC.GetSource_FromAI(), shootVector.X, shootVector.Y, velX, velY, ModContent.ProjectileType<ArchScythe>(), (int)(NPC.damage * 0.75f), 0f, player.whoAmI);
+					ushort pro = (ushort) Projectile.NewProjectile(NPC.GetSource_FromAI(), shootVector.X, shootVector.Y, velX, velY, ModContent.ProjectileType<ArchScythe>(), (int) (NPC.damage * 0.75f), 0f, player.whoAmI);
 					Main.projectile [pro].timeLeft = 300;
 					SoundEngine.PlaySound(SoundID.Item8, NPC.position);
 				}
-			}
-
-			else if (aiTimer % 100 == 0) {
+			} else if (aiTimer % 100 == 0) {
 				int randomIdleSound = Main.rand.Next(0, 3);
 				if (randomIdleSound == 0) SoundEngine.PlaySound(SoundID.Zombie26, NPC.position);
 				if (randomIdleSound == 1) SoundEngine.PlaySound(SoundID.Zombie27, NPC.position);
 				if (randomIdleSound == 2) SoundEngine.PlaySound(SoundID.Zombie28, NPC.position);
 				if (randomIdleSound == 3) SoundEngine.PlaySound(SoundID.Zombie29, NPC.position);
-			}
-
-			else if (aiTimer >= (300 + Main.rand.Next(300))) aiTimer = 0;
+			} else if (aiTimer >= (300 + Main.rand.Next(300))) aiTimer = 0;
 		}
 
 		public override void OnHitPlayer (Player target, Player.HurtInfo hurtInfo)
@@ -137,10 +139,10 @@ namespace Consolaria.Content.NPCs {
 		public override void ModifyNPCLoot (NPCLoot npcLoot) {
 			npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ArchDemonMask>(), 15));
 
-            DrunkWorldCondition drunkWorldCondition = new DrunkWorldCondition();
-            npcLoot.Add(ItemDropRule.ByCondition(drunkWorldCondition, ItemID.CrystalShard, 1, 4, 9));
-            npcLoot.Add(ItemDropRule.ByCondition(drunkWorldCondition, ItemID.CrystalStorm, 400));
-        }
+			DrunkWorldCondition drunkWorldCondition = new DrunkWorldCondition();
+			npcLoot.Add(ItemDropRule.ByCondition(drunkWorldCondition, ItemID.CrystalShard, 1, 4, 9));
+			npcLoot.Add(ItemDropRule.ByCondition(drunkWorldCondition, ItemID.CrystalStorm, 400));
+		}
 
 		public override float SpawnChance (NPCSpawnInfo spawnInfo)
 			=> SpawnCondition.Underworld.Chance * 0.002f;

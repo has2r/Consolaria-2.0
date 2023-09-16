@@ -8,18 +8,22 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.Items.Armor.Ranged {
     [AutoloadEquip(EquipType.Head)]
     public class TitanHelmet : ModItem {
-
         public static Lazy<Asset<Texture2D>> helmetGlowmask;
         public override void Unload () => helmetGlowmask = null;
 
+        public static LocalizedText SetBonusText {
+            get; private set;
+        }
+
         public override void SetStaticDefaults () {
-            Item.ResearchUnlockCount = 1;
-            ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<AncientTitanHelmet>();
+            ItemID.Sets.ShimmerTransformToItem [Type] = ModContent.ItemType<AncientTitanHelmet>();
+            SetBonusText = this.GetLocalization("SetBonus");
 
             if (!Main.dedServ) {
                 helmetGlowmask = new(() => ModContent.Request<Texture2D>(Texture + "_Glow"));
@@ -55,7 +59,7 @@ namespace Consolaria.Content.Items.Armor.Ranged {
             => player.armorEffectDrawOutlinesForbidden = true;
 
         public override void UpdateArmorSet (Player player) {
-            player.setBonus = "Using ranged weapons triggers a recoil blast";
+            player.setBonus = SetBonusText.ToString();
             player.GetModPlayer<TitanPlayer>().titanPower = true;
         }
 
@@ -101,7 +105,6 @@ namespace Consolaria.Content.Items.Armor.Ranged {
     }
 
     internal class TitanArmorBonuses : GlobalItem {
-
         public override bool Shoot (Item item, Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
             TitanPlayer modPlayer = player.GetModPlayer<TitanPlayer>();
             ushort type2 = (ushort) ModContent.ProjectileType<TitanBlast>();
@@ -114,17 +117,16 @@ namespace Consolaria.Content.Items.Armor.Ranged {
                 int proj = Projectile.NewProjectile(player.GetSource_ItemUse(item), player.Center, velocity, type2, blastDamage, 7.5f, player.whoAmI);
                 if (Main.netMode == NetmodeID.Server)
                     NetMessage.SendData(MessageID.SyncProjectile, -1, -1, null, proj);
-                if (Main.netMode != NetmodeID.Server)
-                {
+                if (Main.netMode != NetmodeID.Server) {
                     Vector2 dustVel = new Vector2(10, 0).RotatedBy(velocity.ToRotation());
                     for (int i = 0; i <= 15; i++) {
                         int dust = Dust.NewDust(player.Center, 0, 0, DustID.Smoke, dustVel.X * 0.4f, dustVel.Y * 0.4f, 120, default, Main.rand.NextFloat(0.5f, 1.5f));
                         int dust2 = Dust.NewDust(player.Center, 0, 0, DustID.SolarFlare, dustVel.X * 1.3f, dustVel.Y * 1.3f, 100, default, Main.rand.NextFloat(0.5f, 1.5f));
-                        Main.dust[dust2].velocity = Main.dust[dust2].velocity.RotatedByRandom(0.8f);
-                        Main.dust[dust2].noGravity = true;
-                        Main.dust[dust2].noLight = false;
-                        Main.dust[dust].fadeIn = Main.rand.NextFloat(0.4f, 1.4f);
-                        Main.dust[dust2].fadeIn = Main.rand.NextFloat(0.4f, 1.4f);
+                        Main.dust [dust2].velocity = Main.dust [dust2].velocity.RotatedByRandom(0.8f);
+                        Main.dust [dust2].noGravity = true;
+                        Main.dust [dust2].noLight = false;
+                        Main.dust [dust].fadeIn = Main.rand.NextFloat(0.4f, 1.4f);
+                        Main.dust [dust2].fadeIn = Main.rand.NextFloat(0.4f, 1.4f);
                     }
                 }
                 modPlayer.titanBlastTimer = modPlayer.titanBlastTimerLimit;

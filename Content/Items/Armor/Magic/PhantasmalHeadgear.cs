@@ -4,17 +4,21 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.Items.Armor.Magic {
     [AutoloadEquip(EquipType.Head)]
     public class PhantasmalHeadgear : ModItem {
-        public override void SetStaticDefaults () {
-
-            Item.ResearchUnlockCount = 1;
-            ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<AncientPhantasmalHeadgear>();
+        public static LocalizedText SetBonusText {
+            get; private set;
         }
 
+        public override void SetStaticDefaults () {
+            ItemID.Sets.ShimmerTransformToItem [Type] = ModContent.ItemType<AncientPhantasmalHeadgear>();
+            SetBonusText = this.GetLocalization("SetBonus");
+        }
+        
         public override void SetDefaults () {
             int width = 30; int height = 26;
             Item.Size = new Vector2(width, height);
@@ -40,7 +44,7 @@ namespace Consolaria.Content.Items.Armor.Magic {
             => player.armorEffectDrawOutlines = true;
 
         public override void UpdateArmorSet (Player player) {
-            player.setBonus = "Siphons mana out of nearby enemies";
+            player.setBonus = SetBonusText.ToString();
             player.GetModPlayer<SpectralPlayer>().spectralGuard = true;
         }
 

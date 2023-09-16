@@ -5,11 +5,16 @@ using Terraria;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Utilities;
 
 namespace Consolaria.Content.NPCs.Bosses.Lepus {
     public class DisasterBunny : ModNPC {
+        public static LocalizedText BestiaryText {
+            get; private set;
+        }
+
         public override void SetStaticDefaults () {
             Main.npcFrameCount [NPC.type] = 7;
 
@@ -17,9 +22,9 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
                 Velocity = 1f
             };
             NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
-        }
 
-        private const string MUSIC_PATH = "Assets/Music/Lepus";
+            BestiaryText = this.GetLocalization("Bestiary");
+        }
 
         public override void SetDefaults () {
             int width = 35; int height = 28;
@@ -53,7 +58,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
         public override void SetBestiary (BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement [] {
                 BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
-                new FlavorTextBestiaryInfoElement("Disastrous spawn of the rabid giant, these bug-eyed creatures will bite anything they come across.")
+                new FlavorTextBestiaryInfoElement(BestiaryText.ToString())
             });
         }
 

@@ -7,10 +7,8 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Items.Armor.Magic {
     [AutoloadEquip(EquipType.Head)]
     public class AncientPhantasmalHeadgear : ModItem {
-        public override void SetStaticDefaults () {
-            Item.ResearchUnlockCount = 1;
-            ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<PhantasmalHeadgear>();
-        }
+        public override void SetStaticDefaults ()
+            => ItemID.Sets.ShimmerTransformToItem [Type] = ModContent.ItemType<PhantasmalHeadgear>();
 
         public override void SetDefaults () {
             int width = 30; int height = 26;
@@ -37,7 +35,7 @@ namespace Consolaria.Content.Items.Armor.Magic {
             => player.armorEffectDrawOutlines = true;
 
         public override void UpdateArmorSet (Player player) {
-            player.setBonus = "Siphons mana out of nearby enemies";
+            player.setBonus = PhantasmalHeadgear.SetBonusText.ToString();
             player.GetModPlayer<SpectralPlayer>().spectralGuard = true;
         }
 

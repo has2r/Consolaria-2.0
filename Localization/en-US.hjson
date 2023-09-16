@@ -198,6 +198,7 @@ Mods: {
 					10% increased magic damage
 					10% increased magic critical strike chance
 					'''
+				SetBonus: Siphons mana out of nearby enemies
 			}
 
 			PhantasmalRobe: {
@@ -275,6 +276,7 @@ Mods: {
 					15% increased melee damage
 					15% increased melee speed
 					'''
+				SetBonus: Creates a burst of flames after taking damage
 			}
 
 			OstaraBoots: {
@@ -285,6 +287,7 @@ Mods: {
 			OstaraHat: {
 				DisplayName: Hat of Ostara
 				Tooltip: 7% increased movement speed
+				SetBonus: Negates fall damage
 			}
 
 			OstaraJacket: {
@@ -330,6 +333,7 @@ Mods: {
 					10% increased ranged critical strike chance
 					25% chance to not consume ammo
 					'''
+				SetBonus: Using ranged weapons triggers a recoil blast
 			}
 
 			TitanLeggings: {
@@ -387,6 +391,7 @@ Mods: {
 					Increases your max number of minions by 1
 					Increases summon damage by 20%
 					'''
+				SetBonus: Enemies killed by minions heal the player
 			}
 
 			WarlockLeggings: {
@@ -1173,21 +1178,42 @@ Mods: {
 		}
 
 		NPCs: {
-			AlbinoAntlion.DisplayName: Albino Antlion
-			AlbinoCharger.DisplayName: Albino Charger
-			ArchDemon.DisplayName: Arch Demon
+			AlbinoAntlion: {
+				DisplayName: Albino Antlion
+				Bestiary: Species of antlion with a rare mutation show even more aggression, perhaps to compensate their shell being susceptible to sunlight.
+			}
+
+			AlbinoCharger: {
+				DisplayName: Albino Charger
+				Bestiary: Rarely some antlion soldiers mutate, losing their coloring and becoming even more ferocious than their brothers-in-swarm.
+			}
+
+			ArchDemon: {
+				DisplayName: Arch Demon
+				Bestiary: Particularly powerful demons live long enough for their body to turn into a withered husk.
+			}
+
+			ArchWyvernHead: {
+				DisplayName: Arch Wyvern
+				Bestiary: Legends say that wyverns are capable of breathing fire. What they don't tell is that few grow old enough to gain such power.
+			}
+
 			ArchWyvernBody1.DisplayName: Arch Wyvern
 			ArchWyvernBody2.DisplayName: Arch Wyvern
 			ArchWyvernBody3.DisplayName: Arch Wyvern
-			ArchWyvernHead.DisplayName: Arch Wyvern
 			ArchWyvernLegs.DisplayName: Arch Wyvern
 			ArchWyvernTail.DisplayName: Arch Wyvern
 			BigEgg.DisplayName: Lepus Egg
 			ChocolateEgg.DisplayName: Chocolate Egg
-			DisasterBunny.DisplayName: Diseaster Bunny
+
+			DisasterBunny: {
+				DisplayName: Diseaster Bunny
+				Bestiary: Disastrous spawn of the rabid giant, these bug-eyed creatures will bite anything they come across.
+			}
 
 			Lepus: {
 				DisplayName: Lepus
+				Bestiary: As if its size wasn't troublesome enough, this rabbit can reproduce through colorful eggs, spread around the world in Spring for fools to pick up.
 
 				BossChecklistIntegration: {
 					SpawnInfo: Use a [i:5642] at day time
@@ -1206,7 +1232,11 @@ Mods: {
 				}
 			}
 
-			ServantofOcram.DisplayName: Servant of Ocram
+			ServantofOcram: {
+				DisplayName: Servant of Ocram
+				Bestiary: Evil creatures manifested from Ocram, brought forth to protect their master by any means necessary.
+			}
+
 			TurkorNeck.DisplayName: Turkor Neck
 
 			TurkortheUngrateful: {

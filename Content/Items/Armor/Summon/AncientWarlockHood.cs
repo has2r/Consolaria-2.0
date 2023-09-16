@@ -7,10 +7,8 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Items.Armor.Summon {
     [AutoloadEquip(EquipType.Head)]
     public class AncientWarlockHood : ModItem {
-        public override void SetStaticDefaults () {
-            Item.ResearchUnlockCount = 1;
-            ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<WarlockHood>();
-        }
+        public override void SetStaticDefaults ()
+           => ItemID.Sets.ShimmerTransformToItem [Type] = ModContent.ItemType<WarlockHood>();
 
         public override void SetDefaults () {
             int width = 30; int height = 26;
@@ -35,7 +33,7 @@ namespace Consolaria.Content.Items.Armor.Summon {
             => player.armorEffectDrawShadow = true;
 
         public override void UpdateArmorSet (Player player) {
-            player.setBonus = "Enemies killed by minions heal the player";
+            player.setBonus = WarlockHood.SetBonusText.ToString();
             player.GetModPlayer<WarlockPlayer>().necroHealing = true;
         }
 

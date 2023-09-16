@@ -4,14 +4,19 @@ using System;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.Items.Armor.Summon {
     [AutoloadEquip(EquipType.Head)]
     public class WarlockHood : ModItem {
+        public static LocalizedText SetBonusText {
+            get; private set;
+        }
+
         public override void SetStaticDefaults () {
-            Item.ResearchUnlockCount = 1;
             ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<AncientWarlockHood>();
+            SetBonusText = this.GetLocalization("SetBonus");
         }
 
         public override void SetDefaults () {
@@ -37,7 +42,7 @@ namespace Consolaria.Content.Items.Armor.Summon {
             => player.armorEffectDrawShadow = true;
 
         public override void UpdateArmorSet (Player player) {
-            player.setBonus = "Enemies killed by minions heal the player";
+            player.setBonus = SetBonusText.ToString();
             player.GetModPlayer<WarlockPlayer>().necroHealing = true;
         }
 

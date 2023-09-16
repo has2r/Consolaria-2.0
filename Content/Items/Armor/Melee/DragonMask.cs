@@ -4,14 +4,19 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.Items.Armor.Melee {
     [AutoloadEquip(EquipType.Head)]
     public class DragonMask : ModItem {
+        public static LocalizedText SetBonusText {
+            get; private set;
+        }
+
         public override void SetStaticDefaults () {
-            Item.ResearchUnlockCount = 1;
-            ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<AncientDragonMask>();
+            ItemID.Sets.ShimmerTransformToItem [Type] = ModContent.ItemType<AncientDragonMask>();
+            SetBonusText = this.GetLocalization("SetBonus");
         }
 
         public override void SetDefaults () {
@@ -37,7 +42,7 @@ namespace Consolaria.Content.Items.Armor.Melee {
             => player.armorEffectDrawShadow = true;
 
         public override void UpdateArmorSet (Player player) {
-            player.setBonus = "Creates a burst of flames after taking damage";
+            player.setBonus = SetBonusText.ToString();
             player.GetModPlayer<DragonPlayer>().dragonBurst = true;
         }
 
@@ -96,7 +101,7 @@ namespace Consolaria.Content.Items.Armor.Melee {
             if (burstTimer >= 30) {
                 startFlames = false;
                 burstTimer = 0;
-            }    
+            }
         }
     }
 }

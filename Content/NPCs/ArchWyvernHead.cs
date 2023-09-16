@@ -12,13 +12,16 @@ using Terraria.ModLoader.Utilities;
 using Terraria.GameContent.Bestiary;
 using Consolaria.Content.Projectiles.Enemies;
 using Consolaria.Common;
+using Terraria.Localization;
 
 namespace Consolaria.Content.NPCs {
 	public class ArchWyvernHead : ModNPC {
 		private int shootTimer;
+        public static LocalizedText BestiaryText {
+            get; private set;
+        }
 
-		public override void SetStaticDefaults () {
-
+        public override void SetStaticDefaults () {
 			NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData {
 				SpecificallyImmuneTo = new int [] {
 					BuffID.Poisoned,
@@ -37,7 +40,8 @@ namespace Consolaria.Content.NPCs {
 				PortraitPositionYOverride = -6f
 			};
 			NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
-		}
+            BestiaryText = this.GetLocalization("Bestiary");
+        }
 
 		public override void SetDefaults () {
 			int width = 32; int height = width;
@@ -70,7 +74,7 @@ namespace Consolaria.Content.NPCs {
 		public override void SetBestiary (BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement [] {
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Sky,
-				new FlavorTextBestiaryInfoElement("Legends say that wyverns are capable of breathing fire. What they don't tell is that few grow old enough to gain such power.")
+				new FlavorTextBestiaryInfoElement(BestiaryText.ToString())
 			});
 		}
 

@@ -4,10 +4,15 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent.Bestiary;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.NPCs.Bosses.Ocram {
     public class ServantofOcram : ModNPC {
+        public static LocalizedText BestiaryText {
+            get; private set;
+        }
+
         public override void SetStaticDefaults () {
             Main.npcFrameCount [NPC.type] = 2;
 
@@ -19,6 +24,7 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
                 Velocity = 1f
             };
             NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
+            BestiaryText = this.GetLocalization("Bestiary");
         }
 
         public override void SetDefaults () {
@@ -38,7 +44,7 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
             NPC.DeathSound = SoundID.NPCHit18;
         }
 
-        public override void ApplyDifficultyAndPlayerScaling (int numPlayers, float balance, float bossAdjustment)/* tModPorter Note: bossLifeScale -> balance (bossAdjustment is different, see the docs for details) */ {
+        public override void ApplyDifficultyAndPlayerScaling (int numPlayers, float balance, float bossAdjustment) {
             NPC.lifeMax = 650 + (int)(numPlayers > 1 ? NPC.lifeMax * 0.35f * numPlayers : 0);
             NPC.damage = 115;
         }
@@ -49,7 +55,7 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
 
             bestiaryEntry.Info.AddRange(new List<IBestiaryInfoElement> {
                 BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Times.NightTime,
-                new FlavorTextBestiaryInfoElement("Evil creatures manifested from Ocram, brought forth to protect their master by any means necessary.")
+                new FlavorTextBestiaryInfoElement(BestiaryText.ToString())
             });
         }
 

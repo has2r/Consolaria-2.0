@@ -1225,6 +1225,7 @@ Mods: {
 
 			Ocram: {
 				DisplayName: Ocram
+				Bestiary: This forgotten blighted demon, once the powerful Emperor of Darkness, now seeks revenge against all surface dwellers.
 
 				BossChecklistIntegration: {
 					SpawnInfo: Use a [i:5643] at night
@@ -1241,6 +1242,7 @@ Mods: {
 
 			TurkortheUngrateful: {
 				DisplayName: Turkor the Ungrateful
+				Bestiary: Existing out of pure spite, this monstrocity is on a yearly vendetta against those who dare to take a bite of Thanksgiving turkey.
 
 				BossChecklistIntegration: {
 					EntryName: Turkor The Ungrateful
@@ -1250,27 +1252,92 @@ Mods: {
 			}
 
 			TurkortheUngratefulHead.DisplayName: Turkor the Ungrateful Head
-			DragonHornet.DisplayName: Dragon Hornet
-			DragonSkull.DisplayName: Dragon Skull
-			DragonSnatcher.DisplayName: Dragon Snatcher
-			FleshAxe.DisplayName: Flesh Axe
-			FleshMummy.DisplayName: Flesh Mummy
-			FleshSlime.DisplayName: Flesh Slime
-			GiantAlbinoCharger.DisplayName: Giant Albino Charger
+
+			DragonHornet: {
+				DisplayName: Dragon Hornet
+				Bestiary: Relatives of common Hornets, these insects developed an unusual appearance to scare off enemies. If that's not enough, the poisonous stingers should do the job.
+			}
+
+			DragonSkull: {
+				DisplayName: Dragon Skull
+				Bestiary: Touched by necromantic spells, the heads of ancient reptiles now prey on the living, sharing their curse with their victims.
+			}
+
+			DragonSnatcher: {
+				DisplayName: Dragon Snatcher
+				Bestiary: This species of Snatcher learned to repurpose the stingers of Hornets that fell prey to it to hunt bigger targets.
+			}
+
+			FleshAxe: {
+				DisplayName: Flesh Axe
+				Bestiary: Ensorcelled by the Crimson collective, this weapon moves about and chops its enemies by its own will.
+			}
+
+			FleshMummy: {
+				DisplayName: Flesh Mummy
+				Bestiary: With the sands transmogrified by outside forces, those put to rest in the desert, whether good or evil, now rise to maim and kill.
+			}
+
+			FleshSlime: {
+				DisplayName: Flesh Slime
+				Bestiary: Steeped in the power of Crimson, these slimes can spread their excretas.
+			}
+
+			GiantAlbinoCharger: {
+				DisplayName: Giant Albino Charger
+				Bestiary: Rarely some antlion soldiers mutate, losing their coloring and becoming even more ferocious than their brothers-in-swarm.
+			}
+
+			MythicalWyvernHead: {
+				DisplayName: Mythical Wyvern
+				Bestiary: Beings of legends, these reclusive wyverns only appear at a particular time of year.
+			}
+
 			MythicalWyvernBody.DisplayName: Mythical Wyvern
 			MythicalWyvernBody2.DisplayName: Mythical Wyvern
 			MythicalWyvernBody3.DisplayName: Mythical Wyvern
-			MythicalWyvernHead.DisplayName: Mythical Wyvern
 			MythicalWyvernLegs.DisplayName: Mythical Wyvern
 			MythicalWyvernTail.DisplayName: Mythical Wyvern
-			Orca.DisplayName: Orca
-			ShadowHammer.DisplayName: Shadow Hammer
-			ShadowMummy.DisplayName: Shadow Mummy
-			ShadowSlime.DisplayName: Shadow Slime
-			SpectralElemental.DisplayName: Spectral Elemental
-			SpectralGastropod.DisplayName: Spectropod
-			SpectralMummy.DisplayName: Spectral Mummy
-			VampireMiner.DisplayName: Vampire Miner
+
+			Orca: {
+				DisplayName: Orca
+				Bestiary: Since there are no whales to be seen in the oceans, these black and white predators will hunt anything else... including you!
+			}
+
+			ShadowHammer: {
+				DisplayName: Shadow Hammer
+				Bestiary: Magicked through the pure hatred of the Corruption, this weapon flails about attempting to smash anything that breathes.
+			}
+
+			ShadowMummy: {
+				DisplayName: Shadow Mummy
+				Bestiary: With the sands transmogrified by outside forces, those put to rest in the desert, whether good or evil, now rise to maim and kill.
+			}
+
+			ShadowSlime: {
+				DisplayName: Shadow Slime
+				Bestiary: Steeped in the power of Corruption, these slimes can spread their excretas.
+			}
+
+			SpectralElemental: {
+				DisplayName: Spectral Elemental
+				Bestiary: Sometimes released spirits of light would transform chaos elementals into more powerful beings, giving them the ability to move in and out of the material realm at will while placing explosive spectral runes.
+			}
+
+			SpectralGastropod: {
+				DisplayName: Spectropod
+				Bestiary: Once ordinary Gastropods, these slimes possessed by spirits of light can spit out balls of concentrated luminous energy.
+			}
+
+			SpectralMummy: {
+				DisplayName: Spectral Mummy
+				Bestiary: The overflowing light energy of these mummies made their tattered bodies highly unstable.
+			}
+
+			VampireMiner: {
+				DisplayName: Vampire Miner
+				Bestiary: Evidence indicates that some spelunkers got bitten by vampire bats before passing away... Now their rotten remains are out for blood.
+			}
 
 			McMoneypants: {
 				DisplayName: Mc MoneyPants

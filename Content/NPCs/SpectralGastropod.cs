@@ -6,12 +6,17 @@ using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Utilities;
 
 namespace Consolaria.Content.NPCs {
 	public class SpectralGastropod : ModNPC {
-		public override void SetStaticDefaults () {
+        public static LocalizedText BestiaryText {
+            get; private set;
+        }
+
+        public override void SetStaticDefaults () {
 			Main.npcFrameCount [NPC.type] = 11;
 
 			NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData {
@@ -21,11 +26,14 @@ namespace Consolaria.Content.NPCs {
 				}
 			};
 			NPCID.Sets.DebuffImmunitySets.Add(Type, debuffData);
+
 			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0) {
 				Velocity = 1f
 			};
 			NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
-		}
+
+            BestiaryText = this.GetLocalization("Bestiary");
+        }
 
 		public override void SetDefaults () {
 			int width = 40; int height = width;
@@ -55,7 +63,7 @@ namespace Consolaria.Content.NPCs {
 		public override void SetBestiary (BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement [] {
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheHallow,
-				new FlavorTextBestiaryInfoElement("Once ordinary Gastropods, these slimes possessed by spirits of light can spit out balls of concentrated luminous energy.")
+				new FlavorTextBestiaryInfoElement(BestiaryText.ToString())
 			});
 		}
 

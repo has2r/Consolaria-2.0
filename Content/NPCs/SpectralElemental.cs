@@ -7,9 +7,14 @@ using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
 using Consolaria.Content.Projectiles.Enemies;
 using Terraria.ModLoader.Utilities;
+using Terraria.Localization;
 
 namespace Consolaria.Content.NPCs {
     public class SpectralElemental : ModNPC {
+        public static LocalizedText BestiaryText {
+            get; private set;
+        }
+
         public override void SetStaticDefaults () {
             Main.npcFrameCount [NPC.type] = 15;
 
@@ -19,10 +24,13 @@ namespace Consolaria.Content.NPCs {
                 }
             };
             NPCID.Sets.DebuffImmunitySets.Add(Type, debuffData);
+
             NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0) {
                 Velocity = 1f
             };
             NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
+
+            BestiaryText = this.GetLocalization("Bestiary");
         }
 
         public override void SetDefaults () {
@@ -51,7 +59,7 @@ namespace Consolaria.Content.NPCs {
         public override void SetBestiary (BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement [] {
                 BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.UndergroundHallow,
-                new FlavorTextBestiaryInfoElement("Sometimes released spirits of light would transform chaos elementals into more powerful beings, giving them the ability to move in and out of the material realm at will while placing explosive spectral runes.")
+                new FlavorTextBestiaryInfoElement(BestiaryText.ToString())
             });
         }
 

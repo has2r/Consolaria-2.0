@@ -5,11 +5,16 @@ using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Utilities;
 
 namespace Consolaria.Content.NPCs {
     public class Orca : ModNPC {
+        public static LocalizedText BestiaryText {
+            get; private set;
+        }
+
         public override void SetStaticDefaults () {
             Main.npcFrameCount [NPC.type] = 4;
 
@@ -18,12 +23,14 @@ namespace Consolaria.Content.NPCs {
                     BuffID.Confused
                 }
             };
-
             NPCID.Sets.DebuffImmunitySets.Add(Type, debuffData);
+
             NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0) {
                 Velocity = 1f
             };
             NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
+
+            BestiaryText = this.GetLocalization("Bestiary");
         }
 
         public override void SetDefaults () {
@@ -53,7 +60,7 @@ namespace Consolaria.Content.NPCs {
         public override void SetBestiary (BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement [] {
                 BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Ocean,
-                new FlavorTextBestiaryInfoElement("Since there are no whales to be seen in the oceans, these black and white predators will hunt anything else... including you!")
+                new FlavorTextBestiaryInfoElement(BestiaryText.ToString())
             });
         }
 

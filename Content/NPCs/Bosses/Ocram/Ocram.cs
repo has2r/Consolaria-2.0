@@ -23,6 +23,10 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.NPCs.Bosses.Ocram {
     [AutoloadBossHead]
     public class Ocram : ModNPC {
+        public static LocalizedText BestiaryText {
+            get; private set;
+        }
+
         private int t = 0;
         private int rage;
         private float h = 0.2f;
@@ -68,6 +72,7 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
                     BuffID.ShadowFlame
                 }
             };
+            NPCID.Sets.DebuffImmunitySets.Add(Type, debuffData);
 
             NPCID.Sets.BossBestiaryPriority.Add(Type);
             float scale = 1f;
@@ -80,6 +85,8 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
                 PortraitScale = scale
             };
             NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
+
+            BestiaryText = this.GetLocalization("Bestiary");
         }
 
         public override void SetDefaults () {
@@ -129,7 +136,7 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
         public override void SetBestiary (BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
             bestiaryEntry.Info.AddRange(new List<IBestiaryInfoElement> {
                 BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Times.NightTime,
-                new FlavorTextBestiaryInfoElement("This forgotten blighted demon, once the powerful Emperor of Darkness, now seeks revenge against all surface dwellers.")
+                new FlavorTextBestiaryInfoElement(BestiaryText.ToString())
             });
         }
 

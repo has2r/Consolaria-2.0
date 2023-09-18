@@ -5,12 +5,17 @@ using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Utilities;
 
 namespace Consolaria.Content.NPCs {
 	public class VampireMiner : ModNPC {
-		public override void SetStaticDefaults () {
+        public static LocalizedText BestiaryText {
+            get; private set;
+        }
+
+        public override void SetStaticDefaults () {
 			Main.npcFrameCount [NPC.type] = 15;
 
 			NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData {
@@ -20,11 +25,15 @@ namespace Consolaria.Content.NPCs {
 				}
 			};
 			NPCID.Sets.DebuffImmunitySets.Add(Type, debuffData);
+
 			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0) {
 				Velocity = 1f
 			};
 			NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
+
             NPCID.Sets.ShimmerTransformToNPC [NPC.type] = NPCID.UndeadMiner;
+
+            BestiaryText = this.GetLocalization("Bestiary");
         }
 
 		public override void SetDefaults () {
@@ -54,7 +63,7 @@ namespace Consolaria.Content.NPCs {
 		public override void SetBestiary (BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement [] {
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Underground,
-				new FlavorTextBestiaryInfoElement("Evidence indicates that some spelunkers got bitten by vampire bats before passing away... Now their rotten remains are out for blood.")
+				new FlavorTextBestiaryInfoElement(BestiaryText.ToString())
 			});
 		}
 

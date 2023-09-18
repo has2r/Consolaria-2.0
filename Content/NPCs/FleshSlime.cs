@@ -7,9 +7,14 @@ using Terraria.ModLoader.Utilities;
 using Terraria.GameContent.Bestiary;
 using Consolaria.Content.Items.Pets;
 using Terraria.GameContent.ItemDropRules;
+using Terraria.Localization;
 
 namespace Consolaria.Content.NPCs {
     public class FleshSlime : ModNPC {
+        public static LocalizedText BestiaryText {
+            get; private set;
+        }
+
         public override void SetStaticDefaults () {
             Main.npcFrameCount [NPC.type] = 2;
 
@@ -19,6 +24,8 @@ namespace Consolaria.Content.NPCs {
                 }
             };
             NPCID.Sets.DebuffImmunitySets.Add(Type, debuffData);
+
+            BestiaryText = this.GetLocalization("Bestiary");
         }
 
         public override void SetDefaults () {
@@ -47,7 +54,7 @@ namespace Consolaria.Content.NPCs {
         public override void SetBestiary (BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement [] {
                 BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheCrimson,
-                new FlavorTextBestiaryInfoElement("Steeped in the power of Crimson, these slimes can spread their excretas.")
+                new FlavorTextBestiaryInfoElement(BestiaryText.ToString())
             });
         }
 

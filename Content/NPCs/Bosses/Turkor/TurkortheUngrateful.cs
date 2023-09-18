@@ -23,7 +23,11 @@ using Terraria.Localization;
 namespace Consolaria.Content.NPCs.Bosses.Turkor {
     [AutoloadBossHead]
 	public class TurkortheUngrateful : ModNPC {
-		public override void SetStaticDefaults () {
+        public static LocalizedText BestiaryText {
+            get; private set;
+        }
+
+        public override void SetStaticDefaults () {
 			Main.npcFrameCount [Type] = 3;
 
 			NPCID.Sets.MPAllowedEnemies [Type] = true;
@@ -43,7 +47,9 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 				Position = new Vector2(30, 18f),
 			};
 			NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, drawModifiers);
-		}
+
+            BestiaryText = this.GetLocalization("Bestiary");
+        }
 
 		public override void SetDefaults () {
 			int width = 200; int height = 100;
@@ -90,7 +96,7 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 		public override void SetBestiary (BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
 			bestiaryEntry.Info.AddRange(new List<IBestiaryInfoElement> {
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
-				new FlavorTextBestiaryInfoElement("Existing out of pure spite, this monstrocity is on a yearly vendetta against those who dare to take a bite of Thanksgiving turkey.")
+				new FlavorTextBestiaryInfoElement(BestiaryText.ToString())
 			});
 		}
 

@@ -2,19 +2,26 @@
 using Terraria;
 using Terraria.GameContent.Bestiary;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Utilities;
 
 namespace Consolaria.Content.NPCs {
 	public class ShadowMummy : ModNPC {
-		public override void SetStaticDefaults () {
+        public static LocalizedText BestiaryText {
+            get; private set;
+        }
+
+        public override void SetStaticDefaults () {
 			Main.npcFrameCount [NPC.type] = 16;
 
 			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0) {
 				Velocity = 0.85f
 			};
 			NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
-		}
+
+            BestiaryText = this.GetLocalization("Bestiary");
+        }
 
 		public override void SetDefaults () {
 			int width = 40; int height = width;
@@ -45,7 +52,7 @@ namespace Consolaria.Content.NPCs {
 		public override void SetBestiary (BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement [] {
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.CorruptDesert,
-				new FlavorTextBestiaryInfoElement("With the sands transmogrified by outside forces, those put to rest in the desert, whether good or evil, now rise to maim and kill.")
+				new FlavorTextBestiaryInfoElement(BestiaryText.ToString())
 			});
 		}
 

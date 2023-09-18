@@ -7,12 +7,17 @@ using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Utilities;
 
 namespace Consolaria.Content.NPCs {
 	public class DragonHornet : ModNPC {
-		public override void SetStaticDefaults () {
+        public static LocalizedText BestiaryText {
+            get; private set;
+        }
+
+        public override void SetStaticDefaults () {
 			Main.npcFrameCount [NPC.type] = 3;
 
 			NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData {
@@ -27,7 +32,9 @@ namespace Consolaria.Content.NPCs {
 				Velocity = 1f
 			};
 			NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
-		}
+
+            BestiaryText = this.GetLocalization("Bestiary");
+        }
 
 		public override void SetDefaults () {
 			int width = 36; int height = 34;
@@ -54,8 +61,8 @@ namespace Consolaria.Content.NPCs {
 		public override void SetBestiary (BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement [] {
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.UndergroundJungle,
-				new FlavorTextBestiaryInfoElement("Relatives of common Hornets, these insects developed an unusual appearance to scare off enemies. If that's not enough, the poisonous stingers should do the job.")
-			});
+                new FlavorTextBestiaryInfoElement(BestiaryText.ToString())
+            });
 		}
 
 		public override void AI () {

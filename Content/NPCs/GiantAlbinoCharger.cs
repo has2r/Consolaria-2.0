@@ -3,11 +3,16 @@ using Terraria;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Utilities;
 
 namespace Consolaria.Content.NPCs {
     public class GiantAlbinoCharger : ModNPC {
+        public static LocalizedText BestiaryText {
+            get; private set;
+        }
+
         public override void SetStaticDefaults () {
             Main.npcFrameCount [NPC.type] = 6;
 
@@ -15,6 +20,8 @@ namespace Consolaria.Content.NPCs {
                 Velocity = 1f
             };
             NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
+
+            BestiaryText = this.GetLocalization("Bestiary");
         }
 
         public override void SetDefaults () {
@@ -43,7 +50,7 @@ namespace Consolaria.Content.NPCs {
         public override void SetBestiary (BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement [] {
                 BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.UndergroundDesert,
-                new FlavorTextBestiaryInfoElement("Rarely some antlion soldiers mutate, losing their coloring and becoming even more ferocious than their brothers-in-swarm.")
+                new FlavorTextBestiaryInfoElement(BestiaryText.ToString())
             });
         }
 

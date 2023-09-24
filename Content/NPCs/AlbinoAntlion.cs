@@ -29,6 +29,7 @@ namespace Consolaria.Content.NPCs {
 				Position = new Vector2(0f, 4f)
 			};
 			NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
+
             BestiaryText = this.GetLocalization("Bestiary");
         }
 

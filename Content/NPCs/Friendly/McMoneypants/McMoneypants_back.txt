@@ -22,9 +22,11 @@ using Consolaria.Content.Items.Vanity;
 namespace Consolaria.Content.NPCs.Friendly.McMoneypants;
 
 [AutoloadHead()]
-public class McMoneypants : ModNPC {
+public class McMoneypants_back : ModNPC {
     #region Fields
-    public static LocalizedText BestiaryText { get; private set; }
+    public static LocalizedText BestiaryText {
+        get; private set;
+    }
 
     private const double DAY_TIME = 48600.0;
 
@@ -56,15 +58,46 @@ public class McMoneypants : ModNPC {
                                "Rich",
                                "George" };
 
-    public static List<LocalizedText> Quotes { get; private set; }
 
-    public static List<LocalizedText> QuotesWhenInvested { get; private set; }
+    public List<string> Quotes { get; private set; }
+        = new List<string>() { "Honestly, a penny for my thoughts really isn't that much.",
+                               "If I had a nickel for every monster I saw last night, I'd be even more rich and a little less scared.",
+                               "Those blasted slimes keep trying to swallow my coins!",
+                               $"If money makes the world go round, {Main.worldName} is looking very poor indeed. Let's change it!",
+                               "I feel so clean, like a money machine!",
+                               "You know what I like about gold? I have a lot of it!",
+                               $"{Main.LocalPlayer.name}, one thing I can promise you is that I never ask my clients to judge me on my winners. I ask them to judge me on my losers, because I have so few.",
+                               "When those rare dirt blocks go up in price, I'm going to make millions!",
+                               "My financial advice? Don't shoot your coins out of that awful gun.",
+                               "Bitcoin? Why would I ever beat a coin?" };
 
-    public static List<LocalizedText> QuotesOnButtonClickWhenFirstTimeInvested { get; private set; }
+    public List<string> QuotesWhenInvested { get; private set; }
+        = new List<string>() { "Time is money. So come again tomorrow to spend some!",
+                               "Trust me, it's not a Ponzi scheme.",
+                               "Multiplying money in-progress...",
+                               "How many times do I have to say it? No refunds!",
+                               "Where's my pen? Don't tell me you took it after signing the contract!",
+                               "Pleasure doing business! I'll be back in a day so that we can renew our deal.",
+                               "For the last time, stop asking me about inflation!",
+                               "Pump it! No, dump it! Oh, it's you again." };
 
-    public static List<LocalizedText> QuotesOnButtonClickWhenPlayerHasNoMoney { get; private set; }
+    public List<string> QuotesOnButtonClickWhenFirstTimeInvested { get; private set; }
+        = new List<string>() { "Ferragamo Gold!",
+                               "A bargain is struck, up goes your luck.",
+                               $"Today is your lucky day, {Main.LocalPlayer.name}",
+                               "A great investment! Lucky you are!" };
 
-    public static List<LocalizedText> QuotesOnButtonClickWhenAlreadyInvested { get; private set; }
+    public List<string> QuotesOnButtonClickWhenPlayerHasNoMoney { get; private set; }
+        = new List<string>() { $"Sorry, {Main.LocalPlayer.name}, I can't give credit! Come back when you're a little – mmmm – richer.",
+                               "I'm not running a charity, you know...",
+                               "Show me the money, then we'll talk.",
+                               "No, you can't pay in vouchers." };
+
+    public List<string> QuotesOnButtonClickWhenAlreadyInvested { get; private set; }
+        = new List<string>() { "There is no such thing as enough gold, but I've had enough of you today.",
+                               "Sorry, but my pockets are already full.",
+                               "You're all lucked out for the day.",
+                               "Now, don't get too greedy unless you want to end up like that Greek fella." };
 
     internal static bool SpawnCondition
         => !McMoneypantsWorldData.Travelled && Main.dayTime && Main.time >= McMoneypantsWorldData.SpawnTime && Main.time < DAY_TIME;
@@ -105,16 +138,6 @@ public class McMoneypants : ModNPC {
         );
 
         BestiaryText = this.GetLocalization("Bestiary");
-        QuotesOnButtonClickWhenAlreadyInvested = new List<LocalizedText>() {
-            this.GetLocalization("AlreadyInvested1"), this.GetLocalization("AlreadyInvested2"), this.GetLocalization("AlreadyInvested3"), this.GetLocalization("AlreadyInvested4") };
-        QuotesOnButtonClickWhenPlayerHasNoMoney = new List<LocalizedText>() {
-            this.GetLocalization("PlayerHasNoMoney1"), this.GetLocalization("PlayerHasNoMoney2"), this.GetLocalization("PlayerHasNoMoney3"), this.GetLocalization("PlayerHasNoMoney4") };
-        QuotesOnButtonClickWhenFirstTimeInvested = new List<LocalizedText>() {
-            this.GetLocalization("FirstTimeInvested1"), this.GetLocalization("FirstTimeInvested2"), this.GetLocalization("FirstTimeInvested3"), this.GetLocalization("FirstTimeInvested4") };
-        QuotesWhenInvested = new List<LocalizedText>() { 
-            this.GetLocalization("WhenInvested1"), this.GetLocalization("WhenInvested2"), this.GetLocalization("WhenInvested3"), this.GetLocalization("WhenInvested4"), this.GetLocalization("WhenInvested5"), this.GetLocalization("WhenInvested6"), this.GetLocalization("WhenInvested7"), this.GetLocalization("WhenInvested8") };
-        Quotes = new List<LocalizedText>() {
-            this.GetLocalization("Quote1"), this.GetLocalization("Quote2"), this.GetLocalization("Quote3"), this.GetLocalization("Quote4"), this.GetLocalization("Quote5"), this.GetLocalization("Quote6"), this.GetLocalization("Quote7"), this.GetLocalization("Quote8"), this.GetLocalization("Quote9"), this.GetLocalization("Quote10") };
     }
 
     public override void SetDefaults () {
@@ -201,7 +224,7 @@ public class McMoneypants : ModNPC {
         => Names;
 
     public override string GetChat()
-        => Main.LocalPlayer.GetModPlayer<McMoneypantsPlayerData>().PlayerInvested ? QuotesWhenInvested[Main.rand.Next(QuotesWhenInvested.Count)].ToString() : Quotes[Main.rand.Next(Quotes.Count - 2)].ToString();
+        => Main.LocalPlayer.GetModPlayer<McMoneypantsPlayerData>().PlayerInvested ? QuotesWhenInvested[Main.rand.Next(QuotesWhenInvested.Count)] : Quotes[Main.rand.Next(Quotes.Count - 2)];
 
     public override void SetChatButtons(ref string button, ref string button2) {
         McMoneypantsPlayerData modPlayer = Main.LocalPlayer.GetModPlayer<McMoneypantsPlayerData>();
@@ -372,12 +395,12 @@ public class McMoneypants : ModNPC {
         McMoneypantsPlayerData modPlayer = player.GetModPlayer<McMoneypantsPlayerData>();
 
         if (modPlayer.PlayerInvested) {
-            Main.npcChatText = QuotesOnButtonClickWhenAlreadyInvested[Main.rand.Next(QuotesOnButtonClickWhenAlreadyInvested.Count)].ToString();
+            Main.npcChatText = QuotesOnButtonClickWhenAlreadyInvested[Main.rand.Next(QuotesOnButtonClickWhenAlreadyInvested.Count)];
 
             return;
         }
         if (!player.BuyItem(modPlayer.PlayerInvestPrice)) {
-            Main.npcChatText = QuotesOnButtonClickWhenPlayerHasNoMoney[Main.rand.Next(QuotesOnButtonClickWhenPlayerHasNoMoney.Count)].ToString();
+            Main.npcChatText = QuotesOnButtonClickWhenPlayerHasNoMoney[Main.rand.Next(QuotesOnButtonClickWhenPlayerHasNoMoney.Count)];
 
             return;
         }
@@ -418,7 +441,7 @@ public class McMoneypants : ModNPC {
         AddBuff();
         UpdateInvestInfo();
 
-        Main.npcChatText = QuotesOnButtonClickWhenFirstTimeInvested [Main.rand.Next(QuotesOnButtonClickWhenFirstTimeInvested.Count)].ToString();
+        Main.npcChatText = QuotesOnButtonClickWhenFirstTimeInvested[Main.rand.Next(QuotesOnButtonClickWhenFirstTimeInvested.Count)];
 
         if (Main.netMode != NetmodeID.Server) { 
             SpawnDusts();

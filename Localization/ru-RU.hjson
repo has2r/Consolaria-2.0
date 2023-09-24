@@ -1340,6 +1340,37 @@ Mods: {
 
 			McMoneypants: {
 				DisplayName: Мак МаниПэнтс
+				// Bestiary: Flamboyant and charismatic, Mc MoneyPants is a fine baron willing to make anyone's life easier... For a price!
+				// AlreadyInvested1: There is no such thing as enough gold, but I've had enough of you today.
+				// AlreadyInvested2: Sorry, but my pockets are already full.
+				// AlreadyInvested3: You're all lucked out for the day.
+				// AlreadyInvested4: Now, don't get too greedy unless you want to end up like that Greek fella.
+				// PlayerHasNoMoney1: Sorry, I can't give credit! Come back when you're a little – mmmm – richer.
+				// PlayerHasNoMoney2: I'm not running a charity, you know...
+				// PlayerHasNoMoney3: Show me the money, then we'll talk.
+				// PlayerHasNoMoney4: No, you can't pay in vouchers.
+				// FirstTimeInvested1: Ferragamo Gold!
+				// FirstTimeInvested2: A bargain is struck, up goes your luck.
+				// FirstTimeInvested3: Today is your lucky day.
+				// FirstTimeInvested4: A great investment! Lucky you are!
+				// WhenInvested1: Time is money. So come again tomorrow to spend some!
+				// WhenInvested2: Trust me, it's not a Ponzi scheme.
+				// WhenInvested3: Multiplying money in-progress...
+				// WhenInvested4: How many times do I have to say it? No refunds!
+				// WhenInvested5: Where's my pen? Don't tell me you took it after signing the contract!
+				// WhenInvested6: Pleasure doing business! I'll be back in a day so that we can renew our deal.
+				// WhenInvested7: For the last time, stop asking me about inflation!
+				// WhenInvested8: Pump it! No, dump it! Oh, it's you again.
+				// Quote1: Honestly, a penny for my thoughts really isn't that much.
+				// Quote2: If I had a nickel for every monster I saw last night, I'd be even more rich and a little less scared.
+				// Quote3: Those blasted slimes keep trying to swallow my coins!
+				// Quote4: If money makes the world go round, this place is looking very poor indeed. Let's change it!
+				// Quote5: I feel so clean, like a money machine!
+				// Quote6: You know what I like about gold? I have a lot of it!
+				// Quote7: Hey, one thing I can promise you is that I never ask my clients to judge me on my winners. I ask them to judge me on my losers, because I have so few.
+				// Quote8: When those rare dirt blocks go up in price, I'm going to make millions!
+				// Quote9: My financial advice? Don't shoot your coins out of that awful gun.
+				// Quote10: Bitcoin? Why would I ever beat a coin?
 
 				TownNPCMood: {
 					Content: Я удовлетворен.

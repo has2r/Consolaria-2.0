@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.Utilities;
+using System.Reflection;
 
 namespace Consolaria; 
 
@@ -213,4 +214,32 @@ public static class Helper {
     public static bool Chance(float chance) => Main.rand.NextFloat() <= chance;
 
     public static Vector2 SmoothFromTo(Vector2 From, Vector2 To, float Smooth = 60f) => From + ((To - From) / Smooth);
+
+
+    //Here we use reflections to get AddSpecialPoint from TileDrawing.cs
+    public static void Load()
+    {
+        _addSpecialPointSpecialPositions = typeof(Terraria.GameContent.Drawing.TileDrawing).GetField("_specialPositions", BindingFlags.NonPublic | BindingFlags.Instance);
+        _addSpecialPointSpecialsCount = typeof(Terraria.GameContent.Drawing.TileDrawing).GetField("_specialsCount", BindingFlags.NonPublic | BindingFlags.Instance);
+    }
+
+    public static void Unload()
+    {
+        _addSpecialPointSpecialPositions = null; //This gets the position of the root wind tile
+        _addSpecialPointSpecialsCount = null; //This counts how many wind tiles are loaded
+    }
+
+    public static FieldInfo _addSpecialPointSpecialPositions;
+    public static FieldInfo _addSpecialPointSpecialsCount;
+
+    public static void AddSpecialPoint(this Terraria.GameContent.Drawing.TileDrawing tileDrawing, int x, int y, int type) //Reconstruction of AddSpecialPoint from Terraria/GameContent/Drawing/TileDrawing.cs
+    {
+        if (_addSpecialPointSpecialPositions.GetValue(tileDrawing) is Point[][] _specialPositions)
+        {
+            if (_addSpecialPointSpecialsCount.GetValue(tileDrawing) is int[] _specialsCount)
+            {
+                _specialPositions[type][_specialsCount[type]++] = new Point(x, y);
+            }
+        }
+    }
 }

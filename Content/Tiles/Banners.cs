@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.Enums;
@@ -39,6 +40,20 @@ namespace Consolaria.Content.Tiles {
 			TileID.Sets.DisableSmartCursor [Type] = true;
 			AddMapEntry(new Color(233, 207, 94), Language.GetText("MapObject.Banner"));
 			AdjTiles = new int [] { TileID.Banners };
+		}
+
+		public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
+		{
+			bool intoRenderTargets = true;
+			bool flag = intoRenderTargets || Main.LightingEveryFrame;
+
+			if (Main.tile[i, j].TileFrameX % 18 == 0 && Main.tile[i, j].TileFrameY % 54 == 0 && flag)
+			{
+				Main.instance.TilesRenderer.AddSpecialPoint(i, j, 5); //We are able to use AddSpcialPoint despite it being private due to additonal reflection code in Helper.cs
+				//Also Check Consolaria.cs to see how reflections determine how long and wide the tile is
+			}
+
+			return false;
 		}
 
 		public override void SetDrawPositions (int i, int j, ref int width, ref int offsetY, ref int height, ref short tileFrameX, ref short tileFrameY) {

@@ -33,7 +33,7 @@ namespace Consolaria.Common {
 
             float lepusWeight = 1.8f;
             float turkorWeight = 5.75f;
-            float ocramWeight = 12f;
+            float ocramWeight = 13f;
 
             Func<bool> downedLepus = () => DownedBossSystem.downedLepus;
             Func<bool> downedTurkor = () => DownedBossSystem.downedTurkor;

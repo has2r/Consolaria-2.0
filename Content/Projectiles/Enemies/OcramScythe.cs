@@ -43,7 +43,7 @@ namespace Consolaria.Content.Projectiles.Enemies {
 			rotationTimer += 0.05f;
 		}
 
-		public override void Kill (int timeLeft) {
+		public override void OnKill (int timeLeft) {
 			if (Main.netMode != NetmodeID.Server) {
 				for (int i = 0; i < 30; i++) {
 					int num506 = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, DustID.Shadowflame, Projectile.velocity.X, Projectile.velocity.Y, 100, default, 1.5f);

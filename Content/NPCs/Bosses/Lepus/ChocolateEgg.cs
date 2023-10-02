@@ -1,22 +1,17 @@
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
-using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.NPCs.Bosses.Lepus {
     public class ChocolateEgg : ModNPC {
         public override void SetStaticDefaults () {
+            NPCID.Sets.SpecificDebuffImmunity [Type] [BuffID.Confused] = true;
+            NPCID.Sets.SpecificDebuffImmunity [Type] [BuffID.Poisoned] = true;
+            NPCID.Sets.SpecificDebuffImmunity [Type] [BuffID.Venom] = true;
 
-            NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData {
-                SpecificallyImmuneTo = new int [] {
-                    BuffID.Confused
-                }
-            };
-            NPCID.Sets.DebuffImmunitySets.Add(Type, debuffData);
-
-            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0) {
+            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers() {
                 Hide = true
             };
             NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, value);

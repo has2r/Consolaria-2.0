@@ -2,7 +2,6 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
-using Terraria.DataStructures;
 using Terraria.ModLoader.Utilities;
 using Terraria.GameContent.Bestiary;
 using Consolaria.Content.Items.Pets;
@@ -18,12 +17,7 @@ namespace Consolaria.Content.NPCs {
         public override void SetStaticDefaults () {
             Main.npcFrameCount [NPC.type] = 2;
 
-            NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData {
-                SpecificallyImmuneTo = new int [] {
-                    BuffID.Poisoned
-                }
-            };
-            NPCID.Sets.DebuffImmunitySets.Add(Type, debuffData);
+            NPCID.Sets.SpecificDebuffImmunity [Type] [BuffID.Poisoned] = true;
 
             BestiaryText = this.GetLocalization("Bestiary");
         }

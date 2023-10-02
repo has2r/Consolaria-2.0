@@ -15,7 +15,7 @@ namespace Consolaria.Content.NPCs {
         public override void SetStaticDefaults () {
 			Main.npcFrameCount [NPC.type] = 16;
 
-			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0) {
+			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers() {
 				Velocity = 0.85f
 			};
 			NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);

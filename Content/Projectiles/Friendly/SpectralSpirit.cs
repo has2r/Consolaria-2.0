@@ -69,7 +69,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
             }
         }
 
-        public override void Kill (int timeLeft) {
+        public override void OnKill (int timeLeft) {
             if (Main.netMode != NetmodeID.Server) {
                 for (int dustCount = 16; dustCount > 0; --dustCount) {
                     Vector2 velocity = Projectile.velocity;

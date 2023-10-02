@@ -8,7 +8,6 @@ using Terraria.Audio;
 using Consolaria.Content.Projectiles.Enemies;
 using Terraria.GameContent.Bestiary;
 using System.Collections.Generic;
-using Terraria.DataStructures;
 using Consolaria.Common;
 using Terraria.GameContent.ItemDropRules;
 using Consolaria.Content.Items.BossDrops.Turkor;
@@ -21,35 +20,29 @@ using Terraria.Chat;
 using Terraria.Localization;
 
 namespace Consolaria.Content.NPCs.Bosses.Turkor {
-    [AutoloadBossHead]
+	[AutoloadBossHead]
 	public class TurkortheUngrateful : ModNPC {
-        public static LocalizedText BestiaryText {
-            get; private set;
-        }
+		public static LocalizedText BestiaryText {
+			get; private set;
+		}
 
-        public override void SetStaticDefaults () {
+		public override void SetStaticDefaults () {
 			Main.npcFrameCount [Type] = 3;
 
 			NPCID.Sets.MPAllowedEnemies [Type] = true;
 			NPCID.Sets.BossBestiaryPriority.Add(Type);
 
-			NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData {
-				SpecificallyImmuneTo = new int [] {
-					BuffID.Poisoned,
-					BuffID.Confused
-				}
-			};
-			NPCID.Sets.DebuffImmunitySets.Add(Type, debuffData);
+			NPCID.Sets.SpecificDebuffImmunity [Type] [BuffID.Confused] = true;
 
-			NPCID.Sets.NPCBestiaryDrawModifiers drawModifiers = new NPCID.Sets.NPCBestiaryDrawModifiers(0) {
+			NPCID.Sets.NPCBestiaryDrawModifiers drawModifiers = new NPCID.Sets.NPCBestiaryDrawModifiers() {
 				CustomTexturePath = "Consolaria/Assets/Textures/Bestiary/Turkor_Bestiary",
 				PortraitScale = 1f,
 				Position = new Vector2(30, 18f),
 			};
 			NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, drawModifiers);
 
-            BestiaryText = this.GetLocalization("Bestiary");
-        }
+			BestiaryText = this.GetLocalization("Bestiary");
+		}
 
 		public override void SetDefaults () {
 			int width = 200; int height = 100;
@@ -229,33 +222,33 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 		public override void AI () {
 			Player player = Main.player [NPC.target];
 
-            NPC.TargetClosest(true);
-            int target = NPC.target;
-            bool flag = target < 0 || target == 255;
-            player = Main.player[target];
-            if (player.dead || flag) {
-                NPC.TargetClosest();
-                player = Main.player[NPC.target];
-                if (player.dead || flag) {
-                    NPC.life = 0;
-                    NPC.HitEffect(0, 10.0);
-                    NPC.active = false;
-                    if (Main.netMode == NetmodeID.Server) {
-                        NetMessage.SendData(MessageID.DamageNPC, -1, -1, null, NPC.whoAmI, -1f, 0f, 0f, 0, 0, 0);
-                    }
-                    return;
-                }
-            }
+			NPC.TargetClosest(true);
+			int target = NPC.target;
+			bool flag = target < 0 || target == 255;
+			player = Main.player [target];
+			if (player.dead || flag) {
+				NPC.TargetClosest();
+				player = Main.player [NPC.target];
+				if (player.dead || flag) {
+					NPC.life = 0;
+					NPC.HitEffect(0, 10.0);
+					NPC.active = false;
+					if (Main.netMode == NetmodeID.Server) {
+						NetMessage.SendData(MessageID.DamageNPC, -1, -1, null, NPC.whoAmI, -1f, 0f, 0f, 0, 0, 0);
+					}
+					return;
+				}
+			}
 
-            if (NPC.localAI [0] == 0f) {
+			if (NPC.localAI [0] == 0f) {
 				NPC.localAI [0] = 1f;
-                SoundEngine.PlaySound(SoundID.Roar, NPC.Center);
-                string typeName = NPC.TypeName;
-                if (Main.netMode == 0)
-                    Main.NewText(Language.GetTextValue("Announcement.HasAwoken", typeName), 175, 75);
-                else if (Main.netMode == 2)
-                    ChatHelper.BroadcastChatMessage(NetworkText.FromKey("Announcement.HasAwoken", NPC.GetTypeNetName()), new Color(175, 75, 255));
-                float x = player.position.X + Main.rand.NextFloat(50f, 150f) * 5f * (Main.rand.NextBool() ? -1f : 1f);
+				SoundEngine.PlaySound(SoundID.Roar, NPC.Center);
+				string typeName = NPC.TypeName;
+				if (Main.netMode == 0)
+					Main.NewText(Language.GetTextValue("Announcement.HasAwoken", typeName), 175, 75);
+				else if (Main.netMode == 2)
+					ChatHelper.BroadcastChatMessage(NetworkText.FromKey("Announcement.HasAwoken", NPC.GetTypeNetName()), new Color(175, 75, 255));
+				float x = player.position.X + Main.rand.NextFloat(50f, 150f) * 5f * (Main.rand.NextBool() ? -1f : 1f);
 				int y = GetFirstTileFloor((int) x / 16, (int) (NPC.Center.Y / 16f) + 3);
 				Vector2 position = new Vector2 { X = x, Y = y * 16f };
 				NPC.position = position;
@@ -285,8 +278,7 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 				if (isNotMpClient) NPC.ai [2] = 40;
 				if (colo < .5f) colo += 0.05f;
 				enraged = true;
-			}
-			else {
+			} else {
 
 				if (colo > 0f) colo -= 0.05f;
 				else {
@@ -302,8 +294,7 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 				if (Collision.SolidCollision(NPC.position, NPC.width, NPC.height)) {
 					NPC.noTileCollide = true;
 					NPC.velocity.Y = -6;
-				}
-				else {
+				} else {
 					if (NPC.ai [2] != 40) { timer = 0; }
 					NPC.noTileCollide = false;
 					ground_ = true;
@@ -363,17 +354,17 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 
 							if (headNumber == 3) {
 								int proj5 = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, 0, 0, ModContent.ProjectileType<TurkorFeather>(), NPC.damage / 3, 1, Main.myPlayer, 0, 0);
-								Main.projectile[proj5].aiStyle = -1;
-								Main.projectile[proj5].velocity.X = (float)(Math.Cos(rotation0) * 18) * -1 + Main.rand.Next(-3, 3);
-								Main.projectile[proj5].velocity.Y = (float)(Math.Sin(rotation0) * 18) * -1 + Main.rand.Next(-3, 3);
-								Main.projectile[proj5].velocity = Main.projectile[proj5].velocity.RotatedBy(spreadAngle);
+								Main.projectile [proj5].aiStyle = -1;
+								Main.projectile [proj5].velocity.X = (float) (Math.Cos(rotation0) * 18) * -1 + Main.rand.Next(-3, 3);
+								Main.projectile [proj5].velocity.Y = (float) (Math.Sin(rotation0) * 18) * -1 + Main.rand.Next(-3, 3);
+								Main.projectile [proj5].velocity = Main.projectile [proj5].velocity.RotatedBy(spreadAngle);
 								NetMessage.SendData(MessageID.SyncProjectile, -1, -1, null, proj5);
 
 								int proj6 = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, 0, 0, ModContent.ProjectileType<TurkorFeather>(), NPC.damage / 3, 1, Main.myPlayer, 0, 0);
-								Main.projectile[proj6].aiStyle = -1;
-								Main.projectile[proj6].velocity.X = (float)(Math.Cos(rotation0) * 18) * -1 + Main.rand.Next(-3, 3);
-								Main.projectile[proj6].velocity.Y = (float)(Math.Sin(rotation0) * 18) * -1 + Main.rand.Next(-3, 3);
-								Main.projectile[proj6].velocity = Main.projectile[proj6].velocity.RotatedBy(-spreadAngle);
+								Main.projectile [proj6].aiStyle = -1;
+								Main.projectile [proj6].velocity.X = (float) (Math.Cos(rotation0) * 18) * -1 + Main.rand.Next(-3, 3);
+								Main.projectile [proj6].velocity.Y = (float) (Math.Sin(rotation0) * 18) * -1 + Main.rand.Next(-3, 3);
+								Main.projectile [proj6].velocity = Main.projectile [proj6].velocity.RotatedBy(-spreadAngle);
 								NetMessage.SendData(MessageID.SyncProjectile, -1, -1, null, proj6);
 							}
 						}

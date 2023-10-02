@@ -11,7 +11,6 @@ using System.IO;
 using Terraria;
 using Terraria.Audio;
 using Terraria.Chat;
-using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
@@ -128,7 +127,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
 
             NPCID.Sets.BossBestiaryPriority.Add(Type);
 
-            NPCID.Sets.NPCBestiaryDrawModifiers value = new(0) {
+            NPCID.Sets.NPCBestiaryDrawModifiers drawModifiers = new NPCID.Sets.NPCBestiaryDrawModifiers() {
                 CustomTexturePath = "Consolaria/Assets/Textures/Bestiary/Lepus_Bestiary",
                 Position = new Vector2(24f, 12f),
                 PortraitPositionXOverride = 10f,
@@ -136,13 +135,10 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
                 PortraitScale = 1f,
                 Scale = 1f
             };
-            NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, drawModifiers);
 
-            NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData {
-                SpecificallyImmuneTo = new int [] {
-                    BuffID.Confused
-                }
-            };
+            NPCID.Sets.SpecificDebuffImmunity [Type] [BuffID.Confused] = true;
+
             BestiaryText = this.GetLocalization("Bestiary");
         }
 

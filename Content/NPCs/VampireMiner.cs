@@ -1,7 +1,6 @@
 ﻿using Consolaria.Content.Items.Pets;
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
@@ -18,16 +17,11 @@ namespace Consolaria.Content.NPCs {
         public override void SetStaticDefaults () {
 			Main.npcFrameCount [NPC.type] = 15;
 
-			NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData {
-				SpecificallyImmuneTo = new int [] {
-					BuffID.Poisoned,
-					BuffID.Bleeding
-				}
-			};
-			NPCID.Sets.DebuffImmunitySets.Add(Type, debuffData);
+            NPCID.Sets.SpecificDebuffImmunity [Type] [BuffID.Poisoned] = true;
+            NPCID.Sets.SpecificDebuffImmunity [Type] [BuffID.Bleeding] = true;
 
-			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0) {
-				Velocity = 1f
+            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers() {
+                Velocity = 1f
 			};
 			NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
 

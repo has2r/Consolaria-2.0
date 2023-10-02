@@ -33,7 +33,7 @@ namespace Consolaria.Content.Projectiles.Friendly
             }
         }
 
-        public override void Kill (int timeLeft) {
+        public override void OnKill (int timeLeft) {
             if (Main.netMode != NetmodeID.Server) {
                 Vector2 position = new Vector2(12f, 12f);
                 for (int i = 0; i < 20; i++) {

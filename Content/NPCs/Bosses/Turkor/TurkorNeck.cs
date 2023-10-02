@@ -1,7 +1,6 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -10,16 +9,12 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 		private ref float neck => ref NPC.ai [3];
 
 		public override void SetStaticDefaults () {
-			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0) {
+			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers() {
 				Hide = true
 			};
-			NPCID.Sets.DebuffImmunitySets.Add(Type, new NPCDebuffImmunityData
-			{
-				SpecificallyImmuneTo = new int[] {
-					BuffID.Confused
-				}
-			});
 			NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, value);
+
+			NPCID.Sets.SpecificDebuffImmunity [Type] [BuffID.Confused] = true;
 		}
 
 		public override void SetDefaults () {
@@ -57,7 +52,7 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 				Main.npc [(int) neck].realLife = NPC.whoAmI;
 				Main.npc [(int) neck].position = Main.npc [(int) NPC.ai [1]].position;
 				if (Main.netMode != NetmodeID.Server && neck < Main.maxNPCs) {
-					NetMessage.SendData(MessageID.SyncNPC, number: (int)neck);
+					NetMessage.SendData(MessageID.SyncNPC, number: (int) neck);
 				}
 				NPC.netUpdate = true;
 			}
@@ -72,7 +67,7 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 			}
 
 			if (neck != -1f && NPC.ai [2] > 0)
-				NPC.Center = CenterPoint(Main.npc [(int)neck].Center, Main.npc [(int) NPC.ai [0]].Center);
+				NPC.Center = CenterPoint(Main.npc [(int) neck].Center, Main.npc [(int) NPC.ai [0]].Center);
 
 			else if (NPC.ai [2] <= 0) {
 				for (int k = 0; k < Main.maxNPCs; k++) {

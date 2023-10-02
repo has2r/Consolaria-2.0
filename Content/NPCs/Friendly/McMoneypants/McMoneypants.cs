@@ -689,7 +689,7 @@ public class McMoneypantsAttackProjectile : ModProjectile {
         }
     }
  
-    public override void Kill(int timeLeft) {
+    public override void OnKill(int timeLeft) {
         if (Main.myPlayer == Projectile.owner) {
             Projectile.NewProjectileDirect(Projectile.GetSource_FromAI(), Projectile.Center, Vector2.Zero, ModContent.ProjectileType<Explosion>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
         }

@@ -44,7 +44,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
             }
         }
 
-        public override void Kill (int timeLeft) {
+        public override void OnKill (int timeLeft) {
             Player player = Main.player [Projectile.owner];
             if (Main.netMode != NetmodeID.Server) {
                 int radius = 5;

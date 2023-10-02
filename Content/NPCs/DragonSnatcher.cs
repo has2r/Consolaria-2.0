@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
@@ -25,15 +24,10 @@ namespace Consolaria.Content.NPCs {
 		public override void SetStaticDefaults () {
 			Main.npcFrameCount [NPC.type] = 3;
 
-			NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData {
-				SpecificallyImmuneTo = new int [] {
-					BuffID.Poisoned,
-					BuffID.Confused
-				}
-			};
-			NPCID.Sets.DebuffImmunitySets.Add(Type, debuffData);
+            NPCID.Sets.SpecificDebuffImmunity [Type] [BuffID.Poisoned] = true;
+            NPCID.Sets.SpecificDebuffImmunity [Type] [BuffID.Confused] = true;
 
-			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0) {
+            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers() {
 				CustomTexturePath = "Consolaria/Assets/Textures/Bestiary/DragonSnatcher_Bestiary",
 				Rotation = (float) Math.PI / 2f
 			};

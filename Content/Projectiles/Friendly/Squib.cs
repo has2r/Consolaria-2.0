@@ -77,7 +77,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
 			Projectile.Damage();
 		}
 
-		public override void Kill (int timeLeft) {
+		public override void OnKill (int timeLeft) {
 			SoundEngine.PlaySound(SoundID.Item14, Projectile.position);
 			if (Main.netMode != NetmodeID.Server) {
 				Vector2 target5 = Projectile.Center;

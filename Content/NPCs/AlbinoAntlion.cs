@@ -17,14 +17,9 @@ namespace Consolaria.Content.NPCs {
         public override void SetStaticDefaults () {
 			Main.npcFrameCount [NPC.type] = 5;
 
-			NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData {
-				SpecificallyImmuneTo = new int [] {
-					BuffID.Confused
-				}
-			};
-			NPCID.Sets.DebuffImmunitySets.Add(Type, debuffData);
+            NPCID.Sets.SpecificDebuffImmunity [Type] [BuffID.Confused] = true;
 
-			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0) {
+            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers() {
 				CustomTexturePath = "Consolaria/Assets/Textures/Bestiary/AlbinoAntlion_Bestiary",
 				Position = new Vector2(0f, 4f)
 			};

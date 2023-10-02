@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.Localization;
@@ -16,18 +15,13 @@ namespace Consolaria.Content.NPCs {
         public override void SetStaticDefaults () {
 			Main.npcFrameCount [NPC.type] = 5;
 
-			NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData {
-				SpecificallyImmuneTo = new int [] {
-					BuffID.Confused,
-					BuffID.OnFire,
-					BuffID.Poisoned,
-					BuffID.OnFire3,
-					BuffID.Ichor
-				}
-			};
-			NPCID.Sets.DebuffImmunitySets.Add(Type, debuffData);
+            NPCID.Sets.SpecificDebuffImmunity [Type] [BuffID.Confused] = true;
+            NPCID.Sets.SpecificDebuffImmunity [Type] [BuffID.OnFire] = true;
+            NPCID.Sets.SpecificDebuffImmunity [Type] [BuffID.OnFire3] = true;
+            NPCID.Sets.SpecificDebuffImmunity [Type] [BuffID.Poisoned] = true;
+            NPCID.Sets.SpecificDebuffImmunity [Type] [BuffID.Ichor] = true;
 
-			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0) {
+			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers() {
 				Velocity = 0.8f,
 				Position = new Vector2(20f, 10f),
 				PortraitPositionXOverride = -5f,

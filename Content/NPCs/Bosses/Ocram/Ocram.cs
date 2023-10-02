@@ -63,28 +63,25 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
 
         public override void SetStaticDefaults () {
             Main.npcFrameCount [NPC.type] = 6;
+
             NPCID.Sets.MPAllowedEnemies [Type] = true;
 
-            NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData {
-                SpecificallyImmuneTo = new int [] {
-                    BuffID.Poisoned,
-                    BuffID.Confused,
-                    BuffID.ShadowFlame
-                }
-            };
-            NPCID.Sets.DebuffImmunitySets.Add(Type, debuffData);
+            NPCID.Sets.SpecificDebuffImmunity [Type] [BuffID.Confused] = true;
+            NPCID.Sets.SpecificDebuffImmunity [Type] [BuffID.Poisoned] = true;
+            NPCID.Sets.SpecificDebuffImmunity [Type] [BuffID.ShadowFlame] = true;
 
             NPCID.Sets.BossBestiaryPriority.Add(Type);
+
             float scale = 1f;
             float xOffset = 20f;
-            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0) {
+            NPCID.Sets.NPCBestiaryDrawModifiers drawModifiers = new NPCID.Sets.NPCBestiaryDrawModifiers() {
                 CustomTexturePath = "Consolaria/Assets/Textures/Bestiary/Ocram_Bestiary",
                 Position = new Vector2(0, -xOffset),
                 Scale = scale,
                 PortraitPositionYOverride = -xOffset,
                 PortraitScale = scale
             };
-            NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, drawModifiers);
 
             BestiaryText = this.GetLocalization("Bestiary");
         }

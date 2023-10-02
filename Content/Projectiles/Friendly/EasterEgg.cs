@@ -19,7 +19,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
             Projectile.DamageType = DamageClass.Ranged;
         }
 
-        public override void Kill (int timeLeft) {
+        public override void OnKill (int timeLeft) {
             Player player = Main.player [Projectile.owner];
             int evilBunny = WorldGen.crimson ? NPCID.CrimsonBunny : NPCID.CorruptBunny;
             if (Main.rand.NextBool(200)) NPC.NewNPC(Projectile.GetSource_Death(), (int) Projectile.Center.X, (int) Projectile.Center.Y, NPCID.Bunny);

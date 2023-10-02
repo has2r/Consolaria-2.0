@@ -57,7 +57,7 @@ namespace Consolaria.Content.Projectiles.Enemies {
 		public override void OnHitPlayer (Player target, Player.HurtInfo info)
 			=> target.AddBuff(BuffID.OnFire, 180);
 
-		public override void Kill (int timeLeft) {
+		public override void OnKill (int timeLeft) {
 			SoundEngine.PlaySound(SoundID.Item14, Projectile.position);
 			if (Main.netMode != NetmodeID.Server) {
 				for (int i = 0; i < 30; i++) {

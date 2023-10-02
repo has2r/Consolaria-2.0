@@ -52,7 +52,7 @@ namespace Consolaria.Content.Projectiles.Enemies {
         public override void OnHitPlayer (Player target, Player.HurtInfo info)
             => target.AddBuff(BuffID.ShadowFlame, 180);
 
-        public override void Kill (int timeLeft) {
+        public override void OnKill (int timeLeft) {
             if (Main.netMode != NetmodeID.Server) {
                 for (int k = 0; k < 5; k++)
                     Dust.NewDust(Projectile.position + Projectile.velocity, Projectile.width, Projectile.height, DustID.Shadowflame, Projectile.oldVelocity.X * 0.1f, Projectile.oldVelocity.Y * 0.1f);

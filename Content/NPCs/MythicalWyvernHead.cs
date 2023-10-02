@@ -4,7 +4,6 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.DataStructures;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ModLoader.Utilities;
 using Terraria.GameContent.Bestiary;
@@ -15,24 +14,12 @@ using Terraria.Localization;
 
 namespace Consolaria.Content.NPCs {
 	public class MythicalWyvernHead : ModNPC {
-        public static LocalizedText BestiaryText {
-            get; private set;
-        }
+		public static LocalizedText BestiaryText {
+			get; private set;
+		}
 
-        public override void SetStaticDefaults () {
-
-			NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData {
-				SpecificallyImmuneTo = new int [] {
-					BuffID.Poisoned,
-					BuffID.OnFire,
-					BuffID.OnFire3,
-					BuffID.ShadowFlame,
-					BuffID.Confused
-				}
-			};
-			NPCID.Sets.DebuffImmunitySets.Add(Type, debuffData);
-
-			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0) {
+		public override void SetStaticDefaults () {
+			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers() {
 				CustomTexturePath = "Consolaria/Assets/Textures/Bestiary/MythicalWyvern_Bestiary",
 				Position = new Vector2(20f, 14f),
 				PortraitPositionXOverride = 30f,
@@ -40,8 +27,14 @@ namespace Consolaria.Content.NPCs {
 			};
 			NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
 
-            BestiaryText = this.GetLocalization("Bestiary");
-        }
+			NPCID.Sets.SpecificDebuffImmunity [Type] [BuffID.OnFire] = true;
+			NPCID.Sets.SpecificDebuffImmunity [Type] [BuffID.OnFire3] = true;
+			NPCID.Sets.SpecificDebuffImmunity [Type] [BuffID.ShadowFlame] = true;
+			NPCID.Sets.SpecificDebuffImmunity [Type] [BuffID.Confused] = true;
+			NPCID.Sets.SpecificDebuffImmunity [Type] [BuffID.Poisoned] = true;
+
+			BestiaryText = this.GetLocalization("Bestiary");
+		}
 
 		public override void SetDefaults () {
 			int width = 32; int height = width;
@@ -65,9 +58,9 @@ namespace Consolaria.Content.NPCs {
 			NPC.netAlways = true;
 
 			NPC.alpha = 255;
-            NPC.value = Item.buyPrice(gold: 1, silver: 30);
+			NPC.value = Item.buyPrice(gold: 1, silver: 30);
 
-            Banner = NPC.type;
+			Banner = NPC.type;
 			BannerItem = ModContent.ItemType<Items.Banners.MythicalWyvernBanner>();
 		}
 
@@ -165,8 +158,7 @@ namespace Consolaria.Content.NPCs {
 				if (Math.Abs(NPC.velocity.X) < num115 / 2f) {
 					if (NPC.velocity.X == 0f) NPC.velocity.X = NPC.velocity.X - NPC.direction;
 					NPC.velocity.X = NPC.velocity.X * 1.1f;
-				}
-				else {
+				} else {
 					if (NPC.velocity.Y > -num115) NPC.velocity.Y = NPC.velocity.Y - num116;
 				}
 			}
@@ -188,8 +180,7 @@ namespace Consolaria.Content.NPCs {
 						if (NPC.velocity.X > 0f) NPC.velocity.X = NPC.velocity.X + num116 * 2f;
 						else NPC.velocity.X = NPC.velocity.X - num116 * 2f;
 					}
-				}
-				else {
+				} else {
 					if (num123 > num124) {
 						if (NPC.velocity.X < num118) NPC.velocity.X = NPC.velocity.X + num116 * 1.1f;
 						else {
@@ -199,8 +190,7 @@ namespace Consolaria.Content.NPCs {
 							if (NPC.velocity.Y > 0f) NPC.velocity.Y = NPC.velocity.Y + num116;
 							else NPC.velocity.Y = NPC.velocity.Y - num116;
 						}
-					}
-					else {
+					} else {
 						if (NPC.velocity.Y < num119) NPC.velocity.Y = NPC.velocity.Y + num116 * 1.1f;
 						else {
 							if (NPC.velocity.Y > num119) NPC.velocity.Y = NPC.velocity.Y - num116 * 1.1f;

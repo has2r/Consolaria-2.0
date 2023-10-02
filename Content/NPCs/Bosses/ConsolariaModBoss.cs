@@ -2,7 +2,6 @@
 using Terraria.ID;
 using Terraria;
 using Microsoft.Xna.Framework;
-using Terraria.DataStructures;
 
 namespace Consolaria.Content.NPCs.Bosses {
     public abstract class ConsolariaModBoss : ModNPC {
@@ -19,13 +18,6 @@ namespace Consolaria.Content.NPCs.Bosses {
         }
 
         public override void SetStaticDefaults () {
-            NPCID.Sets.DebuffImmunitySets.Add(Type, new NPCDebuffImmunityData {
-                SpecificallyImmuneTo = new int []
-                {
-                    BuffID.Confused
-                }
-            });
-
             NPCID.Sets.TrailCacheLength [Type] = 8;
             NPCID.Sets.TrailingMode [Type] = 1;
         }

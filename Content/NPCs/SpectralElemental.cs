@@ -3,7 +3,6 @@ using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using Terraria.ID;
 using Microsoft.Xna.Framework.Graphics;
-using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
 using Consolaria.Content.Projectiles.Enemies;
 using Terraria.ModLoader.Utilities;
@@ -18,14 +17,9 @@ namespace Consolaria.Content.NPCs {
         public override void SetStaticDefaults () {
             Main.npcFrameCount [NPC.type] = 15;
 
-            NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData {
-                SpecificallyImmuneTo = new int [] {
-                    BuffID.Poisoned
-                }
-            };
-            NPCID.Sets.DebuffImmunitySets.Add(Type, debuffData);
+            NPCID.Sets.SpecificDebuffImmunity [Type] [BuffID.Poisoned] = true;
 
-            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0) {
+            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers() {
                 Velocity = 1f
             };
             NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);

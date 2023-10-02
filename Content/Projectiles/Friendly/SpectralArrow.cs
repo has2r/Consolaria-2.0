@@ -43,7 +43,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
         public override void ModifyHitNPC (NPC target, ref NPC.HitModifiers modifiers)
             => modifiers.FinalDamage -= (int) (modifiers.FinalDamage.Flat * hitCounter * 0.1f);
 
-        public override void Kill (int timeLeft) {
+        public override void OnKill (int timeLeft) {
             if (Main.netMode != NetmodeID.Server) {
                 for (int k = 0; k < 7; k++) {
                     int dust1 = Dust.NewDust(Projectile.position, 8, 16, DustID.DungeonSpirit, 0, 0, 100, default, 1.4f);

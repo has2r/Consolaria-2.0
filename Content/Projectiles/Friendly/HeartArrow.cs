@@ -42,7 +42,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
                 target.AddBuff(BuffID.Lovestruck, 90);
         }
 
-        public override void Kill (int timeLeft) {
+        public override void OnKill (int timeLeft) {
             if (Main.netMode != NetmodeID.Server) {
                 if (Main.rand.NextBool(5) && !Projectile.noDropItem) {
                     Item.NewItem(Projectile.GetSource_DropAsItem(), Projectile.position, Projectile.width, Projectile.height, ModContent.ItemType<Items.Weapons.Ammo.HeartArrow>());

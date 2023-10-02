@@ -43,7 +43,7 @@ namespace Consolaria.Content.Projectiles.Enemies {
 			}
 		}
 
-		public override void Kill (int timeLeft) {
+		public override void OnKill (int timeLeft) {
 			if (Main.netMode != NetmodeID.Server) {
 				for (int k = 0; k < 5; k++)
 					Dust.NewDust(Projectile.position + Projectile.velocity, Projectile.width, Projectile.height, DustID.Stone, Projectile.oldVelocity.X * 0.1f, Projectile.oldVelocity.Y * 0.1f);

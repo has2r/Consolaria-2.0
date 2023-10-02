@@ -4,7 +4,6 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.DataStructures;
 using Terraria.Audio;
 using Terraria.GameContent.ItemDropRules;
 using Consolaria.Content.Items.Vanity;
@@ -17,31 +16,27 @@ using Terraria.Localization;
 namespace Consolaria.Content.NPCs {
 	public class ArchWyvernHead : ModNPC {
 		private int shootTimer;
-        public static LocalizedText BestiaryText {
-            get; private set;
-        }
+		public static LocalizedText BestiaryText {
+			get; private set;
+		}
 
-        public override void SetStaticDefaults () {
-			NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData {
-				SpecificallyImmuneTo = new int [] {
-					BuffID.Poisoned,
-					BuffID.OnFire,
-					BuffID.OnFire3,
-					BuffID.ShadowFlame,
-					BuffID.Confused
-				}
-			};
-			NPCID.Sets.DebuffImmunitySets.Add(Type, debuffData);
-
-			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0) {
+		public override void SetStaticDefaults () {
+			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers() {
 				CustomTexturePath = "Consolaria/Assets/Textures/Bestiary/ArchWyvern_Bestiary",
 				Position = new Vector2(20f, 14f),
 				PortraitPositionXOverride = 30f,
 				PortraitPositionYOverride = -6f
 			};
 			NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
-            BestiaryText = this.GetLocalization("Bestiary");
-        }
+
+			NPCID.Sets.SpecificDebuffImmunity [Type] [BuffID.OnFire] = true;
+			NPCID.Sets.SpecificDebuffImmunity [Type] [BuffID.OnFire3] = true;
+			NPCID.Sets.SpecificDebuffImmunity [Type] [BuffID.ShadowFlame] = true;
+			NPCID.Sets.SpecificDebuffImmunity [Type] [BuffID.Confused] = true;
+			NPCID.Sets.SpecificDebuffImmunity [Type] [BuffID.Poisoned] = true;
+
+			BestiaryText = this.GetLocalization("Bestiary");
+		}
 
 		public override void SetDefaults () {
 			int width = 32; int height = width;
@@ -233,9 +228,9 @@ namespace Consolaria.Content.NPCs {
 			npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ArchWyvernMask>(), 15));
 			npcLoot.Add(ItemDropRule.Common(ItemID.SoulofFlight, 1, 5, 20));
 
-            DrunkWorldCondition drunkWorldCondition = new DrunkWorldCondition();
-            npcLoot.Add(ItemDropRule.ByCondition(drunkWorldCondition, ItemID.ShadowKey, 4, 1, 1, 3));
-        }
+			DrunkWorldCondition drunkWorldCondition = new DrunkWorldCondition();
+			npcLoot.Add(ItemDropRule.ByCondition(drunkWorldCondition, ItemID.ShadowKey, 4, 1, 1, 3));
+		}
 
 		public override float SpawnChance (NPCSpawnInfo spawnInfo)
 			=> Main.hardMode ? SpawnCondition.Sky.Chance * 0.025f : 0;

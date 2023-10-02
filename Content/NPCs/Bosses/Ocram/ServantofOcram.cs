@@ -20,10 +20,11 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
             NPCID.Sets.CantTakeLunchMoney [Type] = true;
             NPCID.Sets.BossBestiaryPriority.Add(Type);
 
-            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0) {
+            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers() {
                 Velocity = 1f
             };
             NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
+
             BestiaryText = this.GetLocalization("Bestiary");
         }
 
@@ -45,7 +46,7 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
         }
 
         public override void ApplyDifficultyAndPlayerScaling (int numPlayers, float balance, float bossAdjustment) {
-            NPC.lifeMax = 650 + (int)(numPlayers > 1 ? NPC.lifeMax * 0.35f * numPlayers : 0);
+            NPC.lifeMax = 650 + (int) (numPlayers > 1 ? NPC.lifeMax * 0.35f * numPlayers : 0);
             NPC.damage = 115;
         }
 

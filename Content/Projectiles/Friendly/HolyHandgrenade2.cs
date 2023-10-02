@@ -48,7 +48,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
             }
         }
 
-        public override void Kill (int timeLeft) {
+        public override void OnKill (int timeLeft) {
             Vector2 position = Projectile.Center;
 
             SoundEngine.PlaySound(new SoundStyle($"{nameof(Consolaria)}/Assets/Sounds/Hallelujah") { Volume = 0.5f, Pitch = -0.5f }, Projectile.position);

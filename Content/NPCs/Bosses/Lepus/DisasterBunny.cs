@@ -18,7 +18,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
         public override void SetStaticDefaults () {
             Main.npcFrameCount [NPC.type] = 7;
 
-            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0) {
+            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers() {
                 Velocity = 1f
             };
             NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);

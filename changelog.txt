@@ -1,2 +1,7 @@
-- Improved boss spawning in multiplayer
-- Tizona code adjustments
+- FIxed the error caused by outdated code due to the October stable build
+- Added wind physics to hanging tiles 
+- Added note visuals to music boxes 
+- Moved Ocram to the correct position on the Boss Checklist order 
+- Improved localization support to include all the missing text. The localization itself has not been updated yet though 
+
+Thanks to Lion8cake for several contributions in this update!

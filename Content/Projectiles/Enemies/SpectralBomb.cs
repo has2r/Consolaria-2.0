@@ -38,7 +38,7 @@ namespace Consolaria.Content.Projectiles.Enemies {
         public override Color? GetAlpha (Color lightColor)
             => Color.White * 0.8f;
 
-        public override void Kill (int timeLeft) {
+        public override void OnKill (int timeLeft) {
             Vector2 position = Projectile.Center;
             SoundEngine.PlaySound(SoundID.Item14, position);
             if (Main.netMode != NetmodeID.Server) {

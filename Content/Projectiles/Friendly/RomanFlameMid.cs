@@ -34,7 +34,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
             }
         }
 
-        public override void Kill (int timeLeft) {
+        public override void OnKill (int timeLeft) {
             Player player = Main.player [Projectile.owner];
             float projectilesCount = Main.rand.Next(3, 5);
             Vector2 velocity = Projectile.velocity;

@@ -19,7 +19,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
             Projectile.penetrate = 1;
         }
 
-        public override void Kill (int timeLeft) {
+        public override void OnKill (int timeLeft) {
             float _distance = 90f;
             for (int _findPlayer = 0; _findPlayer < byte.MaxValue; _findPlayer++) {
                 Player player = Main.player [_findPlayer];

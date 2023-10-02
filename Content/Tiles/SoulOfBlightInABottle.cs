@@ -42,7 +42,19 @@ namespace Consolaria.Content.Tiles {
             TileID.Sets.DisableSmartCursor [Type] = true;
         }
 
-        		
+        public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
+        {
+            bool intoRenderTargets = true;
+            bool flag = intoRenderTargets || Main.LightingEveryFrame;
+
+            if (Main.tile[i, j].TileFrameX % 18 == 0 && Main.tile[i, j].TileFrameY % 36 == 0 && flag)
+            {
+                Main.instance.TilesRenderer.AddSpecialPoint(i, j, 5);
+            }
+
+            return false;
+        }
+
         public override void SetDrawPositions(int i, int j, ref int width, ref int offsetY, ref int height, ref short tileFrameX, ref short tileFrameY) {
             if ((Framing.GetTileSafely(i, j - 1).HasTile && TileID.Sets.Platforms[Framing.GetTileSafely(i, j - 1).TileType]) ||
                 (Framing.GetTileSafely(i, j - 2).HasTile && TileID.Sets.Platforms[Framing.GetTileSafely(i, j - 2).TileType]) ||

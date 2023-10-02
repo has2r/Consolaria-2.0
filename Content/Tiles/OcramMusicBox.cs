@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -22,6 +23,27 @@ namespace Consolaria.Content.Tiles {
 
 			LocalizedText name = CreateMapEntryName();
 			AddMapEntry(new Color(200, 200, 200), name);
+		}
+
+		public override void DrawEffects(int i, int j, SpriteBatch spriteBatch, ref TileDrawInfo drawData) //spawns gores of the tile is activated
+		{
+			if (Main.tile[i, j].TileFrameX == 36 && (int)Main.timeForVisualEffects % 7 == 0 && Main._rand.NextBool(3))
+			{
+				int MusicNote = Main._rand.Next(570, 573);
+				Vector2 SpawnPosition = new((float)(i * 16 + 8), (float)(j * 16 - 8));
+				Vector2 NoteMovement = new(Main.WindForVisuals * 2f, -0.5f);
+				NoteMovement.X *= 1f + (float)Main._rand.Next(-50, 51) * 0.01f;
+				NoteMovement.Y *= 1f + (float)Main._rand.Next(-50, 51) * 0.01f;
+				if (MusicNote == 572)
+				{
+					SpawnPosition.X -= 8f;
+				}
+				if (MusicNote == 571)
+				{
+					SpawnPosition.X -= 4f;
+				}
+				Gore.NewGore(new EntitySource_Misc(""), SpawnPosition, NoteMovement, MusicNote, 0.8f);
+			}
 		}
 
 		public override void MouseOver (int i, int j) {

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -26,6 +27,19 @@ namespace Consolaria.Content.Tiles {
 			AddMapEntry(new Color(238, 145, 105), name);
 
 			TileID.Sets.DisableSmartCursor [Type] = true;
+		}
+
+		public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
+		{
+			bool intoRenderTargets = true;
+			bool flag = intoRenderTargets || Main.LightingEveryFrame;
+
+			if (Main.tile[i, j].TileFrameX % 18 == 0 && Main.tile[i, j].TileFrameY % 36 == 0 && flag)
+			{
+				Main.instance.TilesRenderer.AddSpecialPoint(i, j, 5);
+			}
+
+			return false;
 		}
 
 		public override void NumDust (int i, int j, bool fail, ref int num) => num = fail ? 1 : 3;

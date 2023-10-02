@@ -18,6 +18,7 @@ using Consolaria.Content.Tiles;
 using Consolaria.Content.Projectiles.Friendly.Miscellaneous;
 using Consolaria.Content.Items.Placeable;
 using Consolaria.Common;
+using Terraria.GameContent.Drawing;
 
 namespace Consolaria {
     public class Consolaria : Mod {
@@ -25,6 +26,8 @@ namespace Consolaria {
             if (Main.dedServ) {
                 return;
             }
+
+            Helper.Load(); //We load and unload the wind reflections to make sure they are properly reflected
 
             TextureAssets.XmasTree [3] = ModContent.Request<Texture2D>("Consolaria/Assets/Textures/Tiles/Xmas_3");
 
@@ -35,19 +38,47 @@ namespace Consolaria {
             On_Player.DropTombstone += On_Player_DropTombstone;
             On_WorldGen.dropXmasTree += On_WorldGen_dropXmasTree;
             On_SceneMetrics.ExportTileCountsToMain += On_SceneMetrics_ExportTileCountsToMain;
+
+            On_TileDrawing.DrawMultiTileVinesInWind += On_TileDrawing_DrawMultiTileVinesInWind;
         }
 
 
         public override void Unload () {
+
+            Helper.Unload();
+
             var fractalProfiles = (Dictionary<int, FinalFractalProfile>) typeof(FinalFractalHelper).GetField("_fractalProfiles", BindingFlags.NonPublic | BindingFlags.Static).GetValue(null);
             fractalProfiles.Remove(ModContent.ItemType<Tizona>());
 
             On_Player.DropTombstone -= On_Player_DropTombstone;
             On_WorldGen.dropXmasTree -= On_WorldGen_dropXmasTree;
             On_SceneMetrics.ExportTileCountsToMain -= On_SceneMetrics_ExportTileCountsToMain;
+
+            On_TileDrawing.DrawMultiTileVinesInWind -= On_TileDrawing_DrawMultiTileVinesInWind;
         }
 
-		private void On_SceneMetrics_ExportTileCountsToMain(On_SceneMetrics.orig_ExportTileCountsToMain orig, SceneMetrics self) {
+        //We reflect this hook so we are able to list the length/width of our blowing wind tile, Chandiliers, haning bottles, banners and more use this (Vines, double tall grass, ect do NOT use this. Dont attempt to fit them here)
+        private void On_TileDrawing_DrawMultiTileVinesInWind(On_TileDrawing.orig_DrawMultiTileVinesInWind orig, TileDrawing self, Vector2 screenPosition, Vector2 offSet, int topLeftX, int topLeftY, int sizeX, int sizeY)
+        {
+            if (Main.tile[topLeftX, topLeftY].TileType == ModContent.TileType<Banners>()) //Visit each of these tiles to see how predraw, draws them blowing in the wind
+            {
+                sizeX = 1;
+                sizeY = 3;
+            }
+            else if (Main.tile[topLeftX, topLeftY].TileType == ModContent.TileType<SanctumLantern>())
+            {
+                sizeX = 1;
+                sizeY = 2;
+            }
+            else if (Main.tile[topLeftX, topLeftY].TileType == ModContent.TileType<SoulOfBlightInABottle>())
+            {
+                sizeX = 1;
+                sizeY = 2;
+            }
+            orig.Invoke(self, screenPosition, offSet, topLeftX, topLeftY, sizeX, sizeY);
+        }
+
+        private void On_SceneMetrics_ExportTileCountsToMain(On_SceneMetrics.orig_ExportTileCountsToMain orig, SceneMetrics self) {
 			orig(self);
 
             Point point = Main.LocalPlayer.Center.ToTileCoordinates();

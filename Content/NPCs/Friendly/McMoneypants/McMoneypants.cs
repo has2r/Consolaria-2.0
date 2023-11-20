@@ -18,6 +18,7 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
 using Consolaria.Content.Items.Vanity;
+using Consolaria.Content.EmoteBubbles;
 
 namespace Consolaria.Content.NPCs.Friendly.McMoneypants;
 
@@ -103,6 +104,8 @@ public class McMoneypants : ModNPC {
             new Profiles.DefaultNPCProfile(Texture, NPCHeadLoader.GetHeadSlot(HeadTexture), Texture + "_Party")
         //new Profiles.DefaultNPCProfile(Texture + "_Shimmer", ShimmerHeadIndex, Texture + "_Shimmer_Party")
         );
+
+        NPCID.Sets.FaceEmote[Type] = ModContent.EmoteBubbleType<McMoneyPantsEmote>();
 
         BestiaryText = this.GetLocalization("Bestiary");
         QuotesOnButtonClickWhenAlreadyInvested = new List<LocalizedText>() {

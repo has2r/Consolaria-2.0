@@ -23,7 +23,7 @@ namespace Consolaria.Content.Tiles {
 
             TileObjectData.newTile.CopyFrom(TileObjectData.Style1x2Top);
             TileObjectData.newTile.Height = 2;
-            TileObjectData.newTile.CoordinateHeights = new int [] { 16, 16 };
+            TileObjectData.newTile.CoordinateHeights = new int [] { 16, 18};
             TileObjectData.newTile.StyleHorizontal = true;
             TileObjectData.newTile.DrawYOffset = -2;
             TileObjectData.newAlternate.CopyFrom(TileObjectData.newTile);

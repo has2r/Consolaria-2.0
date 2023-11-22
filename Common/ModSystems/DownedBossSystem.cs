@@ -1,4 +1,5 @@
-﻿using Consolaria.Content.Items.Miscellaneous;
+﻿using Consolaria.Common.ModSystems;
+using Consolaria.Content.Items.Miscellaneous;
 using Consolaria.Content.NPCs.Bosses.Lepus;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace Consolaria.Common {
+namespace Consolaria.Common.ModSystems {
 	public class DownedBossSystem : ModSystem {
 		public static bool downedLepus = false;
 		public static bool downedTurkor = false;

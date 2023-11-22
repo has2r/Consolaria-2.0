@@ -1,4 +1,5 @@
 using Consolaria.Common;
+using Consolaria.Common.ModSystems;
 using Consolaria.Content.Items.BossDrops.Ocram;
 using Consolaria.Content.Items.Materials;
 using Consolaria.Content.Items.Weapons.Magic;

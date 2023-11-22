@@ -1,4 +1,5 @@
 using Consolaria.Common;
+using Consolaria.Common.ModSystems;
 using Consolaria.Content.Items.Armor.Misc;
 using Consolaria.Content.Items.BossDrops.Lepus;
 using Consolaria.Content.Items.Summons;

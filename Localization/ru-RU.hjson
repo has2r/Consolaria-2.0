@@ -1519,6 +1519,11 @@ Mods: {
 			}
 		}
 
-		// Emotes.McMoneyPantsEmote.Command: mcmoneypants
+		Emotes: {
+			// McMoneyPantsEmote.Command: mcmoneypants
+			// TurkorEmote.Command: turkor
+			// OcramEmote.Command: ocram
+			// LepusEmote.Command: lepus
+		}
 	}
 }

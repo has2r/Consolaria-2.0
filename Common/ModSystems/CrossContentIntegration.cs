@@ -1,3 +1,4 @@
+using Consolaria.Common.ModSystems;
 using Consolaria.Content.Items.BossDrops.Lepus;
 using Consolaria.Content.Items.BossDrops.Ocram;
 using Consolaria.Content.Items.BossDrops.Turkor;

@@ -1,6 +1,7 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Consolaria.Common.ModSystems;
 
 namespace Consolaria.Common {
     class VanillaNPCShop : GlobalNPC {

@@ -9,6 +9,7 @@ using Consolaria.Content.Projectiles.Enemies;
 using Terraria.GameContent.Bestiary;
 using System.Collections.Generic;
 using Consolaria.Common;
+using Consolaria.Common.ModSystems;
 using Terraria.GameContent.ItemDropRules;
 using Consolaria.Content.Items.BossDrops.Turkor;
 using Consolaria.Content.Items.Weapons.Magic;

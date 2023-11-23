@@ -7,6 +7,7 @@ using Terraria.ModLoader;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ModLoader.Utilities;
 using Terraria.GameContent.Bestiary;
+using Consolaria.Content.Items.Miscellaneous.Kites.Custom;
 using Consolaria.Content.Items.Pets;
 using Consolaria.Common;
 using Terraria.GameContent.Events;
@@ -224,6 +225,7 @@ namespace Consolaria.Content.NPCs {
 		public override void ModifyNPCLoot (NPCLoot npcLoot) {
 			npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<GoldenLantern>(), 20));
 			npcLoot.Add(ItemDropRule.Common(ItemID.SoulofFlight, 1, 5, 20));
+			npcLoot.Add(ItemDropRule.ByCondition(new Conditions.WindyEnoughForKiteDrops(), ModContent.ItemType<MythicalWyvernKite>(), 25, 1, 1));
 		}
 
 		public override float SpawnChance (NPCSpawnInfo spawnInfo) {

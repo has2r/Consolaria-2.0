@@ -1,7 +1,7 @@
-- FIxed the error caused by outdated code due to the October stable build
-- Added wind physics to hanging tiles 
-- Added note visuals to music boxes 
-- Moved Ocram to the correct position on the Boss Checklist order 
-- Improved localization support to include all the missing text. The localization itself has not been updated yet though 
-
-Thanks to Lion8cake for several contributions in this update!
+-Added McMoneyPants Emote
+-Added Lepus Emote
+-Added Ocram Emote
+-Added Turkor Emote
+-Added Consolaria x Heartbeataria cross-mod integration
+-Changed the way of obtaining Mythical Wyvern Kite to be more in-pair with vanilla
+-Fixed pixel gap in Soul Of Blight in a Bottle

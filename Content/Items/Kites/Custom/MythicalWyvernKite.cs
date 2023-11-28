@@ -1,6 +1,6 @@
 using Terraria.ModLoader;
 
-namespace Consolaria.Content.Items.Miscellaneous.Kites.Custom;
+namespace Consolaria.Content.Items.Kites.Custom;
 
 public sealed class MythicalWyvernKite : BaseKiteItem {
     protected override int SetKiteProjectileType()

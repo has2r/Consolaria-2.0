@@ -8,7 +8,7 @@ namespace Consolaria.Common {
     internal class ConsolariaMenu : ModMenu {
         public override string DisplayName => "Consolaria";
 
-        public override Asset<Texture2D> Logo => ModContent.Request<Texture2D>("Consolaria/Assets/Textures/Logo");
+        public override Asset<Texture2D> Logo => ModContent.Request<Texture2D>("Consolaria/Assets/Textures/ConsolariaLogo");
 
         public override int Music => MusicID.ConsoleMenu; 
 

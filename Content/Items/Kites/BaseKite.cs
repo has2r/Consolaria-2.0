@@ -6,7 +6,7 @@ using Terraria.Enums;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace Consolaria.Content.Items.Miscellaneous.Kites;
+namespace Consolaria.Content.Items.Kites;
 
 public abstract class BaseKiteItem : ModItem {
 	public sealed override void SetStaticDefaults() {

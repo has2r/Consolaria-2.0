@@ -1,7 +1,7 @@
 using Microsoft.Xna.Framework;
 using Terraria;
 
-namespace Consolaria.Content.Items.Miscellaneous.Kites.Custom;
+namespace Consolaria.Content.Items.Kites.Custom;
 
 public sealed class MythicalWyvernKiteProjectile : BaseKiteProjectile {
     protected override KiteInfo SetKiteInfo()

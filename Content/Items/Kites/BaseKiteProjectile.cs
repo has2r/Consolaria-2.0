@@ -7,7 +7,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Consolaria.Content.Items.Miscellaneous.Kites.Custom;
+namespace Consolaria.Content.Items.Kites.Custom;
 
 public record KiteInfo(float MinLength = 4f,
                        float MaxLength = 500f,

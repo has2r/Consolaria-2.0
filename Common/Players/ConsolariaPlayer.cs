@@ -5,7 +5,7 @@ using Terraria.DataStructures;
 using Terraria.ModLoader;
 
 namespace Consolaria.Common {
-    public class ConsolePlayer : ModPlayer {
+    public class ConsolariaPlayer : ModPlayer {
         private bool killedByOcram;
 
         public override void OnRespawn ()

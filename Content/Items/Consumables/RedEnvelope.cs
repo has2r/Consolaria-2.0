@@ -1,14 +1,12 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.ModLoader.IO;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using Consolaria.Common;
 using Consolaria.Content.Items.Vanity;
-using Consolaria.Content.NPCs.Friendly.McMoneypants;
-using Consolaria.Content.Items.Miscellaneous.Kites.Custom;
+using Consolaria.Content.Items.Kites.Custom;
 
 namespace Consolaria.Content.Items.Consumables;
 

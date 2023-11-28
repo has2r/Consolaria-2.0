@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ModLoader.Utilities;
 using Terraria.GameContent.Bestiary;
-using Consolaria.Content.Items.Miscellaneous.Kites.Custom;
+using Consolaria.Content.Items.Kites.Custom;
 using Consolaria.Content.Items.Pets;
 using Consolaria.Common;
 using Terraria.GameContent.Events;

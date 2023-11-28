@@ -410,7 +410,7 @@ public class McMoneypants : ModNPC {
         }
 
         void PlaySound() {
-            SoundStyle style = new($"{nameof(Consolaria)}/Assets/Sounds/MoneyCashSound");
+            SoundStyle style = new($"{nameof(Consolaria)}/Assets/Sounds/MoneyCash");
             SoundEngine.PlaySound(style, NPC.Center);
 			SoundEngine.PlaySound(SoundID.Coins with { Pitch = -0.3f }, NPC.Center);
         }

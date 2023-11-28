@@ -3,5 +3,7 @@
 -Added Ocram Emote
 -Added Turkor Emote
 -Added Consolaria x Heartbeataria cross-mod integration
+-Added Oktober Locks
+-Added а config option for Oktober Locks availability (off by default)
 -Changed the way of obtaining Mythical Wyvern Kite to be more in-pair with vanilla
 -Fixed pixel gap in Soul Of Blight in a Bottle

@@ -22,6 +22,10 @@ namespace Consolaria.Common {
 		[DefaultValue(false)]
 		public bool vanillaBossMusic;
 
+		[DefaultValue(false)]
+        [ReloadRequired]
+        public bool oktoberLocksEnabled;
+
         [DefaultValue(false)]
         [ReloadRequired]
         public bool dontTouchZenith;

@@ -1175,6 +1175,11 @@ Mods: {
 				DisplayName: Mythical Wyvern Kite
 				Tooltip: ""
 			}
+
+			OktoberLocks: {
+				Tooltip: ""
+				DisplayName: Oktober Locks
+			}
 		}
 
 		NPCs: {
@@ -1489,7 +1494,7 @@ Mods: {
 					Label: Restrict seasonal content by system date (Easter)
 					Tooltip:
 						'''
-						If enabled the relevant items and enemies will only appear during Easter
+						If enabled, the relevant items and enemies will only appear during Easter
 						April 1 - April 30
 						'''
 				}
@@ -1498,24 +1503,29 @@ Mods: {
 					Label: Restrict seasonal content by system date (Thanksgiving)
 					Tooltip:
 						'''
-						If enabled the relevant items and enemies will only appear during Thanksgiving
+						If enabled, the relevant items and enemies will only appear during Thanksgiving
 						November 1 - November 30
 						'''
 				}
 
 				smallEventsEnabled: {
 					Label: Restrict seasonal content by system date (Other events)
-					Tooltip: If enabled the relevant items and enemies will only appear during the corresponding holidays or when Wishbone is used
+					Tooltip: If enabled, the relevant items and enemies will only appear during the corresponding holidays or when Wishbone is used
 				}
 
 				vanillaBossMusic: {
 					Label: Enable vanilla music for Consolaria bosses
-					Tooltip: If enabled the custom soundtrack will be replaced by themes originally used in console versions
+					Tooltip: If enabled, the custom soundtrack will be replaced by themes originally used in console versions
 				}
 
 				dontTouchZenith: {
 					Label: Disable Tizona integration in Zenith
 					Tooltip: If enabled, Tizona will not be added to Zenith's recipe and will not be displayed in swords pool
+				}
+
+				oktoberLocksEnabled: {
+					Label: Enable Oktober Locks
+					Tooltip: If enabled, the Oktober Locks will be available to buy from Clothier during the Oktoberfest Seasonal Event
 				}
 			}
 		}

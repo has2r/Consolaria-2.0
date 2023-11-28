@@ -1174,6 +1174,11 @@ Mods: {
 				DisplayName: Воздушный змей «Мифическая Виверна»
 				Tooltip: ""
 			}
+
+			OktoberLocks: {
+				// Tooltip: ""
+				// DisplayName: Oktober Locks
+			}
 		}
 
 		NPCs: {
@@ -1515,6 +1520,11 @@ Mods: {
 				dontTouchZenith: {
 					Label: Отключить интеграцию Тизоны в Зените
 					Tooltip: При включении Тизона не будет добавлена в рецепт Зенита и не будет отображаться как один из мечей при его использовании
+				}
+
+				oktoberLocksEnabled: {
+					// Label: Enable Oktober Locks
+					// Tooltip: If enabled, the Oktober Locks will be available to buy from Clothier during the Oktoberfest Seasonal Event
 				}
 			}
 		}

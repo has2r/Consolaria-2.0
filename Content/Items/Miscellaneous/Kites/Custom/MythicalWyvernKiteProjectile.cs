@@ -1,5 +1,4 @@
 using Microsoft.Xna.Framework;
-
 using Terraria;
 
 namespace Consolaria.Content.Items.Miscellaneous.Kites.Custom;

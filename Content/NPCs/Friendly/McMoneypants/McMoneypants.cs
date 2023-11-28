@@ -1,22 +1,19 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-
 using System;
 using System.Collections.Generic;
 using System.IO;
-
 using Terraria;
 using Terraria.Audio;
 using Terraria.Chat;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
-
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
-
+using Consolaria.Content.Buffs;
 using Consolaria.Content.Items.Vanity;
 using Consolaria.Content.EmoteBubbles;
 
@@ -386,7 +383,7 @@ public class McMoneypants : ModNPC {
         }
 
         void AddBuff() {
-            player.AddBuff(ModContent.BuffType<McMoneypantsBuff>(), 1800 * 60);
+            player.AddBuff(ModContent.BuffType<Fortuned>(), 1800 * 60);
         }
 
         void UpdateInvestInfo() {

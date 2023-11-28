@@ -1,9 +1,9 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 
-namespace Consolaria.Content.NPCs.Friendly.McMoneyPants;
+namespace Consolaria.Content.NPCs.Friendly.McMoneypants;
 
-public class McMoneyPantsBuff : ModBuff {
+public class McMoneypantsBuff : ModBuff {
     public override void SetStaticDefaults() {
         Main.debuff[Type] = false;
         Main.pvpBuff[Type] = true;

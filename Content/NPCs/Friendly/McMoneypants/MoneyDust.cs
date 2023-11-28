@@ -3,7 +3,7 @@
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Consolaria.Content.NPCs.Friendly.McMoneyPants;
+namespace Consolaria.Content.NPCs.Friendly.McMoneypants;
 
 public class MoneyDust : ModDust {
     public override Color? GetAlpha(Dust dust, Color lightColor)

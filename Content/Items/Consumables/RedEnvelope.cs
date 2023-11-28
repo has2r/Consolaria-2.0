@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using Consolaria.Common;
 using Consolaria.Content.Items.Vanity;
-using Consolaria.Content.NPCs.Friendly.McMoneyPants;
+using Consolaria.Content.NPCs.Friendly.McMoneypants;
 using Consolaria.Content.Items.Miscellaneous.Kites.Custom;
 
 namespace Consolaria.Content.Items.Consumables;

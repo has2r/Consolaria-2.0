@@ -1,4 +1,3 @@
-using Consolaria.Content.Items.Placeable;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
@@ -11,7 +10,8 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
-namespace Consolaria.Content.Tiles {
+namespace Consolaria.Content.Tiles
+{
     public class SoulOfBlightInABottleTile : ModTile {
         public override void SetStaticDefaults () {
             Main.tileLighted [Type] = true;

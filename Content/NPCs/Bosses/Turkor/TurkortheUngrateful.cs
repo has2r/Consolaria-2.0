@@ -11,17 +11,21 @@ using System.Collections.Generic;
 using Consolaria.Common;
 using Consolaria.Common.ModSystems;
 using Terraria.GameContent.ItemDropRules;
-using Consolaria.Content.Items.BossDrops.Turkor;
+using Consolaria.Content.Items.Consumables;
+using Consolaria.Content.Items.Placeable;
+using Consolaria.Content.Items.Mounts;
 using Consolaria.Content.Items.Weapons.Magic;
 using Consolaria.Content.Items.Weapons.Melee;
 using Consolaria.Content.Items.Weapons.Summon;
 using Consolaria.Content.Items.Weapons.Ranged;
+using Consolaria.Content.Items.Vanity;
 using System.IO;
 using Terraria.Chat;
 using Terraria.Localization;
 
-namespace Consolaria.Content.NPCs.Bosses.Turkor {
-	[AutoloadBossHead]
+namespace Consolaria.Content.NPCs.Bosses.Turkor
+{
+    [AutoloadBossHead]
 	public class TurkortheUngrateful : ModNPC {
 		public static LocalizedText BestiaryText {
 			get; private set;

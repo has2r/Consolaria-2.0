@@ -2,7 +2,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Consolaria.Content.Items.BossDrops.Ocram {
+namespace Consolaria.Content.Items.Pets {
     public class CursedFang : ModItem {
 		public override void SetStaticDefaults () {
 

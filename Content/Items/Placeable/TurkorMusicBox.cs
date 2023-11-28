@@ -2,7 +2,7 @@ using Terraria.ModLoader;
 using Terraria;
 using Terraria.ID;
 
-namespace Consolaria.Content.Items.BossDrops.Turkor {
+namespace Consolaria.Content.Items.Placeable {
 	public class TurkorMusicBox : ModItem {
 		public override void SetStaticDefaults () {
 			Item.ResearchUnlockCount = 1;

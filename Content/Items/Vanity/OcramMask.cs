@@ -1,13 +1,13 @@
 using Terraria.ModLoader;
 using Terraria;
 using Terraria.ID;
-using Microsoft.Xna.Framework;
 using Terraria.GameContent.Creative;
+using Microsoft.Xna.Framework;
 
-namespace Consolaria.Content.Items.BossDrops.Turkor
+namespace Consolaria.Content.Items.Vanity
 {
 	[AutoloadEquip(EquipType.Head)]
-	public class TurkorMask : ModItem
+	public class OcramMask : ModItem
 	{
 		public override void SetStaticDefaults() {
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;

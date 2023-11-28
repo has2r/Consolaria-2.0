@@ -1,8 +1,9 @@
-using Consolaria.Content.Items.Materials;
+using Consolaria.Content.Items.Misc;
 using Consolaria.Content.Items.Weapons.Magic;
 using Consolaria.Content.Items.Weapons.Melee;
 using Consolaria.Content.Items.Weapons.Ranged;
 using Consolaria.Content.Items.Weapons.Summon;
+using Consolaria.Content.Items.Vanity;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -11,11 +12,13 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Consolaria.Content.Items.BossDrops.Ocram {
-    public class OcramBag : ModItem {
+namespace Consolaria.Content.Items.Consumables {
+    public class TurkorBag : ModItem {
         public override void SetStaticDefaults () {
 
             ItemID.Sets.BossBag [Type] = true;
+            ItemID.Sets.PreHardmodeLikeBossBag [Type] = true;
+
             Item.ResearchUnlockCount = 3;
         }
 
@@ -26,7 +29,7 @@ namespace Consolaria.Content.Items.BossDrops.Ocram {
             Item.maxStack = 9999;
             Item.consumable = true;
 
-            Item.rare = ItemRarityID.Lime;
+            Item.rare = ItemRarityID.Blue;
             Item.expert = true;
         }
 
@@ -34,16 +37,12 @@ namespace Consolaria.Content.Items.BossDrops.Ocram {
             => true;
 
         public override void ModifyItemLoot (ItemLoot itemLoot) {
-            itemLoot.Add(new OneFromRulesRule(1, ItemDropRule.Common(ModContent.ItemType<EternityStaff>()),
-                ItemDropRule.Common(ModContent.ItemType<DragonBreath>()),
-                ItemDropRule.Common(ModContent.ItemType<OcramsEye>()),
-                ItemDropRule.Common(ModContent.ItemType<Tizona>())));
+            itemLoot.Add(ItemDropRule.OneFromOptionsNotScalingWithLuck(1, new int [] { ModContent.ItemType<FeatherStorm>(), ModContent.ItemType<GreatDrumstick>(), ModContent.ItemType<TurkeyStuff>() }));
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<SpicySauce>(), 2, 20, 39));
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<TurkorMask>(), 8));
 
-            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<OcramMask>(), 8));
-            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<SoulofBlight>(), 1, 25, 40));
-
-            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<ShadowboundExoskeleton>()));
-            itemLoot.Add(ItemDropRule.CoinsBasedOnNPCValue(ModContent.NPCType<NPCs.Bosses.Ocram.Ocram>()));
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<HornoPlenty>()));
+            itemLoot.Add(ItemDropRule.CoinsBasedOnNPCValue(ModContent.NPCType<NPCs.Bosses.Turkor.TurkortheUngrateful>()));
         }
 
         public override Color? GetAlpha (Color lightColor)
@@ -94,7 +93,7 @@ namespace Consolaria.Content.Items.BossDrops.Ocram {
 
             for (float i = 0f; i < 1f; i += 0.34f) {
                 float radians = (i + timer) * MathHelper.TwoPi;
-                spriteBatch.Draw(texture, drawPos + new Vector2(0f, 4f).RotatedBy(radians) * time, frame, new Color(138, 43, 226, 80), rotation, frameOrigin, scale, SpriteEffects.None, 0);
+                spriteBatch.Draw(texture, drawPos + new Vector2(0f, 4f).RotatedBy(radians) * time, frame, new Color(165, 42, 42, 75), rotation, frameOrigin, scale, SpriteEffects.None, 0);
             }
             return true;
         }

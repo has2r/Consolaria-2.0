@@ -12,7 +12,7 @@ namespace Consolaria.Content.Buffs
 		}
 
 		public override void Update(Player player, ref int buffIndex){
-			player.mount.SetMount(ModContent.MountType<Mounts.FruitfulPlate>(), player);
+			player.mount.SetMount(ModContent.MountType<Mounts.FruitfulPlateMount>(), player);
 			player.buffTime[buffIndex] = 10; 
 		}
 	}

@@ -4,7 +4,7 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Consolaria.Content.Items.BossDrops.Turkor
+namespace Consolaria.Content.Items.Placeable
 {
 	public class TurkorRelic : ModItem
 	{

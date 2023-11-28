@@ -2,8 +2,9 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Consolaria.Content.Mounts;
 
-namespace Consolaria.Content.Items.BossDrops.Turkor {
+namespace Consolaria.Content.Items.Mounts {
     public class FruitfulPlate : ModItem {
 		public override void SetStaticDefaults () {
 
@@ -22,7 +23,7 @@ namespace Consolaria.Content.Items.BossDrops.Turkor {
 
 			Item.UseSound = SoundID.Item2;
 
-			Item.mountType = ModContent.MountType<Mounts.FruitfulPlate>();
+			Item.mountType = ModContent.MountType<FruitfulPlateMount>();
 		}
 	}
 }

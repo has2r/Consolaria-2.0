@@ -4,7 +4,7 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Consolaria.Content.Items.BossDrops.Turkor
+namespace Consolaria.Content.Items.Misc
 {	
 	public class HornoPlenty : ModItem
 	{		

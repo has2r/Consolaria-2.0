@@ -1,6 +1,5 @@
 using Consolaria.Common.ModSystems;
-using Consolaria.Content.Items.BossDrops.Ocram;
-using Consolaria.Content.Items.BossDrops.Turkor;
+using Consolaria.Content.Items.Mounts;
 using Consolaria.Content.Items.Pets;
 using Consolaria.Content.Items.Placeable;
 using Consolaria.Content.Items.Summons;
@@ -15,7 +14,8 @@ using System.Collections.Generic;
 using Terraria.Achievements;
 using Terraria.ModLoader;
 
-namespace Consolaria.Common {
+namespace Consolaria.Common
+{
     public class CrossContentIntegration : ModSystem {
         public override void PostSetupContent () {
             DoBossChecklistIntegration();

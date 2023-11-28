@@ -5,7 +5,7 @@ using Terraria.ID;
 using Terraria.Audio;
 using Terraria.Localization;
 
-namespace Consolaria.Content.Items.BossDrops.Ocram {
+namespace Consolaria.Content.Items.Accessories {
     public class ShadowboundExoskeleton : ModItem {
         public static int ItemMeleeDamage = 90;
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ItemMeleeDamage, Language.GetTextValue(Main.ReversedUpDownArmorSetBonuses ? "Key.DOWN" : "Key.UP"));

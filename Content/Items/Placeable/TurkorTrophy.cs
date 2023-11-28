@@ -4,7 +4,7 @@ using Terraria.GameContent.Creative;
 using Microsoft.Xna.Framework;
 using Terraria.ID;
 
-namespace Consolaria.Content.Items.BossDrops.Turkor
+namespace Consolaria.Content.Items.Placeable
 {
     public class TurkorTrophy : ModItem
     {

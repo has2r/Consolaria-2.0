@@ -1,15 +1,15 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Utilities;
 
-namespace Consolaria.Content.NPCs {
-	public class AlbinoAntlion : ModNPC {
+namespace Consolaria.Content.NPCs
+{
+    public class AlbinoAntlion : ModNPC {
         public static LocalizedText BestiaryText {
             get; private set;
         }

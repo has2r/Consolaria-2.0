@@ -6,7 +6,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.Mounts {
-    public class FruitfulPlate : ModMount {
+    public class FruitfulPlateMount : ModMount {
         public override void SetStaticDefaults () {
             // Movement
             MountData.jumpHeight = 16; // How high the mount can jump.

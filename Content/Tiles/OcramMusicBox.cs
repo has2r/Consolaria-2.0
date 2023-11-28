@@ -50,7 +50,7 @@ namespace Consolaria.Content.Tiles {
 			Player player = Main.LocalPlayer;
 			player.noThrow = 2;
 			player.cursorItemIconEnabled = true;
-			player.cursorItemIconID = ModContent.ItemType<Items.BossDrops.Ocram.OcramMusicBox>();
+			player.cursorItemIconID = ModContent.ItemType<Items.Placeable.OcramMusicBox>();
 		}
 	}
 }

@@ -6,7 +6,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace Consolaria.Content.NPCs.Friendly.McMoneypants;
+namespace Consolaria.Content.NPCs.Friendly.McMoneyPants;
 
 public class McMoneypantsInvitation : ModItem {
     public override void SetStaticDefaults() {
@@ -33,7 +33,7 @@ public class McMoneypantsInvitation : ModItem {
     }
 
     public override bool? UseItem(Player player) {
-        if (McMoneypantsWorldData.isGildedInvitationUsed) {
+        if (McMoneyPantsWorldData.isGildedInvitationUsed) {
             return false;
         }
 
@@ -45,7 +45,7 @@ public class McMoneypantsInvitation : ModItem {
             else if (Main.netMode == NetmodeID.Server) {
                 ChatHelper.BroadcastChatMessage(NetworkText.FromKey(text), Color.SpringGreen);
             }
-            McMoneypantsWorldData.isGildedInvitationUsed = true;
+            McMoneyPantsWorldData.isGildedInvitationUsed = true;
             if (Main.netMode == NetmodeID.Server) {
                 NetMessage.SendData(MessageID.WorldData);
             }

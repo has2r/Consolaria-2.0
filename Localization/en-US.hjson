@@ -134,7 +134,7 @@ Mods: {
 				Description: Eats brains
 			}
 
-			McMoneypantsBuff: {
+			McMoneyPantsBuff: {
 				DisplayName: Fortuned
 				Description: You are feeling pretty lucky
 			}
@@ -1344,7 +1344,7 @@ Mods: {
 				Bestiary: Evidence indicates that some spelunkers got bitten by vampire bats before passing away... Now their rotten remains are out for blood.
 			}
 
-			McMoneypants: {
+			McMoneyPants: {
 				DisplayName: Mc MoneyPants
 				Bestiary: Flamboyant and charismatic, Mc MoneyPants is a fine baron willing to make anyone's life easier... For a price!
 				AlreadyInvested1: There is no such thing as enough gold, but I've had enough of you today.
@@ -1456,7 +1456,7 @@ Mods: {
 			Worm.DisplayName: Worm
 			OldLady.DisplayName: Old Lady
 			WormTombstone.DisplayName: Strange Looking Tombstone
-			McMoneypantsAttackProjectile.DisplayName: Mc Moneypants Attack Projectile
+			McMoneyPantsAttackProjectile.DisplayName: Mc Moneypants Attack Projectile
 			Explosion.DisplayName: Explosion
 			ExampleKiteProjectile.DisplayName: Example Kite Projectile
 			MythicalWyvernProjectile.DisplayName: Mythical Wyvern Projectile

@@ -20,10 +20,10 @@ using Terraria.ModLoader.IO;
 using Consolaria.Content.Items.Vanity;
 using Consolaria.Content.EmoteBubbles;
 
-namespace Consolaria.Content.NPCs.Friendly.McMoneypants;
+namespace Consolaria.Content.NPCs.Friendly.McMoneyPants;
 
 [AutoloadHead()]
-public class McMoneypants : ModNPC {
+public class McMoneyPants : ModNPC {
     #region Fields
     public static LocalizedText BestiaryText { get; private set; }
 
@@ -68,10 +68,10 @@ public class McMoneypants : ModNPC {
     public static List<LocalizedText> QuotesOnButtonClickWhenAlreadyInvested { get; private set; }
 
     internal static bool SpawnCondition
-        => !McMoneypantsWorldData.Travelled && Main.dayTime && Main.time >= McMoneypantsWorldData.SpawnTime && Main.time < DAY_TIME;
+        => !McMoneyPantsWorldData.Travelled && Main.dayTime && Main.time >= McMoneyPantsWorldData.SpawnTime && Main.time < DAY_TIME;
 
     internal static bool DespawnCondition
-        => _timePassed >= (McMoneypantsWorldData.SomebodyInvested ? DAY_TIME / 2 : DAY_TIME);
+        => _timePassed >= (McMoneyPantsWorldData.SomebodyInvested ? DAY_TIME / 2 : DAY_TIME);
     #endregion
 
     #region Defaults
@@ -187,9 +187,9 @@ public class McMoneypants : ModNPC {
             if (NPC.IsShimmerVariant) {
                 variant += "_Shimmer";
             }
-            int headGore = Mod.Find<ModGore>($"McMoneypantsGore1{variant}").Type;
-            int armGore = Mod.Find<ModGore>($"McMoneypantsGore2{variant}").Type;
-            int legGore = Mod.Find<ModGore>($"McMoneypantsGore3{variant}").Type;
+            int headGore = Mod.Find<ModGore>($"McMoneyPantsGore1{variant}").Type;
+            int armGore = Mod.Find<ModGore>($"McMoneyPantsGore2{variant}").Type;
+            int legGore = Mod.Find<ModGore>($"McMoneyPantsGore3{variant}").Type;
             Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity, headGore, 1f);
             Gore.NewGore(NPC.GetSource_Death(), NPC.position + new Vector2(0, 20), NPC.velocity, armGore);
             Gore.NewGore(NPC.GetSource_Death(), NPC.position + new Vector2(0, 20), NPC.velocity, armGore);
@@ -204,10 +204,10 @@ public class McMoneypants : ModNPC {
         => Names;
 
     public override string GetChat()
-        => Main.LocalPlayer.GetModPlayer<McMoneypantsPlayerData>().PlayerInvested ? QuotesWhenInvested[Main.rand.Next(QuotesWhenInvested.Count)].ToString() : Quotes[Main.rand.Next(Quotes.Count - 2)].ToString();
+        => Main.LocalPlayer.GetModPlayer<McMoneyPantsPlayerData>().PlayerInvested ? QuotesWhenInvested[Main.rand.Next(QuotesWhenInvested.Count)].ToString() : Quotes[Main.rand.Next(Quotes.Count - 2)].ToString();
 
     public override void SetChatButtons(ref string button, ref string button2) {
-        McMoneypantsPlayerData modPlayer = Main.LocalPlayer.GetModPlayer<McMoneypantsPlayerData>();
+        McMoneyPantsPlayerData modPlayer = Main.LocalPlayer.GetModPlayer<McMoneyPantsPlayerData>();
         button = BUTTON_TEXT + (!modPlayer.PlayerInvested ? $" ({Helper.GetPriceText(modPlayer.PlayerInvestPrice, true)})" : string.Empty);
     }
 
@@ -236,7 +236,7 @@ public class McMoneypants : ModNPC {
     }
 
     public override void TownNPCAttackProj(ref int projType, ref int attackDelay) {
-        projType = ModContent.ProjectileType<McMoneypantsAttackProjectile>();
+        projType = ModContent.ProjectileType<McMoneyPantsAttackProjectile>();
         attackDelay = 1;
     }
 
@@ -253,7 +253,7 @@ public class McMoneypants : ModNPC {
         }
 
         bool CheckConditions() {
-            return DespawnCondition && !Helper.IsNPCOnScreen(NPC.Center) && (!SpawnCondition || McMoneypantsWorldData.InvestedNextTravel);
+            return DespawnCondition && !Helper.IsNPCOnScreen(NPC.Center) && (!SpawnCondition || McMoneyPantsWorldData.InvestedNextTravel);
         }
 
         void NotifyDespawnInChat() {
@@ -269,7 +269,7 @@ public class McMoneypants : ModNPC {
         }
 
         void KillNPC() {
-            McMoneypantsWorldData.Travelled = false;
+            McMoneyPantsWorldData.Travelled = false;
 
             NPC.active = false;
             NPC.netSkip = -1;
@@ -308,7 +308,7 @@ public class McMoneypants : ModNPC {
             return;
         }
 
-        int thisNPCType = ModContent.NPCType<McMoneypants>();
+        int thisNPCType = ModContent.NPCType<McMoneyPants>();
         bool isMoneypantsThere = NPC.FindFirstNPC(thisNPCType) != -1;
 
         void NotifySpawnInChat(NPC npc) {
@@ -325,14 +325,14 @@ public class McMoneypants : ModNPC {
         void UpdateSpawnTime() {
             bool isMorning = Main.dayTime && Main.time == 0;
             if (isMorning)  {
-                bool shouldComeWhen = Main.rand.NextBool(McMoneypantsWorldData.ChanceToSpawn) || McMoneypantsWorldData.InvestedNextTravel;
+                bool shouldComeWhen = Main.rand.NextBool(McMoneyPantsWorldData.ChanceToSpawn) || McMoneyPantsWorldData.InvestedNextTravel;
                 if (!isMoneypantsThere && shouldComeWhen) {
                     int minTime = 5400, maxTime = 8100;
-                    McMoneypantsWorldData.Travelled = false;
-                    McMoneypantsWorldData.SpawnTime = Helper.GetRandomSpawnTime(minTime, maxTime);
+                    McMoneyPantsWorldData.Travelled = false;
+                    McMoneyPantsWorldData.SpawnTime = Helper.GetRandomSpawnTime(minTime, maxTime);
                 }
                 else {
-                    McMoneypantsWorldData.SpawnTime = double.MaxValue;
+                    McMoneyPantsWorldData.SpawnTime = double.MaxValue;
                 }
             }
         }
@@ -343,7 +343,7 @@ public class McMoneypants : ModNPC {
 
         void SpawnNPC() {
             if (!isMoneypantsThere && Helper.CanTownNPCSpawn(SpawnCondition)) {
-                McMoneypantsWorldData.Travelled = true;
+                McMoneyPantsWorldData.Travelled = true;
 
                 int npc = NPC.NewNPC(Terraria.Entity.GetSource_TownSpawn(), Main.spawnTileX * 16, Main.spawnTileY * 16, thisNPCType, 1);
 
@@ -352,11 +352,11 @@ public class McMoneypants : ModNPC {
                 worldNPC.direction = Main.spawnTileX >= WorldGen.bestX ? -1 : 1;
                 worldNPC.netUpdate = true;
 
-                if (McMoneypantsWorldData.DidntTravelYet) {
-                    McMoneypantsWorldData.DidntTravelYet = false;
+                if (McMoneyPantsWorldData.DidntTravelYet) {
+                    McMoneyPantsWorldData.DidntTravelYet = false;
                 }
                 else {
-                    McMoneypants modNPC = worldNPC.ModNPC as McMoneypants;
+                    McMoneyPants modNPC = worldNPC.ModNPC as McMoneyPants;
                     List<string> names = modNPC.Names;
                     string lastName = _lastName, name = lastName ?? ChooseRandomName(names);
                     worldNPC.GivenName = name;
@@ -372,7 +372,7 @@ public class McMoneypants : ModNPC {
 
     private void OnFirstButtonClick() {
         Player player = Main.LocalPlayer;
-        McMoneypantsPlayerData modPlayer = player.GetModPlayer<McMoneypantsPlayerData>();
+        McMoneyPantsPlayerData modPlayer = player.GetModPlayer<McMoneyPantsPlayerData>();
 
         if (modPlayer.PlayerInvested) {
             Main.npcChatText = QuotesOnButtonClickWhenAlreadyInvested[Main.rand.Next(QuotesOnButtonClickWhenAlreadyInvested.Count)].ToString();
@@ -386,11 +386,11 @@ public class McMoneypants : ModNPC {
         }
 
         void AddBuff() {
-            player.AddBuff(ModContent.BuffType<McMoneypantsBuff>(), 1800 * 60);
+            player.AddBuff(ModContent.BuffType<McMoneyPantsBuff>(), 1800 * 60);
         }
 
         void UpdateInvestInfo() {
-            McMoneypantsWorldData.InvestedNextTravel = McMoneypantsWorldData.SomebodyInvested = true;
+            McMoneyPantsWorldData.InvestedNextTravel = McMoneyPantsWorldData.SomebodyInvested = true;
 
             modPlayer.PlayerInvested = true;
             modPlayer.PlayerInvestPrice += modPlayer.PlayerInvestPrice / 3;
@@ -430,24 +430,24 @@ public class McMoneypants : ModNPC {
     }
 
     private static void ResetInvestedStatus(NPC npc) {
-        McMoneypantsPlayerData modPlayer = Main.LocalPlayer.GetModPlayer<McMoneypantsPlayerData>();
+        McMoneyPantsPlayerData modPlayer = Main.LocalPlayer.GetModPlayer<McMoneyPantsPlayerData>();
         if (modPlayer.PlayerInvested) {
-            modPlayer.PlayerInvested = McMoneypantsWorldData.SomebodyInvested = false;
+            modPlayer.PlayerInvested = McMoneyPantsWorldData.SomebodyInvested = false;
 
             return;
         }
 
         _lastName = null;
 
-        McMoneypantsWorldData.InvestedNextTravel = false;
+        McMoneyPantsWorldData.InvestedNextTravel = false;
 
-        modPlayer.PlayerInvestPrice = McMoneypantsPlayerData.startPrice;
+        modPlayer.PlayerInvestPrice = McMoneyPantsPlayerData.startPrice;
     }
     #endregion
 }
 
 #region Data
-public class McMoneypantsPlayerData : ModPlayer {
+public class McMoneyPantsPlayerData : ModPlayer {
     internal static readonly int startPrice = Item.buyPrice(gold: 15);
 
     public long PlayerInvestPrice { get; internal set; } = startPrice;
@@ -467,7 +467,7 @@ public class McMoneypantsPlayerData : ModPlayer {
     }
 }
 
-public class McMoneypantsWorldData : ModSystem {
+public class McMoneyPantsWorldData : ModSystem {
     internal static bool isGildedInvitationUsed;
 
     public static bool InvestedNextTravel { get; internal set; }
@@ -534,7 +534,7 @@ public class McMoneypantsWorldData : ModSystem {
             return;
         }
 
-        McMoneypants.SpawnNPCRandomly();
+        McMoneyPants.SpawnNPCRandomly();
 
         void UpdateSpawnToChance() {
             if (DidntTravelYet) {
@@ -566,7 +566,7 @@ public class McMoneypantsWorldData : ModSystem {
 #endregion
 
 #region NPC's Attack
-public class McMoneypantsAttackProjectile : ModProjectile {
+public class McMoneyPantsAttackProjectile : ModProjectile {
     private Vector2 _extraVelocity = Vector2.Zero;
     private float _glowTimer;
 

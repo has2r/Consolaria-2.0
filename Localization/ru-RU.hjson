@@ -134,7 +134,7 @@ Mods: {
 				Description: Ест мозги
 			}
 
-			McMoneypantsBuff: {
+			McMoneyPantsBuff: {
 				DisplayName: Везучий
 				Description: Вы чуствуете себя довольно удачливым
 			}
@@ -1343,7 +1343,7 @@ Mods: {
 				// Bestiary: Evidence indicates that some spelunkers got bitten by vampire bats before passing away... Now their rotten remains are out for blood.
 			}
 
-			McMoneypants: {
+			McMoneyPants: {
 				DisplayName: Мак МаниПэнтс
 				// Bestiary: Flamboyant and charismatic, Mc MoneyPants is a fine baron willing to make anyone's life easier... For a price!
 				// AlreadyInvested1: There is no such thing as enough gold, but I've had enough of you today.
@@ -1455,7 +1455,7 @@ Mods: {
 			Worm.DisplayName: Червяк
 			OldLady.DisplayName: Старушка
 			WormTombstone.DisplayName: Подозрительно Выглядящее Надгробие
-			McMoneypantsAttackProjectile.DisplayName: Атака Мак МаниПэнтса
+			McMoneyPantsAttackProjectile.DisplayName: Атака Мак МаниПэнтса
 			Explosion.DisplayName: Взрыв
 			ExampleKiteProjectile.DisplayName: Пример Воздушного Змея
 			MythicalWyvernProjectile.DisplayName: Мифическая Виверна

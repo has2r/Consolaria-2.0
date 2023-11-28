@@ -5,7 +5,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Consolaria.Content.Items.Miscellaneous
+namespace Consolaria.Content.Items.Consumables
 {
 	public class GoldenCarrot : ModItem
 	{

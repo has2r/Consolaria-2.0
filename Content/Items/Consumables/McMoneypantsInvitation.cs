@@ -4,8 +4,9 @@ using Terraria.Chat;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using Consolaria.Content.NPCs.Friendly.McMoneypants;
 
-namespace Consolaria.Content.NPCs.Friendly.McMoneypants;
+namespace Consolaria.Content.Items.Consumables;
 
 public class McMoneypantsInvitation : ModItem {
     public override void SetStaticDefaults() {

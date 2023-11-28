@@ -1,5 +1,5 @@
 ﻿using Consolaria.Common.ModSystems;
-using Consolaria.Content.Items.Miscellaneous;
+using Consolaria.Content.Items.Consumables;
 using Consolaria.Content.NPCs.Bosses.Lepus;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;

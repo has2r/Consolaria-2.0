@@ -225,7 +225,11 @@ namespace Consolaria.Content.NPCs {
 		public override void ModifyNPCLoot (NPCLoot npcLoot) {
 			npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<GoldenLantern>(), 20));
 			npcLoot.Add(ItemDropRule.Common(ItemID.SoulofFlight, 1, 5, 20));
-			npcLoot.Add(ItemDropRule.ByCondition(new Conditions.WindyEnoughForKiteDrops(), ModContent.ItemType<MythicalWyvernKite>(), 25, 1, 1));
+			
+			if (ModContent.GetInstance<ConsolariaConfig>().mythicalWyvernKiteVanillaDropruleEnabled)
+            {
+                npcLoot.Add(ItemDropRule.ByCondition(new Conditions.WindyEnoughForKiteDrops(), ModContent.ItemType<MythicalWyvernKite>(), 25, 1, 1));
+            }
 		}
 
 		public override float SpawnChance (NPCSpawnInfo spawnInfo) {

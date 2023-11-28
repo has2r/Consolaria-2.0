@@ -97,7 +97,12 @@ public class RedEnvelope : ModItem
                 player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<MythicalLionMask>());
                 player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<MythicalRobe>());
                 return;
-           }
+            }
+
+            if (!ModContent.GetInstance<ConsolariaConfig>().mythicalWyvernKiteVanillaDropruleEnabled)
+            {
+                player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<MythicalWyvernKite>());
+            }
         }
     }
 }

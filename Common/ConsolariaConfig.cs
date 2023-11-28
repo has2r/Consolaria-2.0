@@ -26,6 +26,10 @@ namespace Consolaria.Common {
         [ReloadRequired]
         public bool oktoberLocksEnabled;
 
+		[DefaultValue(false)]
+        [ReloadRequired]
+        public bool mythicalWyvernKiteVanillaDropruleEnabled;
+
         [DefaultValue(false)]
         [ReloadRequired]
         public bool dontTouchZenith;

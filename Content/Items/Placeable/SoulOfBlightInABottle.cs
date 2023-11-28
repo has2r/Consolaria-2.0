@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Consolaria.Content.Items.Consumables {
+namespace Consolaria.Content.Items.Placeable {
     public class SoulOfBlightInABottle : ModItem {
         public override void SetStaticDefaults () {
             Item.ResearchUnlockCount = 1;
@@ -11,7 +11,7 @@ namespace Consolaria.Content.Items.Consumables {
 
         public override void SetDefaults () {
             Item.CloneDefaults(ItemID.SoulBottleNight);
-            Item.createTile = ModContent.TileType<Tiles.SoulOfBlightInABottle>();
+            Item.createTile = ModContent.TileType<Tiles.SoulOfBlightInABottleTile>();
         }
 
         public override void AddRecipes () {

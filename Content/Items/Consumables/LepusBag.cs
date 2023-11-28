@@ -1,5 +1,7 @@
+using Consolaria.Content.Items.Accessories;
 using Consolaria.Content.Items.Armor.Misc;
 using Consolaria.Content.Items.Weapons.Ranged;
+using Consolaria.Content.Items.Vanity;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -8,7 +10,7 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Consolaria.Content.Items.BossDrops.Lepus {
+namespace Consolaria.Content.Items.Consumables {
     public class LepusBag : ModItem {
         public override void SetStaticDefaults () {
 

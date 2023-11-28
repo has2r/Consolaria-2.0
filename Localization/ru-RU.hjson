@@ -1467,7 +1467,7 @@ Mods: {
 			LepusMusicBox.MapEntry: Музыкальная Шкатулка
 			OcramMusicBox.MapEntry: Музыкальная Шкатулка
 			SanctumLantern.MapEntry: Перевозной Фонарь
-			SoulOfBlightInABottle.MapEntry: Эссенция Отравления в Бутылке
+			SoulOfBlightInABottleTile.MapEntry: Эссенция Отравления в Бутылке
 			TurkorMusicBox.MapEntry: Музыкальная Шкатулка
 			WormTombstoneTile.MapEntry: Надгробие
 		}

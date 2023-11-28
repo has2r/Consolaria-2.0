@@ -70,7 +70,7 @@ namespace Consolaria {
                 sizeX = 1;
                 sizeY = 2;
             }
-            else if (Main.tile[topLeftX, topLeftY].TileType == ModContent.TileType<SoulOfBlightInABottle>())
+            else if (Main.tile[topLeftX, topLeftY].TileType == ModContent.TileType<SoulOfBlightInABottleTile>())
             {
                 sizeX = 1;
                 sizeY = 2;

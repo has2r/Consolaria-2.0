@@ -1,8 +1,11 @@
 using Consolaria.Common;
 using Consolaria.Common.ModSystems;
 using Consolaria.Content.Items.Armor.Misc;
-using Consolaria.Content.Items.BossDrops.Lepus;
+using Consolaria.Content.Items.Consumables;
+using Consolaria.Content.Items.Pets;
+using Consolaria.Content.Items.Placeable;
 using Consolaria.Content.Items.Summons;
+using Consolaria.Content.Items.Vanity;
 using Consolaria.Content.Items.Weapons.Ranged;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

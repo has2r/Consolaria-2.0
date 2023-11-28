@@ -4,7 +4,7 @@ using Terraria.ID;
 using Microsoft.Xna.Framework;
 using Terraria.GameContent.Creative;
 
-namespace Consolaria.Content.Items.BossDrops.Lepus
+namespace Consolaria.Content.Items.Placeable
 {
     public class LepusTrophy : ModItem
     {

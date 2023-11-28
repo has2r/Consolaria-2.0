@@ -1412,8 +1412,8 @@ Mods: {
 			EternalScythe.DisplayName: Eternal Scythe
 			EyeOfEternity.DisplayName: Eye of Eternity
 			HeartArrow.DisplayName: Heart Arrow
-			HolyHandgrenade.DisplayName: Holy Handgrenade
-			HolyHandgrenade2.DisplayName: Holy Handgrenade2
+			HolyHandgrenade.DisplayName: Holy Hand Grenade
+			HolyHandgrenade2.DisplayName: Holy Hand Grenade II
 			ManaDrain.DisplayName: Mana Drain
 			OcramEyeGlow.DisplayName: Ocram Eye Glow
 			OcramEyeLaser.DisplayName: Ocram Eye Laser
@@ -1443,7 +1443,7 @@ Mods: {
 			SpectralSpirit.DisplayName: Spectral Spirit
 			SpicyExplosion.DisplayName: Spicy Explosion
 			SpicySauce.DisplayName: Spicy Sauce
-			Squib.DisplayName: Squib
+			Squib.DisplayName: Fiery Cracker
 			TitanBlast.DisplayName: Titan Blast
 			TonbogiriSpear.DisplayName: Tonbogiri
 			TurkeyHead.DisplayName: Weird Turkey
@@ -1468,7 +1468,7 @@ Mods: {
 			LepusMusicBox.MapEntry: Music Box
 			OcramMusicBox.MapEntry: Music Box
 			SanctumLantern.MapEntry: Carriage Lantern
-			SoulOfBlightInABottle.MapEntry: Soul of Blight in a Bottle
+			SoulOfBlightInABottleTile.MapEntry: Soul of Blight in a Bottle
 			TurkorMusicBox.MapEntry: Music Box
 			WormTombstoneTile.MapEntry: Tombstone
 		}

@@ -4,7 +4,7 @@ using Terraria.ID;
 using Terraria.GameContent.Creative;
 using Microsoft.Xna.Framework;
 
-namespace Consolaria.Content.Items.BossDrops.Lepus
+namespace Consolaria.Content.Items.Vanity
 {
 	[AutoloadEquip(EquipType.Head)]
 	public class LepusMask : ModItem

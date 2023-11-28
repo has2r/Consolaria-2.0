@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Consolaria.Content.Items.Consumables {
+namespace Consolaria.Content.Items.Weapons.Throwing {
     public class HolyHandgrenade2 : ModItem {
         public override void SetStaticDefaults () {
             Item.ResearchUnlockCount = 99;

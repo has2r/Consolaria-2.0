@@ -2,7 +2,7 @@ using Terraria.ModLoader;
 using Terraria;
 using Terraria.ID;
 
-namespace Consolaria.Content.Items.BossDrops.Lepus {
+namespace Consolaria.Content.Items.Placeable {
 	public class LepusMusicBox : ModItem {
 		public override void SetStaticDefaults () {
 			Item.ResearchUnlockCount = 1;

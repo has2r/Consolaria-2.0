@@ -4,7 +4,7 @@ using Terraria.ID;
 using Consolaria.Content.NPCs.Bosses.Lepus;
 using Microsoft.Xna.Framework;
 
-namespace Consolaria.Content.Items.BossDrops.Lepus {
+namespace Consolaria.Content.Items.Accessories {
     public class OstarasGift : ModItem {
         public override void SetStaticDefaults () {
 

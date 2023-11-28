@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 
-namespace Consolaria.Content.Items.Consumables {
+namespace Consolaria.Content.Items.Weapons.Throwing {
     public class HolyHandgrenade : ModItem {
         public override void SetStaticDefaults () {
 

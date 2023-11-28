@@ -12,7 +12,7 @@ using Terraria.ModLoader;
 using Terraria.ObjectData;
 
 namespace Consolaria.Content.Tiles {
-    public class SoulOfBlightInABottle : ModTile {
+    public class SoulOfBlightInABottleTile : ModTile {
         public override void SetStaticDefaults () {
             Main.tileLighted [Type] = true;
             Main.tileFrameImportant [Type] = true;
@@ -98,7 +98,7 @@ namespace Consolaria.Content.Tiles {
         }
 
         public override IEnumerable<Item> GetItemDrops(int i, int j){
-            yield return new Item(ModContent.ItemType<Items.Consumables.SoulOfBlightInABottle>());
+            yield return new Item(ModContent.ItemType<Items.Placeable.SoulOfBlightInABottle>());
         }
     }
 }

@@ -2,7 +2,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Consolaria.Content.Items.BossDrops.Lepus {
+namespace Consolaria.Content.Items.Pets {
     public class RabbitFoot : ModItem {
 		public override void SetStaticDefaults () {
 			Item.ResearchUnlockCount = 1;

@@ -1062,7 +1062,7 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
             NPC.SetEventFlagCleared(ref DownedBossSystem.downedOcram, -1);
             if (Main.netMode != NetmodeID.MultiplayerClient) {
                 if (bloodMoonMode && Main.rand.NextBool(10))
-                    Item.NewItem(NPC.GetSource_Loot(), NPC.Center, ModContent.ItemType<Items.Consumables.HolyHandgrenade2>(), Main.rand.Next(5, 11), false, 0, false, false);
+                    Item.NewItem(NPC.GetSource_Loot(), NPC.Center, ModContent.ItemType<Items.Weapons.Throwing.HolyHandgrenade2>(), Main.rand.Next(5, 11), false, 0, false, false);
             }
         }
 

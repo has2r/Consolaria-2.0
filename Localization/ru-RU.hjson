@@ -1526,6 +1526,11 @@ Mods: {
 					// Label: Enable Oktober Locks
 					// Tooltip: If enabled, the Oktober Locks will be available to buy from Clothier during the Oktoberfest Seasonal Event
 				}
+
+				mythicalWyvernKiteVanillaDropruleEnabled: {
+					// Label: Enable Mythical Wyvern Kite Vanilla Droprule
+					// Tooltip: If enabled, Mythical Wyvern Kite will have a 4% chance to be dropped from Mythical Wyvern during the Windy Days instead of being obtained from Red Envelope
+				}
 			}
 		}
 

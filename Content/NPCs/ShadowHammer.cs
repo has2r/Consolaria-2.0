@@ -55,7 +55,7 @@ namespace Consolaria.Content.NPCs {
 			AnimationType = 83;
 
 			Banner = NPC.type;
-			BannerItem = ModContent.ItemType<Items.Banners.ShadowHammerBanner>();
+			BannerItem = ModContent.ItemType<Items.Placeable.Banners.ShadowHammerBanner>();
 		}
 
 		public override void SetBestiary (BestiaryDatabase database, BestiaryEntry bestiaryEntry) {

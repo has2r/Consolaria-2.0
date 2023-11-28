@@ -47,7 +47,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
             NPC.noTileCollide = false;
 
             Banner = NPC.type;
-            BannerItem = ModContent.ItemType<Items.Banners.DisasterBunnyBanner>();
+            BannerItem = ModContent.ItemType<Items.Placeable.Banners.DisasterBunnyBanner>();
 
             if (!NPC.AnyNPCs(ModContent.NPCType<Lepus>()))
                 NPC.value = Item.buyPrice(silver: 5);

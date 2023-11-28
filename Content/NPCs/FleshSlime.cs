@@ -42,7 +42,7 @@ namespace Consolaria.Content.NPCs {
             NPC.aiStyle = 1;
 
             Banner = NPC.type;
-            BannerItem = ModContent.ItemType<Items.Banners.FleshSlimeBanner>();
+            BannerItem = ModContent.ItemType<Items.Placeable.Banners.FleshSlimeBanner>();
         }
 
         public override void SetBestiary (BestiaryDatabase database, BestiaryEntry bestiaryEntry) {

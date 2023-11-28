@@ -57,7 +57,7 @@ namespace Consolaria.Content.NPCs {
 			NPC.DeathSound = SoundID.NPCDeath1;
 
 			Banner = NPC.type;
-			BannerItem = ModContent.ItemType<Items.Banners.DragonSnatcherBanner>();
+			BannerItem = ModContent.ItemType<Items.Placeable.Banners.DragonSnatcherBanner>();
 		}
 
 		public override void SetBestiary (BestiaryDatabase database, BestiaryEntry bestiaryEntry) {

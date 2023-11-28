@@ -62,7 +62,7 @@ namespace Consolaria.Content.NPCs {
 			NPC.value = Item.buyPrice(gold: 1, silver: 30);
 
 			Banner = NPC.type;
-			BannerItem = ModContent.ItemType<Items.Banners.MythicalWyvernBanner>();
+			BannerItem = ModContent.ItemType<Items.Placeable.Banners.MythicalWyvernBanner>();
 		}
 
 		public override void SetBestiary (BestiaryDatabase database, BestiaryEntry bestiaryEntry) {

@@ -3,8 +3,9 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
 
-namespace Consolaria.Content.Items.Banners {
-	public class MythicalWyvernBanner : ModItem {
+namespace Consolaria.Content.Items.Placeable.Banners
+{
+	public class DragonSkullBanner : ModItem {
 		public override void SetStaticDefaults () {
 			Item.ResearchUnlockCount = 1;
 		}
@@ -16,7 +17,7 @@ namespace Consolaria.Content.Items.Banners {
 			Item.maxStack = 9999;
 
 			Item.DefaultToPlaceableTile(ModContent.TileType<Tiles.Banners>());
-			Item.placeStyle = 14;
+			Item.placeStyle = 15;
 
 			Item.consumable = true;
 

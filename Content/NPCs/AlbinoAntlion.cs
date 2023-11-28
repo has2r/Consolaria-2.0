@@ -47,7 +47,7 @@ namespace Consolaria.Content.NPCs
 			NPC.DeathSound = SoundID.NPCDeath34;
 
 			Banner = NPC.type;
-			BannerItem = ModContent.ItemType<Items.Banners.AlbinoAntlionBanner>();
+			BannerItem = ModContent.ItemType<Items.Placeable.Banners.AlbinoAntlionBanner>();
 		}
 
 		public override void SetBestiary (BestiaryDatabase database, BestiaryEntry bestiaryEntry) {

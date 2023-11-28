@@ -3,9 +3,8 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
 
-namespace Consolaria.Content.Items.Banners
-{
-	public class DragonSkullBanner : ModItem {
+namespace Consolaria.Content.Items.Placeable.Banners {
+	public class SpectralGastropodBanner : ModItem {
 		public override void SetStaticDefaults () {
 			Item.ResearchUnlockCount = 1;
 		}
@@ -17,7 +16,7 @@ namespace Consolaria.Content.Items.Banners
 			Item.maxStack = 9999;
 
 			Item.DefaultToPlaceableTile(ModContent.TileType<Tiles.Banners>());
-			Item.placeStyle = 15;
+			Item.placeStyle = 3;
 
 			Item.consumable = true;
 

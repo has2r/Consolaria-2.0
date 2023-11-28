@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
 
-namespace Consolaria.Content.Items.Banners {
+namespace Consolaria.Content.Items.Placeable.Banners {
 	public class ArchDemonBanner : ModItem {
 		public override void SetStaticDefaults () {
 			Item.ResearchUnlockCount = 1;

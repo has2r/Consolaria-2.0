@@ -51,7 +51,7 @@ namespace Consolaria.Content.NPCs {
 			AnimationType = 21;
 
 			Banner = NPC.type;
-			BannerItem = ModContent.ItemType<Items.Banners.VampireMinerBanner>();
+			BannerItem = ModContent.ItemType<Items.Placeable.Banners.VampireMinerBanner>();
 		}
 
 		public override void SetBestiary (BestiaryDatabase database, BestiaryEntry bestiaryEntry) {

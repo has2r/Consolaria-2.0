@@ -69,67 +69,67 @@ namespace Consolaria.Content.Tiles {
 			int itemType = -1;
 			switch (bannerType) {
 			case 0:
-			itemType = ModContent.ItemType<Items.Banners.ArchWyvernBanner>();
+			itemType = ModContent.ItemType<Items.Placeable.Banners.ArchWyvernBanner>();
 			break;
 			case 1:
-			itemType = ModContent.ItemType<Items.Banners.DragonSnatcherBanner>();
+			itemType = ModContent.ItemType<Items.Placeable.Banners.DragonSnatcherBanner>();
 			break;
 			case 2:
-			itemType = ModContent.ItemType<Items.Banners.SpectralElementalBanner>();
+			itemType = ModContent.ItemType<Items.Placeable.Banners.SpectralElementalBanner>();
 			break;
 			case 3:
-			itemType = ModContent.ItemType<Items.Banners.SpectralGastropodBanner>();
+			itemType = ModContent.ItemType<Items.Placeable.Banners.SpectralGastropodBanner>();
 			break;
 			case 4:
-			itemType = ModContent.ItemType<Items.Banners.ShadowMummyBanner>();
+			itemType = ModContent.ItemType<Items.Placeable.Banners.ShadowMummyBanner>();
 			break;
 			case 5:
-			itemType = ModContent.ItemType<Items.Banners.ShadowHammerBanner>();
+			itemType = ModContent.ItemType<Items.Placeable.Banners.ShadowHammerBanner>();
 			break;
 			case 6:
-			itemType = ModContent.ItemType<Items.Banners.VampireMinerBanner>();
+			itemType = ModContent.ItemType<Items.Placeable.Banners.VampireMinerBanner>();
 			break;
 			case 7:
-			itemType = ModContent.ItemType<Items.Banners.OrcaBanner>();
+			itemType = ModContent.ItemType<Items.Placeable.Banners.OrcaBanner>();
 			break;
 			case 8:
-			itemType = ModContent.ItemType<Items.Banners.AlbinoAntlionBanner>();
+			itemType = ModContent.ItemType<Items.Placeable.Banners.AlbinoAntlionBanner>();
 			break;
 			case 9:
-			itemType = ModContent.ItemType<Items.Banners.SpectralMummyBanner>();
+			itemType = ModContent.ItemType<Items.Placeable.Banners.SpectralMummyBanner>();
 			break;
 			case 10:
-			itemType = ModContent.ItemType<Items.Banners.DragonHornetBanner>();
+			itemType = ModContent.ItemType<Items.Placeable.Banners.DragonHornetBanner>();
 			break;
 			case 11:
-			itemType = ModContent.ItemType<Items.Banners.ArchDemonBanner>();
+			itemType = ModContent.ItemType<Items.Placeable.Banners.ArchDemonBanner>();
 			break;
 			case 12:
-			itemType = ModContent.ItemType<Items.Banners.ShadowSlimeBanner>();
+			itemType = ModContent.ItemType<Items.Placeable.Banners.ShadowSlimeBanner>();
 			break;
 			case 13:
-			itemType = ModContent.ItemType<Items.Banners.DisasterBunnyBanner>();
+			itemType = ModContent.ItemType<Items.Placeable.Banners.DisasterBunnyBanner>();
 			break;
 			case 14:
-			itemType = ModContent.ItemType<Items.Banners.MythicalWyvernBanner>();
+			itemType = ModContent.ItemType<Items.Placeable.Banners.MythicalWyvernBanner>();
 			break;
 			case 15:
-			itemType = ModContent.ItemType<Items.Banners.DragonSkullBanner>();
+			itemType = ModContent.ItemType<Items.Placeable.Banners.DragonSkullBanner>();
 			break;
 			case 16:
-			itemType = ModContent.ItemType<Items.Banners.FleshSlimeBanner>();
+			itemType = ModContent.ItemType<Items.Placeable.Banners.FleshSlimeBanner>();
 			break;
 			case 17:
-			itemType = ModContent.ItemType<Items.Banners.FleshMummyBanner>();
+			itemType = ModContent.ItemType<Items.Placeable.Banners.FleshMummyBanner>();
 			break;
 			case 18:
-			itemType = ModContent.ItemType<Items.Banners.FleshAxeBanner>();
+			itemType = ModContent.ItemType<Items.Placeable.Banners.FleshAxeBanner>();
 			break;
 			case 19:
-			itemType = ModContent.ItemType<Items.Banners.AlbinoChargerBanner>();
+			itemType = ModContent.ItemType<Items.Placeable.Banners.AlbinoChargerBanner>();
 			break;
 			case 20:
-			itemType = ModContent.ItemType<Items.Banners.AlbinoChargerBanner>();
+			itemType = ModContent.ItemType<Items.Placeable.Banners.AlbinoChargerBanner>();
 			break;
 			default:
 			return;

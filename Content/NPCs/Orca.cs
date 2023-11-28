@@ -48,7 +48,7 @@ namespace Consolaria.Content.NPCs {
             AnimationType = NPCID.Shark;
 
             Banner = NPC.type;
-            BannerItem = ModContent.ItemType<Items.Banners.OrcaBanner>();
+            BannerItem = ModContent.ItemType<Items.Placeable.Banners.OrcaBanner>();
         }
 
         public override void SetBestiary (BestiaryDatabase database, BestiaryEntry bestiaryEntry) {

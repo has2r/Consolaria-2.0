@@ -3,8 +3,8 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
 
-namespace Consolaria.Content.Items.Banners {
-	public class DragonSnatcherBanner : ModItem {
+namespace Consolaria.Content.Items.Placeable.Banners {
+	public class OrcaBanner : ModItem {
 		public override void SetStaticDefaults () {
 			Item.ResearchUnlockCount = 1;
 		}
@@ -16,7 +16,7 @@ namespace Consolaria.Content.Items.Banners {
 			Item.maxStack = 9999;
 
 			Item.DefaultToPlaceableTile(ModContent.TileType<Tiles.Banners>());
-			Item.placeStyle = 1;
+			Item.placeStyle = 7;
 
 			Item.consumable = true;
 

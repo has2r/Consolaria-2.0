@@ -1518,23 +1518,23 @@ Mods: {
 				}
 
 				tizonaZenithIntegrationEnabled: {
-					// Label: ""
-					// Tooltip: ""
+					// Label: Enable Tizona integration in Zenith
+					// Tooltip: If enabled, Tizona will be added to Zenith's crafting recipe and it's projectiles.
 				}
 
 				oktoberLocksEnabled: {
-					// Label: ""
-					// Tooltip: ""
+					// Label: Enable Oktober Locks vanity item
+					// Tooltip: If enabled, the Oktober Locks will be available to buy from Clothier during Oktoberfest
 				}
 
 				mythicalWyvernKiteVanillaDropruleEnabled: {
-					// Label: ""
-					// Tooltip: ""
+					// Label: Enable Mythical Wyvern Kite vanilla droprule
+					// Tooltip: If enabled, Mythical Wyvern Kite will have a 4% chance to be dropped from Mythical Wyvern during the Windy Days instead of being obtained from Red Envelope
 				}
 
 				heartbeatariaIntegrationEnabled: {
-					// Label: ""
-					// Tooltip: ""
+					// Label: Enable Heartbeataria Mod integration
+					// Tooltip: If enabled, exclusive Heartbeataria Mod items can be obtained from Red Envelope
 				}
 			}
 		}

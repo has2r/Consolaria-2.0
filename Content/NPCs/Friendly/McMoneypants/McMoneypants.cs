@@ -32,6 +32,8 @@ public class McMoneypants : ModNPC {
 
     private static double _timePassed;
 
+    private static int ShimmerHeadIndex;
+
     private static Profiles.StackedNPCProfile _NPCProfile;
     #endregion
 
@@ -69,6 +71,11 @@ public class McMoneypants : ModNPC {
 
     internal static bool DespawnCondition
         => _timePassed >= (McMoneypantsWorldData.SomebodyInvested ? DAY_TIME / 2 : DAY_TIME);
+
+    public override void Load() {
+			ShimmerHeadIndex = Mod.AddNPCHeadTexture(Type, Texture + "_Shimmer_Head");
+		}
+        
     #endregion
 
     #region Defaults
@@ -76,18 +83,14 @@ public class McMoneypants : ModNPC {
         int id = Type;
 
         Main.npcFrameCount [id] = 25;
-
         NPCID.Sets.ExtraFramesCount [id] = 9;
-
         NPCID.Sets.DangerDetectRange [id] = 400;
-
         NPCID.Sets.AttackFrameCount [id] = 4;
         NPCID.Sets.AttackType [id] = 0;
         NPCID.Sets.AttackTime [id] = 10;
         NPCID.Sets.AttackAverageChance [id] = 10;
-
         NPCID.Sets.HatOffsetY [id] = 0;
-
+        NPCID.Sets.ShimmerTownTransform[Type] = true;
         NPCID.Sets.NoTownNPCHappiness [id] = true;
 
         NPCID.Sets.NPCBestiaryDrawModifiers value = new(0) {
@@ -98,8 +101,8 @@ public class McMoneypants : ModNPC {
         NPCID.Sets.NPCBestiaryDrawOffset.Add(id, value);
 
         _NPCProfile = new Profiles.StackedNPCProfile(
-            new Profiles.DefaultNPCProfile(Texture, NPCHeadLoader.GetHeadSlot(HeadTexture), Texture + "_Party")
-        //new Profiles.DefaultNPCProfile(Texture + "_Shimmer", ShimmerHeadIndex, Texture + "_Shimmer_Party")
+        new Profiles.DefaultNPCProfile(Texture, NPCHeadLoader.GetHeadSlot(HeadTexture), Texture + "_Party"),
+        new Profiles.DefaultNPCProfile(Texture + "_Shimmer", ShimmerHeadIndex, Texture + "_Shimmer_Party")
         );
 
         NPCID.Sets.FaceEmote[Type] = ModContent.EmoteBubbleType<McMoneyPantsEmote>();

@@ -77,7 +77,7 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor
 
 			NPC.SpawnWithHigherTime(30);
 
-			if (!Main.dedServ) Music = ModContent.GetInstance<ConsolariaConfig>().vanillaBossMusic ? MusicID.Boss1 : MusicLoader.GetMusicSlot(Mod, "Assets/Music/Turkor");
+			if (!Main.dedServ) Music = ModContent.GetInstance<ConsolariaConfig>().vanillaBossMusicEnabled ? MusicID.Boss1 : MusicLoader.GetMusicSlot(Mod, "Assets/Music/Turkor");
 		}
 
 		public override void ApplyDifficultyAndPlayerScaling (int numPlayers, float balance, float bossAdjustment)/* tModPorter Note: bossLifeScale -> balance (bossAdjustment is different, see the docs for details) */ {

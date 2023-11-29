@@ -119,7 +119,7 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram
 
             NPC.alpha = 255;
 
-            if (!Main.dedServ) Music = ModContent.GetInstance<ConsolariaConfig>().vanillaBossMusic ? MusicID.Boss5 : (bloodMoonMode ? MusicLoader.GetMusicSlot(Mod, "Assets/Music/EerieOcram") : MusicLoader.GetMusicSlot(Mod, "Assets/Music/Ocram"));
+            if (!Main.dedServ) Music = ModContent.GetInstance<ConsolariaConfig>().vanillaBossMusicEnabled ? MusicID.Boss5 : (bloodMoonMode ? MusicLoader.GetMusicSlot(Mod, "Assets/Music/EerieOcram") : MusicLoader.GetMusicSlot(Mod, "Assets/Music/Ocram"));
             
         }
 

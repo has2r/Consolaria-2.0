@@ -1512,28 +1512,28 @@ Mods: {
 					Tooltip: При включении определенные предметы и враги будут появляться только в соответствующие праздники, или после использования Кости Желаний
 				}
 
-				vanillaBossMusic: {
+				vanillaBossMusicEnabled: {
 					Label: Включить ванильную музыку для боссов из Consolaria
 					Tooltip: При включении музыкальные треки из мода будут заменены на те, которые были изначально использованы в консольных версиях
 				}
 
-				dontTouchZenith: {
-					Label: Отключить интеграцию Тизоны в Зените
-					Tooltip: При включении Тизона не будет добавлена в рецепт Зенита и не будет отображаться как один из мечей при его использовании
+				tizonaZenithIntegrationEnabled: {
+					// Label: ""
+					// Tooltip: ""
 				}
 
 				oktoberLocksEnabled: {
-					// Label: Enable Oktober Locks
-					// Tooltip: If enabled, the Oktober Locks will be available to buy from Clothier during the Oktoberfest Seasonal Event
+					// Label: ""
+					// Tooltip: ""
 				}
 
 				mythicalWyvernKiteVanillaDropruleEnabled: {
-					// Label: Enable Mythical Wyvern Kite Vanilla Droprule
-					// Tooltip: If enabled, Mythical Wyvern Kite will have a 4% chance to be dropped from Mythical Wyvern during the Windy Days instead of being obtained from Red Envelope
+					// Label: ""
+					// Tooltip: ""
 				}
 
 				heartbeatariaIntegrationEnabled: {
-					// Label: Enable Heartbeataria Integration
+					// Label: ""
 					// Tooltip: ""
 				}
 			}

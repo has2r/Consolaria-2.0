@@ -1513,28 +1513,28 @@ Mods: {
 					Tooltip: If enabled, the relevant items and enemies will only appear during the corresponding holidays or when Wishbone is used
 				}
 
-				vanillaBossMusic: {
+				vanillaBossMusicEnabled: {
 					Label: Enable vanilla music for Consolaria bosses
 					Tooltip: If enabled, the custom soundtrack will be replaced by themes originally used in console versions
 				}
 
-				dontTouchZenith: {
-					Label: Disable Tizona integration in Zenith
-					Tooltip: If enabled, Tizona will not be added to Zenith's recipe and will not be displayed in swords pool
+				tizonaZenithIntegrationEnabled: {
+					Label: Enable Tizona integration in Zenith
+					Tooltip: If enabled, Tizona will be added to Zenith's crafting recipe and it's projectiles.
 				}
 
 				oktoberLocksEnabled: {
-					Label: Enable Oktober Locks
-					Tooltip: If enabled, the Oktober Locks will be available to buy from Clothier during the Oktoberfest Seasonal Event
+					Label: Enable Oktober Locks vanity item
+					Tooltip: If enabled, the Oktober Locks will be available to buy from Clothier during Oktoberfest
 				}
 
 				mythicalWyvernKiteVanillaDropruleEnabled: {
-					Label: Enable Mythical Wyvern Kite Vanilla Droprule
+					Label: Enable Mythical Wyvern Kite vanilla droprule
 					Tooltip: If enabled, Mythical Wyvern Kite will have a 4% chance to be dropped from Mythical Wyvern during the Windy Days instead of being obtained from Red Envelope
 				}
 
 				heartbeatariaIntegrationEnabled: {
-					Label: Enable Heartbeataria Integration
+					Label: Enable Heartbeataria Mod integration
 					Tooltip: If enabled, exclusive Heartbeataria Mod items can be obtained from Red Envelope
 				}
 			}

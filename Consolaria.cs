@@ -32,7 +32,7 @@ namespace Consolaria {
             TextureAssets.XmasTree [3] = ModContent.Request<Texture2D>("Consolaria/Assets/Textures/Tiles/Xmas_3");
 
             var fractalProfiles = (Dictionary<int, FinalFractalProfile>) typeof(FinalFractalHelper).GetField("_fractalProfiles", BindingFlags.NonPublic | BindingFlags.Static).GetValue(null);
-            if (!ModContent.GetInstance<ConsolariaConfig>().dontTouchZenith)
+            if (ModContent.GetInstance<ConsolariaConfig>().tizonaZenithIntegrationEnabled)
                 fractalProfiles.Add(ModContent.ItemType<Tizona>(), new FinalFractalProfile(70f, new Color(132, 122, 224))); //Color up for debate
 
             On_Player.DropTombstone += On_Player_DropTombstone;

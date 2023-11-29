@@ -20,7 +20,7 @@ namespace Consolaria.Common {
 
 		[Header("Miscellaneous")]
 		[DefaultValue(false)]
-		public bool vanillaBossMusic;
+		public bool vanillaBossMusicEnabled;
 
 		[DefaultValue(true)]
         [ReloadRequired]
@@ -34,8 +34,8 @@ namespace Consolaria.Common {
         [ReloadRequired]
         public bool mythicalWyvernKiteVanillaDropruleEnabled;
 
-        [DefaultValue(false)]
+        [DefaultValue(true)]
         [ReloadRequired]
-        public bool dontTouchZenith;
+        public bool tizonaZenithIntegrationEnabled;
     }
 }

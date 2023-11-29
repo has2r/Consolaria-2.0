@@ -3,6 +3,7 @@
 - Added Ocram Emote
 - Added Turkor Emote
 - Added Consolaria x Heartbeataria cross-mod integration
+- Added shimmer variant to Mc MoneyPants
 - Added Oktober Locks
 - Added а config option regarding Mythical Wyvern Kite droprule (off by default)
 - Added а config option for Oktober Locks availability (off by default)

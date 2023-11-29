@@ -1531,6 +1531,11 @@ Mods: {
 					// Label: Enable Mythical Wyvern Kite Vanilla Droprule
 					// Tooltip: If enabled, Mythical Wyvern Kite will have a 4% chance to be dropped from Mythical Wyvern during the Windy Days instead of being obtained from Red Envelope
 				}
+
+				heartbeatariaIntegrationEnabled: {
+					// Label: Enable Heartbeataria Integration
+					// Tooltip: ""
+				}
 			}
 		}
 

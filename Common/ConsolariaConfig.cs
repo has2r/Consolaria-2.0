@@ -22,6 +22,10 @@ namespace Consolaria.Common {
 		[DefaultValue(false)]
 		public bool vanillaBossMusic;
 
+		[DefaultValue(true)]
+        [ReloadRequired]
+        public bool heartbeatariaIntegrationEnabled;
+
 		[DefaultValue(false)]
         [ReloadRequired]
         public bool oktoberLocksEnabled;

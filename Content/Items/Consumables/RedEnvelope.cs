@@ -67,7 +67,7 @@ public class RedEnvelope : ModItem
 
         if (Main.rand.NextBool()) 
         {
-            if (ModLoader.TryGetMod("XDContentMod", out Mod XDContentMod))
+            if (ModLoader.TryGetMod("XDContentMod", out Mod XDContentMod) & ModContent.GetInstance<ConsolariaConfig>().heartbeatariaIntegrationEnabled)
             {
                     Dictionary<float, int[]> vanityItems = new() 
                     {

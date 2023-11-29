@@ -1450,7 +1450,7 @@ Mods: {
 			VulcanBolt.DisplayName: Вулканический Болт
 			"Lepus Stomp.DisplayName": Ступ Лепуса
 			.DisplayName: ""
-			Tizona.DisplayName: Тизона
+			TizonaProjectile.DisplayName: Тизона
 			TizonaShoot.DisplayName: Тизона
 			Worm.DisplayName: Червяк
 			OldLady.DisplayName: Старушка

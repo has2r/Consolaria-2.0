@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Consolaria.Content.Projectiles.Friendly.Miscellaneous;
+namespace Consolaria.Content.Projectiles.Friendly;
 
 public class WormTombstone : ModProjectile {
     public override void SetDefaults() {

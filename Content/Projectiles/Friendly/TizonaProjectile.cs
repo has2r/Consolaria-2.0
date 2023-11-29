@@ -8,7 +8,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.Projectiles.Friendly {
-    public class Tizona : ModProjectile {
+    public class TizonaProjectile : ModProjectile {
         public override void SetStaticDefaults ()
             => Main.projFrames [Type] = 4;
 

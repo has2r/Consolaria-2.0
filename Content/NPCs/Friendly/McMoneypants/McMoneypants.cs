@@ -13,6 +13,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Consolaria.Content.Buffs;
+using Consolaria.Content.Dusts;
 using Consolaria.Content.Items.Vanity;
 using Consolaria.Content.EmoteBubbles;
 

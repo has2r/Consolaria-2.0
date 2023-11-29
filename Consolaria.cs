@@ -15,7 +15,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent;
 using Terraria.WorldBuilding;
 using Consolaria.Content.Tiles;
-using Consolaria.Content.Projectiles.Friendly.Miscellaneous;
+using Consolaria.Content.Projectiles.Friendly;
 using Consolaria.Content.Items.Placeable;
 using Consolaria.Common;
 using Terraria.GameContent.Drawing;

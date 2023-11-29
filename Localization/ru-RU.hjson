@@ -1179,6 +1179,11 @@ Mods: {
 				// Tooltip: ""
 				// DisplayName: Oktober Locks
 			}
+
+			PurpleThread: {
+				// Tooltip: ""
+				// DisplayName: Purple Thread
+			}
 		}
 
 		NPCs: {
@@ -1535,6 +1540,11 @@ Mods: {
 				heartbeatariaIntegrationEnabled: {
 					// Label: Enable Heartbeataria Mod integration
 					// Tooltip: If enabled, exclusive Heartbeataria Mod items can be obtained from Red Envelope
+				}
+
+				originalAncientHeroSetRecipeEnabled: {
+					// Label: Enable original Ancient Hero set crafting recipe
+					// Tooltip: If enabled, the Ancient Hero set can be crafted using Silk and Purple Thread in a Loom like in console versions instead of shimmering
 				}
 			}
 		}

@@ -32,6 +32,10 @@ namespace Consolaria.Common {
 
 		[DefaultValue(false)]
         [ReloadRequired]
+        public bool originalAncientHeroSetRecipeEnabled;
+
+		[DefaultValue(false)]
+        [ReloadRequired]
         public bool mythicalWyvernKiteVanillaDropruleEnabled;
 
         [DefaultValue(true)]

@@ -23,12 +23,12 @@ namespace Consolaria.Content.NPCs {
 		public override void SetStaticDefaults () {
 			Main.npcFrameCount [NPC.type] = 5;
 
-            NPCID.Sets.SpecificDebuffImmunity [Type] [BuffID.OnFire] = true;
-            NPCID.Sets.SpecificDebuffImmunity [Type] [BuffID.OnFire3] = true;
-            NPCID.Sets.SpecificDebuffImmunity [Type] [BuffID.ShadowFlame] = true;
-            NPCID.Sets.SpecificDebuffImmunity [Type] [BuffID.Confused] = true;
+			NPCID.Sets.SpecificDebuffImmunity [Type] [BuffID.OnFire] = true;
+			NPCID.Sets.SpecificDebuffImmunity [Type] [BuffID.OnFire3] = true;
+			NPCID.Sets.SpecificDebuffImmunity [Type] [BuffID.ShadowFlame] = true;
+			NPCID.Sets.SpecificDebuffImmunity [Type] [BuffID.Confused] = true;
 
-            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers() {
+			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers() {
 				Velocity = 1f
 			};
 			NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
@@ -139,7 +139,10 @@ namespace Consolaria.Content.NPCs {
 			npcLoot.Add(ItemDropRule.ByCondition(drunkWorldCondition, ItemID.CrystalStorm, 400));
 		}
 
-		public override float SpawnChance (NPCSpawnInfo spawnInfo)
-			=> SpawnCondition.Underworld.Chance * 0.002f;
+		public override float SpawnChance (NPCSpawnInfo spawnInfo) {
+			if (!NPC.downedBoss3 && Main.zenithWorld || Main.remixWorld)
+				return 0f;
+			return SpawnCondition.Underworld.Chance * 0.002f;
+		}
 	}
 }

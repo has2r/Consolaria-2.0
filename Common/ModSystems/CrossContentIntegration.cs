@@ -2,7 +2,6 @@ using Consolaria.Common.ModSystems;
 using Consolaria.Content.Items.Mounts;
 using Consolaria.Content.Items.Pets;
 using Consolaria.Content.Items.Placeable;
-using Consolaria.Content.Items.Summons;
 using Consolaria.Content.Items.Vanity;
 using Consolaria.Content.NPCs.Bosses.Lepus;
 using Consolaria.Content.NPCs.Bosses.Ocram;
@@ -42,9 +41,10 @@ namespace Consolaria.Common
             Func<bool> downedTurkor = () => DownedBossSystem.downedTurkor;
             Func<bool> downedOcram = () => DownedBossSystem.downedOcram;
 
-            int lepusSpawnItem = ModContent.ItemType<SuspiciousLookingEgg>();
-            int turkorSpawnItem = ModContent.ItemType<CursedStuffing>();
-            int ocramSpawnItem = ModContent.ItemType<SuspiciousLookingSkull>();
+            int lepusSpawnItem = ModContent.ItemType<Content.Items.Summons.SuspiciousLookingEgg>();
+            List<int> turkorSpawnItems = new List<int>() { ModContent.ItemType<Content.Items.Summons.CursedStuffing>(), ModContent.ItemType<TurkeyFeather>()};
+            int turkorSpawnItem = ModContent.ItemType<Content.Items.Summons.CursedStuffing>();
+            int ocramSpawnItem = ModContent.ItemType<Content.Items.Summons.SuspiciousLookingSkull>();
 
             List<int> lepusCollectibles = new List<int>()
             {
@@ -103,7 +103,7 @@ namespace Consolaria.Common
                downedTurkor,
                ModContent.NPCType<TurkortheUngrateful>(),
                new Dictionary<string, object>() {
-                   ["spawnItems"] = turkorSpawnItem,
+                   ["spawnItems"] = turkorSpawnItems,
                    ["collectibles"] = turkorCollectibles,
                    ["customPortrait"] = turkorCustomPortrait
                }
@@ -126,8 +126,8 @@ namespace Consolaria.Common
         private void DoFargosIntegration () {
             if (ModLoader.TryGetMod("Fargowiltas", out Mod fargos)) {
                 fargos.Call("AddSummon", 1.8f, "Consolaria", "SuspiciousLookingEgg", () => DownedBossSystem.downedLepus, 60000);
-                fargos.Call("AddSummon", 5.75f, "Consolaria", "CursedStuffing", () => DownedBossSystem.downedLepus, 180000);
-                fargos.Call("AddSummon", 12f, "Consolaria", "SuspiciousLookingSkull", () => DownedBossSystem.downedLepus, 500000);
+                fargos.Call("AddSummon", 5.75f, "Consolaria", "CursedStuffing", () => DownedBossSystem.downedTurkor, 180000);
+                fargos.Call("AddSummon", 12f, "Consolaria", "SuspiciousLookingSkull", () => DownedBossSystem.downedOcram, 500000);
             }
         }
 

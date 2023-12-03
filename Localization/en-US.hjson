@@ -1226,8 +1226,8 @@ Mods: {
 				Bestiary: As if its size wasn't troublesome enough, this rabbit can reproduce through colorful eggs, spread around the world in Spring for fools to pick up.
 
 				BossChecklistIntegration: {
-					SpawnInfo: Use a [i:5642] at day time
-					DespawnMessage: Lepus jumps away into sunset!
+					SpawnInfo: Use a [i:Consolaria/SuspiciousLookingEgg] at day time
+					DespawnMessage: Ocram disappears back into shadows!
 				}
 			}
 
@@ -1238,7 +1238,7 @@ Mods: {
 				Bestiary: This forgotten blighted demon, once the powerful Emperor of Darkness, now seeks revenge against all surface dwellers.
 
 				BossChecklistIntegration: {
-					SpawnInfo: Use a [i:5643] at night
+					SpawnInfo: Use a [i:Consolaria/SuspiciousLookingSkull] at night
 					DespawnMessage: Ocram disappears back into shadows!
 				}
 			}
@@ -1256,7 +1256,7 @@ Mods: {
 
 				BossChecklistIntegration: {
 					EntryName: Turkor The Ungrateful
-					SpawnInfo: Use a [i:5641] after summoning a pet turkey
+					SpawnInfo: Use a [i:Consolaria/CursedStuffing] after summoning a pet turkey
 					DespawnMessage: Turkor the Ungrateful escapes from the dinner plate!
 				}
 			}

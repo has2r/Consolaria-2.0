@@ -7,6 +7,10 @@
 - Added а config option for Oktober Locks availability (off by default)
 - Added а config option for original Ancient Hero set crafting recipe (off by default)
 - Fixed Mythical Robe being impossible to get
+- Fixed Fargo`s Mutant Mod shop
+- Fixed Arch Demon spawn in remix worlds
+- Fixed Bestiary icons
+- Fixed wrong spawn conditions in Boss Checklist
 - Improved configs to be more consistent
 - Improved Soul Of Blight in a Bottle to be more in-pair with vanilla
 - Cleaned up the code

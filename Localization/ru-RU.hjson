@@ -1225,7 +1225,7 @@ Mods: {
 				// Bestiary: As if its size wasn't troublesome enough, this rabbit can reproduce through colorful eggs, spread around the world in Spring for fools to pick up.
 
 				BossChecklistIntegration: {
-					SpawnInfo: Используйте [i:5642] днём
+					// SpawnInfo: Use a [i:Consolaria/SuspiciousLookingEgg] at day time
 					DespawnMessage: Лепус упрыгивает в рассвет!
 				}
 			}

@@ -134,7 +134,7 @@ Mods: {
 				Description: Ест мозги
 			}
 
-			McMoneypantsBuff: {
+			Fortuned: {
 				DisplayName: Везучий
 				Description: Вы чуствуете себя довольно удачливым
 			}
@@ -1174,6 +1174,16 @@ Mods: {
 				DisplayName: Воздушный змей «Мифическая Виверна»
 				Tooltip: ""
 			}
+
+			OktoberLocks: {
+				// Tooltip: ""
+				// DisplayName: Oktober Locks
+			}
+
+			PurpleThread: {
+				// Tooltip: ""
+				// DisplayName: Purple Thread
+			}
 		}
 
 		NPCs: {
@@ -1445,7 +1455,7 @@ Mods: {
 			VulcanBolt.DisplayName: Вулканический Болт
 			"Lepus Stomp.DisplayName": Ступ Лепуса
 			.DisplayName: ""
-			Tizona.DisplayName: Тизона
+			TizonaProjectile.DisplayName: Тизона
 			TizonaShoot.DisplayName: Тизона
 			Worm.DisplayName: Червяк
 			OldLady.DisplayName: Старушка
@@ -1462,7 +1472,7 @@ Mods: {
 			LepusMusicBox.MapEntry: Музыкальная Шкатулка
 			OcramMusicBox.MapEntry: Музыкальная Шкатулка
 			SanctumLantern.MapEntry: Перевозной Фонарь
-			SoulOfBlightInABottle.MapEntry: Эссенция Отравления в Бутылке
+			SoulOfBlightInABottleTile.MapEntry: Эссенция Отравления в Бутылке
 			TurkorMusicBox.MapEntry: Музыкальная Шкатулка
 			WormTombstoneTile.MapEntry: Надгробие
 		}
@@ -1507,16 +1517,43 @@ Mods: {
 					Tooltip: При включении определенные предметы и враги будут появляться только в соответствующие праздники, или после использования Кости Желаний
 				}
 
-				vanillaBossMusic: {
+				vanillaBossMusicEnabled: {
 					Label: Включить ванильную музыку для боссов из Consolaria
 					Tooltip: При включении музыкальные треки из мода будут заменены на те, которые были изначально использованы в консольных версиях
 				}
 
-				dontTouchZenith: {
-					Label: Отключить интеграцию Тизоны в Зените
-					Tooltip: При включении Тизона не будет добавлена в рецепт Зенита и не будет отображаться как один из мечей при его использовании
+				tizonaZenithIntegrationEnabled: {
+					// Label: Enable Tizona integration in Zenith
+					// Tooltip: If enabled, Tizona will be added to Zenith's crafting recipe and it's projectiles.
+				}
+
+				oktoberLocksEnabled: {
+					// Label: Enable Oktober Locks vanity item
+					// Tooltip: If enabled, the Oktober Locks will be available to buy from Clothier during Oktoberfest
+				}
+
+				mythicalWyvernKiteVanillaDropruleEnabled: {
+					// Label: Enable Mythical Wyvern Kite vanilla droprule
+					// Tooltip: If enabled, Mythical Wyvern Kite will have a 4% chance to be dropped from Mythical Wyvern during the Windy Days instead of being obtained from Red Envelope
+				}
+
+				heartbeatariaIntegrationEnabled: {
+					// Label: Enable Heartbeataria Mod integration
+					// Tooltip: If enabled, exclusive Heartbeataria Mod items can be obtained from Red Envelope
+				}
+
+				originalAncientHeroSetRecipeEnabled: {
+					// Label: Enable original Ancient Hero set crafting recipe
+					// Tooltip: If enabled, the Ancient Hero set can be crafted using Silk and Purple Thread in a Loom like in console versions instead of shimmering
 				}
 			}
+		}
+
+		Emotes: {
+			// McMoneyPantsEmote.Command: mcmoneypants
+			// TurkorEmote.Command: turkor
+			// OcramEmote.Command: ocram
+			// LepusEmote.Command: lepus
 		}
 	}
 }

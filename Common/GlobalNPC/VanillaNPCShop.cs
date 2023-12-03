@@ -1,6 +1,7 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Consolaria.Common.ModSystems;
 
 namespace Consolaria.Common {
     class VanillaNPCShop : GlobalNPC {
@@ -43,6 +44,11 @@ namespace Consolaria.Common {
                 shop.Add(ModContent.ItemType<Content.Items.Vanity.AlpineHat>(), oktoberfestCondition);
                 shop.Add(ModContent.ItemType<Content.Items.Vanity.Lederweste>(), oktoberfestCondition);
                 shop.Add(ModContent.ItemType<Content.Items.Vanity.Lederhosen>(), oktoberfestCondition);
+                
+                if (ModContent.GetInstance<ConsolariaConfig>().oktoberLocksEnabled) {
+                shop.Add(ModContent.ItemType<Content.Items.Vanity.OktoberLocks>(), oktoberfestCondition);
+                }
+
                 shop.Add(ModContent.ItemType<Content.Items.Vanity.DirndlBlouse>(), oktoberfestCondition);
                 shop.Add(ModContent.ItemType<Content.Items.Vanity.DirndlSkirt>(), oktoberfestCondition);
             }

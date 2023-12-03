@@ -1,23 +1,21 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-
-using System;
 using System.Collections.Generic;
 using System.IO;
-
 using Terraria;
 using Terraria.Audio;
 using Terraria.Chat;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
-
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
-
+using Consolaria.Content.Buffs;
+using Consolaria.Content.Dusts;
 using Consolaria.Content.Items.Vanity;
+using Consolaria.Content.EmoteBubbles;
 
 namespace Consolaria.Content.NPCs.Friendly.McMoneypants;
 
@@ -33,6 +31,8 @@ public class McMoneypants : ModNPC {
     private static string _lastName = null;
 
     private static double _timePassed;
+
+    private static int ShimmerHeadIndex;
 
     private static Profiles.StackedNPCProfile _NPCProfile;
     #endregion
@@ -71,6 +71,11 @@ public class McMoneypants : ModNPC {
 
     internal static bool DespawnCondition
         => _timePassed >= (McMoneypantsWorldData.SomebodyInvested ? DAY_TIME / 2 : DAY_TIME);
+
+    public override void Load() {
+			ShimmerHeadIndex = Mod.AddNPCHeadTexture(Type, Texture + "_Shimmer_Head");
+		}
+        
     #endregion
 
     #region Defaults
@@ -78,18 +83,14 @@ public class McMoneypants : ModNPC {
         int id = Type;
 
         Main.npcFrameCount [id] = 25;
-
         NPCID.Sets.ExtraFramesCount [id] = 9;
-
         NPCID.Sets.DangerDetectRange [id] = 400;
-
         NPCID.Sets.AttackFrameCount [id] = 4;
         NPCID.Sets.AttackType [id] = 0;
         NPCID.Sets.AttackTime [id] = 10;
         NPCID.Sets.AttackAverageChance [id] = 10;
-
         NPCID.Sets.HatOffsetY [id] = 0;
-
+        NPCID.Sets.ShimmerTownTransform[Type] = true;
         NPCID.Sets.NoTownNPCHappiness [id] = true;
 
         NPCID.Sets.NPCBestiaryDrawModifiers value = new(0) {
@@ -100,9 +101,11 @@ public class McMoneypants : ModNPC {
         NPCID.Sets.NPCBestiaryDrawOffset.Add(id, value);
 
         _NPCProfile = new Profiles.StackedNPCProfile(
-            new Profiles.DefaultNPCProfile(Texture, NPCHeadLoader.GetHeadSlot(HeadTexture), Texture + "_Party")
-        //new Profiles.DefaultNPCProfile(Texture + "_Shimmer", ShimmerHeadIndex, Texture + "_Shimmer_Party")
+        new Profiles.DefaultNPCProfile(Texture, NPCHeadLoader.GetHeadSlot(HeadTexture), Texture + "_Party"),
+        new Profiles.DefaultNPCProfile(Texture + "_Shimmer", ShimmerHeadIndex, Texture + "_Shimmer_Party")
         );
+
+        NPCID.Sets.FaceEmote[Type] = ModContent.EmoteBubbleType<McMoneyPantsEmote>();
 
         BestiaryText = this.GetLocalization("Bestiary");
         QuotesOnButtonClickWhenAlreadyInvested = new List<LocalizedText>() {
@@ -383,7 +386,7 @@ public class McMoneypants : ModNPC {
         }
 
         void AddBuff() {
-            player.AddBuff(ModContent.BuffType<McMoneypantsBuff>(), 1800 * 60);
+            player.AddBuff(ModContent.BuffType<Fortuned>(), 1800 * 60);
         }
 
         void UpdateInvestInfo() {
@@ -410,7 +413,7 @@ public class McMoneypants : ModNPC {
         }
 
         void PlaySound() {
-            SoundStyle style = new($"{nameof(Consolaria)}/Assets/Sounds/MoneyCashSound");
+            SoundStyle style = new($"{nameof(Consolaria)}/Assets/Sounds/MoneyCash");
             SoundEngine.PlaySound(style, NPC.Center);
 			SoundEngine.PlaySound(SoundID.Coins with { Pitch = -0.3f }, NPC.Center);
         }

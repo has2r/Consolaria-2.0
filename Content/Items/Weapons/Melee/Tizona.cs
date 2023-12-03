@@ -1,7 +1,5 @@
 using Microsoft.Xna.Framework;
-
 using System;
-
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -41,7 +39,7 @@ namespace Consolaria.Content.Items.Weapons.Melee {
 			Item.rare = ItemRarityID.Lime;
 			Item.UseSound = SoundID.Item1;
 
-			Item.shoot = ModContent.ProjectileType<Projectiles.Friendly.Tizona>();
+			Item.shoot = ModContent.ProjectileType<Projectiles.Friendly.TizonaProjectile>();
 			Item.shootSpeed = 14f;
 		}
 

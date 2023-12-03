@@ -26,7 +26,7 @@ namespace Consolaria {
 		}
 
 		public override void PostAddRecipes () {
-			if (!ModContent.GetInstance<ConsolariaConfig>().dontTouchZenith) {
+			if (ModContent.GetInstance<ConsolariaConfig>().tizonaZenithIntegrationEnabled) {
 				for (int i = 0; i < Recipe.numRecipes; i++) {
 					Recipe recipe = Main.recipe [i];
 

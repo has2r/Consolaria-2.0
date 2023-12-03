@@ -2,6 +2,7 @@ using Terraria;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Consolaria.Common.ModSystems;
 using Consolaria.Content.Items.Vanity;
 using Consolaria.Content.Items.Summons;
 using Consolaria.Content.Items.Pets;

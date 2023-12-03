@@ -15,7 +15,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent;
 using Terraria.WorldBuilding;
 using Consolaria.Content.Tiles;
-using Consolaria.Content.Projectiles.Friendly.Miscellaneous;
+using Consolaria.Content.Projectiles.Friendly;
 using Consolaria.Content.Items.Placeable;
 using Consolaria.Common;
 using Terraria.GameContent.Drawing;
@@ -32,7 +32,7 @@ namespace Consolaria {
             TextureAssets.XmasTree [3] = ModContent.Request<Texture2D>("Consolaria/Assets/Textures/Tiles/Xmas_3");
 
             var fractalProfiles = (Dictionary<int, FinalFractalProfile>) typeof(FinalFractalHelper).GetField("_fractalProfiles", BindingFlags.NonPublic | BindingFlags.Static).GetValue(null);
-            if (!ModContent.GetInstance<ConsolariaConfig>().dontTouchZenith)
+            if (ModContent.GetInstance<ConsolariaConfig>().tizonaZenithIntegrationEnabled)
                 fractalProfiles.Add(ModContent.ItemType<Tizona>(), new FinalFractalProfile(70f, new Color(132, 122, 224))); //Color up for debate
 
             On_Player.DropTombstone += On_Player_DropTombstone;
@@ -70,7 +70,7 @@ namespace Consolaria {
                 sizeX = 1;
                 sizeY = 2;
             }
-            else if (Main.tile[topLeftX, topLeftY].TileType == ModContent.TileType<SoulOfBlightInABottle>())
+            else if (Main.tile[topLeftX, topLeftY].TileType == ModContent.TileType<SoulOfBlightInABottleTile>())
             {
                 sizeX = 1;
                 sizeY = 2;

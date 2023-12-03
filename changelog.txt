@@ -1,7 +1,12 @@
-- FIxed the error caused by outdated code due to the October stable build
-- Added wind physics to hanging tiles 
-- Added note visuals to music boxes 
-- Moved Ocram to the correct position on the Boss Checklist order 
-- Improved localization support to include all the missing text. The localization itself has not been updated yet though 
-
-Thanks to Lion8cake for several contributions in this update!
+- Added McMoneyPants, Lepus, Ocram and Turkor Emote
+- Added Consolaria x Heartbeataria cross-mod integration
+- Added shimmer variant to Mc MoneyPants
+- Added Oktober Locks
+- Added Purple Thread
+- Added а config option regarding Mythical Wyvern Kite droprule (off by default)
+- Added а config option for Oktober Locks availability (off by default)
+- Added а config option for original Ancient Hero set crafting recipe (off by default)
+- Fixed Mythical Robe being impossible to get
+- Improved configs to be more consistent
+- Improved Soul Of Blight in a Bottle to be more in-pair with vanilla
+- Cleaned up the code

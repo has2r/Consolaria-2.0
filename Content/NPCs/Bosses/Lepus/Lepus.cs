@@ -1,7 +1,11 @@
 using Consolaria.Common;
+using Consolaria.Common.ModSystems;
 using Consolaria.Content.Items.Armor.Misc;
-using Consolaria.Content.Items.BossDrops.Lepus;
+using Consolaria.Content.Items.Consumables;
+using Consolaria.Content.Items.Pets;
+using Consolaria.Content.Items.Placeable;
 using Consolaria.Content.Items.Summons;
+using Consolaria.Content.Items.Vanity;
 using Consolaria.Content.Items.Weapons.Ranged;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -171,7 +175,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
             FrameHeight = FRAME_HEIGHT;
 
             if (!Main.dedServ)
-                Music = ModContent.GetInstance<ConsolariaConfig>().vanillaBossMusic ? MusicID.UndergroundHallow : MusicLoader.GetMusicSlot(Mod, MUSIC_PATH);
+                Music = ModContent.GetInstance<ConsolariaConfig>().vanillaBossMusicEnabled ? MusicID.UndergroundHallow : MusicLoader.GetMusicSlot(Mod, MUSIC_PATH);
         }
 
         public override void ApplyDifficultyAndPlayerScaling (int numPlayers, float balance, float bossAdjustment) {

@@ -1,4 +1,5 @@
 ﻿using Consolaria.Content.NPCs.Bosses.Lepus;
+using Consolaria.Common.ModSystems;
 using Terraria;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ModLoader;

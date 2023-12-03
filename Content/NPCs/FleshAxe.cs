@@ -55,7 +55,7 @@ namespace Consolaria.Content.NPCs {
 			AnimationType = NPCID.CrimsonAxe;
 
 			Banner = NPC.type;
-			BannerItem = ModContent.ItemType<Items.Banners.FleshAxeBanner>();
+			BannerItem = ModContent.ItemType<Items.Placeable.Banners.FleshAxeBanner>();
 		}
 
 		public override void SetBestiary (BestiaryDatabase database, BestiaryEntry bestiaryEntry) {

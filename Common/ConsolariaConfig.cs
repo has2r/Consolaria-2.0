@@ -20,10 +20,26 @@ namespace Consolaria.Common {
 
 		[Header("Miscellaneous")]
 		[DefaultValue(false)]
-		public bool vanillaBossMusic;
+		public bool vanillaBossMusicEnabled;
 
-        [DefaultValue(false)]
+		[DefaultValue(true)]
         [ReloadRequired]
-        public bool dontTouchZenith;
+        public bool heartbeatariaIntegrationEnabled;
+
+		[DefaultValue(false)]
+        [ReloadRequired]
+        public bool oktoberLocksEnabled;
+
+		[DefaultValue(false)]
+        [ReloadRequired]
+        public bool originalAncientHeroSetRecipeEnabled;
+
+		[DefaultValue(false)]
+        [ReloadRequired]
+        public bool mythicalWyvernKiteVanillaDropruleEnabled;
+
+        [DefaultValue(true)]
+        [ReloadRequired]
+        public bool tizonaZenithIntegrationEnabled;
     }
 }

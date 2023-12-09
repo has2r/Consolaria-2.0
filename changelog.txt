@@ -1,16 +1,4 @@
-- Added McMoneyPants, Lepus, Ocram and Turkor Emote
-- Added Consolaria x Heartbeataria cross-mod integration
-- Added shimmer variant to Mc MoneyPants
-- Added Oktober Locks
-- Added Purple Thread
-- Added а config option regarding Mythical Wyvern Kite droprule (off by default)
-- Added а config option for Oktober Locks availability (off by default)
-- Added а config option for original Ancient Hero set crafting recipe (off by default)
-- Fixed Mythical Robe being impossible to get
-- Fixed Fargo`s Mutant Mod shop
-- Fixed Arch Demon spawn in remix worlds
-- Fixed Bestiary icons
-- Fixed wrong spawn conditions in Boss Checklist
-- Improved configs to be more consistent
-- Improved Soul Of Blight in a Bottle to be more in-pair with vanilla
+- Updated shimmer variant of Mc MoneyPants
+- Fixed critical Lepus bug
+- Buffed Lil Marco's brightness
 - Cleaned up the code

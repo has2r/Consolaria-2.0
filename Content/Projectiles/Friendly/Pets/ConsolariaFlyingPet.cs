@@ -143,12 +143,12 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
 			}
 		}
 
-		public void LightColor (Color color) {
-			if (!Main.dedServ)
-				Lighting.AddLight(Projectile.Center, color.ToVector3() * 0.75f);
+		public void LightColor (Color color, float brightness) {
+            if (!Main.dedServ)
+				Lighting.AddLight(Projectile.Center, color.ToVector3() * brightness);
 		}
 
-		private void CheckPlayer () {
+        private void CheckPlayer () {
 			Player player = Main.player [Projectile.owner];
 			if (!player.active) {
 				Projectile.active = false;

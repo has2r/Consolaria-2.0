@@ -13,8 +13,7 @@ using System.Collections.Generic;
 using Terraria.Achievements;
 using Terraria.ModLoader;
 
-namespace Consolaria.Common
-{
+namespace Consolaria.Common {
     public class CrossContentIntegration : ModSystem {
         public override void PostSetupContent () {
             DoBossChecklistIntegration();
@@ -42,7 +41,7 @@ namespace Consolaria.Common
             Func<bool> downedOcram = () => DownedBossSystem.downedOcram;
 
             int lepusSpawnItem = ModContent.ItemType<Content.Items.Summons.SuspiciousLookingEgg>();
-            List<int> turkorSpawnItems = new List<int>() { ModContent.ItemType<Content.Items.Summons.CursedStuffing>(), ModContent.ItemType<TurkeyFeather>()};
+            List<int> turkorSpawnItems = new List<int>() { ModContent.ItemType<Content.Items.Summons.CursedStuffing>(), ModContent.ItemType<TurkeyFeather>() };
             int turkorSpawnItem = ModContent.ItemType<Content.Items.Summons.CursedStuffing>();
             int ocramSpawnItem = ModContent.ItemType<Content.Items.Summons.SuspiciousLookingSkull>();
 

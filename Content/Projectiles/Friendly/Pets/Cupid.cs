@@ -22,7 +22,7 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
             FloatingAI(tilt: 0.0025f);
             int frameTime = 8;
             Animation(frameTime);
-            LightColor(new Color(255, 105, 180));
+            LightColor(new Color(255, 105, 180), 0.75f);
         }
     }
 }

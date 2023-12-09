@@ -444,8 +444,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
         }
 
         private void Dusts () {
-            SoundStyle style = new($"{nameof(Consolaria)}/Assets/Sounds/LepusFaildJump");
-            SoundEngine.PlaySound(style, NPC.Center);
+            SoundEngine.PlaySound(new SoundStyle($"{nameof(Consolaria)}/Assets/Sounds/AngryLepus"), NPC.Center);
             if (Main.netMode != NetmodeID.Server) {
                 for (int index1 = 0; index1 < 8; ++index1) {
                     int dust = Dust.NewDust(NPC.TopLeft - new Vector2(20, 60), NPC.width + 40, NPC.height + 40, ModContent.DustType<Dusts.EggDust>(), 0, 0, 0, default(Color), Main.rand.NextFloat(0.9f, 1.1f));

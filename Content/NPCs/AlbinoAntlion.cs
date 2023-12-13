@@ -33,12 +33,13 @@ namespace Consolaria.Content.NPCs
 			NPC.Size = new Vector2(width, height);
 
 			NPC.damage = 10;
-			NPC.defense = 10;
+			NPC.defense = 6;
 			NPC.lifeMax = 45;
 
 			NPC.value = Item.buyPrice(copper: 65);
 			NPC.knockBackResist = 0f;
 			NPC.behindTiles = true;
+			NPC.rarity = 1;
 
 			NPC.aiStyle = 19;
 			AnimationType = NPCID.Antlion;

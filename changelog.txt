@@ -1,4 +1,1 @@
-- Updated shimmer variant of Mc MoneyPants
-- Fixed critical Lepus bug
-- Buffed Lil Marco's brightness
-- Cleaned up the code
+- Added missing NPC.rarity values to old console exclusive enemies

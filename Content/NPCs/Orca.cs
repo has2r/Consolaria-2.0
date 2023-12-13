@@ -36,6 +36,7 @@ namespace Consolaria.Content.NPCs {
 
             NPC.defense = 10;
             NPC.knockBackResist = 0.1f;
+            NPC.rarity = 1;
 
             NPC.HitSound = SoundID.NPCHit1;
             NPC.DeathSound = SoundID.NPCDeath1;

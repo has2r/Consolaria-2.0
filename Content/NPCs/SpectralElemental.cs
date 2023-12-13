@@ -36,6 +36,7 @@ namespace Consolaria.Content.NPCs {
 
             NPC.defense = 30;
             NPC.knockBackResist = 0.6f;
+            NPC.rarity = 1;
 
             NPC.value = Item.buyPrice(silver: 10);
 

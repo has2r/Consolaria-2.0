@@ -1544,7 +1544,17 @@ Mods: {
 
 				originalAncientHeroSetRecipeEnabled: {
 					// Label: Enable original Ancient Hero set crafting recipe
-					// Tooltip: If enabled, the Ancient Hero set can be crafted using Silk and Purple Thread in a Loom like in console versions instead of shimmering
+					// Tooltip: If enabled, the Ancient Hero set can be crafted using Silk and Purple Thread in a Loom instead of shimmering
+				}
+
+				genderRestrictShopEnabled: {
+					// Label: Restrict George's Set and Fabulous Set by player's gender
+					/* Tooltip:
+						'''
+						If enabled, the relevant sets will only appear in Clothier's shop during Blood Moon if player has a certain gender
+						Male - George's Set
+						Female - Fabulous Set
+						''' */
 				}
 			}
 		}

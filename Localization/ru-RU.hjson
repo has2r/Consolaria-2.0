@@ -1523,37 +1523,37 @@ Mods: {
 				}
 
 				tizonaZenithIntegrationEnabled: {
-					// Label: Enable Tizona integration in Zenith
+					// Label: Tizona integration in Zenith
 					// Tooltip: If enabled, Tizona will be added to Zenith's crafting recipe and it's projectiles.
 				}
 
 				oktoberLocksEnabled: {
-					// Label: Enable Oktober Locks vanity item
+					// Label: Oktober Locks vanity item
 					// Tooltip: If enabled, the Oktober Locks will be available to buy from Clothier during Oktoberfest
 				}
 
 				mythicalWyvernKiteVanillaDropruleEnabled: {
-					// Label: Enable Mythical Wyvern Kite vanilla droprule
+					// Label: Mythical Wyvern Kite vanilla droprule
 					// Tooltip: If enabled, Mythical Wyvern Kite will have a 4% chance to be dropped from Mythical Wyvern during the Windy Days instead of being obtained from Red Envelope
 				}
 
 				heartbeatariaIntegrationEnabled: {
-					// Label: Enable Heartbeataria Mod integration
+					// Label: Heartbeataria Mod integration
 					// Tooltip: If enabled, exclusive Heartbeataria Mod items can be obtained from Red Envelope
 				}
 
 				originalAncientHeroSetRecipeEnabled: {
-					// Label: Enable original Ancient Hero set crafting recipe
+					// Label: Original Ancient Hero set crafting recipe
 					// Tooltip: If enabled, the Ancient Hero set can be crafted using Silk and Purple Thread in a Loom instead of shimmering
 				}
 
 				genderRestrictShopEnabled: {
-					// Label: Restrict George's Set and Fabulous Set by player's gender
+					// Label: Restrict George's set and Fabulous set by player's gender
 					/* Tooltip:
 						'''
 						If enabled, the relevant sets will only appear in Clothier's shop during Blood Moon if player has a certain gender
-						Male - George's Set
-						Female - Fabulous Set
+						Male - George's set
+						Female - Fabulous set
 						''' */
 				}
 			}

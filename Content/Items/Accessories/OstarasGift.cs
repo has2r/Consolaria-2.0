@@ -5,6 +5,7 @@ using Consolaria.Content.NPCs.Bosses.Lepus;
 using Microsoft.Xna.Framework;
 
 namespace Consolaria.Content.Items.Accessories {
+    [AutoloadEquip(EquipType.Waist)]
     public class OstarasGift : ModItem {
         public override void SetStaticDefaults () {
 

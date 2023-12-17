@@ -1,2 +1,3 @@
 - Added missing NPC.rarity values to old console exclusive enemies
 - Added а config option regarding gender restricted items in the Clothier's shop (off by default)
+- Fixed on-body sprite of Valentine Ring

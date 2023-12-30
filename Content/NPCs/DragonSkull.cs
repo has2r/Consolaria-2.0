@@ -40,6 +40,7 @@ namespace Consolaria.Content.NPCs {
 
 			NPC.noTileCollide = true;
 			NPC.noGravity = true;
+			NPC.rarity = 1;
 
 			NPC.aiStyle = NPCAIStyleID.CursedSkull;
 

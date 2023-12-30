@@ -1,4 +1,4 @@
-- Updated shimmer variant of Mc MoneyPants
-- Fixed critical Lepus bug
-- Buffed Lil Marco's brightness
-- Cleaned up the code
+- Added missing NPC.rarity values to old console exclusive enemies
+- Added а config option regarding gender restricted items in the Clothier's shop (off by default)
+- Added on-body sprite for Ostara's Gift
+- Fixed on-body sprite of Valentine Ring

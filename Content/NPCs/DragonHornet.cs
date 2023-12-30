@@ -41,6 +41,7 @@ namespace Consolaria.Content.NPCs {
 			NPC.value = Item.buyPrice(silver: 1);
 			NPC.knockBackResist = 0.4f;
 			NPC.noGravity = true;
+			NPC.rarity = 1;
 
 			NPC.aiStyle = 14;
 			AnimationType = NPCID.Hornet;

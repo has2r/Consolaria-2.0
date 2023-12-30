@@ -55,6 +55,7 @@ namespace Consolaria.Content.NPCs {
 			NPC.DeathSound = SoundID.NPCDeath8;
 
 			NPC.knockBackResist = 0.0f;
+			NPC.rarity = 2;
 			NPC.npcSlots = 5f;
 
 			NPC.netAlways = true;

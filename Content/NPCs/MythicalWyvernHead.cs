@@ -55,6 +55,7 @@ namespace Consolaria.Content.NPCs {
 
 			NPC.knockBackResist = 0.0f;
 			NPC.npcSlots = 5f;
+			NPC.rarity = 2;
 
 			NPC.netAlways = true;
 

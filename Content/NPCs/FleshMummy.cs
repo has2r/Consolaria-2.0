@@ -35,6 +35,7 @@ namespace Consolaria.Content.NPCs {
 
 			NPC.lifeMax = 250;
 			NPC.knockBackResist = 0.1f;
+			NPC.rarity = 1;
 
 			NPC.value = Item.buyPrice(silver: 10);
 

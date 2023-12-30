@@ -28,6 +28,10 @@ namespace Consolaria.Common {
 
 		[DefaultValue(false)]
         [ReloadRequired]
+        public bool genderRestrictShopEnabled;
+
+		[DefaultValue(false)]
+        [ReloadRequired]
         public bool oktoberLocksEnabled;
 
 		[DefaultValue(false)]

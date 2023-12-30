@@ -8,8 +8,8 @@ namespace Consolaria.Common {
         public static Condition thanksgivingCondition = new Condition("Mods.Consolaria.Conditions.SellingDuringThanksgiving", () => (SeasonalEvents.configEnabled && SeasonalEvents.IsThanksgiving()) || !SeasonalEvents.configEnabled);
         public static Condition oktoberfestCondition = new Condition("Mods.Consolaria.Conditions.SellingDuringOktoberfest", () => (SeasonalEvents.configEnabled && SeasonalEvents.IsOktoberfest()) || (!SeasonalEvents.configEnabled && Main.LocalPlayer.HeldItem.type == ItemID.Ale));
         public static Condition valentineDayCondition = new Condition("Mods.Consolaria.Conditions.SellingDuringValentineDay", () => (SeasonalEvents.configEnabled && SeasonalEvents.IsValentineDay()) || (!SeasonalEvents.configEnabled && Main.LocalPlayer.HasBuff(BuffID.Lovestruck)));
-        public static Condition isMaleCondition = new Condition("Mods.Consolaria.Conditions.SellingIfMale", () => Main.LocalPlayer.Male);
-        public static Condition womanMoment = new Condition("Mods.Consolaria.Conditions.SellingWhenWoman", () => !Main.LocalPlayer.Male);
+        public static Condition isMaleCondition = new Condition("Mods.Consolaria.Conditions.SellingIfMale", () => Main.LocalPlayer.Male & Main.bloodMoon);
+        public static Condition womanMoment = new Condition("Mods.Consolaria.Conditions.SellingWhenWoman", () => !Main.LocalPlayer.Male & Main.bloodMoon);
         public static Condition wishboneCooldown = new Condition("Mods.Consolaria.Conditions.SellingWhenWoman", () => !WishbonePlayer.purchasedWishbone);
 
         public override void ModifyShop (NPCShop shop) {
@@ -35,12 +35,24 @@ namespace Consolaria.Common {
                 shop.Add(ModContent.ItemType<Content.Items.Vanity.TorosHead>(), Condition.BloodMoon);
                 shop.Add(ModContent.ItemType<Content.Items.Vanity.TorosBody>(), Condition.BloodMoon);
                 shop.Add(ModContent.ItemType<Content.Items.Vanity.TorosLegs>(), Condition.BloodMoon);
+
+                if (ModContent.GetInstance<ConsolariaConfig>().genderRestrictShopEnabled) {
                 shop.Add(ModContent.ItemType<Content.Items.Vanity.GeorgesHat>(), isMaleCondition);
                 shop.Add(ModContent.ItemType<Content.Items.Vanity.GeorgesTuxedoShirt>(), isMaleCondition);
                 shop.Add(ModContent.ItemType<Content.Items.Vanity.GeorgesTuxedoPants>(), isMaleCondition);
                 shop.Add(ModContent.ItemType<Content.Items.Vanity.FabulousRibbon>(), womanMoment);
                 shop.Add(ModContent.ItemType<Content.Items.Vanity.FabulousDress>(), womanMoment);
                 shop.Add(ModContent.ItemType<Content.Items.Vanity.FabulousSlippers>(), womanMoment);
+                }
+                else {
+                shop.Add(ModContent.ItemType<Content.Items.Vanity.GeorgesHat>(), Condition.BloodMoon);
+                shop.Add(ModContent.ItemType<Content.Items.Vanity.GeorgesTuxedoShirt>(), Condition.BloodMoon);
+                shop.Add(ModContent.ItemType<Content.Items.Vanity.GeorgesTuxedoPants>(), Condition.BloodMoon);
+                shop.Add(ModContent.ItemType<Content.Items.Vanity.FabulousRibbon>(), Condition.BloodMoon);
+                shop.Add(ModContent.ItemType<Content.Items.Vanity.FabulousDress>(), Condition.BloodMoon);
+                shop.Add(ModContent.ItemType<Content.Items.Vanity.FabulousSlippers>(), Condition.BloodMoon);
+                }
+
                 shop.Add(ModContent.ItemType<Content.Items.Vanity.AlpineHat>(), oktoberfestCondition);
                 shop.Add(ModContent.ItemType<Content.Items.Vanity.Lederweste>(), oktoberfestCondition);
                 shop.Add(ModContent.ItemType<Content.Items.Vanity.Lederhosen>(), oktoberfestCondition);

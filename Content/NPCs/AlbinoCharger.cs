@@ -28,11 +28,12 @@ namespace Consolaria.Content.NPCs {
             int width = 28; int height = 28;
             NPC.Size = new Vector2(width, height);
 
-            NPC.damage = 30;
+            NPC.damage = 25;
             NPC.lifeMax = 80;
 
             NPC.defense = 10;
             NPC.knockBackResist = 0.5f;
+            NPC.rarity = 1;
 
             NPC.HitSound = SoundID.NPCHit31;
             NPC.DeathSound = SoundID.NPCDeath34;

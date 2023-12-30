@@ -49,6 +49,7 @@ namespace Consolaria.Content.NPCs {
 
 			NPC.noGravity = true;
 			NPC.noTileCollide = true;
+			NPC.rarity = 1;
 
 			NPC.aiStyle = -1;
 			AnimationType = NPCID.Snatcher;

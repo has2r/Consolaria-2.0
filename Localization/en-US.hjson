@@ -1560,6 +1560,23 @@ Mods: {
 			}
 		}
 
+		Achievements: {
+			KillLepus: {
+				Name: Hare Despair
+				Description: Defeat Lepus, the greatest Easter troublemaker.
+			}
+
+			KillTurkor: {
+				Name: I Like Large Fries, But Not Fried Chicken
+				Description: Defeat Turkor, the burning Thanksgiving monstrosity.
+			}
+
+			KillOcram: {
+				Name: Bible of the Beast
+				Description: Defeat Ocram, the cursed fiend haunting the starless sky.
+			}
+		}
+
 		Emotes: {
 			McMoneyPantsEmote.Command: mcmoneypants
 			TurkorEmote.Command: turkor

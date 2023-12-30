@@ -9,7 +9,7 @@ This includes:
 - Exclusive vanity items - including the Horned God set, George's set & many others
 - A variety of ported pets, complete with extra animations
 - Mc MoneyPants NPC
-- Boss Checklist & Fargo's Mutant Mod support
+- Boss Checklist, Fargo's Mutant Mod & Achievement Mod support
 - Holy Hand Grenade!
 
 Holiday content is always active by default and can be restricted to the corresponding dates using the config menu.

@@ -7,22 +7,18 @@ using Terraria.ModLoader;
 
 namespace Consolaria.Content.Items.Weapons.Magic {
     public class OcramsEye : ModItem {
-        public override void SetStaticDefaults () {
-            Item.ResearchUnlockCount = 1;
-        }
-
         public override void SetDefaults () {
             int width = 36; int height = width;
             Item.Size = new Vector2(width, height);
 
             Item.DamageType = DamageClass.Magic;
-            Item.damage = 72;
+            Item.damage = 80;
             Item.knockBack = 4;
 
             Item.useStyle = ItemUseStyleID.Shoot;
-            Item.useTime = 11;
-            Item.useAnimation = 33;
-            Item.reuseDelay = 33;
+            Item.useTime = 10;
+            Item.useAnimation = 30;
+            Item.reuseDelay = 30;
 
             Item.value = Item.buyPrice(gold: 5);
             Item.rare = ItemRarityID.Lime;
@@ -44,7 +40,7 @@ namespace Consolaria.Content.Items.Weapons.Magic {
 
         public override bool Shoot (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
             float projectilesCount = Main.rand.Next(3, 5);
-            float rotation = MathHelper.ToRadians(7);
+            float rotation = MathHelper.ToRadians(5);
             for (int i = 0; i < projectilesCount; i++) {
                 Vector2 perturbedSpeed = velocity.RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (projectilesCount - 1))) * 1.25f;
                 Projectile.NewProjectile(source, position + player.velocity, perturbedSpeed, ModContent.ProjectileType<OcramEyeLaser>(), damage, knockback, player.whoAmI);

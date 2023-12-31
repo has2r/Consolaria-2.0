@@ -5,7 +5,7 @@ Additions:
 - Added 3 achievements along with Achievement Mod support
 
 Changes:
-Buffed Ocram's Eye
+- Buffed Ocram's Eye
 
 Fixes:
 - Fixed on-body sprite of Valentine Ring

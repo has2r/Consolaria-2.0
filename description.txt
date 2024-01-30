@@ -41,6 +41,7 @@ Contributors:
 - Gaerzi - calendar code optimisation
 - Efromomr - some Mc MoneyPants interaction quotes
 - HenryChe - Russian localization
+- Auraz - Spanish localization
 
 
 Find the links to our Discord server, other projects, source code and donations on Consolaria's official forum page.

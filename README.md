@@ -44,6 +44,7 @@ Contributors:
 - **Gaerzi** - calendar code optimisation
 - **Efromomr** - some Mc MoneyPants interaction quotes
 - **HenryChe** - Russian localization
+- **Auraz** - Spanish localization
 
 ## Links
 

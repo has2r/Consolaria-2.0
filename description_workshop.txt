@@ -49,6 +49,7 @@ Contributors:
 [*][b]Gaerzi[/b] - calendar code optimisation
 [*][b]Efromomr[/b] - some Mc MoneyPants interaction quotes
 [*][b]HenryChe[/b] - Russian localization
+[*][b]Auraz[/b] - Spanish localization
 [/list]
 
 [h1]Links[/h1]

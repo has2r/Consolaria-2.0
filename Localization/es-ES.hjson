@@ -134,9 +134,9 @@ Mods: {
 				Description: Comer cerebros
 			}
 
-			McMoneypantsBuff: {
-				DisplayName: Afortunado
-				Description: Te sientes con mucha suerte
+			Fortuned: {
+				// DisplayName: Fortuned
+				// Description: You are feeling pretty lucky
 			}
 
 			Worm: {
@@ -1175,6 +1175,16 @@ Mods: {
 				DisplayName: Cometa de guiverno mitológico
 				Tooltip: ""
 			}
+
+			OktoberLocks: {
+				// Tooltip: ""
+				// DisplayName: Oktober Locks
+			}
+
+			PurpleThread: {
+				// Tooltip: ""
+				// DisplayName: Purple Thread
+			}
 		}
 
 		NPCs: {
@@ -1446,7 +1456,7 @@ Mods: {
 			VulcanBolt.DisplayName: Vulcan Bolt
 			"Lepus Stomp.DisplayName": Lepus Stomp
 			.DisplayName: ""
-			Tizona.DisplayName: Tizona
+			// TizonaProjectile.DisplayName: Tizona
 			TizonaShoot.DisplayName: Tizona
 			Worm.DisplayName: Worm
 			OldLady.DisplayName: Old Lady
@@ -1463,7 +1473,7 @@ Mods: {
 			LepusMusicBox.MapEntry: Music Box
 			OcramMusicBox.MapEntry: Music Box
 			SanctumLantern.MapEntry: Carriage Lantern
-			SoulOfBlightInABottle.MapEntry: Soul of Blight in a Bottle
+			// SoulOfBlightInABottleTile.MapEntry: Soul of Blight in a Bottle
 			TurkorMusicBox.MapEntry: Music Box
 			WormTombstoneTile.MapEntry: Tombstone
 		}
@@ -1508,16 +1518,70 @@ Mods: {
 					Tooltip: If enabled the relevant items and enemies will only appear during the corresponding holidays or when Wishbone is used
 				}
 
-				vanillaBossMusic: {
-					Label: Enable vanilla music for Consolaria bosses
-					Tooltip: If enabled the custom soundtrack will be replaced by themes originally used in console versions
+				vanillaBossMusicEnabled: {
+					// Label: Vanilla music for Consolaria bosses
+					// Tooltip: If enabled, the custom soundtrack will be replaced by themes originally used in console versions
 				}
 
-				dontTouchZenith: {
-					Label: Disable Tizona integration in Zenith
-					Tooltip: If enabled, Tizona will not be added to Zenith's recipe and will not be displayed in swords pool
+				tizonaZenithIntegrationEnabled: {
+					// Label: Tizona integration in Zenith
+					// Tooltip: If enabled, Tizona will be added to Zenith's crafting recipe and it's projectiles.
+				}
+
+				oktoberLocksEnabled: {
+					// Label: Oktober Locks vanity item
+					// Tooltip: If enabled, the Oktober Locks will be available to buy from Clothier during Oktoberfest
+				}
+
+				mythicalWyvernKiteVanillaDropruleEnabled: {
+					// Label: Mythical Wyvern Kite vanilla droprule
+					// Tooltip: If enabled, Mythical Wyvern Kite will have a 4% chance to be dropped from Mythical Wyvern during the Windy Days instead of being obtained from Red Envelope
+				}
+
+				heartbeatariaIntegrationEnabled: {
+					// Label: Heartbeataria Mod integration
+					// Tooltip: If enabled, exclusive Heartbeataria Mod items can be obtained from Red Envelope
+				}
+
+				originalAncientHeroSetRecipeEnabled: {
+					// Label: Original Ancient Hero set crafting recipe
+					// Tooltip: If enabled, the Ancient Hero set can be crafted using Silk and Purple Thread in a Loom instead of shimmering
+				}
+
+				genderRestrictShopEnabled: {
+					// Label: Restrict George's set and Fabulous set by player's gender
+					/* Tooltip:
+						'''
+						If enabled, the relevant sets will only appear in Clothier's shop during Blood Moon if player has a certain gender
+						Male - George's set
+						Female - Fabulous set
+						''' */
 				}
 			}
+		}
+
+		Achievements: {
+			KillLepus: {
+				// Name: Hare Despair
+				// Description: Defeat Lepus, the greatest Easter troublemaker.
+			}
+
+			KillTurkor: {
+				// Name: Kentucky Fried Turkey
+				// Description: Defeat Turkor the Ungrateful, the burning Thanksgiving monstrosity.
+			}
+
+			KillOcram: {
+				// Name: Bible of the Beast
+				// Description: Defeat Ocram, the cursed fiend haunting the starless sky.
+			}
+		}
+
+		Emotes: {
+			// McMoneyPantsEmote.Command: mcmoneypants
+			// TurkorEmote.Command: turkor
+			// OcramEmote.Command: ocram
+			// LepusEmote.Command: lepus
 		}
 	}
 }

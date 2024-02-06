@@ -1,12 +1,3 @@
 Additions:
-- Added missing NPC.rarity values to old console exclusive enemies
-- Added а config option regarding gender restricted items in the Clothier's shop (off by default)
-- Added on-body sprite for Ostara's Gift
-- Added 3 achievements along with Achievement Mod support
-
-Changes:
-- Buffed Ocram's Eye
-
-Fixes:
-- Fixed on-body sprite of Valentine Ring
+- Added Spanish localization
 

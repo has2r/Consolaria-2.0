@@ -1,7 +1,7 @@
 displayName = Consolaria
 author = RoA Gang (has2r, peege.on, smeqe, Heretic)
 
-version = 2.1.0.12
+version = 2.1.0.13
 homepage = https://forums.terraria.org/index.php?threads/consolaria.62570/
 
 hideCode = false

@@ -1227,7 +1227,7 @@ Mods: {
 
 				BossChecklistIntegration: {
 					SpawnInfo: Use a [i:Consolaria/SuspiciousLookingEgg] at day time
-					DespawnMessage: Ocram disappears back into shadows!
+					DespawnMessage: Lepus hops back to where it came from!
 				}
 			}
 
@@ -1461,21 +1461,15 @@ Mods: {
 			Worm.DisplayName: Worm
 			OldLady.DisplayName: Old Lady
 			WormTombstone.DisplayName: Strange Looking Tombstone
-			McMoneypantsAttackProjectile.DisplayName: Mc Moneypants Attack Projectile
+			McMoneypantsAttackProjectile.DisplayName: Gold Coin
 			Explosion.DisplayName: Explosion
-			ExampleKiteProjectile.DisplayName: Example Kite Projectile
-			MythicalWyvernProjectile.DisplayName: Mythical Wyvern Projectile
-			MythicalWyvernKiteProjectile.DisplayName: Mythical Wyvern Kite Projectile
+			MythicalWyvernProjectile.DisplayName: Mythical Wyvern
+			MythicalWyvernKiteProjectile.DisplayName: Mythical Wyvern Kite
 		}
 
 		Tiles: {
-			EerieOcramMusicBox.MapEntry: Music Box
-			LepusMusicBox.MapEntry: Music Box
-			OcramMusicBox.MapEntry: Music Box
 			SanctumLantern.MapEntry: Carriage Lantern
 			SoulOfBlightInABottleTile.MapEntry: Soul of Blight in a Bottle
-			TurkorMusicBox.MapEntry: Music Box
-			WormTombstoneTile.MapEntry: Tombstone
 		}
 
 		Conditions: {
@@ -1484,6 +1478,7 @@ Mods: {
 			SellingDuringValentineDay: Mods.Consolaria.Conditions.SellingDuringValentineDay
 			SellingIfMale: Mods.Consolaria.Conditions.SellingIfMale
 			SellingWhenWoman: Mods.Consolaria.Conditions.SellingWhenWoman
+			SellingDuringWishboneCooldown: Mods.Consolaria.Conditions.SellingDuringWishboneCooldown
 		}
 
 		Configs: {

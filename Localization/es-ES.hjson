@@ -1461,21 +1461,15 @@ Mods: {
 			Worm.DisplayName: Worm
 			OldLady.DisplayName: Old Lady
 			WormTombstone.DisplayName: Strange Looking Tombstone
-			McMoneypantsAttackProjectile.DisplayName: Mc Moneypants Attack Projectile
+			McMoneypantsAttackProjectile.DisplayName: Moneda de oro
 			Explosion.DisplayName: Explosion
-			ExampleKiteProjectile.DisplayName: Example Kite Projectile
 			MythicalWyvernProjectile.DisplayName: Mythical Wyvern Projectile
 			MythicalWyvernKiteProjectile.DisplayName: Mythical Wyvern Kite Projectile
 		}
 
 		Tiles: {
-			EerieOcramMusicBox.MapEntry: Music Box
-			LepusMusicBox.MapEntry: Music Box
-			OcramMusicBox.MapEntry: Music Box
 			SanctumLantern.MapEntry: Carriage Lantern
-			// SoulOfBlightInABottleTile.MapEntry: Soul of Blight in a Bottle
-			TurkorMusicBox.MapEntry: Music Box
-			WormTombstoneTile.MapEntry: Tombstone
+			SoulOfBlightInABottleTile.MapEntry: Soul of Blight in a Bottle
 		}
 
 		Conditions: {
@@ -1484,6 +1478,7 @@ Mods: {
 			SellingDuringValentineDay: Mods.Consolaria.Conditions.SellingDuringValentineDay
 			SellingIfMale: Mods.Consolaria.Conditions.SellingIfMale
 			SellingWhenWoman: Mods.Consolaria.Conditions.SellingWhenWoman
+			// SellingDuringWishboneCooldown: Mods.Consolaria.Conditions.SellingDuringWishboneCooldown
 		}
 
 		Configs: {

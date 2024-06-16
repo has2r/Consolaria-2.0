@@ -1460,21 +1460,15 @@ Mods: {
 			Worm.DisplayName: Червяк
 			OldLady.DisplayName: Старушка
 			WormTombstone.DisplayName: Подозрительно Выглядящее Надгробие
-			McMoneypantsAttackProjectile.DisplayName: Атака Мак МаниПэнтса
+			McMoneypantsAttackProjectile.DisplayName: Золотая монета
 			Explosion.DisplayName: Взрыв
-			ExampleKiteProjectile.DisplayName: Пример Воздушного Змея
 			MythicalWyvernProjectile.DisplayName: Мифическая Виверна
 			MythicalWyvernKiteProjectile.DisplayName: Воздушный змей «Мифическая Виверна»
 		}
 
 		Tiles: {
-			EerieOcramMusicBox.MapEntry: Музыкальная Шкатулка
-			LepusMusicBox.MapEntry: Музыкальная Шкатулка
-			OcramMusicBox.MapEntry: Музыкальная Шкатулка
 			SanctumLantern.MapEntry: Перевозной Фонарь
 			SoulOfBlightInABottleTile.MapEntry: Эссенция Отравления в Бутылке
-			TurkorMusicBox.MapEntry: Музыкальная Шкатулка
-			WormTombstoneTile.MapEntry: Надгробие
 		}
 
 		Conditions: {
@@ -1483,6 +1477,7 @@ Mods: {
 			SellingDuringValentineDay: Mods.Consolaria.Conditions.SellingDuringValentineDay
 			SellingIfMale: Mods.Consolaria.Conditions.SellingIfMale
 			SellingWhenWoman: Mods.Consolaria.Conditions.SellingWhenWoman
+			// SellingDuringWishboneCooldown: Mods.Consolaria.Conditions.SellingDuringWishboneCooldown
 		}
 
 		Configs: {

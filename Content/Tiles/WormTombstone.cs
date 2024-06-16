@@ -20,8 +20,7 @@ public class WormTombstoneTile : ModTile {
         Main.tileLighted[Type] = true;
         Main.tileFrameImportant[Type] = true;
 
-        LocalizedText name = CreateMapEntryName();
-        AddMapEntry(new Color(192, 192, 192), name);
+        AddMapEntry(new Color(192, 192, 192), Language.GetText("ItemName.Tombstone"));
 
         DustType = DustID.Stone;
 

@@ -153,7 +153,7 @@ Mods: {
 		Items: {
 			SparklyWings: {
 				DisplayName: Alas brillantes
-				Tooltip: Permite volar y caer lentamente
+				Tooltip: "{$CommonItemTooltip.FlightAndSlowfall}"
 			}
 
 			ValentineRing: {
@@ -707,7 +707,7 @@ Mods: {
 				DisplayName: Zanahoria dorada
 				Tooltip:
 					'''
-					Mejoras medias a todas las características
+					{$BuffDescription.WellFed2}
 					Incrementa el tiempo de todos los beneficios por 15 segundos
 					'¿ZANAHORIA DORADA?! ¡¿QUE?!'
 					'''
@@ -1081,51 +1081,6 @@ Mods: {
 				Tooltip: Invoca un pavo extraño para que luche por ti
 			}
 
-			GuaPiMao: {
-				DisplayName: Gua Pi Mao
-				Tooltip: ""
-			}
-
-			MythicalDogMask: {
-				DisplayName: Mythical Dog Mask
-				Tooltip: ""
-			}
-
-			MythicalDogPants: {
-				DisplayName: Mythical Dog Pants
-				Tooltip: ""
-			}
-
-			MythicalDogShirt: {
-				DisplayName: Mythical Dog Shirt
-				Tooltip: ""
-			}
-
-			TangSuitPants: {
-				DisplayName: Tang Suit Pants
-				Tooltip: ""
-			}
-
-			TangSuitShirt: {
-				DisplayName: Tang Suit Shirt
-				Tooltip: ""
-			}
-
-			TangYuanHat: {
-				DisplayName: Tang Yuan Hat
-				Tooltip: ""
-			}
-
-			TangYuanPants: {
-				DisplayName: Tang Yuan Pants
-				Tooltip: ""
-			}
-
-			TangYuanShirt: {
-				DisplayName: Tang Yuan Shirt
-				Tooltip: ""
-			}
-
 			McMoneypantsInvitation: {
 				DisplayName: Invitación dorada
 				Tooltip: Parece que estaba destinado a alguien muy rico
@@ -1382,17 +1337,6 @@ Mods: {
 				Quote8: Cuando esos raros bloques de tierra suban de precio, ¡voy a ganar millones!
 				Quote9: ¿Mi consejo financiero? No dispares tus monedas con esa horrible arma.
 				Quote10: ¿Bitcoin? ¿Por qué alguna vez ganaría una moneda?
-
-				TownNPCMood: {
-					Content: Estoy contento.
-					NoHome: Odio no tener un hogar.
-					FarFromHome: Estoy demasiado lejos de casa.
-					LoveSpace: Me encanta tener tanto espacio.
-					DislikeCrowded: No me gusta lo abarrotado que estoy.
-					HateCrowded: Odio lo abarrotado que estoy.
-					LikeNPC_Princess: Me gusta {NPCName}.
-					Princess_LovesNPC: Me gusta {NPCName}.
-				}
 			}
 		}
 

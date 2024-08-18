@@ -1,0 +1,1587 @@
+Mods: {
+	Consolaria: {
+		Others.NPCTitle: "{0} {1}"
+
+		Biomes: {
+			RabbitInvasionBiome: {
+				DisplayName: Invasão de Coelhos
+				TownNPCDialogueName: O Bioma de Invasão de Coelhos
+			}
+		}
+
+		Buffs: {
+			Android: {
+				DisplayName: Android
+				Description: Beep-Boop
+			}
+
+			Bat: {
+				DisplayName: Morcego
+				Description: Em busca por sangue
+			}
+
+			Cupid: {
+				DisplayName: Cupido
+				Description: Ama amor
+			}
+
+			Drone: {
+				DisplayName: Drone
+				Description: Um drone está seguindo você
+			}
+
+			Drunk: {
+				DisplayName: Bêbado
+				Description:
+					'''
+					50% de redução de dano recebido
+					50% de dano causado reduzido
+					'''
+			}
+
+			EasterBunny: {
+				DisplayName: Coelhinho da Páscoa
+				Description: O coelhinho da páscoa vai lutar por você
+			}
+
+			Elfa: {
+				DisplayName: Elfa
+				Description: Um elfo especial
+			}
+
+			EyeOfEternity: {
+				DisplayName: Olho da Eternidade
+				Description: O olho da eternidade lutará por você
+			}
+
+			FruitfulPlate: {
+				DisplayName: Prato Frutuoso
+				Description: Você é o prato principal
+			}
+
+			GoldenCarrotDebuff: {
+				DisplayName: Envenenamento por Cenoura Dourada
+				Description:
+					'''
+					Não posso mais comer cenouras douradas
+					A defesa diminuiu ligeiramente
+					'EU DISSE QUE A CENOURA ERA DE OURO, EU DISSE!!!'
+					'''
+			}
+
+			GoldenTurtle: {
+				DisplayName: Tartaruga Dourada
+				Description: uma tartaruga rara
+			}
+
+			GuineaPig: {
+				DisplayName: Porquinho da Índia
+				Description: É TÃO FOFINHOOOOOO
+			}
+
+			Leprechaun: {
+				DisplayName: Leprechaun O'Fyffe
+				Description: Cheio de moedas
+			}
+
+			LilMarco: {
+				DisplayName: Lil' Marco
+				Description: O próprio mal está seguindo você
+			}
+
+			MythicalWyvernling: {
+				DisplayName: Serpezinha Mítica
+				Description: Uma serpezinha mítica está seguindo você
+			}
+
+			PetTurkey: {
+				DisplayName: Peru de Estimação
+				Description: Um peru grande e carnudo
+			}
+
+			Slime: {
+				DisplayName: Geleia de Estimação
+				Description: Uma verdadeira bola de geleia
+			}
+
+			SmallLepus: {
+				DisplayName: Bebê Lepus
+				Description: Ele não pode botar ovos... Ainda!
+			}
+
+			Stunned: {
+				DisplayName: Atordoado
+				Description: Paralisado pelo amor
+			}
+
+			Tiphia: {
+				DisplayName: Tífia
+				Description: Não deixe que isso te ferroe
+			}
+
+			WeirdTurkey: {
+				DisplayName: Peru estranho
+				Description: Peru estranho lutará por você
+			}
+
+			Werewolf: {
+				DisplayName: Lobisomem
+				Description: O melhor amigo do homem
+			}
+
+			Zombie: {
+				DisplayName: Zumbi
+				Description: Devora cérebros
+			}
+
+			Fortuned: {
+				DisplayName: Afortunado
+				Description: Você está se sentindo muito sortudo
+			}
+
+			Worm: {
+				DisplayName: Verme
+				Description: Não o alimente para os peixes
+			}
+
+			OldLady: {
+				DisplayName: Senhorinha
+				Description: Não julgue pela aparência
+			}
+		}
+
+		Items: {
+			SparklyWings: {
+				DisplayName: Asas Brilhantes
+				Tooltip: Permite vôo e queda lenta
+			}
+
+			ValentineRing: {
+				DisplayName: Anel dos Namorados
+				Tooltip: ""
+			}
+
+			AncientPhantasmalHeadgear: {
+				DisplayName: Elmo Fantasmagórico Antigo
+				Tooltip:
+					'''
+					Aumenta a mana máxima em 50
+					10% do dano mágico aumentado
+					10% de chance de acerto crítico mágico aumentado
+					'''
+			}
+
+			AncientPhantasmalRobe: {
+				DisplayName: Manto Fantasmagórico Antigo
+				Tooltip:
+					'''
+					Aumenta a mana máxima em 70
+					15% de dano mágico aumentado
+					'''
+			}
+
+			AncientPhantasmalSubligar: {
+				DisplayName: Subligar Fantasmagórico Antigo
+				Tooltip:
+					'''
+					Aumenta a mana máxima em 30
+					5% do dano mágico aumentado
+					12% de velocidade de movimento aumentada
+					'''
+			}
+
+			PhantasmalHeadgear: {
+				DisplayName: Elmo Fantasmagórico
+				Tooltip:
+					'''
+					Aumenta a mana máxima em 50
+					10% do dano mágico aumentado
+					10% de chance de acerto crítico mágico aumentado
+					'''
+				SetBonus: Siphons mana out of nearby enemies
+			}
+
+			PhantasmalRobe: {
+				DisplayName: Manto Fantasmagórico
+				Tooltip:
+					'''
+					Aumenta a mana máxima em 70
+					15% de dano mágico aumentado
+					'''
+			}
+
+			PhantasmalSubligar: {
+				DisplayName: Subligar Fantasmagórico
+				Tooltip:
+					'''
+					Aumenta a mana máxima em 30
+					5% do dano mágico aumentado
+					12% de velocidade de movimento aumentada
+					'''
+			}
+
+			AncientDragonBreastplate: {
+				DisplayName: Peitoral de Dragão Antigo
+				Tooltip:
+					'''
+					10% de aumento de dano físico
+					10% chance de acerto crítico físico aumentada
+					15% velocidade de ataque físico aumentada
+					'''
+			}
+
+			AncientDragonGreaves: {
+				DisplayName: Grevas de Dragão Antigo
+				Tooltip:
+					'''
+					5% de aumento de dano físico
+					5% chance de acerto crítico físico aumentada
+					20% velocidade de movimento aumentada
+					'''
+			}
+
+			AncientDragonMask: {
+				DisplayName: Máscara de Dragão Antigo
+				Tooltip:
+					'''
+					15% de aumento de dano físico
+					15% velocidade de ataque físico aumentada
+					'''
+			}
+
+			DragonBreastplate: {
+				DisplayName: Peitoral de Dragão
+				Tooltip:
+					'''
+					10% de aumento de dano físico
+					10% chance de acerto crítico físico aumentada
+					15% velocidade de ataque físico aumentada
+					'''
+			}
+
+			DragonGreaves: {
+				DisplayName: Grevas de Dragão
+				Tooltip:
+					'''
+					5% de aumento de dano físico
+					5% chance de acerto crítico físico aumentada
+					20% velocidade de movimento aumentada
+					'''
+			}
+
+			DragonMask: {
+				DisplayName: Máscara de Dragão
+				Tooltip:
+					'''
+					15% de aumento de dano físico
+					15% velocidade de ataque físico aumentada
+					'''
+				SetBonus: Cria uma explosão de chamas após sofrer dano
+			}
+
+			OstaraBoots: {
+				DisplayName: Botas de Ostara
+				Tooltip: Permite ao usuário realizar até 5 saltos de coelho
+			}
+
+			OstaraHat: {
+				DisplayName: Chapéu de Ostara
+				Tooltip: 7% de aumento na velocidade de movimento
+				SetBonus: Nega dano de queda
+			}
+
+			OstaraJacket: {
+				DisplayName: Jaqueta de Ostara
+				Tooltip: 7% de aumento na velocidade de movimento
+			}
+
+			AncientTitanHelmet: {
+				DisplayName: Capacete de Titã Antigo
+				Tooltip:
+					'''
+					10% do dano à distância aumentado
+					10% chance de acerto crítico à distância aumentada
+					25% de chance de não consumir munição
+					'''
+			}
+
+			AncientTitanLeggings: {
+				DisplayName: Grevas de Titã Antigo
+				Tooltip:
+					'''
+					10% do dano à distância aumentado
+					18% velocidade de movimento aumentada
+					15% de chance de não consumir munição
+					'''
+			}
+
+			AncientTitanMail: {
+				DisplayName: Peitoral de Titã Antigo
+				Tooltip:
+					'''
+					15% do dano à distância aumentado
+					10% chance de acerto crítico à distância aumentada
+					20% de chance de não consumir munição
+					'''
+			}
+
+			TitanHelmet: {
+				DisplayName: Capacete de Titã
+				Tooltip:
+					'''
+					10% do dano à distância aumentado
+					10% chance de acerto crítico à distância aumentada
+					25% de chance de não consumir munição
+					'''
+				SetBonus: Usar armas de longo alcance desencadeia um recuo explosivo
+			}
+
+			TitanLeggings: {
+				DisplayName: Grevas de Titã
+				Tooltip:
+					'''
+					10% do dano à distância aumentado
+					18% velocidade de movimento aumentada
+					15% de chance de não consumir munição
+					'''
+			}
+
+			TitanMail: {
+				DisplayName: Peitoral de Titã
+				Tooltip:
+					'''
+					15% do dano à distância aumentado
+					10% chance de acerto crítico à distância aumentada
+					20% de chance de não consumir munição
+					'''
+			}
+
+			AncientWarlockHood: {
+				DisplayName: Capuz do Feiticeiro Antigo
+				Tooltip:
+					'''
+					Aumenta seu número máximo de lacaios em 1
+					Aumenta o dano de invocação em 20%
+					'''
+			}
+
+			AncientWarlockLeggings: {
+				DisplayName: Grevas do Feiticeiro Antigo
+				Tooltip:
+					'''
+					Aumenta seu número máximo de lacaios em 1
+					Aumenta o dano de invocação em 20%
+					15% da velocidade de movimento aumentada
+					'''
+			}
+
+			AncientWarlockRobe: {
+				DisplayName: Manto de Feiticeiro Antigo
+				Tooltip:
+					'''
+					Aumenta seu número máximo de lacaios em 1
+					Aumenta o dano de invocação em 20%
+					'''
+			}
+
+			WarlockHood: {
+				DisplayName: Capuz do Feiticeiro
+				Tooltip:
+					'''
+					Aumenta seu número máximo de lacaios em 1
+					Aumenta o dano de invocação em 20%
+					'''
+				SetBonus: Inimigos mortos por lacaios curam o jogador
+			}
+
+			WarlockLeggings: {
+				DisplayName: Grevas do Feiticeiro
+				Tooltip:
+					'''
+					Aumenta seu número máximo de lacaios em 1
+					Aumenta o dano de invocação em 20%
+					15% da velocidade de movimento aumentada
+					'''
+			}
+
+			WarlockRobe: {
+				DisplayName: Manto de Feiticeiro
+				Tooltip:
+					'''
+					Aumenta seu número máximo de lacaios em 1
+					Aumenta o dano de invocação em 20%
+					'''
+			}
+
+			AlbinoAntlionBanner: {
+				DisplayName: Bandeira da Formiga-leão albina
+				Tooltip: "{$CommonItemTooltip.BannerBonus}Formiga-leão albina"
+			}
+
+			AlbinoChargerBanner: {
+				DisplayName: Bandeira da Formiga-leão albina Corredora
+				Tooltip: "{$CommonItemTooltip.BannerBonus}Formiga-leão albina Corredora"
+			}
+
+			ArchDemonBanner: {
+				DisplayName: Bandeira do Arqui-demônio
+				Tooltip: "{$CommonItemTooltip.BannerBonus}Arqui-demônio"
+			}
+
+			ArchWyvernBanner: {
+				DisplayName: Bandeira do Arqui-serpe
+				Tooltip: "{$CommonItemTooltip.BannerBonus}Arqui-serpe"
+			}
+
+			DisasterBunnyBanner: {
+				DisplayName: Bandeira do Coelhinho sinistro
+				Tooltip: "{$CommonItemTooltip.BannerBonus}Coelhinho sinistro"
+			}
+
+			DragonHornetBanner: {
+				DisplayName: Bandeira da Vespa dragão
+				Tooltip: "{$CommonItemTooltip.BannerBonus}Vespa Dragão"
+			}
+
+			DragonSkullBanner: {
+				DisplayName: Bandeira da Caveira de dragão
+				Tooltip: "{$CommonItemTooltip.BannerBonus}Caveira de dragão"
+			}
+
+			DragonSnatcherBanner: {
+				DisplayName: Bandeira do Agarra-dragões
+				Tooltip: "{$CommonItemTooltip.BannerBonus}Agarra-dragões"
+			}
+
+			FleshAxeBanner: {
+				DisplayName: Bandeira do Machado de Carne
+				Tooltip: "{$CommonItemTooltip.BannerBonus}Machado de Carne"
+			}
+
+			FleshMummyBanner: {
+				DisplayName: Bandeira da Múmia de Carne
+				Tooltip: "{$CommonItemTooltip.BannerBonus}Múmia de Carne"
+			}
+
+			FleshSlimeBanner: {
+				DisplayName: Bandeira da Geleia de Carne
+				Tooltip: "{$CommonItemTooltip.BannerBonus}Geleia de Carne"
+			}
+
+			MythicalWyvernBanner: {
+				DisplayName: Bandeira de Serpe Mítica
+				Tooltip: "{$CommonItemTooltip.BannerBonus}Serpe Mítica"
+			}
+
+			MythicalWyvern: {
+				DisplayName: Pipa de Serpe Mítica
+				Tooltip: ""
+			}
+
+			OrcaBanner: {
+				DisplayName: Bandeira da Orca
+				Tooltip: "{$CommonItemTooltip.BannerBonus}Orca"
+			}
+
+			ShadowHammerBanner: {
+				DisplayName: Bandeira de Martelo Sombrio
+				Tooltip: "{$CommonItemTooltip.BannerBonus}Martelo Sombrio"
+			}
+
+			ShadowMummyBanner: {
+				DisplayName: Bandeira da Múmia das Sombras
+				Tooltip: "{$CommonItemTooltip.BannerBonus}Múmia das Sombras"
+			}
+
+			ShadowSlimeBanner: {
+				DisplayName: Bandeira da Geleia das Sombras
+				Tooltip: "{$CommonItemTooltip.BannerBonus}Geleia das Sombras"
+			}
+
+			SpectralElementalBanner: {
+				DisplayName: Bandeira do Elemental Espectral
+				Tooltip: "{$CommonItemTooltip.BannerBonus}Elemental Espectral"
+			}
+
+			SpectralGastropodBanner: {
+				DisplayName: Bandeira do Gastrópode Espectral
+				Tooltip: "{$CommonItemTooltip.BannerBonus}Gastrópode Espectral"
+			}
+
+			SpectralMummyBanner: {
+				DisplayName: Bandeira da Múmia Espectral
+				Tooltip: "{$CommonItemTooltip.BannerBonus}Múmia Espectral"
+			}
+
+			VampireMinerBanner: {
+				DisplayName: Bandeira do Minerador Vampiro
+				Tooltip: "{$CommonItemTooltip.BannerBonus}Minerador Vampiro"
+			}
+
+			LepusBag: {
+				DisplayName: Bolsa de Tesouro (Lepus)
+				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
+			}
+
+			LepusMask: {
+				DisplayName: Máscara de Lepus
+				Tooltip: ""
+			}
+
+			LepusMusicBox: {
+				DisplayName: Caixinha de Música (Lepus)
+				Tooltip: ""
+			}
+
+			LepusRelic: {
+				DisplayName: Relíquia de Lepus
+				Tooltip: ""
+			}
+
+			LepusTrophy: {
+				DisplayName: Troféu de Lépus
+				Tooltip: ""
+			}
+
+			OstarasGift: {
+				DisplayName: Presente de Ostara
+				Tooltip:
+					'''
+					Os inimigos têm chance de deixar ovos de chocolate ao morrer
+					Ovos deixam cair corações vitais e estrelas de mana quando quebrados
+					'''
+			}
+
+			RabbitFoot: {
+				DisplayName: Pé de Coelho
+				Tooltip:
+					'''
+					Invoca um bebê Lepus
+					'A sorte é ilusória, mas o coelho é a pura discórdia'
+					'''
+			}
+
+			CursedFang: {
+				DisplayName: Presa Amaldiçoada
+				Tooltip:
+					'''
+					Invoca um lil' Marco
+					'Você é meu amigo agora'
+					'''
+			}
+
+			EerieOcramMusicBox: {
+				DisplayName: Caixinha de Música (Eerie Ocram)
+				Tooltip: ""
+			}
+
+			OcramBag: {
+				DisplayName: Bolsa de Tesouro (Ocram)
+				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
+			}
+
+			OcramMask: {
+				DisplayName: Máscara de Ocram
+				Tooltip: ""
+			}
+
+			OcramMusicBox: {
+				DisplayName: Caixinha de Música (Ocram)
+				Tooltip: ""
+			}
+
+			OcramRelic: {
+				DisplayName: Relíquia de Ocram
+				Tooltip: ""
+			}
+
+			OcramTrophy: {
+				DisplayName: Troféu de Ocram
+				Tooltip: ""
+			}
+
+			ShadowboundExoskeleton: {
+				DisplayName: Exoesqueleto Sombrio
+				Tooltip:
+					'''
+					{0} dano corpo a corpo
+					Permite ao jogador saltar com foguete
+					Toque duas vezes {1}
+					'''
+			}
+
+			FruitfulPlate: {
+				DisplayName: Prato Frutuoso
+				Tooltip: Invoca uma montaria de um prato frutuoso
+			}
+
+			HornoPlenty: {
+				DisplayName: Chifre da Fartura
+				Tooltip: Está repleto de presentes inesgotáveis de frutas comemorativas
+			}
+
+			TurkorBag: {
+				DisplayName: Bolsa de Tesouro (Peruno, o Ingrato)
+				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
+			}
+
+			TurkorMask: {
+				DisplayName: Máscara de Peruno o Ingrato
+				Tooltip: ""
+			}
+
+			TurkorMusicBox: {
+				DisplayName: Caixinha de Música (Peruno o Ingrato)
+				Tooltip: ""
+			}
+
+			TurkorRelic: {
+				DisplayName: Relíquia de Peruno o Ingrato
+				Tooltip: ""
+			}
+
+			TurkorTrophy: {
+				DisplayName: Troféu de Peruno o Ingrato
+				Tooltip: ""
+			}
+
+			HolyHandgrenade: {
+				DisplayName: Granada de Mão Sagrada
+				Tooltip:
+					'''
+					Uma enorme explosão que destruirá a maioria dos blocos
+					'A arma escolhida pelo Senhor'
+					'''
+			}
+
+			HolyHandgrenade2: {
+				DisplayName: Granada de Mão Sagrada II
+				Tooltip:
+					'''
+					Uma enorme explosão que destruirá a maioria dos blocos
+					'Tá amarrado'
+					'''
+			}
+
+			RedEnvelope: {
+				DisplayName: Envelope Vermelho
+				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
+			}
+
+			SoulOfBlightInABottle: {
+				DisplayName: Alma da Corrosão Engarrafada
+				Tooltip: ""
+			}
+
+			Squib: {
+				DisplayName: Bombinha
+				Tooltip: ""
+			}
+
+			Wiesnbrau: {
+				DisplayName: Wiesnbräu
+				Tooltip: Entorpece o usuário dos danos sofridos, mas também reduz os danos infligidos
+			}
+
+			Wishbone: {
+				DisplayName: Fúrcula
+				Tooltip: Ativa todos os pequenos eventos sazonais por um dia
+			}
+
+			RainbowPiece: {
+				DisplayName: Pedaço de Arco-Íris
+				Tooltip: Usado para criar um Pot O' Gold
+			}
+
+			SoulofBlight: {
+				DisplayName: Alma da Corrosão
+				Tooltip: "'A essência das criaturas infectadas'"
+			}
+
+			WhiteThread: {
+				DisplayName: Fio Branco
+				Tooltip: ""
+			}
+
+			GoldenCarrot: {
+				DisplayName: Cenoura Dourada
+				Tooltip:
+					'''
+					Melhorias médias em todas as estatísticas
+					Aumenta o tempo de todos os buffs em 15 segundos
+					'CENOURA DOURADA?! O QUE?!'
+					'''
+			}
+
+			Beeswax: {
+				DisplayName: Beeswax
+				Tooltip: Invoca um Tífia de estimação
+			}
+
+			Brain: {
+				DisplayName: Cérebro
+				Tooltip: Invoca um zumbi de estimação
+			}
+
+			BrokenHeart: {
+				DisplayName: Coração Partido
+				Tooltip: Invoca um cupido de estimação para fornecer luz
+			}
+
+			Cabbage: {
+				DisplayName: Repolho
+				Tooltip: Invoca um Porquinho-da-Índia
+			}
+
+			GoldenLantern: {
+				DisplayName: Lanterna Dourada
+				Tooltip: invoca uma serpezinha mítica para fornecer luz
+			}
+
+			GoldenSeaweed: {
+				DisplayName: Alga Dourada
+				Tooltip: Invoca uma Tartaruga Dourada de estimação
+			}
+
+			HolidayBauble: {
+				DisplayName: Bugiganga de Férias
+				Tooltip: Invoca uma Elfa de estimação
+			}
+
+			MysteriousPackage: {
+				DisplayName: Pacote Misterioso
+				Tooltip: Invoca um drone de estimação
+			}
+
+			PetriDish: {
+				DisplayName: Petri Dish
+				Tooltip: Invoca uma Geleia de estimação
+			}
+
+			PotOfGold: {
+				DisplayName: Pot O' Gold
+				Tooltip: Invoca um Leprechaun O'Fyffe de estimação
+			}
+
+			ShinyBlackSlab: {
+				DisplayName: Bloco Preto Brilhante
+				Tooltip: Invoca um Android de estimação
+			}
+
+			TurkeyFeather: {
+				DisplayName: Pena de Peru
+				Tooltip: Invoca um Peru de estimação
+			}
+
+			VialOfBlood: {
+				DisplayName: Frasco De Sangue
+				Tooltip: Invoca um Morcego de estimação
+			}
+
+			WolfFang: {
+				DisplayName: Presa de Lobo
+				Tooltip: Invoca um Lobisomem de estimação
+			}
+
+			CursedStuffing: {
+				DisplayName: Recheio Amaldiçoado
+				Tooltip: Invoca Peruno o Ingrato
+			}
+
+			SuspiciousLookingEgg: {
+				DisplayName: Ovo Suspeito
+				Tooltip: Invoca Lepus
+			}
+
+			SuspiciousLookingSkull: {
+				DisplayName: Caveira Suspeita
+				Tooltip: Invoca Ocram
+			}
+
+			AlpineHat: {
+				DisplayName: Chapéu dos alpes
+				Tooltip: ""
+			}
+
+			AncientHerosHat: {
+				DisplayName: Chapéu de Herói Antigo
+				Tooltip: ""
+			}
+
+			AncientHerosPants: {
+				DisplayName: Calça de Herói Antigo
+				Tooltip: ""
+			}
+
+			AncientHerosShirt: {
+				DisplayName: Camiseta de Herói Antigo
+				Tooltip: ""
+			}
+
+			AncientPlumbersHat: {
+				DisplayName: Chapéu de Encanador Antigo
+				Tooltip: ""
+			}
+
+			AncientPlumbersPants: {
+				DisplayName: Calça de Encanador Antigo
+				Tooltip: ""
+			}
+
+			AncientPlumbersShirt: {
+				DisplayName: Camiseta de Encanador Antigo
+				Tooltip: ""
+			}
+
+			ArchDemonMask: {
+				DisplayName: Máscara de Arqui-demônio
+				Tooltip: ""
+			}
+
+			ArchWyvernMask: {
+				DisplayName: Máscara de Arqui-serpe
+				Tooltip: ""
+			}
+
+			DirndlBlouse: {
+				DisplayName: Blusa de Dirndl
+				Tooltip: ""
+			}
+
+			DirndlSkirt: {
+				DisplayName: Saia de Dirndl
+				Tooltip: ""
+			}
+
+			FabulousDress: {
+				DisplayName: Vestido Fabuloso
+				Tooltip: ""
+			}
+
+			FabulousRibbon: {
+				DisplayName: Faixa Fabulosa
+				Tooltip: "'Permite voo e queda lenta'"
+			}
+
+			FabulousSlippers: {
+				DisplayName: Chinelos Fabulosos
+				Tooltip: ""
+			}
+
+			FestiveTopHat: {
+				DisplayName: Cartola Festiva
+				Tooltip: "'Porque nada supera a época festiva!'"
+			}
+
+			GeorgesHat: {
+				DisplayName: Chapéu Smoking de George
+				Tooltip: "'Oh céus!'"
+			}
+
+			GeorgesTuxedoPants: {
+				DisplayName: Calças Smoking de George
+				Tooltip: "'Oh céus!'"
+			}
+
+			GeorgesTuxedoShirt: {
+				DisplayName: Camisa Smoking de George
+				Tooltip: "'Oh céus!'"
+			}
+
+			HornedGodBoots: {
+				DisplayName: Botas de Horned God
+				Tooltip: "'Remanescente de uma era de maravilhas'"
+			}
+
+			HornedGodMask: {
+				DisplayName: Máscara de Horned God
+				Tooltip: "'Remanescente de uma era de maravilhas'"
+			}
+
+			HornedGodRobe: {
+				DisplayName: Manto de Horned God
+				Tooltip: "'Remanescente de uma era de maravilhas'"
+			}
+
+			Lederhosen: {
+				DisplayName: Lederhosen
+				Tooltip: ""
+			}
+
+			Lederweste: {
+				DisplayName: Lederweste
+				Tooltip: ""
+			}
+
+			MonokumaBody: {
+				DisplayName: Corpo de Monokuma
+				Tooltip: ""
+			}
+
+			MonokumaHead: {
+				DisplayName: Cabeça de Monokuma
+				Tooltip: ""
+			}
+
+			MonokumaLegs: {
+				DisplayName: Pernas de Monokuma
+				Tooltip: ""
+			}
+
+			MonomiBody: {
+				DisplayName: Corpo de Monomi
+				Tooltip: ""
+			}
+
+			MonomiHead: {
+				DisplayName: Cabeça de Monomi
+				Tooltip: ""
+			}
+
+			MonomiLegs: {
+				DisplayName: Pernas de Monomi
+				Tooltip: ""
+			}
+
+			MythicalLionMask: {
+				DisplayName: Máscara do Leão Mítico
+				Tooltip: ""
+			}
+
+			MythicalRobe: {
+				DisplayName: Manto Mítico
+				Tooltip: ""
+			}
+
+			ShirenHat: {
+				DisplayName: Chapéu de Shiren
+				Tooltip: ""
+			}
+
+			ShirenPants: {
+				DisplayName: Calça de Shiren
+				Tooltip: ""
+			}
+
+			ShirenShirt: {
+				DisplayName: Camisa de Shiren
+				Tooltip: ""
+			}
+
+			TorosBody: {
+				DisplayName: Corpo de Toro's
+				Tooltip: ""
+			}
+
+			TorosHead: {
+				DisplayName: Cabeça de Toro's
+				Tooltip: ""
+			}
+
+			TorosLegs: {
+				DisplayName: Pernas de Toro's
+				Tooltip: ""
+			}
+
+			HeartArrow: {
+				DisplayName: Flecha de Coração
+				Tooltip:
+					'''
+					Tem a chance de atordoar os inimigos ao acertar
+					'Flechas lendárias do próprio Cupido'
+					'''
+			}
+
+			SpectralArrow: {
+				DisplayName: Flecha Espectral
+				Tooltip: Atravessa blocos e inimigos, porém se dissipa rapidamente no ar
+			}
+
+			VulcanBolt: {
+				DisplayName: Flecha do Vulcão
+				Tooltip: ""
+			}
+
+			FeatherStorm: {
+				DisplayName: Tempestade de Penas
+				Tooltip: Lança penas do céu
+			}
+
+			OcramsEye: {
+				DisplayName: Olho de Ocram
+				Tooltip: ""
+			}
+
+			RomanCandle: {
+				DisplayName: Vela Romana
+				Tooltip: "'Fogos de artifício!'"
+			}
+
+			AlbinoMandible: {
+				DisplayName: Mandíbula Albina
+				Tooltip: "'Surpreendentemente aerodinâmico...'"
+			}
+
+			GreatDrumstick: {
+				DisplayName: Coxa de Peru
+				Tooltip:
+					'''
+					Cobre os inimigos em óleo
+					Coloque fogo em inimigos em óleo para causar dano extra
+					'Gosto de batatas fritas, mas não de peru frito'
+					'''
+			}
+
+			Tizona: {
+				DisplayName: Tizona
+				Tooltip: ""
+			}
+
+			Tonbogiri: {
+				DisplayName: Tonbogiri
+				Tooltip: "'Uma lendária lança japonesa revestida de veneno'"
+			}
+
+			DragonBreath: {
+				DisplayName: Baforada do Dragão
+				Tooltip: ""
+			}
+
+			EggCannon: {
+				DisplayName: Canhão de Ovos
+				Tooltip: "'Para matar um goblin, você precisa quebrar alguns ovos'"
+			}
+
+			Sharanga: {
+				DisplayName: Sharanga
+				Tooltip: Atira Flechas Espectrais
+			}
+
+			SpicySauce: {
+				DisplayName: Molho Picante
+				Tooltip:
+					'''
+					Cobre os inimigos em óleo
+					Coloque fogo em inimigos em óleo para causar dano extra
+					'''
+			}
+
+			VolcanicRepeater: {
+				DisplayName: Repetidora Vulcânica
+				Tooltip: Transforma flechas em Flechas do Vulcão
+			}
+
+			EternityStaff: {
+				DisplayName: Cajado da Eternidade
+				Tooltip: Invoca um olho da eternidade para lutar por você
+			}
+
+			TurkeyStuff: {
+				DisplayName: Cajado da Turquia
+				Tooltip: Invoca um peru estranho que lutará por você
+			}
+
+			GuaPiMao: {
+				DisplayName: Gua Pi Mao
+				Tooltip: ""
+			}
+
+			MythicalDogMask: {
+				DisplayName: Máscara de Cachorro Mítico
+				Tooltip: ""
+			}
+
+			MythicalDogPants: {
+				DisplayName: Calças de Cachorro Mítico
+				Tooltip: ""
+			}
+
+			MythicalDogShirt: {
+				DisplayName: Camisa de Cachorro Mítico
+				Tooltip: ""
+			}
+
+			TangSuitPants: {
+				DisplayName: Calças de Terno Tang
+				Tooltip: ""
+			}
+
+			TangSuitShirt: {
+				DisplayName: Camisa de Terno Tang
+				Tooltip: ""
+			}
+
+			TangYuanHat: {
+				DisplayName: Chapéu Tang Yuan
+				Tooltip: ""
+			}
+
+			TangYuanPants: {
+				DisplayName: Calças Tang Yuan
+				Tooltip: ""
+			}
+
+			TangYuanShirt: {
+				DisplayName: Camisa Tang Yuan
+				Tooltip: ""
+			}
+
+			McMoneypantsInvitation: {
+				DisplayName: Convite Dourado
+				Tooltip: Parece que foi destinado a alguém rico
+			}
+
+			SuspiciousLookingApple: {
+				DisplayName: Maçã Suspeita
+				Tooltip: Invoca um verme de estimação
+			}
+
+			OldWalkingStick: {
+				DisplayName: Bengala Velha
+				Tooltip: Invoca uma senhorinha de estimação
+			}
+
+			WormTombstoneItem: {
+				DisplayName: Lápide Estranha
+				Tooltip: Uma lápide que parece um verme, certo?
+			}
+
+			Topper505: {
+				DisplayName: 505 Decorativo
+				Tooltip: "{0}"
+			}
+
+			StarTopper4: {
+				DisplayName: Estrela Decorativa 4
+				Tooltip: "{0}"
+			}
+
+			PrestigiousTopHat: {
+				DisplayName: Cartola de Prestígio
+				Tooltip: Cheira a uma nota fresca!
+			}
+
+			ExampleKite: {
+				DisplayName: Exemplo de Pipa
+				Tooltip: ""
+			}
+
+			CandiedFruit: {
+				DisplayName: Frutas Cristalizadas
+				Tooltip: ""
+			}
+
+			MythicalWyvernKite: {
+				DisplayName: Pipa da Serpe Mítica
+				Tooltip: ""
+			}
+
+			OktoberLocks: {
+				Tooltip: ""
+				DisplayName: Cachos Oktober
+			}
+
+			PurpleThread: {
+				Tooltip: ""
+				DisplayName: Fio Roxo
+			}
+		}
+
+		NPCs: {
+			AlbinoAntlion: {
+				DisplayName: Formiga-Leão Albina
+				Bestiary: Espécies de formiga-leão com uma mutação rara mostram ainda mais agressividade, talvez para compensar a susceptibilidade da sua carapaça à luz solar.
+			}
+
+			AlbinoCharger: {
+				DisplayName: Formiga-leão Albina Corredora
+				Bestiary: Raramente alguns soldados-formiga-leão sofrem uma mutação, perdendo sua coloração e tornando-se ainda mais ferozes do que seus irmãos do enxame.
+			}
+
+			ArchDemon: {
+				DisplayName: Arqui-Demônio
+				Bestiary: Demônios particularmente poderosos vivem o suficiente para que seu corpo se transforme em uma casca murcha.
+			}
+
+			ArchWyvernHead: {
+				DisplayName: Arqui-Serpe
+				Bestiary: lendas dizem que os serpes são capazes de cuspir fogo. O que eles não dizem é que poucos envelhecem o suficiente para ganhar tal poder.
+			}
+
+			ArchWyvernBody1.DisplayName: Arqui-Serpe
+			ArchWyvernBody2.DisplayName: Arqui-Serpe
+			ArchWyvernBody3.DisplayName: Arqui-Serpe
+			ArchWyvernLegs.DisplayName: Arqui-Serpe
+			ArchWyvernTail.DisplayName: Arqui-Serpe
+			BigEgg.DisplayName: Ovo de Lepus
+			ChocolateEgg.DisplayName: Ovo de Chocolate
+
+			DisasterBunny: {
+				DisplayName: Coelhinho Sinistro
+				Bestiary: a desova desastrosa de um gigante raivoso, essas criaturas de olhos esbugalhados morderão qualquer coisa que encontrarem.
+			}
+
+			Lepus: {
+				DisplayName: Lepus
+				Bestiary: Como se o seu tamanho não fosse problemático o suficiente, este coelho pode reproduzir-se através de ovos coloridos, espalhados pelo mundo na Primavera para os tolos apanharem.
+
+				BossChecklistIntegration: {
+					SpawnInfo: Use um [i:Consolaria/SuspiciousLookingEgg] durante o dia
+					DespawnMessage: Lepus desaparece em alegria!
+				}
+			}
+
+			SmallEgg.DisplayName: Ovo de Lepus
+
+			Ocram: {
+				DisplayName: Ocram
+				Bestiary: Este esquecido demônio corroído, que já foi o poderoso Imperador das Trevas, agora busca vingança contra todos os habitantes da superfície.
+
+				BossChecklistIntegration: {
+					SpawnInfo: Use uma [i:Consolaria/SuspiciousLookingSkull] à noite
+					DespawnMessage: Ocram desaparece nas sombras!
+				}
+			}
+
+			ServantofOcram: {
+				DisplayName: Servo de Ocram
+				Bestiary: Criaturas malignas manifestadas por Ocram, criadas para proteger seu mestre por qualquer meio necessário.
+			}
+
+			TurkorNeck.DisplayName: Pescoço de Peruno
+
+			TurkortheUngrateful: {
+				DisplayName: Peruno o Ingrato
+				Bestiary: Existindo por puro despeito, esta monstruosidade realiza uma vingança anual contra aqueles que se atrevem a dar uma mordida no peru do Dia de Ação de Graças.
+
+				BossChecklistIntegration: {
+					EntryName: Peruno o Ingrato
+					SpawnInfo: Use um [i:Consolaria/CursedStuffing] após invocar um peru de estimação
+					DespawnMessage: Peruno o Ingrato escapou do prato!
+				}
+			}
+
+			TurkortheUngratefulHead.DisplayName: Cabeça de Peruno o Ingrato
+
+			DragonHornet: {
+				DisplayName: Vespa Dragão
+				Bestiary: Parentes das Vespas comuns, esses insetos desenvolveram uma aparência incomum para espantar os inimigos. Se isso não bastar, os ferrões venenosos devem fazer o trabalho.
+			}
+
+			DragonSkull: {
+				DisplayName: Caveira de Dragão
+				Bestiary: Possuídas por feitiços necromânticos, as cabeças de antigos répteis agora atacam os vivos, compartilhando sua maldição com suas vítimas.
+			}
+
+			DragonSnatcher: {
+				DisplayName: Agarra-Dragões
+				Bestiary: Esta espécie de Agarrador aprendeu a reaproveitar dos ferrões das Vespas que foram vítimas dele para caçar alvos maiores.
+			}
+
+			FleshAxe: {
+				DisplayName: Machado de Carne
+				Bestiary: Encantada pela coletividade do Carmim, esta arma se move de forma autônoma e ataca os inimigos por livre e espontânea vontade.
+			}
+
+			FleshMummy: {
+				DisplayName: Múmia de Carne
+				Bestiary: Com as areais metamorfoseadas por forças externas, aqueles que foram mortos no deserto, seja pelo bem, seja pelo mal, agora despertam para assassinar e mutilar.
+			}
+
+			FleshSlime: {
+				DisplayName: Geleia de Carne
+				Bestiary: Imersos no poder do Carmim, essas geleias podem espalhar seus excrementos.
+			}
+
+			GiantAlbinoCharger: {
+				DisplayName: Formiga-leão Albina Corredora Gigante
+				Bestiary: Raramente alguns soldados-formiga-leão sofrem uma mutação, perdendo sua coloração e se tornando ainda mais ferozes do que seus irmãos do enxame.
+			}
+
+			MythicalWyvernHead: {
+				DisplayName: Serpe Mítica
+				Bestiary: Seres lendários, esses serpes reclusos só aparecem em uma determinada época do ano.
+			}
+
+			MythicalWyvernBody.DisplayName: Serpe Mítica
+			MythicalWyvernBody2.DisplayName: Serpe Mítica
+			MythicalWyvernBody3.DisplayName: Serpe Mítica
+			MythicalWyvernLegs.DisplayName: Serpe Mítica
+			MythicalWyvernTail.DisplayName: Serpe Mítica
+
+			Orca: {
+				DisplayName: Orca
+				Bestiary: Como não há baleias nos oceanos, esses predadores pretos e brancos caçarão qualquer outra coisa... inclusive você!
+			}
+
+			ShadowHammer: {
+				DisplayName: Martelo Sombrio
+				Bestiary: Imbuído de magia oriunda do ódio puro da Corrupção, esta arma tenta amassar tudo que respira.
+			}
+
+			ShadowMummy: {
+				DisplayName: Múmia das Sombras
+				Bestiary: Com as areais metamorfoseadas por forças externas, aqueles que foram mortos no deserto, seja pelo bem, seja pelo mal, agora despertam para assassinar e mutilar.
+			}
+
+			ShadowSlime: {
+				DisplayName: Geleia das Sombras
+				Bestiary: Imersos no poder da Corrupção, essas geleias podem espalhar seus excrementos.
+			}
+
+			SpectralElemental: {
+				DisplayName: Elemental Espectral
+				Bestiary: Às vezes, os espíritos de luz liberados transformam os elementais do caos em seres mais poderosos, dando-lhes a capacidade de entrar e sair do reino material à vontade enquanto colocam runas espectrais explosivas.
+			}
+
+			SpectralGastropod: {
+				DisplayName: Gastrópode Espectral
+				Bestiary: Uma vez gastrópodes comuns, essas geleias possuídas pelos espíritos da luz podem cuspir bolas de energia luminosa concentrada.
+			}
+
+			SpectralMummy: {
+				DisplayName: Múmia Espectral
+				Bestiary: A energia da luz transbordante dessas múmias tornou seus corpos podres altamente instáveis.
+			}
+
+			VampireMiner: {
+				DisplayName: Minerador Vampiro
+				Bestiary: As evidências indicam que alguns espeleólogos foram mordidos por morcegos vampiros antes de falecerem... Agora seus restos podres estão em busca de sangue.
+			}
+
+			McMoneypants: {
+				DisplayName: Mc MoneyPants
+				Bestiary: Extravagante e carismático, Mc MoneyPants é um excelente barão disposto a facilitar a vida de qualquer pessoa... Por um preço!
+				AlreadyInvested1: Não há algo melhor do que ouro, mas já estou farto do seu por hoje.
+				AlreadyInvested2: Desculpe, mas meus bolsos já estão cheios.
+				AlreadyInvested3: Você está sortudo demais por hoje
+				AlreadyInvested4: Agora, não seja tão ganancioso, a menos que queira acabar como aquele Grego.
+				PlayerHasNoMoney1: Desculpe, não posso dar crédito! Volte quando estiver um pouco mais – mmmm – rico.
+				PlayerHasNoMoney2: Não estou administrando uma instituição de caridade, sabe...
+				PlayerHasNoMoney3: Mostre-me o dinheiro e depois conversaremos.
+				PlayerHasNoMoney4: Não, você não pode pagar com boleto.
+				FirstTimeInvested1: Ferragamo Ouro!
+				FirstTimeInvested2: Quando sou pago, sua sorte vai pro talo.
+				FirstTimeInvested3: Hoje é seu dia de sorte.
+				FirstTimeInvested4: Um ótimo investimento! Sorte sua!
+				WhenInvested1: Tempo é dinheiro. Então volte amanhã para gastar o seu!
+				WhenInvested2: Acredite em mim, não é um esquema de Pirâmide.
+				WhenInvested3: Multiplicador de dinheiro em andamento...
+				WhenInvested4: Quantas vezes tenho que dizer isso? Sem reembolsos!
+				WhenInvested5: Onde está minha caneta? Não me diga que você pegou depois de assinar o contrato!
+				WhenInvested6: Prazer em fazer negócios! Estarei de volta em um dia para que possamos renovar nosso acordo.
+				WhenInvested7: Pela última vez, pare de me perguntar sobre inflação!
+				WhenInvested8: Bombeie! Não, jogue fora! Ah, é você de novo.
+				Quote1: Pra ser sincero, um centavo pelos meus pensamentos não é muito.
+				Quote2: Se eu ganhasse um centavo por cada monstro que vi ontem à noite, ficaria ainda mais rico e um pouco menos assustado.
+				Quote3: Aquelas malditas geleias continuam tentando engolir minhas moedas!
+				Quote4: Se o dinheiro faz o mundo girar, este lugar então é muito pobre. Vamos mudar isso!
+				Quote5: Sinto-me tão limpo, como uma máquina de fazer dinheiro!
+				Quote6: Você sabe o que eu mais gosto no ouro? O fato de que tenho muito disso!
+				Quote7: Ei, uma coisa que posso prometer é que nunca peço aos meus clientes que me julguem pelos meus vencedores. Peço-lhes que me julguem pelos meus perdedores, porque tenho tão poucos.
+				Quote8: Quando o preço desses blocos de terra raros subir, vou ganhar milhões!
+				Quote9: Meu conselho financeiro? Não atire suas moedas com essa arma horrível.
+				Quote10: Bitcoin? Por que eu morderia uma moeda?
+
+				TownNPCMood: {
+					Content: Estou contente.
+					NoHome: Eu odeio não ter uma casa.
+					FarFromHome: Estou muito longe de casa.
+					LoveSpace: Adoro ter tanto espaço.
+					DislikeCrowded: Não gosto de como estou lotado.
+					HateCrowded: Eu odeio o quão lotado estou.
+					LikeNPC_Princess: Eu gosto da {NPCName}.
+					Princess_LovesNPC: Eu amo a {NPCName}.
+				}
+			}
+		}
+
+		Projectiles: {
+			Stomp.DisplayName: Pisar de Lepus
+			ArchFlames.DisplayName: Chamas Arqui
+			ArchScythe.DisplayName: Foice Arqui
+			FireTrail.DisplayName: Trilha de Fogo
+			OcramLaser1.DisplayName: Laser de Ocram
+			OcramLaser2.DisplayName: Laser de Ocram
+			OcramScythe.DisplayName: Foice Demoníaca Suprema
+			OcramSkull.DisplayName: Caveira Pavorosa
+			SpectralBomb.DisplayName: Bomba Espectral
+			SpectrallBall.DisplayName: Bola de luz Espectral
+			TurkorFeather.DisplayName: Pena de Peruno
+			TurkorKnife.DisplayName: Faca de Peruno
+			AlbinoMandible.DisplayName: Mandíbula Albina
+			DreadSkull.DisplayName: Caveira Pavorosa
+			EasterBunny.DisplayName: Coelhinho da Páscoa
+			EasterEgg.DisplayName: Ovo de Pascoa
+			EternalLaser.DisplayName: Laser Eterno
+			EternalScythe.DisplayName: Gadanha Eterna
+			EyeOfEternity.DisplayName: Olho da Eternidade
+			HeartArrow.DisplayName: Flecha de Coração
+			HolyHandgrenade.DisplayName: Granada de Mão Sagrada
+			HolyHandgrenade2.DisplayName: Granada de Mão Sagrada II
+			ManaDrain.DisplayName: Drenamento de Mana
+			OcramEyeGlow.DisplayName: Brilho do Olho de Ocram
+			OcramEyeLaser.DisplayName: Laser do Olho de Ocram
+			AndroidGuy.DisplayName: Cara Android
+			Bat.DisplayName: Morcego
+			Cupid.DisplayName: Cupido
+			Drone.DisplayName: Drone
+			Elfa.DisplayName: Elfa
+			GoldenTurtle.DisplayName: Tartaruga Dourada
+			GuineaPig.DisplayName: Porquinho da Índia
+			Leprechaun.DisplayName: Leprechaun
+			LilMarco.DisplayName: Lil Marco
+			MythicalWyvernling.DisplayName: Serpezinha Mítica
+			PetTurkey.DisplayName: Peru
+			Slime.DisplayName: Geleia
+			SmallLepus.DisplayName: Bebê Lepus
+			Tiphia.DisplayName: Tiphia
+			Werewolf.DisplayName: Lobisomem
+			Zombie.DisplayName: Zumbi
+			RomanFlame.DisplayName: Chama Romana
+			RomanFlameFinal.DisplayName: Final da Chama Romana
+			RomanFlameMid.DisplayName: Meio da Chama Romana
+			ShadowflameBreath.DisplayName: Bafo da Chama Sombria
+			ShadowflameBurst.DisplayName: Explosão de Chama Sombria
+			SharpFeather.DisplayName: Pena Afiada
+			SpectralArrow.DisplayName: Flecha Espectral
+			SpectralSpirit.DisplayName: Espírito Espectral
+			SpicyExplosion.DisplayName: Explosão Picante
+			SpicySauce.DisplayName: Molho Picante
+			Squib.DisplayName: Bombinha
+			TitanBlast.DisplayName: Explosão do Titã
+			TonbogiriSpear.DisplayName: Tonbogiri
+			TurkeyHead.DisplayName: Peru Estranho
+			VulcanBlast.DisplayName: Explosão Vulcana
+			VulcanBolt.DisplayName: Flecha do Vulcão
+			"Lepus Stomp.DisplayName": Pisar de Lepus
+			.DisplayName: ""
+			TizonaProjectile.DisplayName: Tizona
+			TizonaShoot.DisplayName: Tizona
+			Worm.DisplayName: Verme
+			OldLady.DisplayName: Senhorinha
+			WormTombstone.DisplayName: Lápide Estranha
+			McMoneypantsAttackProjectile.DisplayName: Projétil de ataque de Mc Moneypants
+			Explosion.DisplayName: Explosion
+			ExampleKiteProjectile.DisplayName: Projétil Exemplo de Pipa
+			MythicalWyvernProjectile.DisplayName: Projétil Serpe Mítica
+			MythicalWyvernKiteProjectile.DisplayName: Projétil Pipa de Serpe Mítica
+		}
+
+		Tiles: {
+			EerieOcramMusicBox.MapEntry: Caixinha de Música
+			LepusMusicBox.MapEntry: Caixinha de Música
+			OcramMusicBox.MapEntry: Caixinha de Música
+			SanctumLantern.MapEntry: Lanterna de Carruagem
+			SoulOfBlightInABottleTile.MapEntry: Alma da Corrosão Engarrafada
+			TurkorMusicBox.MapEntry: Caixinha de Música
+			WormTombstoneTile.MapEntry: Lápide
+		}
+
+		Conditions: {
+			SellingDuringThanksgiving: Mods.Consolaria.Conditions.SellingDuringThanksgiving
+			SellingDuringOktoberfest: Mods.Consolaria.Conditions.SellingDuringOktoberfest
+			SellingDuringValentineDay: Mods.Consolaria.Conditions.SellingDuringValentineDay
+			SellingIfMale: Mods.Consolaria.Conditions.SellingIfMale
+			SellingWhenWoman: Mods.Consolaria.Conditions.SellingWhenWoman
+		}
+
+		Configs: {
+			ConsolariaConfig: {
+				DisplayName: Configuração
+
+				Headers: {
+					SeasonalEvents: Eventos Sazonais
+					Miscellaneous: Outros
+				}
+
+				easterEnabled: {
+					Label: Restringir conteúdo sazonal por data do sistema (Páscoa)
+					Tooltip:
+						'''
+						Se ativado, os itens e inimigos relevantes só aparecerão durante a Páscoa
+						1 de abril - 30 de abril
+						'''
+				}
+
+				thanksgivingEnabled: {
+					Label: Restringir conteúdo sazonal por data do sistema (Ação de Graças)
+					Tooltip:
+						'''
+						Se ativado, os itens e inimigos relevantes só aparecerão durante o Dia de Ação de Graças
+						1 de novembro - 30 de novembro
+						'''
+				}
+
+				smallEventsEnabled: {
+					Label: Restringir conteúdo sazonal por data do sistema (outros eventos)
+					Tooltip: Se ativado, os itens e inimigos relevantes só aparecerão durante os feriados correspondentes ou quando a Fúrcula for usada
+				}
+
+				vanillaBossMusicEnabled: {
+					Label: Música Vanilla para os chefes de Consolaria
+					Tooltip: Se ativado, a trilha sonora personalizada será substituída por temas originalmente usados ​​nas versões de console
+				}
+
+				tizonaZenithIntegrationEnabled: {
+					Label: Integração da Tizona na Zenith
+					Tooltip: Se ativado, a Tizona será adicionada à receita de fabricação da Zenith e aos seus projéteis.
+				}
+
+				oktoberLocksEnabled: {
+					Label: Item Decorativo de Cachos Oktober
+					Tooltip: Se ativado, os Cachos da Oktober estarão disponíveis para compra com o Alfaiate durante a Oktoberfest
+				}
+
+				mythicalWyvernKiteVanillaDropruleEnabled: {
+					Label: Regra de Drop Vanilla para a Pipa de Serpezinha Mítica
+					Tooltip: Se ativado, a Pipa de Serpe Mítica terá 4% de chance de ser obtido da Serpe Mítica durante os Dias Ventosos, em vez de ser obtido no Envelope Vermelho
+				}
+
+				heartbeatariaIntegrationEnabled: {
+					Label: Integração do Mod Heartbeataria
+					Tooltip: Se ativado, itens exclusivos do Mod Heartbeataria podem ser obtidos no Red Envelope
+				}
+
+				originalAncientHeroSetRecipeEnabled: {
+					Label: Receita original do conjunto do Herói Antigo
+					Tooltip: Se ativado, o conjunto do Herói Antigo pode ser criado usando Seda e Fio Roxo em um Tear em vez do Shimmer
+				}
+
+				genderRestrictShopEnabled: {
+					Label: Restringir o conjunto de George e o conjunto Fabuloso por gênero do jogador
+					Tooltip:
+						'''
+						Se ativado, os conjuntos relevantes só aparecerão na loja do Alfaiate durante uma Lua de Sangue se o jogador tiver um determinado gênero
+						Masculino - conjunto de George
+						Feminino - Conjunto Fabuloso
+						'''
+				}
+			}
+		}
+
+		Achievements: {
+			KillLepus: {
+				Name: Um Salto de Cada Vez
+				Description: Derrote Lepus, o maior encrenqueiro da Páscoa
+			}
+
+			KillTurkor: {
+				Name: Fome por Matança... e Peru!
+				Description: Derrote Peruno o Ingrato, a monstruosidade em chamas do Dia de Ação de Graças.
+			}
+
+			KillOcram: {
+				Name: Bíblia da Besta
+				Description: Derrote Ocram, o demônio amaldiçoado que assombra o céu sem estrelas.
+			}
+		}
+
+		Emotes: {
+			McMoneyPantsEmote.Command: mcmoneypants
+			TurkorEmote.Command: peruno
+			OcramEmote.Command: ocram
+			LepusEmote.Command: lepus
+		}
+	}
+}

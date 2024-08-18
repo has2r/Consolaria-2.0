@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace Consolaria.Common {
     internal class ValentinesDayMenu : ModMenu {
-        public override string DisplayName => "Terraria (Valentine's Day)";
+        public override string DisplayName => "Journey's End (Valentine's Day)";
 
         public override Asset<Texture2D> Logo => ModContent.Request<Texture2D>("Consolaria/Assets/Textures/ValentinesDayLogo");
 

@@ -124,14 +124,8 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram
         }
 
         public override void ApplyDifficultyAndPlayerScaling (int numPlayers, float balance, float bossAdjustment) {
-            NPC.lifeMax = (int)(NPC.lifeMax * 0.5f * 1.3f);
-            NPC.damage = (int) (NPC.damage * 0.7f);
-            if (numPlayers <= 1) return;
-            float healthBoost = 0.35f;
-            for (int k = 1; k < numPlayers; k++) {
-                NPC.lifeMax += (int)(NPC.lifeMax * healthBoost);
-                healthBoost += (1 - healthBoost) / 3;
-            }
+            NPC.lifeMax = (int)((double)NPC.lifeMax * 0.5f * (double)balance * (double)bossAdjustment);
+            NPC.damage = (int)((double)NPC.damage * 0.7f);
         }
 
         public override void SetBestiary (BestiaryDatabase database, BestiaryEntry bestiaryEntry) {

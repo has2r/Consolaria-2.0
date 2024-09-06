@@ -80,15 +80,9 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor
 			if (!Main.dedServ) Music = ModContent.GetInstance<ConsolariaConfig>().vanillaBossMusicEnabled ? MusicID.Boss1 : MusicLoader.GetMusicSlot(Mod, "Assets/Music/Turkor");
 		}
 
-		public override void ApplyDifficultyAndPlayerScaling (int numPlayers, float balance, float bossAdjustment)/* tModPorter Note: bossLifeScale -> balance (bossAdjustment is different, see the docs for details) */ {
-			NPC.lifeMax = (int) (NPC.lifeMax * 0.5f * 1.4f);
-			NPC.damage = (int) (NPC.damage * 0.65f);
-			if (numPlayers <= 1) return;
-			float healthBoost = 0.35f;
-			for (int k = 1; k < numPlayers; k++) {
-				NPC.lifeMax += (int) (NPC.lifeMax * healthBoost);
-				healthBoost += (1 - healthBoost) / 3;
-			}
+		public override void ApplyDifficultyAndPlayerScaling (int numPlayers, float balance, float bossAdjustment) {
+            NPC.lifeMax = (int)((double)NPC.lifeMax * 0.5f * (double)balance * (double)bossAdjustment);
+            NPC.damage = (int)((double)NPC.damage * 0.65f);
 		}
 
 		public override void SetBestiary (BestiaryDatabase database, BestiaryEntry bestiaryEntry) {

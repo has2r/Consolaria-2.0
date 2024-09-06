@@ -1,3 +1,7 @@
 Additions:
-- Added Spanish localization
-
+- Replaced Mythical Lion Vanity set sprites with their updated Chinese Terraria variants
+- Made tile map entries use vanilla texts for consistency
+- Fixed Mc MoneyPants attack projectiles invisibility bug
+- Fixed issue #27
+- (Potentialy) Fixed issue #28
+- (Potentialy) Fixed issue #29

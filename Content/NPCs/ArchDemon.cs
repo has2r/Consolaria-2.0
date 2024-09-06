@@ -141,7 +141,7 @@ namespace Consolaria.Content.NPCs {
 		}
 
 		public override float SpawnChance (NPCSpawnInfo spawnInfo) {
-			if (!NPC.downedBoss3 && Main.zenithWorld || Main.remixWorld)
+			if (!NPC.downedBoss3 && Main.zenithWorld || !NPC.downedBoss3 && Main.remixWorld)
 				return 0f;
 			return SpawnCondition.Underworld.Chance * 0.002f;
 		}

@@ -10,7 +10,7 @@ namespace Consolaria.Common {
         public static Condition valentineDayCondition = new Condition("Mods.Consolaria.Conditions.SellingDuringValentineDay", () => (SeasonalEvents.configEnabled && SeasonalEvents.IsValentineDay()) || (!SeasonalEvents.configEnabled && Main.LocalPlayer.HasBuff(BuffID.Lovestruck)));
         public static Condition isMaleCondition = new Condition("Mods.Consolaria.Conditions.SellingIfMale", () => Main.LocalPlayer.Male & Main.bloodMoon);
         public static Condition womanMoment = new Condition("Mods.Consolaria.Conditions.SellingWhenWoman", () => !Main.LocalPlayer.Male & Main.bloodMoon);
-        public static Condition wishboneCooldown = new Condition("Mods.Consolaria.Conditions.SellingWhenWoman", () => !WishbonePlayer.purchasedWishbone);
+        public static Condition wishboneCooldown = new Condition("Mods.Consolaria.Conditions.SellingDuringWishboneCooldown", () => !WishbonePlayer.purchasedWishbone);
 
         public override void ModifyShop (NPCShop shop) {
             if (shop.NpcType == NPCID.Merchant) {

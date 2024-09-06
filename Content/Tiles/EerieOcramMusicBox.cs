@@ -21,8 +21,7 @@ namespace Consolaria.Content.Tiles {
 
 			AdjTiles = new int [] { TileID.MusicBoxes };
 
-			LocalizedText name = CreateMapEntryName();
-			AddMapEntry(new Color(200, 200, 200), name);
+			AddMapEntry(new Color(191, 142, 111), Language.GetText("ItemName.MusicBox"));
 		}
 
 		public override void DrawEffects(int i, int j, SpriteBatch spriteBatch, ref TileDrawInfo drawData) 

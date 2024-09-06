@@ -86,7 +86,7 @@ Mods: {
 
 			LilMarco: {
 				DisplayName: Lil' Marco
-				Description: Evil itself is following you
+				Description: The evil itself is following you
 			}
 
 			MythicalWyvernling: {
@@ -153,7 +153,7 @@ Mods: {
 		Items: {
 			SparklyWings: {
 				DisplayName: Sparkly Wings
-				Tooltip: Allows flight and slow fall
+				Tooltip: "{$CommonItemTooltip.FlightAndSlowfall}"
 			}
 
 			ValentineRing: {
@@ -707,7 +707,7 @@ Mods: {
 				DisplayName: Golden Carrot
 				Tooltip:
 					'''
-					Medium improvements to all stats
+					{$BuffDescription.WellFed2}
 					Increases all buffs time by 15 seconds
 					'GOLDEN CARROT?! WHAT?!'
 					'''
@@ -1081,51 +1081,6 @@ Mods: {
 				Tooltip: Summons a weird turkey to fight for you
 			}
 
-			GuaPiMao: {
-				DisplayName: Gua Pi Mao
-				Tooltip: ""
-			}
-
-			MythicalDogMask: {
-				DisplayName: Mythical Dog Mask
-				Tooltip: ""
-			}
-
-			MythicalDogPants: {
-				DisplayName: Mythical Dog Pants
-				Tooltip: ""
-			}
-
-			MythicalDogShirt: {
-				DisplayName: Mythical Dog Shirt
-				Tooltip: ""
-			}
-
-			TangSuitPants: {
-				DisplayName: Tang Suit Pants
-				Tooltip: ""
-			}
-
-			TangSuitShirt: {
-				DisplayName: Tang Suit Shirt
-				Tooltip: ""
-			}
-
-			TangYuanHat: {
-				DisplayName: Tang Yuan Hat
-				Tooltip: ""
-			}
-
-			TangYuanPants: {
-				DisplayName: Tang Yuan Pants
-				Tooltip: ""
-			}
-
-			TangYuanShirt: {
-				DisplayName: Tang Yuan Shirt
-				Tooltip: ""
-			}
-
 			McMoneypantsInvitation: {
 				DisplayName: Gilded Invitation
 				Tooltip: Looks like it was intended for someone wealthy
@@ -1158,7 +1113,7 @@ Mods: {
 
 			PrestigiousTopHat: {
 				DisplayName: Prestigious Top Hat
-				Tooltip: Smells like a fresh bill!
+				Tooltip: Smells like a freshly-printed bill!
 			}
 
 			ExampleKite: {
@@ -1227,7 +1182,7 @@ Mods: {
 
 				BossChecklistIntegration: {
 					SpawnInfo: Use a [i:Consolaria/SuspiciousLookingEgg] at day time
-					DespawnMessage: Ocram disappears back into shadows!
+					DespawnMessage: Lepus hops back to where it came from!
 				}
 			}
 
@@ -1382,17 +1337,6 @@ Mods: {
 				Quote8: When those rare dirt blocks go up in price, I'm going to make millions!
 				Quote9: My financial advice? Don't shoot your coins out of that awful gun.
 				Quote10: Bitcoin? Why would I ever beat a coin?
-
-				TownNPCMood: {
-					Content: I am content.
-					NoHome: I hate not having a home.
-					FarFromHome: I am too far from home.
-					LoveSpace: I love having so much space.
-					DislikeCrowded: I dislike how crowded I am.
-					HateCrowded: I hate how crowded I am.
-					LikeNPC_Princess: I like {NPCName}.
-					Princess_LovesNPC: I like {NPCName}.
-				}
 			}
 		}
 
@@ -1461,21 +1405,15 @@ Mods: {
 			Worm.DisplayName: Worm
 			OldLady.DisplayName: Old Lady
 			WormTombstone.DisplayName: Strange Looking Tombstone
-			McMoneypantsAttackProjectile.DisplayName: Mc Moneypants Attack Projectile
+			McMoneypantsAttackProjectile.DisplayName: Gold Coin
 			Explosion.DisplayName: Explosion
-			ExampleKiteProjectile.DisplayName: Example Kite Projectile
-			MythicalWyvernProjectile.DisplayName: Mythical Wyvern Projectile
-			MythicalWyvernKiteProjectile.DisplayName: Mythical Wyvern Kite Projectile
+			MythicalWyvernProjectile.DisplayName: Mythical Wyvern
+			MythicalWyvernKiteProjectile.DisplayName: Mythical Wyvern Kite
 		}
 
 		Tiles: {
-			EerieOcramMusicBox.MapEntry: Music Box
-			LepusMusicBox.MapEntry: Music Box
-			OcramMusicBox.MapEntry: Music Box
 			SanctumLantern.MapEntry: Carriage Lantern
 			SoulOfBlightInABottleTile.MapEntry: Soul of Blight in a Bottle
-			TurkorMusicBox.MapEntry: Music Box
-			WormTombstoneTile.MapEntry: Tombstone
 		}
 
 		Conditions: {
@@ -1484,6 +1422,7 @@ Mods: {
 			SellingDuringValentineDay: Mods.Consolaria.Conditions.SellingDuringValentineDay
 			SellingIfMale: Mods.Consolaria.Conditions.SellingIfMale
 			SellingWhenWoman: Mods.Consolaria.Conditions.SellingWhenWoman
+			SellingDuringWishboneCooldown: Mods.Consolaria.Conditions.SellingDuringWishboneCooldown
 		}
 
 		Configs: {

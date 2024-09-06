@@ -613,9 +613,9 @@ public class McMoneypantsAttackProjectile : ModProjectile {
 
     public override void PostAI() {
         if (++Projectile.frameCounter > 4) {
-            Projectile.frameCounter = 0;
+            Projectile.frameCounter = 1;
             if (++Projectile.frame > Main.projFrames[Type]) {
-                Projectile.frame = 0;
+                Projectile.frame = 1;
             }
         }
     }

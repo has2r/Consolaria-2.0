@@ -116,7 +116,7 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram
             NPC.noGravity = true;
             NPC.noTileCollide = true;
 
-            NPC.timeLeft = NPC.activeTime * 30;
+            NPC.SpawnWithHigherTime(30);
 
             NPC.HitSound = SoundID.NPCHit18;
             NPC.DeathSound = SoundID.NPCDeath18;
@@ -265,18 +265,27 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram
                     expr_146D6_cp_0.velocity.Y = expr_146D6_cp_0.velocity.Y * 0.1f;
                 }
             }
-            if (Main.netMode != NetmodeID.MultiplayerClient && !dead2 && NPC.timeLeft < 10) {
-                for (int num845 = 0; num845 < 200; num845++) {
-                    if (num845 != NPC.whoAmI && Main.npc [num845].active && Main.npc [num845].timeLeft - 1 > NPC.timeLeft) {
-                        NPC.timeLeft = Main.npc [num845].timeLeft - 1;
+            //if (Main.netMode != NetmodeID.MultiplayerClient && !dead2 && NPC.timeLeft < 10) {
+            //    for (int num845 = 0; num845 < 200; num845++) {
+            //        if (num845 != NPC.whoAmI && Main.npc [num845].active && Main.npc [num845].timeLeft - 1 > NPC.timeLeft) {
+            //            NPC.timeLeft = Main.npc [num845].timeLeft - 1;
+            //        }
+            //    }
+            //}
+            if (Main.IsItDay() || dead2) {
+                void despawn() {
+                    NPC.velocity.Y -= 0.08f;
+                    NPC.EncourageDespawn(10);
+                }
+                if (dead2) {
+                    NPC.TargetClosest();
+                    if (NPC.target < 0 || NPC.target == 255 || Main.player[NPC.target].dead || !Main.player[NPC.target].active) {
+                        despawn();
                     }
                 }
-            }
-            if (dead2 || Main.dayTime) {
-                NPC.velocity.Y = NPC.velocity.Y - 0.04f;
-                NPC.EncourageDespawn(10);
-
-                return;
+                else {
+                    despawn();
+                }
             }
             else {
                 if (NPC.ai [0] == 0f) {

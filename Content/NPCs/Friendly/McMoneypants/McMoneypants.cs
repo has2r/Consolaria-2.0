@@ -75,7 +75,7 @@ public class McMoneypants : ModNPC {
     public override void Load() {
 			ShimmerHeadIndex = Mod.AddNPCHeadTexture(Type, Texture + "_Shimmer_Head");
 		}
-        
+
     #endregion
 
     #region Defaults
@@ -223,7 +223,7 @@ public class McMoneypants : ModNPC {
         => false;
 
     public override bool CanGoToStatue(bool toKingStatue) 
-        => !toKingStatue;
+        => toKingStatue;
 
     public override void TownNPCAttackStrength(ref int damage, ref float knockback) {
         damage = 20;

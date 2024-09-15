@@ -7,6 +7,7 @@ using Terraria.GameContent.Bestiary;
 using Consolaria.Content.Projectiles.Enemies;
 using Terraria.ModLoader.Utilities;
 using Terraria.Localization;
+using Terraria.Audio;
 
 namespace Consolaria.Content.NPCs {
     public class SpectralElemental : ModNPC {
@@ -75,10 +76,11 @@ namespace Consolaria.Content.NPCs {
             Player player = Main.player [NPC.target];
             Vector2 teleportTo = new(playerPosition.X + 140 * player.direction, playerPosition.Y);
             Vector2 teleportFrom = new(NPC.position.X, NPC.position.Y);
-            Vector2 NormalizedVec = new(0, -2f);
+            Vector2 NormalizedVec = new(0, -0.1f);
             NormalizedVec.Normalize();
             if (!Collision.SolidCollision(teleportTo, 16, 16)) {
-                Projectile.NewProjectile(NPC.GetSource_FromAI(), teleportFrom, NormalizedVec * 4f, ModContent.ProjectileType<SpectralBomb>(), 30, 4, player.whoAmI);
+                SoundEngine.PlaySound(SoundID.Item4, teleportFrom);
+                Projectile.NewProjectile(NPC.GetSource_FromAI(), teleportFrom, NormalizedVec, ModContent.ProjectileType<SpectralBomb>(), 30, 4, player.whoAmI);
                 NPC.position = teleportTo;
             }
         }
@@ -98,7 +100,7 @@ namespace Consolaria.Content.NPCs {
             Texture2D texture = (Texture2D) ModContent.Request<Texture2D>(Texture);
             SpriteEffects effects = (NPC.spriteDirection == -1) ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
             Vector2 origin = new Vector2(texture.Width / 2, texture.Height / Main.npcFrameCount [NPC.type] / 2);
-            spriteBatch.Draw(texture, new Vector2(NPC.position.X - Main.screenPosition.X + NPC.width / 2 - texture.Width * NPC.scale / 2f + origin.X * NPC.scale, NPC.position.Y - Main.screenPosition.Y + NPC.height - texture.Height * NPC.scale / Main.npcFrameCount [NPC.type] + 4f + origin.Y * NPC.scale), new Rectangle?(NPC.frame), Color.White, NPC.rotation, origin, NPC.scale, effects, 0f);
+            spriteBatch.Draw(texture, new Vector2(NPC.position.X - Main.screenPosition.X + NPC.width / 2 - texture.Width * NPC.scale / 2f + origin.X * NPC.scale, NPC.position.Y - Main.screenPosition.Y + NPC.height - texture.Height * NPC.scale / Main.npcFrameCount [NPC.type] + 4f + origin.Y * NPC.scale), new Rectangle?(NPC.frame), Color.White * 0.7f, NPC.rotation, origin, NPC.scale, effects, 0f);
             for (int i = 1; i < NPC.oldPos.Length; i++) {
                 Color color = Lighting.GetColor((int) (NPC.position.X + NPC.width * 0.5) / 16, (int) ((NPC.position.Y + NPC.height * 0.5) / 16.0));
                 Color color2 = color;
@@ -107,7 +109,7 @@ namespace Consolaria.Content.NPCs {
                 color2 *= (NPC.oldPos.Length - i) / 15f;
                 spriteBatch.Draw(texture, new Vector2(NPC.position.X - Main.screenPosition.X + NPC.width / 2 - texture.Width * NPC.scale / 2f + origin.X * NPC.scale, NPC.position.Y - Main.screenPosition.Y + NPC.height - texture.Height * NPC.scale / Main.npcFrameCount [NPC.type] + 4f + origin.Y * NPC.scale) - NPC.velocity * i * 0.5f, new Rectangle?(NPC.frame), color2, NPC.rotation, origin, NPC.scale, effects, 0f);
             }
-            return true;
+            return false;
         }
 
         public override void ModifyNPCLoot (NPCLoot npcLoot) {
@@ -117,7 +119,7 @@ namespace Consolaria.Content.NPCs {
         }
 
         public override float SpawnChance (NPCSpawnInfo spawnInfo)
-            => (spawnInfo.Player.ZoneHallow && spawnInfo.SpawnTileY > Main.rockLayer) ?
-            SpawnCondition.OverworldHallow.Chance * 0.005f : 0f;
+            => (spawnInfo.Player.ZoneHallow && spawnInfo.SpawnTileY > Main.rockLayer && !spawnInfo.Player.ZoneUnderworldHeight && (spawnInfo.SpawnTileType == TileID.Pearlsand || spawnInfo.SpawnTileType == TileID.Pearlstone || spawnInfo.SpawnTileType == TileID.HallowedGrass || spawnInfo.SpawnTileType == TileID.HallowedIce)) ?
+            SpawnCondition.Cavern.Chance * 0.025f : 0f;
     }
 }

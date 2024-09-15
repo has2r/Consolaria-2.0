@@ -11,8 +11,8 @@ namespace Consolaria.Content.Items.Vanity {
 		public override void SetStaticDefaults () {
 			Item.ResearchUnlockCount = 1;
 			if (!ModContent.GetInstance<ConsolariaConfig>().originalAncientHeroSetRecipeEnabled) {
-				ItemID.Sets.ShimmerTransformToItem [Type] = ItemID.HerosPants;
-				ItemID.Sets.ShimmerTransformToItem [ItemID.HerosPants] = Type;
+				ItemID.Sets.ShimmerTransformToItem [Type] = ItemID.HerosShirt;
+				ItemID.Sets.ShimmerTransformToItem [ItemID.HerosShirt] = Type;
 			}
 		}
 

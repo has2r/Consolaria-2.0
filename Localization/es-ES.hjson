@@ -1423,6 +1423,8 @@ Mods: {
 			SellingIfMale: Mods.Consolaria.Conditions.SellingIfMale
 			SellingWhenWoman: Mods.Consolaria.Conditions.SellingWhenWoman
 			// SellingDuringWishboneCooldown: Mods.Consolaria.Conditions.SellingDuringWishboneCooldown
+			// TurkorDowned: Mods.Consolaria.Conditions.TurkorDowned
+			// OcramDowned: Mods.Consolaria.Conditions.OcramDowned
 		}
 
 		Configs: {

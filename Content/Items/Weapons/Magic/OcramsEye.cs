@@ -12,7 +12,7 @@ namespace Consolaria.Content.Items.Weapons.Magic {
             Item.Size = new Vector2(width, height);
 
             Item.DamageType = DamageClass.Magic;
-            Item.damage = 80;
+            Item.damage = 62;
             Item.knockBack = 4;
 
             Item.useStyle = ItemUseStyleID.Shoot;
@@ -40,7 +40,7 @@ namespace Consolaria.Content.Items.Weapons.Magic {
 
         public override bool Shoot (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
             float projectilesCount = Main.rand.Next(3, 5);
-            float rotation = MathHelper.ToRadians(5);
+            float rotation = MathHelper.ToRadians(7);
             for (int i = 0; i < projectilesCount; i++) {
                 Vector2 perturbedSpeed = velocity.RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (projectilesCount - 1))) * 1.25f;
                 Projectile.NewProjectile(source, position + player.velocity, perturbedSpeed, ModContent.ProjectileType<OcramEyeLaser>(), damage, knockback, player.whoAmI);

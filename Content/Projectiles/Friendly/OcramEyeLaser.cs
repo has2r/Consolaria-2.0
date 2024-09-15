@@ -32,6 +32,9 @@ namespace Consolaria.Content.Projectiles.Friendly {
 
             Projectile.light = 0.1f;
             Projectile.extraUpdates = 3;
+
+            Projectile.usesLocalNPCImmunity = true;
+            Projectile.localNPCHitCooldown = -1;
         }
 
         public override void AI () {

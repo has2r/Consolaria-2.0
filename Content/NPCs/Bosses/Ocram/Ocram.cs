@@ -22,6 +22,8 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using System.IO;
+using Terraria.DataStructures;
 
 namespace Consolaria.Content.NPCs.Bosses.Ocram
 {
@@ -52,7 +54,9 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram
         private float predictScale;
         private float predictRotation;
         private Vector2 ocramOldPos;
-        private int spawnCheck;
+
+        private float _spawnCheck;
+        private bool _roarSoundPlayed;
 
         private readonly bool bloodMoonMode = Main.bloodMoon;
         private float [] boomRot = new float [9];
@@ -112,7 +116,7 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram
             NPC.noGravity = true;
             NPC.noTileCollide = true;
 
-            NPC.timeLeft = NPC.activeTime * 30;
+            NPC.SpawnWithHigherTime(30);
 
             NPC.HitSound = SoundID.NPCHit18;
             NPC.DeathSound = SoundID.NPCDeath18;
@@ -135,29 +139,54 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram
             });
         }
 
+        public override void SendExtraAI(BinaryWriter writer) {
+            writer.Write(_spawnCheck);
+        }
+
+        public override void ReceiveExtraAI(BinaryReader reader) {
+            _spawnCheck = reader.ReadSingle();
+        }
+
         //abandon hope all ye who enter here
         public override void AI () {
             if (NPC.target < 0 || NPC.target == 255 || Main.player [NPC.target].dead || !Main.player [NPC.target].active) {
-                NPC.TargetClosest(true);
+                NPC.TargetClosest(false);
             }
-            if (spawnCheck > 0) Lighting.AddLight(NPC.Center, 0.6f + 0.05f * (100 - spawnCheck), 0.4f, 0.5f);
+            if (_spawnCheck > 0f) Lighting.AddLight(NPC.Center, 0.6f + 0.05f * (100 - _spawnCheck), 0.4f, 0.5f);
 
-            if (spawnCheck < 100) {
-                if (spawnCheck == 0) {
+            if (!_roarSoundPlayed) {
+                SoundEngine.PlaySound(new SoundStyle($"{nameof(Consolaria)}/Assets/Sounds/OcramRoar"), Main.player[NPC.target].Center);
+                _roarSoundPlayed = true;
+            }
+
+            if (_spawnCheck < 100f) {
+                if (_spawnCheck <= 0f) {
+                    _spawnCheck = 1f;
+
+                    if (Main.netMode != NetmodeID.MultiplayerClient) {
+                        NPC.position -= new Vector2(0f, 1150f);
+                        NPC.velocity = new Vector2(0, 50f);
+                    }
+
                     string typeName = NPC.TypeName;
                     if (Main.netMode == NetmodeID.SinglePlayer)
                         Main.NewText(Language.GetTextValue("Announcement.HasAwoken", typeName), 175, 75);
                     else if (Main.netMode == NetmodeID.Server)
                         ChatHelper.BroadcastChatMessage(NetworkText.FromKey("Announcement.HasAwoken", NPC.GetTypeNetName()), new Color(175, 75, 255));
 
-                    SoundEngine.PlaySound(new SoundStyle($"{nameof(Consolaria)}/Assets/Sounds/OcramRoar"), NPC.position);
-                    NPC.position -= new Vector2(0f, 1150f);
-                    NPC.velocity = new Vector2(0, 50f);
+                    NPC.netUpdate = true;
                 }
-                if (spawnCheck == 1) AddGlow(20f, 0.95f, Color.Red);
+                else if (_spawnCheck == 1f) {
+                    _spawnCheck = 2f;
+                    AddGlow(20f, 0.95f, Color.Red);
+
+                    NPC.netUpdate = true;
+                }
+                else {
+                    _spawnCheck += 1f;
+                }
                 if (NPC.alpha > 0) NPC.alpha -= 10;
                 NPC.velocity *= 0.95f;
-                spawnCheck++;
 
                 if (Main.rand.NextBool(2)) {
                     int index2 = Dust.NewDust(new Vector2(NPC.Center.X, NPC.Center.Y), 0, 0, DustID.LavaMoss, 0f, 0f, 100, new Color(255, 0, 244), Main.rand.NextFloat(1f, 1.5f));
@@ -236,18 +265,26 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram
                     expr_146D6_cp_0.velocity.Y = expr_146D6_cp_0.velocity.Y * 0.1f;
                 }
             }
-            if (Main.netMode != NetmodeID.MultiplayerClient && !dead2 && NPC.timeLeft < 10) {
-                for (int num845 = 0; num845 < 200; num845++) {
-                    if (num845 != NPC.whoAmI && Main.npc [num845].active && Main.npc [num845].timeLeft - 1 > NPC.timeLeft) {
-                        NPC.timeLeft = Main.npc [num845].timeLeft - 1;
+            //if (Main.netMode != NetmodeID.MultiplayerClient && !dead2 && NPC.timeLeft < 10) {
+            //    for (int num845 = 0; num845 < 200; num845++) {
+            //        if (num845 != NPC.whoAmI && Main.npc [num845].active && Main.npc [num845].timeLeft - 1 > NPC.timeLeft) {
+            //            NPC.timeLeft = Main.npc [num845].timeLeft - 1;
+            //        }
+            //    }
+            //}
+            if (Main.IsItDay() || dead2) {
+                void despawn() {
+                    NPC.velocity.Y -= 0.08f;
+                    NPC.EncourageDespawn(10);
+                }
+                if (dead2) {
+                    NPC.TargetClosest();
+                    if (NPC.target < 0 || NPC.target == 255 || Main.player[NPC.target].dead || !Main.player[NPC.target].active) {
+                        despawn();
                     }
                 }
-            }
-            if (dead2 || Main.dayTime) {
-                NPC.velocity.Y = NPC.velocity.Y - 0.04f;
-                if (NPC.timeLeft > 10) {
-                    NPC.timeLeft = 10;
-                    return;
+                else {
+                    despawn();
                 }
             }
             else {
@@ -298,7 +335,7 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram
                             }
                         }
 
-                        if (spawnCheck < 100) return;
+                        if (_spawnCheck < 100f) return;
 
                         NPC.ai [2] += 1f;
                         if (NPC.ai [2] >= 920f) { //reset the cycle if it's over

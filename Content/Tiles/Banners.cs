@@ -57,11 +57,12 @@ namespace Consolaria.Content.Tiles {
 		}
 
 		public override void SetDrawPositions (int i, int j, ref int width, ref int offsetY, ref int height, ref short tileFrameX, ref short tileFrameY) {
-			if ((Framing.GetTileSafely(i, j - 1).HasTile && TileID.Sets.Platforms [Framing.GetTileSafely(i, j - 1).TileType]) ||
+			/*if ((Framing.GetTileSafely(i, j - 1).HasTile && TileID.Sets.Platforms [Framing.GetTileSafely(i, j - 1).TileType]) ||
 				(Framing.GetTileSafely(i, j - 2).HasTile && TileID.Sets.Platforms [Framing.GetTileSafely(i, j - 2).TileType]) ||
 				(Framing.GetTileSafely(i, j - 3).HasTile && TileID.Sets.Platforms [Framing.GetTileSafely(i, j - 3).TileType])) {
 				offsetY -= 8;
-			}
+			}*/
+			offsetY += 2;
 		}
 
 		public override void KillMultiTile (int i, int j, int frameX, int frameY) {

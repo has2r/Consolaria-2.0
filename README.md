@@ -27,10 +27,10 @@ Developers:
 - [Heretic](https://steamcommunity.com/profiles/76561198147015378) - spriter, animator, wiki editor
 
 Contributors:
+- **KondiU** - countless code additions and parity changes
 - **DrunkenCat** - original boss AIs
 - **Synoxsis** - Lepus, Turkor & Ocram themes
 - **Fyerow & Croul** - legacy Ocram theme
-- **KondiU** - plentiful code additions and parity changes
 - **StrikerRKT** - extracting files from Japanese versions of the game
 - **Sparcdoctor** - extensive testing and content suggestions
 - **CrezyDud** - Turkor multiplayer fixes
@@ -42,9 +42,11 @@ Contributors:
 - **cleo.** - Mythical Wyvern kite sprite
 - **Lion8cake** - Zenith projectile & recipe patch for Tizona
 - **Gaerzi** - calendar code optimisation
+- **kittenchilly** - multiplayer boss scaling improvement
 - **Efromomr** - some Mc MoneyPants interaction quotes
 - **HenryChe** - Russian localization
 - **Auraz** - Spanish localization
+- **KaffaZ** - Brazilian Portuguese localization
 
 ## Links
 

@@ -11,6 +11,8 @@ namespace Consolaria.Common {
         public static Condition isMaleCondition = new Condition("Mods.Consolaria.Conditions.SellingIfMale", () => Main.LocalPlayer.Male & Main.bloodMoon);
         public static Condition womanMoment = new Condition("Mods.Consolaria.Conditions.SellingWhenWoman", () => !Main.LocalPlayer.Male & Main.bloodMoon);
         public static Condition wishboneCooldown = new Condition("Mods.Consolaria.Conditions.SellingDuringWishboneCooldown", () => !WishbonePlayer.purchasedWishbone);
+        public static Condition ocramDownedCondition = new Condition("Mods.Consolaria.Conditions.OcramDowned", () => DownedBossSystem.downedOcram);
+        public static Condition turkorDownedCondition = new Condition("Mods.Consolaria.Conditions.TurkorDowned", () => DownedBossSystem.downedTurkor);
 
         public override void ModifyShop (NPCShop shop) {
             if (shop.NpcType == NPCID.Merchant) {
@@ -18,9 +20,7 @@ namespace Consolaria.Common {
                 shop.Add(ModContent.ItemType<Content.Items.Consumables.Wiesnbrau>(), oktoberfestCondition);
                 shop.Add(ModContent.ItemType<Content.Items.Accessories.ValentineRing>(), valentineDayCondition);
                 shop.Add(ModContent.ItemType<Content.Items.Weapons.Ammo.HeartArrow>(), valentineDayCondition);
-                if (DownedBossSystem.downedTurkor)
-                    shop.Add(ModContent.ItemType<Content.Items.Weapons.Ranged.SpicySauce>());
-
+                shop.Add(ModContent.ItemType<Content.Items.Weapons.Ranged.SpicySauce>(), turkorDownedCondition);
             }
             if (shop.NpcType == NPCID.TravellingMerchant) {
                 shop.Add(ModContent.ItemType<Content.Items.Vanity.HornedGodMask>(), Condition.DownedMechBossAny, Condition.MoonPhaseFull);
@@ -77,8 +77,7 @@ namespace Consolaria.Common {
                 shop.Add(wishBone, wishboneCooldown);
             }
             if (shop.NpcType == NPCID.ArmsDealer) {
-                if (DownedBossSystem.downedOcram)
-                    shop.Add(ModContent.ItemType<Content.Items.Weapons.Ammo.SpectralArrow>());
+                shop.Add(ModContent.ItemType<Content.Items.Weapons.Ammo.SpectralArrow>(), ocramDownedCondition);
             }
         }
     }

@@ -87,7 +87,7 @@ namespace Consolaria.Content.NPCs {
 
 			shootTimer++;
 			if (shootTimer >= 90 && shootTimer % 3 == 0) {
-				Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X + 5, NPC.Center.Y, NPC.velocity.X * 1.25f, NPC.velocity.Y * 1.25f, ModContent.ProjectileType<ArchFlames>(), NPC.damage / 2, 4f, 255);
+				Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X + 5, NPC.Center.Y, NPC.velocity.X * 1.25f, NPC.velocity.Y * 1.25f, ModContent.ProjectileType<ArchFlames>(), 20, 4f, 255);
 				SoundEngine.PlaySound(SoundID.Item20 with { MaxInstances = 1 }, NPC.position);
 			}
 			if (shootTimer >= 120) shootTimer = 0;
@@ -234,6 +234,6 @@ namespace Consolaria.Content.NPCs {
 		}
 
 		public override float SpawnChance (NPCSpawnInfo spawnInfo)
-			=> Main.hardMode ? SpawnCondition.Sky.Chance * 0.025f : 0;
+			=> Main.hardMode ? SpawnCondition.Sky.Chance * 0.005f : 0f;
 	}
 }

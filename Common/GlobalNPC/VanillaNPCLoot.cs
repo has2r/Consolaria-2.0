@@ -13,7 +13,7 @@ namespace Consolaria.Common {
 		public override void ModifyNPCLoot (NPC npc, NPCLoot npcLoot) {
 			if (npc.type == NPCID.Harpy) {
 				int itemType = ModContent.ItemType<CursedStuffing>();
-				int dropChance = !DownedBossSystem.downedTurkor ? 4 : 10;
+				int dropChance = !DownedBossSystem.downedTurkor ? 10 : 30;
 				ThanksgivingDropCondition thanksgivingDropCondition = new ThanksgivingDropCondition();
 
 				if (SeasonalEvents.configEnabled)

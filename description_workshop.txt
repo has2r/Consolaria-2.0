@@ -32,10 +32,10 @@ Developers:
 
 Contributors:
 [list]
+[*][b]KondiU[/b] - countless code additions and parity changes
 [*][b]DrunkenCat[/b] - original boss AIs
 [*][b]Synoxsis[/b] - Lepus, Turkor & Ocram themes
 [*][b]Fyerow & Croul[/b] - legacy Ocram theme
-[*][b]KondiU[/b] - plentiful code additions and parity changes
 [*][b]StrikerRKT[/b] - extracting files from Japanese versions of the game
 [*][b]Sparcdoctor[/b] - extensive testing and content suggestions
 [*][b]CrezyDud[/b] - Turkor multiplayer fixes
@@ -47,9 +47,11 @@ Contributors:
 [*][b]cleo.[/b] - Mythical Wyvern kite sprite
 [*][b]Lion8cake[/b] - Zenith projectile & recipe patch for Tizona
 [*][b]Gaerzi[/b] - calendar code optimisation
+[*][b]kittenchilly[/b] - multiplayer boss scaling improvement
 [*][b]Efromomr[/b] - some Mc MoneyPants interaction quotes
 [*][b]HenryChe[/b] - Russian localization
 [*][b]Auraz[/b] - Spanish localization
+[*][b]KaffaZ[/b] - Brazilian Portuguese localization
 [/list]
 
 [h1]Links[/h1]

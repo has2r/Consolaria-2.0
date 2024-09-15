@@ -9,6 +9,7 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Projectiles.Enemies {
     public class SpectralBomb : ModProjectile {
         private float runeRotation;
+        private float fadeIn;
 
         public override void SetDefaults () {
             int width = 90; int height = width;
@@ -20,7 +21,7 @@ namespace Consolaria.Content.Projectiles.Enemies {
             Projectile.aiStyle = 1;
             Projectile.penetrate = 1;
 
-            Projectile.tileCollide = true;
+            Projectile.tileCollide = false;
             Projectile.timeLeft = 16;
 
             Projectile.light = 0.1f;
@@ -32,8 +33,10 @@ namespace Consolaria.Content.Projectiles.Enemies {
             Texture2D texture = (Texture2D) ModContent.Request<Texture2D>(Texture);
             Vector2 origin = new(texture.Width * 0.5f, texture.Height * 0.5f);
             runeRotation++;
-            spriteBatch.Draw(texture, Projectile.Center - Main.screenPosition, new Rectangle?(), Color.White * 0.8f, runeRotation / 2, origin, 1f, SpriteEffects.None, 0f);
-            return true;
+            if (fadeIn < 0.8f)
+                fadeIn += 0.1f;
+            spriteBatch.Draw(texture, Projectile.Center - Main.screenPosition, new Rectangle?(), Color.White * fadeIn, runeRotation / 4, origin, 1.8f - fadeIn, SpriteEffects.None, 0f);
+            return false;
         }
         public override Color? GetAlpha (Color lightColor)
             => Color.White * 0.8f;
@@ -43,6 +46,25 @@ namespace Consolaria.Content.Projectiles.Enemies {
             SoundEngine.PlaySound(SoundID.Item14, position);
             if (Main.netMode != NetmodeID.Server) {
                 int radius = 10;
+                for (int g = 0; g < 2; g++)
+                {
+                    int goreIndex = Gore.NewGore(Projectile.GetSource_Death(), new Vector2(Projectile.position.X + Projectile.width / 2 - 24f, Projectile.position.Y + Projectile.height / 2 - 24f), default, Main.rand.Next(61, 64), 1f);
+                    Main.gore[goreIndex].scale = 1.5f;
+                    Main.gore[goreIndex].velocity.X = Main.gore[goreIndex].velocity.X + 1.5f;
+                    Main.gore[goreIndex].velocity.Y = Main.gore[goreIndex].velocity.Y + 1.5f;
+                    goreIndex = Gore.NewGore(Projectile.GetSource_Death(), new Vector2(Projectile.position.X + Projectile.width / 2 - 24f, Projectile.position.Y + Projectile.height / 2 - 24f), default, Main.rand.Next(61, 64), 1f);
+                    Main.gore[goreIndex].scale = 1.5f;
+                    Main.gore[goreIndex].velocity.X = Main.gore[goreIndex].velocity.X - 1.5f;
+                    Main.gore[goreIndex].velocity.Y = Main.gore[goreIndex].velocity.Y + 1.5f;
+                    goreIndex = Gore.NewGore(Projectile.GetSource_Death(), new Vector2(Projectile.position.X + Projectile.width / 2 - 24f, Projectile.position.Y + Projectile.height / 2 - 24f), default, Main.rand.Next(61, 64), 1f);
+                    Main.gore[goreIndex].scale = 1.5f;
+                    Main.gore[goreIndex].velocity.X = Main.gore[goreIndex].velocity.X + 1.5f;
+                    Main.gore[goreIndex].velocity.Y = Main.gore[goreIndex].velocity.Y - 1.5f;
+                    goreIndex = Gore.NewGore(Projectile.GetSource_Death(), new Vector2(Projectile.position.X + Projectile.width / 2 - 24f, Projectile.position.Y + Projectile.height / 2 - 24f), default, Main.rand.Next(61, 64), 1f);
+                    Main.gore[goreIndex].scale = 1.5f;
+                    Main.gore[goreIndex].velocity.X = Main.gore[goreIndex].velocity.X - 1.5f;
+                    Main.gore[goreIndex].velocity.Y = Main.gore[goreIndex].velocity.Y - 1.5f;
+                }
                 for (int x = -radius; x <= radius; x++) {
                     for (int y = -radius; y <= radius; y++) {
                         int xPosition = (int) (x + position.X / 16.0f);

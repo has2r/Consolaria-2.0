@@ -1081,51 +1081,6 @@ Mods: {
 				Tooltip: Invoca um peru estranho que lutará por você
 			}
 
-			GuaPiMao: {
-				DisplayName: Gua Pi Mao
-				Tooltip: ""
-			}
-
-			MythicalDogMask: {
-				DisplayName: Máscara de Cachorro Mítico
-				Tooltip: ""
-			}
-
-			MythicalDogPants: {
-				DisplayName: Calças de Cachorro Mítico
-				Tooltip: ""
-			}
-
-			MythicalDogShirt: {
-				DisplayName: Camisa de Cachorro Mítico
-				Tooltip: ""
-			}
-
-			TangSuitPants: {
-				DisplayName: Calças de Terno Tang
-				Tooltip: ""
-			}
-
-			TangSuitShirt: {
-				DisplayName: Camisa de Terno Tang
-				Tooltip: ""
-			}
-
-			TangYuanHat: {
-				DisplayName: Chapéu Tang Yuan
-				Tooltip: ""
-			}
-
-			TangYuanPants: {
-				DisplayName: Calças Tang Yuan
-				Tooltip: ""
-			}
-
-			TangYuanShirt: {
-				DisplayName: Camisa Tang Yuan
-				Tooltip: ""
-			}
-
 			McMoneypantsInvitation: {
 				DisplayName: Convite Dourado
 				Tooltip: Parece que foi destinado a alguém rico
@@ -1382,17 +1337,6 @@ Mods: {
 				Quote8: Quando o preço desses blocos de terra raros subir, vou ganhar milhões!
 				Quote9: Meu conselho financeiro? Não atire suas moedas com essa arma horrível.
 				Quote10: Bitcoin? Por que eu morderia uma moeda?
-
-				TownNPCMood: {
-					Content: Estou contente.
-					NoHome: Eu odeio não ter uma casa.
-					FarFromHome: Estou muito longe de casa.
-					LoveSpace: Adoro ter tanto espaço.
-					DislikeCrowded: Não gosto de como estou lotado.
-					HateCrowded: Eu odeio o quão lotado estou.
-					LikeNPC_Princess: Eu gosto da {NPCName}.
-					Princess_LovesNPC: Eu amo a {NPCName}.
-				}
 			}
 		}
 
@@ -1463,19 +1407,13 @@ Mods: {
 			WormTombstone.DisplayName: Lápide Estranha
 			McMoneypantsAttackProjectile.DisplayName: Projétil de ataque de Mc Moneypants
 			Explosion.DisplayName: Explosion
-			ExampleKiteProjectile.DisplayName: Projétil Exemplo de Pipa
 			MythicalWyvernProjectile.DisplayName: Projétil Serpe Mítica
 			MythicalWyvernKiteProjectile.DisplayName: Projétil Pipa de Serpe Mítica
 		}
 
 		Tiles: {
-			EerieOcramMusicBox.MapEntry: Caixinha de Música
-			LepusMusicBox.MapEntry: Caixinha de Música
-			OcramMusicBox.MapEntry: Caixinha de Música
 			SanctumLantern.MapEntry: Lanterna de Carruagem
 			SoulOfBlightInABottleTile.MapEntry: Alma da Corrosão Engarrafada
-			TurkorMusicBox.MapEntry: Caixinha de Música
-			WormTombstoneTile.MapEntry: Lápide
 		}
 
 		Conditions: {
@@ -1484,6 +1422,9 @@ Mods: {
 			SellingDuringValentineDay: Mods.Consolaria.Conditions.SellingDuringValentineDay
 			SellingIfMale: Mods.Consolaria.Conditions.SellingIfMale
 			SellingWhenWoman: Mods.Consolaria.Conditions.SellingWhenWoman
+			// SellingDuringWishboneCooldown: Mods.Consolaria.Conditions.SellingDuringWishboneCooldown
+			// TurkorDowned: Mods.Consolaria.Conditions.TurkorDowned
+			// OcramDowned: Mods.Consolaria.Conditions.OcramDowned
 		}
 
 		Configs: {

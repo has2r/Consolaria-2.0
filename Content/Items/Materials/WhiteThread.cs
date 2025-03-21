@@ -5,8 +5,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.Items.Materials {
-    public class WhiteThread : ModItem
-    {
+    public class WhiteThread : ModItem {
         public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 5;
         }

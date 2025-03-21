@@ -6,8 +6,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.Items.Placeable {
-    public class LepusTrophy : ModItem
-    {
+    public class LepusTrophy : ModItem {
         public override void SetStaticDefaults() {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }

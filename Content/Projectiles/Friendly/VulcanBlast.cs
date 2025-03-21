@@ -7,8 +7,7 @@ using Terraria;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.Projectiles.Friendly {
-    public class VulcanBlast : ModProjectile
-    {
+    public class VulcanBlast : ModProjectile {
         private Vector2 direction;
         private float glowRotation;
         private float glowAlpha;
@@ -16,8 +15,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
 
         public override string Texture => "Consolaria/Assets/Textures/Empty";
 
-        public override void SetDefaults()
-        {
+        public override void SetDefaults() {
             Projectile.width = Projectile.height = 30;
             Projectile.DamageType = DamageClass.Ranged;
             Projectile.friendly = true;
@@ -34,8 +32,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
             Projectile.idStaticNPCHitCooldown = 3;
         }
 
-        public override void AI()
-        {
+        public override void AI() {
             Player player = Main.player[Projectile.owner];
             if (Projectile.timeLeft == 30) direction = new Vector2(0, -5).RotatedByRandom(Math.PI * 0.5f);
             if (Projectile.timeLeft % 7 == 0) {
@@ -44,8 +41,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
             }
         }
 
-        public override bool PreDraw(ref Color lightColor)
-        {
+        public override bool PreDraw(ref Color lightColor) {
             SpriteBatch spriteBatch = Main.spriteBatch;
 
             Texture2D glow = (Texture2D)ModContent.Request<Texture2D>("Consolaria/Assets/Textures/Projectiles/LightTrail_1");

@@ -15,7 +15,7 @@ namespace Consolaria.Common {
 
         public override ModSurfaceBackgroundStyle MenuBackgroundStyle => ModContent.GetInstance<ValentinesDayBackgroundStyle>();
 
-        public override bool PreDrawLogo (SpriteBatch spriteBatch, ref Vector2 logoDrawCenter, ref float logoRotation, ref float logoScale, ref Color drawColor) {
+        public override bool PreDrawLogo(SpriteBatch spriteBatch, ref Vector2 logoDrawCenter, ref float logoRotation, ref float logoScale, ref Color drawColor) {
             logoDrawCenter += new Vector2(0, 14);
             logoScale *= 1f;
             return true;

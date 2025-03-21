@@ -29,8 +29,8 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
             Main.projFrames[Type] = 11;
 
             ProjectileID.Sets.CharacterPreviewAnimations[Type] = ProjectileID.Sets.SimpleLoop(0, 8)
-				.WithOffset(-28, 0)
-				.WithSpriteDirection(1)
+                .WithOffset(-28, 0)
+                .WithSpriteDirection(1)
                 .WhenNotSelected(0, 0);
 
             base.SetStaticDefaults();
@@ -100,18 +100,17 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
 
         }
 
-        public override void SetDefaults () {
+        public override void SetDefaults() {
             Projectile.aiStyle = -1;
             Projectile.manualDirectionChange = true;
         }
 
-        public sealed override void AI () {
+        public sealed override void AI() {
             Player player = Main.player[Projectile.owner];
             if (!player.active) {
                 Projectile.active = false;
             }
-            else
-            {
+            else {
                 bool flag1 = false;
                 bool flag2 = false;
                 bool flag3 = false;
@@ -121,8 +120,7 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
                     flag1 = true;
                 else if ((double)player.position.X + (double)(player.width / 2) > (double)Projectile.position.X + (double)(Projectile.width / 2) + (double)num1)
                     flag2 = true;
-                if ((double)Projectile.ai[1] == 0.0)
-                {
+                if ((double)Projectile.ai[1] == 0.0) {
                     int num2 = 500;
                     if (player.rocketDelay2 > 0)
                         Projectile.ai[0] = 1f;
@@ -130,16 +128,14 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
                     double num3 = (double)player.position.X + (double)(player.width / 2) - (double)vector2.X;
                     float num4 = player.position.Y + (float)(player.height / 2) - vector2.Y;
                     float num5 = (float)Math.Sqrt(num3 * num3 + (double)num4 * (double)num4);
-                    if ((double)num5 > 2000.0)
-                    {
+                    if ((double)num5 > 2000.0) {
                         Projectile.position.X = player.position.X + (float)(player.width / 2) - (float)(Projectile.width / 2);
                         Projectile.position.Y = player.position.Y + (float)(player.height / 2) - (float)(Projectile.height / 2);
                     }
                     else if ((double)num5 > (double)num2 || (double)Math.Abs(num4) > 300.0 && (double)Projectile.localAI[0] <= 0.0)
                         Projectile.ai[0] = 1f;
                 }
-                if ((double)Projectile.ai[0] != 0.0)
-                {
+                if ((double)Projectile.ai[0] != 0.0) {
                     float num6 = 0.2f;
                     int num7 = 200;
                     Projectile.tileCollide = false;
@@ -148,60 +144,51 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
                     float num9 = player.position.Y + (float)(player.height / 2) - vector2.Y;
                     float num10 = (float)Math.Sqrt((double)num8 * (double)num8 + (double)num9 * (double)num9);
                     float num11 = 10f;
-                    if ((double)num10 < (double)num7 && (double)player.velocity.Y == 0.0 && (double)Projectile.position.Y + (double)Projectile.height <= (double)player.position.Y + (double)player.height && !Collision.SolidCollision(Projectile.position, Projectile.width, Projectile.height))
-                    {
+                    if ((double)num10 < (double)num7 && (double)player.velocity.Y == 0.0 && (double)Projectile.position.Y + (double)Projectile.height <= (double)player.position.Y + (double)player.height && !Collision.SolidCollision(Projectile.position, Projectile.width, Projectile.height)) {
                         Projectile.ai[0] = 0.0f;
                         if ((double)Projectile.velocity.Y < -6.0)
                             Projectile.velocity.Y = -6f;
                     }
                     float num12;
                     float num13;
-                    if ((double)num10 < 60.0)
-                    {
+                    if ((double)num10 < 60.0) {
                         num12 = Projectile.velocity.X;
                         num13 = Projectile.velocity.Y;
                     }
-                    else
-                    {
+                    else {
                         float num14 = num11 / num10;
                         num12 = num8 * num14;
                         num13 = num9 * num14;
                     }
-                    if ((double)Projectile.velocity.X < (double)num12)
-                    {
+                    if ((double)Projectile.velocity.X < (double)num12) {
                         Projectile.velocity.X += num6;
                         if ((double)Projectile.velocity.X < 0.0)
                             Projectile.velocity.X += num6 * 1.5f;
                     }
-                    if ((double)Projectile.velocity.X > (double)num12)
-                    {
+                    if ((double)Projectile.velocity.X > (double)num12) {
                         Projectile.velocity.X -= num6;
                         if ((double)Projectile.velocity.X > 0.0)
                             Projectile.velocity.X -= num6 * 1.5f;
                     }
-                    if ((double)Projectile.velocity.Y < (double)num13)
-                    {
+                    if ((double)Projectile.velocity.Y < (double)num13) {
                         Projectile.velocity.Y += num6;
                         if ((double)Projectile.velocity.Y < 0.0)
                             Projectile.velocity.Y += num6 * 1.5f;
                     }
-                    if ((double)Projectile.velocity.Y > (double)num13)
-                    {
+                    if ((double)Projectile.velocity.Y > (double)num13) {
                         Projectile.velocity.Y -= num6;
                         if ((double)Projectile.velocity.Y > 0.0)
                             Projectile.velocity.Y -= num6 * 1.5f;
                     }
                     ++Projectile.frameCounter;
-                    if (Projectile.frameCounter > 4)
-                    {
+                    if (Projectile.frameCounter > 4) {
                         ++Projectile.frame;
                         Projectile.frameCounter = 0;
                     }
                     if (Projectile.frame < this.animateFlyMin || Projectile.frame > this.animateFlyMax)
                         Projectile.frame = this.animateFlyMin;
                     Projectile.rotation = 0.0f;
-                    if (Math.Abs(Projectile.velocity.X) > 0.25f)
-                    {
+                    if (Math.Abs(Projectile.velocity.X) > 0.25f) {
                         Projectile.direction = ((double)Projectile.velocity.X > 0.0).ToDirectionInt();
                         if (Projectile.direction == -1)
                             Projectile.spriteDirection = 1;
@@ -210,11 +197,9 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
                         Projectile.spriteDirection = -1;
                     }
                 }
-                else
-                {
+                else {
                     Vector2 zero = Vector2.Zero;
-                    if ((double)Projectile.ai[1] != 0.0)
-                    {
+                    if ((double)Projectile.ai[1] != 0.0) {
                         flag1 = false;
                         flag2 = false;
                     }
@@ -223,28 +208,24 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
                     float num15 = speedX;
                     float num16 = 75f;
                     Projectile.tileCollide = true;
-                    if (flag1)
-                    {
+                    if (flag1) {
                         if ((double)Projectile.velocity.X > -3.5)
                             Projectile.velocity.X -= num15;
                         else
                             Projectile.velocity.X -= num15 * 0.25f;
                     }
-                    else if (flag2)
-                    {
+                    else if (flag2) {
                         if ((double)Projectile.velocity.X < 3.5)
                             Projectile.velocity.X += num15;
                         else
                             Projectile.velocity.X += num15 * 0.25f;
                     }
-                    else
-                    {
+                    else {
                         Projectile.velocity.X *= 0.9f;
                         if ((double)Projectile.velocity.X >= -(double)num15 && (double)Projectile.velocity.X <= (double)num15)
                             Projectile.velocity.X = 0.0f;
                     }
-                    if (flag1 | flag2)
-                    {
+                    if (flag1 | flag2) {
                         int num17 = (int)((double)Projectile.position.X + (double)(Projectile.width / 2)) / 16;
                         int j = (int)((double)Projectile.position.Y + (double)(Projectile.height / 2)) / 16;
                         if (flag1)
@@ -257,10 +238,8 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
                     if ((double)player.position.Y + (double)player.height - 8.0 > (double)Projectile.position.Y + (double)Projectile.height)
                         flag3 = true;
                     Collision.StepUp(ref Projectile.position, ref Projectile.velocity, Projectile.width, Projectile.height, ref Projectile.stepSpeed, ref Projectile.gfxOffY);
-                    if ((double)Projectile.velocity.Y == 0.0)
-                    {
-                        if (!flag3 && ((double)Projectile.velocity.X < 0.0 || (double)Projectile.velocity.X > 0.0))
-                        {
+                    if ((double)Projectile.velocity.Y == 0.0) {
+                        if (!flag3 && ((double)Projectile.velocity.X < 0.0 || (double)Projectile.velocity.X > 0.0)) {
                             int i = (int)((double)Projectile.position.X + (double)(Projectile.width / 2)) / 16;
                             int j = (int)((double)Projectile.position.Y + (double)(Projectile.height / 2)) / 16 + 1;
                             if (flag1)
@@ -269,14 +248,11 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
                                 ++i;
                             WorldGen.SolidTile(i, j);
                         }
-                        if (flag4)
-                        {
+                        if (flag4) {
                             int num18 = (int)((double)Projectile.position.X + (double)(Projectile.width / 2)) / 16;
                             int num19 = (int)((double)Projectile.position.Y + (double)Projectile.height) / 16 + 1;
-                            if (WorldGen.SolidTile(num18, num19) || Main.tile[num18, num19].IsHalfBlock || Main.tile[num18, num19].Slope > SlopeType.Solid)
-                            {
-                                try
-                                {
+                            if (WorldGen.SolidTile(num18, num19) || Main.tile[num18, num19].IsHalfBlock || Main.tile[num18, num19].Slope > SlopeType.Solid) {
+                                try {
                                     int num20 = (int)((double)Projectile.position.X + (double)(Projectile.width / 2)) / 16;
                                     int num21 = (int)((double)Projectile.position.Y + (double)(Projectile.height / 2)) / 16;
                                     if (flag1)
@@ -295,8 +271,7 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
                                     else
                                         Projectile.velocity.Y = -9.1f;
                                 }
-                                catch
-                                {
+                                catch {
                                     Projectile.velocity.Y = -9.1f;
                                 }
                             }
@@ -316,37 +291,28 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
                         Projectile.spriteDirection = 1;
                     if (Projectile.direction == 1)
                         Projectile.spriteDirection = -1;
-                    if ((double)Projectile.velocity.Y == 0.0)
-                    {
-                        if ((double)Projectile.velocity.X == 0.0)
-                        {
-                            if (Projectile.frame < this.animateIdle)
-                            {
+                    if ((double)Projectile.velocity.Y == 0.0) {
+                        if ((double)Projectile.velocity.X == 0.0) {
+                            if (Projectile.frame < this.animateIdle) {
                                 Projectile.frameCounter += 2;
-                                if (Projectile.frameCounter > 6)
-                                {
+                                if (Projectile.frameCounter > 6) {
                                     ++Projectile.frame;
                                     Projectile.frameCounter = 0;
                                 }
                                 if (Projectile.frame >= this.animateWalkMax)
                                     Projectile.frame = this.animateIdle;
                             }
-                            else
-                            {
+                            else {
                                 ++this.animateIdleTimer;
-                                if (this.animateIdleTimer < 300)
-                                {
+                                if (this.animateIdleTimer < 300) {
                                     Projectile.frame = this.animateIdle;
                                     Projectile.frameCounter = 0;
                                 }
-                                else
-                                {
+                                else {
                                     ++Projectile.frameCounter;
-                                    if (Projectile.frameCounter > 12)
-                                    {
+                                    if (Projectile.frameCounter > 12) {
                                         ++Projectile.frame;
-                                        if (Projectile.frame > this.animateIdleMax)
-                                        {
+                                        if (Projectile.frame > this.animateIdleMax) {
                                             Projectile.frame = this.animateIdle + 1;
                                             if (Main.rand.NextBool(8))
                                                 this.animateIdleTimer = 0;
@@ -356,32 +322,27 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
                                 }
                             }
                         }
-                        else if ((double)Projectile.velocity.X < -0.8 || (double)Projectile.velocity.X > 0.8)
-                        {
+                        else if ((double)Projectile.velocity.X < -0.8 || (double)Projectile.velocity.X > 0.8) {
                             this.animateIdleTimer = 0;
                             Projectile.frameCounter += (int)Math.Abs((double)Projectile.velocity.X * 0.3f);
                             ++Projectile.frameCounter;
-                            if (Projectile.frameCounter > 6)
-                            {
+                            if (Projectile.frameCounter > 6) {
                                 ++Projectile.frame;
                                 Projectile.frameCounter = 0;
                             }
                             if (Projectile.frame >= this.animateWalkMax || Projectile.frame < this.animateWalkMin)
                                 Projectile.frame = this.animateWalkMin;
                         }
-                        else if (Projectile.frame > 0)
-                        {
+                        else if (Projectile.frame > 0) {
                             Projectile.frame = this.animateIdle;
                             Projectile.frameCounter = 0;
                         }
-                        else
-                        {
+                        else {
                             Projectile.frame = this.animateIdle;
                             Projectile.frameCounter = 0;
                         }
                     }
-                    else if ((double)Projectile.velocity.Y < 0.0 || (double)Projectile.velocity.Y > 0.0)
-                    {
+                    else if ((double)Projectile.velocity.Y < 0.0 || (double)Projectile.velocity.Y > 0.0) {
                         Projectile.frameCounter = 0;
                         Projectile.frame = this.animateFall;
                         this.animateIdleTimer = 0;

@@ -6,11 +6,11 @@ using Terraria.ModLoader;
 
 namespace Consolaria.Content.Items.Weapons.Throwing {
     public class Squib : ModItem {
-        public override void SetStaticDefaults () {
+        public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 99;
         }
 
-        public override void SetDefaults () {
+        public override void SetDefaults() {
             int width = 26; int height = 30;
             Item.Size = new Vector2(width, height);
 

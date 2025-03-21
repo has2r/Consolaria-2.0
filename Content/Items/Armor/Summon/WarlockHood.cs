@@ -15,12 +15,12 @@ namespace Consolaria.Content.Items.Armor.Summon {
             get; private set;
         }
 
-        public override void SetStaticDefaults () {
+        public override void SetStaticDefaults() {
             ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<AncientWarlockHood>();
             SetBonusText = this.GetLocalization("SetBonus");
         }
 
-        public override void SetDefaults () {
+        public override void SetDefaults() {
             int width = 30; int height = 26;
             Item.Size = new Vector2(width, height);
 
@@ -30,19 +30,19 @@ namespace Consolaria.Content.Items.Armor.Summon {
             Item.defense = 6;
         }
 
-        public override void UpdateEquip (Player player) {
+        public override void UpdateEquip(Player player) {
             player.maxMinions += 1;
             player.GetDamage(DamageClass.Summon) += 0.2f;
         }
 
-        public override bool IsArmorSet (Item head, Item body, Item legs)
+        public override bool IsArmorSet(Item head, Item body, Item legs)
            => (body.type == ModContent.ItemType<WarlockRobe>() || body.type == ModContent.ItemType<AncientWarlockRobe>())
            && (legs.type == ModContent.ItemType<WarlockLeggings>() || legs.type == ModContent.ItemType<AncientWarlockLeggings>());
 
-        public override void ArmorSetShadows (Player player)
+        public override void ArmorSetShadows(Player player)
             => player.armorEffectDrawShadow = true;
 
-        public override void UpdateArmorSet (Player player) {
+        public override void UpdateArmorSet(Player player) {
             player.setBonus = SetBonusText.ToString();
             player.GetModPlayer<WarlockPlayer>().necroHealing = true;
         }
@@ -53,19 +53,19 @@ namespace Consolaria.Content.Items.Armor.Summon {
         private int healingTimer;
         private readonly int healingTimerLimit = 180;
 
-        public override void Initialize ()
+        public override void Initialize()
             => healingTimer = healingTimerLimit;
 
-        public override void ResetEffects ()
+        public override void ResetEffects()
             => necroHealing = false;
 
-        public override void PostUpdateEquips () {
+        public override void PostUpdateEquips() {
             if (!necroHealing) return;
             if (healingTimer > 0)
                 healingTimer--;
         }
 
-        public override void OnHitNPCWithProj (Projectile proj, NPC target, NPC.HitInfo hit, int damageDone)/* tModPorter If you don't need the Projectile, consider using OnHitNPC instead */ {
+        public override void OnHitNPCWithProj(Projectile proj, NPC target, NPC.HitInfo hit, int damageDone)/* tModPorter If you don't need the Projectile, consider using OnHitNPC instead */ {
             if (target.type == NPCID.TargetDummy || Player.moonLeech || !necroHealing)
                 return;
 
@@ -80,14 +80,14 @@ namespace Consolaria.Content.Items.Armor.Summon {
                         vector += -Vector2.UnitY.RotatedBy(_dustCount * (7f / _dustCountMax), default) * new Vector2(26f, 26f);
                         vector = vector.RotatedBy(proj.velocity.ToRotation(), default);
                         int _dust = Dust.NewDust(proj.Center, 0, 0, DustID.Shadowflame, 0f, 0f, 100, Color.DarkViolet, 1.3f);
-                        Main.dust [_dust].noGravity = true;
-                        Main.dust [_dust].position = proj.Center + vector;
-                        Main.dust [_dust].velocity = proj.velocity * 0f + vector.SafeNormalize(Vector2.UnitY) * 0.75f;
+                        Main.dust[_dust].noGravity = true;
+                        Main.dust[_dust].position = proj.Center + vector;
+                        Main.dust[_dust].velocity = proj.velocity * 0f + vector.SafeNormalize(Vector2.UnitY) * 0.75f;
                         int _dustCountMax2 = _dustCount;
                         _dustCount = _dustCountMax2 + 1;
                     }
                     for (int i = 0; i < 12; i++) {
-                        int dust2 = Dust.NewDust(proj.Center, 0, 0, DustID.RainbowMk2, 0, 0, 75, Main.rand.NextBool(2) ? new Color (180, 90, 90, 120) : new Color(150, 70, 180, 120), Main.rand.NextFloat(0.9f, 1.8f));
+                        int dust2 = Dust.NewDust(proj.Center, 0, 0, DustID.RainbowMk2, 0, 0, 75, Main.rand.NextBool(2) ? new Color(180, 90, 90, 120) : new Color(150, 70, 180, 120), Main.rand.NextFloat(0.9f, 1.8f));
                         Main.dust[dust2].position = proj.Center + new Vector2(0, -30).RotatedByRandom(Math.PI * 2f);
                         Main.dust[dust2].velocity = Vector2.Normalize(Main.dust[dust2].position - proj.Center) * -2.5f;
                         Main.dust[dust2].fadeIn = 2f;

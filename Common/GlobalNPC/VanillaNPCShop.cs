@@ -15,7 +15,7 @@ namespace Consolaria.Common {
         public static Condition ocramDownedCondition = new Condition("Mods.Consolaria.Conditions.OcramDowned", () => DownedBossSystem.downedOcram);
         public static Condition turkorDownedCondition = new Condition("Mods.Consolaria.Conditions.TurkorDowned", () => DownedBossSystem.downedTurkor);
 
-        public override void ModifyShop (NPCShop shop) {
+        public override void ModifyShop(NPCShop shop) {
             if (shop.NpcType == NPCID.Merchant) {
                 shop.Add(ModContent.ItemType<Content.Items.Pets.TurkeyFeather>(), thanksgivingCondition);
                 shop.Add(ModContent.ItemType<Content.Items.Consumables.Wiesnbrau>(), oktoberfestCondition);
@@ -38,28 +38,28 @@ namespace Consolaria.Common {
                 shop.Add(ModContent.ItemType<Content.Items.Vanity.TorosLegs>(), Condition.BloodMoon);
 
                 if (ModContent.GetInstance<ConsolariaConfig>().genderRestrictShopEnabled) {
-                shop.Add(ModContent.ItemType<Content.Items.Vanity.GeorgesHat>(), isMaleCondition);
-                shop.Add(ModContent.ItemType<Content.Items.Vanity.GeorgesTuxedoShirt>(), isMaleCondition);
-                shop.Add(ModContent.ItemType<Content.Items.Vanity.GeorgesTuxedoPants>(), isMaleCondition);
-                shop.Add(ModContent.ItemType<Content.Items.Vanity.FabulousRibbon>(), womanMoment);
-                shop.Add(ModContent.ItemType<Content.Items.Vanity.FabulousDress>(), womanMoment);
-                shop.Add(ModContent.ItemType<Content.Items.Vanity.FabulousSlippers>(), womanMoment);
+                    shop.Add(ModContent.ItemType<Content.Items.Vanity.GeorgesHat>(), isMaleCondition);
+                    shop.Add(ModContent.ItemType<Content.Items.Vanity.GeorgesTuxedoShirt>(), isMaleCondition);
+                    shop.Add(ModContent.ItemType<Content.Items.Vanity.GeorgesTuxedoPants>(), isMaleCondition);
+                    shop.Add(ModContent.ItemType<Content.Items.Vanity.FabulousRibbon>(), womanMoment);
+                    shop.Add(ModContent.ItemType<Content.Items.Vanity.FabulousDress>(), womanMoment);
+                    shop.Add(ModContent.ItemType<Content.Items.Vanity.FabulousSlippers>(), womanMoment);
                 }
                 else {
-                shop.Add(ModContent.ItemType<Content.Items.Vanity.GeorgesHat>(), Condition.BloodMoon);
-                shop.Add(ModContent.ItemType<Content.Items.Vanity.GeorgesTuxedoShirt>(), Condition.BloodMoon);
-                shop.Add(ModContent.ItemType<Content.Items.Vanity.GeorgesTuxedoPants>(), Condition.BloodMoon);
-                shop.Add(ModContent.ItemType<Content.Items.Vanity.FabulousRibbon>(), Condition.BloodMoon);
-                shop.Add(ModContent.ItemType<Content.Items.Vanity.FabulousDress>(), Condition.BloodMoon);
-                shop.Add(ModContent.ItemType<Content.Items.Vanity.FabulousSlippers>(), Condition.BloodMoon);
+                    shop.Add(ModContent.ItemType<Content.Items.Vanity.GeorgesHat>(), Condition.BloodMoon);
+                    shop.Add(ModContent.ItemType<Content.Items.Vanity.GeorgesTuxedoShirt>(), Condition.BloodMoon);
+                    shop.Add(ModContent.ItemType<Content.Items.Vanity.GeorgesTuxedoPants>(), Condition.BloodMoon);
+                    shop.Add(ModContent.ItemType<Content.Items.Vanity.FabulousRibbon>(), Condition.BloodMoon);
+                    shop.Add(ModContent.ItemType<Content.Items.Vanity.FabulousDress>(), Condition.BloodMoon);
+                    shop.Add(ModContent.ItemType<Content.Items.Vanity.FabulousSlippers>(), Condition.BloodMoon);
                 }
 
                 shop.Add(ModContent.ItemType<Content.Items.Vanity.AlpineHat>(), oktoberfestCondition);
                 shop.Add(ModContent.ItemType<Content.Items.Vanity.Lederweste>(), oktoberfestCondition);
                 shop.Add(ModContent.ItemType<Content.Items.Vanity.Lederhosen>(), oktoberfestCondition);
-                
+
                 if (ModContent.GetInstance<ConsolariaConfig>().oktoberLocksEnabled) {
-                shop.Add(ModContent.ItemType<Content.Items.Vanity.OktoberLocks>(), oktoberfestCondition);
+                    shop.Add(ModContent.ItemType<Content.Items.Vanity.OktoberLocks>(), oktoberfestCondition);
                 }
 
                 shop.Add(ModContent.ItemType<Content.Items.Vanity.DirndlBlouse>(), oktoberfestCondition);

@@ -14,18 +14,18 @@ namespace Consolaria.Content.Items.Accessories {
     public class ValentineRing : ModItem {
         private bool unlockEffects;
 
-        public override void SetStaticDefaults () {
+        public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 1;
         }
 
-        public override void ModifyTooltips (List<TooltipLine> tooltips) {
+        public override void ModifyTooltips(List<TooltipLine> tooltips) {
             if (!unlockEffects)
                 tooltips.Add(new TooltipLine(Mod, "UnPickupped", Language.GetTextValue("Mods.Consolaria.ValentineRingTooltip1")));
             else
                 tooltips.Add(new TooltipLine(Mod, "Pickupped", Language.GetTextValue("Mods.Consolaria.ValentineRingTooltip2")));
         }
 
-        public override void SetDefaults () {
+        public override void SetDefaults() {
             int width = 30; int height = 28;
             Item.Size = new Vector2(width, height);
 
@@ -35,7 +35,7 @@ namespace Consolaria.Content.Items.Accessories {
             Item.accessory = true;
         }
 
-        public override void UpdateAccessory (Player player, bool hideVisual) {
+        public override void UpdateAccessory(Player player, bool hideVisual) {
             if (!unlockEffects)
                 return;
 
@@ -43,23 +43,23 @@ namespace Consolaria.Content.Items.Accessories {
             player.jumpSpeedBoost += 2.5f;
         }
 
-        public override void SaveData (TagCompound tag) {
+        public override void SaveData(TagCompound tag) {
             tag.Add("pickuppedByPlayer", unlockEffects);
         }
 
-        public override void LoadData (TagCompound tag) {
+        public override void LoadData(TagCompound tag) {
             unlockEffects = tag.GetBool("pickuppedByPlayer");
         }
 
-        public override void NetSend (BinaryWriter writer) {
+        public override void NetSend(BinaryWriter writer) {
             writer.Write(unlockEffects);
         }
 
-        public override void NetReceive (BinaryReader reader) {
+        public override void NetReceive(BinaryReader reader) {
             unlockEffects = reader.ReadBoolean();
         }
 
-        public override bool OnPickup (Player player)
+        public override bool OnPickup(Player player)
            => unlockEffects = true;
     }
 }

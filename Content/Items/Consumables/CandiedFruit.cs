@@ -12,20 +12,20 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Items.Consumables;
 
 public class CandiedFruit : ModItem {
-	public override void SetStaticDefaults() {
-		ItemID.Sets.IsFood[Type] = true;
-		ItemID.Sets.FoodParticleColors[Type] = new Color[3] {
-			new Color(216, 75, 33),
-			new Color(134, 0, 46),
-			new Color(192, 49, 49)
-		};
+    public override void SetStaticDefaults() {
+        ItemID.Sets.IsFood[Type] = true;
+        ItemID.Sets.FoodParticleColors[Type] = new Color[3] {
+            new Color(216, 75, 33),
+            new Color(134, 0, 46),
+            new Color(192, 49, 49)
+        };
 
-		Item.ResearchUnlockCount = 5;
+        Item.ResearchUnlockCount = 5;
 
-		Main.RegisterItemAnimation(Type, new DrawAnimationVertical(int.MaxValue, 3));
-	}
+        Main.RegisterItemAnimation(Type, new DrawAnimationVertical(int.MaxValue, 3));
+    }
 
-	public override void SetDefaults() {
+    public override void SetDefaults() {
         Item.DefaultToFood(22, 22, 206, 3600 * 3);
         Item.SetShopValues(ItemRarityColor.Green2, Item.buyPrice(silver: 1));
     }

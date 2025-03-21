@@ -8,10 +8,10 @@ using Terraria.ObjectData;
 
 namespace Consolaria.Content.Tiles {
     public class TurkorTrophy : ModTile {
-        public override void SetStaticDefaults () {
-            Main.tileFrameImportant [Type] = true;
-            Main.tileLavaDeath [Type] = true;
-            TileID.Sets.FramesOnKillWall [Type] = true;
+        public override void SetStaticDefaults() {
+            Main.tileFrameImportant[Type] = true;
+            Main.tileLavaDeath[Type] = true;
+            TileID.Sets.FramesOnKillWall[Type] = true;
 
             TileObjectData.newTile.CopyFrom(TileObjectData.Style3x3Wall);
             TileObjectData.addTile(Type);

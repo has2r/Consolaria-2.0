@@ -7,16 +7,16 @@ using Terraria.ModLoader;
 
 namespace Consolaria.Content.Projectiles.Friendly {
     public class TurkeyHead : ModProjectile {
-        public override void SetStaticDefaults () {
-            Main.projPet [Projectile.type] = true;
-            Main.projFrames [Projectile.type] = 4;
+        public override void SetStaticDefaults() {
+            Main.projPet[Projectile.type] = true;
+            Main.projFrames[Projectile.type] = 4;
 
-            ProjectileID.Sets.CultistIsResistantTo [Projectile.type] = true;
-            ProjectileID.Sets.MinionTargettingFeature [Projectile.type] = true;
-            ProjectileID.Sets.MinionSacrificable [Projectile.type] = true;
+            ProjectileID.Sets.CultistIsResistantTo[Projectile.type] = true;
+            ProjectileID.Sets.MinionTargettingFeature[Projectile.type] = true;
+            ProjectileID.Sets.MinionSacrificable[Projectile.type] = true;
         }
 
-        public override void SetDefaults () {
+        public override void SetDefaults() {
             Projectile.CloneDefaults(317);
             Projectile.aiStyle = 54;
 
@@ -38,13 +38,13 @@ namespace Consolaria.Content.Projectiles.Friendly {
             Projectile.localNPCHitCooldown = 30;
         }
 
-        public override void AI () {
+        public override void AI() {
             if (Projectile.frame > 3) Projectile.frame = 1;
-            Player player = Main.player [Projectile.owner];
+            Player player = Main.player[Projectile.owner];
             if (!CheckActive(player)) return;
         }
 
-        private bool CheckActive (Player player) {
+        private bool CheckActive(Player player) {
             if (player.dead || !player.active) {
                 player.ClearBuff(ModContent.BuffType<Buffs.WeirdTurkey>());
                 return false;
@@ -53,33 +53,33 @@ namespace Consolaria.Content.Projectiles.Friendly {
             return true;
         }
 
-        public override bool OnTileCollide (Vector2 oldVelocity) {
+        public override bool OnTileCollide(Vector2 oldVelocity) {
             if (Projectile.velocity.X != oldVelocity.X) Projectile.tileCollide = false;
             if (Projectile.velocity.Y != oldVelocity.Y) Projectile.tileCollide = false;
             return false;
         }
 
-        public override void OnHitNPC (NPC target, NPC.HitInfo hit, int damageDone) => OnDamage();
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) => OnDamage();
 
-        public override void OnHitPlayer (Player target, Player.HurtInfo info) => OnDamage();
+        public override void OnHitPlayer(Player target, Player.HurtInfo info) => OnDamage();
 
-        private void OnDamage () {
-            Projectile.ai [1] = -1f;
+        private void OnDamage() {
+            Projectile.ai[1] = -1f;
             Projectile.netUpdate = true;
         }
 
-        public override bool? CanCutTiles ()
+        public override bool? CanCutTiles()
             => false;
 
-        public override bool MinionContactDamage ()
+        public override bool MinionContactDamage()
             => true;
 
-        public override bool PreDraw (ref Color lightColor) {
+        public override bool PreDraw(ref Color lightColor) {
             SpriteBatch spriteBatch = Main.spriteBatch;
-            Texture2D texture = (Texture2D) ModContent.Request<Texture2D>("Consolaria/Assets/Textures/Projectiles/TurkeyHeadNeck");
+            Texture2D texture = (Texture2D)ModContent.Request<Texture2D>("Consolaria/Assets/Textures/Projectiles/TurkeyHeadNeck");
 
             Vector2 position = Projectile.Center;
-            Vector2 mountedCenter = Main.player [Projectile.owner].MountedCenter;
+            Vector2 mountedCenter = Main.player[Projectile.owner].MountedCenter;
             Vector2 origin = new Vector2(texture.Width * 0.5f, texture.Height * 0.5f);
             Vector2 vector2_4 = mountedCenter - position;
 
@@ -96,7 +96,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
                     position += vector2_1 * height;
                     vector2_4 = mountedCenter - position;
                     Vector2 vector2_5 = position - Main.screenPosition;
-                    Color neckColor = Lighting.GetColor((int) (position.X / 16), (int) (position.Y / 16f));
+                    Color neckColor = Lighting.GetColor((int)(position.X / 16), (int)(position.Y / 16f));
                     spriteBatch.Draw(texture, vector2_5, null, neckColor, 0, origin, 1f, SpriteEffects.None, 0.0f);
                 }
             }

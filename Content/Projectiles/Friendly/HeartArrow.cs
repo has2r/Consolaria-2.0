@@ -9,7 +9,7 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Projectiles.Friendly {
     public class HeartArrow : ModProjectile {
 
-        public override void SetDefaults () {
+        public override void SetDefaults() {
             int width = 14; int height = width;
             Projectile.Size = new Vector2(width, height);
 
@@ -23,28 +23,28 @@ namespace Consolaria.Content.Projectiles.Friendly {
             Projectile.tileCollide = true;
         }
 
-        public override void AI () {
+        public override void AI() {
             if (Main.netMode != NetmodeID.Server) {
                 if (Main.rand.NextBool(3)) {
                     int dust = Dust.NewDust(new Vector2(Projectile.position.X + 2f, Projectile.position.Y + 2f), Projectile.width, Projectile.height, DustID.HeartCrystal, Projectile.velocity.X * 0.2f, Projectile.velocity.Y * 0.2f, 100, default, 1.25f);
-                    Main.dust [dust].noGravity = true;
+                    Main.dust[dust].noGravity = true;
                 }
             }
         }
 
-        public override void OnHitNPC (NPC target, NPC.HitInfo hit, int damageDone) {
-            if (!target.buffImmune [BuffID.Confused] && Main.rand.NextBool(2)) {
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) {
+            if (!target.buffImmune[BuffID.Confused] && Main.rand.NextBool(2)) {
                 target.AddBuff(BuffID.Lovestruck, 90);
                 target.AddBuff(ModContent.BuffType<Stunned>(), 90);
             }
         }
 
-        public override void OnHitPlayer (Player target, Player.HurtInfo info) {
+        public override void OnHitPlayer(Player target, Player.HurtInfo info) {
             if (info.PvP)
                 target.AddBuff(BuffID.Lovestruck, 90);
         }
 
-        public override void OnKill (int timeLeft) {
+        public override void OnKill(int timeLeft) {
             if (Main.netMode != NetmodeID.Server) {
                 if (Main.rand.NextBool(5) && !Projectile.noDropItem) {
                     Item.NewItem(Projectile.GetSource_DropAsItem(), Projectile.position, Projectile.width, Projectile.height, ModContent.ItemType<Items.Weapons.Ammo.HeartArrow>());

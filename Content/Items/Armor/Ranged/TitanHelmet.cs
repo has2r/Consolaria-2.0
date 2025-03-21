@@ -18,14 +18,14 @@ namespace Consolaria.Content.Items.Armor.Ranged {
     [AutoloadEquip(EquipType.Head)]
     public class TitanHelmet : ModItem {
         public static Lazy<Asset<Texture2D>> helmetGlowmask;
-        public override void Unload () => helmetGlowmask = null;
+        public override void Unload() => helmetGlowmask = null;
 
         public static LocalizedText SetBonusText {
             get; private set;
         }
 
-        public override void SetStaticDefaults () {
-            ItemID.Sets.ShimmerTransformToItem [Type] = ModContent.ItemType<AncientTitanHelmet>();
+        public override void SetStaticDefaults() {
+            ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<AncientTitanHelmet>();
             SetBonusText = this.GetLocalization("SetBonus");
 
             if (!Main.dedServ) {
@@ -36,10 +36,10 @@ namespace Consolaria.Content.Items.Armor.Ranged {
             }
         }
 
-        public override void PostDrawInWorld (SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
+        public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
             => Item.BasicInWorldGlowmask(spriteBatch, helmetGlowmask.Value.Value, new Color(255, 255, 255, 0) * 0.8f, rotation, scale);
 
-        public override void SetDefaults () {
+        public override void SetDefaults() {
             int width = 30; int height = 26;
             Item.Size = new Vector2(width, height);
 
@@ -49,19 +49,19 @@ namespace Consolaria.Content.Items.Armor.Ranged {
             Item.defense = 14;
         }
 
-        public override void UpdateEquip (Player player) {
+        public override void UpdateEquip(Player player) {
             player.GetCritChance(DamageClass.Ranged) += 10;
             player.GetDamage(DamageClass.Ranged) += 0.1f;
         }
 
-        public override bool IsArmorSet (Item head, Item body, Item legs)
+        public override bool IsArmorSet(Item head, Item body, Item legs)
             => (body.type == ModContent.ItemType<TitanMail>() || body.type == ModContent.ItemType<AncientTitanMail>())
             && (legs.type == ModContent.ItemType<TitanLeggings>() || legs.type == ModContent.ItemType<AncientTitanLeggings>());
 
-        public override void ArmorSetShadows (Player player)
+        public override void ArmorSetShadows(Player player)
             => player.armorEffectDrawOutlinesForbidden = true;
 
-        public override void UpdateArmorSet (Player player) {
+        public override void UpdateArmorSet(Player player) {
             player.setBonus = SetBonusText.ToString();
             player.GetModPlayer<TitanPlayer>().titanPower = true;
         }
@@ -74,13 +74,13 @@ namespace Consolaria.Content.Items.Armor.Ranged {
         public int titanBlastTimer;
         public readonly int titanBlastTimerLimit = 300;
 
-        public override void Initialize ()
+        public override void Initialize()
            => titanBlastTimer = titanBlastTimerLimit;
 
-        public override void ResetEffects ()
+        public override void ResetEffects()
            => titanPower = false;
 
-        public override void PostUpdateEquips () {
+        public override void PostUpdateEquips() {
             if (!titanPower) return;
 
             if (titanBlastTimer == titanBlastTimerLimit) newMaxFallSpeed = 24;
@@ -97,11 +97,11 @@ namespace Consolaria.Content.Items.Armor.Ranged {
     }
 
     internal class TitanArmorBonuses : GlobalItem {
-        public override bool Shoot (Item item, Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
+        public override bool Shoot(Item item, Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
             TitanPlayer modPlayer = player.GetModPlayer<TitanPlayer>();
-            ushort type2 = (ushort) ModContent.ProjectileType<TitanBlast>();
+            ushort type2 = (ushort)ModContent.ProjectileType<TitanBlast>();
 
-            if (modPlayer.titanPower && player.ownedProjectileCounts [type2] < 1 && item.DamageType == DamageClass.Ranged &&
+            if (modPlayer.titanPower && player.ownedProjectileCounts[type2] < 1 && item.DamageType == DamageClass.Ranged &&
                 modPlayer.titanBlastTimer == 0) {
                 SoundEngine.PlaySound(SoundID.DD2_ExplosiveTrapExplode, player.Center);
                 int blastDamage = damage * 2;
@@ -114,11 +114,11 @@ namespace Consolaria.Content.Items.Armor.Ranged {
                     for (int i = 0; i <= 15; i++) {
                         int dust = Dust.NewDust(player.Center, 0, 0, DustID.Smoke, dustVel.X * 0.4f, dustVel.Y * 0.4f, 120, default, Main.rand.NextFloat(0.5f, 1.5f));
                         int dust2 = Dust.NewDust(player.Center, 0, 0, DustID.SolarFlare, dustVel.X * 1.3f, dustVel.Y * 1.3f, 100, default, Main.rand.NextFloat(0.5f, 1.5f));
-                        Main.dust [dust2].velocity = Main.dust [dust2].velocity.RotatedByRandom(0.8f);
-                        Main.dust [dust2].noGravity = true;
-                        Main.dust [dust2].noLight = false;
-                        Main.dust [dust].fadeIn = Main.rand.NextFloat(0.4f, 1.4f);
-                        Main.dust [dust2].fadeIn = Main.rand.NextFloat(0.4f, 1.4f);
+                        Main.dust[dust2].velocity = Main.dust[dust2].velocity.RotatedByRandom(0.8f);
+                        Main.dust[dust2].noGravity = true;
+                        Main.dust[dust2].noLight = false;
+                        Main.dust[dust].fadeIn = Main.rand.NextFloat(0.4f, 1.4f);
+                        Main.dust[dust2].fadeIn = Main.rand.NextFloat(0.4f, 1.4f);
                     }
                 }
                 modPlayer.titanBlastTimer = modPlayer.titanBlastTimerLimit;
@@ -126,14 +126,14 @@ namespace Consolaria.Content.Items.Armor.Ranged {
             return base.Shoot(item, player, source, position, velocity, type, damage, knockback);
         }
 
-        public override bool CanConsumeAmmo (Item weapon, Item ammo, Player player) {
+        public override bool CanConsumeAmmo(Item weapon, Item ammo, Player player) {
             float dontConsumeAmmoChance = 0f;
             if (weapon.useAmmo >= 0) {
-                if (player.armor [0].type == ModContent.ItemType<TitanHelmet>() || player.armor [0].type == ModContent.ItemType<AncientTitanHelmet>())
+                if (player.armor[0].type == ModContent.ItemType<TitanHelmet>() || player.armor[0].type == ModContent.ItemType<AncientTitanHelmet>())
                     dontConsumeAmmoChance += 0.25f;
-                if (player.armor [1].type == ModContent.ItemType<TitanMail>() || player.armor [1].type == ModContent.ItemType<AncientTitanMail>())
+                if (player.armor[1].type == ModContent.ItemType<TitanMail>() || player.armor[1].type == ModContent.ItemType<AncientTitanMail>())
                     dontConsumeAmmoChance += 0.2f;
-                if (player.armor [2].type == ModContent.ItemType<TitanLeggings>() || player.armor [2].type == ModContent.ItemType<AncientTitanLeggings>())
+                if (player.armor[2].type == ModContent.ItemType<TitanLeggings>() || player.armor[2].type == ModContent.ItemType<AncientTitanLeggings>())
                     dontConsumeAmmoChance += 0.15f;
                 return Main.rand.NextFloat() >= dontConsumeAmmoChance;
             }

@@ -15,12 +15,12 @@ namespace Consolaria.Content.Items.Armor.Melee {
             get; private set;
         }
 
-        public override void SetStaticDefaults () {
-            ItemID.Sets.ShimmerTransformToItem [Type] = ModContent.ItemType<AncientDragonMask>();
+        public override void SetStaticDefaults() {
+            ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<AncientDragonMask>();
             SetBonusText = this.GetLocalization("SetBonus");
         }
 
-        public override void SetDefaults () {
+        public override void SetDefaults() {
             int width = 30; int height = 26;
             Item.Size = new Vector2(width, height);
 
@@ -30,19 +30,19 @@ namespace Consolaria.Content.Items.Armor.Melee {
             Item.defense = 18;
         }
 
-        public override void UpdateEquip (Player player) {
+        public override void UpdateEquip(Player player) {
             player.GetDamage(DamageClass.Melee) += 0.15f;
             player.GetAttackSpeed(DamageClass.Melee) += 0.15f;
         }
 
-        public override bool IsArmorSet (Item head, Item body, Item legs)
+        public override bool IsArmorSet(Item head, Item body, Item legs)
             => (body.type == ModContent.ItemType<DragonBreastplate>() || body.type == ModContent.ItemType<AncientDragonBreastplate>())
             && (legs.type == ModContent.ItemType<DragonGreaves>() || legs.type == ModContent.ItemType<AncientDragonGreaves>());
 
-        public override void ArmorSetShadows (Player player)
+        public override void ArmorSetShadows(Player player)
             => player.armorEffectDrawShadow = true;
 
-        public override void UpdateArmorSet (Player player) {
+        public override void UpdateArmorSet(Player player) {
             player.setBonus = SetBonusText.ToString();
             player.GetModPlayer<DragonPlayer>().dragonBurst = true;
         }
@@ -54,17 +54,17 @@ namespace Consolaria.Content.Items.Armor.Melee {
         private bool startFlames;
         private int burstTimer;
 
-        public override void ResetEffects ()
+        public override void ResetEffects()
             => dragonBurst = false;
 
-        public override void PostHurt (Player.HurtInfo info) {
+        public override void PostHurt(Player.HurtInfo info) {
             if (dragonBurst && !startFlames) {
                 startFlames = true;
                 SoundEngine.PlaySound(SoundID.DD2_PhantomPhoenixShot with { Volume = 0.8f, MaxInstances = 3 }, Player.Center);
             }
         }
 
-        public override void PostUpdate () {
+        public override void PostUpdate() {
             if (!dragonBurst) return;
 
             if (startFlames) {
@@ -77,7 +77,7 @@ namespace Consolaria.Content.Items.Armor.Melee {
                 velocity *= 5.75f;
                 float rotation = MathHelper.ToRadians(15);
                 float projectilesCount = 5;
-                ushort type = (ushort) ModContent.ProjectileType<ShadowflameBurst>();
+                ushort type = (ushort)ModContent.ProjectileType<ShadowflameBurst>();
                 if (burstTimer % 5 == 0) {
                     for (int i = 0; i < projectilesCount; i++) {
                         Vector2 perturbedSpeed = velocity.RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (projectilesCount))) * 1.15f;

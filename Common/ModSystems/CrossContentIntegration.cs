@@ -21,7 +21,7 @@ using Terraria.ModLoader;
 
 namespace Consolaria.Common {
     public class CrossContentIntegration : ModSystem {
-        public override void PostSetupContent () {
+        public override void PostSetupContent() {
             DoBossChecklistIntegration();
             DoFargosIntegration();
             DoAchievementModIntegration();
@@ -62,7 +62,7 @@ namespace Consolaria.Common {
             addIntergationFor("Turkor", "Assets/Music/Turkor");
         }
 
-        private void DoBossChecklistIntegration () {
+        private void DoBossChecklistIntegration() {
             if (!ModLoader.TryGetMod("BossChecklist", out Mod bossChecklistMod)) {
                 return;
             }
@@ -164,7 +164,7 @@ namespace Consolaria.Common {
            );
         }
 
-        private void DoFargosIntegration () {
+        private void DoFargosIntegration() {
             if (ModLoader.TryGetMod("Fargowiltas", out Mod fargos)) {
                 fargos.Call("AddSummon", 1.8f, "Consolaria", "SuspiciousLookingEgg", () => DownedBossSystem.downedLepus, 60000);
                 fargos.Call("AddSummon", 5.75f, "Consolaria", "CursedStuffing", () => DownedBossSystem.downedTurkor, 180000);
@@ -172,11 +172,11 @@ namespace Consolaria.Common {
             }
         }
 
-        private void DoAchievementModIntegration () {
+        private void DoAchievementModIntegration() {
             if (ModLoader.TryGetMod("TMLAchievements", out Mod achievement)) {
-                achievement.Call("AddAchievement", ModContent.GetInstance<Consolaria>(), "KillLepus", AchievementCategory.Slayer, "Consolaria/Assets/Achievements/LepusAchievement", null, false, false, 1.8f, new string [] { "Kill_" + ModContent.NPCType<Lepus>()});
-                achievement.Call("AddAchievement", ModContent.GetInstance<Consolaria>(), "KillTurkor", AchievementCategory.Slayer, "Consolaria/Assets/Achievements/TurkorAchievement", null, false, false, 5.75f, new string [] { "Kill_" + ModContent.NPCType<TurkortheUngrateful>()});
-                achievement.Call("AddAchievement", ModContent.GetInstance<Consolaria>(), "KillOcram", AchievementCategory.Slayer, "Consolaria/Assets/Achievements/OcramAchievement", null, false, false, 13f, new string [] { "Kill_" + ModContent.NPCType<Ocram>()});
+                achievement.Call("AddAchievement", ModContent.GetInstance<Consolaria>(), "KillLepus", AchievementCategory.Slayer, "Consolaria/Assets/Achievements/LepusAchievement", null, false, false, 1.8f, new string[] { "Kill_" + ModContent.NPCType<Lepus>() });
+                achievement.Call("AddAchievement", ModContent.GetInstance<Consolaria>(), "KillTurkor", AchievementCategory.Slayer, "Consolaria/Assets/Achievements/TurkorAchievement", null, false, false, 5.75f, new string[] { "Kill_" + ModContent.NPCType<TurkortheUngrateful>() });
+                achievement.Call("AddAchievement", ModContent.GetInstance<Consolaria>(), "KillOcram", AchievementCategory.Slayer, "Consolaria/Assets/Achievements/OcramAchievement", null, false, false, 13f, new string[] { "Kill_" + ModContent.NPCType<Ocram>() });
             }
         }
     }

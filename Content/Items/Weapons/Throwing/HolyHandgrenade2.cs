@@ -8,12 +8,12 @@ using Terraria.ModLoader;
 
 namespace Consolaria.Content.Items.Weapons.Throwing {
     public class HolyHandgrenade2 : ModItem {
-        public override void SetStaticDefaults () {
+        public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 99;
-            ItemID.Sets.ShimmerTransformToItem [Type] = ItemID.PoopBlock;
+            ItemID.Sets.ShimmerTransformToItem[Type] = ItemID.PoopBlock;
         }
 
-        public override void SetDefaults () {
+        public override void SetDefaults() {
             int width = 26; int height = 30;
             Item.Size = new Vector2(width, height);
 
@@ -33,11 +33,11 @@ namespace Consolaria.Content.Items.Weapons.Throwing {
             Item.shootSpeed = 4f;
         }
 
-        public override bool PreDrawInWorld (SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI) {
-            Texture2D texture = TextureAssets.Item [Item.type].Value;
+        public override bool PreDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI) {
+            Texture2D texture = TextureAssets.Item[Item.type].Value;
             Rectangle frame;
 
-            if (Main.itemAnimations [Item.type] != null) frame = Main.itemAnimations [Item.type].GetFrame(texture, Main.itemFrameCounter [whoAmI]);
+            if (Main.itemAnimations[Item.type] != null) frame = Main.itemAnimations[Item.type].GetFrame(texture, Main.itemFrameCounter[whoAmI]);
             else frame = texture.Frame();
 
             Vector2 frameOrigin = frame.Size() / 2f;

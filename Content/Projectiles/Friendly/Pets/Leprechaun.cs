@@ -12,17 +12,17 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
     public class Leprechaun : ConsolariaPet {
         public override int maxFrames => 9;
         public override int PreviewFirstFrame => 1;
-		public override int PreviewLastFrame => 8;
-		public override int PreviewSpriteDirection => -1;
+        public override int PreviewLastFrame => 8;
+        public override int PreviewSpriteDirection => -1;
 
-        public override void SetStaticDefaults () {
-            ProjectileID.Sets.TrailCacheLength [Projectile.type] = 12;
-            ProjectileID.Sets.TrailingMode [Projectile.type] = 0;
+        public override void SetStaticDefaults() {
+            ProjectileID.Sets.TrailCacheLength[Projectile.type] = 12;
+            ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
 
             base.SetStaticDefaults();
         }
 
-        public override void SetDefaults () {
+        public override void SetDefaults() {
             int width = 30; int height = 50;
             Projectile.Size = new Vector2(width, height);
 
@@ -31,8 +31,8 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
             base.SetDefaults();
         }
 
-        public override void AI () {
-            Player player = Main.player [Projectile.owner];
+        public override void AI() {
+            Player player = Main.player[Projectile.owner];
             if (!player.dead && player.HasBuff(ModContent.BuffType<Buffs.Leprechaun>()))
                 Projectile.timeLeft = 2;
 
@@ -42,15 +42,15 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
             WalkingAnimation(walkingAnimationSpeed: 3, walkingFirstFrame: 1, finalFrame);
             FlyingAnimation(oneFrame: true);
 
-            Projectile.localAI [0]++;
-            if (Projectile.localAI [0] % 800 == 0 && Projectile.velocity.X != 0 && Main.rand.NextBool(3))
+            Projectile.localAI[0]++;
+            if (Projectile.localAI[0] % 800 == 0 && Projectile.velocity.X != 0 && Main.rand.NextBool(3))
                 DropRandomCoin();
-			
+
             if (isFlying)
-            Projectile.rotation = Projectile.velocity.ToRotation() + (float)Math.PI / 2;
+                Projectile.rotation = Projectile.velocity.ToRotation() + (float)Math.PI / 2;
         }
 
-        private void DropRandomCoin () {
+        private void DropRandomCoin() {
             SoundEngine.PlaySound(SoundID.Coins with { Volume = 0.8f }, Projectile.Center);
             int coinType = Main.rand.Next(4);
             if (coinType == 0) Item.NewItem(Projectile.GetSource_FromAI(), Projectile.Center, ItemID.CopperCoin, 1);
@@ -71,17 +71,17 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
             }
         }
 
-        public override bool PreDraw (ref Color lightColor) {
+        public override bool PreDraw(ref Color lightColor) {
             SpriteBatch spriteBatch = Main.spriteBatch;
-            Texture2D texture = (Texture2D) ModContent.Request<Texture2D>("Consolaria/Assets/Textures/Projectiles/Leprechaun_Rainbow");
+            Texture2D texture = (Texture2D)ModContent.Request<Texture2D>("Consolaria/Assets/Textures/Projectiles/Leprechaun_Rainbow");
             Vector2 drawOrigin = new Vector2(texture.Width * 0.5f, texture.Height * 0.5f);
             SpriteEffects effects = (Projectile.spriteDirection == -1) ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
             for (int k = 0; k < Projectile.oldPos.Length - 1; k++) {
-                Vector2 drawPos = Projectile.oldPos [k] + new Vector2(Projectile.width, Projectile.height) / 2f + Vector2.UnitY * Projectile.gfxOffY - Main.screenPosition;
+                Vector2 drawPos = Projectile.oldPos[k] + new Vector2(Projectile.width, Projectile.height) / 2f + Vector2.UnitY * Projectile.gfxOffY - Main.screenPosition;
                 Color color = new Color(150, 150, 150, 50);
-                float rotation = (float) Math.Atan2(Projectile.oldPos [k].Y - Projectile.oldPos [k + 1].Y, Projectile.oldPos [k].X - Projectile.oldPos [k + 1].X);
+                float rotation = (float)Math.Atan2(Projectile.oldPos[k].Y - Projectile.oldPos[k + 1].Y, Projectile.oldPos[k].X - Projectile.oldPos[k + 1].X);
                 if (isFlying)
-                    spriteBatch.Draw(texture, new Vector2(drawPos.X, drawPos.Y) + new Vector2 (0, 16).RotatedBy(Projectile.rotation), null, color, rotation, drawOrigin, Projectile.scale - k / (float) Projectile.oldPos.Length + 0.5f, effects, 0f);
+                    spriteBatch.Draw(texture, new Vector2(drawPos.X, drawPos.Y) + new Vector2(0, 16).RotatedBy(Projectile.rotation), null, color, rotation, drawOrigin, Projectile.scale - k / (float)Projectile.oldPos.Length + 0.5f, effects, 0f);
             }
             return true;
         }

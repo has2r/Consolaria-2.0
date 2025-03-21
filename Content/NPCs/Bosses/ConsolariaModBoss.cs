@@ -18,12 +18,12 @@ namespace Consolaria.Content.NPCs.Bosses {
             get; set;
         }
 
-        public override void SetStaticDefaults () {
-            NPCID.Sets.TrailCacheLength [Type] = 8;
-            NPCID.Sets.TrailingMode [Type] = 1;
+        public override void SetStaticDefaults() {
+            NPCID.Sets.TrailCacheLength[Type] = 8;
+            NPCID.Sets.TrailingMode[Type] = 1;
         }
 
-        public override void SetDefaults () {
+        public override void SetDefaults() {
             NPC.knockBackResist = 0f;
             NPC.boss = true;
             NPC.scale = 1f;
@@ -33,34 +33,34 @@ namespace Consolaria.Content.NPCs.Bosses {
             AnimationType = -1;
         }
 
-        public override bool CheckDead ()
+        public override bool CheckDead()
             => false;
 
-        public override bool CheckActive ()
+        public override bool CheckActive()
             => false;
 
         public ref float StateTimer
-            => ref NPC.ai [0];
+            => ref NPC.ai[0];
 
         public ref float State
-            => ref NPC.ai [1];
+            => ref NPC.ai[1];
 
-        protected void ChangeState (float newStateID) {
+        protected void ChangeState(float newStateID) {
             State = newStateID;
             StateTimer = 0f;
         }
 
-        protected void ChangeState (float newStateID, float newStateTimer) {
+        protected void ChangeState(float newStateID, float newStateTimer) {
             State = newStateID;
             StateTimer = newStateTimer;
         }
 
-        protected void SetFrame (int index) {
-            SetFrame(index / Main.npcFrameCount [Type], index % Main.npcFrameCount [Type]);
+        protected void SetFrame(int index) {
+            SetFrame(index / Main.npcFrameCount[Type], index % Main.npcFrameCount[Type]);
             FrameIndex = index;
         }
 
-        protected void SetFrame (int x, int y) {
+        protected void SetFrame(int x, int y) {
             NPC.frame = new Rectangle(x * FrameWidth, y * FrameHeight, FrameWidth, FrameHeight);
         }
     }

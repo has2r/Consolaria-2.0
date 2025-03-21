@@ -9,9 +9,9 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Items.Accessories {
     [AutoloadEquip(EquipType.Wings)]
     public class SparklyWings : ModItem {
-        public override void SetStaticDefaults () {
+        public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 1;
-            ArmorIDs.Wing.Sets.Stats [Item.wingSlot] = new WingStats(160, 7f, 2f);
+            ArmorIDs.Wing.Sets.Stats[Item.wingSlot] = new WingStats(160, 7f, 2f);
 
             if (!Main.dedServ) {
                 WingsGlowmask.RegisterData(Item.wingSlot, new DrawLayerData() {
@@ -20,7 +20,7 @@ namespace Consolaria.Content.Items.Accessories {
             }
         }
 
-        public override void SetDefaults () {
+        public override void SetDefaults() {
             int width = 30; int height = 28;
             Item.Size = new Vector2(width, height);
 
@@ -30,10 +30,10 @@ namespace Consolaria.Content.Items.Accessories {
             Item.accessory = true;
         }
 
-        public override Color? GetAlpha (Color lightColor)
+        public override Color? GetAlpha(Color lightColor)
             => Color.White;
 
-        public override void VerticalWingSpeeds (Player player, ref float ascentWhenFalling, ref float ascentWhenRising, ref float maxCanAscendMultiplier, ref float maxAscentMultiplier, ref float constantAscend) {
+        public override void VerticalWingSpeeds(Player player, ref float ascentWhenFalling, ref float ascentWhenRising, ref float maxCanAscendMultiplier, ref float maxAscentMultiplier, ref float constantAscend) {
             ascentWhenFalling = 0.65f;
             ascentWhenRising = 0.15f;
             maxCanAscendMultiplier = 1f;

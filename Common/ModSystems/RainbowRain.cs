@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace Consolaria.Common {
     public class RainbowRain : ModSystem {
-        public override void PostUpdateWorld () {
+        public override void PostUpdateWorld() {
             Vector2 randomPosition = new Vector2(Main.rand.Next(Main.maxTilesX * 16), 200);
             if (Main.dayTime && (SeasonalEvents.configEnabled && SeasonalEvents.IsPatrickDay()) || (!SeasonalEvents.configEnabled && Main.raining)) {
                 if (Main.time % 450 == 0 && Main.rand.NextBool(1 + RainbowDropDenominator()) && Main.rand.Next(10) < 7) {
@@ -17,7 +17,7 @@ namespace Consolaria.Common {
             }
         }
 
-        private static int RainbowDropDenominator () {
+        private static int RainbowDropDenominator() {
             if (SeasonalEvents.configEnabled)
                 return SeasonalEvents.IsPatrickDay() ? 3 : 0;
             else return Main.raining ? 5 : 0;

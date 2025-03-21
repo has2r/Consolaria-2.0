@@ -12,9 +12,9 @@ namespace Consolaria.Common {
 
         public override Asset<Texture2D> Logo => ModContent.Request<Texture2D>("Consolaria/Assets/Textures/ConsolariaLogo");
 
-        public override int Music => MusicID.ConsoleMenu; 
+        public override int Music => MusicID.ConsoleMenu;
 
-        public override bool PreDrawLogo (SpriteBatch spriteBatch, ref Vector2 logoDrawCenter, ref float logoRotation, ref float logoScale, ref Color drawColor) {
+        public override bool PreDrawLogo(SpriteBatch spriteBatch, ref Vector2 logoDrawCenter, ref float logoRotation, ref float logoScale, ref Color drawColor) {
             logoDrawCenter += new Vector2(0, 14);
             logoScale *= 0.65f;
             return true;

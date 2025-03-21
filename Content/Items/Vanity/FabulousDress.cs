@@ -11,51 +11,51 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Items.Vanity {
     [AutoloadEquip(EquipType.Body)]
 
-	public class FabulousDress : ModItem {
-		public override void SetStaticDefaults () {
-			Item.ResearchUnlockCount = 1;
-		}
+    public class FabulousDress : ModItem {
+        public override void SetStaticDefaults() {
+            Item.ResearchUnlockCount = 1;
+        }
 
-		public override void SetDefaults () {
-			int width = 30; int height = 18;
-			Item.Size = new Vector2(width, height);
+        public override void SetDefaults() {
+            int width = 30; int height = 18;
+            Item.Size = new Vector2(width, height);
 
-			Item.rare = ItemRarityID.White;
-			Item.value = Item.buyPrice(gold: 15);
-			Item.vanity = true;
-		}
-	}
+            Item.rare = ItemRarityID.White;
+            Item.value = Item.buyPrice(gold: 15);
+            Item.vanity = true;
+        }
+    }
 
-	internal class FabulousSkirt : PlayerDrawLayer {
-		private Asset<Texture2D> dressTexture;
+    internal class FabulousSkirt : PlayerDrawLayer {
+        private Asset<Texture2D> dressTexture;
 
-		public override void Load ()
-			=> dressTexture = ModContent.Request<Texture2D>("Consolaria/Content/Items/Vanity/FabulousDress_Skirt");
+        public override void Load()
+            => dressTexture = ModContent.Request<Texture2D>("Consolaria/Content/Items/Vanity/FabulousDress_Skirt");
 
-		public override void Unload ()
-			=> dressTexture = null;
+        public override void Unload()
+            => dressTexture = null;
 
-		public override bool GetDefaultVisibility (PlayerDrawSet drawInfo) {
-			if (((drawInfo.drawPlayer.armor [1].type == ModContent.ItemType<FabulousDress>()) && Helper.CanDrawArmorLayer(drawInfo, 11)) ||
-				(drawInfo.drawPlayer.armor [11].type == ModContent.ItemType<FabulousDress>()))
-				return true;
-			return false;
-		}
+        public override bool GetDefaultVisibility(PlayerDrawSet drawInfo) {
+            if (((drawInfo.drawPlayer.armor[1].type == ModContent.ItemType<FabulousDress>()) && Helper.CanDrawArmorLayer(drawInfo, 11)) ||
+                (drawInfo.drawPlayer.armor[11].type == ModContent.ItemType<FabulousDress>()))
+                return true;
+            return false;
+        }
 
-		public override Position GetDefaultPosition ()
-			=> new AfterParent(PlayerDrawLayers.FrontAccFront);
+        public override Position GetDefaultPosition()
+            => new AfterParent(PlayerDrawLayers.FrontAccFront);
 
-		protected override void Draw (ref PlayerDrawSet drawInfo) {
-			Player player = drawInfo.drawPlayer;
-			if (player.dead || player.invis || player.front != -1) return;
+        protected override void Draw(ref PlayerDrawSet drawInfo) {
+            Player player = drawInfo.drawPlayer;
+            if (player.dead || player.invis || player.front != -1) return;
 
-			Texture2D texture = dressTexture.Value;
-			Vector2 position = drawInfo.Position - Main.screenPosition + new Vector2(player.width / 2 - player.bodyFrame.Width / 2, player.height - player.bodyFrame.Height + 4f) + player.bodyPosition;
-			Vector2 origin = drawInfo.bodyVect;
+            Texture2D texture = dressTexture.Value;
+            Vector2 position = drawInfo.Position - Main.screenPosition + new Vector2(player.width / 2 - player.bodyFrame.Width / 2, player.height - player.bodyFrame.Height + 4f) + player.bodyPosition;
+            Vector2 origin = drawInfo.bodyVect;
 
-			DrawData drawData = new DrawData(texture, position.Floor() + origin, player.bodyFrame, drawInfo.colorArmorBody, player.bodyRotation, origin, 1f, drawInfo.playerEffect, 0);
-			drawData.shader = player.cBody;
-			drawInfo.DrawDataCache.Add(drawData);
-		}
-	}
+            DrawData drawData = new DrawData(texture, position.Floor() + origin, player.bodyFrame, drawInfo.colorArmorBody, player.bodyRotation, origin, 1f, drawInfo.playerEffect, 0);
+            drawData.shader = player.cBody;
+            drawInfo.DrawDataCache.Add(drawData);
+        }
+    }
 }

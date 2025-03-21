@@ -7,12 +7,12 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Items.Armor.Melee {
     [AutoloadEquip(EquipType.Body)]
     public class AncientDragonBreastplate : ModItem {
-        public override void SetStaticDefaults () {
+        public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 1;
             ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<DragonBreastplate>();
         }
 
-        public override void SetDefaults () {
+        public override void SetDefaults() {
             int width = 34; int height = 22;
             Item.Size = new Vector2(width, height);
 
@@ -22,7 +22,7 @@ namespace Consolaria.Content.Items.Armor.Melee {
             Item.defense = 24;
         }
 
-        public override void UpdateEquip (Player player) {
+        public override void UpdateEquip(Player player) {
             player.GetCritChance(DamageClass.Melee) += 10;
             player.GetDamage(DamageClass.Melee) += 0.1f;
             player.GetAttackSpeed(DamageClass.Melee) += 0.15f;

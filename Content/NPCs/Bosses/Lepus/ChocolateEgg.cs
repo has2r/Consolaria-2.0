@@ -9,10 +9,10 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
     public class ChocolateEgg : ModNPC {
         private int duration;
         private bool golden = Main.rand.NextBool(1000);
-        public override void SetStaticDefaults () {
-            NPCID.Sets.SpecificDebuffImmunity [Type] [BuffID.Confused] = true;
-            NPCID.Sets.SpecificDebuffImmunity [Type] [BuffID.Poisoned] = true;
-            NPCID.Sets.SpecificDebuffImmunity [Type] [BuffID.Venom] = true;
+        public override void SetStaticDefaults() {
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Confused] = true;
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Poisoned] = true;
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Venom] = true;
 
             NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers() {
                 Hide = true
@@ -21,7 +21,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
             Main.npcFrameCount[NPC.type] = 2;
         }
 
-        public override void SetDefaults () {
+        public override void SetDefaults() {
             int width = 20; int height = 26;
             NPC.Size = new Vector2(width, height);
 
@@ -42,13 +42,12 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
             NPC.noTileCollide = false;
         }
 
-        public override void FindFrame(int frameHeight)
-        {
+        public override void FindFrame(int frameHeight) {
             if (golden) NPC.frame.Y = frameHeight;
             else NPC.frame.Y = 0;
         }
 
-        public override void AI () {
+        public override void AI() {
             if (Main.netMode != NetmodeID.MultiplayerClient) {
                 NPC.homeless = false;
                 NPC.homeTileX = -1;
@@ -78,21 +77,19 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
             if (damage < 1) damage = 1;
         }*/
 
-        public override void HitEffect (NPC.HitInfo hit) {
+        public override void HitEffect(NPC.HitInfo hit) {
             if (NPC.life <= 0) {
                 for (int i = 0; i < (golden ? 5 : Main.rand.Next(1, 2)); i++) {
                     int item = Item.NewItem(NPC.GetSource_Death(), NPC.position, NPC.width, NPC.height, ItemID.Star, 1, false, 0, false, false);
                     if (Main.netMode == NetmodeID.MultiplayerClient && item >= 0)
                         NetMessage.SendData(MessageID.SyncItem, -1, -1, null, item, 1f, 0f, 0f, 0, 0, 0);
                 }
-                for (int i = 0; i < (golden ? 5 : Main.rand.Next(1, 2)); i++)
-                {
+                for (int i = 0; i < (golden ? 5 : Main.rand.Next(1, 2)); i++) {
                     int item = Item.NewItem(NPC.GetSource_Death(), NPC.position, NPC.width, NPC.height, ItemID.Heart, 1, false, 0, false, false);
                     if (Main.netMode == NetmodeID.MultiplayerClient && item >= 0)
                         NetMessage.SendData(MessageID.SyncItem, -1, -1, null, item, 1f, 0f, 0f, 0, 0, 0);
                 }
-                for (int i = 0; i < (golden ? Main.rand.Next(3, 8) : 0); i++)
-                {
+                for (int i = 0; i < (golden ? Main.rand.Next(3, 8) : 0); i++) {
                     int item = Item.NewItem(NPC.GetSource_Death(), NPC.position, NPC.width, NPC.height, ItemID.GoldCoin, 1, false, 0, false, false);
                     if (Main.netMode == NetmodeID.MultiplayerClient && item >= 0)
                         NetMessage.SendData(MessageID.SyncItem, -1, -1, null, item, 1f, 0f, 0f, 0, 0, 0);

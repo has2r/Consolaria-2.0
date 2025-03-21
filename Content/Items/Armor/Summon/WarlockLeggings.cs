@@ -7,14 +7,14 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Items.Armor.Summon {
     [AutoloadEquip(EquipType.Legs)]
     public class WarlockLeggings : ModItem {
-        public override void SetStaticDefaults () {
+        public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 1;
 
-            ArmorIDs.Legs.Sets.HidesBottomSkin [Item.legSlot] = true;
+            ArmorIDs.Legs.Sets.HidesBottomSkin[Item.legSlot] = true;
             ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<AncientWarlockLeggings>();
         }
 
-        public override void SetDefaults () {
+        public override void SetDefaults() {
             int width = 22; int height = 18;
             Item.Size = new Vector2(width, height);
 
@@ -24,7 +24,7 @@ namespace Consolaria.Content.Items.Armor.Summon {
             Item.defense = 8;
         }
 
-        public override void UpdateEquip (Player player) {
+        public override void UpdateEquip(Player player) {
             player.moveSpeed += 0.15f;
             player.maxMinions += 1;
 

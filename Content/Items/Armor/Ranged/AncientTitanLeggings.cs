@@ -7,12 +7,12 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Items.Armor.Ranged {
     [AutoloadEquip(EquipType.Legs)]
     public class AncientTitanLeggings : ModItem {
-        public override void SetStaticDefaults () {
+        public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 1;
             ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<TitanLeggings>();
         }
 
-        public override void SetDefaults () {
+        public override void SetDefaults() {
             int width = 22; int height = 18;
             Item.Size = new Vector2(width, height);
 
@@ -22,7 +22,7 @@ namespace Consolaria.Content.Items.Armor.Ranged {
             Item.defense = 13;
         }
 
-        public override void UpdateEquip (Player player) {
+        public override void UpdateEquip(Player player) {
             player.moveSpeed += 0.18f;
             player.GetDamage(DamageClass.Ranged) += 0.1f;
         }

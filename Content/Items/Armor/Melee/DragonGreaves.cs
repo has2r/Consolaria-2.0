@@ -7,12 +7,12 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Items.Armor.Melee {
     [AutoloadEquip(EquipType.Legs)]
     public class DragonGreaves : ModItem {
-        public override void SetStaticDefaults () {
+        public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 1;
             ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<AncientDragonGreaves>();
         }
 
-        public override void SetDefaults () {
+        public override void SetDefaults() {
             int width = 22; int height = 18;
             Item.Size = new Vector2(width, height);
 
@@ -22,7 +22,7 @@ namespace Consolaria.Content.Items.Armor.Melee {
             Item.defense = 14;
         }
 
-        public override void UpdateEquip (Player player) {
+        public override void UpdateEquip(Player player) {
             player.GetCritChance(DamageClass.Melee) += 5;
             player.GetDamage(DamageClass.Melee) += 0.05f;
             player.moveSpeed += 0.2f;

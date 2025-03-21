@@ -4,42 +4,42 @@ using Terraria.ModLoader.Config;
 
 namespace Consolaria.Common {
     public class ConsolariaConfig : ModConfig {
-		public override ConfigScope Mode => ConfigScope.ServerSide;
+        public override ConfigScope Mode => ConfigScope.ServerSide;
 
-		[Header("SeasonalEvents")]
-		[DefaultValue(false)]
-		[ReloadRequired]
-		public bool easterEnabled;
+        [Header("SeasonalEvents")]
+        [DefaultValue(false)]
+        [ReloadRequired]
+        public bool easterEnabled;
 
-		[DefaultValue(false)]
-		[ReloadRequired]
-		public bool thanksgivingEnabled;
+        [DefaultValue(false)]
+        [ReloadRequired]
+        public bool thanksgivingEnabled;
 
-		[DefaultValue(false)]
-		[ReloadRequired]
-		public bool smallEventsEnabled;
+        [DefaultValue(false)]
+        [ReloadRequired]
+        public bool smallEventsEnabled;
 
-		[Header("Miscellaneous")]
-		[DefaultValue(false)]
-		public bool vanillaBossMusicEnabled;
+        [Header("Miscellaneous")]
+        [DefaultValue(false)]
+        public bool vanillaBossMusicEnabled;
 
-		[DefaultValue(true)]
+        [DefaultValue(true)]
         [ReloadRequired]
         public bool heartbeatariaIntegrationEnabled;
 
-		[DefaultValue(false)]
+        [DefaultValue(false)]
         [ReloadRequired]
         public bool genderRestrictShopEnabled;
 
-		[DefaultValue(false)]
+        [DefaultValue(false)]
         [ReloadRequired]
         public bool oktoberLocksEnabled;
 
-		[DefaultValue(false)]
+        [DefaultValue(false)]
         [ReloadRequired]
         public bool originalAncientHeroSetRecipeEnabled;
 
-		[DefaultValue(false)]
+        [DefaultValue(false)]
         [ReloadRequired]
         public bool mythicalWyvernKiteVanillaDropruleEnabled;
 

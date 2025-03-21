@@ -9,12 +9,12 @@ using Terraria.ModLoader;
 
 namespace Consolaria.Content.Items.Summons {
     public class CursedStuffing : ModItem {
-        public override void SetStaticDefaults () {
+        public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 3;
-            ItemID.Sets.SortingPriorityBossSpawns [Type] = 12;
+            ItemID.Sets.SortingPriorityBossSpawns[Type] = 12;
         }
 
-        public override void SetDefaults () {
+        public override void SetDefaults() {
             int width = 34; int height = 28;
             Item.Size = new Vector2(width, height);
 
@@ -30,15 +30,15 @@ namespace Consolaria.Content.Items.Summons {
             Item.consumable = true;
         }
 
-        public override bool CanUseItem (Player player)
+        public override bool CanUseItem(Player player)
             => player.HasBuff(ModContent.BuffType<PetTurkey>()) && !NPC.AnyNPCs(ModContent.NPCType<TurkortheUngrateful>());
 
-        public override bool? UseItem (Player player) {
+        public override bool? UseItem(Player player) {
             player.ClearBuff(ModContent.BuffType<PetTurkey>());
             int type = ModContent.NPCType<TurkortheUngrateful>();
             if (Main.netMode != NetmodeID.MultiplayerClient) {
-                int npc = NPC.NewNPC(player.GetSource_ItemUse(Item), (int) player.Center.X, (int) player.Center.Y, type);
-                Main.npc [npc].target = player.whoAmI;
+                int npc = NPC.NewNPC(player.GetSource_ItemUse(Item), (int)player.Center.X, (int)player.Center.Y, type);
+                Main.npc[npc].target = player.whoAmI;
                 if (Main.netMode == NetmodeID.Server && npc < Main.maxNPCs) {
                     NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, npc);
                 }

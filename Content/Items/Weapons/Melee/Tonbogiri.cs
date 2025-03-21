@@ -9,14 +9,14 @@ using Terraria.ModLoader;
 
 namespace Consolaria.Content.Items.Weapons.Melee {
     public class Tonbogiri : ModItem {
-        public override void SetStaticDefaults () {
-            ItemID.Sets.SkipsInitialUseSound [Item.type] = true;
-            ItemID.Sets.Spears [Item.type] = true;
+        public override void SetStaticDefaults() {
+            ItemID.Sets.SkipsInitialUseSound[Item.type] = true;
+            ItemID.Sets.Spears[Item.type] = true;
 
             Item.ResearchUnlockCount = 1;
         }
 
-        public override void SetDefaults () {
+        public override void SetDefaults() {
             int width = 56; int height = width;
             Item.Size = new Vector2(width, height);
 
@@ -43,10 +43,10 @@ namespace Consolaria.Content.Items.Weapons.Melee {
             Item.channel = true;
         }
 
-        public override bool CanUseItem (Player player)
-            => player.ownedProjectileCounts [Item.shoot] < 1;
+        public override bool CanUseItem(Player player)
+            => player.ownedProjectileCounts[Item.shoot] < 1;
 
-        public override bool? UseItem (Player player) {
+        public override bool? UseItem(Player player) {
             if (!Main.dedServ && Item.UseSound.HasValue)
                 SoundEngine.PlaySound(Item.UseSound.Value, player.position);
             return null;

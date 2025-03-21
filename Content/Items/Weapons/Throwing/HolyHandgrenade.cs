@@ -6,13 +6,13 @@ using Terraria.ModLoader;
 
 namespace Consolaria.Content.Items.Weapons.Throwing {
     public class HolyHandgrenade : ModItem {
-        public override void SetStaticDefaults () {
+        public override void SetStaticDefaults() {
 
             Item.ResearchUnlockCount = 99;
-            ItemID.Sets.ShimmerTransformToItem [Type] = ModContent.ItemType<HolyHandgrenade2>();
+            ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<HolyHandgrenade2>();
         }
 
-        public override void SetDefaults () {
+        public override void SetDefaults() {
             int width = 26; int height = 30;
             Item.Size = new Vector2(width, height);
 

@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace Consolaria.Content.Items.Weapons.Melee {
     public class GreatDrumstick : ModItem {
-        public override void SetDefaults () {
+        public override void SetDefaults() {
             int width = 38; int height = 42;
             Item.Size = new Vector2(width, height);
 
@@ -26,10 +26,10 @@ namespace Consolaria.Content.Items.Weapons.Melee {
             Item.UseSound = SoundID.Item95;
         }
 
-        public override void OnHitNPC (Player player, NPC target, NPC.HitInfo hit, int damageDone)
+        public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
             => target.AddBuff(BuffID.Oiled, 600);
 
-        public override void OnHitPvp (Player player, Player target, Player.HurtInfo hurtInfo)
+        public override void OnHitPvp(Player player, Player target, Player.HurtInfo hurtInfo)
             => target.AddBuff(BuffID.Oiled, 600);
     }
 }

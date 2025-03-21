@@ -9,13 +9,13 @@ using Terraria.ModLoader;
 
 namespace Consolaria.Content.Items.Materials {
     public class RainbowPiece : ModItem {
-        public override void SetStaticDefaults () {
+        public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 50;
-            ItemID.Sets.ShimmerTransformToItem [Type] = ItemID.FallenStar;
-            ItemID.Sets.ShimmerTransformToItem [ItemID.FallenStar] = Type;
+            ItemID.Sets.ShimmerTransformToItem[Type] = ItemID.FallenStar;
+            ItemID.Sets.ShimmerTransformToItem[ItemID.FallenStar] = Type;
         }
 
-        public override void SetDefaults () {
+        public override void SetDefaults() {
             int width = 20; int height = width;
             Item.Size = new Vector2(width, height);
 
@@ -24,7 +24,7 @@ namespace Consolaria.Content.Items.Materials {
             Item.value = Item.sellPrice(silver: 5);
         }
 
-        public override void Update (ref float gravity, ref float maxFallSpeed) {
+        public override void Update(ref float gravity, ref float maxFallSpeed) {
             if (Main.dayTime)
                 return;
 
@@ -36,7 +36,7 @@ namespace Consolaria.Content.Items.Materials {
             Item.TurnToAir();
         }
 
-        public override void PostUpdate () {
+        public override void PostUpdate() {
             Lighting.AddLight(Item.Center, Main.DiscoColor.ToVector3() * 0.4f);
 
             if (Item.timeSinceItemSpawned % 12 == 0) {
@@ -47,23 +47,23 @@ namespace Consolaria.Content.Items.Materials {
                     Vector2 velocity = new Vector2(0f, -Main.rand.NextFloat() * 0.3f - 1.5f);
 
                     int dust = Dust.NewDust(center + direction * distance, 0, 0, ModContent.DustType<Dusts.RomanFlame>(), velocity.X, velocity.Y, 0, Main.DiscoColor);
-                    Main.dust [dust].position = center + direction * distance;
-                    Main.dust [dust].velocity = velocity;
-                    Main.dust [dust].scale = 0.5f;
-                    Main.dust [dust].fadeIn = 1.1f;
-                    Main.dust [dust].noGravity = true;
-                    Main.dust [dust].alpha = 0;
+                    Main.dust[dust].position = center + direction * distance;
+                    Main.dust[dust].velocity = velocity;
+                    Main.dust[dust].scale = 0.5f;
+                    Main.dust[dust].fadeIn = 1.1f;
+                    Main.dust[dust].noGravity = true;
+                    Main.dust[dust].alpha = 0;
                 }
             }
         }
 
-        public override bool PreDrawInWorld (SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI) {
-            Texture2D texture = TextureAssets.Item [Item.type].Value;
+        public override bool PreDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI) {
+            Texture2D texture = TextureAssets.Item[Item.type].Value;
             Rectangle frame;
 
             Color rainbowGlow = new Color(Main.DiscoColor.R, Main.DiscoColor.G, Main.DiscoColor.B, 60);
 
-            if (Main.itemAnimations [Item.type] != null) frame = Main.itemAnimations [Item.type].GetFrame(texture, Main.itemFrameCounter [whoAmI]);
+            if (Main.itemAnimations[Item.type] != null) frame = Main.itemAnimations[Item.type].GetFrame(texture, Main.itemFrameCounter[whoAmI]);
             else frame = texture.Frame();
 
             Vector2 frameOrigin = frame.Size() / 2f;

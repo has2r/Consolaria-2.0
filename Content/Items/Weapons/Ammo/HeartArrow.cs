@@ -31,6 +31,6 @@ namespace Consolaria.Content.Items.Weapons.Ammo {
             Item.rare = ItemRarityID.Blue;
 
             Item.ammo = AmmoID.Arrow;
-        }  
+        }
     }
 }

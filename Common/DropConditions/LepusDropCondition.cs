@@ -3,6 +3,7 @@ using Consolaria.Content.NPCs.Bosses.Lepus;
 
 using Terraria;
 using Terraria.GameContent.ItemDropRules;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Consolaria.Common {
@@ -15,7 +16,7 @@ namespace Consolaria.Common {
 
         public bool CanShowItemDropInUI() => true;
 
-        public string GetConditionDescription() => "Drops if Lepus is not present";
+        public string GetConditionDescription() => Language.GetTextValue("Mods.Consolaria.LepusDropCondition");
     }
 
     public class RabbitInvasionDropCondition : IItemDropRuleCondition {

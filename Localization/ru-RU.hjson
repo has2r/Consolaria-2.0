@@ -1,5 +1,6 @@
 Mods: {
 	Consolaria: {
+		// LepusDropCondition: Drops if Lepus is not present
 		// ValentineRingTooltip1: Give it to someone special!
 		/* ValentineRingTooltip2:
 			'''

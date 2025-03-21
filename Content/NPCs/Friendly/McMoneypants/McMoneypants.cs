@@ -26,8 +26,6 @@ public class McMoneypants : ModNPC {
 
     private const double DAY_TIME = 48600.0;
 
-    public const string BUTTON_TEXT = "Invest";
-
     private static string _lastName = null;
 
     private static double _timePassed;
@@ -208,7 +206,7 @@ public class McMoneypants : ModNPC {
 
     public override void SetChatButtons(ref string button, ref string button2) {
         McMoneypantsPlayerData modPlayer = Main.LocalPlayer.GetModPlayer<McMoneypantsPlayerData>();
-        button = BUTTON_TEXT + (!modPlayer.PlayerInvested ? $" ({Helper.GetPriceText(modPlayer.PlayerInvestPrice, true)})" : string.Empty);
+        button = Language.GetTextValue("Mods.Consolaria.McMoneypantsButton1Text") + (!modPlayer.PlayerInvested ? $" ({Helper.GetPriceText(modPlayer.PlayerInvestPrice, true)})" : string.Empty);
     }
 
     public override void OnChatButtonClicked(bool firstButton, ref string shopName)

@@ -37,7 +37,7 @@ public class McMoneypantsInvitation : ModItem {
             return false;
         }
 
-        string text = "The invitation flies away to its recipient...";
+        string text = Language.GetTextValue($"Mods.Consolaria.McMoneypantsInvitationUsage"); ;
         if (player.whoAmI == Main.myPlayer && player.itemAnimation >= player.itemAnimationMax) {
             if (Main.netMode == NetmodeID.SinglePlayer) {
                 Main.NewText(text, Color.SpringGreen);

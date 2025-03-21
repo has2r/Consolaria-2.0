@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
@@ -17,9 +18,9 @@ namespace Consolaria.Content.Items.Accessories {
 
         public override void ModifyTooltips (List<TooltipLine> tooltips) {
             if (!unlockEffects)
-                tooltips.Add(new TooltipLine(Mod, "UnPickupped", "Give it to someone special!"));
+                tooltips.Add(new TooltipLine(Mod, "UnPickupped", Language.GetTextValue("Mods.Consolaria.ValentineRingTooltip1")));
             else
-                tooltips.Add(new TooltipLine(Mod, "Pickupped", "Slowly regenerates life\nIncreases jump height"));
+                tooltips.Add(new TooltipLine(Mod, "Pickupped", Language.GetTextValue("Mods.Consolaria.ValentineRingTooltip2")));
         }
 
         public override void SetDefaults () {

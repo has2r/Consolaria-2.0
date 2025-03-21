@@ -14,8 +14,10 @@ namespace Consolaria.Content.Items.Weapons.Melee {
             Item.useTurn = true;
 
             Item.DamageType = DamageClass.Melee;
-            Item.damage = 30;
+            Item.damage = 42;
             Item.knockBack = 8;
+
+            Item.scale = 1.25f;
 
             Item.value = Item.buyPrice(gold: 1, silver: 20);
             Item.rare = ItemRarityID.Orange;

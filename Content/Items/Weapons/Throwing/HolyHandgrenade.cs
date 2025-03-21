@@ -30,21 +30,5 @@ namespace Consolaria.Content.Items.Weapons.Throwing {
             Item.shoot = ModContent.ProjectileType<Projectiles.Friendly.HolyHandgrenade>();
             Item.shootSpeed = 4f;
         }
-
-        public override void AddRecipes () {
-            CreateRecipe()
-                .AddIngredient(ItemID.Dynamite, 5)
-                .AddIngredient(ItemID.GoldBar, 2)
-                .AddIngredient(ItemID.BottledWater, 2)
-                .AddTile(TileID.WorkBenches)
-                .Register();
-				
-				CreateRecipe()
-                .AddIngredient(ItemID.Dynamite, 5)
-                .AddIngredient(ItemID.PlatinumBar, 2)
-                .AddIngredient(ItemID.BottledWater, 2)
-                .AddTile(TileID.WorkBenches)
-                .Register();
-        }
     }
 }

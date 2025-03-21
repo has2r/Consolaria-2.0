@@ -39,19 +39,5 @@ namespace Consolaria.Content.Items.Weapons.Ranged {
 			position += _velocity * 35;
 			position += new Vector2(-_velocity.Y, _velocity.X) * (-2f * player.direction);
 		}
-
-		public override void AddRecipes () {
-			CreateRecipe()
-				.AddIngredient(ItemID.MoltenFury)
-				.AddIngredient(ItemID.DemonBow, 1)
-				.AddTile(TileID.DemonAltar)
-				.Register();
-
-			CreateRecipe()
-				.AddIngredient(ItemID.MoltenFury)
-				.AddIngredient(ItemID.TendonBow, 1)
-				.AddTile(TileID.DemonAltar)
-				.Register();
-		}
 	}
 }

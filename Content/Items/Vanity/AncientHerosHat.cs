@@ -23,16 +23,5 @@ namespace Consolaria.Content.Items.Vanity {
 			Item.value = Item.sellPrice(silver: 20);
 			Item.vanity = true;
 		}
-		public override void AddRecipes () {
-			if (ModContent.GetInstance<ConsolariaConfig>().originalAncientHeroSetRecipeEnabled) {
-				CreateRecipe()
-					.AddIngredient(ItemID.Silk, 20)
-					.AddIngredient<PurpleThread>(3)
-					.AddTile(TileID.Loom)
-//					.AddCustomShimmerResult(ItemID.Silk, 20)
-//					.AddCustomShimmerResult<PurpleThread>(3)
-					.Register();
-			}
-		}
 	}
 }

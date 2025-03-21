@@ -10,6 +10,7 @@ using Consolaria.Content.Items.Summons;
 using Consolaria.Content.Items.Vanity;
 using Consolaria.Content.Items.Weapons.Melee;
 using Consolaria.Content.Items.Weapons.Ranged;
+using Consolaria.Content.Items.Weapons.Throwing;
 
 using Terraria;
 using Terraria.ID;
@@ -68,6 +69,29 @@ sealed class ConsolariaRecipes : ModSystem {
         item.AddTile(TileID.Loom);
         item.SortAfter(temp);
         item.Register();
+
+        if (ModContent.GetInstance<ConsolariaConfig>().originalAncientHeroSetRecipeEnabled) {
+            item = Recipe.Create(ModContent.ItemType<AncientHerosHat>(), 1);
+            item.AddIngredient(ItemID.Silk, 20);
+            item.AddIngredient(ModContent.ItemType<PurpleThread>(), 3);
+            item.AddTile(TileID.Loom);
+            item.SortAfterFirstRecipesOf(ItemID.HerosPants);
+            item.Register();
+            temp = item;
+            item = Recipe.Create(ModContent.ItemType<AncientHerosShirt>(), 1);
+            item.AddIngredient(ItemID.Silk, 20);
+            item.AddIngredient(ModContent.ItemType<PurpleThread>(), 3);
+            item.AddTile(TileID.Loom);
+            item.SortAfter(temp);
+            item.Register();
+            temp = item;
+            item = Recipe.Create(ModContent.ItemType<AncientHerosPants>(), 1);
+            item.AddIngredient(ItemID.Silk, 20);
+            item.AddIngredient(ModContent.ItemType<PurpleThread>(), 3);
+            item.AddTile(TileID.Loom);
+            item.SortAfter(temp);
+            item.Register();
+        }
 
         // ocram summon
         item = Recipe.Create(ModContent.ItemType<SuspiciousLookingSkull>(), 1);
@@ -371,6 +395,38 @@ sealed class ConsolariaRecipes : ModSystem {
         item.AddIngredient(ItemID.SoulofNight, 10);
         item.AddIngredient(ModContent.ItemType<SoulofBlight>(), 10);
         item.AddTile(TileID.DemonAltar);
+        item.SortAfter(temp);
+        item.Register();
+
+        // sharanga
+        item = Recipe.Create(ModContent.ItemType<Sharanga>(), 1);
+        item.AddIngredient(ItemID.MoltenFury, 1);
+        item.AddIngredient(ItemID.DemonBow, 1);
+        item.AddTile(TileID.DemonAltar);
+        item.SortAfterFirstRecipesOf(ItemID.MoltenFury);
+        item.Register();
+        temp = item;
+        item = Recipe.Create(ModContent.ItemType<Sharanga>(), 1);
+        item.AddIngredient(ItemID.MoltenFury, 1);
+        item.AddIngredient(ItemID.TendonBow, 1);
+        item.AddTile(TileID.DemonAltar);
+        item.SortAfter(temp);
+        item.Register();
+
+        // holy grenade
+        item = Recipe.Create(ModContent.ItemType<HolyHandgrenade>(), 1);
+        item.AddIngredient(ItemID.Dynamite, 5);
+        item.AddIngredient(ItemID.GoldBar, 2);
+        item.AddIngredient(ItemID.BottledWater, 2);
+        item.AddTile(TileID.WorkBenches);
+        item.SortBeforeFirstRecipesOf(ItemID.TNTBarrel);
+        item.Register();
+        temp = item;
+        item = Recipe.Create(ModContent.ItemType<HolyHandgrenade>(), 1);
+        item.AddIngredient(ItemID.Dynamite, 5);
+        item.AddIngredient(ItemID.PlatinumBar, 2);
+        item.AddIngredient(ItemID.BottledWater, 2);
+        item.AddTile(TileID.WorkBenches);
         item.SortAfter(temp);
         item.Register();
     }

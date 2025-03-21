@@ -1,5 +1,14 @@
 Mods: {
 	Consolaria: {
+		// ValentineRingTooltip1: Give it to someone special!
+		/* ValentineRingTooltip2:
+			'''
+			Slowly regenerates life
+			Increases jump height
+			''' */
+		// McMoneypantsInvitationUsage: The invitation flies away to its recipient...
+		// Munchies.McMoneypantsInvitation.HowToAcquire: Obtained from Red Envelope
+		// McMoneypantsButton1Text: Invest
 		Others.NPCTitle: "{0} {1}"
 
 		Biomes: {

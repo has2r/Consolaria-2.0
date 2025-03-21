@@ -17,14 +17,6 @@ namespace Consolaria {
 			RecipeGroup.RegisterGroup("Consolaria:TitaniumRecipeGroup", Titanium);
 		}
 
-		public override void AddRecipes () {
-			Recipe.Create(ItemID.RainbowBrick, 10)
-				.AddIngredient(ItemID.StoneBlock, 10)
-				.AddIngredient<RainbowPiece>(1)
-				.AddTile(TileID.Furnaces)
-				.Register();
-		}
-
 		public override void PostAddRecipes () {
 			if (ModContent.GetInstance<ConsolariaConfig>().tizonaZenithIntegrationEnabled) {
 				for (int i = 0; i < Recipe.numRecipes; i++) {

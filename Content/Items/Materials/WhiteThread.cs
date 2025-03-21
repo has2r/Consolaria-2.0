@@ -18,12 +18,5 @@ namespace Consolaria.Content.Items.Materials {
             Item.maxStack = 9999;
             Item.value = Item.sellPrice(silver: 4);
         }
-
-        public override void AddRecipes() {
-            CreateRecipe()
-                .AddIngredient(ItemID.ShiverthornSeeds, 3)
-                .AddTile(TileID.Bottles)
-                .Register();
-        }
     }
 }

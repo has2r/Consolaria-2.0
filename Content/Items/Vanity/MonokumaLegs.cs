@@ -20,14 +20,5 @@ namespace Consolaria.Content.Items.Vanity {
 			Item.value = Item.sellPrice(silver: 15);
 			Item.vanity = true;
 		}
-
-		public override void AddRecipes () {
-			CreateRecipe()
-				.AddIngredient(ItemID.Silk, 20)
-				.AddIngredient<WhiteThread>(3)
-				.AddIngredient(ItemID.BlackThread, 3)
-				.AddTile(TileID.Loom)
-				.Register();
-		}
 	}
 }

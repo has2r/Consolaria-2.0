@@ -47,16 +47,5 @@ namespace Consolaria.Content.Items.Summons {
 
             return true;
         }
-
-        public override void AddRecipes() {
-            CreateRecipe()
-                .AddIngredient(ItemID.Bone, 15)
-                .AddIngredient(ItemID.Ectoplasm, 5)
-                .AddIngredient(ItemID.SoulofFright, 5)
-                .AddIngredient(ItemID.SoulofMight, 5)
-                .AddIngredient(ItemID.SoulofSight, 5)
-                .AddTile(TileID.DemonAltar)
-                .Register();
-        }
     }
 }

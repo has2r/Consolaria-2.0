@@ -19,14 +19,5 @@ namespace Consolaria.Content.Items.Materials {
             Item.maxStack = 9999;
             Item.value = Item.sellPrice(silver: 4);
         }
-
-        public override void AddRecipes() {
-            if (ModContent.GetInstance<ConsolariaConfig>().originalAncientHeroSetRecipeEnabled) {
-                CreateRecipe()
-                    .AddIngredient(ItemID.DeathweedSeeds, 3)
-                    .AddTile(TileID.Bottles)
-                    .Register();
-            }
-        }
     }
 }

@@ -20,12 +20,5 @@ namespace Consolaria.Content.Items.Pets {
 			Item.rare = ItemRarityID.Green;
 			Item.value = Item.sellPrice(gold: 1);
 		}
-
-		public override void AddRecipes () {
-			CreateRecipe()
-				.AddIngredient<RainbowPiece>(5)
-				.AddTile(TileID.Anvils)
-				.Register();
-		}
 	}
 }

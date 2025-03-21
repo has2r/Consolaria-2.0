@@ -1,22 +1,116 @@
-﻿using Terraria.ID;
-using Terraria;
-using Terraria.ModLoader;
-using Consolaria.Content.Items.Placeable;
-using Consolaria.Content.Items.Materials;
-using Consolaria.Content.Items.Accessories;
+﻿using Consolaria.Content.Items.Accessories;
+using Consolaria.Content.Items.Armor.Magic;
 using Consolaria.Content.Items.Armor.Melee;
 using Consolaria.Content.Items.Armor.Ranged;
-using Consolaria.Content.Items.Armor.Magic;
 using Consolaria.Content.Items.Armor.Summon;
+using Consolaria.Content.Items.Materials;
+using Consolaria.Content.Items.Pets;
+using Consolaria.Content.Items.Placeable;
+using Consolaria.Content.Items.Summons;
+using Consolaria.Content.Items.Vanity;
 using Consolaria.Content.Items.Weapons.Melee;
 using Consolaria.Content.Items.Weapons.Ranged;
+
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Consolaria.Common;
 
 sealed class ConsolariaRecipes : ModSystem {
     public override void AddRecipes() {
+        // thread vanity
+        Recipe item = Recipe.Create(ModContent.ItemType<MonokumaHead>(), 1);
+        item.AddIngredient(ItemID.Silk, 20);
+        item.AddIngredient(ModContent.ItemType<WhiteThread>(), 3);
+        item.AddIngredient(ItemID.BlackThread, 3);
+        item.AddTile(TileID.Loom);
+        item.SortAfterFirstRecipesOf(ItemID.SuperHeroTights);
+        item.Register();
+        Recipe temp = item;
+        item = Recipe.Create(ModContent.ItemType<MonokumaBody>(), 1);
+        item.AddIngredient(ItemID.Silk, 20);
+        item.AddIngredient(ModContent.ItemType<WhiteThread>(), 3);
+        item.AddIngredient(ItemID.BlackThread, 3);
+        item.AddTile(TileID.Loom);
+        item.SortAfter(temp);
+        item.Register();
+        temp = item;
+        item = Recipe.Create(ModContent.ItemType<MonokumaLegs>(), 1);
+        item.AddIngredient(ItemID.Silk, 20);
+        item.AddIngredient(ModContent.ItemType<WhiteThread>(), 3);
+        item.AddIngredient(ItemID.BlackThread, 3);
+        item.AddTile(TileID.Loom);
+        item.SortAfter(temp);
+        item.Register();
+
+        temp = item;
+        item = Recipe.Create(ModContent.ItemType<MonomiHead>(), 1);
+        item.AddIngredient(ItemID.Silk, 20);
+        item.AddIngredient(ModContent.ItemType<WhiteThread>(), 3);
+        item.AddIngredient(ItemID.PinkThread, 3);
+        item.AddTile(TileID.Loom);
+        item.SortAfter(temp);
+        item.Register();
+        temp = item;
+        item = Recipe.Create(ModContent.ItemType<MonomiBody>(), 1);
+        item.AddIngredient(ItemID.Silk, 20);
+        item.AddIngredient(ModContent.ItemType<WhiteThread>(), 3);
+        item.AddIngredient(ItemID.PinkThread, 3);
+        item.AddTile(TileID.Loom);
+        item.SortAfter(temp);
+        item.Register();
+        temp = item;
+        item = Recipe.Create(ModContent.ItemType<MonomiLegs>(), 1);
+        item.AddIngredient(ItemID.Silk, 20);
+        item.AddIngredient(ModContent.ItemType<WhiteThread>(), 3);
+        item.AddIngredient(ItemID.PinkThread, 3);
+        item.AddTile(TileID.Loom);
+        item.SortAfter(temp);
+        item.Register();
+
+        // ocram summon
+        item = Recipe.Create(ModContent.ItemType<SuspiciousLookingSkull>(), 1);
+        item.AddIngredient(ItemID.Bone, 15);
+        item.AddIngredient(ItemID.Ectoplasm, 5);
+        item.AddIngredient(ItemID.SoulofFright, 5);
+        item.AddIngredient(ItemID.SoulofMight, 5);
+        item.AddIngredient(ItemID.SoulofSight, 5);
+        item.AddTile(TileID.DemonAltar);
+        item.SortAfterFirstRecipesOf(ItemID.MechanicalSkull);
+        item.Register();
+
+        // threads
+        item = Recipe.Create(ModContent.ItemType<WhiteThread>(), 1);
+        item.AddIngredient(ItemID.ShiverthornSeeds, 3);
+        item.AddTile(TileID.Bottles);
+        item.SortAfterFirstRecipesOf(ItemID.GreenThread);
+        item.Register();
+        temp = item;
+        if (ModContent.GetInstance<ConsolariaConfig>().originalAncientHeroSetRecipeEnabled) {
+            item = Recipe.Create(ModContent.ItemType<PurpleThread>(), 1);
+            item.AddIngredient(ItemID.DeathweedSeeds, 3);
+            item.AddTile(TileID.Bottles);
+            item.SortAfter(temp);
+            item.Register();
+        }
+
+        // rainbow pieces
+        item = Recipe.Create(ItemID.RainbowBrick, 10);
+        item.AddIngredient(ItemID.StoneBlock, 10);
+        item.AddIngredient(ModContent.ItemType<RainbowPiece>(), 1);
+        item.AddTile(TileID.Furnaces);
+        item.SortAfterFirstRecipesOf(ItemID.GrayBrick);
+        item.Register();
+
+        item = Recipe.Create(ModContent.ItemType<PotOfGold>(), 1);
+        item.AddIngredient(ModContent.ItemType<RainbowPiece>(), 5);
+        item.AddTile(TileID.Anvils);
+        item.SortAfterFirstRecipesOf(ItemID.ManaCrystal);
+        item.Register();
+
         // soul of blight
-        Recipe item = Recipe.Create(ModContent.ItemType<SoulOfBlightInABottle>(), 1);
+        item = Recipe.Create(ModContent.ItemType<SoulOfBlightInABottle>(), 1);
         item.AddIngredient(ItemID.Bottle, 1);
         item.AddIngredient(ModContent.ItemType<SoulofBlight>(), 1);
         item.AddTile(TileID.WorkBenches);
@@ -58,7 +152,7 @@ sealed class ConsolariaRecipes : ModSystem {
         item.AddTile(TileID.MythrilAnvil);
         item.SortAfterFirstRecipesOf(ItemID.HallowedGreaves);
         item.Register();
-        Recipe temp = item;
+        temp = item;
         item = Recipe.Create(ModContent.ItemType<DragonBreastplate>(), 1);
         item.AddIngredient(ItemID.HallowedPlateMail, 1);
         item.AddRecipeGroup(RecipeGroups.Titanium, 12);

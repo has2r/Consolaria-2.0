@@ -1434,6 +1434,7 @@ Mods: {
 				Headers: {
 					SeasonalEvents: Seasonal Events
 					Miscellaneous: Miscellaneous
+					// WorldGeneration: World Generation
 				}
 
 				easterEnabled: {
@@ -1497,6 +1498,11 @@ Mods: {
 						Male - George's set
 						Female - Fabulous set
 						''' */
+				}
+
+				pyramidEnabled: {
+					// Label: Pyramid Enabled
+					// Tooltip: ""
 				}
 			}
 		}

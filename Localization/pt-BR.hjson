@@ -1434,6 +1434,7 @@ Mods: {
 				Headers: {
 					SeasonalEvents: Eventos Sazonais
 					Miscellaneous: Outros
+					// WorldGeneration: World Generation
 				}
 
 				easterEnabled: {
@@ -1497,6 +1498,11 @@ Mods: {
 						Masculino - conjunto de George
 						Feminino - Conjunto Fabuloso
 						'''
+				}
+
+				pyramidEnabled: {
+					// Label: Pyramid Enabled
+					// Tooltip: ""
 				}
 			}
 		}

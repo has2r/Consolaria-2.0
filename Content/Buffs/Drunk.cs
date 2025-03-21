@@ -2,7 +2,7 @@ using Terraria;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.Buffs {
-	public class Drunk : ModBuff {
+    public class Drunk : ModBuff {
 		public override void SetStaticDefaults () {
 
 			Main.buffNoSave [Type] = true;

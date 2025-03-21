@@ -1,10 +1,11 @@
 using Microsoft.Xna.Framework;
+
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.Items.Pets {
-	public class MysteriousPackage : PetItem {
+    public class MysteriousPackage : PetItem {
 		public override void SetStaticDefaults ()
 			=> Item.ResearchUnlockCount = 1;
 

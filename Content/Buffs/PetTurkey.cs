@@ -1,10 +1,12 @@
 using Consolaria.Content.NPCs.Bosses.Turkor;
+
 using Microsoft.Xna.Framework;
+
 using Terraria;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.Buffs {
-	public class PetTurkey : ModBuff {
+    public class PetTurkey : ModBuff {
 		public override void SetStaticDefaults () {
 
 			Main.buffNoTimeDisplay [Type] = true;

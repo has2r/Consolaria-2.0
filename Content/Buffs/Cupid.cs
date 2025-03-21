@@ -1,10 +1,10 @@
 using Microsoft.Xna.Framework;
+
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Consolaria.Content.Buffs
-{
-	public class Cupid : ModBuff
+namespace Consolaria.Content.Buffs {
+    public class Cupid : ModBuff
 	{
 		public override void SetStaticDefaults() {
 

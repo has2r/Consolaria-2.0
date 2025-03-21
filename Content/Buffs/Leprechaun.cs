@@ -1,9 +1,10 @@
 using Microsoft.Xna.Framework;
+
 using Terraria;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.Buffs {
-	public class Leprechaun : ModBuff {
+    public class Leprechaun : ModBuff {
 		public override void SetStaticDefaults () {
 
 			Main.buffNoTimeDisplay [Type] = true;

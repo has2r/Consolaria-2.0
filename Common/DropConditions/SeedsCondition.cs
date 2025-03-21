@@ -2,7 +2,7 @@
 using Terraria.GameContent.ItemDropRules;
 
 namespace Consolaria.Common {
-	public class DrunkWorldCondition : IItemDropRuleCondition {
+    public class DrunkWorldCondition : IItemDropRuleCondition {
 		public bool CanDrop (DropAttemptInfo info) {
 			if (!info.IsInSimulation)
 				return Main.drunkWorld;

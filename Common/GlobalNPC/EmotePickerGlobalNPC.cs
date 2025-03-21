@@ -1,13 +1,14 @@
-using Consolaria.Content.EmoteBubbles;
 using Consolaria.Common.ModSystems;
+using Consolaria.Content.EmoteBubbles;
+
 using System.Collections.Generic;
+
 using Terraria;
 using Terraria.GameContent.UI;
 using Terraria.ModLoader;
 
-namespace Consolaria.Common.GlobalNPCs
-{
-	public class EmotePickerGlobalNPC : GlobalNPC
+namespace Consolaria.Common.GlobalNPCs {
+    public class EmotePickerGlobalNPC : GlobalNPC
 	{
 		public override int? PickEmote(NPC npc, Player closestPlayer, List<int> emoteList, WorldUIAnchor otherAnchor) 
 		{

@@ -1,6 +1,7 @@
+using Microsoft.Xna.Framework;
+
 using Terraria;
 using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
 
 namespace Consolaria.Content.Buffs {
     public class Android : ModBuff

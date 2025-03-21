@@ -1,11 +1,13 @@
-﻿using System;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
+
+using System;
+
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.NPCs.Bosses.Turkor {
-	public class TurkorNeck : ModNPC {
+    public class TurkorNeck : ModNPC {
 		private ref float neck => ref NPC.ai [3];
 
 		public override void SetStaticDefaults () {

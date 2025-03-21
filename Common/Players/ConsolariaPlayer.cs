@@ -1,5 +1,6 @@
 using Consolaria.Content.NPCs.Bosses.Ocram;
 using Consolaria.Content.Projectiles.Enemies;
+
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ModLoader;

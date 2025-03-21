@@ -1,13 +1,14 @@
 ﻿using Microsoft.Xna.Framework;
+
 using System;
 using System.Collections.Generic;
+
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ModLoader;
 
-namespace Consolaria
-{
-	public class BodyGlowmask : ModPlayer 
+namespace Consolaria {
+    public class BodyGlowmask : ModPlayer 
 	{
 		private static Dictionary<int, Func<Color>> BodyColor { get; set; }
 

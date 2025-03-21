@@ -1,12 +1,12 @@
-using Consolaria.Content.Items.Materials;
+using Consolaria.Common;
+using Consolaria.Content.Items.Weapons.Melee;
+
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Consolaria.Content.Items.Weapons.Melee;
-using Consolaria.Common;
 
 namespace Consolaria {
-	public class RecipeGroups : ModSystem {
+    public class RecipeGroups : ModSystem {
 		public static RecipeGroup Titanium;
 
 		public override void Unload ()

@@ -1,9 +1,8 @@
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Consolaria.Content.Buffs
-{
-	public class EyeOfEternity : ModBuff
+namespace Consolaria.Content.Buffs {
+    public class EyeOfEternity : ModBuff
 	{
 		public override void SetStaticDefaults() {
 			Main.buffNoSave[Type] = true;

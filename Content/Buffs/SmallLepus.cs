@@ -1,9 +1,10 @@
 using Microsoft.Xna.Framework;
+
 using Terraria;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.Buffs {
-	public class SmallLepus : ModBuff {
+    public class SmallLepus : ModBuff {
 		public override void SetStaticDefaults () {
 
 			Main.buffNoTimeDisplay [Type] = true;

@@ -1,8 +1,7 @@
 using Terraria.ModLoader;
 
-namespace Consolaria.Backgrounds
-{
-	public class ValentinesDayBackgroundStyle : ModSurfaceBackgroundStyle
+namespace Consolaria.Backgrounds {
+    public class ValentinesDayBackgroundStyle : ModSurfaceBackgroundStyle
 	{
 		public override void ModifyFarFades(float[] fades, float transitionSpeed)
 		{

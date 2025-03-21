@@ -7,11 +7,14 @@ using Consolaria.Content.Items.Placeable;
 using Consolaria.Content.Items.Summons;
 using Consolaria.Content.Items.Vanity;
 using Consolaria.Content.Items.Weapons.Ranged;
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+
 using System;
 using System.Collections.Generic;
 using System.IO;
+
 using Terraria;
 using Terraria.Audio;
 using Terraria.Chat;

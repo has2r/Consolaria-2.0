@@ -1,10 +1,11 @@
 using Microsoft.Xna.Framework;
+
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Consolaria.Content.Items.Placeable.Banners {
-	public class ShadowSlimeBanner : ModItem {
+    public class ShadowSlimeBanner : ModItem {
 		public override void SetStaticDefaults () {
 			Item.ResearchUnlockCount = 1;
 		}

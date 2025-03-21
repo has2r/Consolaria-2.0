@@ -1,10 +1,12 @@
+using Consolaria.Content.NPCs.Friendly.McMoneypants;
+
 using Microsoft.Xna.Framework;
+
 using Terraria;
 using Terraria.Chat;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
-using Consolaria.Content.NPCs.Friendly.McMoneypants;
 
 namespace Consolaria.Content.Items.Consumables;
 

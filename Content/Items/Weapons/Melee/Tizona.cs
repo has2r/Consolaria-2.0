@@ -1,12 +1,14 @@
 using Microsoft.Xna.Framework;
+
 using System;
+
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.Items.Weapons.Melee {
-	public class TizonaData : ModPlayer {
+    public class TizonaData : ModPlayer {
 		public bool TizonaIsUsed { get; internal set; }
 
         public override void PostUpdate() {

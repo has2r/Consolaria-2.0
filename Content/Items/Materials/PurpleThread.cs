@@ -1,8 +1,8 @@
 using Microsoft.Xna.Framework;
+
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Consolaria.Common;
 
 namespace Consolaria.Content.Items.Materials {
     public class PurpleThread : ModItem

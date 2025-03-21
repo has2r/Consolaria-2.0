@@ -1,9 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
+
 using Terraria;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.Projectiles.Friendly {
-	public class OcramEyeGlow : ModProjectile {
+    public class OcramEyeGlow : ModProjectile {
 		public override void SetDefaults () {
 			int width = 10; int height = width;
 			Projectile.Size = new Vector2(width, height);

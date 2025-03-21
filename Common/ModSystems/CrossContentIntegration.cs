@@ -11,9 +11,9 @@ using Consolaria.Content.NPCs.Friendly.McMoneypants;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+
 using System;
 using System.Collections.Generic;
-using System.IO;
 
 using Terraria.Achievements;
 using Terraria.Localization;

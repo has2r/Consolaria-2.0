@@ -1,5 +1,7 @@
 using Consolaria.Content.Projectiles.Friendly;
+
 using Microsoft.Xna.Framework;
+
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

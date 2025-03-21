@@ -1,20 +1,23 @@
-using System;
+using Consolaria.Common;
+using Consolaria.Content.Items.Vanity;
+using Consolaria.Content.Projectiles.Enemies;
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+
+using System;
+
 using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria.Audio;
-using Terraria.GameContent.ItemDropRules;
-using Consolaria.Content.Items.Vanity;
-using Terraria.ModLoader.Utilities;
 using Terraria.GameContent.Bestiary;
-using Consolaria.Content.Projectiles.Enemies;
-using Consolaria.Common;
+using Terraria.GameContent.ItemDropRules;
+using Terraria.ID;
 using Terraria.Localization;
+using Terraria.ModLoader;
+using Terraria.ModLoader.Utilities;
 
 namespace Consolaria.Content.NPCs {
-	public class ArchWyvernHead : ModNPC {
+    public class ArchWyvernHead : ModNPC {
 		private int shootTimer;
 		public static LocalizedText BestiaryText {
 			get; private set;

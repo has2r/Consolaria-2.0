@@ -1,12 +1,12 @@
-using Terraria.ModLoader;
-using Terraria;
-using Terraria.ID;
 using Microsoft.Xna.Framework;
-using Terraria.GameContent.Creative;
 
-namespace Consolaria.Content.Items.Vanity
-{
-	[AutoloadEquip(EquipType.Head)]
+using Terraria;
+using Terraria.GameContent.Creative;
+using Terraria.ID;
+using Terraria.ModLoader;
+
+namespace Consolaria.Content.Items.Vanity {
+    [AutoloadEquip(EquipType.Head)]
 	public class TurkorMask : ModItem
 	{
 		public override void SetStaticDefaults() {

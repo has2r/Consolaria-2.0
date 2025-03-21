@@ -1,14 +1,15 @@
-using Terraria.ID;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace Consolaria.Content.Tiles {
-	public class TurkorMusicBox : ModTile {
+    public class TurkorMusicBox : ModTile {
 		public override void SetStaticDefaults () {
 			Main.tileFrameImportant [Type] = true;
 			Main.tileObsidianKill [Type] = true;

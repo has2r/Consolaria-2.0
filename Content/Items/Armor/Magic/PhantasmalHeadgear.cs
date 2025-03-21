@@ -1,6 +1,7 @@
-using Consolaria.Content.Items.Materials;
 using Consolaria.Content.Projectiles.Friendly;
+
 using Microsoft.Xna.Framework;
+
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;

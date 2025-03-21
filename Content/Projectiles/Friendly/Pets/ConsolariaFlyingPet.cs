@@ -1,11 +1,13 @@
 using Microsoft.Xna.Framework;
+
 using System;
+
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.Projectiles.Friendly.Pets {
-	public abstract class ConsolariaFlyingPet : ModProjectile {
+    public abstract class ConsolariaFlyingPet : ModProjectile {
 		public virtual int maxFrames => 0;
 		public virtual int PreviewOffsetX => 0;
 		public virtual int PreviewOffsetY => 0;

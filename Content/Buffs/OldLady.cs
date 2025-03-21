@@ -1,5 +1,7 @@
 using Consolaria.Content.Projectiles.Friendly.Pets;
+
 using Microsoft.Xna.Framework;
+
 using Terraria;
 using Terraria.ModLoader;
 

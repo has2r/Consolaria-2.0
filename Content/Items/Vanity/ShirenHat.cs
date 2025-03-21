@@ -1,10 +1,11 @@
-using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
 using Microsoft.Xna.Framework;
 
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+
 namespace Consolaria.Content.Items.Vanity {
-	[AutoloadEquip(EquipType.Head)]
+    [AutoloadEquip(EquipType.Head)]
 
 	public class ShirenHat : ModItem {
 		public override void SetStaticDefaults ()

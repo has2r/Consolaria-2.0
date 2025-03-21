@@ -1,13 +1,12 @@
-using Consolaria.Content.Items.Materials;
 using Microsoft.Xna.Framework;
+
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Consolaria.Content.Items.Vanity
-{
-	[AutoloadEquip(EquipType.Legs)]
+namespace Consolaria.Content.Items.Vanity {
+    [AutoloadEquip(EquipType.Legs)]
 
 	public class MonomiLegs : ModItem
 	{

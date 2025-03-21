@@ -1,7 +1,10 @@
 ﻿using Consolaria.Common;
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+
 using System;
+
 using Terraria;
 using Terraria.GameContent.Drawing;
 using Terraria.ID;

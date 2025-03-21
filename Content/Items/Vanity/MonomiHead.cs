@@ -1,13 +1,12 @@
-using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
-using Terraria.GameContent.Creative;
 using Microsoft.Xna.Framework;
-using Consolaria.Content.Items.Materials;
 
-namespace Consolaria.Content.Items.Vanity
-{
-	[AutoloadEquip(EquipType.Head)]
+using Terraria;
+using Terraria.GameContent.Creative;
+using Terraria.ID;
+using Terraria.ModLoader;
+
+namespace Consolaria.Content.Items.Vanity {
+    [AutoloadEquip(EquipType.Head)]
 
 	public class MonomiHead : ModItem
 	{

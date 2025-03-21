@@ -1,13 +1,15 @@
-﻿using Terraria;
-using Terraria.ModLoader;
+﻿using Consolaria.Content.Projectiles.Enemies;
+
 using Microsoft.Xna.Framework;
-using Terraria.ID;
 using Microsoft.Xna.Framework.Graphics;
-using Terraria.GameContent.Bestiary;
-using Consolaria.Content.Projectiles.Enemies;
-using Terraria.ModLoader.Utilities;
-using Terraria.Localization;
+
+using Terraria;
 using Terraria.Audio;
+using Terraria.GameContent.Bestiary;
+using Terraria.ID;
+using Terraria.Localization;
+using Terraria.ModLoader;
+using Terraria.ModLoader.Utilities;
 
 namespace Consolaria.Content.NPCs {
     public class SpectralElemental : ModNPC {

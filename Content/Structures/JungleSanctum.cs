@@ -1,12 +1,15 @@
+using Consolaria.Common;
+using Consolaria.Content.Tiles;
+
 using Microsoft.Xna.Framework;
+
 using System.Collections.Generic;
+
 using Terraria;
 using Terraria.ID;
+using Terraria.IO;
 using Terraria.ModLoader;
 using Terraria.WorldBuilding;
-using Terraria.IO;
-using Consolaria.Content.Tiles;
-using Consolaria.Common;
 
 namespace Consolaria.Content.Structures {
     public class JungleSanctum : ModSystem {

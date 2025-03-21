@@ -1,30 +1,32 @@
-﻿using System;
-using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Terraria.Audio;
-using Consolaria.Content.Projectiles.Enemies;
-using Terraria.GameContent.Bestiary;
-using System.Collections.Generic;
-using Consolaria.Common;
+﻿using Consolaria.Common;
 using Consolaria.Common.ModSystems;
-using Terraria.GameContent.ItemDropRules;
 using Consolaria.Content.Items.Consumables;
-using Consolaria.Content.Items.Placeable;
 using Consolaria.Content.Items.Mounts;
+using Consolaria.Content.Items.Placeable;
+using Consolaria.Content.Items.Vanity;
 using Consolaria.Content.Items.Weapons.Magic;
 using Consolaria.Content.Items.Weapons.Melee;
-using Consolaria.Content.Items.Weapons.Summon;
 using Consolaria.Content.Items.Weapons.Ranged;
-using Consolaria.Content.Items.Vanity;
-using System.IO;
-using Terraria.Chat;
-using Terraria.Localization;
+using Consolaria.Content.Items.Weapons.Summon;
+using Consolaria.Content.Projectiles.Enemies;
 
-namespace Consolaria.Content.NPCs.Bosses.Turkor
-{
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+
+using System;
+using System.Collections.Generic;
+using System.IO;
+
+using Terraria;
+using Terraria.Audio;
+using Terraria.Chat;
+using Terraria.GameContent.Bestiary;
+using Terraria.GameContent.ItemDropRules;
+using Terraria.ID;
+using Terraria.Localization;
+using Terraria.ModLoader;
+
+namespace Consolaria.Content.NPCs.Bosses.Turkor {
     [AutoloadBossHead]
 	public class TurkortheUngrateful : ModNPC {
 		public static LocalizedText BestiaryText {

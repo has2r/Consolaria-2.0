@@ -1,13 +1,16 @@
+using Consolaria.Common;
+using Consolaria.Content.Items.Kites.Custom;
+using Consolaria.Content.Items.Vanity;
+using Consolaria.Content.Items.Weapons.Throwing;
+
+using Microsoft.Xna.Framework;
+
+using System;
+using System.Collections.Generic;
+
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using Consolaria.Common;
-using Consolaria.Content.Items.Weapons.Throwing;
-using Consolaria.Content.Items.Vanity;
-using Consolaria.Content.Items.Kites.Custom;
 
 namespace Consolaria.Content.Items.Consumables;
 

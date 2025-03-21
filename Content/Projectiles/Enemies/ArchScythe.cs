@@ -1,12 +1,14 @@
 using Microsoft.Xna.Framework;
+
 using System;
+
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.Projectiles.Enemies {
-	public class ArchScythe : ModProjectile {
+    public class ArchScythe : ModProjectile {
 		private float rotationTimer = (float)Math.PI;
 
 		public override void SetDefaults () {

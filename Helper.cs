@@ -1,13 +1,15 @@
-﻿using Terraria;
-using Microsoft.Xna.Framework;
-using System;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+
+using System;
+using System.Reflection;
+
+using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.Utilities;
-using System.Reflection;
 
-namespace Consolaria; 
+namespace Consolaria;
 
 public static class Helper {
     public static void SearchForTargets(Projectile projectile, Player owner, out bool foundTarget, out float distanceFromTarget, out Vector2 targetCenter) {

@@ -1,25 +1,28 @@
+using Consolaria.Common;
+using Consolaria.Content.Items.Placeable;
+using Consolaria.Content.Items.Weapons.Melee;
+using Consolaria.Content.Projectiles.Friendly;
 using Consolaria.Content.Projectiles.Friendly.Pets;
+using Consolaria.Content.Tiles;
+
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+
 using System;
+using System.Collections.Generic;
+using System.Reflection;
+
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.GameContent;
+using Terraria.GameContent.Drawing;
+using Terraria.Graphics;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
-using Terraria.Graphics;
-using Consolaria.Content.Items.Weapons.Melee;
-using static Terraria.Graphics.FinalFractalHelper;
-using System.Reflection;
-using System.Collections.Generic;
-using Microsoft.Xna.Framework.Graphics;
-using Terraria.GameContent;
 using Terraria.WorldBuilding;
-using Consolaria.Content.Tiles;
-using Consolaria.Content.Projectiles.Friendly;
-using Consolaria.Content.Items.Placeable;
-using Consolaria.Common;
-using Terraria.GameContent.Drawing;
-using System.Security.Cryptography;
+
+using static Terraria.Graphics.FinalFractalHelper;
 
 namespace Consolaria {
     public class Consolaria : Mod {

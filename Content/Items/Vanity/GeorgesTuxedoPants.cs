@@ -1,11 +1,11 @@
 using Microsoft.Xna.Framework;
+
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Consolaria.Content.Items.Vanity
-{
-	[AutoloadEquip(EquipType.Legs)]
+namespace Consolaria.Content.Items.Vanity {
+    [AutoloadEquip(EquipType.Legs)]
 
 	public class GeorgesTuxedoPants : ModItem
 	{

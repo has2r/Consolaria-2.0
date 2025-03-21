@@ -1,20 +1,23 @@
-using System;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
-using Terraria.GameContent.ItemDropRules;
-using Terraria.ModLoader.Utilities;
-using Terraria.GameContent.Bestiary;
+using Consolaria.Common;
 using Consolaria.Content.Items.Kites.Custom;
 using Consolaria.Content.Items.Pets;
-using Consolaria.Common;
+
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+
+using System;
+
+using Terraria;
+using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.Events;
+using Terraria.GameContent.ItemDropRules;
+using Terraria.ID;
 using Terraria.Localization;
+using Terraria.ModLoader;
+using Terraria.ModLoader.Utilities;
 
 namespace Consolaria.Content.NPCs {
-	public class MythicalWyvernHead : ModNPC {
+    public class MythicalWyvernHead : ModNPC {
 		public static LocalizedText BestiaryText {
 			get; private set;
 		}

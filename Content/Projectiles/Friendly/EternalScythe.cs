@@ -1,11 +1,13 @@
 using Microsoft.Xna.Framework;
+
 using System;
+
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.Projectiles.Friendly {
-	public class EternalScythe : ModProjectile {
+    public class EternalScythe : ModProjectile {
 		private float rotationTimer = (float) Math.PI;
 		public override void SetDefaults () {
 			int width = 32; int height = width;

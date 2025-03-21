@@ -1,12 +1,14 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+
+using System;
+
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Microsoft.Xna.Framework.Graphics;
-using System;
 
 namespace Consolaria.Content.Projectiles.Enemies {
-	public class OcramScythe : ModProjectile {
+    public class OcramScythe : ModProjectile {
 		private float rotationTimer = (float) Math.PI;
 
 		public override void SetStaticDefaults () {

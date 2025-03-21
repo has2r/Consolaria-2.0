@@ -1,7 +1,10 @@
 ﻿using Consolaria.Content.Items.Pets;
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+
 using System;
+
 using Terraria;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
@@ -11,7 +14,7 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.Utilities;
 
 namespace Consolaria.Content.NPCs {
-	public class DragonSnatcher : ModNPC {
+    public class DragonSnatcher : ModNPC {
         public static LocalizedText BestiaryText {
             get; private set;
         }

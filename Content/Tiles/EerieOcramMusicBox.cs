@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -8,7 +9,7 @@ using Terraria.ModLoader;
 using Terraria.ObjectData;
 
 namespace Consolaria.Content.Tiles {
-	public class EerieOcramMusicBox : ModTile {
+    public class EerieOcramMusicBox : ModTile {
 		public override void SetStaticDefaults () {
 			Main.tileFrameImportant [Type] = true;
 			Main.tileObsidianKill [Type] = true;

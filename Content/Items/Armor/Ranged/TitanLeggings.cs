@@ -1,8 +1,10 @@
-using Consolaria.Content.Items.Materials;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+
 using ReLogic.Content;
+
 using System;
+
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

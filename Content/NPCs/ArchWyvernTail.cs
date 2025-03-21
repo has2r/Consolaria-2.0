@@ -1,12 +1,14 @@
+using Consolaria.Content.Projectiles.Enemies;
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Consolaria.Content.Projectiles.Enemies;
 
 namespace Consolaria.Content.NPCs {
-	public class ArchWyvernTail : ModNPC {
+    public class ArchWyvernTail : ModNPC {
 		public override void SetStaticDefaults () {
 			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers() {
 				Hide = true

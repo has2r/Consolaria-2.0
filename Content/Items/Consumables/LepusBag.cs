@@ -1,9 +1,11 @@
 using Consolaria.Content.Items.Accessories;
 using Consolaria.Content.Items.Armor.Misc;
-using Consolaria.Content.Items.Weapons.Ranged;
 using Consolaria.Content.Items.Vanity;
+using Consolaria.Content.Items.Weapons.Ranged;
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+
 using Terraria;
 using Terraria.GameContent;
 using Terraria.GameContent.ItemDropRules;

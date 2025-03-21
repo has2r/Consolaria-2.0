@@ -1,8 +1,10 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Consolaria.Content.Mounts;
+
+using Microsoft.Xna.Framework;
+
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Consolaria.Content.Mounts;
 
 namespace Consolaria.Content.Items.Mounts {
     public class FruitfulPlate : ModItem {

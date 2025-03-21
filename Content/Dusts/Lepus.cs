@@ -1,7 +1,8 @@
-﻿using Terraria;
+﻿using System;
+
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System;
 
 namespace Consolaria.Content.Dusts {
     public class Lepus : ModDust

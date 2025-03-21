@@ -1,13 +1,14 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+
 using System.Collections.Generic;
+
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ModLoader;
 
-namespace Consolaria
-{
-	public sealed class HeadGlowmask : PlayerDrawLayer 
+namespace Consolaria {
+    public sealed class HeadGlowmask : PlayerDrawLayer 
 	{
 		private static Dictionary<int, DrawLayerData> HeadLayerData { get; set; }
 		public static void RegisterData(int headSlot, DrawLayerData data) {

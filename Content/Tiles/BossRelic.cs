@@ -1,13 +1,16 @@
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+
+using ReLogic.Content;
+
+using System;
+
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
-using Microsoft.Xna.Framework.Graphics;
-using System;
-using ReLogic.Content;
-using Terraria.Localization;
 
 namespace Consolaria.Content.Tiles {
     public abstract class BossRelic : ModTile {

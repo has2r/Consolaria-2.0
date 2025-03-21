@@ -1,13 +1,14 @@
 using Microsoft.Xna.Framework;
+
 using System;
 using System.Linq;
+
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Consolaria.Content.Projectiles.Friendly.Pets
-{
+namespace Consolaria.Content.Projectiles.Friendly.Pets {
     public class WormData : ModPlayer {
         public bool IsWormPetActive { get; internal set; }
 

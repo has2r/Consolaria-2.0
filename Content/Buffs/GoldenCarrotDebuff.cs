@@ -2,7 +2,7 @@ using Terraria;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.Buffs {
-	public class GoldenCarrotDebuff : ModBuff {
+    public class GoldenCarrotDebuff : ModBuff {
 
 		public override void SetStaticDefaults() {
 			Main.buffNoSave[Type] = true;

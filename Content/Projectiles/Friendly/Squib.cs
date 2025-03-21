@@ -1,11 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
+
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.Projectiles.Friendly {
-	public class Squib : ModProjectile {
+    public class Squib : ModProjectile {
 		private bool extraRotation;
 
 		public override void SetDefaults () {

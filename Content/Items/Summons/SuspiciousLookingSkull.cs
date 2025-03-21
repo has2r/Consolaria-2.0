@@ -1,5 +1,7 @@
 using Consolaria.Content.NPCs.Bosses.Ocram;
+
 using Microsoft.Xna.Framework;
+
 using Terraria;
 using Terraria.Chat;
 using Terraria.ID;

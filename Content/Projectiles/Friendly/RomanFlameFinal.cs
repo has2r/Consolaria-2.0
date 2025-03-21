@@ -1,10 +1,10 @@
 using Microsoft.Xna.Framework;
+
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Consolaria.Content.Projectiles.Friendly
-{
+namespace Consolaria.Content.Projectiles.Friendly {
     public class RomanFlameFinal : ModProjectile {
         public override string Texture => "Consolaria/Assets/Textures/Empty";
         private readonly ushort dustType = (ushort)(ModContent.DustType<Dusts.RomanFlame>());

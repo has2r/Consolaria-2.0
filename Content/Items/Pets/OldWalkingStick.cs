@@ -1,9 +1,10 @@
 using Microsoft.Xna.Framework;
+
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Consolaria.Content.Items.Pets; 
+namespace Consolaria.Content.Items.Pets;
 
 public class OldWalkingStick : PetItem  {
 	public override void SetStaticDefaults () 

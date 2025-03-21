@@ -1,6 +1,9 @@
 ﻿using Consolaria.Content.Projectiles.Enemies;
+
 using Microsoft.Xna.Framework;
+
 using System;
+
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent.Bestiary;
@@ -10,7 +13,7 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.Utilities;
 
 namespace Consolaria.Content.NPCs {
-	public class SpectralGastropod : ModNPC {
+    public class SpectralGastropod : ModNPC {
         public static LocalizedText BestiaryText {
             get; private set;
         }

@@ -1,5 +1,5 @@
-using Consolaria.Content.Items.Materials;
 using Microsoft.Xna.Framework;
+
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

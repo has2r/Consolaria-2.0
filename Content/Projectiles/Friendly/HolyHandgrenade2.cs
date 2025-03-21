@@ -1,11 +1,13 @@
-﻿using System;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+
+using System;
+
 using Terraria;
+using Terraria.Audio;
+using Terraria.GameContent.Achievements;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.GameContent.Achievements;
-using Terraria.Audio;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace Consolaria.Content.Projectiles.Friendly {
     public class HolyHandgrenade2 : ModProjectile {

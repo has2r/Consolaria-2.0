@@ -1,12 +1,12 @@
 using Microsoft.Xna.Framework;
+
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Consolaria.Content.Items.Placeable
-{
-	public class TurkorRelic : ModItem
+namespace Consolaria.Content.Items.Placeable {
+    public class TurkorRelic : ModItem
 	{
 		public override void SetStaticDefaults() {
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;

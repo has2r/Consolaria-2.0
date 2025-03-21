@@ -1,12 +1,13 @@
-using Terraria.ModLoader;
-using Terraria;
-using Terraria.ID;
-using Microsoft.Xna.Framework;
-using Consolaria.Content.Items.Materials;
 using Consolaria.Common;
 
+using Microsoft.Xna.Framework;
+
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+
 namespace Consolaria.Content.Items.Vanity {
-	[AutoloadEquip(EquipType.Head)]
+    [AutoloadEquip(EquipType.Head)]
 	public class AncientHerosHat : ModItem {
 		public override void SetStaticDefaults () {
 			Item.ResearchUnlockCount = 1;

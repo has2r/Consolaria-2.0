@@ -1,13 +1,14 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+
 using System.Collections.Generic;
+
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ModLoader;
 
-namespace Consolaria
-{
-	public sealed class LegsGlowmask : PlayerDrawLayer 
+namespace Consolaria {
+    public sealed class LegsGlowmask : PlayerDrawLayer 
 	{
 		private static Dictionary<int, DrawLayerData> LegsLayerData { get; set; }
 		public static void RegisterData(int legSlot, DrawLayerData data) {

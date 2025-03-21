@@ -1,9 +1,8 @@
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Consolaria.Content.Buffs
-{
-	public class WeirdTurkey : ModBuff
+namespace Consolaria.Content.Buffs {
+    public class WeirdTurkey : ModBuff
 	{
 		public override void SetStaticDefaults() {
 			Main.buffNoSave[Type] = true;

@@ -1,5 +1,7 @@
 using Consolaria.Content.Items.Pets;
+
 using Microsoft.Xna.Framework;
+
 using Terraria;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;

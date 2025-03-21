@@ -1,12 +1,13 @@
+using Consolaria.Common;
+
 using Microsoft.Xna.Framework;
+
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Consolaria.Content.Items.Materials;
-using Consolaria.Common;
 
 namespace Consolaria.Content.Items.Vanity {
-	[AutoloadEquip(EquipType.Body)]
+    [AutoloadEquip(EquipType.Body)]
 	public class AncientHerosShirt : ModItem {
 		public override void SetStaticDefaults () {
 			Item.ResearchUnlockCount = 1;

@@ -1,10 +1,11 @@
 using Microsoft.Xna.Framework;
+
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.Projectiles.Enemies {
-	public class FireTrail : ModProjectile {
+    public class FireTrail : ModProjectile {
 		public override string Texture => "Consolaria/Assets/Textures/Empty";
 
 		public override void SetDefaults () {

@@ -1,10 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
+
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.Projectiles.Enemies {
-	public class Pointer : ModProjectile {
+    public class Pointer : ModProjectile {
 		float num2 = 3f;
 		public override string Texture => "Consolaria/Assets/Textures/Empty";
         public override string Name => "";

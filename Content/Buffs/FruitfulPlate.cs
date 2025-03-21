@@ -1,9 +1,8 @@
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Consolaria.Content.Buffs
-{
-	public class FruitfulPlate : ModBuff
+namespace Consolaria.Content.Buffs {
+    public class FruitfulPlate : ModBuff
 	{
 		public override void SetStaticDefaults() {
 

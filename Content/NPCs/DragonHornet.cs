@@ -1,6 +1,9 @@
 ﻿using Consolaria.Content.Items.Pets;
+
 using Microsoft.Xna.Framework;
+
 using System;
+
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent.Bestiary;
@@ -11,7 +14,7 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.Utilities;
 
 namespace Consolaria.Content.NPCs {
-	public class DragonHornet : ModNPC {
+    public class DragonHornet : ModNPC {
         public static LocalizedText BestiaryText {
             get; private set;
         }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -9,7 +10,7 @@ using Terraria.ModLoader;
 using Terraria.ObjectData;
 
 namespace Consolaria.Content.Tiles {
-	public class SanctumLantern : ModTile {
+    public class SanctumLantern : ModTile {
 		public override void SetStaticDefaults () {
 			Main.tileFrameImportant [Type] = true;
 			Main.tileLavaDeath [Type] = true;

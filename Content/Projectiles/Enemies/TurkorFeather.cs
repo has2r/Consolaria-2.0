@@ -1,13 +1,15 @@
-using System;
 using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.ID;
-using Terraria.Audio;
-using Terraria.ModLoader;
 using Microsoft.Xna.Framework.Graphics;
 
+using System;
+
+using Terraria;
+using Terraria.Audio;
+using Terraria.ID;
+using Terraria.ModLoader;
+
 namespace Consolaria.Content.Projectiles.Enemies {
-	public class TurkorFeather : ModProjectile {
+    public class TurkorFeather : ModProjectile {
 		public override void SetStaticDefaults () {
 			ProjectileID.Sets.TrailCacheLength [Projectile.type] = 12;
 			ProjectileID.Sets.TrailingMode [Projectile.type] = 0;

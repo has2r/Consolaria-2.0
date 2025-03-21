@@ -1,10 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
+
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.NPCs.Bosses.Lepus {
-	internal class Stomp : ModProjectile {
+    internal class Stomp : ModProjectile {
 		public override string Texture
 			=> "Consolaria/Assets/Textures/Empty";
 

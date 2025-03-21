@@ -1,11 +1,11 @@
-using Terraria.ModLoader;
+using Microsoft.Xna.Framework;
+
 using Terraria;
 using Terraria.GameContent.Creative;
-using Microsoft.Xna.Framework;
 using Terraria.ID;
+using Terraria.ModLoader;
 
-namespace Consolaria.Content.Items.Placeable
-{
+namespace Consolaria.Content.Items.Placeable {
     public class TurkorTrophy : ModItem
     {
         public override void SetStaticDefaults() {

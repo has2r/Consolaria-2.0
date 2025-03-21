@@ -1,9 +1,11 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Consolaria.Content.Buffs;
+
+using Microsoft.Xna.Framework;
+
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Consolaria.Content.Buffs;
-using Terraria.DataStructures;
 
 namespace Consolaria.Content.Items.Consumables {
     public class Wiesnbrau : ModItem {

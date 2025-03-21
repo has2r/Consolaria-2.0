@@ -1,11 +1,12 @@
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace Consolaria.Content.Projectiles.Enemies {
-	public class TurkorKnife : ModProjectile {
+    public class TurkorKnife : ModProjectile {
 		public override void SetStaticDefaults () {
 
 			ProjectileID.Sets.TrailCacheLength [Projectile.type] = 10;

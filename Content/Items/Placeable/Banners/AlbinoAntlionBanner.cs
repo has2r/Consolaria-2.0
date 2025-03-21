@@ -1,11 +1,11 @@
 using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
 
-namespace Consolaria.Content.Items.Placeable.Banners
-{
-	public class AlbinoAntlionBanner : ModItem {
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+
+namespace Consolaria.Content.Items.Placeable.Banners {
+    public class AlbinoAntlionBanner : ModItem {
 
 		public override void SetStaticDefaults () {
 			Item.ResearchUnlockCount = 1;

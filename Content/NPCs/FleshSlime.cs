@@ -1,12 +1,14 @@
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
-using Terraria.ModLoader.Utilities;
-using Terraria.GameContent.Bestiary;
 using Consolaria.Content.Items.Pets;
+
+using Microsoft.Xna.Framework;
+
+using Terraria;
+using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
+using Terraria.ID;
 using Terraria.Localization;
+using Terraria.ModLoader;
+using Terraria.ModLoader.Utilities;
 
 namespace Consolaria.Content.NPCs {
     public class FleshSlime : ModNPC {

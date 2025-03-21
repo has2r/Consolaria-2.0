@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+
 using Terraria;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
@@ -8,7 +9,7 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.Utilities;
 
 namespace Consolaria.Content.NPCs {
-	public class DragonSkull : ModNPC {
+    public class DragonSkull : ModNPC {
         public static LocalizedText BestiaryText {
             get; private set;
         }

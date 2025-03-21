@@ -1,7 +1,9 @@
 using Consolaria.Common;
 using Consolaria.Common.ModSystems;
 using Consolaria.Content.Items.Summons;
+
 using Microsoft.Xna.Framework;
+
 using Terraria;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;

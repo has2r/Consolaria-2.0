@@ -1,10 +1,13 @@
-﻿using Terraria.ModLoader;
-using Terraria;
-using Terraria.ID;
+﻿using Consolaria.Content.Projectiles.Friendly;
+
 using Microsoft.Xna.Framework;
+
 using System;
+
+using Terraria;
 using Terraria.DataStructures;
-using Consolaria.Content.Projectiles.Friendly;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Consolaria.Content.Items.Weapons.Magic {
     public class FeatherStorm : ModItem {

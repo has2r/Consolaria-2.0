@@ -1,15 +1,16 @@
+using Consolaria.Common.ModSystems;
+using Consolaria.Content.Items.Consumables;
+using Consolaria.Content.Items.Pets;
+using Consolaria.Content.Items.Summons;
+using Consolaria.Content.Items.Vanity;
+
 using Terraria;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Consolaria.Common.ModSystems;
-using Consolaria.Content.Items.Vanity;
-using Consolaria.Content.Items.Summons;
-using Consolaria.Content.Items.Pets;
-using Consolaria.Content.Items.Consumables;
 
 namespace Consolaria.Common {
-	public class VanillaNPCLoot : GlobalNPC {
+    public class VanillaNPCLoot : GlobalNPC {
 		public override void ModifyNPCLoot (NPC npc, NPCLoot npcLoot) {
 			if (npc.type == NPCID.Harpy) {
 				int itemType = ModContent.ItemType<CursedStuffing>();

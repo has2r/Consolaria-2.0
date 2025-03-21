@@ -1,8 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
+
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.DataStructures;
 
 namespace Consolaria.Content.Items.Weapons.Summon {
     public class EternityStaff : ModItem {

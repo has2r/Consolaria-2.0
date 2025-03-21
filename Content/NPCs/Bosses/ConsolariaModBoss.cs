@@ -1,7 +1,8 @@
-﻿using Terraria.ModLoader;
-using Terraria.ID;
+﻿using Microsoft.Xna.Framework;
+
 using Terraria;
-using Microsoft.Xna.Framework;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Consolaria.Content.NPCs.Bosses {
     public abstract class ConsolariaModBoss : ModNPC {

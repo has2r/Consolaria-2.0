@@ -1,11 +1,12 @@
-﻿using Consolaria.Content.NPCs.Bosses.Lepus;
-using Consolaria.Common.ModSystems;
+﻿using Consolaria.Common.ModSystems;
+using Consolaria.Content.NPCs.Bosses.Lepus;
+
 using Terraria;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ModLoader;
 
 namespace Consolaria.Common {
-	public class LepusDropCondition : IItemDropRuleCondition {
+    public class LepusDropCondition : IItemDropRuleCondition {
 		public bool CanDrop (DropAttemptInfo info) {
 			if (!info.IsInSimulation)
 				return !NPC.AnyNPCs(ModContent.NPCType<Lepus>()) && !RabbitInvasion.rabbitInvasion;

@@ -1,9 +1,10 @@
 using Microsoft.Xna.Framework;
+
 using Terraria;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.Buffs {
-	public class Stunned : ModBuff {
+    public class Stunned : ModBuff {
 
 		public override void SetStaticDefaults() {
 			Main.buffNoSave[Type] = true;

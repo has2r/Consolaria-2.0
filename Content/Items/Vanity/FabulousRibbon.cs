@@ -1,11 +1,11 @@
-using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
 using Microsoft.Xna.Framework;
 
-namespace Consolaria.Content.Items.Vanity
-{
-	[AutoloadEquip(EquipType.Head)]
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+
+namespace Consolaria.Content.Items.Vanity {
+    [AutoloadEquip(EquipType.Head)]
 
 	public class FabulousRibbon : ModItem
 	{

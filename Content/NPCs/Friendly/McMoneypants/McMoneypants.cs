@@ -1,7 +1,14 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Consolaria.Content.Buffs;
+using Consolaria.Content.Dusts;
+using Consolaria.Content.EmoteBubbles;
+using Consolaria.Content.Items.Vanity;
+
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+
 using System.Collections.Generic;
 using System.IO;
+
 using Terraria;
 using Terraria.Audio;
 using Terraria.Chat;
@@ -12,10 +19,6 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
-using Consolaria.Content.Buffs;
-using Consolaria.Content.Dusts;
-using Consolaria.Content.Items.Vanity;
-using Consolaria.Content.EmoteBubbles;
 
 namespace Consolaria.Content.NPCs.Friendly.McMoneypants;
 

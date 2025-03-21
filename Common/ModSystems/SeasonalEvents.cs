@@ -1,6 +1,8 @@
 using Microsoft.Xna.Framework;
+
 using System;
 using System.IO;
+
 using Terraria;
 using Terraria.Chat;
 using Terraria.ID;
@@ -9,7 +11,7 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
 namespace Consolaria.Common {
-	public class SeasonalEvents : ModSystem {
+    public class SeasonalEvents : ModSystem {
 		static DateTime currentDate = DateTime.Now;
     
 		public static bool allEventsForToday;

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+
 using Terraria;
 using Terraria.GameContent.Bestiary;
 using Terraria.ID;
@@ -7,7 +8,7 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.Utilities;
 
 namespace Consolaria.Content.NPCs {
-	public class ShadowMummy : ModNPC {
+    public class ShadowMummy : ModNPC {
         public static LocalizedText BestiaryText {
             get; private set;
         }

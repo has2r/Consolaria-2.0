@@ -1,11 +1,12 @@
 using Microsoft.Xna.Framework;
+
 using System;
+
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Consolaria.Content.Projectiles.Friendly.Pets 
-{
+namespace Consolaria.Content.Projectiles.Friendly.Pets {
     public class AndroidGuy : ConsolariaPet
 	{
         public override int maxFrames => 9;

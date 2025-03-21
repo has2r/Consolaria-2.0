@@ -1,9 +1,9 @@
-using Terraria.ModLoader;
 using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Consolaria.Content.Items.Placeable {
-	public class TurkorMusicBox : ModItem {
+    public class TurkorMusicBox : ModItem {
 		public override void SetStaticDefaults () {
 			Item.ResearchUnlockCount = 1;
 			MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Assets/Music/Turkor"), ModContent.ItemType<TurkorMusicBox>(), ModContent.TileType<Tiles.TurkorMusicBox>());

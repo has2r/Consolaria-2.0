@@ -2,7 +2,7 @@
 using Terraria.GameContent.ItemDropRules;
 
 namespace Consolaria.Common {
-	public class EasterDropCondition : IItemDropRuleCondition {
+    public class EasterDropCondition : IItemDropRuleCondition {
 		public bool CanDrop (DropAttemptInfo info) {
 			if (!info.IsInSimulation)
 				return SeasonalEvents.IsEaster();

@@ -1,16 +1,12 @@
 ﻿using Consolaria.Common;
 
-using Iced.Intel;
-
 using Microsoft.Xna.Framework;
 
 using System;
 using System.Collections.Generic;
 
 using Terraria;
-using Terraria.GameContent.Biomes;
 using Terraria.GameContent.Generation;
-using Terraria.ID;
 using Terraria.IO;
 using Terraria.ModLoader;
 using Terraria.Utilities;

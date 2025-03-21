@@ -1,5 +1,7 @@
 using Consolaria.Content.NPCs.Bosses.Lepus;
+
 using Microsoft.Xna.Framework;
+
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;

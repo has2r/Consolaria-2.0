@@ -1,8 +1,9 @@
-﻿using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
+﻿using Consolaria.Content.Items.Pets;
+
+using Terraria;
 using Terraria.DataStructures;
-using Consolaria.Content.Items.Pets;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Consolaria.Common {
     public class TileDrops : GlobalTile {

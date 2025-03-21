@@ -1,12 +1,12 @@
 using Microsoft.Xna.Framework;
+
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
-namespace Consolaria.Content.Tiles
-{
+namespace Consolaria.Content.Tiles {
     public class LepusTrophy : ModTile {
         public override void SetStaticDefaults () {
             Main.tileFrameImportant [Type] = true;

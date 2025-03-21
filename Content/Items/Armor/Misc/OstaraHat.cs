@@ -1,9 +1,11 @@
-using Terraria.ModLoader;
-using Terraria.ID;
 using Microsoft.Xna.Framework;
-using Terraria;
+
 using System;
+
+using Terraria;
+using Terraria.ID;
 using Terraria.Localization;
+using Terraria.ModLoader;
 
 namespace Consolaria.Content.Items.Armor.Misc {
     [AutoloadEquip(EquipType.Head)]

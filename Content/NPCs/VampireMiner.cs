@@ -1,5 +1,7 @@
 ﻿using Consolaria.Content.Items.Pets;
+
 using Microsoft.Xna.Framework;
+
 using Terraria;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
@@ -9,7 +11,7 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.Utilities;
 
 namespace Consolaria.Content.NPCs {
-	public class VampireMiner : ModNPC {
+    public class VampireMiner : ModNPC {
         public static LocalizedText BestiaryText {
             get; private set;
         }

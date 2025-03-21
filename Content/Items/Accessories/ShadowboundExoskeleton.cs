@@ -1,9 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
+
 using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
 using Terraria.Audio;
+using Terraria.ID;
 using Terraria.Localization;
+using Terraria.ModLoader;
 
 namespace Consolaria.Content.Items.Accessories {
     public class ShadowboundExoskeleton : ModItem {

@@ -1,8 +1,10 @@
-﻿using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
-using Consolaria.Content.NPCs.Bosses.Lepus;
+﻿using Consolaria.Content.NPCs.Bosses.Lepus;
+
 using Microsoft.Xna.Framework;
+
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Consolaria.Content.Items.Accessories {
     [AutoloadEquip(EquipType.Waist)]

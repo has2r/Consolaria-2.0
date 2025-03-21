@@ -1,13 +1,16 @@
-﻿using System;
-using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
+﻿using Consolaria.Content.Projectiles.Enemies;
+
 using Microsoft.Xna.Framework;
+
+using System;
+
+using Terraria;
 using Terraria.Audio;
-using Consolaria.Content.Projectiles.Enemies;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Consolaria.Content.NPCs.Bosses.Turkor {
-	[AutoloadBossHead]
+    [AutoloadBossHead]
 	public class TurkortheUngratefulHead : ModNPC {
 		private int turntimer = 0;
 		private ref float timer => ref NPC.ai [0];

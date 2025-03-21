@@ -1,11 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.ModLoader;
+
 using System;
 
-namespace Consolaria.Content.Dusts
-{
-	public class EggDust : ModDust
+using Terraria;
+using Terraria.ModLoader;
+
+namespace Consolaria.Content.Dusts {
+    public class EggDust : ModDust
 	{
 		private bool succ = false;
 		public override void OnSpawn(Dust dust)

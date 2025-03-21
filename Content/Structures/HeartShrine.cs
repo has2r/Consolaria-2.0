@@ -1,14 +1,17 @@
-﻿using Microsoft.Xna.Framework;
-using System.Collections.Generic;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
-using Terraria.WorldBuilding;
+﻿using Consolaria.Common;
 using Consolaria.Content.Items.Accessories;
 using Consolaria.Content.Items.Pets;
 using Consolaria.Content.Items.Weapons.Ammo;
+
+using Microsoft.Xna.Framework;
+
+using System.Collections.Generic;
+
+using Terraria;
+using Terraria.ID;
 using Terraria.IO;
-using Consolaria.Common;
+using Terraria.ModLoader;
+using Terraria.WorldBuilding;
 
 namespace Consolaria.Content.Structures {
     public class HeartShrine : ModSystem {

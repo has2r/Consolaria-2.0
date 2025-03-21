@@ -1,10 +1,10 @@
 using Microsoft.Xna.Framework;
+
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Consolaria.Content.Items.Armor.Misc
-{
+namespace Consolaria.Content.Items.Armor.Misc {
     [AutoloadEquip(EquipType.Legs)]
     public class OstaraBoots : ModItem
     {

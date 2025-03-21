@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.Enums;
@@ -9,7 +10,7 @@ using Terraria.ModLoader;
 using Terraria.ObjectData;
 
 namespace Consolaria.Content.Tiles {
-	public class Banners : ModTile {
+    public class Banners : ModTile {
 		public override void SetStaticDefaults () {
 			Main.tileFrameImportant [Type] = true;
 			Main.tileNoAttach [Type] = true;

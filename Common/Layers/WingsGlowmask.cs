@@ -1,13 +1,14 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+
 using System.Collections.Generic;
+
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ModLoader;
 
-namespace Consolaria
-{
-	public sealed class WingsGlowmask : PlayerDrawLayer
+namespace Consolaria {
+    public sealed class WingsGlowmask : PlayerDrawLayer
 	{
 		private static Dictionary<int, DrawLayerData> WingsLayerData { get; set; }
 

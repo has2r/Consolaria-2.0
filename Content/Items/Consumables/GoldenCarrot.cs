@@ -1,13 +1,14 @@
 using Microsoft.Xna.Framework;
+
 using System.Collections.Generic;
+
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Consolaria.Content.Items.Consumables
-{
-	public class GoldenCarrot : ModItem
+namespace Consolaria.Content.Items.Consumables {
+    public class GoldenCarrot : ModItem
 	{
 		public override void SetStaticDefaults() {
 			ItemID.Sets.IsFood[Type] = true;

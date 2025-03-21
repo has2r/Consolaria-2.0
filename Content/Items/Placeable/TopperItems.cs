@@ -3,7 +3,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace Consolaria.Content.Items.Placeable; 
+namespace Consolaria.Content.Items.Placeable;
 
 public abstract class TopperItem : ModItem {
     public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(Language.GetTextValue("CommonItemTooltip.PlaceableOnXmasTree"));

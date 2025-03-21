@@ -163,18 +163,16 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram
                 if (_spawnCheck <= 0f) {
                     _spawnCheck = 1f;
 
-                    if (Main.netMode != NetmodeID.MultiplayerClient) {
-                        NPC.position -= new Vector2(0f, 1150f);
-                        NPC.velocity = new Vector2(0, 50f);
-                    }
+                    NPC.position -= new Vector2(0f, 1150f);
+                    NPC.velocity = new Vector2(0, 50f);
 
-                    string typeName = NPC.TypeName;
-                    if (Main.netMode == NetmodeID.SinglePlayer)
-                        Main.NewText(Language.GetTextValue("Announcement.HasAwoken", typeName), 175, 75);
-                    else if (Main.netMode == NetmodeID.Server)
-                        ChatHelper.BroadcastChatMessage(NetworkText.FromKey("Announcement.HasAwoken", NPC.GetTypeNetName()), new Color(175, 75, 255));
+                    //string typeName = NPC.TypeName;
+                    //if (Main.netMode == NetmodeID.SinglePlayer)
+                    //    Main.NewText(Language.GetTextValue("Announcement.HasAwoken", typeName), 175, 75);
+                    //else if (Main.netMode == NetmodeID.Server)
+                    //    ChatHelper.BroadcastChatMessage(NetworkText.FromKey("Announcement.HasAwoken", NPC.GetTypeNetName()), new Color(175, 75, 255));
 
-                    NPC.netUpdate = true;
+                    //NPC.netUpdate = true;
                 }
                 else if (_spawnCheck == 1f) {
                     _spawnCheck = 2f;

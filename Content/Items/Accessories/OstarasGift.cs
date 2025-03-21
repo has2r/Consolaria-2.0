@@ -34,15 +34,23 @@ namespace Consolaria.Content.Items.Accessories {
             => chocolateEgg = false;
 
         public override void OnHitNPCWithItem (Item item, NPC target, NPC.HitInfo hit, int damageDone)/* tModPorter If you don't need the Item, consider using OnHitNPC instead */ {
-            if (chocolateEgg && target.type != ModContent.NPCType<ChocolateEgg>() && target.life <= 0 && !NPCID.Sets.CountsAsCritter [target.type] &&
-                Main.rand.NextChance(0.4))
-                NPC.NewNPC(target.GetSource_Loot(), (int) target.Center.X, (int) target.Center.Y, ModContent.NPCType<ChocolateEgg>());
+            if (chocolateEgg && target.type != ModContent.NPCType<ChocolateEgg>() && target.life <= 0 && !NPCID.Sets.CountsAsCritter[target.type] &&
+                Main.rand.NextChance(0.4)) {
+                int whoAmI = NPC.NewNPC(target.GetSource_Loot(), (int)target.Center.X, (int)target.Center.Y, ModContent.NPCType<ChocolateEgg>());
+                if (Main.netMode == NetmodeID.Server && whoAmI < Main.maxNPCs) {
+                    NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, whoAmI, 0f, 0f, 0f, 0, 0, 0);
+                }
+            }
         }
 
         public override void OnHitNPCWithProj (Projectile proj, NPC target, NPC.HitInfo hit, int damageDone)/* tModPorter If you don't need the Projectile, consider using OnHitNPC instead */ {
-            if (chocolateEgg && target.type != ModContent.NPCType<ChocolateEgg>() && target.life <= 0 && !NPCID.Sets.CountsAsCritter [target.type] && 
-                Main.rand.NextChance(0.4))
-                NPC.NewNPC(target.GetSource_Loot(), (int) target.Center.X, (int) target.Center.Y, ModContent.NPCType<ChocolateEgg>());
+            if (chocolateEgg && target.type != ModContent.NPCType<ChocolateEgg>() && target.life <= 0 && !NPCID.Sets.CountsAsCritter[target.type] &&
+                Main.rand.NextChance(0.4)) {
+                int whoAmI = NPC.NewNPC(target.GetSource_Loot(), (int)target.Center.X, (int)target.Center.Y, ModContent.NPCType<ChocolateEgg>());
+                if (Main.netMode == NetmodeID.Server && whoAmI < Main.maxNPCs) {
+                    NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, whoAmI, 0f, 0f, 0f, 0, 0, 0);
+                }
+            }
         }
     }
 }

@@ -38,16 +38,5 @@ namespace Consolaria.Content.Items.Armor.Magic {
             player.setBonus = PhantasmalHeadgear.SetBonusText.ToString();
             player.GetModPlayer<SpectralPlayer>().spectralGuard = true;
         }
-
-        public override void AddRecipes () {
-            CreateRecipe()
-                .AddIngredient(ItemID.AncientHallowedHeadgear)
-                .AddRecipeGroup(RecipeGroups.Titanium, 10)
-                .AddIngredient(ItemID.SoulofFright, 10)
-                .AddIngredient<SoulofBlight>(10)
-                .AddTile(TileID.DemonAltar)
-                .DisableDecraft()
-                .Register();
-        }
     }
 }

@@ -30,16 +30,5 @@ namespace Consolaria.Content.Items.Armor.Summon {
 
             player.GetDamage(DamageClass.Summon) += 0.2f;
         }
-
-        public override void AddRecipes () {
-            CreateRecipe()
-                .AddIngredient(ItemID.HallowedGreaves)
-               .AddRecipeGroup(RecipeGroups.Titanium, 10)
-                .AddIngredient(ItemID.SoulofNight, 10)
-                .AddIngredient<SoulofBlight>(10)
-                .AddTile(TileID.MythrilAnvil)
-                .DisableDecraft()
-                .Register();
-        }
     }
 }

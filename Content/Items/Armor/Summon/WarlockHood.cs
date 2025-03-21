@@ -45,17 +45,6 @@ namespace Consolaria.Content.Items.Armor.Summon {
             player.setBonus = SetBonusText.ToString();
             player.GetModPlayer<WarlockPlayer>().necroHealing = true;
         }
-
-        public override void AddRecipes () {
-            CreateRecipe()
-                .AddIngredient(ItemID.HallowedHood)
-                .AddRecipeGroup(RecipeGroups.Titanium, 10)
-                .AddIngredient(ItemID.SoulofNight, 10)
-                .AddIngredient<SoulofBlight>(10)
-                .AddTile(TileID.MythrilAnvil)
-                .DisableDecraft()
-                .Register();
-        }
     }
 
     internal class WarlockPlayer : ModPlayer {

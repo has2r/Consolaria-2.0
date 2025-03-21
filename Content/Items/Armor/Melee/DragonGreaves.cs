@@ -27,16 +27,5 @@ namespace Consolaria.Content.Items.Armor.Melee {
             player.GetDamage(DamageClass.Melee) += 0.05f;
             player.moveSpeed += 0.2f;
         }
-
-        public override void AddRecipes () {
-            CreateRecipe()
-                .AddIngredient(ItemID.HallowedGreaves)
-                .AddRecipeGroup(RecipeGroups.Titanium, 10)
-                .AddIngredient(ItemID.SoulofMight, 10)
-                .AddIngredient<SoulofBlight>(10)
-                .AddTile(TileID.MythrilAnvil)
-                .DisableDecraft()
-                .Register();
-        }
     }
 }

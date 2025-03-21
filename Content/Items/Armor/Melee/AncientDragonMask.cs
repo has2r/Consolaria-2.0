@@ -36,16 +36,5 @@ namespace Consolaria.Content.Items.Armor.Melee {
             player.setBonus = DragonMask.SetBonusText.ToString();
             player.GetModPlayer<DragonPlayer>().dragonBurst = true;
         }
-
-        public override void AddRecipes () {
-            CreateRecipe()
-                .AddIngredient(ItemID.AncientHallowedMask)
-               .AddRecipeGroup(RecipeGroups.Titanium, 10)
-                .AddIngredient(ItemID.SoulofMight, 10)
-                .AddIngredient<SoulofBlight>(10)
-                .AddTile(TileID.DemonAltar)
-                .DisableDecraft()
-                .Register();
-        }
     }
 }

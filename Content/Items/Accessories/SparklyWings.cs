@@ -40,15 +40,5 @@ namespace Consolaria.Content.Items.Accessories {
             maxAscentMultiplier = 3f;
             constantAscend = 0.12f;
         }
-
-        public override void AddRecipes () {
-            CreateRecipe()
-                .AddIngredient(ItemID.SoulofFlight, 20)
-                .AddIngredient<SoulofBlight>(10)
-                .AddIngredient(ItemID.SoulofLight, 10)
-                .AddIngredient(ItemID.SoulofNight, 10)
-                .AddTile(TileID.MythrilAnvil)
-                .Register();
-        }
     }
 }

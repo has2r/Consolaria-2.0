@@ -40,16 +40,5 @@ namespace Consolaria.Content.Items.Armor.Ranged {
             player.GetCritChance(DamageClass.Ranged) += 10;
             player.GetDamage(DamageClass.Ranged) += 0.15f;
         }
-
-        public override void AddRecipes () {
-            CreateRecipe()
-                .AddIngredient(ItemID.HallowedPlateMail)
-               .AddRecipeGroup(RecipeGroups.Titanium, 12)
-                .AddIngredient(ItemID.SoulofSight, 15)
-                .AddIngredient<SoulofBlight>(15)
-                .AddTile(TileID.MythrilAnvil)
-                .DisableDecraft()
-                .Register();
-        }
     }
 }

@@ -37,16 +37,5 @@ namespace Consolaria.Content.Items.Armor.Magic {
             player.statManaMax2 += 70;
             player.GetDamage(DamageClass.Magic) += 0.15f;
         }
-
-        public override void AddRecipes () {
-            CreateRecipe()
-                .AddIngredient(ItemID.AncientHallowedPlateMail)
-                .AddRecipeGroup(RecipeGroups.Titanium, 12)
-                .AddIngredient(ItemID.SoulofFright, 15)
-                .AddIngredient<SoulofBlight>(15)
-                .AddTile(TileID.DemonAltar)
-                .DisableDecraft()
-                .Register();
-        }
     }
 }

@@ -50,14 +50,5 @@ namespace Consolaria.Content.Items.Weapons.Melee {
                 SoundEngine.PlaySound(Item.UseSound.Value, player.position);
             return null;
         }
-
-        public override void AddRecipes () {
-            CreateRecipe()
-                .AddIngredient(ItemID.Gungnir)
-                .AddRecipeGroup(RecipeGroups.Titanium, 10)
-                .AddIngredient<SoulofBlight>(15)
-                .AddTile(TileID.MythrilAnvil)
-                .Register();
-        }
     }
 }

@@ -13,13 +13,5 @@ namespace Consolaria.Content.Items.Placeable {
             Item.CloneDefaults(ItemID.SoulBottleNight);
             Item.createTile = ModContent.TileType<Tiles.SoulOfBlightInABottleTile>();
         }
-
-        public override void AddRecipes () {
-            CreateRecipe()
-                .AddIngredient(ItemID.Bottle)
-                .AddIngredient<SoulofBlight>(1)
-                .AddTile(TileID.WorkBenches)
-                .Register();
-        }
     }
 }

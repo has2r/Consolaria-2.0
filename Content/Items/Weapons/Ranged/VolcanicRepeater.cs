@@ -48,14 +48,5 @@ namespace Consolaria.Content.Items.Weapons.Ranged {
 
 		public override Vector2? HoldoutOffset ()
 			=> new Vector2(-5, 0);
-
-		public override void AddRecipes () {
-			CreateRecipe()
-				.AddIngredient(ItemID.HallowedRepeater)
-				.AddRecipeGroup(RecipeGroups.Titanium, 10)
-				.AddIngredient<SoulofBlight>(15)
-				.AddTile(TileID.MythrilAnvil)
-				.Register();
-		}
 	}
 }

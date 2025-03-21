@@ -36,16 +36,5 @@ namespace Consolaria.Content.Items.Armor.Ranged {
             player.setBonus = TitanHelmet.SetBonusText.ToString();
             player.GetModPlayer<TitanPlayer>().titanPower = true;
         }
-
-        public override void AddRecipes () {
-            CreateRecipe()
-                .AddIngredient(ItemID.AncientHallowedHelmet)
-                .AddRecipeGroup(RecipeGroups.Titanium, 10)
-                .AddIngredient(ItemID.SoulofSight, 10)
-                .AddIngredient<SoulofBlight>(10)
-                .AddTile(TileID.DemonAltar)
-                .DisableDecraft()
-                .Register();
-        }
     }
 }

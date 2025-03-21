@@ -1,4 +1,5 @@
 using Consolaria.Common.ModSystems;
+using Consolaria.Content.Items.Consumables;
 using Consolaria.Content.Items.Mounts;
 using Consolaria.Content.Items.Pets;
 using Consolaria.Content.Items.Placeable;
@@ -6,6 +7,8 @@ using Consolaria.Content.Items.Vanity;
 using Consolaria.Content.NPCs.Bosses.Lepus;
 using Consolaria.Content.NPCs.Bosses.Ocram;
 using Consolaria.Content.NPCs.Bosses.Turkor;
+using Consolaria.Content.NPCs.Friendly.McMoneypants;
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -23,6 +26,22 @@ namespace Consolaria.Common {
             DoFargosIntegration();
             DoAchievementModIntegration();
             DoMusicDisplayIntegration();
+            DoMunchiesSupport();
+        }
+
+        private void DoMunchiesSupport() {
+            if (!ModLoader.TryGetMod("Munchies", out Mod munchies)) {
+                return;
+            }
+
+            LocalizedText howToAcquire = Language.GetOrRegister($"Mods.Consolaria.Munchies.McMoneypantsInvitation.HowToAcquire");
+            munchies.Call("AddSingleConsumable", Mod, "1.3",
+                ItemLoader.GetItem(ModContent.ItemType<McMoneypantsInvitation>()),
+                "world", () => { return McMoneypantsWorldData.isGildedInvitationUsed; },
+                null, null,
+                null,
+                null,
+                howToAcquire);
         }
 
         private void DoMusicDisplayIntegration() {

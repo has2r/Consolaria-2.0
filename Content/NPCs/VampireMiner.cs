@@ -102,6 +102,7 @@ namespace Consolaria.Content.NPCs {
 		}
 
 		public override float SpawnChance (NPCSpawnInfo spawnInfo)
-			=> SpawnCondition.Cavern.Chance * 0.008f;
+			=> Main.tile[spawnInfo.SpawnTileX, spawnInfo.SpawnTileY].TileType < TileID.Count ?
+			SpawnCondition.Cavern.Chance * 0.008f : 0f;
 	}
 }

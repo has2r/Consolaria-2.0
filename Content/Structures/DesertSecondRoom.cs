@@ -315,18 +315,17 @@ sealed class DesertSecondRoom : ILoadable {
 
                     while (num25_2 == num25) {
                         num25_2 = genRand.Next(3);
-                    }
-
-                    switch (num25_2) {
-                        case 0:
-                            num25_2 = 848;
-                            break;
-                        case 1:
-                            num25_2 = 857;
-                            break;
-                        case 2:
-                            num25_2 = 934;
-                            break;
+                        switch (num25_2) {
+                            case 0:
+                                num25_2 = 848;
+                                break;
+                            case 1:
+                                num25_2 = 857;
+                                break;
+                            case 2:
+                                num25_2 = 934;
+                                break;
+                        }
                     }
 
                     int num10_2 = num10 + yOffsetExtra;

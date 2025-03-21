@@ -1433,6 +1433,7 @@ Mods: {
 				Headers: {
 					SeasonalEvents: Сезонные События
 					Miscellaneous: Разное
+					// WorldGeneration: World Generation
 				}
 
 				easterEnabled: {
@@ -1496,6 +1497,11 @@ Mods: {
 						Male - George's set
 						Female - Fabulous set
 						''' */
+				}
+
+				pyramidEnabled: {
+					// Label: Guaranteed pyramid
+					// Tooltip: If enabled, always generate at least 1 pyramid in the world
 				}
 			}
 		}

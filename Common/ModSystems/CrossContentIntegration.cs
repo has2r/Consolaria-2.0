@@ -10,7 +10,10 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.IO;
+
 using Terraria.Achievements;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Consolaria.Common {
@@ -19,7 +22,27 @@ namespace Consolaria.Common {
             DoBossChecklistIntegration();
             DoFargosIntegration();
             DoAchievementModIntegration();
+            DoMusicDisplayIntegration();
         }
+
+        private void DoMusicDisplayIntegration() {
+            if (!ModLoader.TryGetMod("MusicDisplay", out Mod musicDisplay)) {
+                return;
+            }
+
+            void addIntergationFor(string name, string pathToMusic) {
+                short slotId = (short)MusicLoader.GetMusicSlot(Mod, pathToMusic);
+                LocalizedText author = Language.GetOrRegister($"Mods.Consolaria.MusicDisplayCompability.{name}.Author");
+                LocalizedText displayName = Language.GetOrRegister($"Mods.Consolaria.MusicDisplayCompability.{name}.DisplayName");
+                musicDisplay.Call(
+                    "AddMusic", slotId, displayName, author, Mod.DisplayName);
+            }
+            addIntergationFor("Lepus", "Assets/Music/Lepus");
+            addIntergationFor("Ocram", "Assets/Music/Ocram");
+            addIntergationFor("EerieOcram", "Assets/Music/EerieOcram");
+            addIntergationFor("Turkor", "Assets/Music/Turkor");
+        }
+
         private void DoBossChecklistIntegration () {
             if (!ModLoader.TryGetMod("BossChecklist", out Mod bossChecklistMod)) {
                 return;

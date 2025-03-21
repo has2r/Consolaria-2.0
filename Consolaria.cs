@@ -19,6 +19,7 @@ using Consolaria.Content.Projectiles.Friendly;
 using Consolaria.Content.Items.Placeable;
 using Consolaria.Common;
 using Terraria.GameContent.Drawing;
+using System.Security.Cryptography;
 
 namespace Consolaria {
     public class Consolaria : Mod {

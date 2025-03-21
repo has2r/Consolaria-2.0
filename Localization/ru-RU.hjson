@@ -1529,5 +1529,27 @@ Mods: {
 			// OcramEmote.Command: ocram
 			// LepusEmote.Command: lepus
 		}
+
+		MusicDisplayCompability: {
+			Lepus: {
+				// Author: by Synoxys
+				// DisplayName: Name (Lepus Theme)
+			}
+
+			Ocram: {
+				// Author: by Synoxys
+				// DisplayName: Name (Ocram Theme)
+			}
+
+			EerieOcram: {
+				// Author: by Synoxys
+				// DisplayName: Name (Eerie Ocram Theme)
+			}
+
+			Turkor: {
+				// Author: by Synoxys
+				// DisplayName: Name (Turkor Theme)
+			}
+		}
 	}
 }

@@ -34,7 +34,9 @@ namespace Consolaria.Content.Items.Weapons.Summon {
 
 			Item.shoot = ModContent.ProjectileType<Projectiles.Friendly.EyeOfEternity>();
 			Item.buffType = ModContent.BuffType<Buffs.EyeOfEternity>();
-		}
+
+			Item.autoReuse = true;
+        }
 
 		public override void ModifyShootStats (Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
 			=> position = Main.MouseWorld;

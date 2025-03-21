@@ -34,7 +34,9 @@ namespace Consolaria.Content.Items.Weapons.Summon {
 
 			Item.shoot = ModContent.ProjectileType<Projectiles.Friendly.TurkeyHead>();
 			Item.buffType = ModContent.BuffType<Buffs.WeirdTurkey>();
-		}
+
+            Item.autoReuse = true;
+        }
 
 		public override void ModifyShootStats (Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
 			=> position = new Vector2(player.Center.X, player.Center.Y - 30);

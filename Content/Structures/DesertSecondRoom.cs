@@ -7,6 +7,7 @@ using System.Collections.Generic;
 
 using Terraria;
 using Terraria.GameContent.Generation;
+using Terraria.ID;
 using Terraria.IO;
 using Terraria.ModLoader;
 using Terraria.Utilities;
@@ -349,6 +350,107 @@ sealed class DesertSecondRoom : ILoadable {
                     }
 
                     WorldGen.AddBuriedChest(centerX + 1, bottomY, num25_2, notNearOtherChests: false, 1, trySlope: false, 0);
+
+                    int index = 0;
+                    int getTypeToPlaceByType() {
+                        switch (index) {
+                            case 0:
+                                return ItemID.AlphabetStatueQ;
+                            case 1:
+                                return ItemID.AlphabetStatueH;
+                            case 2:
+                                return ItemID.AlphabetStatueE;
+                            case 3:
+                                return ItemID.AlphabetStatueU;
+                            case 4:
+                                return ItemID.AlphabetStatueL;
+                            case 5:
+                                return ItemID.AlphabetStatueV;
+                            case 6:
+                                return ItemID.AlphabetStatueW;
+                            case 7:
+                                return ItemID.AlphabetStatueL;
+                            case 8:
+                                return ItemID.AlphabetStatueH;
+                            case 9:
+                                return ItemID.AlphabetStatueU;
+                            case 10:
+                                return ItemID.AlphabetStatueL;
+                            case 11:
+                                return ItemID.AlphabetStatueV;
+                            case 12:
+                                return ItemID.AlphabetStatueI;
+                            default:
+                                return -1;
+                        }
+                    }
+                    int start = 9;
+                    int chest = Chest.FindChestByGuessing(centerX - 1, bottomY - 1);
+                    for (int invent = 0; invent < Main.chest[chest].item.Length; invent++) {
+                        if (Main.chest[chest].item[invent].IsAir) {
+                            start = Math.Max(10, invent + 1);
+                            break;
+                        }
+                    }
+                    for (int invent = start; invent < Main.chest[chest].item.Length; invent++) {
+                        Item item = Main.chest[chest].item[invent];
+                        int type = getTypeToPlaceByType();
+                        if (type == -1) {
+                            break;
+                        }
+                        if (item.IsAir) {
+                            if ((!Main.chest[chest].item[invent - 1].IsAir || genRand.NextChance(0.25)) && genRand.NextChance(0.85)) {
+                                continue;
+                            }
+                            if (index == 0) {
+                                start = invent;
+                            }
+                            item.SetDefaults(type);
+                            item.stack = 1;
+                            index++;
+                            if (genRand.NextChance(0.85)) {
+                                continue;
+                            }
+                        }
+                    }
+
+                    bool coin1 = false;
+                    bool coin2 = false;
+                    while (!coin1 && !coin2) {
+                        index = 0;
+                        for (int invent = start; invent < Main.chest[chest].item.Length; invent++) {
+                            Item item = Main.chest[chest].item[invent];
+                            if (index > 1) {
+                                break;
+                            }
+                            if (item.IsAir && genRand.NextChance(0.4)) {
+                                switch (index) {
+                                    case 0:
+                                        item.SetDefaults(ItemID.GoldCoin);
+                                        item.stack = 4;
+                                        index++;
+                                        coin1 = true;
+                                        break;
+                                    case 1:
+                                        bool coin3 = false;
+                                        for (int checkInvent = invent - 10; checkInvent < invent + 1; checkInvent++) {
+                                            if (Main.chest[chest].item[checkInvent].type == ItemID.GoldCoin) {
+                                                coin3 = true;
+                                                break;
+                                            }
+                                        }
+                                        if (coin3) {
+                                            continue;
+                                        }
+                                        item.SetDefaults(ItemID.GoldCoin);
+                                        item.stack = 1;
+                                        index++;
+                                        coin2 = true;
+                                        break;
+                                }
+                            }
+                        }
+                    }
 
                     WorldGen.PlaceTile(centerX + genRand.Next(-1, 3), bottomY - genRand.Next(5, 8) + 1, 4, mute: true, forced: false, -1, 10);
 

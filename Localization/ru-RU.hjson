@@ -1530,8 +1530,8 @@ Mods: {
 				}
 
 				pyramidMessageLoot: {
-					// Label: pyramid Message Loot
-					// Tooltip: ""
+					// Label: Special pyramid loot
+					// Tooltip: If enabled,
 				}
 			}
 		}

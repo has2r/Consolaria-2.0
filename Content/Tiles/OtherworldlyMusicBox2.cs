@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.GameContent.ObjectInteractions;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -20,10 +21,14 @@ namespace Consolaria.Content.Tiles {
             TileObjectData.newTile.StyleLineSkip = 2;
             TileObjectData.addTile(Type);
 
+            TileID.Sets.HasOutlines[Type] = true;
+
             AdjTiles = new int[] { TileID.MusicBoxes };
 
             AddMapEntry(new Color(191, 142, 111), Language.GetText("ItemName.MusicBox"));
         }
+
+        public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings) => true;
 
         public override void DrawEffects(int i, int j, SpriteBatch spriteBatch, ref TileDrawInfo drawData) {
             if (Main.tile[i, j].TileFrameX == 36 && (int)Main.timeForVisualEffects % 7 == 0 && Main._rand.NextBool(3)) {

@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 using System;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 
 using Terraria;
 using Terraria.DataStructures;
@@ -12,6 +13,9 @@ using Terraria.Utilities;
 namespace Consolaria;
 
 public static class Helper {
+    [UnsafeAccessor(UnsafeAccessorKind.StaticField, Name = "swapMusic")]
+    public extern static ref bool Main_swapMusic(Main self);
+
     public static void SearchForTargets(Projectile projectile, Player owner, out bool foundTarget, out float distanceFromTarget, out Vector2 targetCenter) {
         distanceFromTarget = 700f;
         targetCenter = projectile.position;

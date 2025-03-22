@@ -78,8 +78,6 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
             NPC.netAlways = true;
 
             NPC.SpawnWithHigherTime(30);
-
-            if (!Main.dedServ) Music = ModContent.GetInstance<ConsolariaConfig>().vanillaBossMusicEnabled ? MusicID.Boss1 : MusicLoader.GetMusicSlot(Mod, "Assets/Music/Turkor");
         }
 
         public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment) {
@@ -221,6 +219,11 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 
 
         public override void AI() {
+            if (!Main.dedServ) 
+                Music =  ModContent.GetInstance<ConsolariaConfig>().vanillaBossMusicEnabled ?
+                   (!Helper.Main_swapMusic(null) ? MusicID.OtherworldlyBoss1 : MusicID.Boss1)
+                    : !Helper.Main_swapMusic(null) ? MusicLoader.GetMusicSlot(Mod, "Assets/Music/OtherwordlyTurkor") : MusicLoader.GetMusicSlot(Mod, "Assets/Music/Turkor");
+
             Player player = Main.player[NPC.target];
 
             NPC.TargetClosest(true);

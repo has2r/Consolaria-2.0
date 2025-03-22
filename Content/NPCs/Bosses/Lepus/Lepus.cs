@@ -176,9 +176,6 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
             NPC.gfxOffY = -4;
             FrameWidth = FRAME_WIDTH;
             FrameHeight = FRAME_HEIGHT;
-
-            if (!Main.dedServ)
-                Music = ModContent.GetInstance<ConsolariaConfig>().vanillaBossMusicEnabled ? MusicID.UndergroundHallow : MusicLoader.GetMusicSlot(Mod, MUSIC_PATH);
         }
 
         public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment) {
@@ -295,6 +292,11 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
         }
 
         public override void AI() {
+            if (!Main.dedServ)
+                Music = ModContent.GetInstance<ConsolariaConfig>().vanillaBossMusicEnabled ?
+                    (!Helper.Main_swapMusic(null) ? MusicID.OtherworldlyHallow : MusicID.UndergroundHallow)
+                    : !Helper.Main_swapMusic(null) ? MusicLoader.GetMusicSlot(Mod, "Assets/Music/OtherwordlyLepus") : MusicLoader.GetMusicSlot(Mod, MUSIC_PATH);
+
             switch (State) {
                 case STATE_APPEARANCE:
                     Appearance();

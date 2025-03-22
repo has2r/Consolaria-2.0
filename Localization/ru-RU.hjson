@@ -1149,6 +1149,21 @@ Mods: {
 				// Tooltip: ""
 				// DisplayName: Purple Thread
 			}
+
+			OtherworldlyMusicBox1: {
+				// DisplayName: Otherworldly Music Box (Lepus)
+				// Tooltip: ""
+			}
+
+			OtherworldlyMusicBox2: {
+				// DisplayName: Otherworldly Music Box (Turkor)
+				// Tooltip: ""
+			}
+
+			OtherworldlyMusicBox3: {
+				// DisplayName: Otherworldly Music Box (Ocram)
+				// Tooltip: ""
+			}
 		}
 
 		NPCs: {

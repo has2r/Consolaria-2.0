@@ -51,5 +51,9 @@ namespace Consolaria.Common {
         [DefaultValue(false)]
         [ReloadRequired]
         public bool pyramidEnabled;
+
+        [DefaultValue(true)]
+        [ReloadRequired]
+        public bool pyramidMessageLoot;
     }
 }

@@ -1528,6 +1528,11 @@ Mods: {
 					// Label: Guaranteed pyramid
 					// Tooltip: If enabled, at least 1 pyramid will always generate in the world
 				}
+
+				pyramidMessageLoot: {
+					// Label: pyramid Message Loot
+					// Tooltip: ""
+				}
 			}
 		}
 

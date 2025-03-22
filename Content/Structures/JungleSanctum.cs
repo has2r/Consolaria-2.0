@@ -85,6 +85,10 @@ namespace Consolaria.Content.Structures {
                 while (!WorldGenHelper.TryStructureLocation(new int[] { TileID.JungleGrass }, width, height, ref JungleSanctumPositionX, ref JungleSanctumPositionY))
                     goto it;
 
+                if (!(JungleSanctumPositionX > GenVars.jungleMinX && JungleSanctumPositionX < GenVars.jungleMaxX)) {
+                    goto it;
+                }
+
                 structureCount++;
                 for (int X = 0; X < height; X++) {
                     for (int Y = 0; Y < width; Y++) {

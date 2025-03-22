@@ -1577,7 +1577,7 @@ Mods: {
 				DisplayName: Turkor the Ungrateful
 			}
 
-			/*AltLepus: {
+			AltLepus: {
 				Author: by Jteoh
 				DisplayName: Blight of Spring (Otherworldly Lepus)
 			}
@@ -1590,7 +1590,7 @@ Mods: {
 			AltTurkor: {
 				Author: by Jteoh
 				DisplayName: Ungracious Givings (Otherworldly Turkor)
-			}*/
+			}
 		}
 	}
 }

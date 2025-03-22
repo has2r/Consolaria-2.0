@@ -1576,6 +1576,21 @@ Mods: {
 				// Author: by Synoxsis
 				// DisplayName: Turkor the Ungrateful
 			}
+
+			AltLepus: {
+				// Author: by Jteoh
+				// DisplayName: Blight of Spring (Otherworldly Lepus)
+			}
+
+			AltOcram: {
+				// Author: by Jteoh
+				// DisplayName: Mirror Image (Otherworldly Ocram)
+			}
+
+			AltTurkor: {
+				// Author: by Jteoh
+				// DisplayName: Ungracious Givings (Otherworldly Turkor)
+			}
 		}
 	}
 }

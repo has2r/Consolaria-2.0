@@ -60,6 +60,10 @@ namespace Consolaria.Common {
             addIntergationFor("Ocram", "Assets/Music/Ocram");
             addIntergationFor("EerieOcram", "Assets/Music/EerieOcram");
             addIntergationFor("Turkor", "Assets/Music/Turkor");
+
+            addIntergationFor("AltLepus", "Assets/Music/OtherwordlyLepus");
+            addIntergationFor("AltOcram", "Assets/Music/OtherwordlyTurkor");
+            addIntergationFor("AltTurkor", "Assets/Music/OtherwordlyOcram");
         }
 
         private void DoBossChecklistIntegration() {

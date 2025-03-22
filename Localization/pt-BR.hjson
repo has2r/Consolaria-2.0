@@ -1512,7 +1512,7 @@ Mods: {
 
 				pyramidEnabled: {
 					// Label: Guaranteed pyramid
-					// Tooltip: If enabled, always generate at least 1 pyramid in the world
+					// Tooltip: If enabled, at least 1 pyramid will always generate in the world
 				}
 			}
 		}
@@ -1543,23 +1543,23 @@ Mods: {
 
 		MusicDisplayCompability: {
 			Lepus: {
-				// Author: by Synoxys
-				// DisplayName: Name (Lepus Theme)
+				// Author: by Synoxsis
+				// DisplayName: Lepus
 			}
 
 			Ocram: {
-				// Author: by Synoxys
-				// DisplayName: Name (Ocram Theme)
+				// Author: by Synoxsis
+				// DisplayName: Ocram
 			}
 
 			EerieOcram: {
-				// Author: by Synoxys
-				// DisplayName: Name (Eerie Ocram Theme)
+				// Author: by Fyerow & Croul
+				// DisplayName: Eerie Ocram
 			}
 
 			Turkor: {
-				// Author: by Synoxys
-				// DisplayName: Name (Turkor Theme)
+				// Author: by Synoxsis
+				// DisplayName: Turkor the Ungrateful
 			}
 		}
 	}

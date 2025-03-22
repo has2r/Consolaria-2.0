@@ -13,7 +13,7 @@ namespace Consolaria.Content.Items.Pets {
         public override void SetDefaults() {
             Item.DefaultToVanitypet(ModContent.ProjectileType<Projectiles.Friendly.Pets.MythicalWyvernling>(), ModContent.BuffType<Buffs.MythicalWyvernling>());
 
-            int width = 28; int height = 40;
+            int width = 26; int height = 34;
             Item.Size = new Vector2(width, height);
 
             Item.rare = ItemRarityID.Pink;

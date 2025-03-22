@@ -1511,7 +1511,7 @@ Mods: {
 
 				pyramidEnabled: {
 					// Label: Guaranteed pyramid
-					// Tooltip: If enabled, always generate at least 1 pyramid in the world
+					// Tooltip: If enabled, at least 1 pyramid will always generate in the world
 				}
 			}
 		}
@@ -1524,7 +1524,7 @@ Mods: {
 
 			KillTurkor: {
 				// Name: Kentucky Fried Turkey
-				// Description: Defeat Turkor the Ungrateful, the burning Thanksgiving monstrosity.
+				// Description: Defeat Turkor the Ungrateful, the burning Thanksgiving monstrocity.
 			}
 
 			KillOcram: {
@@ -1542,23 +1542,23 @@ Mods: {
 
 		MusicDisplayCompability: {
 			Lepus: {
-				// Author: by Synoxys
-				// DisplayName: Name (Lepus Theme)
+				Author: Synoxsis
+				DisplayName: Лепус
 			}
 
 			Ocram: {
-				// Author: by Synoxys
-				// DisplayName: Name (Ocram Theme)
+				Author: Synoxsis
+				DisplayName: Окрам
 			}
 
 			EerieOcram: {
-				// Author: by Synoxys
-				// DisplayName: Name (Eerie Ocram Theme)
+				Author: Fyerow и Croul
+				DisplayName: Жуткий Окрам
 			}
 
 			Turkor: {
-				// Author: by Synoxys
-				// DisplayName: Name (Turkor Theme)
+				Author: Synoxsis
+				DisplayName: Туркор Неблагодарный
 			}
 		}
 	}

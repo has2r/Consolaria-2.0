@@ -45,10 +45,5 @@ namespace Consolaria.Common {
         [DefaultValue(true)]
         [ReloadRequired]
         public bool tizonaZenithIntegrationEnabled;
-
-        [Header("WorldGeneration")]
-        [DefaultValue(false)]
-        [ReloadRequired]
-        public bool pyramidEnabled;
     }
 }

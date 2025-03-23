@@ -208,7 +208,7 @@ sealed class DesertSecondRoom : ILoadable {
                     }
 
                     // Second pyramid loot room
-                    bool canPlace = genRand.NextChance(1.0 / (DesertSecondRoom_ReplaceVanillaPass.RoomCounts + 1));
+                    bool canPlace = genRand.NextChance(1.0 / (double)(DesertSecondRoom_ReplaceVanillaPass.RoomCounts + 1));
 
                     int lootRoomSizeX2 = genRand.Next(6, 8);
                     int lootRoomSizeY2 = genRand.Next(18, 25);

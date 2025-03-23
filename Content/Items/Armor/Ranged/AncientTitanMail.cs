@@ -1,5 +1,5 @@
-using Consolaria.Content.Items.Materials;
 using Microsoft.Xna.Framework;
+
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -7,12 +7,12 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Items.Armor.Ranged {
     [AutoloadEquip(EquipType.Body)]
     public class AncientTitanMail : ModItem {
-        public override void SetStaticDefaults () {
+        public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 1;
             ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<TitanMail>();
         }
 
-        public override void SetDefaults () {
+        public override void SetDefaults() {
             int width = 34; int height = 22;
             Item.Size = new Vector2(width, height);
 
@@ -22,20 +22,9 @@ namespace Consolaria.Content.Items.Armor.Ranged {
             Item.defense = 18;
         }
 
-        public override void UpdateEquip (Player player) {
+        public override void UpdateEquip(Player player) {
             player.GetCritChance(DamageClass.Ranged) += 10;
             player.GetDamage(DamageClass.Ranged) += 0.15f;
-        }
-
-        public override void AddRecipes () {
-            CreateRecipe()
-                .AddIngredient(ItemID.AncientHallowedPlateMail)
-               .AddRecipeGroup(RecipeGroups.Titanium, 12)
-                .AddIngredient(ItemID.SoulofSight, 15)
-                .AddIngredient<SoulofBlight>(15)
-                .AddTile(TileID.DemonAltar)
-                .DisableDecraft()
-                .Register();
         }
     }
 }

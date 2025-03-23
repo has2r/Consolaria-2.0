@@ -1,5 +1,7 @@
 using Consolaria.Content.NPCs.Bosses.Lepus;
+
 using Microsoft.Xna.Framework;
+
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
@@ -7,12 +9,12 @@ using Terraria.ModLoader;
 
 namespace Consolaria.Content.Items.Summons {
     public class SuspiciousLookingEgg : ModItem {
-        public override void SetStaticDefaults () {
+        public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 3;
-            ItemID.Sets.SortingPriorityBossSpawns [Type] = 12;
+            ItemID.Sets.SortingPriorityBossSpawns[Type] = 12;
         }
 
-        public override void SetDefaults () {
+        public override void SetDefaults() {
             int width = 26; int height = 28;
             Item.Size = new Vector2(width, height);
 
@@ -28,10 +30,10 @@ namespace Consolaria.Content.Items.Summons {
             Item.consumable = true;
         }
 
-        public override bool CanUseItem (Player player)
+        public override bool CanUseItem(Player player)
             => !NPC.AnyNPCs(ModContent.NPCType<Lepus>());
 
-        public override bool? UseItem (Player player) {
+        public override bool? UseItem(Player player) {
             SoundEngine.PlaySound(SoundID.Roar);
 
             int type = ModContent.NPCType<Lepus>();

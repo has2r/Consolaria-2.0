@@ -1,13 +1,12 @@
 using Microsoft.Xna.Framework;
+
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Consolaria.Content.Items.Armor.Misc
-{
+namespace Consolaria.Content.Items.Armor.Misc {
     [AutoloadEquip(EquipType.Legs)]
-    public class OstaraBoots : ModItem
-    {
+    public class OstaraBoots : ModItem {
         public override void SetStaticDefaults() {
 
             Item.ResearchUnlockCount = 1;
@@ -23,7 +22,7 @@ namespace Consolaria.Content.Items.Armor.Misc
             Item.defense = 3;
         }
 
-        public override void UpdateEquip(Player player) 
-           => player.GetModPlayer<OstarasPlayer>().bunnyHop = true;    
+        public override void UpdateEquip(Player player)
+           => player.GetModPlayer<OstarasPlayer>().bunnyHop = true;
     }
 }

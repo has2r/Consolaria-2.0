@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+
 using Terraria;
 using Terraria.ModLoader;
 
@@ -9,8 +10,8 @@ public class MoneyDust : ModDust {
         => lightColor;
 
     public override void OnSpawn(Dust dust) {
-		int width = 12, height = 16;
-		dust.frame = new Rectangle(0, 0, width, height);
+        int width = 12, height = 16;
+        dust.frame = new Rectangle(0, 0, width, height);
 
         dust.noGravity = true;
         dust.noLight = false;
@@ -21,14 +22,14 @@ public class MoneyDust : ModDust {
         dust.rotation = Main.rand.NextFloat(-MathHelper.Pi, MathHelper.Pi);
     }
 
-	public override bool Update(Dust dust) {
-		dust.position.Y += dust.velocity.Y;
-		dust.velocity.Y += 0.03f;
-		dust.scale *= 0.965f;
-		dust.color *= 0.9f;
-		if (dust.scale <= 0.35) {
-			dust.active = false;
-		}
-		return false;
-	}
+    public override bool Update(Dust dust) {
+        dust.position.Y += dust.velocity.Y;
+        dust.velocity.Y += 0.03f;
+        dust.scale *= 0.965f;
+        dust.color *= 0.9f;
+        if (dust.scale <= 0.35) {
+            dust.active = false;
+        }
+        return false;
+    }
 }

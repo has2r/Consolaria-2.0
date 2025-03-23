@@ -1,5 +1,7 @@
 using Consolaria.Content.Items.Pets;
+
 using Microsoft.Xna.Framework;
+
 using Terraria;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
@@ -14,10 +16,10 @@ namespace Consolaria.Content.NPCs {
             get; private set;
         }
 
-        public override void SetStaticDefaults () {
-            Main.npcFrameCount [NPC.type] = 4;
+        public override void SetStaticDefaults() {
+            Main.npcFrameCount[NPC.type] = 4;
 
-            NPCID.Sets.SpecificDebuffImmunity [Type] [BuffID.Confused] = true;
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Confused] = true;
 
             NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers() {
                 Velocity = 1f
@@ -27,7 +29,7 @@ namespace Consolaria.Content.NPCs {
             BestiaryText = this.GetLocalization("Bestiary");
         }
 
-        public override void SetDefaults () {
+        public override void SetDefaults() {
             int width = 120; int height = 50;
             NPC.Size = new Vector2(width, height);
 
@@ -52,19 +54,19 @@ namespace Consolaria.Content.NPCs {
             BannerItem = ModContent.ItemType<Items.Placeable.Banners.OrcaBanner>();
         }
 
-        public override void SetBestiary (BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
-            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement [] {
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
+            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
                 BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Ocean,
                 new FlavorTextBestiaryInfoElement(BestiaryText.ToString())
             });
         }
 
-        public override void OnHitPlayer (Player target, Player.HurtInfo hurtInfo) {
+        public override void OnHitPlayer(Player target, Player.HurtInfo hurtInfo) {
             if (Main.rand.NextBool(2))
                 target.AddBuff(BuffID.Bleeding, 60 * 5);
         }
 
-        public override void HitEffect (NPC.HitInfo hit) {
+        public override void HitEffect(NPC.HitInfo hit) {
             if (Main.netMode == NetmodeID.Server)
                 return;
 
@@ -80,14 +82,14 @@ namespace Consolaria.Content.NPCs {
             }
         }
 
-        public override void ModifyNPCLoot (NPCLoot npcLoot) {
+        public override void ModifyNPCLoot(NPCLoot npcLoot) {
             var sharksDropRules = Main.ItemDropsDB.GetRulesForNPCID(NPCID.Shark, false);
             foreach (var sharkDropRule in sharksDropRules)
                 npcLoot.Add(sharkDropRule);
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<GoldenSeaweed>(), 20));
         }
 
-        public override float SpawnChance (NPCSpawnInfo spawnInfo)
+        public override float SpawnChance(NPCSpawnInfo spawnInfo)
             => SpawnCondition.OceanMonster.Chance * 0.025f;
     }
 }

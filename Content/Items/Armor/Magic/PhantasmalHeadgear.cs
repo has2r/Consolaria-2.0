@@ -1,6 +1,7 @@
-using Consolaria.Content.Items.Materials;
 using Consolaria.Content.Projectiles.Friendly;
+
 using Microsoft.Xna.Framework;
+
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
@@ -14,12 +15,12 @@ namespace Consolaria.Content.Items.Armor.Magic {
             get; private set;
         }
 
-        public override void SetStaticDefaults () {
-            ItemID.Sets.ShimmerTransformToItem [Type] = ModContent.ItemType<AncientPhantasmalHeadgear>();
+        public override void SetStaticDefaults() {
+            ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<AncientPhantasmalHeadgear>();
             SetBonusText = this.GetLocalization("SetBonus");
         }
-        
-        public override void SetDefaults () {
+
+        public override void SetDefaults() {
             int width = 30; int height = 26;
             Item.Size = new Vector2(width, height);
 
@@ -29,34 +30,23 @@ namespace Consolaria.Content.Items.Armor.Magic {
             Item.defense = 12;
         }
 
-        public override void UpdateEquip (Player player) {
+        public override void UpdateEquip(Player player) {
             player.statManaMax2 += 50;
 
             player.GetCritChance(DamageClass.Magic) += 10;
             player.GetDamage(DamageClass.Magic) += 0.1f;
         }
 
-        public override bool IsArmorSet (Item head, Item body, Item legs)
+        public override bool IsArmorSet(Item head, Item body, Item legs)
            => (body.type == ModContent.ItemType<PhantasmalRobe>() || body.type == ModContent.ItemType<AncientPhantasmalRobe>())
            && (legs.type == ModContent.ItemType<PhantasmalSubligar>() || legs.type == ModContent.ItemType<AncientPhantasmalSubligar>());
 
-        public override void ArmorSetShadows (Player player)
+        public override void ArmorSetShadows(Player player)
             => player.armorEffectDrawOutlines = true;
 
-        public override void UpdateArmorSet (Player player) {
+        public override void UpdateArmorSet(Player player) {
             player.setBonus = SetBonusText.ToString();
             player.GetModPlayer<SpectralPlayer>().spectralGuard = true;
-        }
-
-        public override void AddRecipes () {
-            CreateRecipe()
-                .AddIngredient(ItemID.HallowedHeadgear)
-                .AddRecipeGroup(RecipeGroups.Titanium, 10)
-                .AddIngredient(ItemID.SoulofFright, 10)
-                .AddIngredient<SoulofBlight>(10)
-                .AddTile(TileID.MythrilAnvil)
-                .DisableDecraft()
-                .Register();
         }
     }
 
@@ -67,13 +57,13 @@ namespace Consolaria.Content.Items.Armor.Magic {
         private bool spectralAura;
         private int absorptionDelay;
 
-        public override void ResetEffects ()
+        public override void ResetEffects()
             => spectralGuard = false;
 
-        public override void PreUpdate () {
+        public override void PreUpdate() {
             if (!spectralGuard) return;
 
-            if (Player.ownedProjectileCounts [ModContent.ProjectileType<SpectralSpirit>()] >= 3)
+            if (Player.ownedProjectileCounts[ModContent.ProjectileType<SpectralSpirit>()] >= 3)
                 spectralAura = true;
             else spectralAura = false;
 
@@ -88,7 +78,7 @@ namespace Consolaria.Content.Items.Armor.Magic {
             if (absorptionDelay > 0) absorptionDelay--;
             if (spectralAura && absorptionDelay <= 0 && Player.statMana < Player.statManaMax2 && Player.whoAmI == Main.myPlayer) {
                 for (int _findNPC = 0; _findNPC < Main.npc.Length; _findNPC++) {
-                    NPC npc = Main.npc [_findNPC];
+                    NPC npc = Main.npc[_findNPC];
                     if (npc.active && !npc.friendly && !npc.dontTakeDamage && npc.life > 0 && npc.type != NPCID.TargetDummy && Vector2.Distance(Player.Center, npc.Center) < absorptionRadius) {
                         Projectile.NewProjectile(Player.GetSource_Misc("Spectral Armor"), npc.Center.X, npc.Center.Y, 0f, 0f, ModContent.ProjectileType<ManaDrain>(), 0, 0f, Player.whoAmI);
                         absorptionDelay = 20;

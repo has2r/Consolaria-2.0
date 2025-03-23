@@ -1,24 +1,24 @@
+using Microsoft.Xna.Framework;
+
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
-using Consolaria.Content.Items.Materials;
 
 namespace Consolaria.Content.Items.Armor.Summon {
     [AutoloadEquip(EquipType.Body)]
     public class WarlockRobe : ModItem {
-        public override void Load () {
+        public override void Load() {
             string robeTexture = "Consolaria/Content/Items/Armor/Summon/WarlockRobe_Extension";
             if (Main.netMode != NetmodeID.Server)
                 EquipLoader.AddEquipTexture(Mod, robeTexture, EquipType.Legs, this);
         }
 
-        public override void SetStaticDefaults () {
+        public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 1;
             ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<AncientWarlockRobe>();
         }
 
-        public override void SetDefaults () {
+        public override void SetDefaults() {
             int width = 34; int height = 22;
             Item.Size = new Vector2(width, height);
 
@@ -28,26 +28,15 @@ namespace Consolaria.Content.Items.Armor.Summon {
             Item.defense = 10;
         }
 
-        public override void SetMatch (bool male, ref int equipSlot, ref bool robes) {
+        public override void SetMatch(bool male, ref int equipSlot, ref bool robes) {
             var robeSlot = ModContent.GetInstance<WarlockRobe>();
             equipSlot = EquipLoader.GetEquipSlot(Mod, robeSlot.Name, EquipType.Legs);
             robes = true;
         }
 
-        public override void UpdateEquip (Player player) {
+        public override void UpdateEquip(Player player) {
             player.maxMinions += 1;
             player.GetDamage(DamageClass.Summon) += 0.2f;
-        }
-
-        public override void AddRecipes () {
-            CreateRecipe()
-                .AddIngredient(ItemID.HallowedPlateMail)
-                .AddRecipeGroup(RecipeGroups.Titanium, 12)
-                .AddIngredient(ItemID.SoulofNight, 15)
-                .AddIngredient<SoulofBlight>(15)
-                .AddTile(TileID.MythrilAnvil)
-                .DisableDecraft()
-                .Register();
         }
     }
 }

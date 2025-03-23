@@ -1,5 +1,5 @@
-using Consolaria.Content.Items.Materials;
 using Microsoft.Xna.Framework;
+
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -7,10 +7,10 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Items.Armor.Melee {
     [AutoloadEquip(EquipType.Head)]
     public class AncientDragonMask : ModItem {
-        public override void SetStaticDefaults ()
-            => ItemID.Sets.ShimmerTransformToItem [Type] = ModContent.ItemType<DragonMask>();
+        public override void SetStaticDefaults()
+            => ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<DragonMask>();
 
-        public override void SetDefaults () {
+        public override void SetDefaults() {
             int width = 30; int height = 26;
             Item.Size = new Vector2(width, height);
 
@@ -20,32 +20,21 @@ namespace Consolaria.Content.Items.Armor.Melee {
             Item.defense = 18;
         }
 
-        public override void UpdateEquip (Player player) {
+        public override void UpdateEquip(Player player) {
             player.GetDamage(DamageClass.Melee) += 0.15f;
             player.GetAttackSpeed(DamageClass.Melee) += 0.15f;
         }
 
-        public override bool IsArmorSet (Item head, Item body, Item legs)
+        public override bool IsArmorSet(Item head, Item body, Item legs)
             => (body.type == ModContent.ItemType<DragonBreastplate>() || body.type == ModContent.ItemType<AncientDragonBreastplate>())
             && (legs.type == ModContent.ItemType<DragonGreaves>() || legs.type == ModContent.ItemType<AncientDragonGreaves>());
 
-        public override void ArmorSetShadows (Player player)
+        public override void ArmorSetShadows(Player player)
             => player.armorEffectDrawShadow = true;
 
-        public override void UpdateArmorSet (Player player) {
+        public override void UpdateArmorSet(Player player) {
             player.setBonus = DragonMask.SetBonusText.ToString();
             player.GetModPlayer<DragonPlayer>().dragonBurst = true;
-        }
-
-        public override void AddRecipes () {
-            CreateRecipe()
-                .AddIngredient(ItemID.AncientHallowedMask)
-               .AddRecipeGroup(RecipeGroups.Titanium, 10)
-                .AddIngredient(ItemID.SoulofMight, 10)
-                .AddIngredient<SoulofBlight>(10)
-                .AddTile(TileID.DemonAltar)
-                .DisableDecraft()
-                .Register();
         }
     }
 }

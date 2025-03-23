@@ -1,5 +1,7 @@
 using Microsoft.Xna.Framework;
+
 using System.Collections.Generic;
+
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.Enums;
@@ -9,7 +11,7 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Items.Kites;
 
 public abstract class BaseKiteItem : ModItem {
-	public sealed override void SetStaticDefaults() {
+    public sealed override void SetStaticDefaults() {
         Item.ResearchUnlockCount = 1;
     }
 

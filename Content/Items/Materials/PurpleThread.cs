@@ -1,12 +1,11 @@
 using Microsoft.Xna.Framework;
+
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Consolaria.Common;
 
 namespace Consolaria.Content.Items.Materials {
-    public class PurpleThread : ModItem
-    {
+    public class PurpleThread : ModItem {
         public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 5;
         }
@@ -18,15 +17,6 @@ namespace Consolaria.Content.Items.Materials {
             Item.rare = ItemRarityID.White;
             Item.maxStack = 9999;
             Item.value = Item.sellPrice(silver: 4);
-        }
-
-        public override void AddRecipes() {
-            if (ModContent.GetInstance<ConsolariaConfig>().originalAncientHeroSetRecipeEnabled) {
-                CreateRecipe()
-                    .AddIngredient(ItemID.DeathweedSeeds, 3)
-                    .AddTile(TileID.Bottles)
-                    .Register();
-            }
         }
     }
 }

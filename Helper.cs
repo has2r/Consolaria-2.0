@@ -1,51 +1,57 @@
-﻿using Terraria;
-using Microsoft.Xna.Framework;
-using System;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+
+using System;
+using System.Reflection;
+using System.Runtime.CompilerServices;
+
+using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.Utilities;
-using System.Reflection;
 
-namespace Consolaria; 
+namespace Consolaria;
 
 public static class Helper {
+    [UnsafeAccessor(UnsafeAccessorKind.StaticField, Name = "swapMusic")]
+    public extern static ref bool Main_swapMusic(Main self);
+
     public static void SearchForTargets(Projectile projectile, Player owner, out bool foundTarget, out float distanceFromTarget, out Vector2 targetCenter) {
-		distanceFromTarget = 700f;
-		targetCenter = projectile.position;
-		foundTarget = false;
+        distanceFromTarget = 700f;
+        targetCenter = projectile.position;
+        foundTarget = false;
 
-		if (owner.HasMinionAttackTargetNPC) {
-			NPC npc = Main.npc[owner.MinionAttackTargetNPC];
-			float between = Vector2.Distance(npc.Center, projectile.Center);
+        if (owner.HasMinionAttackTargetNPC) {
+            NPC npc = Main.npc[owner.MinionAttackTargetNPC];
+            float between = Vector2.Distance(npc.Center, projectile.Center);
 
-			if (between < 2000f) {
-				distanceFromTarget = between;
-				targetCenter = npc.Center;
-				foundTarget = true;
-			}
-		}
+            if (between < 2000f) {
+                distanceFromTarget = between;
+                targetCenter = npc.Center;
+                foundTarget = true;
+            }
+        }
 
-		if (!foundTarget) {
-			for (int i = 0; i < Main.maxNPCs; i++) {
-				NPC npc = Main.npc[i];
+        if (!foundTarget) {
+            for (int i = 0; i < Main.maxNPCs; i++) {
+                NPC npc = Main.npc[i];
 
-				if (npc.CanBeChasedBy()) {
-					float between = Vector2.Distance(npc.Center, projectile.Center);
-					bool closest = Vector2.Distance(projectile.Center, targetCenter) > between;
-					bool inRange = between < distanceFromTarget;
-					bool lineOfSight = Collision.CanHitLine(projectile.position, projectile.width, projectile.height, npc.position, npc.width, npc.height);
-					bool closeThroughWall = between < 100f;
+                if (npc.CanBeChasedBy()) {
+                    float between = Vector2.Distance(npc.Center, projectile.Center);
+                    bool closest = Vector2.Distance(projectile.Center, targetCenter) > between;
+                    bool inRange = between < distanceFromTarget;
+                    bool lineOfSight = Collision.CanHitLine(projectile.position, projectile.width, projectile.height, npc.position, npc.width, npc.height);
+                    bool closeThroughWall = between < 100f;
 
-					if (((closest && inRange) || !foundTarget) && (lineOfSight || closeThroughWall)) {
-						distanceFromTarget = between;
-						targetCenter = npc.Center;
-						foundTarget = true;
-					}
-				}
-			}
-		}
-	}
+                    if (((closest && inRange) || !foundTarget) && (lineOfSight || closeThroughWall)) {
+                        distanceFromTarget = between;
+                        targetCenter = npc.Center;
+                        foundTarget = true;
+                    }
+                }
+            }
+        }
+    }
 
     public static bool NextChance(this UnifiedRandom rand, double chance)
         => rand.NextDouble() <= chance;
@@ -119,15 +125,15 @@ public static class Helper {
     }
 
     public static bool CanDrawArmorLayer(PlayerDrawSet drawInfo, int armorSlotID) {
-        if (drawInfo.drawPlayer.armor [armorSlotID].type == ItemID.None || drawInfo.drawPlayer.armor [armorSlotID] == null || drawInfo.drawPlayer.armor [armorSlotID] == new Item())
+        if (drawInfo.drawPlayer.armor[armorSlotID].type == ItemID.None || drawInfo.drawPlayer.armor[armorSlotID] == null || drawInfo.drawPlayer.armor[armorSlotID] == new Item())
             return true;
         return false;
     }
 
     public static Color FadeToColor(Color first, Color second, float blendSpeed, int alpha) {
-        int r = (int) (second.R * blendSpeed + first.R * (1f - blendSpeed));
-        int g = (int) (second.G * blendSpeed + first.G * (1f - blendSpeed));
-        int b = (int) (second.B * blendSpeed + first.B * (1f - blendSpeed));
+        int r = (int)(second.R * blendSpeed + first.R * (1f - blendSpeed));
+        int g = (int)(second.G * blendSpeed + first.G * (1f - blendSpeed));
+        int b = (int)(second.B * blendSpeed + first.B * (1f - blendSpeed));
         int a = alpha;
         return new Color(r, g, b, a);
     }
@@ -150,16 +156,16 @@ public static class Helper {
 
     public static Vector2 RandomPositon(Vector2 pos1, Vector2 pos2) {
         Random _rand = new Random();
-        return new Vector2(_rand.Next((int) pos1.X, (int) pos2.X) + 1, _rand.Next((int) pos1.Y, (int) pos2.Y) + 1);
+        return new Vector2(_rand.Next((int)pos1.X, (int)pos2.X) + 1, _rand.Next((int)pos1.Y, (int)pos2.Y) + 1);
     }
 
     public static Vector2 VelocityFPTP(Vector2 pos1, Vector2 pos2, float speed) {
         Vector2 move = pos2 - pos1;
-        return move * (speed / (float) Math.Sqrt(move.X * move.X + move.Y * move.Y));
+        return move * (speed / (float)Math.Sqrt(move.X * move.X + move.Y * move.Y));
     }
 
-    public static float GradtoRad(float Grad) => Grad * (float) Math.PI / 180.0f;
-    public static float RadtoGrad(float Rad) => Rad * 180.0f / (float) Math.PI;
+    public static float GradtoRad(float Grad) => Grad * (float)Math.PI / 180.0f;
+    public static float RadtoGrad(float Rad) => Rad * 180.0f / (float)Math.PI;
 
     public static int GetNearestNPC(Vector2 Point, bool Friendly = false, bool NoBoss = false) {
         float NearestNPCDist = -1;
@@ -191,23 +197,23 @@ public static class Helper {
 
     public static Vector2 VelocityToPoint(Vector2 A, Vector2 B, float Speed) {
         Vector2 Move = (B - A);
-        return Move * (Speed / (float) Math.Sqrt(Move.X * Move.X + Move.Y * Move.Y));
+        return Move * (Speed / (float)Math.Sqrt(Move.X * Move.X + Move.Y * Move.Y));
     }
 
     public static Vector2 RandomPointInArea(Vector2 A, Vector2 B)
-        => new Vector2(Main.rand.Next((int) A.X, (int) B.X) + 1, Main.rand.Next((int) A.Y, (int) B.Y) + 1);
+        => new Vector2(Main.rand.Next((int)A.X, (int)B.X) + 1, Main.rand.Next((int)A.Y, (int)B.Y) + 1);
 
     public static Vector2 RandomPointInArea(Rectangle Area)
         => new Vector2(Main.rand.Next(Area.X, Area.X + Area.Width), Main.rand.Next(Area.Y, Area.Y + Area.Height));
 
-    public static float RotateBetween2Points(Vector2 A, Vector2 B) => (float) Math.Atan2(A.Y - B.Y, A.X - B.X);
+    public static float RotateBetween2Points(Vector2 A, Vector2 B) => (float)Math.Atan2(A.Y - B.Y, A.X - B.X);
 
-    public static Vector2 CenterPoint (Vector2 A, Vector2 B) => new Vector2((A.X + B.X) / 2.0f, (A.Y + B.Y) / 2.0f);
+    public static Vector2 CenterPoint(Vector2 A, Vector2 B) => new Vector2((A.X + B.X) / 2.0f, (A.Y + B.Y) / 2.0f);
 
     public static Vector2 PolarPos(Vector2 Point, float Distance, float Angle, int XOffset = 0, int YOffset = 0) {
         Vector2 ReturnedValue = new();
-        ReturnedValue.X = (Distance * (float) Math.Sin((double) Helper.RadtoGrad(Angle)) + Point.X) + XOffset;
-        ReturnedValue.Y = (Distance * (float) Math.Cos((double) Helper.RadtoGrad(Angle)) + Point.Y) + YOffset;
+        ReturnedValue.X = (Distance * (float)Math.Sin((double)Helper.RadtoGrad(Angle)) + Point.X) + XOffset;
+        ReturnedValue.Y = (Distance * (float)Math.Cos((double)Helper.RadtoGrad(Angle)) + Point.Y) + YOffset;
         return ReturnedValue;
     }
 
@@ -217,14 +223,12 @@ public static class Helper {
 
 
     //Here we use reflections to get AddSpecialPoint from TileDrawing.cs
-    public static void Load()
-    {
+    public static void Load() {
         _addSpecialPointSpecialPositions = typeof(Terraria.GameContent.Drawing.TileDrawing).GetField("_specialPositions", BindingFlags.NonPublic | BindingFlags.Instance);
         _addSpecialPointSpecialsCount = typeof(Terraria.GameContent.Drawing.TileDrawing).GetField("_specialsCount", BindingFlags.NonPublic | BindingFlags.Instance);
     }
 
-    public static void Unload()
-    {
+    public static void Unload() {
         _addSpecialPointSpecialPositions = null; //This gets the position of the root wind tile
         _addSpecialPointSpecialsCount = null; //This counts how many wind tiles are loaded
     }
@@ -234,10 +238,8 @@ public static class Helper {
 
     public static void AddSpecialPoint(this Terraria.GameContent.Drawing.TileDrawing tileDrawing, int x, int y, int type) //Reconstruction of AddSpecialPoint from Terraria/GameContent/Drawing/TileDrawing.cs
     {
-        if (_addSpecialPointSpecialPositions.GetValue(tileDrawing) is Point[][] _specialPositions)
-        {
-            if (_addSpecialPointSpecialsCount.GetValue(tileDrawing) is int[] _specialsCount)
-            {
+        if (_addSpecialPointSpecialPositions.GetValue(tileDrawing) is Point[][] _specialPositions) {
+            if (_addSpecialPointSpecialsCount.GetValue(tileDrawing) is int[] _specialsCount) {
                 _specialPositions[type][_specialsCount[type]++] = new Point(x, y);
             }
         }

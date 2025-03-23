@@ -1,5 +1,7 @@
 using Consolaria.Common;
+
 using Microsoft.Xna.Framework;
+
 using Terraria;
 using Terraria.Chat;
 using Terraria.ID;
@@ -8,12 +10,12 @@ using Terraria.ModLoader;
 
 namespace Consolaria.Content.Items.Consumables {
     public class Wishbone : ModItem {
-        public override void SetStaticDefaults () {
+        public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 3;
-            ItemID.Sets.SortingPriorityBossSpawns [Type] = 12;
+            ItemID.Sets.SortingPriorityBossSpawns[Type] = 12;
         }
 
-        public override void SetDefaults () {
+        public override void SetDefaults() {
             int width = 30; int height = 22;
             Item.Size = new Vector2(width, height);
 
@@ -30,10 +32,10 @@ namespace Consolaria.Content.Items.Consumables {
             Item.consumable = true;
         }
 
-        public override bool CanUseItem (Player player)
+        public override bool CanUseItem(Player player)
             => !SeasonalEvents.allEventsForToday;
 
-        public override bool? UseItem (Player player) {
+        public override bool? UseItem(Player player) {
             string text = "The spirits of celebration arise...";
             if (player.whoAmI == Main.myPlayer && player.itemAnimation >= player.itemAnimationMax) {
                 SeasonalEvents.allEventsForToday = true;

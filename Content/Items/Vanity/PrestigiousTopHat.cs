@@ -1,28 +1,27 @@
-using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
 using Microsoft.Xna.Framework;
 
-namespace Consolaria.Content.Items.Vanity
-{
-	[AutoloadEquip(EquipType.Head)]
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 
-	public class PrestigiousTopHat : ModItem
-	{
-		public override void SetStaticDefaults() {
+namespace Consolaria.Content.Items.Vanity {
+    [AutoloadEquip(EquipType.Head)]
 
-			Item.ResearchUnlockCount = 1;
-			ArmorIDs.Head.Sets.DrawHatHair[Item.headSlot] = true;
-		}
+    public class PrestigiousTopHat : ModItem {
+        public override void SetStaticDefaults() {
 
-		public override void SetDefaults() {
-			int width = 20; int height = 16;
-			Item.Size = new Vector2(width, height);
+            Item.ResearchUnlockCount = 1;
+            ArmorIDs.Head.Sets.DrawHatHair[Item.headSlot] = true;
+        }
 
-			Item.rare = ItemRarityID.Orange;
-			Item.value = Item.sellPrice(silver: 50);
-			Item.vanity = true;
-		}
+        public override void SetDefaults() {
+            int width = 20; int height = 16;
+            Item.Size = new Vector2(width, height);
+
+            Item.rare = ItemRarityID.Orange;
+            Item.value = Item.sellPrice(silver: 50);
+            Item.vanity = true;
+        }
     }
 }
 

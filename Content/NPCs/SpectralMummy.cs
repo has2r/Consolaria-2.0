@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+
 using Terraria;
 using Terraria.GameContent.Bestiary;
 using Terraria.ID;
@@ -12,8 +13,8 @@ namespace Consolaria.Content.NPCs {
             get; private set;
         }
 
-        public override void SetStaticDefaults () {
-            Main.npcFrameCount [NPC.type] = 16;
+        public override void SetStaticDefaults() {
+            Main.npcFrameCount[NPC.type] = 16;
 
             NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0) {
                 Velocity = 0.85f
@@ -23,7 +24,7 @@ namespace Consolaria.Content.NPCs {
             BestiaryText = this.GetLocalization("Bestiary");
         }
 
-        public override void SetDefaults () {
+        public override void SetDefaults() {
             int width = 40; int height = width;
             NPC.Size = new Vector2(width, height);
 
@@ -50,19 +51,19 @@ namespace Consolaria.Content.NPCs {
             BannerItem = ModContent.ItemType<Items.Placeable.Banners.SpectralMummyBanner>();
         }
 
-        public override void SetBestiary (BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
-            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement [] {
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
+            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
                 BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.HallowDesert,
                 new FlavorTextBestiaryInfoElement(BestiaryText.ToString())
             });
         }
 
-        public override void OnHitPlayer (Player target, Player.HurtInfo hurtInfo) {
+        public override void OnHitPlayer(Player target, Player.HurtInfo hurtInfo) {
             if (Main.rand.NextBool(6))
                 target.AddBuff(BuffID.Confused, 60 * 5);
         }
 
-        public override void HitEffect (NPC.HitInfo hit) {
+        public override void HitEffect(NPC.HitInfo hit) {
             if (Main.netMode == NetmodeID.Server)
                 return;
 
@@ -76,13 +77,13 @@ namespace Consolaria.Content.NPCs {
             }
         }
 
-        public override void ModifyNPCLoot (NPCLoot npcLoot) {
+        public override void ModifyNPCLoot(NPCLoot npcLoot) {
             var mummysDropRules = Main.ItemDropsDB.GetRulesForNPCID(NPCID.LightMummy, false);
             foreach (var mummyDropRule in mummysDropRules)
                 npcLoot.Add(mummyDropRule);
         }
 
-        public override float SpawnChance (NPCSpawnInfo spawnInfo)
+        public override float SpawnChance(NPCSpawnInfo spawnInfo)
             => (spawnInfo.Player.ZoneHallow && spawnInfo.Player.ZoneDesert && Main.hardMode) ?
             SpawnCondition.LightMummy.Chance * 0.1f : 0f;
     }

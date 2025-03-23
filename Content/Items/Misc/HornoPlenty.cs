@@ -1,44 +1,43 @@
 ﻿using Microsoft.Xna.Framework;
+
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Consolaria.Content.Items.Misc
-{	
-	public class HornoPlenty : ModItem
-	{		
-		public override void SetStaticDefaults() {
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-		}
+namespace Consolaria.Content.Items.Misc {
+    public class HornoPlenty : ModItem {
+        public override void SetStaticDefaults() {
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+        }
 
-		public override void SetDefaults() {
-			int width = 30; int height = width;
-			Item.Size = new Vector2(width, height);
+        public override void SetDefaults() {
+            int width = 30; int height = width;
+            Item.Size = new Vector2(width, height);
 
-			Item.useTime = Item.useAnimation = 36;
-			Item.holdStyle = ItemHoldStyleID.HoldFront;
+            Item.useTime = Item.useAnimation = 36;
+            Item.holdStyle = ItemHoldStyleID.HoldFront;
 
-			Item.healLife = 100;
-			Item.potion = true;
+            Item.healLife = 100;
+            Item.potion = true;
 
-			Item.useStyle = ItemUseStyleID.EatFood;
-			Item.consumable = false;
-			Item.noMelee = true;
+            Item.useStyle = ItemUseStyleID.EatFood;
+            Item.consumable = false;
+            Item.noMelee = true;
 
-			Item.value = Item.sellPrice(gold: 1, silver: 80);
-			Item.rare = ItemRarityID.Orange;
-			Item.expert = true;
+            Item.value = Item.sellPrice(gold: 1, silver: 80);
+            Item.rare = ItemRarityID.Orange;
+            Item.expert = true;
 
-			Item.UseSound = SoundID.Item2;
-		}
+            Item.UseSound = SoundID.Item2;
+        }
 
-		public override void HoldStyle(Player player, Rectangle heldItemFrame) {
-			player.itemLocation.X = player.MountedCenter.X + 4f * player.direction;
-			player.itemLocation.Y = player.MountedCenter.Y + 14f;
-			player.itemRotation = 0f;
-		}
+        public override void HoldStyle(Player player, Rectangle heldItemFrame) {
+            player.itemLocation.X = player.MountedCenter.X + 4f * player.direction;
+            player.itemLocation.Y = player.MountedCenter.Y + 14f;
+            player.itemRotation = 0f;
+        }
 
-		public override bool ConsumeItem(Player player) => false;       
+        public override bool ConsumeItem(Player player) => false;
     }
 }

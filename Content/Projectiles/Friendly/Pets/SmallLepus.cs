@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -9,18 +10,18 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
         private float rotationSpeed;
         private bool isFlying;
 
-        public override void SetStaticDefaults () {
+        public override void SetStaticDefaults() {
 
-            Main.projFrames [Projectile.type] = 5;
-            Main.projPet [Projectile.type] = true;
+            Main.projFrames[Projectile.type] = 5;
+            Main.projPet[Projectile.type] = true;
 
-        ProjectileID.Sets.CharacterPreviewAnimations[Projectile.type] = ProjectileID.Sets.SimpleLoop(0, 3)
-				.WithOffset(-13, 0)
-				.WithSpriteDirection(1)
-                .WhenNotSelected(0, 0); //I don't understand why tf tModloader is ignoring this line when it's directly copied from ExampleMod
+            ProjectileID.Sets.CharacterPreviewAnimations[Projectile.type] = ProjectileID.Sets.SimpleLoop(0, 3)
+                    .WithOffset(-13, 0)
+                    .WithSpriteDirection(1)
+                    .WhenNotSelected(0, 0); //I don't understand why tf tModloader is ignoring this line when it's directly copied from ExampleMod
         }
 
-        public override void SetDefaults () {
+        public override void SetDefaults() {
             int width = 36; int height = 36;
             Projectile.Size = new Vector2(width, height);
 
@@ -34,27 +35,27 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
             Projectile.timeLeft *= 5;
         }
 
-        public override bool PreAI () {
-            Main.player [Projectile.owner].petFlagKingSlimePet = false;
+        public override bool PreAI() {
+            Main.player[Projectile.owner].petFlagKingSlimePet = false;
             return true;
         }
 
-        public override void AI () {
-            Player player = Main.player [Projectile.owner];
+        public override void AI() {
+            Player player = Main.player[Projectile.owner];
             if (!player.dead && player.HasBuff(ModContent.BuffType<Buffs.SmallLepus>()))
                 Projectile.timeLeft = 2;
 
-            isFlying = Projectile.ai [0] == 1;
+            isFlying = Projectile.ai[0] == 1;
 
             //replacing vanilla king slime pet gore
-            Projectile.localAI [0]++;
+            Projectile.localAI[0]++;
             Projectile.frameCounter = 0;
             Projectile.frame = 8;
 
-            if (Projectile.localAI [0] == (60 * Main.rand.Next(6, 15)) && !isFlying) {
+            if (Projectile.localAI[0] == (60 * Main.rand.Next(6, 15)) && !isFlying) {
                 if (Main.netMode != NetmodeID.Server)
                     Gore.NewGore(Projectile.GetSource_FromAI(), new Vector2(Projectile.position.X, Projectile.Center.Y), Vector2.Zero, ModContent.Find<ModGore>("Consolaria/EasterEggFullGore").Type);
-                Projectile.localAI [0] = 0;
+                Projectile.localAI[0] = 0;
             }
 
             if (isFlying) rotationSpeed += Projectile.velocity.X * 0.1f;
@@ -69,8 +70,8 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
         private int texFrameCounter;
         private int texCurrentFrame;
 
-        public override bool PreDraw (ref Color lightColor) {
-            Texture2D texture = (Texture2D) ModContent.Request<Texture2D>(Texture);
+        public override bool PreDraw(ref Color lightColor) {
+            Texture2D texture = (Texture2D)ModContent.Request<Texture2D>(Texture);
             bool fuckingGround = Projectile.velocity.X == 0f;
             texFrameCounter++;
             if (isFlying) {
@@ -87,7 +88,7 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets {
             Vector2 position = new Vector2(Projectile.Center.X, Projectile.Center.Y) - Main.screenPosition;
             Vector2 drawOrigin = new Vector2(texture.Width * 0.5f, Projectile.height * 0.5f);
             var spriteEffects = Projectile.direction > 0 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-            int frameHeight = texture.Height / Main.projFrames [Projectile.type];
+            int frameHeight = texture.Height / Main.projFrames[Projectile.type];
             Rectangle frameRect = new Rectangle(0, texCurrentFrame * frameHeight, texture.Width, frameHeight);
             Main.EntitySpriteDraw(texture, position, frameRect, lightColor, rotationSpeed, drawOrigin, Projectile.scale, spriteEffects, 0);
             return false;

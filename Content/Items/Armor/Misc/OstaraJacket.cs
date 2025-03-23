@@ -1,13 +1,12 @@
+using Microsoft.Xna.Framework;
+
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
 
-namespace Consolaria.Content.Items.Armor.Misc
-{
+namespace Consolaria.Content.Items.Armor.Misc {
     [AutoloadEquip(EquipType.Body)]
-    public class OstaraJacket : ModItem
-    {
+    public class OstaraJacket : ModItem {
         public override void SetStaticDefaults() {
 
             Item.ResearchUnlockCount = 1;
@@ -23,7 +22,7 @@ namespace Consolaria.Content.Items.Armor.Misc
             Item.defense = 3;
         }
 
-        public override void UpdateEquip(Player player) 
+        public override void UpdateEquip(Player player)
             => player.moveSpeed += 0.07f;
     }
 }

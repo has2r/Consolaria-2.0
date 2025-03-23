@@ -1,13 +1,14 @@
 using Microsoft.Xna.Framework;
+
 using System;
 using System.Linq;
+
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Consolaria.Content.Projectiles.Friendly.Pets
-{
+namespace Consolaria.Content.Projectiles.Friendly.Pets {
     public class WormData : ModPlayer {
         public bool IsWormPetActive { get; internal set; }
 
@@ -164,8 +165,8 @@ namespace Consolaria.Content.Projectiles.Friendly.Pets
             Main.projFrames[Type] = 8;
 
             ProjectileID.Sets.CharacterPreviewAnimations[Type] = ProjectileID.Sets.SimpleLoop(5, 3)
-				.WithOffset(-4, 0)
-				.WithSpriteDirection(-1)
+                .WithOffset(-4, 0)
+                .WithSpriteDirection(-1)
                 .WhenNotSelected(4, 0);
 
             base.SetStaticDefaults();

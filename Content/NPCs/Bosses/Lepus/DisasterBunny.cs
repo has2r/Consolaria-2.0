@@ -1,7 +1,9 @@
 using Consolaria.Common;
 using Consolaria.Common.ModSystems;
 using Consolaria.Content.Items.Summons;
+
 using Microsoft.Xna.Framework;
+
 using Terraria;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
@@ -16,8 +18,8 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
             get; private set;
         }
 
-        public override void SetStaticDefaults () {
-            Main.npcFrameCount [NPC.type] = 7;
+        public override void SetStaticDefaults() {
+            Main.npcFrameCount[NPC.type] = 7;
 
             NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers() {
                 Velocity = 1f
@@ -27,7 +29,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
             BestiaryText = this.GetLocalization("Bestiary");
         }
 
-        public override void SetDefaults () {
+        public override void SetDefaults() {
             int width = 35; int height = 28;
             NPC.Size = new Vector2(width, height);
 
@@ -53,17 +55,17 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
                 NPC.value = Item.buyPrice(silver: 5);
         }
 
-		public override void ApplyDifficultyAndPlayerScaling (int numPlayers, float balance, float bossAdjustment)
+        public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)
             => NPC.lifeMax = 105;
 
-        public override void SetBestiary (BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
-            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement [] {
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
+            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
                 BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
                 new FlavorTextBestiaryInfoElement(BestiaryText.ToString())
             });
         }
 
-        public override void HitEffect (NPC.HitInfo hit) {
+        public override void HitEffect(NPC.HitInfo hit) {
             if (Main.netMode == NetmodeID.Server)
                 return;
 
@@ -74,7 +76,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
             }
         }
 
-        public override void ModifyNPCLoot (NPCLoot npcLoot) {
+        public override void ModifyNPCLoot(NPCLoot npcLoot) {
             LepusDropCondition lepusDropCondition = new();
             IItemDropRule conditionalRule = new LeadingConditionRule(lepusDropCondition);
             conditionalRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<SuspiciousLookingEgg>(), 4));
@@ -85,7 +87,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
             //npcLoot.Add(conditionalRule2);
         }
 
-        public override float SpawnChance (NPCSpawnInfo spawnInfo) {
+        public override float SpawnChance(NPCSpawnInfo spawnInfo) {
             float spawnChance = DownedBossSystem.downedLepus ? 0.01f : 0.035f;
             if (SeasonalEvents.configEnabled) return SeasonalEvents.IsEaster() ?
                     SpawnCondition.OverworldDaySlime.Chance * spawnChance : 0f;

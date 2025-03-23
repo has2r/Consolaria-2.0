@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -30,6 +31,6 @@ namespace Consolaria.Content.Items.Weapons.Ammo {
             Item.rare = ItemRarityID.Blue;
 
             Item.ammo = AmmoID.Arrow;
-        }  
+        }
     }
 }

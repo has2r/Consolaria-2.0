@@ -1,6 +1,8 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+
 using System.Collections.Generic;
+
 using Terraria;
 using Terraria.GameContent.Bestiary;
 using Terraria.ID;
@@ -13,11 +15,11 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
             get; private set;
         }
 
-        public override void SetStaticDefaults () {
-            Main.npcFrameCount [NPC.type] = 2;
+        public override void SetStaticDefaults() {
+            Main.npcFrameCount[NPC.type] = 2;
 
-            NPCID.Sets.DontDoHardmodeScaling [Type] = true;
-            NPCID.Sets.CantTakeLunchMoney [Type] = true;
+            NPCID.Sets.DontDoHardmodeScaling[Type] = true;
+            NPCID.Sets.CantTakeLunchMoney[Type] = true;
             NPCID.Sets.BossBestiaryPriority.Add(Type);
 
             NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers() {
@@ -28,7 +30,7 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
             BestiaryText = this.GetLocalization("Bestiary");
         }
 
-        public override void SetDefaults () {
+        public override void SetDefaults() {
             int width = 54; int height = width;
             NPC.Size = new Vector2(width, height);
 
@@ -45,14 +47,14 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
             NPC.DeathSound = SoundID.NPCHit18;
         }
 
-        public override void ApplyDifficultyAndPlayerScaling (int numPlayers, float balance, float bossAdjustment) {
-            NPC.lifeMax = 650 + (int) (numPlayers > 1 ? NPC.lifeMax * 0.35f * numPlayers : 0);
+        public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment) {
+            NPC.lifeMax = 650 + (int)(numPlayers > 1 ? NPC.lifeMax * 0.35f * numPlayers : 0);
             NPC.damage = 115;
         }
 
-        public override void SetBestiary (BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
             int associatedNPCType = ModContent.NPCType<Ocram>();
-            bestiaryEntry.UIInfoProvider = new CommonEnemyUICollectionInfoProvider(ContentSamples.NpcBestiaryCreditIdsByNpcNetIds [associatedNPCType], quickUnlock: true);
+            bestiaryEntry.UIInfoProvider = new CommonEnemyUICollectionInfoProvider(ContentSamples.NpcBestiaryCreditIdsByNpcNetIds[associatedNPCType], quickUnlock: true);
 
             bestiaryEntry.Info.AddRange(new List<IBestiaryInfoElement> {
                 BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Times.NightTime,
@@ -60,26 +62,26 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
             });
         }
 
-        public override void AI () {
+        public override void AI() {
             NPC.direction = 1;
             NPC.position += NPC.velocity * 1.1f;
         }
 
-        public override bool PreDraw (SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
-            Texture2D texture = (Texture2D) ModContent.Request<Texture2D>(Texture);
+        public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
+            Texture2D texture = (Texture2D)ModContent.Request<Texture2D>(Texture);
             SpriteEffects effects = (NPC.spriteDirection == -1) ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
-            Vector2 origin = new(texture.Width / 2, texture.Height / Main.npcFrameCount [NPC.type] / 2);
-            Main.spriteBatch.Draw(texture, new Vector2(NPC.position.X - Main.screenPosition.X + NPC.width / 2 - texture.Width * NPC.scale / 2f + origin.X * NPC.scale, NPC.position.Y - Main.screenPosition.Y + NPC.height - texture.Height * NPC.scale / Main.npcFrameCount [NPC.type] + 4f + origin.Y * NPC.scale), new Rectangle?(NPC.frame), Color.White, NPC.rotation, origin, NPC.scale, effects, 0f);
+            Vector2 origin = new(texture.Width / 2, texture.Height / Main.npcFrameCount[NPC.type] / 2);
+            Main.spriteBatch.Draw(texture, new Vector2(NPC.position.X - Main.screenPosition.X + NPC.width / 2 - texture.Width * NPC.scale / 2f + origin.X * NPC.scale, NPC.position.Y - Main.screenPosition.Y + NPC.height - texture.Height * NPC.scale / Main.npcFrameCount[NPC.type] + 4f + origin.Y * NPC.scale), new Rectangle?(NPC.frame), Color.White, NPC.rotation, origin, NPC.scale, effects, 0f);
             for (int i = 1; i < NPC.oldPos.Length; i++) {
                 Color color = Color.Red;
                 color = NPC.GetAlpha(color);
                 color *= (NPC.oldPos.Length - i) / 15f;
-                Main.spriteBatch.Draw(texture, new Vector2(NPC.position.X - Main.screenPosition.X + NPC.width / 2 - texture.Width * NPC.scale / 2f + origin.X * NPC.scale, NPC.position.Y - Main.screenPosition.Y + NPC.height - texture.Height * NPC.scale / Main.npcFrameCount [NPC.type] + 4f + origin.Y * NPC.scale) - NPC.velocity * i * 0.5f, new Rectangle?(NPC.frame), color, NPC.rotation, origin, NPC.scale, effects, 0f);
+                Main.spriteBatch.Draw(texture, new Vector2(NPC.position.X - Main.screenPosition.X + NPC.width / 2 - texture.Width * NPC.scale / 2f + origin.X * NPC.scale, NPC.position.Y - Main.screenPosition.Y + NPC.height - texture.Height * NPC.scale / Main.npcFrameCount[NPC.type] + 4f + origin.Y * NPC.scale) - NPC.velocity * i * 0.5f, new Rectangle?(NPC.frame), color, NPC.rotation, origin, NPC.scale, effects, 0f);
             }
             return true;
         }
 
-        public override void HitEffect (NPC.HitInfo hit) {
+        public override void HitEffect(NPC.HitInfo hit) {
             if (Main.netMode == NetmodeID.Server)
                 return;
 
@@ -92,9 +94,9 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
             }
         }
 
-        public override void OnKill () {
+        public override void OnKill() {
             if (Main.rand.NextBool(2))
-                Item.NewItem(NPC.GetSource_Death(), (int) NPC.position.X, (int) NPC.position.Y, NPC.width, NPC.height, ItemID.Heart);
+                Item.NewItem(NPC.GetSource_Death(), (int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ItemID.Heart);
         }
     }
 }

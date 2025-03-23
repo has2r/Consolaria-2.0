@@ -1,13 +1,15 @@
 using Microsoft.Xna.Framework;
+
 using System;
 using System.Linq;
+
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.Mounts {
     public class FruitfulPlateMount : ModMount {
-        public override void SetStaticDefaults () {
+        public override void SetStaticDefaults() {
             // Movement
             MountData.jumpHeight = 16; // How high the mount can jump.
             MountData.acceleration = 4f; // The rate at which the mount speeds up.
@@ -66,7 +68,7 @@ namespace Consolaria.Content.Mounts {
             }
         }
 
-        public override void UpdateEffects (Player player) {
+        public override void UpdateEffects(Player player) {
             if (player.velocity.Y == 0) {
                 if (Math.Abs(player.velocity.X) > 0.5f) {
                     Rectangle rect = player.getRect();

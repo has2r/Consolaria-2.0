@@ -1,29 +1,29 @@
 using Consolaria.Content.Items.Accessories;
 using Consolaria.Content.Items.Materials;
+using Consolaria.Content.Items.Vanity;
 using Consolaria.Content.Items.Weapons.Magic;
 using Consolaria.Content.Items.Weapons.Melee;
 using Consolaria.Content.Items.Weapons.Ranged;
 using Consolaria.Content.Items.Weapons.Summon;
 
-using Consolaria.Content.Items.Vanity;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+
 using Terraria;
 using Terraria.GameContent;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Consolaria.Content.Items.Consumables
-{
+namespace Consolaria.Content.Items.Consumables {
     public class OcramBag : ModItem {
-        public override void SetStaticDefaults () {
+        public override void SetStaticDefaults() {
 
-            ItemID.Sets.BossBag [Type] = true;
+            ItemID.Sets.BossBag[Type] = true;
             Item.ResearchUnlockCount = 3;
         }
 
-        public override void SetDefaults () {
+        public override void SetDefaults() {
             int width = 24; int height = width;
             Item.Size = new Vector2(width, height);
 
@@ -34,10 +34,10 @@ namespace Consolaria.Content.Items.Consumables
             Item.expert = true;
         }
 
-        public override bool CanRightClick ()
+        public override bool CanRightClick()
             => true;
 
-        public override void ModifyItemLoot (ItemLoot itemLoot) {
+        public override void ModifyItemLoot(ItemLoot itemLoot) {
             itemLoot.Add(new OneFromRulesRule(1, ItemDropRule.Common(ModContent.ItemType<EternityStaff>()),
                 ItemDropRule.Common(ModContent.ItemType<DragonBreath>()),
                 ItemDropRule.Common(ModContent.ItemType<OcramsEye>()),
@@ -50,10 +50,10 @@ namespace Consolaria.Content.Items.Consumables
             itemLoot.Add(ItemDropRule.CoinsBasedOnNPCValue(ModContent.NPCType<NPCs.Bosses.Ocram.Ocram>()));
         }
 
-        public override Color? GetAlpha (Color lightColor)
+        public override Color? GetAlpha(Color lightColor)
             => Color.Lerp(lightColor, Color.White, 0.4f);
 
-        public override void PostUpdate () {
+        public override void PostUpdate() {
             Lighting.AddLight(Item.Center, Color.White.ToVector3() * 0.4f);
 
             if (Item.timeSinceItemSpawned % 12 == 0) {
@@ -71,11 +71,11 @@ namespace Consolaria.Content.Items.Consumables
             }
         }
 
-        public override bool PreDrawInWorld (SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI) {
-            Texture2D texture = TextureAssets.Item [Item.type].Value;
+        public override bool PreDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI) {
+            Texture2D texture = TextureAssets.Item[Item.type].Value;
             Rectangle frame;
 
-            if (Main.itemAnimations [Item.type] != null) frame = Main.itemAnimations [Item.type].GetFrame(texture, Main.itemFrameCounter [whoAmI]);
+            if (Main.itemAnimations[Item.type] != null) frame = Main.itemAnimations[Item.type].GetFrame(texture, Main.itemFrameCounter[whoAmI]);
             else frame = texture.Frame();
 
             Vector2 frameOrigin = frame.Size() / 2f;

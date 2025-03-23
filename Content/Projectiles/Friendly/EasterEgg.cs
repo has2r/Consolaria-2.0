@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
@@ -6,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace Consolaria.Content.Projectiles.Friendly {
     public class EasterEgg : ModProjectile {
-        public override void SetDefaults () {
+        public override void SetDefaults() {
             Projectile.CloneDefaults(ProjectileID.RottenEgg);
             Projectile.aiStyle = 1;
 
@@ -19,14 +20,14 @@ namespace Consolaria.Content.Projectiles.Friendly {
             Projectile.DamageType = DamageClass.Ranged;
         }
 
-        public override void OnKill (int timeLeft) {
-            Player player = Main.player [Projectile.owner];
+        public override void OnKill(int timeLeft) {
+            Player player = Main.player[Projectile.owner];
             int evilBunny = WorldGen.crimson ? NPCID.CrimsonBunny : NPCID.CorruptBunny;
-            if (Main.rand.NextBool(200)) NPC.NewNPC(Projectile.GetSource_Death(), (int) Projectile.Center.X, (int) Projectile.Center.Y, NPCID.Bunny);
-            if (Main.rand.NextBool(200)) NPC.NewNPC(Projectile.GetSource_Death(), (int) Projectile.Center.X, (int) Projectile.Center.Y, NPCID.Bird);
-            if (Main.rand.NextBool(300)) NPC.NewNPC(Projectile.GetSource_Death(), (int) Projectile.Center.X, (int) Projectile.Center.Y, evilBunny);
+            if (Main.rand.NextBool(200)) NPC.NewNPC(Projectile.GetSource_Death(), (int)Projectile.Center.X, (int)Projectile.Center.Y, NPCID.Bunny);
+            if (Main.rand.NextBool(200)) NPC.NewNPC(Projectile.GetSource_Death(), (int)Projectile.Center.X, (int)Projectile.Center.Y, NPCID.Bird);
+            if (Main.rand.NextBool(300)) NPC.NewNPC(Projectile.GetSource_Death(), (int)Projectile.Center.X, (int)Projectile.Center.Y, evilBunny);
             int trollingChance = player.name == "has2r" ? 50 : 600;
-            if (Main.rand.NextBool(trollingChance)) NPC.NewNPC(Projectile.GetSource_Death(), (int) Projectile.Center.X, (int) Projectile.Center.Y, NPCID.ExplosiveBunny);
+            if (Main.rand.NextBool(trollingChance)) NPC.NewNPC(Projectile.GetSource_Death(), (int)Projectile.Center.X, (int)Projectile.Center.Y, NPCID.ExplosiveBunny);
 
             if (Main.netMode != NetmodeID.Server) {
                 int easterEggGoreType = ModContent.Find<ModGore>("Consolaria/EasterEggGore").Type;

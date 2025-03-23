@@ -1,5 +1,15 @@
 Mods: {
 	Consolaria: {
+		// LepusDropCondition: Drops if Lepus is not present
+		// ValentineRingTooltip1: Give it to someone special!
+		/* ValentineRingTooltip2:
+			'''
+			Slowly regenerates life
+			Increases jump height
+			''' */
+		// McMoneypantsInvitationUsage: The invitation flies away to its recipient...
+		// Munchies.McMoneypantsInvitation.HowToAcquire: Obtained from Red Envelope
+		// McMoneypantsButton1Text: Invest
 		Others.NPCTitle: "{0} {1}"
 
 		Biomes: {
@@ -1140,6 +1150,21 @@ Mods: {
 				Tooltip: ""
 				DisplayName: Fio Roxo
 			}
+
+			OtherworldlyMusicBox1: {
+				// DisplayName: Otherworldly Music Box (Lepus)
+				// Tooltip: ""
+			}
+
+			OtherworldlyMusicBox2: {
+				// DisplayName: Otherworldly Music Box (Turkor)
+				// Tooltip: ""
+			}
+
+			OtherworldlyMusicBox3: {
+				// DisplayName: Otherworldly Music Box (Ocram)
+				// Tooltip: ""
+			}
 		}
 
 		NPCs: {
@@ -1434,6 +1459,7 @@ Mods: {
 				Headers: {
 					SeasonalEvents: Eventos Sazonais
 					Miscellaneous: Outros
+					// WorldGeneration: World Generation
 				}
 
 				easterEnabled: {
@@ -1498,6 +1524,16 @@ Mods: {
 						Feminino - Conjunto Fabuloso
 						'''
 				}
+
+				pyramidEnabled: {
+					// Label: Guaranteed pyramid
+					// Tooltip: If enabled, at least 1 pyramid will always generate in the world
+				}
+
+				pyramidMessageLoot: {
+					// Label: Special pyramid loot
+					// Tooltip: If enabled,
+				}
 			}
 		}
 
@@ -1523,6 +1559,43 @@ Mods: {
 			TurkorEmote.Command: peruno
 			OcramEmote.Command: ocram
 			LepusEmote.Command: lepus
+		}
+
+		MusicDisplayCompability: {
+			Lepus: {
+				// Author: by Synoxsis
+				// DisplayName: Lepus
+			}
+
+			Ocram: {
+				// Author: by Synoxsis
+				// DisplayName: Ocram
+			}
+
+			EerieOcram: {
+				// Author: by Fyerow & Croul
+				// DisplayName: Eerie Ocram
+			}
+
+			Turkor: {
+				// Author: by Synoxsis
+				// DisplayName: Turkor the Ungrateful
+			}
+
+			AltLepus: {
+				// Author: by Jteoh
+				// DisplayName: Blight of Spring (Otherworldly Lepus)
+			}
+
+			AltOcram: {
+				// Author: by Jteoh
+				// DisplayName: Mirror Image (Otherworldly Ocram)
+			}
+
+			AltTurkor: {
+				// Author: by Jteoh
+				// DisplayName: Ungracious Givings (Otherworldly Turkor)
+			}
 		}
 	}
 }

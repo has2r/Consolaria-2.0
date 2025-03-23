@@ -1,7 +1,14 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Consolaria.Content.Buffs;
+using Consolaria.Content.Dusts;
+using Consolaria.Content.EmoteBubbles;
+using Consolaria.Content.Items.Vanity;
+
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+
 using System.Collections.Generic;
 using System.IO;
+
 using Terraria;
 using Terraria.Audio;
 using Terraria.Chat;
@@ -12,10 +19,6 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
-using Consolaria.Content.Buffs;
-using Consolaria.Content.Dusts;
-using Consolaria.Content.Items.Vanity;
-using Consolaria.Content.EmoteBubbles;
 
 namespace Consolaria.Content.NPCs.Friendly.McMoneypants;
 
@@ -25,8 +28,6 @@ public class McMoneypants : ModNPC {
     public static LocalizedText BestiaryText { get; private set; }
 
     private const double DAY_TIME = 48600.0;
-
-    public const string BUTTON_TEXT = "Invest";
 
     private static string _lastName = null;
 
@@ -73,25 +74,25 @@ public class McMoneypants : ModNPC {
         => _timePassed >= (McMoneypantsWorldData.SomebodyInvested ? DAY_TIME / 2 : DAY_TIME);
 
     public override void Load() {
-			ShimmerHeadIndex = Mod.AddNPCHeadTexture(Type, Texture + "_Shimmer_Head");
-		}
+        ShimmerHeadIndex = Mod.AddNPCHeadTexture(Type, Texture + "_Shimmer_Head");
+    }
 
     #endregion
 
     #region Defaults
-    public override void SetStaticDefaults () {
+    public override void SetStaticDefaults() {
         int id = Type;
 
-        Main.npcFrameCount [id] = 25;
-        NPCID.Sets.ExtraFramesCount [id] = 9;
-        NPCID.Sets.DangerDetectRange [id] = 400;
-        NPCID.Sets.AttackFrameCount [id] = 4;
-        NPCID.Sets.AttackType [id] = 0;
-        NPCID.Sets.AttackTime [id] = 10;
-        NPCID.Sets.AttackAverageChance [id] = 10;
-        NPCID.Sets.HatOffsetY [id] = 0;
+        Main.npcFrameCount[id] = 25;
+        NPCID.Sets.ExtraFramesCount[id] = 9;
+        NPCID.Sets.DangerDetectRange[id] = 400;
+        NPCID.Sets.AttackFrameCount[id] = 4;
+        NPCID.Sets.AttackType[id] = 0;
+        NPCID.Sets.AttackTime[id] = 10;
+        NPCID.Sets.AttackAverageChance[id] = 10;
+        NPCID.Sets.HatOffsetY[id] = 0;
         NPCID.Sets.ShimmerTownTransform[Type] = true;
-        NPCID.Sets.NoTownNPCHappiness [id] = true;
+        NPCID.Sets.NoTownNPCHappiness[id] = true;
 
         NPCID.Sets.NPCBestiaryDrawModifiers value = new(0) {
             Velocity = 1f,
@@ -114,13 +115,13 @@ public class McMoneypants : ModNPC {
             this.GetLocalization("PlayerHasNoMoney1"), this.GetLocalization("PlayerHasNoMoney2"), this.GetLocalization("PlayerHasNoMoney3"), this.GetLocalization("PlayerHasNoMoney4") };
         QuotesOnButtonClickWhenFirstTimeInvested = new List<LocalizedText>() {
             this.GetLocalization("FirstTimeInvested1"), this.GetLocalization("FirstTimeInvested2"), this.GetLocalization("FirstTimeInvested3"), this.GetLocalization("FirstTimeInvested4") };
-        QuotesWhenInvested = new List<LocalizedText>() { 
+        QuotesWhenInvested = new List<LocalizedText>() {
             this.GetLocalization("WhenInvested1"), this.GetLocalization("WhenInvested2"), this.GetLocalization("WhenInvested3"), this.GetLocalization("WhenInvested4"), this.GetLocalization("WhenInvested5"), this.GetLocalization("WhenInvested6"), this.GetLocalization("WhenInvested7"), this.GetLocalization("WhenInvested8") };
         Quotes = new List<LocalizedText>() {
             this.GetLocalization("Quote1"), this.GetLocalization("Quote2"), this.GetLocalization("Quote3"), this.GetLocalization("Quote4"), this.GetLocalization("Quote5"), this.GetLocalization("Quote6"), this.GetLocalization("Quote7"), this.GetLocalization("Quote8"), this.GetLocalization("Quote9"), this.GetLocalization("Quote10") };
     }
 
-    public override void SetDefaults () {
+    public override void SetDefaults() {
         NPC.townNPC = true;
         TownNPCStayingHomeless = true;
 
@@ -143,14 +144,14 @@ public class McMoneypants : ModNPC {
         AnimationType = NPCID.Guide;
     }
 
-    public override void SetBestiary (BestiaryDatabase database, BestiaryEntry bestiaryEntry)
-        => bestiaryEntry.Info.AddRange(new IBestiaryInfoElement [] {
+    public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        => bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
                new FlavorTextBestiaryInfoElement(BestiaryText.ToString())
            });
 
     public override void ModifyNPCLoot(NPCLoot npcLoot)
-	    => npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<PrestigiousTopHat>()));
+        => npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<PrestigiousTopHat>()));
 
     #endregion
 
@@ -208,7 +209,7 @@ public class McMoneypants : ModNPC {
 
     public override void SetChatButtons(ref string button, ref string button2) {
         McMoneypantsPlayerData modPlayer = Main.LocalPlayer.GetModPlayer<McMoneypantsPlayerData>();
-        button = BUTTON_TEXT + (!modPlayer.PlayerInvested ? $" ({Helper.GetPriceText(modPlayer.PlayerInvestPrice, true)})" : string.Empty);
+        button = Language.GetTextValue("Mods.Consolaria.McMoneypantsButton1Text") + (!modPlayer.PlayerInvested ? $" ({Helper.GetPriceText(modPlayer.PlayerInvestPrice, true)})" : string.Empty);
     }
 
     public override void OnChatButtonClicked(bool firstButton, ref string shopName)
@@ -222,7 +223,7 @@ public class McMoneypants : ModNPC {
     public override bool CanTownNPCSpawn(int numTownNPCs)
         => false;
 
-    public override bool CanGoToStatue(bool toKingStatue) 
+    public override bool CanGoToStatue(bool toKingStatue)
         => toKingStatue;
 
     public override void TownNPCAttackStrength(ref int damage, ref float knockback) {
@@ -261,8 +262,7 @@ public class McMoneypants : ModNPC {
                 string text = Language.GetTextValue("LegacyMisc.35", NPC.FullName).Replace(NPC.FullName.Replace(NPC.GivenName, string.Empty), " Mc MoneyPants");
                 Main.NewText(text, 50, 125, 255);
             }
-            else
-            {
+            else {
                 NetworkText text = NetworkText.FromKey("LegacyMisc.35", NetworkText.FromKey("Mods.Consolaria.Others.NPCTitle", NetworkText.FromLiteral(NPC.GivenName), NetworkText.FromKey(Lang.GetNPCName(NPC.netID).Key)));
                 ChatHelper.BroadcastChatMessage(text, new Color(50, 125, 255));
             }
@@ -286,7 +286,7 @@ public class McMoneypants : ModNPC {
 
         IncreaseTimePassedValue();
 
-        if (CheckConditions())  {
+        if (CheckConditions()) {
             NotifyDespawnInChat();
 
             SaveNPCName();
@@ -324,7 +324,7 @@ public class McMoneypants : ModNPC {
 
         void UpdateSpawnTime() {
             bool isMorning = Main.dayTime && Main.time == 0;
-            if (isMorning)  {
+            if (isMorning) {
                 bool shouldComeWhen = Main.rand.NextBool(McMoneypantsWorldData.ChanceToSpawn) || McMoneypantsWorldData.InvestedNextTravel;
                 if (!isMoneypantsThere && shouldComeWhen) {
                     int minTime = 5400, maxTime = 8100;
@@ -403,9 +403,9 @@ public class McMoneypants : ModNPC {
 
             int dustType = ModContent.DustType<MoneyDust>();
             for (int k = 0; k < Main.rand.Next(5, 8); k++) {
-                Dust dust = Dust.NewDustPerfect(Main.LocalPlayer.Center + new Vector2(0f, (float)height * 0.2f) + Main.rand.NextVector2CircularEdge(width, (float)height * 0.6f) * (0.3f + Main.rand.NextFloat() * 0.5f), 
+                Dust dust = Dust.NewDustPerfect(Main.LocalPlayer.Center + new Vector2(0f, (float)height * 0.2f) + Main.rand.NextVector2CircularEdge(width, (float)height * 0.6f) * (0.3f + Main.rand.NextFloat() * 0.5f),
                                                 dustType,
-                                                new Vector2(0f, (0f - Main.rand.NextFloat()) * 0.3f - 1.5f) * 0.5f, 
+                                                new Vector2(0f, (0f - Main.rand.NextFloat()) * 0.3f - 1.5f) * 0.5f,
                                                 Main.rand.Next(80, 130),
                                                 default);
                 dust.fadeIn = 1.1f;
@@ -415,15 +415,15 @@ public class McMoneypants : ModNPC {
         void PlaySound() {
             SoundStyle style = new($"{nameof(Consolaria)}/Assets/Sounds/MoneyCash");
             SoundEngine.PlaySound(style, NPC.Center);
-			SoundEngine.PlaySound(SoundID.Coins with { Pitch = -0.3f }, NPC.Center);
+            SoundEngine.PlaySound(SoundID.Coins with { Pitch = -0.3f }, NPC.Center);
         }
 
         AddBuff();
         UpdateInvestInfo();
 
-        Main.npcChatText = QuotesOnButtonClickWhenFirstTimeInvested [Main.rand.Next(QuotesOnButtonClickWhenFirstTimeInvested.Count)].ToString();
+        Main.npcChatText = QuotesOnButtonClickWhenFirstTimeInvested[Main.rand.Next(QuotesOnButtonClickWhenFirstTimeInvested.Count)].ToString();
 
-        if (Main.netMode != NetmodeID.Server) { 
+        if (Main.netMode != NetmodeID.Server) {
             SpawnDusts();
             PlaySound();
         }
@@ -540,7 +540,7 @@ public class McMoneypantsWorldData : ModSystem {
             if (DidntTravelYet) {
                 ChanceToSpawn = 1;
             }
-            else { 
+            else {
                 double rate = Main.dayRate;
                 if (rate < 1.0) {
                     rate = 1.0;
@@ -678,7 +678,7 @@ public class McMoneypantsAttackProjectile : ModProjectile {
     }
 
     private class Explosion : ModProjectile {
-        public override string Texture 
+        public override string Texture
             => "Consolaria/Assets/Textures/Empty";
 
         public override void SetDefaults() {
@@ -691,7 +691,7 @@ public class McMoneypantsAttackProjectile : ModProjectile {
             Projectile.Size = new Vector2(100, 100);
         }
     }
- 
+
     public override void OnKill(int timeLeft) {
         if (Main.myPlayer == Projectile.owner) {
             Projectile.NewProjectileDirect(Projectile.GetSource_FromAI(), Projectile.Center, Vector2.Zero, ModContent.ProjectileType<Explosion>(), Projectile.damage, Projectile.knockBack, Projectile.owner);

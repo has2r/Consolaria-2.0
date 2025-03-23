@@ -1,12 +1,14 @@
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
-using Terraria.ModLoader.Utilities;
-using Terraria.GameContent.Bestiary;
 using Consolaria.Content.Items.Pets;
+
+using Microsoft.Xna.Framework;
+
+using Terraria;
+using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
+using Terraria.ID;
 using Terraria.Localization;
+using Terraria.ModLoader;
+using Terraria.ModLoader.Utilities;
 
 namespace Consolaria.Content.NPCs {
     public class ShadowSlime : ModNPC {
@@ -14,15 +16,15 @@ namespace Consolaria.Content.NPCs {
             get; private set;
         }
 
-        public override void SetStaticDefaults () {
-            Main.npcFrameCount [NPC.type] = 2;
+        public override void SetStaticDefaults() {
+            Main.npcFrameCount[NPC.type] = 2;
 
-            NPCID.Sets.SpecificDebuffImmunity [Type] [BuffID.Poisoned] = true;
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Poisoned] = true;
 
             BestiaryText = this.GetLocalization("Bestiary");
         }
 
-        public override void SetDefaults () {
+        public override void SetDefaults() {
             int width = 40; int height = 30;
             NPC.Size = new Vector2(width, height);
 
@@ -46,19 +48,19 @@ namespace Consolaria.Content.NPCs {
             BannerItem = ModContent.ItemType<Items.Placeable.Banners.ShadowSlimeBanner>();
         }
 
-        public override void SetBestiary (BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
-            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement [] {
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
+            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
                 BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheCorruption,
                 new FlavorTextBestiaryInfoElement(BestiaryText.ToString())
             });
         }
 
-        public override void OnHitPlayer (Player target, Player.HurtInfo hurtInfo) {
+        public override void OnHitPlayer(Player target, Player.HurtInfo hurtInfo) {
             if (Main.rand.NextBool(4))
                 target.AddBuff(BuffID.Blackout, 60 * Main.rand.Next(4, 8));
         }
 
-        public override void HitEffect (NPC.HitInfo hit) {
+        public override void HitEffect(NPC.HitInfo hit) {
             if (Main.netMode == NetmodeID.Server)
                 return;
 
@@ -69,14 +71,14 @@ namespace Consolaria.Content.NPCs {
             }
         }
 
-        public override void ModifyNPCLoot (NPCLoot npcLoot) {
+        public override void ModifyNPCLoot(NPCLoot npcLoot) {
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<PetriDish>(), 20));
             var slimeDropRules = Main.ItemDropsDB.GetRulesForNPCID(NPCID.CorruptSlime, false);
             foreach (var slimeDropRule in slimeDropRules)
                 npcLoot.Add(slimeDropRule);
         }
 
-        public override float SpawnChance (NPCSpawnInfo spawnInfo)
+        public override float SpawnChance(NPCSpawnInfo spawnInfo)
             => (spawnInfo.Player.ZoneCorrupt && Main.hardMode && spawnInfo.SpawnTileY < Main.rockLayer) ?
             SpawnCondition.Corruption.Chance * 0.05f : 0f;
     }

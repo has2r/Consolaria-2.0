@@ -1,5 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
+
 using System;
+
 using Terraria;
 using Terraria.ModLoader;
 
@@ -9,11 +11,11 @@ namespace Consolaria.Content.Projectiles.Friendly {
 
         public override string Texture => "Consolaria/Assets/Textures/Projectiles/TitanBlast";
 
-        public override void SetStaticDefaults ()
-            => Main.projFrames [Projectile.type] = 4;
+        public override void SetStaticDefaults()
+            => Main.projFrames[Projectile.type] = 4;
 
 
-        public override void SetDefaults () {
+        public override void SetDefaults() {
             int width = 92; int height = 164;
             Projectile.Size = new Vector2(width, height);
 
@@ -30,14 +32,14 @@ namespace Consolaria.Content.Projectiles.Friendly {
             Projectile.netImportant = true;
         }
 
-        public override bool ShouldUpdatePosition ()
+        public override bool ShouldUpdatePosition()
             => false;
 
-        public override bool? CanCutTiles ()
+        public override bool? CanCutTiles()
             => false;
 
-        public override void AI () {
-            Player player = Main.player [Projectile.owner];
+        public override void AI() {
+            Player player = Main.player[Projectile.owner];
             player.heldProj = Projectile.whoAmI;
             if (Main.myPlayer == Projectile.owner) {
                 Vector2 position = Vector2.Subtract(Main.MouseWorld, player.RotatedRelativePoint(player.MountedCenter, true));
@@ -51,8 +53,8 @@ namespace Consolaria.Content.Projectiles.Friendly {
             Projectile.rotation = Utils.ToRotation(Projectile.velocity) + 1.57f;
             Projectile.spriteDirection = Math.Sign(Projectile.velocity.X);
             if (!player.dead && player.active) {
-                if (Projectile.ai [0] == 0f) {
-                    Projectile.ai [0] = 1f;
+                if (Projectile.ai[0] == 0f) {
+                    Projectile.ai[0] = 1f;
                     Vector2 center = Vector2.Add(Projectile.Center, Projectile.velocity * 30f);
                     Vector2 direction = Vector2.Subtract(player.Center, center);
                     Vector2 velocity = Vector2.Normalize(direction);
@@ -70,20 +72,21 @@ namespace Consolaria.Content.Projectiles.Friendly {
             if (Projectile.frame >= 4) {
                 Projectile.Kill();
                 return;
-            } else {
-                if (++Projectile.frameCounter >= Main.projFrames [Projectile.type]) {
+            }
+            else {
+                if (++Projectile.frameCounter >= Main.projFrames[Projectile.type]) {
                     Projectile.frame++;
                     Projectile.frameCounter = 0;
                 }
             }
         }
 
-        public override void ModifyHitPlayer (Player target, ref Player.HurtModifiers modifiers) {
+        public override void ModifyHitPlayer(Player target, ref Player.HurtModifiers modifiers) {
             if (modifiers.PvP)
                 modifiers.SetMaxDamage(350);
         }
 
-        public override Color? GetAlpha (Color lightColor)
+        public override Color? GetAlpha(Color lightColor)
             => new Color(200, 200, 200, 75);
     }
 }

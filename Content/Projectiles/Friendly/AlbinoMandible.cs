@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
@@ -6,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace Consolaria.Content.Projectiles.Friendly {
     public class AlbinoMandible : ModProjectile {
-        public override void SetDefaults () {
+        public override void SetDefaults() {
             Projectile.CloneDefaults(ProjectileID.IceBoomerang);
 
             int width = 30; int height = width;
@@ -21,7 +22,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
             Projectile.timeLeft = 720;
         }
 
-        public override bool OnTileCollide (Vector2 oldVelocity) {
+        public override bool OnTileCollide(Vector2 oldVelocity) {
             SoundEngine.PlaySound(SoundID.Item10, Projectile.Center);
             return base.OnTileCollide(oldVelocity);
         }

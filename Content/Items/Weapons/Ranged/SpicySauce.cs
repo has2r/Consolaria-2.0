@@ -1,15 +1,16 @@
 using Microsoft.Xna.Framework;
+
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.Items.Weapons.Ranged {
     public class SpicySauce : ModItem {
-        public override void SetStaticDefaults () {
+        public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 99;
         }
 
-        public override void SetDefaults () {
+        public override void SetDefaults() {
             int width = 32; int height = width;
             Item.Size = new Vector2(width, height);
 

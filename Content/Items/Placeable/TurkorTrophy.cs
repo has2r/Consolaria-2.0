@@ -1,17 +1,16 @@
-using Terraria.ModLoader;
+using Microsoft.Xna.Framework;
+
 using Terraria;
 using Terraria.GameContent.Creative;
-using Microsoft.Xna.Framework;
 using Terraria.ID;
+using Terraria.ModLoader;
 
-namespace Consolaria.Content.Items.Placeable
-{
-    public class TurkorTrophy : ModItem
-    {
+namespace Consolaria.Content.Items.Placeable {
+    public class TurkorTrophy : ModItem {
         public override void SetStaticDefaults() {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
-        
+
         public override void SetDefaults() {
             int width = 32; int height = width;
             Item.Size = new Vector2(width, height);

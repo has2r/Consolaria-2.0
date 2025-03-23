@@ -96,6 +96,7 @@ namespace Consolaria.Common {
                     ModContent.ItemType<LepusMask>(),
                     ModContent.ItemType<LepusTrophy>(),
                     ModContent.ItemType<LepusMusicBox>(),
+                    ModContent.ItemType<OtherworldlyMusicBox2>(),
                     ModContent.ItemType<LepusRelic>(),
                     ModContent.ItemType<RabbitFoot>()
             };
@@ -104,6 +105,7 @@ namespace Consolaria.Common {
                     ModContent.ItemType<TurkorMask>(),
                     ModContent.ItemType<TurkorTrophy>(),
                     ModContent.ItemType<TurkorMusicBox>(),
+                    ModContent.ItemType<OtherworldlyMusicBox2>(),
                     ModContent.ItemType<TurkorRelic>(),
                     ModContent.ItemType<FruitfulPlate>()
             };
@@ -113,6 +115,7 @@ namespace Consolaria.Common {
                     ModContent.ItemType<OcramTrophy>(),
                     ModContent.ItemType<OcramMusicBox>(),
                     ModContent.ItemType<EerieOcramMusicBox>(),
+                    ModContent.ItemType<OtherworldlyMusicBox3>(),
                     ModContent.ItemType<OcramRelic>(),
                     ModContent.ItemType<CursedFang>()
             };

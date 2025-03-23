@@ -1531,7 +1531,7 @@ Mods: {
 
 				pyramidMessageLoot: {
 					// Label: Special pyramid loot
-					// Tooltip: If enabled,
+					// Tooltip: If enabled, a special message will appear in the second pyramid room chest
 				}
 			}
 		}

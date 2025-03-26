@@ -13,6 +13,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
 
 namespace Consolaria.Content.Items.Armor.Ranged {
     [AutoloadEquip(EquipType.Head)]
@@ -73,6 +74,16 @@ namespace Consolaria.Content.Items.Armor.Ranged {
 
         public int titanBlastTimer;
         public readonly int titanBlastTimerLimit = 300;
+
+        public override void SaveData(TagCompound tag) {
+            tag.Add("titanPower", titanPower);
+            tag.Add("titanPower2", titanPower2);
+        }
+
+        public override void LoadData(TagCompound tag) {
+            titanPower = tag.GetBool("titanPower");
+            titanPower2 = tag.GetBool("titanPower2");
+        }
 
         public override void SetControls() {
             for (int i = 0; i < 4; i++) {

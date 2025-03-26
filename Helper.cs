@@ -8,6 +8,7 @@ using System.Runtime.CompilerServices;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.Utilities;
 
 namespace Consolaria;
@@ -244,4 +245,6 @@ public static class Helper {
             }
         }
     }
+	
+	public static string ArmorSetBonusKey => Language.GetTextValue(Main.ReversedUpDownArmorSetBonuses ? "Key.UP" : "Key.DOWN");
 }

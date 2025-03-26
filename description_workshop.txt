@@ -7,12 +7,12 @@ Tons of exclusive mobile & old-gen console features were removed with the releas
 [*][b]Lepus, Turkor & Ocram[/b] - all with brand new AI, Treasure Bags, Master Mode drops & music themes
 [*][b]New & improved loot[/b] - including weapons, armors and more
 [*][b]In-game events[/b] - Chinese New Year, Valentine's Day, St. Patrick's Day & Oktoberfest
-[*][b]Heart Shrine and Jungle Sanctum[/b] structures
+[*][b]Heart Shrine[/b], [b]Jungle Sanctum[/b] and [b]Second Pyramid Room[/b] structures
 [*][b]Arch Wyvern, Vampire Miner, Shadow Mummy[/b] and all the other removed enemies
 [*][b]Exclusive vanity items[/b] - including the Horned God set, George's set & many others
 [*][b]A variety of ported pets[/b], complete with extra animations
 [*][b]Mc MoneyPants NPC[/b]
-[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2669644269]Boss Checklist[/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2570931073]Fargo's Mutant Mod[/url][/b] & [b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2927542027]Achievement Mod[/url][/b] support
+[*]Support for [b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2669644269]Boss Checklist[/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2570931073]Fargo's Mutant Mod[/url][/b], [b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2927542027]Achievement Mod[/url][/b], [b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2985966860]Music Display[/url][/b] and [b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3310041861]Munchies[/url][/b]
 [*][b]Holy Hand Grenade![/b]
 [/list]
 
@@ -26,8 +26,7 @@ Developers:
 [list]
 [*][url=https://steamcommunity.com/id/has2r_]has2r[/url] - programmer, founder
 [*][url=https://steamcommunity.com/id/m_pigeon]peege_on[/url] - spriter, animator, programmer
-[*][url=https://steamcommunity.com/id/smeqe]smeqe[/url] - programmer
-[*][url=https://steamcommunity.com/profiles/76561198147015378]Heretic[/url] - spriter, animator, wiki editor
+[*][url=https://steamcommunity.com/id/Serork]Serork[/url] - programmer
 [/list]
 
 Contributors:
@@ -35,12 +34,14 @@ Contributors:
 [*][b]KondiU[/b] - countless code additions and parity changes
 [*][b]DrunkenCat[/b] - original boss AIs
 [*][b]Synoxsis[/b] - Lepus, Turkor & Ocram themes
+[*][b]Jteoh[/b] - Otherworldly boss themes
 [*][b]Fyerow & Croul[/b] - legacy Ocram theme
 [*][b]StrikerRKT[/b] - extracting files from Japanese versions of the game
 [*][b]Sparcdoctor[/b] - extensive testing and content suggestions
 [*][b]CrezyDud[/b] - Turkor multiplayer fixes
 [*][b]OnesAndZer0s[/b] - Jungle Sanctum worldgen
 [*][b]CKnight[/b] - Master mode Relic sprites
+[*][b]Heretic[/b] - sprites, animations and early wiki edits
 [*][b]Bripe, Obesedog, Nokilos, MeuRan[/b] - numerous sprites
 [*][b]OrcaRequiem[/b] - Orca animation rework
 [*][b]minichibis[/b] - Dragon Hornet sprite

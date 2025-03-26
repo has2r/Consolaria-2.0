@@ -343,7 +343,11 @@ Mods: {
 					Увеличен шанс критического удара дальнего боя на 10%
 					Шанс не потратить снаряды увеличен на 25%
 					'''
-				// SetBonus: Using ranged weapons triggers a recoil blast
+				/* SetBonus:
+					'''
+					Using ranged weapons triggers a recoil blast
+					Double tap {0} to toggle this effect
+					''' */
 			}
 
 			TitanLeggings: {
@@ -1531,7 +1535,7 @@ Mods: {
 
 				pyramidMessageLoot: {
 					// Label: Special pyramid loot
-					// Tooltip: If enabled,
+					// Tooltip: If enabled, a special message will appear in the second pyramid room chest
 				}
 			}
 		}

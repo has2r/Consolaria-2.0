@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Consolaria.Content.Items.Armor.Ranged;
+
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 using System.Collections.Generic;
@@ -36,6 +38,10 @@ namespace Consolaria {
             if (!HeadLayerData.TryGetValue(drawPlayer.head, out DrawLayerData data))
                 return;
             Color color = drawPlayer.GetImmuneAlphaPure(data.Color(), drawInfo.shadow);
+            if (drawPlayer.head == EquipLoader.GetEquipSlot(Mod, nameof(TitanHelmet), EquipType.Head) &&
+                drawPlayer.GetModPlayer<TitanPlayer>().titanPower2) {
+                color *= 0f;
+            }
             Texture2D texture = data.Texture.Value;
             Vector2 drawPos = drawInfo.Position - Main.screenPosition + new Vector2(drawPlayer.width / 2 - drawPlayer.bodyFrame.Width / 2, drawPlayer.height - drawPlayer.bodyFrame.Height + 4f) + drawPlayer.headPosition;
             Vector2 headVect = drawInfo.headVect;

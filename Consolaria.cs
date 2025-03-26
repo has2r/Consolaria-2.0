@@ -25,7 +25,7 @@ using Terraria.WorldBuilding;
 using static Terraria.Graphics.FinalFractalHelper;
 
 namespace Consolaria {
-    public class Consolaria : Mod {
+    public partial class Consolaria : Mod {
         public override void Load() {
             if (Main.dedServ) {
                 return;

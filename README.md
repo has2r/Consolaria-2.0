@@ -52,6 +52,7 @@ Contributors:
 ## Links
 
 🌐 [Discord](https://discord.gg/DTABXbd)
+📖 [Consolaria Wiki](https://terrariamods.wiki.gg/wiki/Consolaria)
 🌳 [Forum post](https://forums.terraria.org/index.php?threads/consolaria.62570)
 🍂 [Rise of Ages](https://forums.terraria.org/index.php?threads/rise-of-ages-backwoods-and-druids.72219) - Our WIP bigger project
 🖥 [Mod on Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=2864843929)

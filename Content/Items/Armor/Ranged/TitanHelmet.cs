@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 
 using System;
+using System.IO;
 
 using Terraria;
 using Terraria.Audio;
@@ -83,6 +84,30 @@ namespace Consolaria.Content.Items.Armor.Ranged {
         public override void LoadData(TagCompound tag) {
             titanPower = tag.GetBool("titanPower");
             titanPower2 = tag.GetBool("titanPower2");
+        }
+
+        public void ReceivePlayerSync(BinaryReader reader) {
+            titanPower2 = reader.ReadBoolean();
+        }
+
+        public override void CopyClientState(ModPlayer targetCopy) {
+            TitanPlayer clone = targetCopy as TitanPlayer;
+            clone.titanPower2 = titanPower2;
+        }
+
+        public override void SyncPlayer(int toWho, int fromWho, bool newPlayer) {
+            ModPacket packet = Mod.GetPacket();
+            packet.Write((byte)Consolaria.MessageType.TitanPower);
+            packet.Write((byte)Player.whoAmI);
+            packet.Write(titanPower2);
+            packet.Send(toWho, fromWho);
+        }
+
+        public override void SendClientChanges(ModPlayer clientPlayer) {
+            TitanPlayer clone = (TitanPlayer)clientPlayer;
+
+            if (titanPower2 != clone.titanPower2)
+                SyncPlayer(toWho: -1, fromWho: Main.myPlayer, newPlayer: false);
         }
 
         public override void SetControls() {

@@ -58,8 +58,9 @@ Contributors:
 [h1]Links[/h1]
 
 🌐 [url=https://discord.gg/DTABXbd]Discord[/url]
+📖 [url=https://terrariamods.wiki.gg/wiki/Consolaria]Consolaria Wiki[/url]
 🌳 [url=https://forums.terraria.org/index.php?threads/consolaria.62570]Forum post[/url]
 🍂 [url=https://forums.terraria.org/index.php?threads/rise-of-ages-backwoods-and-druids.72219]Rise of Ages[/url] - Our WIP bigger project
-🖥 [url=https://github.com/has2r/Consolaria-2.0]Mod source on GitHub[/url]
+💻 [url=https://github.com/has2r/Consolaria-2.0]Mod source on GitHub[/url]
 
 💟 [url=https://www.buymeacoffee.com/roagang]Donations[/url]  

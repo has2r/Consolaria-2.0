@@ -145,6 +145,10 @@ namespace Consolaria.Content.Items.Armor.Ranged {
             TitanPlayer modPlayer = player.GetModPlayer<TitanPlayer>();
             ushort type2 = (ushort)ModContent.ProjectileType<TitanBlast>();
 
+            if (modPlayer.titanPower2) {
+                return base.Shoot(item, player, source, position, velocity, type, damage, knockback);
+            }
+
             if (modPlayer.titanPower && player.ownedProjectileCounts[type2] < 1 && item.DamageType == DamageClass.Ranged &&
                 modPlayer.titanBlastTimer == 0) {
                 SoundEngine.PlaySound(SoundID.DD2_ExplosiveTrapExplode, player.Center);

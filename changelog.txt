@@ -3,7 +3,7 @@
 - Added corresponding music boxes for the Otherworldly tracks
 - Added smart cursor support for music boxes
 - Added support for Music Display and Munchies
-- Added some missing text to localization (translators need to update the files accordingly)
+- Added some missing text to localization files (translators will need to update them accordingly)
 - Added autoswing to summoner weapons
 - Added recipe sorting
 - Updated sprites for Lepus Treasure Bag, Golden Lantern, Petri Dish, Great Drumstick, Volcanic Repeater and Turkey Staff

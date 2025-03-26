@@ -343,7 +343,11 @@ Mods: {
 					10% increased ranged critical strike chance
 					25% chance to not consume ammo
 					'''
-				SetBonus: Using ranged weapons triggers a recoil blast
+				SetBonus:
+					'''
+					Using ranged weapons triggers a recoil blast
+					Double tap {0} to toggle this effect
+					'''
 			}
 
 			TitanLeggings: {

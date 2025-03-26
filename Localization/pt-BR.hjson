@@ -344,6 +344,11 @@ Mods: {
 					25% de chance de não consumir munição
 					'''
 				SetBonus: Usar armas de longo alcance desencadeia um recuo explosivo
+				/*SetBonus:
+					'''
+					Using ranged weapons triggers a recoil blast
+					Double tap {0} to toggle this effect
+					'''*/
 			}
 
 			TitanLeggings: {

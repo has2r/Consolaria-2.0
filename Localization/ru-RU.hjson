@@ -343,7 +343,11 @@ Mods: {
 					Увеличен шанс критического удара дальнего боя на 10%
 					Шанс не потратить снаряды увеличен на 25%
 					'''
-				// SetBonus: Using ranged weapons triggers a recoil blast
+				/* SetBonus:
+					'''
+					Using ranged weapons triggers a recoil blast
+					Double tap {0} to toggle this effect
+					''' */
 			}
 
 			TitanLeggings: {

@@ -64,7 +64,7 @@ namespace Consolaria.Content.Items.Armor.Ranged {
             => player.armorEffectDrawOutlinesForbidden = true;
 
         public override void UpdateArmorSet(Player player) {
-            player.setBonus = SetBonusText.ToString();
+            player.setBonus = Language.GetText("Mods.Consolaria.Items.TitanHelmet.SetBonus").WithFormatArgs(Helper.ArmorSetBonusKey).Value;
             player.GetModPlayer<TitanPlayer>().titanPower = true;
         }
     }

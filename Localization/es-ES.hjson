@@ -344,6 +344,11 @@ Mods: {
 					Probabilidad del 25% de ahorrar munición
 					'''
 				SetBonus: El uso de armas a distancia provoca una explosión de retroceso
+				/*SetBonus:
+					'''
+					Using ranged weapons triggers a recoil blast
+					Double tap {0} to toggle this effect
+					'''*/
 			}
 
 			TitanLeggings: {

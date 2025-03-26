@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Consolaria.Content.Items.Armor.Ranged;
+
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 using System.Collections.Generic;
@@ -36,6 +38,10 @@ namespace Consolaria {
             if (!LegsLayerData.TryGetValue(drawPlayer.legs, out DrawLayerData data))
                 return;
             Color color = drawPlayer.GetImmuneAlphaPure(data.Color(), drawInfo.shadow);
+            if (drawPlayer.legs == EquipLoader.GetEquipSlot(Mod, nameof(TitanLeggings), EquipType.Legs) &&
+                drawPlayer.GetModPlayer<TitanPlayer>().titanPower2) {
+                color *= 0f;
+            }
             Texture2D texture = data.Texture.Value;
             Vector2 drawPos = drawInfo.Position - Main.screenPosition + new Vector2(drawPlayer.width / 2 - drawPlayer.legFrame.Width / 2, drawPlayer.height - drawPlayer.legFrame.Height + 4f) + drawPlayer.legPosition;
             Vector2 legsOffset = drawInfo.legsOffset;

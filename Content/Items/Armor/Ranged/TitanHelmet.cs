@@ -68,11 +68,40 @@ namespace Consolaria.Content.Items.Armor.Ranged {
     }
 
     internal class TitanPlayer : ModPlayer {
-        public bool titanPower;
+        public bool titanPower, titanPower2;
         public float newMaxFallSpeed;
 
         public int titanBlastTimer;
         public readonly int titanBlastTimerLimit = 300;
+
+        public override void SetControls() {
+            for (int i = 0; i < 4; i++) {
+                bool JustPressed = false;
+                switch (i) {
+                    case 0:
+                        JustPressed = (Player.controlDown && Player.releaseDown);
+                        break;
+                    case 1:
+                        JustPressed = (Player.controlUp && Player.releaseUp);
+                        break;
+                }
+                if (JustPressed && Player.doubleTapCardinalTimer[i] > 0 && JustPressed && Player.doubleTapCardinalTimer[i] < 15)
+                    KeyDoubleTap(i);
+            }
+        }
+
+        private void KeyDoubleTap(int keyDir) {
+            int inputKey = 0;
+            if (Main.ReversedUpDownArmorSetBonuses)
+                inputKey = 1;
+            if (keyDir == inputKey) {
+                if (titanPower) {
+                    titanPower2 = !titanPower2;
+                    SoundStyle style = new($"{nameof(Consolaria)}/Assets/Sounds/TitanBlastReload");
+                    SoundEngine.PlaySound(style with { Volume = 0.3f, Pitch = !titanPower2 ? 0.35f : -0.35f }, Player.Center);
+                }
+            }
+        }
 
         public override void Initialize()
            => titanBlastTimer = titanBlastTimerLimit;
@@ -81,7 +110,11 @@ namespace Consolaria.Content.Items.Armor.Ranged {
            => titanPower = false;
 
         public override void PostUpdateEquips() {
-            if (!titanPower) return;
+            if (titanPower2 && !titanPower) {
+                titanPower2 = false;
+            }
+
+            if (!titanPower || titanPower2) return;
 
             if (titanBlastTimer == titanBlastTimerLimit) newMaxFallSpeed = 24;
             if (newMaxFallSpeed > 0) newMaxFallSpeed -= 1;

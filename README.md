@@ -11,7 +11,7 @@ This includes:
 - **Exclusive vanity items** - including the Horned God set, George's set & many others
 - **A variety of ported pets**, complete with extra animations
 - **Mc MoneyPants** NPC
-- **Support for** **[Boss Checklist](https://steamcommunity.com/sharedfiles/filedetails/?id=2669644269)**, **[Fargo's Mutant Mod](https://steamcommunity.com/sharedfiles/filedetails/?id=2570931073)**, **[Achievement Mod](https://steamcommunity.com/sharedfiles/filedetails/?id=2927542027)**, **[Music Display](https://steamcommunity.com/sharedfiles/filedetails/?id=2985966860)** and **[Munchies](https://steamcommunity.com/sharedfiles/filedetails/?id=3310041861)** ,
+- **Support for** **[Boss Checklist](https://steamcommunity.com/sharedfiles/filedetails/?id=2669644269)**, **[Fargo's Mutant Mod](https://steamcommunity.com/sharedfiles/filedetails/?id=2570931073)**, **[Achievement Mod](https://steamcommunity.com/sharedfiles/filedetails/?id=2927542027)**, **[Music Display](https://steamcommunity.com/sharedfiles/filedetails/?id=2985966860)** and **[Munchies](https://steamcommunity.com/sharedfiles/filedetails/?id=3310041861)**
 - **Holy Hand Grenade!**
 
 Holiday content is always active by default and can be restricted to the corresponding dates using the config menu.

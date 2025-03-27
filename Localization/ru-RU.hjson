@@ -1592,12 +1592,12 @@ Mods: {
 
 			AltOcram: {
 				// Author: by Jteoh
-				// DisplayName: Mirror Image (Otherworldly Ocram)
+				// DisplayName: Ungracious Givings (Otherworldly Turkor)
 			}
 
 			AltTurkor: {
 				// Author: by Jteoh
-				// DisplayName: Ungracious Givings (Otherworldly Turkor)
+				// DisplayName: Mirror Image (Otherworldly Ocram)
 			}
 		}
 	}

@@ -292,10 +292,13 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
         }
 
         public override void AI() {
-            if (!Main.dedServ)
+            if (!Main.dedServ) {
+                bool drank = Helper.Main_swapMusic(null);
+                if (Main.drunkWorld) drank = !drank;
                 Music = ModContent.GetInstance<ConsolariaConfig>().vanillaBossMusicEnabled ?
-                    (!Helper.Main_swapMusic(null) ? MusicID.OtherworldlyHallow : MusicID.UndergroundHallow)
-                    : !Helper.Main_swapMusic(null) ? MusicLoader.GetMusicSlot(Mod, "Assets/Music/OtherwordlyLepus") : MusicLoader.GetMusicSlot(Mod, MUSIC_PATH);
+                    (drank ? MusicID.OtherworldlyHallow : MusicID.UndergroundHallow)
+                    : drank ? MusicLoader.GetMusicSlot(Mod, "Assets/Music/OtherwordlyLepus") : MusicLoader.GetMusicSlot(Mod, "Assets/Music/Lepus");
+            }
 
             switch (State) {
                 case STATE_APPEARANCE:

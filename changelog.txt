@@ -1,18 +1,2 @@
-- Added the second pyramid room
-- Added Otherworldly music tracks courtesy of Jteoh
-- Added corresponding music boxes for the Otherworldly tracks
-- Added smart cursor support for music boxes
-- Added support for Music Display and Munchies
-- Added some missing text to localization files (translators will need to update them accordingly)
-- Added autoswing to summoner weapons
-- Added recipe sorting
-- Updated sprites for Lepus Treasure Bag, Golden Lantern, Petri Dish, Great Drumstick, Volcanic Repeater and Turkey Staff
-- Buffed Great Drumstick (30 -> 42 damage, 1 -> 1.25 size)
-- Reduced Rainbow Piece drop rate
-- Reduced Chocolate Egg spawn rate
-- Fixed Chocolate Egg spawn in multiplayer
-- Fixed Ocram spawn in multiplayer once again, hopefully
-- Fixed Vampire Miners spawning in modded biomes
-- Revoked planning permissions to build Jungle Sanctums outside of the Jungle
-- Reverted Mythical Robe animation changes
-- Added a secret :)
+- Fixed Otherworldly themes playing by default in non-drunk worlds (instructions for enabling it correctly can be found on the vanilla wiki)
+- Fixed Otherworldly Ocram and Turkor theme names being swapped when using Music Display

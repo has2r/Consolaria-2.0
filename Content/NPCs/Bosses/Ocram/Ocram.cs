@@ -146,11 +146,14 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
 
         //abandon hope all ye who enter here
         public override void AI() {
-            if (!Main.dedServ)
+            if (!Main.dedServ) {
+                bool drank = Helper.Main_swapMusic(null);
+                if (Main.drunkWorld) drank = !drank;
                 Music = ModContent.GetInstance<ConsolariaConfig>().vanillaBossMusicEnabled ?
-                   (!Helper.Main_swapMusic(null) ? MusicID.OtherworldlyBoss2 : MusicID.Boss5) :
-                    !Helper.Main_swapMusic(null) ? MusicLoader.GetMusicSlot(Mod, "Assets/Music/OtherwordlyOcram") :
-                    (bloodMoonMode ? MusicLoader.GetMusicSlot(Mod, "Assets/Music/EerieOcram") : MusicLoader.GetMusicSlot(Mod, "Assets/Music/Ocram"));
+                    (drank ? MusicID.OtherworldlyBoss2 : MusicID.Boss5)
+                    : bloodMoonMode ? MusicLoader.GetMusicSlot(Mod, "Assets/Music/EerieOcram") :
+                    (drank ? MusicLoader.GetMusicSlot(Mod, "Assets/Music/OtherwordlyOcram") : MusicLoader.GetMusicSlot(Mod, "Assets/Music/Ocram"));
+            }
 
             if (NPC.target < 0 || NPC.target == 255 || Main.player[NPC.target].dead || !Main.player[NPC.target].active) {
                 NPC.TargetClosest(false);

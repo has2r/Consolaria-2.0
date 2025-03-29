@@ -1,2 +1,1 @@
-- Fixed Otherworldly themes playing by default in non-drunk worlds (instructions for enabling it correctly can be found on the vanilla wiki)
-- Fixed Otherworldly Ocram and Turkor theme names being swapped when using Music Display
+- Fixed world generation stopping unexpectedly when using the Remnants mod.

@@ -74,6 +74,7 @@ namespace Consolaria.Content.Structures {
                                                          { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }, };
 
         private void GenerateJungleSanctum() {
+            int attempts = 100;
         it:
             int JungleSanctumPositionX = 0;
             int JungleSanctumPositionY = 0;
@@ -85,7 +86,8 @@ namespace Consolaria.Content.Structures {
                 while (!WorldGenHelper.TryStructureLocation(new int[] { TileID.JungleGrass }, width, height, ref JungleSanctumPositionX, ref JungleSanctumPositionY))
                     goto it;
 
-                if (!(JungleSanctumPositionX > GenVars.jungleMinX && JungleSanctumPositionX < GenVars.jungleMaxX)) {
+                if (attempts > 0 && !(JungleSanctumPositionX > GenVars.jungleMinX && JungleSanctumPositionX < GenVars.jungleMaxX)) {
+                    attempts--;
                     goto it;
                 }
 

@@ -126,7 +126,7 @@ sealed class DownloadRoAButton : ILoadable {
 
         newsScale = 1.2f;
         newsScales = new Vector2(newsScale);
-        newsPosition = new Vector2(Main.screenWidth - 10f, Main.screenHeight - 69f);
+        newsPosition = new Vector2(Main.screenWidth - 10f, Main.screenHeight - 70f);
         newsSize = ChatManager.GetStringSize(FontAssets.MouseText.Value, latestNewsText2, newsScales);
         newsRect = new Rectangle((int)(newsPosition.X - newsSize.X), (int)(newsPosition.Y - newsSize.Y), (int)newsSize.X, (int)newsSize.Y);
         newsMouseOver = newsRect.Contains(Main.mouseX, Main.mouseY);

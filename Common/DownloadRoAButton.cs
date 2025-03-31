@@ -111,7 +111,7 @@ sealed class DownloadRoAButton : ILoadable {
         if (newsMouseOver && Main.hasFocus/* && newsURL != null*/) {
             if (_isNew) {
                 _isNew = false;
-                File.AppendAllText(dir, nameof(_isNew));
+                File.AppendAllText(dir, nameof(_isNew) + Environment.NewLine);
             }
             if (Main.mouseLeftRelease && Main.mouseLeft) {
                 SoundEngine.PlaySound(SoundID.MenuOpen);
@@ -136,7 +136,7 @@ sealed class DownloadRoAButton : ILoadable {
         if (newsMouseOver && Main.hasFocus/* && newsURL != null*/) {
             if (Main.mouseLeftRelease && Main.mouseLeft) {
                 SoundEngine.PlaySound(SoundID.MenuOpen);
-                File.AppendAllText(dir, nameof(_shouldBeShown));
+                File.AppendAllText(dir, nameof(_shouldBeShown) + Environment.NewLine);
                 _shouldBeShown = false;
             }
             //Utils.OpenToURL(newsURL);

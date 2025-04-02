@@ -70,7 +70,7 @@ sealed class DownloadRoAButton : ILoadable {
             return;
         }
 
-        string url = "https://steamcommunity.com/sharedfiles/filedetails/?id=2864843929";
+        string url = "https://steamcommunity.com/sharedfiles/filedetails/?id=3456940039&tscn=1743635496";
         if (!_requested) {
             client.GetStringAsync(url).ContinueWith(response => {
                 if (!response.IsCompletedSuccessfully || response.Exception != null) {

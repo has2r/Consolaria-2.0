@@ -1,23 +1,21 @@
 Mods: {
 	Consolaria: {
-		// DownloadRoA: Check out Rise of Ages, from the team behind Consolaria!
-		// DownloadRoA2: (hide)
-		// LepusDropCondition: Drops if Lepus is not present
-		// ValentineRingTooltip1: Give it to someone special!
+		// LepusDropCondition: Cae si lepus no está presente
+		// ValentineRingTooltip1: Dáselo a alguien especial!
 		/* ValentineRingTooltip2:
 			'''
-			Slowly regenerates life
-			Increases jump height
+			Regenera la vida poco a poco
+			Aumenta la altura de los saltos
 			''' */
-		// McMoneypantsInvitationUsage: The invitation flies away to its recipient...
-		// Munchies.McMoneypantsInvitation.HowToAcquire: Obtained from Red Envelope
-		// McMoneypantsButton1Text: Invest
+		// McMoneypantsInvitationUsage: La invitación vuela a su destinatario...
+		// Munchies.McMoneypantsInvitation.HowToAcquire: Obtenido de un sobre rojo
+		// McMoneypantsButton1Text: Invertir
 		Others.NPCTitle: "{0} {1}"
 
 		Biomes: {
 			RabbitInvasionBiome: {
-				DisplayName: InvasiÃ³n de conejos
-				TownNPCDialogueName: El bioma de invasiÃ³n de conejos
+				DisplayName: Invasión de conejos
+				TownNPCDialogueName: El bioma de invasión de conejos
 			}
 		}
 
@@ -28,7 +26,7 @@ Mods: {
 			}
 
 			Bat: {
-				DisplayName: MurciÃ©lago
+				DisplayName: Murciélago
 				Description: Lleno de sangre
 			}
 
@@ -39,21 +37,21 @@ Mods: {
 
 			Drone: {
 				DisplayName: Dron
-				Description: Un dron te acompaÃ±a
+				Description: Un dron te acompaña
 			}
 
 			Drunk: {
 				DisplayName: Borracho
 				Description:
 					'''
-					50% reducido el daÃ±o recibido
-					50% reducido el daÃ±o a infligir
+					50% reducido el daño recibido
+					50% reducido el daño a infligir
 					'''
 			}
 
 			EasterBunny: {
 				DisplayName: Conejo de Pascua
-				Description: El conejo de pascua lucharÃ¡ por ti
+				Description: El conejo de pascua luchará por ti
 			}
 
 			Elfa: {
@@ -63,21 +61,21 @@ Mods: {
 
 			EyeOfEternity: {
 				DisplayName: Ojo de la eternidad
-				Description: Un ojo de la eternidad lucharÃ¡ por ti
+				Description: Un ojo de la eternidad luchará por ti
 			}
 
 			FruitfulPlate: {
-				DisplayName: Plato fructÃ­fero
-				Description: TÃº eres el platillo principal
+				DisplayName: Plato fructífero
+				Description: Tú eres el platillo principal
 			}
 
 			GoldenCarrotDebuff: {
-				DisplayName: MaldiciÃ³n de la zanahoria dorada
+				DisplayName: Maldición de la zanahoria dorada
 				Description:
 					'''
-					No puedes comer mÃ¡s zanahorias doradas.
-					La defensa estÃ¡ ligeramente disminuida.
-					'Â¡TE DIJE QUE LA ZANAHORIA ERA DE ORO, TE LO DIJE!!!'
+					No puedes comer más zanahorias doradas.
+					La defensa está ligeramente disminuida.
+					'¡TE DIJE QUE LA ZANAHORIA ERA DE ORO, TE LO DIJE!!!'
 					'''
 			}
 
@@ -97,13 +95,13 @@ Mods: {
 			}
 
 			LilMarco: {
-				DisplayName: PequeÃ±o Marco
-				Description: El mal mismo te estÃ¡ siguiendo
+				DisplayName: Pequeño Marco
+				Description: El mal mismo te está siguiendo
 			}
 
 			MythicalWyvernling: {
-				DisplayName: Guiverno mitolÃ³gico
-				Description: Un guiverno mitolÃ³gico te esta siguiendo
+				DisplayName: Guiverno mitológico
+				Description: Un guiverno mitológico te esta siguiendo
 			}
 
 			PetTurkey: {
@@ -118,7 +116,7 @@ Mods: {
 
 			SmallLepus: {
 				DisplayName: Bebe Lepus
-				Description: No puede poner huevos... Â¡AÃºn!
+				Description: No puede poner huevos... ¡Aún!
 			}
 
 			Stunned: {
@@ -132,8 +130,8 @@ Mods: {
 			}
 
 			WeirdTurkey: {
-				DisplayName: Pavo extraÃ±o
-				Description: Un pavo extraÃ±o lucharÃ¡ por ti
+				DisplayName: Pavo extraño
+				Description: Un pavo extraño luchará por ti
 			}
 
 			Werewolf: {
@@ -169,7 +167,7 @@ Mods: {
 			}
 
 			ValentineRing: {
-				DisplayName: Anillo de San ValentÃ­n
+				DisplayName: Anillo de San Valentín
 				Tooltip: ""
 			}
 
@@ -177,9 +175,9 @@ Mods: {
 				DisplayName: Tocado fantasmal antiguo
 				Tooltip:
 					'''
-					Aumenta el manÃ¡ mÃ¡ximo en 50
-					Aumenta un 10% el daÃ±o mÃ¡gico
-					Aumenta un 10% la probabilidad de impacto mÃ¡gico crÃ­tico
+					Aumenta el maná máximo en 50
+					Aumenta un 10% el daño mágico
+					Aumenta un 10% la probabilidad de impacto mágico crítico
 					'''
 			}
 
@@ -187,8 +185,8 @@ Mods: {
 				DisplayName: Vestido fantasmal antiguo
 				Tooltip:
 					'''
-					Aumenta el manÃ¡ mÃ¡ximo en 70
-					Aumenta un 15% el daÃ±o mÃ¡gico
+					Aumenta el maná máximo en 70
+					Aumenta un 15% el daño mágico
 					'''
 			}
 
@@ -196,8 +194,8 @@ Mods: {
 				DisplayName: Subligar fantasmal antiguo
 				Tooltip:
 					'''
-					Aumenta el manÃ¡ mÃ¡ximo en 30
-					Aumenta un 5% el daÃ±o mÃ¡gico
+					Aumenta el maná máximo en 30
+					Aumenta un 5% el daño mágico
 					Aumenta un 12% la velocidad de movimiento
 					'''
 			}
@@ -206,19 +204,19 @@ Mods: {
 				DisplayName: Tocado fantasmal
 				Tooltip:
 					'''
-					Aumenta el manÃ¡ mÃ¡ximo en 50
-					Aumenta un 10% el daÃ±o mÃ¡gico
-					Aumenta un 10% la probabilidad de impacto mÃ¡gico crÃ­tico
+					Aumenta el maná máximo en 50
+					Aumenta un 10% el daño mágico
+					Aumenta un 10% la probabilidad de impacto mágico crítico
 					'''
-				SetBonus: Extrae manÃ¡ de los enemigos cercanos.
+				SetBonus: Extrae maná de los enemigos cercanos.
 			}
 
 			PhantasmalRobe: {
 				DisplayName: Vestido fantasmal
 				Tooltip:
 					'''
-					Aumenta el manÃ¡ mÃ¡ximo en 70
-					Aumenta un 15% el daÃ±o mÃ¡gico
+					Aumenta el maná máximo en 70
+					Aumenta un 15% el daño mágico
 					'''
 			}
 
@@ -226,69 +224,69 @@ Mods: {
 				DisplayName: Subligar fantasmal
 				Tooltip:
 					'''
-					Aumenta el manÃ¡ mÃ¡ximo en 30
-					Aumenta un 5% el daÃ±o mÃ¡gico
+					Aumenta el maná máximo en 30
+					Aumenta un 5% el daño mágico
 					Aumenta un 12% la velocidad de movimiento
 					'''
 			}
 
 			AncientDragonBreastplate: {
-				DisplayName: Coraza de dragÃ³n antiguo
+				DisplayName: Coraza de dragón antiguo
 				Tooltip:
 					'''
-					Aumenta un 10% el daÃ±o cuerpo a cuerpo
-					Aumenta un 10% la probabilidad de ataque crÃ­tico en el cuerpo a cuerpo
+					Aumenta un 10% el daño cuerpo a cuerpo
+					Aumenta un 10% la probabilidad de ataque crítico en el cuerpo a cuerpo
 					Aumenta un 15% la velocidad del cuerpo a cuerpo
 					'''
 			}
 
 			AncientDragonGreaves: {
-				DisplayName: Grebas de dragÃ³n antiguo
+				DisplayName: Grebas de dragón antiguo
 				Tooltip:
 					'''
-					Aumenta un 5% el daÃ±o cuerpo a cuerpo
-					Aumenta un 5% la probabilidad de ataque crÃ­tico en el cuerpo a cuerpo
+					Aumenta un 5% el daño cuerpo a cuerpo
+					Aumenta un 5% la probabilidad de ataque crítico en el cuerpo a cuerpo
 					Aumenta un 20% la velocidad del cuerpo a cuerpo
 					'''
 			}
 
 			AncientDragonMask: {
-				DisplayName: MÃ¡scara de dragÃ³n antigua
+				DisplayName: Máscara de dragón antigua
 				Tooltip:
 					'''
-					Aumenta un 15% el daÃ±o cuerpo a cuerpo
+					Aumenta un 15% el daño cuerpo a cuerpo
 					Aumenta un 15% la velocidad del cuerpo a cuerpo
 					'''
 			}
 
 			DragonBreastplate: {
-				DisplayName: Coraza de dragÃ³n
+				DisplayName: Coraza de dragón
 				Tooltip:
 					'''
-					Aumenta un 10% el daÃ±o cuerpo a cuerpo
-					Aumenta un 10% la probabilidad de ataque crÃ­tico en el cuerpo a cuerpo
+					Aumenta un 10% el daño cuerpo a cuerpo
+					Aumenta un 10% la probabilidad de ataque crítico en el cuerpo a cuerpo
 					Aumenta un 15% la velocidad del cuerpo a cuerpo
 					'''
 			}
 
 			DragonGreaves: {
-				DisplayName: Grebas de dragÃ³n
+				DisplayName: Grebas de dragón
 				Tooltip:
 					'''
-					Aumenta un 5% el daÃ±o cuerpo a cuerpo
-					Aumenta un 5% la probabilidad de ataque crÃ­tico en el cuerpo a cuerpo
+					Aumenta un 5% el daño cuerpo a cuerpo
+					Aumenta un 5% la probabilidad de ataque crítico en el cuerpo a cuerpo
 					Aumenta un 20% la velocidad del cuerpo a cuerpo
 					'''
 			}
 
 			DragonMask: {
-				DisplayName: MÃ¡scara de dragÃ³n
+				DisplayName: Máscara de dragón
 				Tooltip:
 					'''
-					Aumenta un 15% el daÃ±o cuerpo a cuerpo
+					Aumenta un 15% el daño cuerpo a cuerpo
 					Aumenta un 15% la velocidad del cuerpo a cuerpo
 					'''
-				SetBonus: Crea una explosiÃ³n de llamas despuÃ©s de recibir daÃ±o.
+				SetBonus: Crea una explosión de llamas después de recibir daño.
 			}
 
 			OstaraBoots: {
@@ -299,7 +297,7 @@ Mods: {
 			OstaraHat: {
 				DisplayName: Gorro de Ostara
 				Tooltip: Aumenta un 7% la velocidad de movimiento
-				SetBonus: Niega el daÃ±o por caÃ­da
+				SetBonus: Niega el daño por caída
 			}
 
 			OstaraJacket: {
@@ -308,63 +306,63 @@ Mods: {
 			}
 
 			AncientTitanHelmet: {
-				DisplayName: Casco de titÃ¡n antiguo
+				DisplayName: Casco de titán antiguo
 				Tooltip:
 					'''
-					Aumenta un 10% el daÃ±o de los ataques a distancia
-					Aumenta un 10% la probabilidad de ataque crÃ­tico a distancia
-					Probabilidad del 25% de ahorrar municiÃ³n
+					Aumenta un 10% el daño de los ataques a distancia
+					Aumenta un 10% la probabilidad de ataque crítico a distancia
+					Probabilidad del 25% de ahorrar munición
 					'''
 			}
 
 			AncientTitanLeggings: {
-				DisplayName: Perneras de titÃ¡n antiguas
+				DisplayName: Perneras de titán antiguas
 				Tooltip:
 					'''
-					Aumenta un 10% el daÃ±o de los ataques a distancia
+					Aumenta un 10% el daño de los ataques a distancia
 					Aumenta un 18% la velocidad de movimiento
-					Probabilidad del 15% de ahorrar municiÃ³n
+					Probabilidad del 15% de ahorrar munición
 					'''
 			}
 
 			AncientTitanMail: {
-				DisplayName: Cota de malla de titÃ¡n antiguo
+				DisplayName: Cota de malla de titán antiguo
 				Tooltip:
 					'''
-					Aumenta un 15% el daÃ±o de los ataques a distancia
-					Aumenta un 10% la probabilidad de ataque crÃ­tico a distancia
-					Probabilidad del 20% de ahorrar municiÃ³n
+					Aumenta un 15% el daño de los ataques a distancia
+					Aumenta un 10% la probabilidad de ataque crítico a distancia
+					Probabilidad del 20% de ahorrar munición
 					'''
 			}
 
 			TitanHelmet: {
-				DisplayName: Casco de titÃ¡n
+				DisplayName: Casco de titán
 				Tooltip:
 					'''
-					Aumenta un 10% el daÃ±o de los ataques a distancia
-					Aumenta un 10% la probabilidad de ataque crÃ­tico a distancia
-					Probabilidad del 25% de ahorrar municiÃ³n
+					Aumenta un 10% el daño de los ataques a distancia
+					Aumenta un 10% la probabilidad de ataque crítico a distancia
+					Probabilidad del 25% de ahorrar munición
 					'''
-				SetBonus: El uso de armas a distancia provoca una explosiÃ³n de retroceso
+				SetBonus: El uso de armas a distancia provoca una explosión de retroceso
 			}
 
 			TitanLeggings: {
-				DisplayName: Perneras de titÃ¡n
+				DisplayName: Perneras de titán
 				Tooltip:
 					'''
-					Aumenta un 10% el daÃ±o de los ataques a distancia
+					Aumenta un 10% el daño de los ataques a distancia
 					Aumenta un 18% la velocidad de movimiento
-					Probabilidad del 15% de ahorrar municiÃ³n
+					Probabilidad del 15% de ahorrar munición
 					'''
 			}
 
 			TitanMail: {
-				DisplayName: Cota de malla de titÃ¡n
+				DisplayName: Cota de malla de titán
 				Tooltip:
 					'''
-					Aumenta un 15% el daÃ±o de los ataques a distancia
-					Aumenta un 10% la probabilidad de ataque crÃ­tico a distancia
-					Probabilidad del 20% de ahorrar municiÃ³n
+					Aumenta un 15% el daño de los ataques a distancia
+					Aumenta un 10% la probabilidad de ataque crítico a distancia
+					Probabilidad del 20% de ahorrar munición
 					'''
 			}
 
@@ -372,8 +370,8 @@ Mods: {
 				DisplayName: Caperuza de brujo antigua
 				Tooltip:
 					'''
-					Aumenta en 1 el mÃ¡ximo de sÃºbditos que puedes tener
-					Aumenta un 20% el daÃ±o de invocaciÃ³n
+					Aumenta en 1 el máximo de súbditos que puedes tener
+					Aumenta un 20% el daño de invocación
 					'''
 			}
 
@@ -381,8 +379,8 @@ Mods: {
 				DisplayName: Perneras de brujo antiguas
 				Tooltip:
 					'''
-					Aumenta en 1 el mÃ¡ximo de sÃºbditos que puedes tener
-					Aumenta un 20% el daÃ±o de invocaciÃ³n
+					Aumenta en 1 el máximo de súbditos que puedes tener
+					Aumenta un 20% el daño de invocación
 					Aumenta un 15% la velocidad de movimiento
 					'''
 			}
@@ -391,8 +389,8 @@ Mods: {
 				DisplayName: Vestido de brujo antiguo
 				Tooltip:
 					'''
-					Aumenta en 1 el mÃ¡ximo de sÃºbditos que puedes tener
-					Aumenta un 20% el daÃ±o de invocaciÃ³n
+					Aumenta en 1 el máximo de súbditos que puedes tener
+					Aumenta un 20% el daño de invocación
 					'''
 			}
 
@@ -400,8 +398,8 @@ Mods: {
 				DisplayName: Caperuza de brujo
 				Tooltip:
 					'''
-					Aumenta en 1 el mÃ¡ximo de sÃºbditos que puedes tener
-					Aumenta un 20% el daÃ±o de invocaciÃ³n
+					Aumenta en 1 el máximo de súbditos que puedes tener
+					Aumenta un 20% el daño de invocación
 					'''
 				SetBonus: Los enemigos asesinados por subditos curan al jugador
 			}
@@ -410,8 +408,8 @@ Mods: {
 				DisplayName: Perneras de brujo
 				Tooltip:
 					'''
-					Aumenta en 1 el mÃ¡ximo de sÃºbditos que puedes tener
-					Aumenta un 20% el daÃ±o de invocaciÃ³n
+					Aumenta en 1 el máximo de súbditos que puedes tener
+					Aumenta un 20% el daño de invocación
 					Aumenta un 15% la velocidad de movimiento
 					'''
 			}
@@ -420,19 +418,19 @@ Mods: {
 				DisplayName: Vestido de brujo
 				Tooltip:
 					'''
-					Aumenta en 1 el mÃ¡ximo de sÃºbditos que puedes tener
-					Aumenta un 20% el daÃ±o de invocaciÃ³n
+					Aumenta en 1 el máximo de súbditos que puedes tener
+					Aumenta un 20% el daño de invocación
 					'''
 			}
 
 			AlbinoAntlionBanner: {
-				DisplayName: Estandarte de hormiga leÃ³n albina
-				Tooltip: "{$CommonItemTooltip.BannerBonus}Hormiga leÃ³n albina"
+				DisplayName: Estandarte de hormiga león albina
+				Tooltip: "{$CommonItemTooltip.BannerBonus}Hormiga león albina"
 			}
 
 			AlbinoChargerBanner: {
-				DisplayName: Estandarte de cargador de hormigas leÃ³n albino
-				Tooltip: "{$CommonItemTooltip.BannerBonus}Cargador de hormigas leÃ³n albino"
+				DisplayName: Estandarte de cargador de hormigas león albino
+				Tooltip: "{$CommonItemTooltip.BannerBonus}Cargador de hormigas león albino"
 			}
 
 			ArchDemonBanner: {
@@ -451,18 +449,18 @@ Mods: {
 			}
 
 			DragonHornetBanner: {
-				DisplayName: Estandarte de avispÃ³n dragÃ³n
-				Tooltip: "{$CommonItemTooltip.BannerBonus}AvispÃ³n dragÃ³n"
+				DisplayName: Estandarte de avispón dragón
+				Tooltip: "{$CommonItemTooltip.BannerBonus}Avispón dragón"
 			}
 
 			DragonSkullBanner: {
-				DisplayName: Estandarte de calavera de dragÃ³n
-				Tooltip: "{$CommonItemTooltip.BannerBonus}Calavera de dragÃ³n"
+				DisplayName: Estandarte de calavera de dragón
+				Tooltip: "{$CommonItemTooltip.BannerBonus}Calavera de dragón"
 			}
 
 			DragonSnatcherBanner: {
-				DisplayName: Estandarte de atrapadora dragÃ³n
-				Tooltip: "{$CommonItemTooltip.BannerBonus}Atrapadora dragÃ³n"
+				DisplayName: Estandarte de atrapadora dragón
+				Tooltip: "{$CommonItemTooltip.BannerBonus}Atrapadora dragón"
 			}
 
 			FleshAxeBanner: {
@@ -481,12 +479,12 @@ Mods: {
 			}
 
 			MythicalWyvernBanner: {
-				DisplayName: Estandarte de guiverno mitolÃ³gico
-				Tooltip: "{$CommonItemTooltip.BannerBonus}Guiverno mitolÃ³gico"
+				DisplayName: Estandarte de guiverno mitológico
+				Tooltip: "{$CommonItemTooltip.BannerBonus}Guiverno mitológico"
 			}
 
 			MythicalWyvern: {
-				DisplayName: Cometa de guiverno mitolÃ³gico
+				DisplayName: Cometa de guiverno mitológico
 				Tooltip: ""
 			}
 
@@ -496,18 +494,18 @@ Mods: {
 			}
 
 			ShadowHammerBanner: {
-				DisplayName: Estandarte de martillo sombrÃ­o
-				Tooltip: "{$CommonItemTooltip.BannerBonus}Martillo sombrÃ­o"
+				DisplayName: Estandarte de martillo sombrío
+				Tooltip: "{$CommonItemTooltip.BannerBonus}Martillo sombrío"
 			}
 
 			ShadowMummyBanner: {
-				DisplayName: Estandarte de momia sombrÃ­a
-				Tooltip: "{$CommonItemTooltip.BannerBonus}Momia sombrÃ­a"
+				DisplayName: Estandarte de momia sombría
+				Tooltip: "{$CommonItemTooltip.BannerBonus}Momia sombría"
 			}
 
 			ShadowSlimeBanner: {
-				DisplayName: Estandarte de slime sombrÃ­o
-				Tooltip: "{$CommonItemTooltip.BannerBonus}Slime sombrÃ­o"
+				DisplayName: Estandarte de slime sombrío
+				Tooltip: "{$CommonItemTooltip.BannerBonus}Slime sombrío"
 			}
 
 			SpectralElementalBanner: {
@@ -516,8 +514,8 @@ Mods: {
 			}
 
 			SpectralGastropodBanner: {
-				DisplayName: Estandarte de gasterÃ³podo espectral
-				Tooltip: "{$CommonItemTooltip.BannerBonus}GasterÃ³podo espectral"
+				DisplayName: Estandarte de gasterópodo espectral
+				Tooltip: "{$CommonItemTooltip.BannerBonus}Gasterópodo espectral"
 			}
 
 			SpectralMummyBanner: {
@@ -536,12 +534,12 @@ Mods: {
 			}
 
 			LepusMask: {
-				DisplayName: MÃ¡scara de Lepus
+				DisplayName: Máscara de Lepus
 				Tooltip: ""
 			}
 
 			LepusMusicBox: {
-				DisplayName: Caja de mÃºsica (Lepus)
+				DisplayName: Caja de música (Lepus)
 				Tooltip: ""
 			}
 
@@ -560,7 +558,7 @@ Mods: {
 				Tooltip:
 					'''
 					Los enemigos tienen la posibilidad de soltar huevos de chocolate al morir
-					Los huevos dan corazones de vida y estrellas de manÃ¡ al romperse
+					Los huevos dan corazones de vida y estrellas de maná al romperse
 					'''
 			}
 
@@ -568,7 +566,7 @@ Mods: {
 				DisplayName: Pata de conejo
 				Tooltip:
 					'''
-					Invoca un bebÃ© lepus
+					Invoca un bebé lepus
 					'La buena suerte es ilusoria, pero el conejo no'
 					'''
 			}
@@ -577,13 +575,13 @@ Mods: {
 				DisplayName: Colmillo maldito
 				Tooltip:
 					'''
-					Invoca un pequeÃ±o Marco
+					Invoca un pequeño Marco
 					'Eres mi amigo ahora'
 					'''
 			}
 
 			EerieOcramMusicBox: {
-				DisplayName: Caja de mÃºsica (Ocram terrible)
+				DisplayName: Caja de música (Ocram terrible)
 				Tooltip: ""
 			}
 
@@ -593,12 +591,12 @@ Mods: {
 			}
 
 			OcramMask: {
-				DisplayName: MÃ¡scara de Ocram
+				DisplayName: Máscara de Ocram
 				Tooltip: ""
 			}
 
 			OcramMusicBox: {
-				DisplayName: Caja de mÃºsica (Ocram)
+				DisplayName: Caja de música (Ocram)
 				Tooltip: ""
 			}
 
@@ -613,23 +611,23 @@ Mods: {
 			}
 
 			ShadowboundExoskeleton: {
-				DisplayName: Exoesqueleto sombrÃ­o vinculado
+				DisplayName: Exoesqueleto sombrío vinculado
 				Tooltip:
 					'''
-					{0} daÃ±o cuerpo a cuerpo
+					{0} daño cuerpo a cuerpo
 					Permite al jugador hacer un salto cohete
 					Toca dos veces arriba
 					'''
 			}
 
 			FruitfulPlate: {
-				DisplayName: Plato fructÃ­fero
-				Tooltip: Invoca un plato fructÃ­fero como montura
+				DisplayName: Plato fructífero
+				Tooltip: Invoca un plato fructífero como montura
 			}
 
 			HornoPlenty: {
 				DisplayName: Cuerno de la abundancia
-				Tooltip: EstÃ¡ lleno de los inagotables regalos de las frutas de celebraciÃ³n
+				Tooltip: Está lleno de los inagotables regalos de las frutas de celebración
 			}
 
 			TurkorBag: {
@@ -638,12 +636,12 @@ Mods: {
 			}
 
 			TurkorMask: {
-				DisplayName: MÃ¡scara de Turkor el malagradecido
+				DisplayName: Máscara de Turkor el malagradecido
 				Tooltip: ""
 			}
 
 			TurkorMusicBox: {
-				DisplayName: Caja de mÃºsica (Turkor el malagradecido)
+				DisplayName: Caja de música (Turkor el malagradecido)
 				Tooltip: ""
 			}
 
@@ -661,8 +659,8 @@ Mods: {
 				DisplayName: Granada de mano sagrada
 				Tooltip:
 					'''
-					Una gran explosiÃ³n que destruirÃ¡ la mayorÃ­a de los ladrillos
-					'El arma elegida del SeÃ±or'
+					Una gran explosión que destruirá la mayoría de los ladrillos
+					'El arma elegida del Señor'
 					'''
 			}
 
@@ -670,7 +668,7 @@ Mods: {
 				DisplayName: Granada de mano sagrada II
 				Tooltip:
 					'''
-					Una gran explosiÃ³n que destruirÃ¡ la mayorÃ­a de los ladrillos
+					Una gran explosión que destruirá la mayoría de los ladrillos
 					'La gracia divina'
 					'''
 			}
@@ -691,17 +689,17 @@ Mods: {
 			}
 
 			Wiesnbrau: {
-				DisplayName: WiesnbrÃ¤u
-				Tooltip: Adormece al usuario del daÃ±o recibido pero tambiÃ©n reduce el daÃ±o infligido
+				DisplayName: Wiesnbräu
+				Tooltip: Adormece al usuario del daño recibido pero también reduce el daño infligido
 			}
 
 			Wishbone: {
 				DisplayName: Hueso de los deseos
-				Tooltip: Permite todos los eventos pequeÃ±os por un dia
+				Tooltip: Permite todos los eventos pequeños por un dia
 			}
 
 			RainbowPiece: {
-				DisplayName: Pieza de arcoÃ­ris
+				DisplayName: Pieza de arcoíris
 				Tooltip: Usado para crear la olla de oro
 			}
 
@@ -721,7 +719,7 @@ Mods: {
 					'''
 					{$BuffDescription.WellFed2}
 					Incrementa el tiempo de todos los beneficios por 15 segundos
-					'Â¿ZANAHORIA DORADA?! Â¡Â¿QUE?!'
+					'¿ZANAHORIA DORADA?! ¡¿QUE?!'
 					'''
 			}
 
@@ -736,7 +734,7 @@ Mods: {
 			}
 
 			BrokenHeart: {
-				DisplayName: CorazÃ³n roto
+				DisplayName: Corazón roto
 				Tooltip: Invoca a un cupido que te ofrece luz
 			}
 
@@ -747,7 +745,7 @@ Mods: {
 
 			GoldenLantern: {
 				DisplayName: Linterna dorada
-				Tooltip: Invoca un guiverno mitolÃ³gico que te ofrece luz
+				Tooltip: Invoca un guiverno mitológico que te ofrece luz
 			}
 
 			GoldenSeaweed: {
@@ -756,7 +754,7 @@ Mods: {
 			}
 
 			HolidayBauble: {
-				DisplayName: ChucherÃ­a navideÃ±a
+				DisplayName: Chuchería navideña
 				Tooltip: Invoca a una elfa
 			}
 
@@ -787,7 +785,7 @@ Mods: {
 
 			VialOfBlood: {
 				DisplayName: Vial de sangre
-				Tooltip: Invoca un murciÃ©lago
+				Tooltip: Invoca un murciélago
 			}
 
 			WolfFang: {
@@ -816,17 +814,17 @@ Mods: {
 			}
 
 			AncientHerosHat: {
-				DisplayName: Gorro de hÃ©roe antiguo
+				DisplayName: Gorro de héroe antiguo
 				Tooltip: ""
 			}
 
 			AncientHerosPants: {
-				DisplayName: Pantalones de hÃ©roe antiguos
+				DisplayName: Pantalones de héroe antiguos
 				Tooltip: ""
 			}
 
 			AncientHerosShirt: {
-				DisplayName: Camisa de hÃ©roe antigua
+				DisplayName: Camisa de héroe antigua
 				Tooltip: ""
 			}
 
@@ -846,12 +844,12 @@ Mods: {
 			}
 
 			ArchDemonMask: {
-				DisplayName: MÃ¡scara de archidemonio
+				DisplayName: Máscara de archidemonio
 				Tooltip: ""
 			}
 
 			ArchWyvernMask: {
-				DisplayName: MÃ¡scara de archiguiverno
+				DisplayName: Máscara de archiguiverno
 				Tooltip: ""
 			}
 
@@ -902,17 +900,17 @@ Mods: {
 
 			HornedGodBoots: {
 				DisplayName: Botas de dios cornudo
-				Tooltip: "'Reliquia de una Ã©poca de maravillas'"
+				Tooltip: "'Reliquia de una época de maravillas'"
 			}
 
 			HornedGodMask: {
-				DisplayName: MÃ¡scara de dios cornudo
-				Tooltip: "'Reliquia de una Ã©poca de maravillas'"
+				DisplayName: Máscara de dios cornudo
+				Tooltip: "'Reliquia de una época de maravillas'"
 			}
 
 			HornedGodRobe: {
 				DisplayName: Vestido de dios cornudo
-				Tooltip: "'Reliquia de una Ã©poca de maravillas'"
+				Tooltip: "'Reliquia de una época de maravillas'"
 			}
 
 			Lederhosen: {
@@ -956,12 +954,12 @@ Mods: {
 			}
 
 			MythicalLionMask: {
-				DisplayName: MÃ¡scara de leÃ³n mitolÃ³gica
+				DisplayName: Máscara de león mitológica
 				Tooltip: ""
 			}
 
 			MythicalRobe: {
-				DisplayName: Vestido mitolÃ³gico
+				DisplayName: Vestido mitológico
 				Tooltip: ""
 			}
 
@@ -996,21 +994,21 @@ Mods: {
 			}
 
 			HeartArrow: {
-				DisplayName: Flecha corazÃ³n
+				DisplayName: Flecha corazón
 				Tooltip:
 					'''
 					Posibilidad de aturdir al enemigo al impactar
-					'Flechas legendarias del mismÃ­simo Cupido'
+					'Flechas legendarias del mismísimo Cupido'
 					'''
 			}
 
 			SpectralArrow: {
 				DisplayName: Flecha espectral
-				Tooltip: Perfora ladrillos y enemigos, pero se disipa rÃ¡pidamente en el aire
+				Tooltip: Perfora ladrillos y enemigos, pero se disipa rápidamente en el aire
 			}
 
 			VulcanBolt: {
-				DisplayName: RelÃ¡mpago volcÃ¡nico
+				DisplayName: Relámpago volcánico
 				Tooltip: ""
 			}
 
@@ -1026,12 +1024,12 @@ Mods: {
 
 			RomanCandle: {
 				DisplayName: Vela romana
-				Tooltip: "'Â¡Fuegos artificiales!'"
+				Tooltip: "'¡Fuegos artificiales!'"
 			}
 
 			AlbinoMandible: {
-				DisplayName: MandÃ­bula de albino
-				Tooltip: "'Sorprendentemente aerodinÃ¡mica...'"
+				DisplayName: Mandíbula de albino
+				Tooltip: "'Sorprendentemente aerodinámica...'"
 			}
 
 			GreatDrumstick: {
@@ -1039,7 +1037,7 @@ Mods: {
 				Tooltip:
 					'''
 					Cubre a los enemigos con aceite
-					Prende en llamas a los enemigos aceitados para causar daÃ±o adicional
+					Prende en llamas a los enemigos aceitados para causar daño adicional
 					'Me gustan las patatas fritas grandes, pero no el pavo frito'
 					'''
 			}
@@ -1055,12 +1053,12 @@ Mods: {
 			}
 
 			DragonBreath: {
-				DisplayName: Aliento de dragÃ³n
+				DisplayName: Aliento de dragón
 				Tooltip: ""
 			}
 
 			EggCannon: {
-				DisplayName: CaÃ±Ã³n de huevos
+				DisplayName: Cañón de huevos
 				Tooltip: "'Para matar a un duende hay que romper unos cuantos huevos'"
 			}
 
@@ -1074,27 +1072,27 @@ Mods: {
 				Tooltip:
 					'''
 					Cubre a los enemigos con aceite
-					Prende en llamas a los enemigos aceitados para causar daÃ±o adicional
+					Prende en llamas a los enemigos aceitados para causar daño adicional
 					'''
 			}
 
 			VolcanicRepeater: {
-				DisplayName: Repetidor volcÃ¡nico
-				Tooltip: Dispara relÃ¡mpagos volcÃ¡nicos
+				DisplayName: Repetidor volcánico
+				Tooltip: Dispara relámpagos volcánicos
 			}
 
 			EternityStaff: {
-				DisplayName: BastÃ³n de la eternidad
+				DisplayName: Bastón de la eternidad
 				Tooltip: Invoca un ojo de la eternidad para que luche por ti
 			}
 
 			TurkeyStuff: {
-				DisplayName: BastÃ³n de pavo
-				Tooltip: Invoca un pavo extraÃ±o para que luche por ti
+				DisplayName: Bastón de pavo
+				Tooltip: Invoca un pavo extraño para que luche por ti
 			}
 
 			McMoneypantsInvitation: {
-				DisplayName: InvitaciÃ³n dorada
+				DisplayName: Invitación dorada
 				Tooltip: Parece que estaba destinado a alguien muy rico
 			}
 
@@ -1104,13 +1102,13 @@ Mods: {
 			}
 
 			OldWalkingStick: {
-				DisplayName: BastÃ³n viejo
+				DisplayName: Bastón viejo
 				Tooltip: Invoca a una abuelita
 			}
 
 			WormTombstoneItem: {
-				DisplayName: LÃ¡pida de aspecto extraÃ±o
-				Tooltip: Una lÃ¡pida que parece un gusano, Â¿verdad?
+				DisplayName: Lápida de aspecto extraño
+				Tooltip: Una lápida que parece un gusano, ¿verdad?
 			}
 
 			Topper505: {
@@ -1125,7 +1123,7 @@ Mods: {
 
 			PrestigiousTopHat: {
 				DisplayName: Sombrero de copa prestigioso
-				Tooltip: Â¡Huele como un billete fresco!
+				Tooltip: ¡Huele como un billete fresco!
 			}
 
 			ExampleKite: {
@@ -1139,50 +1137,50 @@ Mods: {
 			}
 
 			MythicalWyvernKite: {
-				DisplayName: Cometa de guiverno mitolÃ³gico
+				DisplayName: Cometa de guiverno mitológico
 				Tooltip: ""
 			}
 
 			OktoberLocks: {
 				// Tooltip: ""
-				// DisplayName: Oktober Locks
+				// DisplayName: Trenzas de Oktober
 			}
 
 			PurpleThread: {
 				// Tooltip: ""
-				// DisplayName: Purple Thread
+				// DisplayName: Hilo púrpura
 			}
 
 			OtherworldlyMusicBox1: {
-				// DisplayName: Otherworldly Music Box (Lepus)
+				// DisplayName: Caja de música de otro mundo (Lepus)
 				// Tooltip: ""
 			}
 
 			OtherworldlyMusicBox2: {
-				// DisplayName: Otherworldly Music Box (Turkor)
+				// DisplayName: Caja de música de otro mundo (Turkor)
 				// Tooltip: ""
 			}
 
 			OtherworldlyMusicBox3: {
-				// DisplayName: Otherworldly Music Box (Ocram)
+				// DisplayName: Caja de música de otro mundo (Ocram)
 				// Tooltip: ""
 			}
 		}
 
 		NPCs: {
 			AlbinoAntlion: {
-				DisplayName: Hormiga leÃ³n albina
-				Bestiary: Especie de hormiga leÃ³n con una rara mutaciÃ³n donde muestra aÃºn mÃ¡s agresividad, tal vez para compensar la sensibilidad de su caparazÃ³n a la luz solar.
+				DisplayName: Hormiga león albina
+				Bestiary: Especie de hormiga león con una rara mutación donde muestra aún más agresividad, tal vez para compensar la sensibilidad de su caparazón a la luz solar.
 			}
 
 			AlbinoCharger: {
-				DisplayName: Cargador de hormigas leÃ³n albino
-				Bestiary: En raras ocasiones, algunos soldados hormiga leÃ³n mutan, pierden su color y se vuelven incluso mÃ¡s feroces que sus hermanos.
+				DisplayName: Cargador de hormigas león albino
+				Bestiary: En raras ocasiones, algunos soldados hormiga león mutan, pierden su color y se vuelven incluso más feroces que sus hermanos.
 			}
 
 			ArchDemon: {
 				DisplayName: Archidemonio
-				Bestiary: Los demonios particularmente poderosos viven lo suficiente como para que su cuerpo se convierta en una cÃ¡scara marchita.
+				Bestiary: Los demonios particularmente poderosos viven lo suficiente como para que su cuerpo se convierta en una cáscara marchita.
 			}
 
 			ArchWyvernHead: {
@@ -1200,16 +1198,16 @@ Mods: {
 
 			DisasterBunny: {
 				DisplayName: Conejito desastre
-				Bestiary: Estas criaturas de ojos saltones, desastrosas engendros del gigante rabioso, morderÃ¡n cualquier cosa que encuentren.
+				Bestiary: Estas criaturas de ojos saltones, desastrosas engendros del gigante rabioso, morderán cualquier cosa que encuentren.
 			}
 
 			Lepus: {
 				DisplayName: Lepus
-				Bestiary: Como si su tamaÃ±o no fuera suficientemente problemÃ¡tico, este conejo puede reproducirse a travÃ©s de huevos coloridos, repartidos por todo el mundo en primavera para que los tontos los recojan.
+				Bestiary: Como si su tamaño no fuera suficientemente problemático, este conejo puede reproducirse a través de huevos coloridos, repartidos por todo el mundo en primavera para que los tontos los recojan.
 
 				BossChecklistIntegration: {
 					SpawnInfo: Usando [i:5642] de dia
-					DespawnMessage: Â¡Lepus salta hacia el atardecer!
+					DespawnMessage: ¡Lepus salta hacia el atardecer!
 				}
 			}
 
@@ -1234,11 +1232,11 @@ Mods: {
 
 			TurkortheUngrateful: {
 				DisplayName: Turkor el desagradecido
-				Bestiary: Esta monstruosidad, que existe por puro despecho, se dedica a una venganza anual contra aquellos que se atreven a darle un mordisco al pavo de AcciÃ³n de Gracias.
+				Bestiary: Esta monstruosidad, que existe por puro despecho, se dedica a una venganza anual contra aquellos que se atreven a darle un mordisco al pavo de Acción de Gracias.
 
 				BossChecklistIntegration: {
 					EntryName: Turkor el desagradecido
-					SpawnInfo: Usando [i:5641] despuÃ©s de invocar a un pavo como mascota
+					SpawnInfo: Usando [i:5641] después de invocar a un pavo como mascota
 					DespawnMessage: Turkor el desagradecido se escapa del plato!
 				}
 			}
@@ -1246,23 +1244,23 @@ Mods: {
 			TurkortheUngratefulHead.DisplayName: Cabeza de Turkor el desagradecido
 
 			DragonHornet: {
-				DisplayName: AvispÃ³n DragÃ³n
-				Bestiary: Parientes de los avispones comunes, estos insectos desarrollaron una apariencia inusual para ahuyentar a los enemigos. Si eso no fuera suficiente, los aguijones venenosos deberÃ­an hacer el trabajo.
+				DisplayName: Avispón Dragón
+				Bestiary: Parientes de los avispones comunes, estos insectos desarrollaron una apariencia inusual para ahuyentar a los enemigos. Si eso no fuera suficiente, los aguijones venenosos deberían hacer el trabajo.
 			}
 
 			DragonSkull: {
-				DisplayName: Calavera de dragÃ³n
-				Bestiary: Tocadas por hechizos nigromÃ¡nticos, las cabezas de antiguos reptiles ahora se aprovechan de los vivos y comparten su maldiciÃ³n con sus vÃ­ctimas.
+				DisplayName: Calavera de dragón
+				Bestiary: Tocadas por hechizos nigrománticos, las cabezas de antiguos reptiles ahora se aprovechan de los vivos y comparten su maldición con sus víctimas.
 			}
 
 			DragonSnatcher: {
-				DisplayName: Atrapadora dragÃ³n
-				Bestiary: Esta especie de atrapadora aprendiÃ³ a reutilizar los aguijones de los avispones que caÃ­an presa de Ã©l para cazar objetivos mÃ¡s grandes.
+				DisplayName: Atrapadora dragón
+				Bestiary: Esta especie de atrapadora aprendió a reutilizar los aguijones de los avispones que caían presa de él para cazar objetivos más grandes.
 			}
 
 			FleshAxe: {
 				DisplayName: Hacha de carne
-				Bestiary: Hechizada por el colectivo carmesÃ­, esta arma se mueve y corta a sus enemigos por su propia voluntad.
+				Bestiary: Hechizada por el colectivo carmesí, esta arma se mueve y corta a sus enemigos por su propia voluntad.
 			}
 
 			FleshMummy: {
@@ -1272,98 +1270,98 @@ Mods: {
 
 			FleshSlime: {
 				DisplayName: Slime de carne
-				Bestiary: Impregnados del poder del carmesÃ­, estos limos pueden esparcir sus excrementos.
+				Bestiary: Impregnados del poder del carmesí, estos limos pueden esparcir sus excrementos.
 			}
 
 			GiantAlbinoCharger: {
-				DisplayName: Cargador de hormigas leÃ³n albino gigante
-				Bestiary: Es probable que algunos soldados hormiga leÃ³n muten, pierdan su color y se vuelvan aÃºn mÃ¡s feroces que sus hermanos.
+				DisplayName: Cargador de hormigas león albino gigante
+				Bestiary: Es probable que algunos soldados hormiga león muten, pierdan su color y se vuelvan aún más feroces que sus hermanos.
 			}
 
 			MythicalWyvernHead: {
-				DisplayName: Guiverno mitolÃ³gico
-				Bestiary: Seres legendarios, estos solitarios guivernos solo aparecen en una Ã©poca determinada del aÃ±o.
+				DisplayName: Guiverno mitológico
+				Bestiary: Seres legendarios, estos solitarios guivernos solo aparecen en una época determinada del año.
 			}
 
-			MythicalWyvernBody.DisplayName: Guiverno mitolÃ³gico
-			MythicalWyvernBody2.DisplayName: Guiverno mitolÃ³gico
-			MythicalWyvernBody3.DisplayName: Guiverno mitolÃ³gico
-			MythicalWyvernLegs.DisplayName: Guiverno mitolÃ³gico
-			MythicalWyvernTail.DisplayName: Guiverno mitolÃ³gico
+			MythicalWyvernBody.DisplayName: Guiverno mitológico
+			MythicalWyvernBody2.DisplayName: Guiverno mitológico
+			MythicalWyvernBody3.DisplayName: Guiverno mitológico
+			MythicalWyvernLegs.DisplayName: Guiverno mitológico
+			MythicalWyvernTail.DisplayName: Guiverno mitológico
 
 			Orca: {
 				DisplayName: Orca
-				Bestiary: Como no se ven ballenas en los ocÃ©anos, estos depredadores blancos y negros cazarÃ¡n cualquier otra cosa... Â¡incluido tÃº!
+				Bestiary: Como no se ven ballenas en los océanos, estos depredadores blancos y negros cazarán cualquier otra cosa... ¡incluido tú!
 			}
 
 			ShadowHammer: {
-				DisplayName: Martillo sombrÃ­o
-				Bestiary: Magia a travÃ©s del odio puro a la corrupciÃ³n, esta arma intenta aplastar cualquier cosa que respire.
+				DisplayName: Martillo sombrío
+				Bestiary: Magia a través del odio puro a la corrupción, esta arma intenta aplastar cualquier cosa que respire.
 			}
 
 			ShadowMummy: {
-				DisplayName: Momia sombrÃ­a
+				DisplayName: Momia sombría
 				Bestiary: Con las arenas transformadas por fuerzas externas, aquellos que descansan en el desierto, ya sean buenos o malos, ahora se levantan para mutilar y matar.
 			}
 
 			ShadowSlime: {
-				DisplayName: Slime sombrÃ­o
-				Bestiary: Impregnados del poder de la corrupciÃ³n, estos limos pueden esparcir sus excrementos.
+				DisplayName: Slime sombrío
+				Bestiary: Impregnados del poder de la corrupción, estos limos pueden esparcir sus excrementos.
 			}
 
 			SpectralElemental: {
 				DisplayName: Elemental espectral
-				Bestiary: A veces, los espÃ­ritus de luz liberados transforman los elementales del caos en seres mÃ¡s poderosos, dÃ¡ndoles la capacidad de entrar y salir del reino material a voluntad mientras colocan runas espectrales explosivas.
+				Bestiary: A veces, los espíritus de luz liberados transforman los elementales del caos en seres más poderosos, dándoles la capacidad de entrar y salir del reino material a voluntad mientras colocan runas espectrales explosivas.
 			}
 
 			SpectralGastropod: {
-				DisplayName: GasterÃ³podo espectral
-				Bestiary: Estos limos poseÃ­dos por espÃ­ritus de luz, que alguna vez fueron gasterÃ³podos comunes y corrientes, pueden escupir bolas de energÃ­a luminosa concentrada.
+				DisplayName: Gasterópodo espectral
+				Bestiary: Estos limos poseídos por espíritus de luz, que alguna vez fueron gasterópodos comunes y corrientes, pueden escupir bolas de energía luminosa concentrada.
 			}
 
 			SpectralMummy: {
 				DisplayName: Momia espectral
-				Bestiary: La desbordante energÃ­a luminosa de estas momias hace que sus destrozados cuerpos sean muy inestables.
+				Bestiary: La desbordante energía luminosa de estas momias hace que sus destrozados cuerpos sean muy inestables.
 			}
 
 			VampireMiner: {
 				DisplayName: Vampiro minero
-				Bestiary: La evidencia indica que algunos espeleÃ³logos fueron mordidos por murciÃ©lagos vampiros antes de fallecer... Ahora sus restos podridos estÃ¡n en busca de sangre.
+				Bestiary: La evidencia indica que algunos espeleólogos fueron mordidos por murciélagos vampiros antes de fallecer... Ahora sus restos podridos están en busca de sangre.
 			}
 
 			McMoneypants: {
 				DisplayName: Don pantalones ricachones
-				Bestiary: Extravagante y carismÃ¡tico, Don pantalones ricachones es un excelente barÃ³n dispuesto a hacer la vida mÃ¡s fÃ¡cil a cualquiera... Â¡Por un precio!
+				Bestiary: Extravagante y carismático, Don pantalones ricachones es un excelente barón dispuesto a hacer la vida más fácil a cualquiera... ¡Por un precio!
 				AlreadyInvested1: No existe suficiente oro, pero hoy ya he tenido suficiente de ti.
-				AlreadyInvested2: Lo siento, pero mis bolsillos ya estÃ¡n llenos.
-				AlreadyInvested3: EstÃ¡s suficientemente afortunado por hoy.
+				AlreadyInvested2: Lo siento, pero mis bolsillos ya están llenos.
+				AlreadyInvested3: Estás suficientemente afortunado por hoy.
 				AlreadyInvested4: Ahora, no seas demasiado codicioso a menos que quieras terminar como ese tipo griego.
-				PlayerHasNoMoney1: Â¡Lo siento, no puedo dar crÃ©dito! Vuelve cuando seas un poco... mÃ¡s rico.
-				PlayerHasNoMoney2: No estoy dirigiendo una organizaciÃ³n benÃ©fica, sabes...
-				PlayerHasNoMoney3: MuÃ©strame el dinero y luego hablaremos.
+				PlayerHasNoMoney1: ¡Lo siento, no puedo dar crédito! Vuelve cuando seas un poco... más rico.
+				PlayerHasNoMoney2: No estoy dirigiendo una organización benéfica, sabes...
+				PlayerHasNoMoney3: Muéstrame el dinero y luego hablaremos.
 				PlayerHasNoMoney4: No, no se puede pagar con vales.
-				FirstTimeInvested1: Â¡Oro Ferragamo!
+				FirstTimeInvested1: ¡Oro Ferragamo!
 				FirstTimeInvested2: Se ha llegado a un acuerdo, arriba va tu suerte.
 				FirstTimeInvested3: Hoy es tu dia de suerte.
-				FirstTimeInvested4: Â¡Una gran inversiÃ³n! Â¡Afortunado que eres!
-				WhenInvested1: El tiempo es dinero. Â¡AsÃ­ que vuelve maÃ±ana para gastar un poco!
-				WhenInvested2: CrÃ©eme, no es un esquema Ponzi.
+				FirstTimeInvested4: ¡Una gran inversión! ¡Afortunado que eres!
+				WhenInvested1: El tiempo es dinero. ¡Así que vuelve mañana para gastar un poco!
+				WhenInvested2: Créeme, no es un esquema Ponzi.
 				WhenInvested3: Multiplicando dinero en curso...
-				WhenInvested4: Â¿CuÃ¡ntas veces tengo que decirlo? Â¡Sin reembolsos!
-				WhenInvested5: Â¿Donde esta mi pluma? Â¡No me digas que la tomaste despuÃ©s de firmar el contrato!
-				WhenInvested6: Â¡Un placer hacer negocios! VolverÃ© en un dÃ­a para que podamos renovar nuestro trato.
-				WhenInvested7: Â¡Por Ãºltima vez, para de preguntarme sobre inflaciÃ³n!
-				WhenInvested8: Â¡BombÃ©alo! Â¡No, tÃ­ralo! Oh, eres tÃº otra vez.
+				WhenInvested4: ¿Cuántas veces tengo que decirlo? ¡Sin reembolsos!
+				WhenInvested5: ¿Donde esta mi pluma? ¡No me digas que la tomaste después de firmar el contrato!
+				WhenInvested6: ¡Un placer hacer negocios! Volveré en un día para que podamos renovar nuestro trato.
+				WhenInvested7: ¡Por última vez, para de preguntarme sobre inflación!
+				WhenInvested8: ¡Bombéalo! ¡No, tíralo! Oh, eres tú otra vez.
 				Quote1: Sinceramente, un centavo por mis pensamientos no es mucho.
-				Quote2: Si tuviera cinco centavos por cada monstruo que vi anoche, serÃ­a aÃºn mÃ¡s rico y estarÃ­a un poco menos asustado.
-				Quote3: Â¡Esos malditos slimes siguen intentando tragarse mis monedas!
-				Quote4: Si el dinero hace girar al mundo, este lugar parece muy pobre. Â¡CambiÃ©moslo!
-				Quote5: Â¡Me siento tan limpio, como una mÃ¡quina de hacer dinero!
-				Quote6: Â¿Sabes lo que me gusta del oro? Â¡Tengo mucho!
+				Quote2: Si tuviera cinco centavos por cada monstruo que vi anoche, sería aún más rico y estaría un poco menos asustado.
+				Quote3: ¡Esos malditos slimes siguen intentando tragarse mis monedas!
+				Quote4: Si el dinero hace girar al mundo, este lugar parece muy pobre. ¡Cambiémoslo!
+				Quote5: ¡Me siento tan limpio, como una máquina de hacer dinero!
+				Quote6: ¿Sabes lo que me gusta del oro? ¡Tengo mucho!
 				Quote7: Oye, una cosa que puedo prometerte es que nunca les pido a mis clientes que me juzguen por mis ganadores. Les pido que me juzguen por mis perdedores, porque tengo muy pocos.
-				Quote8: Cuando esos raros bloques de tierra suban de precio, Â¡voy a ganar millones!
-				Quote9: Â¿Mi consejo financiero? No dispares tus monedas con esa horrible arma.
-				Quote10: Â¿Bitcoin? Â¿Por quÃ© alguna vez ganarÃ­a una moneda?
+				Quote8: Cuando esos raros bloques de tierra suban de precio, ¡voy a ganar millones!
+				Quote9: ¿Mi consejo financiero? No dispares tus monedas con esa horrible arma.
+				Quote10: ¿Bitcoin? ¿Por qué alguna vez ganaría una moneda?
 			}
 		}
 
@@ -1456,103 +1454,103 @@ Mods: {
 
 		Configs: {
 			ConsolariaConfig: {
-				DisplayName: Configuration
+				DisplayName: Configuración
 
 				Headers: {
-					SeasonalEvents: Seasonal Events
-					Miscellaneous: Miscellaneous
-					// WorldGeneration: World Generation
+					SeasonalEvents: Eventos estacionales
+					Miscellaneous: Misceláneos
+					// WorldGeneration: Generación de mundo
 				}
 
 				easterEnabled: {
-					Label: Restrict seasonal content by system date (Easter)
+					Label: Restringir el contenido estacional por fecha del sistema (Pascua)
 					Tooltip:
 						'''
-						If enabled the relevant items and enemies will only appear during Easter
-						April 1 - April 30
+						Si se habilita los elementos y enemigos relevantes solo aparecerán durante la Pascua.
+						Abril 1 - Abril 30
 						'''
 				}
 
 				thanksgivingEnabled: {
-					Label: Restrict seasonal content by system date (Thanksgiving)
+					Label: Restringir el contenido estacional por fecha del sistema (Acción de gracias)
 					Tooltip:
 						'''
-						If enabled the relevant items and enemies will only appear during Thanksgiving
-						November 1 - November 30
+						Si se habilita los elementos y enemigos relevantes solo aparecerán durante la Acción de gracias
+						Noviembre 1 - Noviembre 30
 						'''
 				}
 
 				smallEventsEnabled: {
-					Label: Restrict seasonal content by system date (Other events)
-					Tooltip: If enabled the relevant items and enemies will only appear during the corresponding holidays or when Wishbone is used
+					Label: Restringir el contenido estacional por fecha del sistema (Otros eventos)
+					Tooltip: Si se habilita los elementos y enemigos relevantes solo aparecerán durante los festivos correspondientes o usando el Hueso de los deseos
 				}
 
 				vanillaBossMusicEnabled: {
-					// Label: Vanilla music for Consolaria bosses
-					// Tooltip: If enabled, the custom soundtrack will be replaced by themes originally used in console versions
+					// Label: Música de vanilla para jefes de Consolaria
+					// Tooltip: Si está habilitado, la banda sonora personalizada será reemplazada por temas utilizados originalmente en versiones de consola
 				}
 
 				tizonaZenithIntegrationEnabled: {
-					// Label: Tizona integration in Zenith
-					// Tooltip: If enabled, Tizona will be added to Zenith's crafting recipe and it's projectiles.
+					// Label: Integración de Tizona en la Zenith
+					// Tooltip: Si está habilitado, la Tizona se agregará a la receta de elaboración de la Zenith y sus proyectiles
 				}
 
 				oktoberLocksEnabled: {
-					// Label: Oktober Locks vanity item
-					// Tooltip: If enabled, the Oktober Locks will be available to buy from Clothier during Oktoberfest
+					// Label: Objeto de vanidad trenzas de Oktober
+					// Tooltip: Si está habilitado, las trenzas de Oktober serán disponibles para comprar con el Buhonero durante Oktoberfest
 				}
 
 				mythicalWyvernKiteVanillaDropruleEnabled: {
-					// Label: Mythical Wyvern Kite vanilla droprule
-					// Tooltip: If enabled, Mythical Wyvern Kite will have a 4% chance to be dropped from Mythical Wyvern during the Windy Days instead of being obtained from Red Envelope
+					// Label: Obtención vanilla de cometa de guiverno mitológico
+					// Tooltip: Si está habilitado, la cometa de guiverno mitológico tendra un 4% de probabilidad de ser soltada por un Guiverno Mitológico durante los dias ventosos en vez de ser obtenida de los sobres rojos
 				}
 
 				heartbeatariaIntegrationEnabled: {
-					// Label: Heartbeataria Mod integration
-					// Tooltip: If enabled, exclusive Heartbeataria Mod items can be obtained from Red Envelope
+					// Label: Integración con Heartbeataria Mod
+					// Tooltip: Si está habilitado, los objetos exclusivos de Heartbeataria se podrán obtener de los sobres rojosfrom Red Envelope
 				}
 
 				originalAncientHeroSetRecipeEnabled: {
-					// Label: Original Ancient Hero set crafting recipe
-					// Tooltip: If enabled, the Ancient Hero set can be crafted using Silk and Purple Thread in a Loom instead of shimmering
+					// Label: Receta original del conjunto de héroe antiguo
+					// Tooltip: Si está habilitado, el conjunto de héroe antiguo se podra crear usando seda y hilo en un telar en vez de con el fulgor
 				}
 
 				genderRestrictShopEnabled: {
-					// Label: Restrict George's set and Fabulous set by player's gender
+					// Label: Restringir conjunto de George y conjunto fabuloso por género del jugador
 					/* Tooltip:
 						'''
-						If enabled, the relevant sets will only appear in Clothier's shop during Blood Moon if player has a certain gender
-						Male - George's set
-						Female - Fabulous set
+						Si está habilitado, los conjuntos relevantes solo aparecerán en la tienda del Buhonero durante la luna de sangre si el jugador tiene un cierto género
+						Hombre - Conjunto de George
+						Mujer - Cojunto Fabuloso
 						''' */
 				}
 
 				pyramidEnabled: {
-					// Label: Guaranteed pyramid
-					// Tooltip: If enabled, at least 1 pyramid will always generate in the world
+					// Label: Pirámide garantizada
+					// Tooltip: Si está habilitado, al menos una pirámide se generará siempre en el mundo 
 				}
 
 				pyramidMessageLoot: {
-					// Label: Special pyramid loot
-					// Tooltip: If enabled, a special message will appear in the second pyramid room chest
+					// Label: Botín especial de pirámide 
+					// Tooltip: Si está habilitado, un mensaje especial aparecera en la segunda habitación de la pirámide
 				}
 			}
 		}
 
 		Achievements: {
 			KillLepus: {
-				// Name: Hare Despair
-				// Description: Defeat Lepus, the greatest Easter troublemaker.
+				// Name: Liebre desesperada
+				// Description: Derroa a Lepus, el gran alborotador de la pascua.
 			}
 
 			KillTurkor: {
-				// Name: Kentucky Fried Turkey
-				// Description: Defeat Turkor the Ungrateful, the burning Thanksgiving monstrocity.
+				// Name: Pavo asado Kentucky
+				// Description: Derrota a Turkor el malagradecido, la ardiente mostruosidad de la acción de gracias.
 			}
 
 			KillOcram: {
-				// Name: Bible of the Beast
-				// Description: Defeat Ocram, the cursed fiend haunting the starless sky.
+				// Name: Biblia de la bestia
+				// Description: Derrota a Ocram, el demonio maldito que inquieta el cielo sin estrellas.
 			}
 		}
 
@@ -1565,38 +1563,38 @@ Mods: {
 
 		MusicDisplayCompability: {
 			Lepus: {
-				// Author: by Synoxsis
+				// Author: por Synoxsis
 				// DisplayName: Lepus
 			}
 
 			Ocram: {
-				// Author: by Synoxsis
+				// Author: por Synoxsis
 				// DisplayName: Ocram
 			}
 
 			EerieOcram: {
-				// Author: by Fyerow & Croul
+				// Author: por Fyerow & Croul
 				// DisplayName: Eerie Ocram
 			}
 
 			Turkor: {
-				// Author: by Synoxsis
-				// DisplayName: Turkor the Ungrateful
+				// Author: por Synoxsis
+				// DisplayName: Turkor el malagradecido
 			}
 
 			AltLepus: {
-				// Author: by Jteoh
-				// DisplayName: Blight of Spring (Otherworldly Lepus)
+				// Author: por Jteoh
+				// DisplayName: Blight of Spring (Lepus de otro mundo)
 			}
 
 			AltOcram: {
-				// Author: by Jteoh
-				// DisplayName: Ungracious Givings (Otherworldly Turkor)
+				// Author: por Jteoh
+				// DisplayName: Ungracious Givings (Turkor de otro mundo)
 			}
 
 			AltTurkor: {
-				// Author: by Jteoh
-				// DisplayName: Mirror Image (Otherworldly Ocram)
+				// Author: por Jteoh
+				// DisplayName: Mirror Image (Ocram de otro mundo)
 			}
 		}
 	}

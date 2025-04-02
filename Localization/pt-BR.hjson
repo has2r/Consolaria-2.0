@@ -1,17 +1,15 @@
 Mods: {
 	Consolaria: {
-		// DownloadRoA: Check out Rise of Ages, from the team behind Consolaria!
-		// DownloadRoA2: (hide)
-		// LepusDropCondition: Drops if Lepus is not present
-		// ValentineRingTooltip1: Give it to someone special!
+		// LepusDropCondition: Será dropado se Lepus não estiver presente
+		// ValentineRingTooltip1: Dê a alguém especial!
 		/* ValentineRingTooltip2:
 			'''
-			Slowly regenerates life
-			Increases jump height
+			Regenera a vida lentamente
+			Aumenta a altura do salto
 			''' */
-		// McMoneypantsInvitationUsage: The invitation flies away to its recipient...
-		// Munchies.McMoneypantsInvitation.HowToAcquire: Obtained from Red Envelope
-		// McMoneypantsButton1Text: Invest
+		// McMoneypantsInvitationUsage: O convite voa para o seu destinatário...
+		// Munchies.McMoneypantsInvitation.HowToAcquire: Obtido de Envelope Vermelho
+		// McMoneypantsButton1Text: Investir
 		Others.NPCTitle: "{0} {1}"
 
 		Biomes: {
@@ -346,6 +344,11 @@ Mods: {
 					25% de chance de não consumir munição
 					'''
 				SetBonus: Usar armas de longo alcance desencadeia um recuo explosivo
+				/*SetBonus:
+					'''
+					Using ranged weapons triggers a recoil blast
+					Double tap {0} to toggle this effect
+					'''*/
 			}
 
 			TitanLeggings: {
@@ -1154,17 +1157,17 @@ Mods: {
 			}
 
 			OtherworldlyMusicBox1: {
-				// DisplayName: Otherworldly Music Box (Lepus)
+				// DisplayName: Caixinha de Música Otherworldly (Lepus)
 				// Tooltip: ""
 			}
 
 			OtherworldlyMusicBox2: {
-				// DisplayName: Otherworldly Music Box (Turkor)
+				// DisplayName: Caixinha de Música Otherworldly (Peruno o Ingrato)
 				// Tooltip: ""
 			}
 
 			OtherworldlyMusicBox3: {
-				// DisplayName: Otherworldly Music Box (Ocram)
+				// DisplayName: Caixinha de Música Otherworldly (Ocram)
 				// Tooltip: ""
 			}
 		}
@@ -1239,7 +1242,7 @@ Mods: {
 				BossChecklistIntegration: {
 					EntryName: Peruno o Ingrato
 					SpawnInfo: Use um [i:Consolaria/CursedStuffing] após invocar um peru de estimação
-					DespawnMessage: Peruno o Ingrato escapou do prato!
+					DespawnMessage: Peruno o Ingrato não ficou para o jantar!
 				}
 			}
 
@@ -1528,13 +1531,13 @@ Mods: {
 				}
 
 				pyramidEnabled: {
-					// Label: Guaranteed pyramid
-					// Tooltip: If enabled, at least 1 pyramid will always generate in the world
+					// Label: Pirâmide garantida
+					// Tooltip: Se habilitado, pelo menos 1 pirâmide sempre será gerada no mundo
 				}
 
 				pyramidMessageLoot: {
-					// Label: Special pyramid loot
-					// Tooltip: If enabled, a special message will appear in the second pyramid room chest
+					// Label: Saque de pirâmide especial
+					// Tooltip: Se habilitado, uma mensagem especial aparecerá no baú da segunda sala da pirâmide
 				}
 			}
 		}
@@ -1565,38 +1568,38 @@ Mods: {
 
 		MusicDisplayCompability: {
 			Lepus: {
-				// Author: by Synoxsis
+				// Author: por Synoxsis
 				// DisplayName: Lepus
 			}
 
 			Ocram: {
-				// Author: by Synoxsis
+				// Author: por Synoxsis
 				// DisplayName: Ocram
 			}
 
 			EerieOcram: {
-				// Author: by Fyerow & Croul
+				// Author: por Fyerow & Croul
 				// DisplayName: Eerie Ocram
 			}
 
 			Turkor: {
-				// Author: by Synoxsis
-				// DisplayName: Turkor the Ungrateful
+				// Author: por Synoxsis
+				// DisplayName: Peruno o Ingrato
 			}
 
 			AltLepus: {
-				// Author: by Jteoh
-				// DisplayName: Blight of Spring (Otherworldly Lepus)
+				// Author: por Jteoh
+				// DisplayName: Praga da Primavera (Otherworldly Lepus)
 			}
 
 			AltOcram: {
-				// Author: by Jteoh
-				// DisplayName: Ungracious Givings (Otherworldly Turkor)
+				// Author: por Jteoh
+				// DisplayName: Doações Ingratas (Otherworldly Peruno o Ingrato)
 			}
 
 			AltTurkor: {
-				// Author: by Jteoh
-				// DisplayName: Mirror Image (Otherworldly Ocram)
+				// Author: por Jteoh
+				// DisplayName: Imagem espelhada (Otherworldly Ocram)
 			}
 		}
 	}

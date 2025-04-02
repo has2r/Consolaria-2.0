@@ -1,1 +1,2 @@
-- Fixed world generation stopping unexpectedly when using the Remnants mod.
+- Add an ad
+- Remove a fad

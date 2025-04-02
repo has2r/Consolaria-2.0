@@ -1,2 +1,2 @@
-- Add an ad
-- Remove a fad
+- Updated Spanish and Brazilian Portuguese localization (thanks, Auraz and KaffaZ!)
+- Fixed the Rise of Ages link

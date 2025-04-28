@@ -19,7 +19,9 @@ sealed class DesertSecondRoom : ILoadable {
     private class DesertSecondRoom_ReplaceVanillaPass : ModSystem {
         public override void ModifyWorldGenTasks(List<GenPass> tasks, ref double totalWeight) {
             int genIndexToReplace = tasks.FindIndex(genpass => genpass.Name.Equals("Pyramids"));
-            tasks.RemoveAt(genIndexToReplace);
+            if (!ModLoader.HasMod("FargowiltasSouls")) {
+                tasks.RemoveAt(genIndexToReplace);
+            }
             tasks.Insert(genIndexToReplace, new PassLegacy("Pyramids", Pyramids, 0.3045f));
         }
 

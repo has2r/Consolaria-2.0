@@ -28,16 +28,17 @@ sealed class EasterBunny : ModProjectile {
         Vector2 origin = sourceRectangle.Size() / 2f;
         Vector2 position = Projectile.Center - Main.screenPosition;
         Color color = Lighting.GetColor(Projectile.Center.ToTileCoordinates()) * Projectile.Opacity;
-        if (Projectile.ai[0] == 2f || Projectile.localAI[1] >= 15f) {
+        if (Projectile.localAI[1] > 0f) {
+            float opacity = MathHelper.Clamp(Projectile.localAI[1] / 30f, 0f, 1f);
             for (int i = 0; i < 5; i++) {
                 Main.EntitySpriteDraw(texture, position + new Vector2(0f, 0.5f).RotatedBy((double)i * Math.PI + (double)Main.GlobalTimeWrappedHourly * (double)4f) * 2f * 4f,
-                    sourceRectangle, Utils.MultiplyRGB(Color.HotPink, color) * 1.25f * 0.666f, Projectile.rotation + Utils.NextFloat(Main.rand, -0.05f, 0.05f), origin,
+                    sourceRectangle, Utils.MultiplyRGB(Color.HotPink, color) * 1.25f * 0.666f * opacity, Projectile.rotation + Utils.NextFloat(Main.rand, -0.05f, 0.05f), origin,
                     Projectile.scale * 0.5f * (Main.mouseTextColor / 200f - 0.35f) * 0.46f + 0.8f, spriteEffects, 0f);
                 Main.spriteBatch.End();
                 Main.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Additive, Main.DefaultSamplerState, DepthStencilState.None, RasterizerState.CullCounterClockwise, null, Main.GameViewMatrix.TransformationMatrix);
                 Main.EntitySpriteDraw(texture, position + new Vector2(1f, -0.5f).RotatedBy((double)-i * Math.PI + (double)Main.GlobalTimeWrappedHourly * (double)3f) * 1.75f * 4f,
                     sourceRectangle,
-                    Utils.MultiplyRGB(Color.HotPink, color) * 0.75f * 0.66f,
+                    Utils.MultiplyRGB(Color.HotPink, color) * 0.75f * 0.66f * opacity,
                     Projectile.rotation + Utils.NextFloat(Main.rand, -0.05f, 0.05f), origin,
                     Projectile.scale * 0.4f * (Main.mouseTextColor / 200f - 0.35f) * 0.46f + 0.8f, spriteEffects);
                 Main.spriteBatch.End();
@@ -151,10 +152,22 @@ sealed class EasterBunny : ModProjectile {
                 Projectile.frame = 0;
                 Projectile.frameCounter = 0;
             }
-            Projectile.localAI[1] = 0f;
+            ClearLepusVisuals();
         }
         else {
             Projectile.frame = 5;
+            ApplyLepusVisuals();
+        }
+    }
+
+    private void ClearLepusVisuals() {
+        if (Projectile.localAI[1] > 0f) {
+            Projectile.localAI[1] -= 1f;
+        }
+    }
+
+    private void ApplyLepusVisuals() {
+        if (Projectile.localAI[1] < 30f) {
             Projectile.localAI[1] += 1f;
         }
     }
@@ -331,6 +344,7 @@ sealed class EasterBunny : ModProjectile {
             //}
 
             if (easterBunny) {
+                ApplyLepusVisuals();
                 float num23 = ((float)num9 - Projectile.ai[1]) / (float)num9;
                 if ((double)num23 > 0.25 && (double)num23 < 0.75)
                     Projectile.friendly = true;

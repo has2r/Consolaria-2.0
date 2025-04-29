@@ -28,7 +28,7 @@ sealed class EasterBunny : ModProjectile {
         Vector2 origin = sourceRectangle.Size() / 2f;
         Vector2 position = Projectile.Center - Main.screenPosition;
         Color color = Lighting.GetColor(Projectile.Center.ToTileCoordinates()) * Projectile.Opacity;
-        if (Projectile.ai[0] == 2f || Projectile.localAI[1] >= 30F) {
+        if (Projectile.ai[0] == 2f || Projectile.localAI[1] >= 15f) {
             for (int i = 0; i < 5; i++) {
                 Main.EntitySpriteDraw(texture, position + new Vector2(0f, 0.5f).RotatedBy((double)i * Math.PI + (double)Main.GlobalTimeWrappedHourly * (double)4f) * 2f * 4f,
                     sourceRectangle, Utils.MultiplyRGB(Color.HotPink, color) * 1.25f * 0.666f, Projectile.rotation + Utils.NextFloat(Main.rand, -0.05f, 0.05f), origin,

@@ -100,8 +100,6 @@ sealed class EasterBunny : ModProjectile {
         AI_FreakingBunny();
 
         PlayAnimation();
-
-        Projectile.spriteDirection = -Projectile.spriteDirection;
     }
     
     private bool CheckActive() {
@@ -264,7 +262,7 @@ sealed class EasterBunny : ModProjectile {
             }
 
             if (Projectile.velocity.X != 0f)
-                Projectile.spriteDirection = Math.Sign(Projectile.velocity.X);
+                Projectile.spriteDirection = -Math.Sign(Projectile.velocity.X);
 
             //if (flinx) {
             //    frameCounter++;
@@ -323,7 +321,7 @@ sealed class EasterBunny : ModProjectile {
             }
         }
         else if (Projectile.ai[0] == 2f) {
-            Projectile.spriteDirection = Projectile.direction;
+            Projectile.spriteDirection = -Projectile.direction;
             Projectile.rotation = 0f;
             //if (pirate) {
             //    friendly = true;
@@ -674,7 +672,7 @@ sealed class EasterBunny : ModProjectile {
             if (Projectile.velocity.X < 0f - num34 && num39 == -1)
                 Projectile.direction = -1;
 
-            Projectile.spriteDirection = Projectile.direction;
+            Projectile.spriteDirection = -Projectile.direction;
             //if (flinx) {
             //    if (velocity.Y == 0f) {
             //        rotation = rotation.AngleTowards(0f, 0.3f);

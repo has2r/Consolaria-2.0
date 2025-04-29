@@ -1164,6 +1164,11 @@ Mods: {
 				// DisplayName: Otherworldly Music Box (Ocram)
 				// Tooltip: ""
 			}
+
+			EasterBunnyStaff: {
+				// DisplayName: Easter Bunny Staff
+				// Tooltip: Summons an easter bunny to fight for you
+			}
 		}
 
 		NPCs: {

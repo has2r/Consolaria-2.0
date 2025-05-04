@@ -121,7 +121,7 @@ namespace Consolaria.Content.NPCs {
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
-            => (spawnInfo.Player.ZoneHallow && spawnInfo.SpawnTileY > Main.rockLayer && !spawnInfo.Player.ZoneUnderworldHeight && (spawnInfo.SpawnTileType == TileID.Pearlsand || spawnInfo.SpawnTileType == TileID.Pearlstone || spawnInfo.SpawnTileType == TileID.HallowedGrass || spawnInfo.SpawnTileType == TileID.HallowedIce)) ?
+            => !spawnInfo.PlayerSafe && (spawnInfo.Player.ZoneHallow && spawnInfo.SpawnTileY > Main.rockLayer && !spawnInfo.Player.ZoneUnderworldHeight && (spawnInfo.SpawnTileType == TileID.Pearlsand || spawnInfo.SpawnTileType == TileID.Pearlstone || spawnInfo.SpawnTileType == TileID.HallowedGrass || spawnInfo.SpawnTileType == TileID.HallowedIce)) ?
             SpawnCondition.Cavern.Chance * 0.025f : 0f;
     }
 }

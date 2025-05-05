@@ -149,7 +149,7 @@ sealed class Eggplant : ModItem {
         }
 
         private class EggplantProjectile2 : ModProjectile {
-            private List<Vector2> _collisionPoints;
+            private List<Vector2> _stemPoints;
 
             private int ParentIdentity => (int)Projectile.ai[0];
 
@@ -221,7 +221,7 @@ sealed class Eggplant : ModItem {
                 Vector2 velocity = startPosition.DirectionTo(projectile.Center).RotatedBy(strength * parent.direction);
                 float lastRotation = rotation;
                 float progress = ScaleEaseFunction(Math.Abs(projectile.localAI[1]) / 180f);
-                List<Vector2> collisionPoints = [];
+                List<Vector2> stemPoints = [];
                 while (true) {
                     meInQueue++;
                     if (startPosition.Distance(projectile.Center) < height) {
@@ -231,14 +231,14 @@ sealed class Eggplant : ModItem {
                     Color stemColor = Lighting.GetColor(startPosition.ToTileCoordinates()) * opacity;
                     float stemRotation = velocity.ToRotation() + MathHelper.PiOver2;
                     Main.EntitySpriteDraw(stemTexture, startPosition - Main.screenPosition, stemSourceRectangle, stemColor, stemRotation, origin, scale, effects);
-                    collisionPoints.Add(startPosition);
+                    stemPoints.Add(startPosition);
                     float lerpAmount = MathHelper.Lerp(1f, 0.3f + Math.Max((10 - meInQueue) * 0.01f + 0f, 0), progress);
                     velocity = Vector2.Lerp(velocity, startPosition.DirectionTo(projectile.Center), lerpAmount);
                     startPosition += velocity * height;
                     secondFrameChosen = !secondFrameChosen;
                     lastRotation = stemRotation;
                 }
-                me._collisionPoints = collisionPoints;
+                me._stemPoints = stemPoints;
                 lastRotation += progress * MathHelper.PiOver4 * -parent.direction * strength;
                 if (me.IsEggplant) {
                     leafTexture = ModContent.Request<Texture2D>(parent.ModProjectile.Texture).Value;
@@ -250,7 +250,7 @@ sealed class Eggplant : ModItem {
                 else {
                     startPosition += (Vector2.UnitY * -height / 2f * scale).RotatedBy(lastRotation);
                 }
-                me._collisionPoints.Add(startPosition);
+                me._stemPoints.Add(startPosition);
                 Color color = Lighting.GetColor(startPosition.ToTileCoordinates()) * opacity;
                 switch (projectile.ai[2]) {
                     case 1f:
@@ -349,10 +349,24 @@ sealed class Eggplant : ModItem {
 
             public override void OnKill(int timeLeft) {
                 SoundEngine.PlaySound(SoundID.Grass with { PitchVariance = 0.1f }, Projectile.Center);
-                foreach (Vector2 collisionPoint in _collisionPoints) {
+                float speed = 1f;
+                switch (Projectile.ai[2]) {
+                    case 0f:
+                        speed *= 0.9f;
+                        break;
+                    case 1f:
+                        speed *= 1f;
+                        break;
+                    case 2f:
+                        speed *= 1f;
+                        break;
+                }
+                int direction = -Math.Sign(Projectile.localAI[0]);
+                Vector2 stemVelocity = Vector2.One.RotatedBy(Projectile.rotation + MathHelper.PiOver2 * direction) * 3f * speed;
+                foreach (Vector2 collisionPoint in _stemPoints) {
                     for (int i2 = 0; i2 < 5; i2++) {
                         Vector2 vector39 = collisionPoint - Vector2.One * 4;
-                        Dust obj2 = Main.dust[Dust.NewDust(vector39, 8, 8, DustID.Grass, 0f, 0f, 0, default, 1f + 0.1f * Main.rand.NextFloat())];
+                        Dust obj2 = Main.dust[Dust.NewDust(vector39, 8, 8, DustID.Grass, stemVelocity.X, stemVelocity.Y, 0, default, 1f + 0.1f * Main.rand.NextFloat())];
                         obj2.velocity *= 0.5f;
                         obj2.noGravity = true;
                         obj2.fadeIn = 0.5f;
@@ -367,7 +381,7 @@ sealed class Eggplant : ModItem {
                 SoundEngine.PlaySound(SoundID.Item7 with { PitchVariance = 0.2f }, Projectile.Center);
 
                 if (Projectile.owner == Main.myPlayer) {
-                    Vector2 velocity = Helper.VelocityToPoint(Projectile.Center, Vector2.One.RotatedBy(Projectile.rotation, Projectile.Center), 6f);
+                    Vector2 velocity = Helper.VelocityToPoint(Projectile.Center, Projectile.Center + Vector2.UnitY.RotatedBy(Projectile.rotation + MathHelper.PiOver2 * direction), 6f);
                     Projectile.NewProjectile(Projectile.GetSource_Death(), Projectile.Center, velocity, ModContent.ProjectileType<EggplantProjectile3>(), 
                         RoACompat.GetDruidicWeaponBasePotentialDamage(RoACompat.GetAttachedItemToDruidicProjectile(Projectile), Main.player[Projectile.owner]), Projectile.knockBack, Projectile.owner);
                 }

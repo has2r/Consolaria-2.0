@@ -347,7 +347,7 @@ sealed class Eggplant : ModItem {
             }
 
             public override void OnKill(int timeLeft) {
-                SoundEngine.PlaySound(SoundID.Grass with { PitchVariance = 0.1f }, Projectile.Center);
+                //SoundEngine.PlaySound(SoundID.Grass with { PitchVariance = 0.1f }, Projectile.Center);
                 float speed = 1f;
                 switch (Projectile.ai[2]) {
                     case 0f:
@@ -377,7 +377,7 @@ sealed class Eggplant : ModItem {
                     return;
                 }
 
-                SoundEngine.PlaySound(SoundID.Item7 with { PitchVariance = 0.2f }, Projectile.Center);
+                //SoundEngine.PlaySound(SoundID.Item7 with { PitchVariance = 0.2f }, Projectile.Center);
 
                 if (Projectile.owner == Main.myPlayer) {
                     Vector2 velocity = Helper.VelocityToPoint(Projectile.Center, Projectile.Center + Vector2.UnitY.RotatedBy(Projectile.rotation + MathHelper.PiOver2 * direction), 6f);

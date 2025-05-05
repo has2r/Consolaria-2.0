@@ -666,5 +666,7 @@ sealed class Eggplant : ModItem {
                 return;
             }
         }
+
+        orig(ref drawinfo);
     }
 }

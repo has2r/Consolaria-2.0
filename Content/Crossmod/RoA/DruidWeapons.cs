@@ -316,7 +316,6 @@ sealed class Eggplant : ModItem {
                         break;
                 }
                 Projectile.rotation = Projectile.AngleTo(parent.Center) - MathHelper.PiOver2;
-                Projectile.direction = parent.direction;
                 float add = (parent.ModProjectile as EggplantProjectile).RotationAdd;
                 float maxAdd = 0.1f;
                 add = MathHelper.Clamp(add, -maxAdd, maxAdd);
@@ -503,7 +502,7 @@ sealed class Eggplant : ModItem {
                         whoAmI = EggplantProjectile2.CreateMe(Projectile.GetSource_FromAI(), Projectile, MathHelper.PiOver2, 0f);
                         _childProjectiles.Add(Main.projectile[whoAmI]);
 
-                        Projectile.ai[1] = Main.rand.NextBool().ToDirectionInt();
+                        Projectile.ai[1] = Main.player[Projectile.owner].direction;
                         Projectile.netUpdate = true;
                     }
 

@@ -1170,6 +1170,11 @@ Mods: {
 				// DisplayName: Easter Bunny Staff
 				// Tooltip: Summons an easter bunny to fight for you
 			}
+
+			Eggplant: {
+				// DisplayName: Eggplant
+				// Tooltip: ""
+			}
 		}
 
 		NPCs: {
@@ -1439,6 +1444,9 @@ Mods: {
 			Explosion.DisplayName: Explosion
 			MythicalWyvernProjectile.DisplayName: Mythical Wyvern Projectile
 			MythicalWyvernKiteProjectile.DisplayName: Mythical Wyvern Kite Projectile
+			// EggplantProjectile.DisplayName: Eggplant Projectile
+			// EggplantProjectile2.DisplayName: Eggplant Projectile2
+			// EggplantProjectile3.DisplayName: Eggplant Projectile3
 		}
 
 		Tiles: {

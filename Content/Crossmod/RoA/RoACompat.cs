@@ -32,11 +32,11 @@ sealed class RoACompat : ModSystem {
     internal static ushort GetDruidicWeaponBasePotentialDamage(Item item, Player player) => (ushort)RiseOfAges?.Call("GetDruidicWeaponBasePotentialDamage", item, player);
 
     internal static void MakeProjectileDruidicDamageable(Projectile projectile) => RiseOfAges?.Call("MakeProjectileDruidicDamageable", projectile);
-    internal static void SetDruidicProjectileValues(Projectile projectile, bool shouldChargeWreath = true, bool shouldApplyAttachedItemDamage = true, float wreathFillingFine = 0f) {
+    internal static void SetDruidicProjectileValues(Projectile projectile, bool shouldChargeWreathOnDamage = true, bool shouldApplyAttachedNatureWeaponCurrentDamage = true, float wreathFillingFine = 0f) {
         MakeProjectileDruidicDamageable(projectile);
-        RiseOfAges?.Call("SetDruidicProjectileValues", projectile, shouldChargeWreath, shouldApplyAttachedItemDamage, wreathFillingFine);
+        RiseOfAges?.Call("SetDruidicProjectileValues", projectile, shouldChargeWreathOnDamage, shouldApplyAttachedNatureWeaponCurrentDamage, wreathFillingFine);
     }
 
-    internal static void SetAttachedItemToDruidicProjectile(Projectile projectile, Item item) => RiseOfAges?.Call("SetAttachedItemToDruidicProjectile", projectile, item);
-    internal static Item GetAttachedItemToDruidicProjectile(Projectile projectile) => (Item)RiseOfAges?.Call("GetAttachedItemToDruidicProjectile", projectile);
+    internal static void SetAttachedNatureWeaponToDruidicProjectile(Projectile projectile, Item item) => RiseOfAges?.Call("SetAttachedNatureWeaponToDruidicProjectile", projectile, item);
+    internal static Item GetAttachedNatureWeaponToDruidicProjectile(Projectile projectile) => (Item)RiseOfAges?.Call("GetAttachedNatureWeaponToDruidicProjectile", projectile);
 }

@@ -111,7 +111,7 @@ sealed class Eggplant_Root : ModProjectile {
 
         int whoAmI = Eggplant_Stem.CreateMe(Projectile.GetSource_FromAI(), Projectile, angle, meInQueue);
         Projectile projectile = Main.projectile[whoAmI];
-        RoACompat.SetAttachedItemToDruidicProjectile(projectile, RoACompat.GetAttachedItemToDruidicProjectile(Projectile));
+        RoACompat.SetAttachedNatureWeaponToDruidicProjectile(projectile, RoACompat.GetAttachedNatureWeaponToDruidicProjectile(Projectile));
     }
 
     public override void AI() {

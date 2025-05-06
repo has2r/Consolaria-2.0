@@ -245,8 +245,9 @@ sealed class Eggplant_Stem : ModProjectile {
 
             if (Projectile.owner == Main.myPlayer) {
                 Vector2 velocity = Helper.VelocityToPoint(Projectile.Center, Projectile.Center + Vector2.UnitY.RotatedBy(Projectile.rotation + MathHelper.PiOver2 * RotationDirection), 6f);
+                int potentialDamageOfAttachedWeapon = RoACompat.GetDruidicWeaponBasePotentialDamage(RoACompat.GetAttachedNatureWeaponToDruidicProjectile(Projectile), Main.player[Projectile.owner]);
                 Projectile.NewProjectile(Projectile.GetSource_Death(), Projectile.Center, velocity, ModContent.ProjectileType<Eggplant_Shoot>(),
-                    RoACompat.GetDruidicWeaponBasePotentialDamage(RoACompat.GetAttachedItemToDruidicProjectile(Projectile), Main.player[Projectile.owner]), Projectile.knockBack, Projectile.owner);
+                    potentialDamageOfAttachedWeapon, Projectile.knockBack, Projectile.owner);
             }
         }
         createEggplants();

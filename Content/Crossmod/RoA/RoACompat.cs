@@ -1,0 +1,42 @@
+﻿using Terraria;
+using Terraria.ModLoader;
+
+namespace Consolaria.Content.Crossmod.RoA;
+
+sealed class RoACompat : ModSystem {
+    private static Mod _riseOfAges;
+
+    internal static Mod RiseOfAges {
+        get {
+            if (_riseOfAges == null && ModLoader.TryGetMod("RoA", out Mod mod)) {
+                _riseOfAges = mod;
+            }
+            return _riseOfAges;
+        }
+    }
+
+    public static bool IsRoAEnabled => RiseOfAges != null;
+
+    public override void Unload() => _riseOfAges = null;
+
+    internal static void MakeItemNature(Item item) => RiseOfAges?.Call("MakeItemNature", item);
+    internal static void MakeItemDruidicWeapon(Item item) => RiseOfAges?.Call("MakeItemDruidicWeapon", item);
+    internal static void SetDruidicWeaponPotentialDamage(Item item, ushort potentialDamage) => RiseOfAges?.Call("SetDruidicWeaponPotentialDamage", item, potentialDamage);
+    internal static void SetDruidicWeaponFillingRate(Item item, float fillingRate) => RiseOfAges?.Call("SetDruidicWeaponFillingRate", item, fillingRate);
+    internal static void SetDruidicWeaponValues(Item item, ushort potentialDamage, float fillingRate) {
+        MakeItemDruidicWeapon(item);
+        SetDruidicWeaponPotentialDamage(item, potentialDamage);
+        SetDruidicWeaponFillingRate(item, fillingRate);
+    }
+
+    internal static ushort GetDruidicWeaponBasePotentialDamage(Item item, Player player) => (ushort)RiseOfAges?.Call("GetDruidicWeaponBasePotentialDamage", item, player);
+
+    internal static void MakeProjectileDruidicDamageable(Projectile projectile) => RiseOfAges?.Call("MakeProjectileDruidicDamageable", projectile);
+    internal static void SetDruidicProjectileValues(Projectile projectile, bool shouldChargeWreath = true, bool shouldApplyAttachedItemDamage = true, float wreathFillingFine = 0f) {
+        MakeProjectileDruidicDamageable(projectile);
+        RiseOfAges?.Call("SetDruidicProjectileValues", projectile, shouldChargeWreath, shouldApplyAttachedItemDamage, wreathFillingFine);
+    }
+
+    internal static void SetAttachedItemToDruidicProjectile(Projectile projectile, Item item) => RiseOfAges?.Call("SetAttachedItemToDruidicProjectile", projectile, item);
+    internal static Item GetAttachedItemToDruidicProjectile(Projectile projectile) => (Item)RiseOfAges?.Call("GetAttachedItemToDruidicProjectile", projectile);
+}

@@ -1447,6 +1447,9 @@ Mods: {
 			// EggplantProjectile.DisplayName: Eggplant Projectile
 			// EggplantProjectile2.DisplayName: Eggplant Projectile2
 			// EggplantProjectile3.DisplayName: Eggplant Projectile3
+			// Eggplant_Root.DisplayName: Eggplant_ Root
+			// Eggplant_Shoot.DisplayName: Eggplant_ Shoot
+			// Eggplant_Stem.DisplayName: Eggplant_ Stem
 		}
 
 		Tiles: {

@@ -12,13 +12,14 @@ sealed partial class Eggplant : ModItem {
 
     public override bool IsLoadingEnabled(Mod mod) => RoACompat.IsRoAEnabled;
 
+    public override void SetStaticDefaults() => Item.ResearchUnlockCount = 1;
+
     public override void SetDefaults() {
         int width = 30, height = 26;
         Item.width = width; Item.height = height;
 
         Item.useStyle = ItemUseStyleID.Shoot;
-        Item.useTime = 60;
-        Item.useAnimation = 60;
+        Item.useTime = Item.useAnimation = 60;
         Item.noUseGraphic = false;
         Item.useTurn = false;
         Item.autoReuse = false;
@@ -36,7 +37,7 @@ sealed partial class Eggplant : ModItem {
         Item.shootSpeed = 1f;
         Item.noMelee = true;
 
-        Item.value = Item.sellPrice(silver: 10);
+        Item.value = Item.sellPrice(gold: 1);
         Item.rare = ItemRarityID.Blue;
     }
 

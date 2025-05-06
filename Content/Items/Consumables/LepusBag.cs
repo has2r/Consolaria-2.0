@@ -1,3 +1,4 @@
+using Consolaria.Content.Crossmod.RoA.DruidWeapons;
 using Consolaria.Content.Items.Accessories;
 using Consolaria.Content.Items.Armor.Misc;
 using Consolaria.Content.Items.Vanity;
@@ -39,6 +40,9 @@ namespace Consolaria.Content.Items.Consumables {
         public override void ModifyItemLoot(ItemLoot itemLoot) {
             itemLoot.Add(new OneFromRulesRule(1, ItemDropRule.Common(ModContent.ItemType<OstaraHat>()), ItemDropRule.Common(ModContent.ItemType<OstaraJacket>()), ItemDropRule.Common(ModContent.ItemType<OstaraBoots>())));
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<EggCannon>(), 2));
+
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Eggplant>(), 3));
+
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<LepusMask>(), 8));
             itemLoot.Add(ItemDropRule.Common(ItemID.BunnyHood, 10));
 

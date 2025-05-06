@@ -56,8 +56,6 @@ sealed class Eggplant_Stem : ModProjectile {
         return null;
     }
 
-    public override void SetStaticDefaults() => ProjectileID.Sets.NeedsUUID[Type] = true;
-
     public static int CreateMe(IEntitySource source, Projectile parent, float baseAngle, float myTier) => Projectile.NewProjectile(source, parent.Center, Vector2.Zero, ModContent.ProjectileType<Eggplant_Stem>(), parent.damage, parent.knockBack, parent.owner, Projectile.GetByUUID(parent.owner, parent.whoAmI), baseAngle, myTier);
     public static bool DrawMe(Projectile projectile) {
         Eggplant_Stem me = projectile.ModProjectile as Eggplant_Stem;
@@ -132,6 +130,8 @@ sealed class Eggplant_Stem : ModProjectile {
 
     public override string Texture => "Consolaria/Assets/Textures/Empty";
     public override bool PreDraw(ref Color lightColor) => false;
+
+    public override void SetStaticDefaults() => ProjectileID.Sets.NeedsUUID[Type] = true;
 
     public override void SetDefaults() {
         bool shouldChargeWreath = true;
@@ -244,8 +244,6 @@ sealed class Eggplant_Stem : ModProjectile {
             if (!IsEggplant) {
                 return;
             }
-
-            SoundEngine.PlaySound(SoundID.Item7 with { PitchVariance = 0.2f }, Projectile.Center);
 
             if (Projectile.owner == Main.myPlayer) {
                 Vector2 velocity = Helper.VelocityToPoint(Projectile.Center, Projectile.Center + Vector2.UnitY.RotatedBy(Projectile.rotation + MathHelper.PiOver2 * RotationDirection), 6f);

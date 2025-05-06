@@ -43,7 +43,7 @@ sealed partial class Eggplant : ModItem {
 
     public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback) {
         position = player.Center;
-        Vector2 destination = player.GetViableMousePosition(240f, 150f);
+        Vector2 destination = Helper.GetLimitedPosition(player.Center, player.GetViableMousePosition(), 200f);
         while (!Collision.SolidCollision(position, 4, 4)) {
             if (Vector2.Distance(position, destination) < 60f) {
                 break;

@@ -26,7 +26,7 @@ sealed class Eggplant_Stem : ModProjectile {
 
     private int RotationDirection => -Math.Sign(Projectile.localAI[0]);
 
-    private bool Tier1Stem => Tier == 1f;
+    private bool Tier1Stem => Tier == 0f;
     private bool Tier2Stem => Tier == 1f;
     private bool IsEggplant => Tier == 2f;
     private float Length {

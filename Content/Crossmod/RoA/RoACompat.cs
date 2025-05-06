@@ -21,12 +21,9 @@ sealed class RoACompat : ModSystem {
 
     internal static void MakeItemNature(Item item) => RiseOfAges?.Call("MakeItemNature", item);
     internal static void MakeItemDruidicWeapon(Item item) => RiseOfAges?.Call("MakeItemDruidicWeapon", item);
-    internal static void SetDruidicWeaponPotentialDamage(Item item, ushort potentialDamage) => RiseOfAges?.Call("SetDruidicWeaponPotentialDamage", item, potentialDamage);
-    internal static void SetDruidicWeaponFillingRate(Item item, float fillingRate) => RiseOfAges?.Call("SetDruidicWeaponFillingRate", item, fillingRate);
-    internal static void SetDruidicWeaponValues(Item item, ushort potentialDamage, float fillingRate) {
+    internal static void SetDruidicWeaponValues(Item item, ushort potentialDamage, float fillingRateModifier = 1f) {
         MakeItemDruidicWeapon(item);
-        SetDruidicWeaponPotentialDamage(item, potentialDamage);
-        SetDruidicWeaponFillingRate(item, fillingRate);
+        RiseOfAges?.Call("SetDruidicWeaponValues", item, potentialDamage, fillingRateModifier);
     }
 
     internal static ushort GetDruidicWeaponBasePotentialDamage(Item item, Player player) => (ushort)RiseOfAges?.Call("GetDruidicWeaponBasePotentialDamage", item, player);

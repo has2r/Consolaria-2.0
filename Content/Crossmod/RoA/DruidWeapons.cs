@@ -46,6 +46,8 @@ sealed class RoACompat : ModSystem {
         MakeProjectileDruidicDamageable(projectile);
         RiseOfAges?.Call("SetDruidicProjectileValues", projectile, shouldChargeWreath, shouldApplyAttachedItemDamage, wreathFillingFine);
     }
+
+    internal static void SetAttachedItemToDruidicProjectile(Projectile projectile, Item item) => RiseOfAges?.Call("SetAttachedItemToDruidicProjectile", projectile, item);
     internal static Item GetAttachedItemToDruidicProjectile(Projectile projectile) => (Item)RiseOfAges?.Call("GetAttachedItemToDruidicProjectile", projectile);
 }
 
@@ -149,7 +151,7 @@ sealed class Eggplant : ModItem {
         }
 
         private class EggplantProjectile2 : ModProjectile {
-            private List<Vector2> _stemPoints;
+            private List<Vector2> _stemPoints = null;
 
             private int ParentIdentity => (int)Projectile.ai[0];
 
@@ -178,11 +180,12 @@ sealed class Eggplant : ModItem {
                 }
                 goto exit;
                 exit:
-                Projectile.Kill();
                 return null;
             }
 
-            public static int CreateMe(IEntitySource source, Projectile parent, float baseAngle, float length) => Projectile.NewProjectile(source, parent.Center, Vector2.Zero, ModContent.ProjectileType<EggplantProjectile2>(), parent.damage, parent.knockBack, parent.owner, Projectile.GetByUUID(parent.owner, parent.whoAmI), baseAngle, length);
+            public override void SetStaticDefaults() => ProjectileID.Sets.NeedsUUID[Type] = true;
+
+            public static int CreateMe(IEntitySource source, Projectile parent, float baseAngle, float meInQueue) => Projectile.NewProjectile(source, parent.Center, Vector2.Zero, ModContent.ProjectileType<EggplantProjectile2>(), parent.damage, parent.knockBack, parent.owner, Projectile.GetByUUID(parent.owner, parent.whoAmI), baseAngle, meInQueue);
             public static bool DrawMe(Projectile projectile) {
                 if (projectile.ModProjectile is not EggplantProjectile2 me) {
                     return false;
@@ -291,16 +294,13 @@ sealed class Eggplant : ModItem {
                 Projectile.appliesImmunityTimeOnSingleHits = true;
                 Projectile.usesIDStaticNPCImmunity = true;
                 Projectile.idStaticNPCHitCooldown = 30;
+
+                Projectile.netImportant = true;
             }
 
             public override void AI() {
                 Projectile parent = GetParent();
-                if (parent == null) {
-                    Projectile.Kill();
-                    return;
-                }
-                EggplantProjectile parentModProjectile = parent.ModProjectile as EggplantProjectile;
-                if (parentModProjectile == null) {
+                if (parent == null || !parent.active || parent.ModProjectile is not EggplantProjectile parentModProjectile) {
                     Projectile.Kill();
                     return;
                 }
@@ -316,7 +316,7 @@ sealed class Eggplant : ModItem {
                         break;
                 }
                 Projectile.rotation = Projectile.AngleTo(parent.Center) - MathHelper.PiOver2;
-                float add = (parent.ModProjectile as EggplantProjectile).RotationAdd;
+                float add = parentModProjectile.RotationAdd;
                 float maxAdd = 0.1f;
                 add = MathHelper.Clamp(add, -maxAdd, maxAdd);
                 Projectile.scale = parent.scale;
@@ -361,15 +361,17 @@ sealed class Eggplant : ModItem {
                         break;
                 }
                 int direction = -Math.Sign(Projectile.localAI[0]);
-                Vector2 stemVelocity = Vector2.One.RotatedBy(Projectile.rotation + MathHelper.PiOver2 * direction) * 3f * speed;
-                foreach (Vector2 collisionPoint in _stemPoints) {
-                    for (int i2 = 0; i2 < 5; i2++) {
-                        Vector2 vector39 = collisionPoint - Vector2.One * 4;
-                        Dust obj2 = Main.dust[Dust.NewDust(vector39, 8, 8, DustID.Grass, stemVelocity.X, stemVelocity.Y, 0, default, 1f + 0.1f * Main.rand.NextFloat())];
-                        obj2.velocity *= 0.5f;
-                        obj2.noGravity = true;
-                        obj2.fadeIn = 0.5f;
-                        obj2.noLight = true;
+                if (_stemPoints != null) {
+                    Vector2 stemVelocity = Vector2.One.RotatedBy(Projectile.rotation + MathHelper.PiOver2 * direction) * 3f * speed;
+                    foreach (Vector2 collisionPoint in _stemPoints) {
+                        for (int i2 = 0; i2 < 5; i2++) {
+                            Vector2 vector39 = collisionPoint - Vector2.One * 4;
+                            Dust obj2 = Main.dust[Dust.NewDust(vector39, 8, 8, DustID.Grass, stemVelocity.X, stemVelocity.Y, 0, default, 1f + 0.1f * Main.rand.NextFloat())];
+                            obj2.velocity *= 0.5f;
+                            obj2.noGravity = true;
+                            obj2.fadeIn = 0.5f;
+                            obj2.noLight = true;
+                        }
                     }
                 }
 
@@ -377,7 +379,7 @@ sealed class Eggplant : ModItem {
                     return;
                 }
 
-                //SoundEngine.PlaySound(SoundID.Item7 with { PitchVariance = 0.2f }, Projectile.Center);
+                SoundEngine.PlaySound(SoundID.Item7 with { PitchVariance = 0.2f }, Projectile.Center);
 
                 if (Projectile.owner == Main.myPlayer) {
                     Vector2 velocity = Helper.VelocityToPoint(Projectile.Center, Projectile.Center + Vector2.UnitY.RotatedBy(Projectile.rotation + MathHelper.PiOver2 * direction), 6f);
@@ -396,7 +398,6 @@ sealed class Eggplant : ModItem {
         }
 
         private CenterLeafData[] _centerLeaves;
-        private HashSet<Projectile> _childProjectiles;
 
         public float RotationAdd => (Projectile.ai[0] + Projectile.ai[2]) * 0.015f * Projectile.direction;
 
@@ -409,8 +410,16 @@ sealed class Eggplant : ModItem {
         public static float OpacityEaseFunction(float value) => value > 0.5f ? OpacityEaseFunctionOut(value * 2f - 1f) / 2f + 0.5f : OpacityEaseFunctionIn(value * 2f) / 2f;
 
         public override bool PreDraw(ref Color lightColor) {
-            foreach (Projectile projectile in _childProjectiles) {
-                EggplantProjectile2.DrawMe(projectile);
+            foreach (Projectile projectile in Main.ActiveProjectiles) {
+                if (projectile.owner != Projectile.owner) {
+                    continue;
+                }
+                if (projectile.type != ModContent.ProjectileType<EggplantProjectile2>()) {
+                    continue;
+                }
+                if ((int)projectile.ai[0] == Projectile.GetByUUID(Projectile.owner, Projectile.whoAmI)) {
+                    EggplantProjectile2.DrawMe(projectile);
+                }
             }
 
             Texture2D leafTexture = ModContent.Request<Texture2D>(Texture + "_Leaf").Value;
@@ -429,6 +438,8 @@ sealed class Eggplant : ModItem {
 
             return false;
         }
+
+        public override void SetStaticDefaults() => ProjectileID.Sets.NeedsUUID[Type] = true;
 
         public override void SetDefaults() {
             bool shouldChargeWreath = true;
@@ -451,9 +462,21 @@ sealed class Eggplant : ModItem {
             Projectile.localNPCHitCooldown = -1;
 
             Projectile.tileCollide = false;
+
+            Projectile.netImportant = true;
         }
 
         public override bool ShouldUpdatePosition() => false;
+
+        private void CreateChildProjectile(float angle, float meInQueue) {
+            if (Projectile.owner != Main.myPlayer) {
+                return;
+            }
+
+            int whoAmI = EggplantProjectile2.CreateMe(Projectile.GetSource_FromAI(), Projectile, angle, meInQueue);
+            Projectile projectile = Main.projectile[whoAmI];
+            RoACompat.SetAttachedItemToDruidicProjectile(projectile, RoACompat.GetAttachedItemToDruidicProjectile(Projectile));
+        }
 
         public override void AI() {
             Player player = Main.player[Projectile.owner];
@@ -463,49 +486,37 @@ sealed class Eggplant : ModItem {
                 Projectile.Opacity += 0.1f;
             }
 
-            if (Projectile.owner == Main.myPlayer) {
-                if (Projectile.ai[2] >= 1f && Projectile.localAI[1] == 0f) {
-                    Projectile.localAI[1] = 1f;
-                    int whoAmI = EggplantProjectile2.CreateMe(Projectile.GetSource_FromAI(), Projectile, MathHelper.PiOver4 - MathHelper.PiOver4 / 3f, 1f);
-                    _childProjectiles.Add(Main.projectile[whoAmI]);
-                    whoAmI = EggplantProjectile2.CreateMe(Projectile.GetSource_FromAI(), Projectile, MathHelper.PiOver2 + MathHelper.PiOver4 - MathHelper.PiOver4 / 3f, 1f);
-                    _childProjectiles.Add(Main.projectile[whoAmI]);
-                }
-                if (Projectile.ai[2] >= 2f && Projectile.localAI[1] == 1f) {
-                    Projectile.localAI[1] = 2f;
-                    int whoAmI = EggplantProjectile2.CreateMe(Projectile.GetSource_FromAI(), Projectile, MathHelper.PiOver4, 2f);
-                    _childProjectiles.Add(Main.projectile[whoAmI]);
-                    whoAmI = EggplantProjectile2.CreateMe(Projectile.GetSource_FromAI(), Projectile, MathHelper.PiOver2 + MathHelper.PiOver4, 2f);
-                    _childProjectiles.Add(Main.projectile[whoAmI]);
-                }
+            if (Projectile.ai[2] >= 1f && Projectile.localAI[1] == 0f) {
+                Projectile.localAI[1] = 1f;
+
+                CreateChildProjectile(MathHelper.PiOver4 - MathHelper.PiOver4 / 3f, 1f);
+                CreateChildProjectile(MathHelper.PiOver2 + MathHelper.PiOver4 - MathHelper.PiOver4 / 3f, 1f);
+            }
+            if (Projectile.ai[2] >= 2f && Projectile.localAI[1] == 1f) {
+                Projectile.localAI[1] = 2f;
+
+                CreateChildProjectile(MathHelper.PiOver4, 2f);
+                CreateChildProjectile(MathHelper.PiOver2 + MathHelper.PiOver4, 2f);
             }
 
             void init() {
                 if (Projectile.localAI[0] == 0f) {
                     Projectile.localAI[0] = 1f;
 
-                    _childProjectiles = [];
-
-                    if (Projectile.owner == Main.myPlayer) {
-                        for (int num163 = 0; num163 < 10; num163++) {
-                            Dust obj13 = Main.dust[Dust.NewDust(Projectile.Center, 2, 2, DustID.Grass, Projectile.velocity.X, Projectile.velocity.Y, 0)];
-                            obj13.velocity = (Main.rand.NextFloatDirection() * (float)Math.PI).ToRotationVector2() * 2f + Projectile.velocity.SafeNormalize(Vector2.Zero) * 2f;
-                            obj13.scale = 0.9f;
-                            obj13.fadeIn = 1.1f;
-                            obj13.position = Projectile.Center - Projectile.velocity * 2.5f;
-                            obj13.velocity *= 0.75f;
-                            obj13.velocity += Projectile.velocity / 2f;
-                        }
-
-                        int whoAmI = EggplantProjectile2.CreateMe(Projectile.GetSource_FromAI(), Projectile, 0f, 0f);
-                        _childProjectiles.Add(Main.projectile[whoAmI]);
-                        whoAmI = EggplantProjectile2.CreateMe(Projectile.GetSource_FromAI(), Projectile, MathHelper.PiOver2, 0f);
-                        _childProjectiles.Add(Main.projectile[whoAmI]);
-
-                        Projectile.ai[1] = Main.player[Projectile.owner].direction;
-                        Projectile.netUpdate = true;
+                    for (int num163 = 0; num163 < 10; num163++) {
+                        Dust obj13 = Main.dust[Dust.NewDust(Projectile.Center, 2, 2, DustID.Grass, Projectile.velocity.X, Projectile.velocity.Y, 0)];
+                        obj13.velocity = (Main.rand.NextFloatDirection() * (float)Math.PI).ToRotationVector2() * 2f + Projectile.velocity.SafeNormalize(Vector2.Zero) * 2f;
+                        obj13.scale = 0.9f;
+                        obj13.fadeIn = 1.1f;
+                        obj13.position = Projectile.Center - Projectile.velocity * 2.5f;
+                        obj13.velocity *= 0.75f;
+                        obj13.velocity += Projectile.velocity / 2f;
                     }
 
+                    CreateChildProjectile(0f, 0f);
+                    CreateChildProjectile(MathHelper.PiOver2, 0f);
+
+                    Projectile.ai[1] = Main.player[Projectile.owner].direction;
                     Projectile.direction = (int)Projectile.ai[1];
 
                     _centerLeaves = new CenterLeafData[centerLeafCount];

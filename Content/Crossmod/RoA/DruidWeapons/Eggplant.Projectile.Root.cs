@@ -100,8 +100,6 @@ sealed class Eggplant_Root : ModProjectile {
         Projectile.localNPCHitCooldown = -1;
 
         Projectile.tileCollide = false;
-
-        Projectile.netImportant = true;
     }
 
     public override bool ShouldUpdatePosition() => false;

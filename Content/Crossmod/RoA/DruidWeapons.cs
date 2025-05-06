@@ -62,7 +62,7 @@ sealed class Eggplant : ModItem {
         Item.noUseGraphic = false;
         Item.useTurn = false;
         Item.autoReuse = false;
-        Item.UseSound = SoundID.Item7;
+        Item.UseSound = new SoundStyle($"{nameof(Consolaria)}/Assets/Sounds/Eggplant");
 
         int baseDamage = 15;
         float knockBack = 3f;

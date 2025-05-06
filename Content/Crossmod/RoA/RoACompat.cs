@@ -32,7 +32,7 @@ sealed class RoACompat : ModSystem {
 
     internal static void MakeProjectileDruidic(Projectile projectile) => RiseOfAges?.Call("MakeProjectileDruidic", projectile);
     internal static void SetDruidicProjectileValues(Projectile projectile, bool shouldChargeWreathOnDamage = true, bool shouldApplyAttachedNatureWeaponCurrentDamage = true, float wreathFillingFine = 0f) {
-        MakeProjectileDruidicDamageable(projectile);
+        MakeProjectileDruidic(projectile);
         RiseOfAges?.Call("SetDruidicProjectileValues", projectile, shouldChargeWreathOnDamage, shouldApplyAttachedNatureWeaponCurrentDamage, wreathFillingFine);
     }
 

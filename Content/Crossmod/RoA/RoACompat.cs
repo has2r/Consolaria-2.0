@@ -26,9 +26,11 @@ sealed class RoACompat : ModSystem {
         RiseOfAges?.Call("SetDruidicWeaponValues", item, potentialDamage, fillingRateModifier);
     }
 
+    internal static ushort GetDruidicWeaponBaseDamage(Item item, Player player) => (ushort)RiseOfAges?.Call("GetDruidicWeaponBaseDamage", item, player);
     internal static ushort GetDruidicWeaponBasePotentialDamage(Item item, Player player) => (ushort)RiseOfAges?.Call("GetDruidicWeaponBasePotentialDamage", item, player);
+    internal static ushort GetDruidicWeaponCurrentDamage(Item item, Player player) => (ushort)RiseOfAges?.Call("GetDruidicWeaponCurrentDamage", item, player);
 
-    internal static void MakeProjectileDruidicDamageable(Projectile projectile) => RiseOfAges?.Call("MakeProjectileDruidicDamageable", projectile);
+    internal static void MakeProjectileDruidic(Projectile projectile) => RiseOfAges?.Call("MakeProjectileDruidic", projectile);
     internal static void SetDruidicProjectileValues(Projectile projectile, bool shouldChargeWreathOnDamage = true, bool shouldApplyAttachedNatureWeaponCurrentDamage = true, float wreathFillingFine = 0f) {
         MakeProjectileDruidicDamageable(projectile);
         RiseOfAges?.Call("SetDruidicProjectileValues", projectile, shouldChargeWreathOnDamage, shouldApplyAttachedNatureWeaponCurrentDamage, wreathFillingFine);

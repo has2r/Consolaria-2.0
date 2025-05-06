@@ -1,11 +1,12 @@
-﻿using Microsoft.Xna.Framework.Graphics;
-using System;
+﻿using System;
 
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+
+using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent;
-using Terraria;
 using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
 
 namespace Consolaria.Content.Crossmod.RoA.DruidWeapons;
 

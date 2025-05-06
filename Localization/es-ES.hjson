@@ -1444,12 +1444,9 @@ Mods: {
 			Explosion.DisplayName: Explosion
 			MythicalWyvernProjectile.DisplayName: Mythical Wyvern Projectile
 			MythicalWyvernKiteProjectile.DisplayName: Mythical Wyvern Kite Projectile
-			// EggplantProjectile.DisplayName: Eggplant Projectile
-			// EggplantProjectile2.DisplayName: Eggplant Projectile2
-			// EggplantProjectile3.DisplayName: Eggplant Projectile3
-			// Eggplant_Root.DisplayName: Eggplant_ Root
-			// Eggplant_Shoot.DisplayName: Eggplant_ Shoot
-			// Eggplant_Stem.DisplayName: Eggplant_ Stem
+			// Eggplant_Root.DisplayName: Eggplant
+			// Eggplant_Shoot.DisplayName: Eggplant
+			// Eggplant_Stem.DisplayName: Eggplant
 		}
 
 		Tiles: {

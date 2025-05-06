@@ -15,7 +15,7 @@ namespace Consolaria.Content.Crossmod.RoA.DruidWeapons;
 sealed class Eggplant_Stem : ModProjectile {
     private const float MAXANGLE = 180f;
 
-    private List<Vector2> _stemPoints = null;
+    private List<Vector2> _stemPoints = [];
 
     private ref float UnwrappedRotationValue => ref Projectile.localAI[0];
     private ref float WrappedRotationValue => ref Projectile.localAI[1];
@@ -222,7 +222,7 @@ sealed class Eggplant_Stem : ModProjectile {
                 speed *= 0.9f;
             }
 
-            if (_stemPoints != null) {
+            if (_stemPoints.Count > 0) {
                 Vector2 stemVelocity = Vector2.One.RotatedBy(Projectile.rotation + MathHelper.PiOver2 * RotationDirection) * 3f * speed;
                 foreach (Vector2 collisionPoint in _stemPoints) {
                     for (int i2 = 0; i2 < 5; i2++) {

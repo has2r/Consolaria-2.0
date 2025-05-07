@@ -12,6 +12,8 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Crossmod.RoA.DruidWeapons;
 
 sealed class Eggplant_Stem : ModProjectile {
+    public override bool IsLoadingEnabled(Mod mod) => RoACompat.IsRoAEnabled;
+
     public const float MAXANGLE = 180f;
 
     private List<Vector2> _stemPoints = [];

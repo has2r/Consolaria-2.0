@@ -10,6 +10,8 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Crossmod.RoA.DruidWeapons;
 
 sealed class Eggplant_Shoot : ModProjectile {
+    public override bool IsLoadingEnabled(Mod mod) => RoACompat.IsRoAEnabled;
+
     public ref float ApplyPhysicsTimer => ref Projectile.ai[0];
 
     public override string Texture => Eggplant.Path + "_Shoot";

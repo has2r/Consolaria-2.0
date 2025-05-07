@@ -5,7 +5,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 using Terraria;
-using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -13,23 +12,23 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Crossmod.RoA.DruidWeapons;
 
 sealed class Eggplant_Stem : ModProjectile {
-    private const float MAXANGLE = 180f;
+    public const float MAXANGLE = 180f;
 
     private List<Vector2> _stemPoints = [];
 
-    private ref float UnwrappedRotationValue => ref Projectile.localAI[0];
-    private ref float WrappedRotationValue => ref Projectile.localAI[1];
+    public ref float UnwrappedRotationValue => ref Projectile.localAI[0];
+    public ref float WrappedRotationValue => ref Projectile.localAI[1];
 
-    private int ParentIdentity => (int)Projectile.ai[0];
-    private float BaseAngle => Projectile.ai[1];
-    private float Tier => Projectile.ai[2];
+    public int ParentIdentity => (int)Projectile.ai[0];
+    public float BaseAngle => Projectile.ai[1];
+    public float Tier => Projectile.ai[2];
 
-    private int RotationDirection => -Math.Sign(Projectile.localAI[0]);
+    public int RotationDirection => -Math.Sign(Projectile.localAI[0]);
 
-    private bool Tier1Stem => Tier == 0f;
-    private bool Tier2Stem => Tier == 1f;
-    private bool IsEggplant => Tier == 2f;
-    private float Length {
+    public bool Tier1Stem => Tier == 0f;
+    public bool Tier2Stem => Tier == 1f;
+    public bool IsEggplant => Tier == 2f;
+    public float Length {
         get {
             float result = 45f;
             if (Tier2Stem) {
@@ -42,7 +41,7 @@ sealed class Eggplant_Stem : ModProjectile {
         }
     }
 
-    private Projectile GetParent() {
+    public Projectile GetParent() {
         int byUUID = Projectile.GetByUUID(Projectile.owner, ParentIdentity);
         if (byUUID == -1) {
             goto exit;

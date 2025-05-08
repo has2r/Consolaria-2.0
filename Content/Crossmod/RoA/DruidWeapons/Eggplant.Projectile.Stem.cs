@@ -12,8 +12,6 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Crossmod.RoA.DruidWeapons;
 
 sealed class Eggplant_Stem : ModProjectile {
-    public override bool IsLoadingEnabled(Mod mod) => RoACompat.IsRoAEnabled;
-
     public const float MAXANGLE = 180f;
 
     private List<Vector2> _stemPoints = [];
@@ -131,6 +129,8 @@ sealed class Eggplant_Stem : ModProjectile {
 
     public override string Texture => "Consolaria/Assets/Textures/Empty";
     public override bool PreDraw(ref Color lightColor) => false;
+
+    public override bool IsLoadingEnabled(Mod mod) => RoACompat.IsRoAEnabled;
 
     public override void SetStaticDefaults() => ProjectileID.Sets.NeedsUUID[Type] = true;
 

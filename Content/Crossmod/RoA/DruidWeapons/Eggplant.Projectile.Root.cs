@@ -10,8 +10,6 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Crossmod.RoA.DruidWeapons;
 
 sealed class Eggplant_Root : ModProjectile {
-    public override bool IsLoadingEnabled(Mod mod) => RoACompat.IsRoAEnabled;
-
     public const int TIMELEFT = 480;
 
     private struct CenterLeafData {
@@ -78,6 +76,8 @@ sealed class Eggplant_Root : ModProjectile {
 
         return false;
     }
+
+    public override bool IsLoadingEnabled(Mod mod) => RoACompat.IsRoAEnabled;
 
     public override void SetStaticDefaults() => ProjectileID.Sets.NeedsUUID[Type] = true;
 

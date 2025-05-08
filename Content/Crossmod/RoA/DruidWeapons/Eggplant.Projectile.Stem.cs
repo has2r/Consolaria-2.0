@@ -128,6 +128,7 @@ sealed class Eggplant_Stem : ModProjectile {
     }
 
     public override string Texture => "Consolaria/Assets/Textures/Empty";
+
     public override bool PreDraw(ref Color lightColor) => false;
 
     public override bool IsLoadingEnabled(Mod mod) => RoACompat.IsRoAEnabled;

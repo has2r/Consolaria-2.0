@@ -1,22 +1,4 @@
-- Rebalanced boss health scaling in multiplayer and potentially fixed incorrect spawning & despawning
-- Significantly changed spawn rates for rare enemy variants
-- Improved Spectral Elemental effects and fixed incorrect spawn conditions that prevented it from appearing
-- Added a custom Valentine's Day menu theme with the original logo
-- Added local hit cooldown for the Eye of Ocram projectiles, meaning that all lasers in a spread can deal damage to the same target
-- Reduced damage and slightly increased the spread angle of the projectiles to compensate for the change
-- Drastically reduced the damage of the Arch Wyvern flame attack
-- Reduced the Cursed Stuffing drop rate
-- Replaced Mythical Lion Vanity set sprites with their updated Chinese Terraria variants
-- Made tile map entries use vanilla text for consistency
-- Made it so McMoneypants teleports to the King Statue instead of the Queen Statue
-- Updated gore sprites for Turkor and Chocolate Eggs
-- Changed the behavior of Chocolate Eggs (created by Ostara's Gift): now they have to be broken before the time runs out
-- Added an extremely low chance to discover a rare egg
-- Fixed Chocolate eggs dropping stacked pickups, which didn't actually provide stacked effects
-- Fixed incorrect drawing offset for Banners
-- Fixed selling condition issues that caused Wishbone, Spicy Sauce and Spectral Arrows to be unavailable for purchase
-- Fixed incorrect Shimmer recipes for the Ancient Hero's set 
-- Fixed Arch Demon not spawning in Remix worlds
-- Fixed Lepus despawning message being a duplicate of Ocram's
-- Fixed Mc MoneyPants attack projectiles invisibility bug
-- Added Brazilian Portuguese localization
+- Added Easter Bunny Staff, a summoner weapon dropped by Lepus
+- Added Eggplant, a druid weapond dropped by Lepus (Rise of Ages cross-mod content)
+- Fixed Fargo's Souls Pyramid generation getting overwritten
+- Made Shadow Hammer, Flesh Axe and Spectral Elemental spawn conditions consistent with vanilla

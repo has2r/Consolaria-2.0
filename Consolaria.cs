@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Reflection;
-
 using Consolaria.Common;
 using Consolaria.Content.Items.Placeable;
 using Consolaria.Content.Items.Weapons.Melee;
@@ -11,6 +7,10 @@ using Consolaria.Content.Tiles;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+
+using System;
+using System.Collections.Generic;
+using System.Reflection;
 
 using Terraria;
 using Terraria.DataStructures;
@@ -25,7 +25,7 @@ using Terraria.WorldBuilding;
 using static Terraria.Graphics.FinalFractalHelper;
 
 namespace Consolaria {
-    public class Consolaria : Mod {
+    public partial class Consolaria : Mod {
         public override void Load() {
             if (Main.dedServ) {
                 return;

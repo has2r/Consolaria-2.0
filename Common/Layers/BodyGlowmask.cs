@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Consolaria.Content.Items.Armor.Ranged;
+
+using Microsoft.Xna.Framework;
 
 using System;
 using System.Collections.Generic;
@@ -25,6 +27,11 @@ namespace Consolaria {
         public override void ModifyDrawInfo(ref PlayerDrawSet drawInfo) {
             if (!BodyColor.TryGetValue(Player.body, out Func<Color> color))
                 return;
+            var drawPlayer = drawInfo.drawPlayer;
+            if (drawPlayer.body == EquipLoader.GetEquipSlot(Mod, nameof(TitanMail), EquipType.Body) &&
+                drawPlayer.GetModPlayer<TitanPlayer>().titanPower2) {
+                color = () => { return Color.Transparent; };
+            }
             drawInfo.bodyGlowColor = color();
             drawInfo.armGlowColor = color();
         }

@@ -17,11 +17,15 @@ namespace Consolaria.Content.Structures;
 
 sealed class DesertSecondRoom : ILoadable {
     private class DesertSecondRoom_ReplaceVanillaPass : ModSystem {
+        public static byte RoomCounts { get; internal set; }
+
+        public override void PostWorldGen() {
+            RoomCounts = 0;
+        }
+
         public override void ModifyWorldGenTasks(List<GenPass> tasks, ref double totalWeight) {
             int genIndexToReplace = tasks.FindIndex(genpass => genpass.Name.Equals("Pyramids"));
-            if (!ModLoader.HasMod("FargowiltasSouls")) {
-                tasks.RemoveAt(genIndexToReplace);
-            }
+            tasks.RemoveAt(genIndexToReplace);
             tasks.Insert(genIndexToReplace, new PassLegacy("Pyramids", Pyramids, 0.3045f));
         }
 
@@ -204,6 +208,11 @@ sealed class DesertSecondRoom : ILoadable {
                     }
 
                     // Second pyramid loot room
+                    bool canPlace = genRand.NextChance(1.0 / ((double)DesertSecondRoom_ReplaceVanillaPass.RoomCounts + 1));
+                    if (canPlace) {
+                        DesertSecondRoom_ReplaceVanillaPass.RoomCounts++;
+                    }
+
                     int lootRoomSizeX2 = genRand.Next(6, 8);
                     int lootRoomSizeY2 = genRand.Next(18, 25);
                     lootRoomSizeY2 -= genRand.Next(lootRoomSizeY2 / 4, lootRoomSizeY2 / 3);
@@ -213,31 +222,34 @@ sealed class DesertSecondRoom : ILoadable {
                     int xOffset = xOffsetExtra * -direction;
                     int x2 = x + xOffset;
                     int yOffsetExtra = genRand.Next(num19_2 / 6, num19_2 - 5);
-                    while (lootRoomSizeY2 > 0) {
-                        for (int y = num10 - lootRoomSizeX2 + num11; y <= num10 + num11 + 1; y++) {
-                            int y2 = y + yOffsetExtra;
-                            if (lootRoomSizeY2 == num19_2 || lootRoomSizeY2 == 1) {
-                                if (y >= num10 - lootRoomSizeX2 + num11 + 2) {
-                                    // Entrance to main room
-                                    Tile tile = Main.tile[x2, y2];
-                                    tile.HasTile = false;
-                                }
-                            }
-                            else if (lootRoomSizeY2 == num19_2 - 1 || lootRoomSizeY2 == 2 || lootRoomSizeY2 == num19_2 - 2 || lootRoomSizeY2 == 3) {
-                                if (y >= num10 - lootRoomSizeX2 + num11 + 1) {
-                                    Tile tile = Main.tile[x2, y2];
-                                    tile.HasTile = false;
-                                }
-                            }
-                            else {
-                                // Loot room
-                                Tile tile = Main.tile[x2, y2];
-                                tile.HasTile = false;
-                            }
-                        }
 
-                        lootRoomSizeY2--;
-                        x2 += direction;
+                    if (canPlace) {
+                        while (lootRoomSizeY2 > 0) {
+                            for (int y = num10 - lootRoomSizeX2 + num11; y <= num10 + num11 + 1; y++) {
+                                int y2 = y + yOffsetExtra;
+                                if (lootRoomSizeY2 == num19_2 || lootRoomSizeY2 == 1) {
+                                    if (y >= num10 - lootRoomSizeX2 + num11 + 2) {
+                                        // Entrance to main room
+                                        Tile tile = Main.tile[x2, y2];
+                                        tile.HasTile = false;
+                                    }
+                                }
+                                else if (lootRoomSizeY2 == num19_2 - 1 || lootRoomSizeY2 == 2 || lootRoomSizeY2 == num19_2 - 2 || lootRoomSizeY2 == 3) {
+                                    if (y >= num10 - lootRoomSizeX2 + num11 + 1) {
+                                        Tile tile = Main.tile[x2, y2];
+                                        tile.HasTile = false;
+                                    }
+                                }
+                                else {
+                                    // Loot room
+                                    Tile tile = Main.tile[x2, y2];
+                                    tile.HasTile = false;
+                                }
+                            }
+
+                            lootRoomSizeY2--;
+                            x2 += direction;
+                        }
                     }
 
                     // Main loot room content
@@ -285,35 +297,22 @@ sealed class DesertSecondRoom : ILoadable {
                     }
 
                     // Second loot room content
-                    num22 = x2 - direction;
-                    num23 = num22;
-                    num24 = x2;
-                    if (num22 > x2) {
-                        num23 = x2;
-                        num24 = num22;
-                    }
+                    if (canPlace) {
+                        num22 = x2 - direction;
+                        num23 = num22;
+                        num24 = x2;
+                        if (num22 > x2) {
+                            num23 = x2;
+                            num24 = num22;
+                        }
 
-                    int num25_2 = genRand.Next(3);
-                    if (num25_2 == 0)
-                        num25_2 = genRand.Next(3);
+                        int num25_2 = genRand.Next(3);
+                        if (num25_2 == 0)
+                            num25_2 = genRand.Next(3);
 
-                    if (Main.tenthAnniversaryWorld && num25_2 == 0)
-                        num25_2 = 1;
+                        if (Main.tenthAnniversaryWorld && num25_2 == 0)
+                            num25_2 = 1;
 
-                    switch (num25_2) {
-                        case 0:
-                            num25_2 = 848;
-                            break;
-                        case 1:
-                            num25_2 = 857;
-                            break;
-                        case 2:
-                            num25_2 = 934;
-                            break;
-                    }
-
-                    while (num25_2 == num25) {
-                        num25_2 = genRand.Next(3);
                         switch (num25_2) {
                             case 0:
                                 num25_2 = 848;
@@ -325,166 +324,192 @@ sealed class DesertSecondRoom : ILoadable {
                                 num25_2 = 934;
                                 break;
                         }
-                    }
 
-                    int num10_2 = num10 + yOffsetExtra;
-                    int num10_21 = num10_2;
-                    int startX = (num23 + num24) / 2 + lootRoomSizeY2 * -direction * 2;
-                    int halfSizeX = num19_2 * -direction / 2;
-                    int centerX = startX + halfSizeX;
-                    int endX = centerX + halfSizeX;
-                    while (Main.tile[centerX, num10_2].HasTile) {
-                        num10_2++;
-                    }
-                    int startY = num10_2;
-                    int bottomY = startY;
-                    while (!Main.tile[centerX, bottomY].HasTile) {
-                        bottomY++;
-                    }
-                    bottomY -= 1;
-
-                    int minX = Math.Min(startX, endX);
-                    int maxX = Math.Max(startX, endX);
-                    for (int checkX = minX - 3; checkX < maxX + 3; checkX++) {
-                        for (int checkY = startY - 3; checkY < bottomY + 3; checkY++) {
-                            Main.tile[checkX, checkY].LiquidAmount = 0;
-                        }
-                    }
-
-                    WorldGen.AddBuriedChest(centerX + 1, bottomY, num25_2, notNearOtherChests: false, 1, trySlope: false, 0);
-
-                    if (ModContent.GetInstance<ConsolariaConfig>().pyramidMessageLoot) {
-                        int index = 0;
-                        int getTypeToPlaceByType() {
-                            switch (index) {
+                        while (num25_2 == num25) {
+                            num25_2 = genRand.Next(3);
+                            switch (num25_2) {
                                 case 0:
-                                    return ItemID.AlphabetStatueQ;
+                                    num25_2 = 848;
+                                    break;
                                 case 1:
-                                    return ItemID.AlphabetStatueH;
+                                    num25_2 = 857;
+                                    break;
                                 case 2:
-                                    return ItemID.AlphabetStatueE;
-                                case 3:
-                                    return ItemID.AlphabetStatueU;
-                                case 4:
-                                    return ItemID.AlphabetStatueL;
-                                case 5:
-                                    return ItemID.AlphabetStatueV;
-                                case 6:
-                                    return ItemID.AlphabetStatueW;
-                                case 7:
-                                    return ItemID.AlphabetStatueL;
-                                case 8:
-                                    return ItemID.AlphabetStatueH;
-                                case 9:
-                                    return ItemID.AlphabetStatueU;
-                                case 10:
-                                    return ItemID.AlphabetStatueL;
-                                case 11:
-                                    return ItemID.AlphabetStatueV;
-                                case 12:
-                                    return ItemID.AlphabetStatueI;
-                                default:
-                                    return -1;
-                            }
-                        }
-                        int start = 9;
-                        int chest = Chest.FindChestByGuessing(centerX - 1, bottomY - 1);
-                        for (int invent = 0; invent < Main.chest[chest].item.Length; invent++) {
-                            if (Main.chest[chest].item[invent].IsAir) {
-                                start = Math.Max(10, invent + 1);
-                                break;
-                            }
-                        }
-                        for (int invent = start; invent < Main.chest[chest].item.Length; invent++) {
-                            Item item = Main.chest[chest].item[invent];
-                            int type = getTypeToPlaceByType();
-                            if (type == -1) {
-                                break;
-                            }
-                            if (item.IsAir) {
-                                if ((!Main.chest[chest].item[invent - 1].IsAir || genRand.NextChance(0.25)) && genRand.NextChance(0.85)) {
-                                    continue;
-                                }
-                                if (index == 0) {
-                                    start = invent;
-                                }
-                                item.SetDefaults(type);
-                                item.stack = 1;
-                                index++;
-                                if (genRand.NextChance(0.85)) {
-                                    continue;
-                                }
+                                    num25_2 = 934;
+                                    break;
                             }
                         }
 
-                        bool coin1 = false;
-                        bool coin2 = false;
-                        while (!coin1 && !coin2) {
-                            index = 0;
-                            for (int invent = start; invent < Main.chest[chest].item.Length; invent++) {
-                                Item item = Main.chest[chest].item[invent];
-                                if (index > 1) {
+                        int num10_2 = num10 + yOffsetExtra;
+                        int num10_21 = num10_2;
+                        int startX = (num23 + num24) / 2 + lootRoomSizeY2 * -direction * 2;
+                        int halfSizeX = num19_2 * -direction / 2;
+                        int centerX = startX + halfSizeX;
+                        int endX = centerX + halfSizeX;
+                        while (Main.tile[centerX, num10_2].HasTile) {
+                            num10_2++;
+                        }
+                        int startY = num10_2;
+                        int bottomY = startY;
+                        while (!Main.tile[centerX, bottomY].HasTile) {
+                            bottomY++;
+                        }
+                        bottomY -= 1;
+
+                        int minX = Math.Min(startX, endX);
+                        int maxX = Math.Max(startX, endX);
+                        for (int checkX = minX - 3; checkX < maxX + 3; checkX++) {
+                            for (int checkY = startY - 3; checkY < bottomY + 3; checkY++) {
+                                Main.tile[checkX, checkY].LiquidAmount = 0;
+                            }
+                        }
+
+                        WorldGen.AddBuriedChest(centerX + 1, bottomY, num25_2, notNearOtherChests: false, 1, trySlope: false, 0);
+
+                        if (ModContent.GetInstance<ConsolariaConfig>().pyramidMessageLoot) {
+                            int index = 0;
+                            int getTypeToPlaceByType() {
+                                switch (index) {
+                                    case 0:
+                                        return ItemID.AlphabetStatueQ;
+                                    case 1:
+                                        return ItemID.AlphabetStatueH;
+                                    case 2:
+                                        return ItemID.AlphabetStatueE;
+                                    case 3:
+                                        return ItemID.AlphabetStatueU;
+                                    case 4:
+                                        return ItemID.AlphabetStatueL;
+                                    case 5:
+                                        return ItemID.AlphabetStatueV;
+                                    case 6:
+                                        return ItemID.AlphabetStatueW;
+                                    case 7:
+                                        return ItemID.AlphabetStatueL;
+                                    case 8:
+                                        return ItemID.AlphabetStatueH;
+                                    case 9:
+                                        return ItemID.AlphabetStatueU;
+                                    case 10:
+                                        return ItemID.AlphabetStatueL;
+                                    case 11:
+                                        return ItemID.AlphabetStatueV;
+                                    case 12:
+                                        return ItemID.AlphabetStatueI;
+                                    default:
+                                        return -1;
+                                }
+                            }
+                            int start = 9;
+                            int chest = Chest.FindChestByGuessing(centerX - 1, bottomY - 1);
+                            for (int invent = 0; invent < Main.chest[chest].item.Length; invent++) {
+                                if (Main.chest[chest].item[invent].IsAir) {
+                                    start = Math.Max(10, invent + 1);
                                     break;
                                 }
-                                if (item.IsAir && genRand.NextChance(0.4)) {
-                                    switch (index) {
-                                        case 0:
-                                            item.SetDefaults(ItemID.GoldCoin);
-                                            item.stack = 4;
-                                            index++;
-                                            coin1 = true;
-                                            break;
-                                        case 1:
-                                            bool coin3 = false;
-                                            for (int checkInvent = invent - 10; checkInvent < invent + 1; checkInvent++) {
-                                                if (Main.chest[chest].item[checkInvent].type == ItemID.GoldCoin) {
-                                                    coin3 = true;
-                                                    break;
+                            }
+                            for (int invent = start; invent < Main.chest[chest].item.Length; invent++) {
+                                Item item = Main.chest[chest].item[invent];
+                                int type = getTypeToPlaceByType();
+                                if (type == -1) {
+                                    break;
+                                }
+                                if (item.IsAir) {
+                                    bool check = true;
+                                    int count = 0;
+                                    for (int checkInvent = invent - 5; checkInvent < invent; checkInvent++) {
+                                        if (Main.chest[chest].item[checkInvent].IsAir) {
+                                            count++;
+                                            if (count > 3) {
+                                                check = false;
+                                                break;
+                                            }
+                                        }
+                                    }
+                                    if (check && (!Main.chest[chest].item[invent - 1].IsAir || genRand.NextChance(0.25)) && genRand.NextChance(0.85)) {
+                                        continue;
+                                    }
+                                    if (index == 0) {
+                                        start = invent;
+                                    }
+                                    item.SetDefaults(type);
+                                    item.stack = 1;
+                                    index++;
+                                    if (genRand.NextChance(0.85)) {
+                                        continue;
+                                    }
+                                }
+                            }
+
+                            bool coin1 = false;
+                            bool coin2 = false;
+                            while (!coin1 && !coin2) {
+                                index = 0;
+                                for (int invent = start; invent < Main.chest[chest].item.Length; invent++) {
+                                    Item item = Main.chest[chest].item[invent];
+                                    if (index > 1) {
+                                        break;
+                                    }
+                                    if (item.IsAir && genRand.NextChance(0.4)) {
+                                        switch (index) {
+                                            case 0:
+                                                item.SetDefaults(ItemID.GoldCoin);
+                                                item.stack = 4;
+                                                index++;
+                                                coin1 = true;
+                                                break;
+                                            case 1:
+                                                bool coin3 = false;
+                                                for (int checkInvent = invent - 10; checkInvent < invent + 1; checkInvent++) {
+                                                    if (Main.chest[chest].item[checkInvent].type == ItemID.GoldCoin) {
+                                                        coin3 = true;
+                                                        break;
+                                                    }
                                                 }
-                                            }
-                                            if (coin3) {
-                                                continue;
-                                            }
-                                            item.SetDefaults(ItemID.GoldCoin);
-                                            item.stack = 1;
-                                            index++;
-                                            coin2 = true;
-                                            break;
+                                                if (coin3) {
+                                                    continue;
+                                                }
+                                                item.SetDefaults(ItemID.GoldCoin);
+                                                item.stack = 1;
+                                                index++;
+                                                coin2 = true;
+                                                break;
+                                        }
                                     }
                                 }
                             }
                         }
-                    }
 
-                    WorldGen.PlaceTile(centerX + genRand.Next(-1, 3), bottomY - genRand.Next(5, 8) + 1, 4, mute: true, forced: false, -1, 10);
+                        WorldGen.PlaceTile(centerX + genRand.Next(-1, 3), bottomY - genRand.Next(5, 8) + 1, 4, mute: true, forced: false, -1, 10);
 
-                    num26 = genRand.Next(1, 10);
-                    for (int num27 = 0; num27 < num26; num27++) {
-                        int i2 = genRand.Next(minX - 3, maxX + 3);
-                        int j2 = bottomY;
-                        WorldGen.PlaceSmallPile(i2, j2, genRand.Next(16, 19), 1, 185);
-                    }
-                    for (int num28 = minX - 1; num28 <= maxX + 1; num28++) {
-                        if (!Main.tile[num28, bottomY].HasTile) {
-                            WorldGen.PlacePot(num28, bottomY, 28, genRand.Next(25, 28));
+                        num26 = genRand.Next(1, 10);
+                        for (int num27 = 0; num27 < num26; num27++) {
+                            int i2 = genRand.Next(minX - 3, maxX + 3);
+                            int j2 = bottomY;
+                            WorldGen.PlaceSmallPile(i2, j2, genRand.Next(16, 19), 1, 185);
                         }
-                    }
+                        for (int num28 = minX - 1; num28 <= maxX + 1; num28++) {
+                            if (!Main.tile[num28, bottomY].HasTile) {
+                                WorldGen.PlacePot(num28, bottomY, 28, genRand.Next(25, 28));
+                            }
+                        }
 
-                    int posX = centerX + 4;
-                    int posY = num10_21 - lootRoomSizeX2 + num11;
-                    posY += 1;
-                    while (!Main.tile[posX + 1, posY].HasTile) {
-                        posX++;
-                    }
-                    posX -= 1;
-                    WorldGen.PlaceTile(posX, posY, 91, mute: true, forced: false, -1, genRand.Next(4, 7));
+                        int posX = centerX + 4;
+                        int posY = num10_21 - lootRoomSizeX2 + num11;
+                        posY += 1;
+                        while (!Main.tile[posX + 1, posY].HasTile) {
+                            posX++;
+                        }
+                        posX -= 1;
+                        WorldGen.PlaceTile(posX, posY, 91, mute: true, forced: false, -1, genRand.Next(4, 7));
 
-                    posX = centerX - 3;
-                    while (!Main.tile[posX - 1, posY].HasTile) {
-                        posX--;
+                        posX = centerX - 3;
+                        while (!Main.tile[posX - 1, posY].HasTile) {
+                            posX--;
+                        }
+                        posX += 1;
+                        WorldGen.PlaceTile(posX, posY, 91, mute: true, forced: false, -1, genRand.Next(4, 7));
                     }
-                    posX += 1;
-                    WorldGen.PlaceTile(posX, posY, 91, mute: true, forced: false, -1, genRand.Next(4, 7));
                 }
 
                 if (flag4) {

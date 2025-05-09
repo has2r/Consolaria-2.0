@@ -219,10 +219,13 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 
 
         public override void AI() {
-            if (!Main.dedServ) 
-                Music =  ModContent.GetInstance<ConsolariaConfig>().vanillaBossMusicEnabled ?
-                   (!Helper.Main_swapMusic(null) ? MusicID.OtherworldlyBoss1 : MusicID.Boss1)
-                    : !Helper.Main_swapMusic(null) ? MusicLoader.GetMusicSlot(Mod, "Assets/Music/OtherwordlyTurkor") : MusicLoader.GetMusicSlot(Mod, "Assets/Music/Turkor");
+            if (!Main.dedServ) {
+                bool drank = Helper.Main_swapMusic(null);
+                if (Main.drunkWorld) drank = !drank;
+                Music = ModContent.GetInstance<ConsolariaConfig>().vanillaBossMusicEnabled ?
+                    (drank ? MusicID.OtherworldlyBoss1 : MusicID.Boss1)
+                    : drank ? MusicLoader.GetMusicSlot(Mod, "Assets/Music/OtherwordlyTurkor") : MusicLoader.GetMusicSlot(Mod, "Assets/Music/Turkor");
+            }
 
             Player player = Main.player[NPC.target];
 

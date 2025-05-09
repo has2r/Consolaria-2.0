@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 
 using System;
+using System.IO;
 
 using Terraria;
 using Terraria.Audio;
@@ -13,6 +14,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
 
 namespace Consolaria.Content.Items.Armor.Ranged {
     [AutoloadEquip(EquipType.Head)]
@@ -62,17 +64,80 @@ namespace Consolaria.Content.Items.Armor.Ranged {
             => player.armorEffectDrawOutlinesForbidden = true;
 
         public override void UpdateArmorSet(Player player) {
-            player.setBonus = SetBonusText.ToString();
+            player.setBonus = Language.GetText("Mods.Consolaria.Items.TitanHelmet.SetBonus").WithFormatArgs(Helper.ArmorSetBonusKey).Value;
             player.GetModPlayer<TitanPlayer>().titanPower = true;
         }
     }
 
     internal class TitanPlayer : ModPlayer {
-        public bool titanPower;
+        public bool titanPower, titanPower2;
         public float newMaxFallSpeed;
 
         public int titanBlastTimer;
         public readonly int titanBlastTimerLimit = 300;
+
+        public override void SaveData(TagCompound tag) {
+            tag.Add("titanPower", titanPower);
+            tag.Add("titanPower2", titanPower2);
+        }
+
+        public override void LoadData(TagCompound tag) {
+            titanPower = tag.GetBool("titanPower");
+            titanPower2 = tag.GetBool("titanPower2");
+        }
+
+        public void ReceivePlayerSync(BinaryReader reader) {
+            titanPower2 = reader.ReadBoolean();
+        }
+
+        public override void CopyClientState(ModPlayer targetCopy) {
+            TitanPlayer clone = targetCopy as TitanPlayer;
+            clone.titanPower2 = titanPower2;
+        }
+
+        public override void SyncPlayer(int toWho, int fromWho, bool newPlayer) {
+            ModPacket packet = Mod.GetPacket();
+            packet.Write((byte)Consolaria.MessageType.TitanPower);
+            packet.Write((byte)Player.whoAmI);
+            packet.Write(titanPower2);
+            packet.Send(toWho, fromWho);
+        }
+
+        public override void SendClientChanges(ModPlayer clientPlayer) {
+            TitanPlayer clone = (TitanPlayer)clientPlayer;
+
+            if (titanPower2 != clone.titanPower2)
+                SyncPlayer(toWho: -1, fromWho: Main.myPlayer, newPlayer: false);
+        }
+
+        public override void SetControls() {
+            for (int i = 0; i < 4; i++) {
+                bool JustPressed = false;
+                switch (i) {
+                    case 0:
+                        JustPressed = (Player.controlDown && Player.releaseDown);
+                        break;
+                    case 1:
+                        JustPressed = (Player.controlUp && Player.releaseUp);
+                        break;
+                }
+                if (JustPressed && Player.doubleTapCardinalTimer[i] > 0 && JustPressed && Player.doubleTapCardinalTimer[i] < 15)
+                    KeyDoubleTap(i);
+            }
+        }
+
+        private void KeyDoubleTap(int keyDir) {
+            int inputKey = 0;
+            if (Main.ReversedUpDownArmorSetBonuses)
+                inputKey = 1;
+            if (keyDir == inputKey) {
+                if (titanPower) {
+                    titanPower2 = !titanPower2;
+                    SoundStyle style = new($"{nameof(Consolaria)}/Assets/Sounds/TitanBlastReload");
+                    SoundEngine.PlaySound(style with { Volume = 0.3f, Pitch = !titanPower2 ? 0.35f : -0.35f }, Player.Center);
+                }
+            }
+        }
 
         public override void Initialize()
            => titanBlastTimer = titanBlastTimerLimit;
@@ -81,7 +146,11 @@ namespace Consolaria.Content.Items.Armor.Ranged {
            => titanPower = false;
 
         public override void PostUpdateEquips() {
-            if (!titanPower) return;
+            if (titanPower2 && !titanPower) {
+                titanPower2 = false;
+            }
+
+            if (!titanPower || titanPower2) return;
 
             if (titanBlastTimer == titanBlastTimerLimit) newMaxFallSpeed = 24;
             if (newMaxFallSpeed > 0) newMaxFallSpeed -= 1;
@@ -100,6 +169,10 @@ namespace Consolaria.Content.Items.Armor.Ranged {
         public override bool Shoot(Item item, Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
             TitanPlayer modPlayer = player.GetModPlayer<TitanPlayer>();
             ushort type2 = (ushort)ModContent.ProjectileType<TitanBlast>();
+
+            if (modPlayer.titanPower2) {
+                return base.Shoot(item, player, source, position, velocity, type, damage, knockback);
+            }
 
             if (modPlayer.titanPower && player.ownedProjectileCounts[type2] < 1 && item.DamageType == DamageClass.Ranged &&
                 modPlayer.titanBlastTimer == 0) {

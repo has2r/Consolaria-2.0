@@ -127,11 +127,12 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
         private void HalfCircle() {
             if (Main.netMode != NetmodeID.MultiplayerClient) {
                 ushort type = (ushort)ModContent.ProjectileType<TurkorKnife>();
-                Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, 8, 0, type, NPC.damage / 2, 1, Main.myPlayer, 0, 0);
-                Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, 6, -4, type, NPC.damage / 2, 1, Main.myPlayer, 0, 0);
-                Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, 0, -6, type, NPC.damage / 2, 1, Main.myPlayer, 0, 0);
-                Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, -8, 0, type, NPC.damage / 2, 1, Main.myPlayer, 0, 0);
-                Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, -6, -4, type, NPC.damage / 2, 1, Main.myPlayer, 0, 0);
+                int damage = 40;
+                Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, 8, 0, type, damage, 1, Main.myPlayer, 0, 0);
+                Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, 6, -4, type, damage, 1, Main.myPlayer, 0, 0);
+                Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, 0, -6, type, damage, 1, Main.myPlayer, 0, 0);
+                Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, -8, 0, type, damage, 1, Main.myPlayer, 0, 0);
+                Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, -6, -4, type, damage, 1, Main.myPlayer, 0, 0);
             }
             SoundEngine.PlaySound(SoundID.Item71, NPC.position);
             if (Main.netMode != NetmodeID.Server) {
@@ -354,22 +355,23 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
                         Vector2 vector8 = new Vector2(NPC.position.X + (NPC.width * 0.5f), NPC.position.Y + (NPC.height * 0.5f));
                         float rotation0 = (float)Math.Atan2((vector8.Y) - (posY + (Main.player[NPC.target].height * 0.5f)), (vector8.X) - (posX + (Main.player[NPC.target].width * 0.5f)));
                         if (timer % 5 == 0) {
+                            int damage = 26;
                             SoundEngine.PlaySound(SoundID.Item42, NPC.position);
-                            int proj4 = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, 0, 0, ModContent.ProjectileType<TurkorFeather>(), NPC.damage / 3, 1, Main.myPlayer, 0, 0);
+                            int proj4 = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, 0, 0, ModContent.ProjectileType<TurkorFeather>(), damage, 1, Main.myPlayer, 0, 0);
                             Main.projectile[proj4].aiStyle = -1;
                             Main.projectile[proj4].velocity.X = (float)(Math.Cos(rotation0) * 18) * -1 + Main.rand.Next(-3, 3);
                             Main.projectile[proj4].velocity.Y = (float)(Math.Sin(rotation0) * 18) * -1 + Main.rand.Next(-3, 3);
                             NetMessage.SendData(MessageID.SyncProjectile, -1, -1, null, proj4);
 
                             if (headNumber == 3) {
-                                int proj5 = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, 0, 0, ModContent.ProjectileType<TurkorFeather>(), NPC.damage / 3, 1, Main.myPlayer, 0, 0);
+                                int proj5 = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, 0, 0, ModContent.ProjectileType<TurkorFeather>(), damage, 1, Main.myPlayer, 0, 0);
                                 Main.projectile[proj5].aiStyle = -1;
                                 Main.projectile[proj5].velocity.X = (float)(Math.Cos(rotation0) * 18) * -1 + Main.rand.Next(-3, 3);
                                 Main.projectile[proj5].velocity.Y = (float)(Math.Sin(rotation0) * 18) * -1 + Main.rand.Next(-3, 3);
                                 Main.projectile[proj5].velocity = Main.projectile[proj5].velocity.RotatedBy(spreadAngle);
                                 NetMessage.SendData(MessageID.SyncProjectile, -1, -1, null, proj5);
 
-                                int proj6 = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, 0, 0, ModContent.ProjectileType<TurkorFeather>(), NPC.damage / 3, 1, Main.myPlayer, 0, 0);
+                                int proj6 = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, 0, 0, ModContent.ProjectileType<TurkorFeather>(), damage, 1, Main.myPlayer, 0, 0);
                                 Main.projectile[proj6].aiStyle = -1;
                                 Main.projectile[proj6].velocity.X = (float)(Math.Cos(rotation0) * 18) * -1 + Main.rand.Next(-3, 3);
                                 Main.projectile[proj6].velocity.Y = (float)(Math.Sin(rotation0) * 18) * -1 + Main.rand.Next(-3, 3);

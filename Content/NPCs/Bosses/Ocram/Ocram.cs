@@ -102,7 +102,7 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
             AnimationType = 126;
 
             NPC.lifeMax = 54000;
-            NPC.damage = 108;
+            NPC.damage = 55;
 
             NPC.defense = 36;
             NPC.knockBackResist = 0f;

@@ -127,7 +127,7 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
         private void HalfCircle() {
             if (Main.netMode != NetmodeID.MultiplayerClient) {
                 ushort type = (ushort)ModContent.ProjectileType<TurkorKnife>();
-                int damage = 40;
+                int damage = 20;
                 Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, 8, 0, type, damage, 1, Main.myPlayer, 0, 0);
                 Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, 6, -4, type, damage, 1, Main.myPlayer, 0, 0);
                 Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, 0, -6, type, damage, 1, Main.myPlayer, 0, 0);
@@ -355,7 +355,7 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
                         Vector2 vector8 = new Vector2(NPC.position.X + (NPC.width * 0.5f), NPC.position.Y + (NPC.height * 0.5f));
                         float rotation0 = (float)Math.Atan2((vector8.Y) - (posY + (Main.player[NPC.target].height * 0.5f)), (vector8.X) - (posX + (Main.player[NPC.target].width * 0.5f)));
                         if (timer % 5 == 0) {
-                            int damage = 26;
+                            int damage = 13;
                             SoundEngine.PlaySound(SoundID.Item42, NPC.position);
                             int proj4 = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, 0, 0, ModContent.ProjectileType<TurkorFeather>(), damage, 1, Main.myPlayer, 0, 0);
                             Main.projectile[proj4].aiStyle = -1;

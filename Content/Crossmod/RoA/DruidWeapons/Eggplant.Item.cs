@@ -1,7 +1,10 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Collections.Generic;
+
+using Microsoft.Xna.Framework;
 
 using Terraria;
 using Terraria.Audio;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -39,6 +42,42 @@ sealed partial class Eggplant : ModItem {
 
         Item.value = Item.sellPrice(gold: 1);
         Item.rare = ItemRarityID.Blue;
+    }
+
+    public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
+        UpdateMaxEggplant(player.whoAmI, type);
+
+        return base.Shoot(player, source, position, velocity, type, damage, knockback);
+    }
+
+    public void UpdateMaxEggplant(int whoAmI, int eggplantType) {
+        if (Main.myPlayer != whoAmI)
+            return;
+
+        List<Projectile> list = new List<Projectile>();
+        for (int i = 0; i < 1000; i++) {
+            if (Main.projectile[i].owner == whoAmI && Main.projectile[i].active && Main.projectile[i].type == eggplantType)
+                list.Add(Main.projectile[i]);
+        }
+
+        int num = 0;
+        int maxTurrets = 2;
+        while (list.Count > maxTurrets - 1 && ++num < 1000) {
+            Projectile projectile = list[0];
+            for (int j = 1; j < list.Count; j++) {
+                if (list[j].timeLeft < projectile.timeLeft)
+                    projectile = list[j];
+            }
+
+            for (int i = 0; i < 1000; i++) {
+                if (Main.projectile[i].owner == whoAmI && Main.projectile[i].active && Main.projectile[i].type == ModContent.ProjectileType<Eggplant_Stem>() && (int)Main.projectile[i].ai[0] == Projectile.GetByUUID(projectile.owner, projectile.whoAmI)) {
+                    Main.projectile[i].Kill();
+                }
+            }
+
+            projectile.Kill();
+            list.Remove(projectile);
+        }
     }
 
     public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback) {

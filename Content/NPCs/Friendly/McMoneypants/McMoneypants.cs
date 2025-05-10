@@ -68,7 +68,7 @@ public class McMoneypants : ModNPC {
     public static List<LocalizedText> QuotesOnButtonClickWhenAlreadyInvested { get; private set; }
 
     internal static bool SpawnCondition
-        => !McMoneypantsWorldData.Travelled && Main.dayTime && Main.time >= McMoneypantsWorldData.SpawnTime && Main.time < DAY_TIME;
+        => !McMoneypantsWorldData.Travelled && Main.IsItDay() && Main.time >= McMoneypantsWorldData.SpawnTime && Main.time < DAY_TIME;
 
     internal static bool DespawnCondition
         => _timePassed >= (McMoneypantsWorldData.SomebodyInvested ? DAY_TIME / 2 : DAY_TIME);
@@ -323,7 +323,7 @@ public class McMoneypants : ModNPC {
         }
 
         void UpdateSpawnTime() {
-            bool isMorning = Main.dayTime && Main.time == 0;
+            bool isMorning = Main.IsItDay() && Main.time == 0;
             if (isMorning) {
                 bool shouldComeWhen = Main.rand.NextBool(McMoneypantsWorldData.ChanceToSpawn) || McMoneypantsWorldData.InvestedNextTravel;
                 if (!isMoneypantsThere && shouldComeWhen) {

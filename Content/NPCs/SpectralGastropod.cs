@@ -130,7 +130,7 @@ namespace Consolaria.Content.NPCs {
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
-            => (spawnInfo.Player.ZoneHallow && Main.hardMode && !Main.dayTime) ?
+            => (spawnInfo.Player.ZoneHallow && Main.hardMode && !Main.IsItDay()) ?
             SpawnCondition.OverworldHallow.Chance * 0.05f : 0f;
     }
 }

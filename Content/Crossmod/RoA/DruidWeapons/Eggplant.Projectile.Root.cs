@@ -120,22 +120,8 @@ sealed class Eggplant_Root : ModProjectile {
     public override void AI() {
         int centerLeafCount = 5;
 
-        if (Math.Round(Projectile.rotation) % 2 == 0 && Math.Round(Projectile.rotation) - Projectile.rotation < 0.1f) SoundEngine.PlaySound(SoundID.Item18 with { Pitch = -0.5f, Volume = 0.25f * InitOnStemSpawnValue }, Projectile.Center);
-
-        int num354 = 0;
-        int num355 = 0;
-        float num356 = 0f;
-        int num357 = Projectile.type;
-        for (int num358 = 0; num358 < 1000; num358++) {
-            if (Main.projectile[num358].active && Main.projectile[num358].owner == Projectile.owner && Main.projectile[num358].type == num357) {
-                num354++;
-                if (Main.projectile[num358].ai[1] > num356) {
-                    num355 = num358;
-                    num356 = Main.projectile[num358].ai[1];
-                }
-                if (num354 > 2)
-                    Projectile.Kill();
-            }
+        if (Math.Round(Projectile.rotation) % 2 == 0 && Math.Round(Projectile.rotation) - Projectile.rotation < 0.1f) {
+            SoundEngine.PlaySound(SoundID.Item18 with { Pitch = -0.5f, Volume = 0.25f * InitOnStemSpawnValue }, Projectile.Center);
         }
 
         void appear() {
@@ -149,8 +135,8 @@ sealed class Eggplant_Root : ModProjectile {
             if (RotationOverTime >= 1f && InitOnStemSpawnValue == 0f) {
                 InitOnStemSpawnValue = 1f;
 
-                CreateChildProjectile(MathHelper.PiOver4 - MathHelper.PiOver4 / 3f, 1f);
-                CreateChildProjectile(MathHelper.PiOver2 + MathHelper.PiOver4 - MathHelper.PiOver4 / 3f, 1f);
+                CreateChildProjectile(MathHelper.PiOver4 - MathHelper.PiOver4 / 3f * Direction, 1f);
+                CreateChildProjectile(MathHelper.PiOver2 + MathHelper.PiOver4 - MathHelper.PiOver4 / 3f * Direction, 1f);
             }
             if (RotationOverTime >= 2f && InitOnStemSpawnValue == 1f) {
                 InitOnStemSpawnValue = 2f;
@@ -227,5 +213,16 @@ sealed class Eggplant_Root : ModProjectile {
             Projectile.rotation += RotationAdd;
         }
         rotate();
+    }
+
+    public override void OnKill(int timeLeft) {
+        for (int num163 = 0; num163 < 6; num163++) {
+            Vector2 velocity = Vector2.UnitY * (num163 / MathHelper.TwoPi);
+            Dust obj13 = Main.dust[Dust.NewDust(Projectile.Center - Vector2.UnitY * 4f, 2, 2, DustID.Grass, velocity.X, velocity.Y, 0)];
+            obj13.velocity = (Main.rand.NextFloatDirection() * (float)Math.PI).ToRotationVector2() * 2f + velocity.SafeNormalize(Vector2.Zero) * 2f;
+            obj13.scale = 0.9f;
+            obj13.fadeIn = 1.1f;
+            obj13.noGravity = true;
+        }
     }
 }

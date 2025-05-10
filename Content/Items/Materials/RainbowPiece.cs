@@ -25,7 +25,7 @@ namespace Consolaria.Content.Items.Materials {
         }
 
         public override void Update(ref float gravity, ref float maxFallSpeed) {
-            if (Main.dayTime)
+            if (Main.IsItDay())
                 return;
 
             if (Main.netMode != NetmodeID.Server) {

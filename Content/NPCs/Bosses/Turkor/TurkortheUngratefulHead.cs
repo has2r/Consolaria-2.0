@@ -217,7 +217,8 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
                 if (timer % 80 == 0 && rotatepoint >= 1.5f) {
                     if (Main.netMode != NetmodeID.MultiplayerClient)
                         for (int i = 0; i < 3; i++) {
-                            int proj = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, Main.rand.Next(0, 8) * NPC.direction, -10 + Main.rand.Next(-3, 3), ModContent.ProjectileType<TurkorFeather>(), NPC.damage / 4, 1, Main.myPlayer);
+                            int proj = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, Main.rand.Next(0, 8) * NPC.direction, -10 + Main.rand.Next(-3, 3), ModContent.ProjectileType<TurkorFeather>(), 
+                                26, 1, Main.myPlayer);
                             NetMessage.SendData(MessageID.SyncProjectile, -1, -1, null, proj);
                         }
                     NPC.velocity.Y = 5;

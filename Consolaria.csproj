@@ -5,6 +5,4 @@
     <AssemblyName>Consolaria</AssemblyName>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
-  <ItemGroup>
-  </ItemGroup>
 </Project>

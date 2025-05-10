@@ -17,6 +17,46 @@ public static class Helper {
     [UnsafeAccessor(UnsafeAccessorKind.StaticField, Name = "swapMusic")]
     public extern static ref bool Main_swapMusic(Main self);
 
+    public static Vector2 GetViableMousePosition(this Player player) {
+        Vector2 result = Main.MouseWorld;
+        player.LimitPointToPlayerReachableArea(ref result);
+        return result;
+    }
+
+    public static Vector2 GetViableMousePosition(this Player player, float maxX = 960f, float maxY = 600f) {
+        Vector2 result = Main.ReverseGravitySupport(Main.MouseScreen) + Main.screenPosition;
+        player.LimitPointToPlayerReachableArea(ref result, maxX, maxY);
+        return result;
+    }
+
+    public static void LimitPointToPlayerReachableArea(this Player player, ref Vector2 pointPoisition, float maxX = 960f, float maxY = 600f) {
+        Vector2 center = player.Center;
+        Vector2 vector = pointPoisition - center;
+        float num = Math.Abs(vector.X);
+        float num2 = Math.Abs(vector.Y);
+        float num3 = 1f;
+        if (num > maxX) {
+            float num4 = maxX / num;
+            if (num3 > num4)
+                num3 = num4;
+        }
+
+        if (num2 > maxY) {
+            float num5 = maxY / num2;
+            if (num3 > num5)
+                num3 = num5;
+        }
+
+        Vector2 vector2 = vector * num3;
+        pointPoisition = center + vector2;
+    }
+
+    public static Vector2 GetLimitedPosition(Vector2 startPosition, Vector2 endPosition, float maxLength, float minLength = 0f) {
+        Vector2 dif = endPosition - startPosition;
+        Vector2 result = startPosition + dif.SafeNormalize(Vector2.UnitY) * MathHelper.Clamp(dif.Length(), minLength, maxLength);
+        return result;
+    }
+
     public static void SearchForTargets(Projectile projectile, Player owner, out bool foundTarget, out float distanceFromTarget, out Vector2 targetCenter) {
         distanceFromTarget = 700f;
         targetCenter = projectile.position;

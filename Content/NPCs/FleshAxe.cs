@@ -96,7 +96,7 @@ namespace Consolaria.Content.NPCs {
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
-            => (spawnInfo.Player.ZoneCrimson && Main.hardMode && spawnInfo.SpawnTileY > Main.rockLayer) ?
+            => !spawnInfo.PlayerSafe && !spawnInfo.Water && (spawnInfo.Player.ZoneCrimson && Main.hardMode && spawnInfo.SpawnTileY > Main.rockLayer) ?
             SpawnCondition.Crimson.Chance * 0.05f : 0f;
     }
 }

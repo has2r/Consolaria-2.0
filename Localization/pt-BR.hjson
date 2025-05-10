@@ -1,15 +1,15 @@
 Mods: {
 	Consolaria: {
-		// LepusDropCondition: Será dropado se Lepus não estiver presente
-		// ValentineRingTooltip1: Dê a alguém especial!
+		// LepusDropCondition: Drops if Lepus is not present
+		// ValentineRingTooltip1: Give it to someone special!
 		/* ValentineRingTooltip2:
 			'''
-			Regenera a vida lentamente
-			Aumenta a altura do salto
+			Slowly regenerates life
+			Increases jump height
 			''' */
-		// McMoneypantsInvitationUsage: O convite voa para o seu destinatário...
-		// Munchies.McMoneypantsInvitation.HowToAcquire: Obtido de Envelope Vermelho
-		// McMoneypantsButton1Text: Investir
+		// McMoneypantsInvitationUsage: The invitation flies away to its recipient...
+		// Munchies.McMoneypantsInvitation.HowToAcquire: Obtained from Red Envelope
+		// McMoneypantsButton1Text: Invest
 		Others.NPCTitle: "{0} {1}"
 
 		Biomes: {
@@ -344,11 +344,6 @@ Mods: {
 					25% de chance de não consumir munição
 					'''
 				SetBonus: Usar armas de longo alcance desencadeia um recuo explosivo
-				/*SetBonus:
-					'''
-					Using ranged weapons triggers a recoil blast
-					Double tap {0} to toggle this effect
-					'''*/
 			}
 
 			TitanLeggings: {
@@ -1157,17 +1152,27 @@ Mods: {
 			}
 
 			OtherworldlyMusicBox1: {
-				// DisplayName: Caixinha de Música Otherworldly (Lepus)
+				// DisplayName: Otherworldly Music Box (Lepus)
 				// Tooltip: ""
 			}
 
 			OtherworldlyMusicBox2: {
-				// DisplayName: Caixinha de Música Otherworldly (Peruno o Ingrato)
+				// DisplayName: Otherworldly Music Box (Turkor)
 				// Tooltip: ""
 			}
 
 			OtherworldlyMusicBox3: {
-				// DisplayName: Caixinha de Música Otherworldly (Ocram)
+				// DisplayName: Otherworldly Music Box (Ocram)
+				// Tooltip: ""
+			}
+
+			EasterBunnyStaff: {
+				// DisplayName: Easter Bunny Staff
+				// Tooltip: Summons an easter bunny to fight for you
+			}
+
+			Eggplant: {
+				// DisplayName: Eggplant
 				// Tooltip: ""
 			}
 		}
@@ -1242,7 +1247,7 @@ Mods: {
 				BossChecklistIntegration: {
 					EntryName: Peruno o Ingrato
 					SpawnInfo: Use um [i:Consolaria/CursedStuffing] após invocar um peru de estimação
-					DespawnMessage: Peruno o Ingrato não ficou para o jantar!
+					DespawnMessage: Peruno o Ingrato escapou do prato!
 				}
 			}
 
@@ -1439,6 +1444,9 @@ Mods: {
 			Explosion.DisplayName: Explosion
 			MythicalWyvernProjectile.DisplayName: Projétil Serpe Mítica
 			MythicalWyvernKiteProjectile.DisplayName: Projétil Pipa de Serpe Mítica
+			// Eggplant_Root.DisplayName: Eggplant
+			// Eggplant_Shoot.DisplayName: Eggplant
+			// Eggplant_Stem.DisplayName: Eggplant
 		}
 
 		Tiles: {
@@ -1531,13 +1539,13 @@ Mods: {
 				}
 
 				pyramidEnabled: {
-					// Label: Pirâmide garantida
-					// Tooltip: Se habilitado, pelo menos 1 pirâmide sempre será gerada no mundo
+					// Label: Guaranteed pyramid
+					// Tooltip: If enabled, at least 1 pyramid will always generate in the world
 				}
 
 				pyramidMessageLoot: {
-					// Label: Saque de pirâmide especial
-					// Tooltip: Se habilitado, uma mensagem especial aparecerá no baú da segunda sala da pirâmide
+					// Label: Special pyramid loot
+					// Tooltip: If enabled,
 				}
 			}
 		}
@@ -1568,38 +1576,38 @@ Mods: {
 
 		MusicDisplayCompability: {
 			Lepus: {
-				// Author: por Synoxsis
+				// Author: by Synoxsis
 				// DisplayName: Lepus
 			}
 
 			Ocram: {
-				// Author: por Synoxsis
+				// Author: by Synoxsis
 				// DisplayName: Ocram
 			}
 
 			EerieOcram: {
-				// Author: por Fyerow & Croul
+				// Author: by Fyerow & Croul
 				// DisplayName: Eerie Ocram
 			}
 
 			Turkor: {
-				// Author: por Synoxsis
-				// DisplayName: Peruno o Ingrato
+				// Author: by Synoxsis
+				// DisplayName: Turkor the Ungrateful
 			}
 
 			AltLepus: {
-				// Author: por Jteoh
-				// DisplayName: Praga da Primavera (Otherworldly Lepus)
+				// Author: by Jteoh
+				// DisplayName: Blight of Spring (Otherworldly Lepus)
 			}
 
 			AltOcram: {
-				// Author: por Jteoh
-				// DisplayName: Doações Ingratas (Otherworldly Peruno o Ingrato)
+				// Author: by Jteoh
+				// DisplayName: Mirror Image (Otherworldly Ocram)
 			}
 
 			AltTurkor: {
-				// Author: por Jteoh
-				// DisplayName: Imagem espelhada (Otherworldly Ocram)
+				// Author: by Jteoh
+				// DisplayName: Ungracious Givings (Otherworldly Turkor)
 			}
 		}
 	}

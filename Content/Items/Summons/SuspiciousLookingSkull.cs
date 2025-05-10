@@ -32,7 +32,7 @@ namespace Consolaria.Content.Items.Summons {
         }
 
         public override bool CanUseItem(Player player)
-            => !Main.dayTime && !NPC.AnyNPCs(ModContent.NPCType<Ocram>());
+            => !Main.IsItDay() && !NPC.AnyNPCs(ModContent.NPCType<Ocram>());
 
         public override bool? UseItem(Player player) {
             int type = ModContent.NPCType<Ocram>();

@@ -2,3 +2,4 @@
 - Added Eggplant, a druid weapond dropped by Lepus (Rise of Ages cross-mod content)
 - Fixed Fargo's Souls Pyramid generation getting overwritten
 - Made Shadow Hammer, Flesh Axe and Spectral Elemental spawn conditions consistent with vanilla
+- Made day/night conditions work correctly in Don't Dig Up seeds

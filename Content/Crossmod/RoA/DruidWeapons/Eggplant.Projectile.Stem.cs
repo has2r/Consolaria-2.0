@@ -157,7 +157,7 @@ sealed class Eggplant_Stem : ModProjectile {
 
         Projectile.appliesImmunityTimeOnSingleHits = true;
         Projectile.usesIDStaticNPCImmunity = true;
-        Projectile.idStaticNPCHitCooldown = 30;
+        Projectile.idStaticNPCHitCooldown = 60;
     }
 
     public override void AI() {

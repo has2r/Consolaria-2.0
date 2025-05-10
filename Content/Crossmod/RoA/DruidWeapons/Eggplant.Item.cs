@@ -22,16 +22,16 @@ sealed partial class Eggplant : ModItem {
         Item.width = width; Item.height = height;
 
         Item.useStyle = ItemUseStyleID.Shoot;
-        Item.useTime = Item.useAnimation = 60;
+        Item.useTime = Item.useAnimation = 80;
         Item.noUseGraphic = false;
         Item.useTurn = false;
         Item.autoReuse = false;
         Item.UseSound = new SoundStyle($"{nameof(Consolaria)}/Assets/Sounds/Eggplant");
 
-        int baseDamage = 15;
+        int baseDamage = 4;
         float knockBack = 3f;
-        ushort potentialDamage = 25;
-        float fillingRateModifier = 1f;
+        ushort potentialDamage = 10;
+        float fillingRateModifier = 0.5f;
         Item.damage = baseDamage;
         Item.knockBack = knockBack;
         RoACompat.SetDruidicWeaponValues(Item, potentialDamage, fillingRateModifier);

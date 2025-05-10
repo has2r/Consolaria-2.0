@@ -12,8 +12,20 @@ using Terraria.ModLoader;
 namespace Consolaria.Common {
     public class VanillaNPCLoot : GlobalNPC {
         public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot) {
+            int itemType = ModContent.ItemType<RedEnvelope>();
+            int chance = 30;
+            ChineseNewYearDropCondition chineseNewYearDropCondition = new ChineseNewYearDropCondition();
+            LanternNightDropCondition lanernNightDropCondition = new LanternNightDropCondition();
+
+            if (!npc.SpawnedFromStatue) {
+                if (SeasonalEvents.configEnabled)
+                    npcLoot.Add(ItemDropRule.ByCondition(chineseNewYearDropCondition, itemType, chance));
+                else
+                    npcLoot.Add(ItemDropRule.ByCondition(lanernNightDropCondition, itemType, chance / 2));
+            }
+
             if (npc.type == NPCID.Harpy) {
-                int itemType = ModContent.ItemType<CursedStuffing>();
+                itemType = ModContent.ItemType<CursedStuffing>();
                 int dropChance = !DownedBossSystem.downedTurkor ? 10 : 30;
                 ThanksgivingDropCondition thanksgivingDropCondition = new ThanksgivingDropCondition();
 
@@ -29,7 +41,7 @@ namespace Consolaria.Common {
             }
 
             if (npc.type == NPCID.CorruptBunny || npc.type == NPCID.CrimsonBunny) {
-                int itemType = ModContent.ItemType<SuspiciousLookingEgg>();
+                itemType = ModContent.ItemType<SuspiciousLookingEgg>();
                 int dropChance = 4;
                 LepusDropCondition lepusDropCondition = new LepusDropCondition();
                 EasterDropCondition easterDropCondition = new EasterDropCondition();
@@ -51,18 +63,6 @@ namespace Consolaria.Common {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Brain>(), 750));
             if (npc.type == NPCID.DevourerHead || npc.type == NPCID.GiantWormHead || npc.type == NPCID.SeekerHead || npc.type == NPCID.DuneSplicerHead || npc.type == NPCID.DiggerHead || npc.type == NPCID.TombCrawlerHead)
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SuspiciousLookingApple>(), 150));
-        }
-
-        public override void ModifyGlobalLoot(GlobalLoot globalLoot) {
-            int itemType = ModContent.ItemType<RedEnvelope>();
-            int chance = 30;
-            ChineseNewYearDropCondition chineseNewYearDropCondition = new ChineseNewYearDropCondition();
-            LanternNightDropCondition lanernNightDropCondition = new LanternNightDropCondition();
-
-            if (SeasonalEvents.configEnabled)
-                globalLoot.Add(ItemDropRule.ByCondition(chineseNewYearDropCondition, itemType, chance));
-            else
-                globalLoot.Add(ItemDropRule.ByCondition(lanernNightDropCondition, itemType, chance / 2));
         }
     }
 }

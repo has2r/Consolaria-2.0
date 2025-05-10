@@ -361,7 +361,8 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
                                     Vector2 vector8 = new Vector2(NPC.position.X + (NPC.width / 2), NPC.position.Y + (NPC.height / 2));
                                     SoundEngine.PlaySound(SoundID.Item33, NPC.position);
                                     float rotation = (float)Math.Atan2(vector8.Y - (Main.player[NPC.target].position.Y + (Main.player[NPC.target].height * 0.5f)), vector8.X - (Main.player[NPC.target].position.X + (Main.player[NPC.target].width * 0.5f)));
-                                    Projectile.NewProjectile(NPC.GetSource_FromAI(), vector8.X, vector8.Y, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), ModContent.ProjectileType<OcramLaser1>(), (int)(NPC.damage * 0.2f), 1.5f);
+                                    Projectile.NewProjectile(NPC.GetSource_FromAI(), vector8.X, vector8.Y, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), ModContent.ProjectileType<OcramLaser1>(), 
+                                        NPC.GetAttackDamage_ScaledByStrength(27), 1.5f);
                                     if (NPC.ai[3] >= 70) {
                                         NPC.ai[3] = 0;
                                     }
@@ -417,7 +418,8 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
                                         SoundEngine.PlaySound(SoundID.Item33, NPC.position);
                                         NPC.ai[3] = 0;
                                         Vector2 velocity = Vector2.Normalize(Main.player[NPC.target].Center - NPC.Center) * 10;
-                                        Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, velocity.X - Main.rand.Next(-2, 2), velocity.Y - Main.rand.Next(-2, 2), ModContent.ProjectileType<OcramLaser1>(), (int)(NPC.damage * 0.2f), 1.5f);
+                                        Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, velocity.X - Main.rand.Next(-2, 2), velocity.Y - Main.rand.Next(-2, 2), ModContent.ProjectileType<OcramLaser1>(),
+                                            NPC.GetAttackDamage_ScaledByStrength(22), 1.5f);
                                         if (Main.netMode != NetmodeID.Server) {
                                             int index3 = Dust.NewDust(NPC.Center, 0, 0, DustID.LavaMoss, 0f, 0f, 100, new Color(255, 0, 244), Main.rand.NextFloat(0.8f, 2f));
                                             Main.dust[index3].noGravity = true;
@@ -476,7 +478,8 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
                                 NPC.rotation = (float)Math.Atan2(NPC.velocity.Y, NPC.velocity.X) - 1.57f;
                                 if (bloodMoonMode && NPC.ai[2] % 5 == 0) {
                                     SoundEngine.PlaySound(SoundID.Item33, NPC.position);
-                                    Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, new Vector2(0, 10f).RotatedBy(NPC.rotation), ModContent.ProjectileType<OcramLaser1>(), (int)(NPC.damage * 0.2f), 1.5f);
+                                    Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, new Vector2(0, 10f).RotatedBy(NPC.rotation), ModContent.ProjectileType<OcramLaser1>(),
+                                        NPC.GetAttackDamage_ScaledByStrength(22), 1.5f);
                                 }
                                 if (NPC.ai[2] % 35 == 0) {
                                     SoundEngine.PlaySound(SoundID.NPCDeath45, NPC.position);
@@ -734,7 +737,8 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
                                         newvel.X += num363 * 3f;
                                         newvel.Y += num364 * 3f;
                                         vector8 += new Vector2(0, -30).RotatedBy(NPC.rotation);
-                                        int laser2 = Projectile.NewProjectile(NPC.GetSource_FromAI(), vector8.X, vector8.Y, num363, num364, ModContent.ProjectileType<OcramLaser2>(), (int)(NPC.damage * 0.2f), 2.5f);
+                                        int laser2 = Projectile.NewProjectile(NPC.GetSource_FromAI(), vector8.X, vector8.Y, num363, num364, ModContent.ProjectileType<OcramLaser2>(),
+                                            NPC.GetAttackDamage_ScaledByStrength(22), 2.5f);
                                         NetMessage.SendData(MessageID.SyncProjectile, -1, -1, null, laser2);
                                     }
                                     SoundEngine.PlaySound(SoundID.Item33, NPC.position);
@@ -842,7 +846,8 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
                                 if (Main.netMode != NetmodeID.MultiplayerClient) {
                                     vector8 += new Vector2(0, -30).RotatedBy(NPC.rotation);
                                     Vector2 vector9 = new Vector2(0, 1).RotatedBy(NPC.rotation + rad / 4 * ((NPC.ai[2] - 650) / 100));
-                                    int laser2 = Projectile.NewProjectile(NPC.GetSource_FromAI(), vector8, vector9 * 12f, ModContent.ProjectileType<OcramLaser2>(), (int)(NPC.damage * 0.2f), 2.5f);
+                                    int laser2 = Projectile.NewProjectile(NPC.GetSource_FromAI(), vector8, vector9 * 12f, ModContent.ProjectileType<OcramLaser2>(),
+                                        NPC.GetAttackDamage_ScaledByStrength(22), 2.5f);
                                     NetMessage.SendData(MessageID.SyncProjectile, -1, -1, null, laser2);
                                 }
                                 if (Main.netMode != NetmodeID.Server) {
@@ -862,7 +867,7 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
                         else {
                             if (NPC.ai[1] == 1f) { //scythe attack dash
                                 if (Main.netMode != NetmodeID.MultiplayerClient) {
-                                    int damage = (int)(NPC.damage * 0.25f);
+                                    int damage = NPC.GetAttackDamage_ScaledByStrength(30);
                                     float knockback = 4f;
                                     float speed = 9f;
                                     Vector2 velocity = Vector2.Normalize(Main.player[NPC.target].Center - NPC.Center) * speed;
@@ -958,7 +963,8 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
                                     Spawn.X = Spawn.X + i * 30 - (MissileProjectiles * 20);
                                     Vector2 Velocity = BaseVelocity.RotatedBy(MathHelper.ToRadians(-MissileAngleSpread / 4 + (MissileAngleSpread * i / MissileProjectiles)));
                                     Velocity.X = Velocity.X + 2 * Main.rand.NextFloat() - 1.3f;
-                                    int Num33 = Projectile.NewProjectile(NPC.GetSource_FromAI(), Spawn.X, Spawn.Y, Velocity.X, Velocity.Y, ModContent.ProjectileType<OcramSkull>(), (int)(NPC.damage * 0.25f), 4f);
+                                    int Num33 = Projectile.NewProjectile(NPC.GetSource_FromAI(), Spawn.X, Spawn.Y, Velocity.X, Velocity.Y, ModContent.ProjectileType<OcramSkull>(),
+                                        NPC.GetAttackDamage_ScaledByStrength(27), 4f);
                                     Main.projectile[Num33].velocity.X = Main.rand.Next(-200, 201) * 0.1f;
                                     NetMessage.SendData(MessageID.SyncProjectile, -1, -1, null, Num33);
                                     Main.npc[Num33].velocity.Y = Main.rand.Next(-200, 201) * 0.02f;
@@ -977,7 +983,8 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
                 float scytheangle = rad / 6 * (float)Math.Sin(NPC.ai[2] / 32);
                 Vector2 vel = new Vector2(0, scytheVel).RotatedBy(scytheangle);
                 Vector2 projPos = new Vector2(NPC.position.X + (NPC.width / 2), NPC.position.Y + (NPC.height / 2)) + vel * 80;
-                int proj = Projectile.NewProjectile(NPC.GetSource_FromAI(), projPos.X, projPos.Y, vel.X, vel.Y, ModContent.ProjectileType<OcramScythe>(), (int)(NPC.damage * 0.25f), 4f);
+                int proj = Projectile.NewProjectile(NPC.GetSource_FromAI(), projPos.X, projPos.Y, vel.X, vel.Y, ModContent.ProjectileType<OcramScythe>(),
+                    NPC.GetAttackDamage_ScaledByStrength(27), 4f);
                 NetMessage.SendData(MessageID.SyncProjectile, -1, -1, null, proj);
             }
             SoundEngine.PlaySound(SoundID.Item8 with { Pitch = -0.1f, MaxInstances = 0 }, NPC.position);

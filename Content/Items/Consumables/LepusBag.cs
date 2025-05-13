@@ -3,6 +3,7 @@ using Consolaria.Content.Items.Accessories;
 using Consolaria.Content.Items.Armor.Misc;
 using Consolaria.Content.Items.Vanity;
 using Consolaria.Content.Items.Weapons.Ranged;
+using Consolaria.Content.Items.Weapons.Summon;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -41,6 +42,7 @@ namespace Consolaria.Content.Items.Consumables {
             itemLoot.Add(new OneFromRulesRule(1, ItemDropRule.Common(ModContent.ItemType<OstaraHat>()), ItemDropRule.Common(ModContent.ItemType<OstaraJacket>()), ItemDropRule.Common(ModContent.ItemType<OstaraBoots>())));
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<EggCannon>(), 2));
 
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<EasterBunnyStaff>(), 3));
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Eggplant>(), 3));
 
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<LepusMask>(), 8));

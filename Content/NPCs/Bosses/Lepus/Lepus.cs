@@ -1,5 +1,6 @@
 using Consolaria.Common;
 using Consolaria.Common.ModSystems;
+using Consolaria.Content.Crossmod.RoA.DruidWeapons;
 using Consolaria.Content.Items.Armor.Misc;
 using Consolaria.Content.Items.Consumables;
 using Consolaria.Content.Items.Pets;
@@ -7,6 +8,7 @@ using Consolaria.Content.Items.Placeable;
 using Consolaria.Content.Items.Summons;
 using Consolaria.Content.Items.Vanity;
 using Consolaria.Content.Items.Weapons.Ranged;
+using Consolaria.Content.Items.Weapons.Summon;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -23,6 +25,7 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using Terraria.UI;
 
 namespace Consolaria.Content.NPCs.Bosses.Lepus {
     [AutoloadBossHead]
@@ -221,6 +224,8 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
 
             LeadingConditionRule notExpertRule = new LeadingConditionRule(new Conditions.NotExpert());
             notExpertRule.OnSuccess(new OneFromRulesRule(1, ItemDropRule.ByCondition(notExpert, ModContent.ItemType<OstaraHat>()), ItemDropRule.ByCondition(notExpert, ModContent.ItemType<OstaraJacket>()), ItemDropRule.ByCondition(notExpert, ModContent.ItemType<OstaraBoots>())));
+            npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<EasterBunnyStaff>(), 3));
+            npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<Eggplant>(), 3));
             npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<EggCannon>(), 2));
             npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<LepusMask>(), 8));
             npcLoot.Add(ItemDropRule.ByCondition(notExpert, ItemID.BunnyHood, 50));

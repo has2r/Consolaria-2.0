@@ -1,2 +1,1 @@
-- Buffed Easter Bunny Staff damage
-- Fixed localization being reverted to an older version
+- Lepus now correctly drops Easter Bunny Staff and Eggplant

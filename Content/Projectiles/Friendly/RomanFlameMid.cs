@@ -39,9 +39,11 @@ namespace Consolaria.Content.Projectiles.Friendly {
             Player player = Main.player[Projectile.owner];
             float projectilesCount = Main.rand.Next(3, 5);
             Vector2 velocity = Projectile.velocity;
-            for (int i = 0; i < projectilesCount; i++) {
-                Vector2 perturbedSpeed = new Vector2(velocity.X, velocity.Y).RotatedByRandom(MathHelper.ToRadians(180));
-                Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.position, perturbedSpeed, ModContent.ProjectileType<RomanFlameFinal>(), Projectile.damage, Projectile.knockBack, player.whoAmI);
+            if (timeLeft < 5) {
+                for (int i = 0; i < projectilesCount; i++) {
+                    Vector2 perturbedSpeed = new Vector2(velocity.X, velocity.Y).RotatedByRandom(MathHelper.ToRadians(180));
+                    Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.position, perturbedSpeed, ModContent.ProjectileType<RomanFlameFinal>(), Projectile.damage, Projectile.knockBack, player.whoAmI);
+                }
             }
             if (Main.netMode != NetmodeID.Server) {
                 Vector2 position = new Vector2(16f, 16f);
@@ -56,7 +58,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
             }
             if (Projectile.soundDelay == 0) {
                 Projectile.soundDelay = 100;
-                SoundEngine.PlaySound(SoundID.Item14 with { Volume = 0.8f }, Projectile.Center);
+                SoundEngine.PlaySound(SoundID.Item110 with { Volume = 0.2f, Pitch = 0.4f, PitchVariance = 0.2f }, Projectile.Center);
             }
         }
     }

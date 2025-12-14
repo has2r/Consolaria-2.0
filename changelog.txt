@@ -1,1 +1,8 @@
-- Lepus now correctly drops Easter Bunny Staff and Eggplant
+- The Otherworldly Turkor theme by Jteoh has been remastered!
+- Consolaria achievements are now using the built-in tModLoader system
+- Stunned debuff now reduces the speed of affected enemies more smoothly
+- Stunned debuff no longer drops flying enemies to the ground
+- Stunned debuff now affects more enemy types, including fish, vultures, beetles and some casters
+- Rebalanced Roman Candle, sacrificing attack speed for more damage and making it more difficult to land multi-hits
+- Changed Roman Candle explosion sounds to make them easier on the ears
+- Vampire Miner's Bestiary entry now correctly displays its biome as Caverns

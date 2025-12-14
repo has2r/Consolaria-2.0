@@ -38,9 +38,11 @@ namespace Consolaria.Content.Buffs {
                 npc.ai[0] = 0;
                 npc.ai[1] = 0;
 
-                npc.velocity = new Vector2(0, 6);
+                npc.velocity.X *= 0.85f;
+                if (npc.noGravity == true) npc.velocity.Y *= 0.85f;
+
                 npc.frameCounter = 0;
-                npc.noGravity = false;
+                //npc.noGravity = false;
                 return false;
             }
             return base.PreAI(npc);

@@ -16,7 +16,7 @@ This includes:
 
 Holiday content is always active by default and can be restricted to the corresponding dates using the config menu.
 
-Also try [Heartbeataria](https://steamcommunity.com/sharedfiles/filedetails/?id=2958674071) for content from Chinese editions of the game: together, the mods make PC Terraria the most complete experience ever!
+Also try [Heartbeataria](https://steamcommunity.com/sharedfiles/filedetails/?id=2958674071) for content from Chinese editions of the game  and [Miscellanaria](https://steamcommunity.com/sharedfiles/filedetails/?id=3131402417) for unreleased items: together, the mods make PC Terraria the most complete experience ever!
 
 ## Credits
 
@@ -54,7 +54,7 @@ Contributors:
 🌐 [Discord](https://discord.gg/DTABXbd)
 📖 [Consolaria Wiki](https://terrariamods.wiki.gg/wiki/Consolaria)
 🌳 [Forum post](https://forums.terraria.org/index.php?threads/consolaria.62570)
-🍂 [Rise of Ages](https://forums.terraria.org/index.php?threads/rise-of-ages-backwoods-and-druids.72219) - Our WIP bigger project
+🍂 [Rise of Ages](https://steamcommunity.com/sharedfiles/filedetails/?id=3456940039) - Our main project
 🖥 [Mod on Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=2864843929)
 
 💟 [Donations](https://www.buymeacoffee.com/roagang)

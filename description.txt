@@ -14,7 +14,7 @@ This includes:
 
 Holiday content is always active by default and can be restricted to the corresponding dates using the config menu.
 
-Also try Heartbeataria for content from Chinese editions of the game: together, the mods make PC Terraria the most complete experience ever!
+Also try Heartbeataria for content from Chinese editions of the game and Miscellanaria for unreleased items: together, the mods make PC Terraria the most complete experience ever!
 
 
 Developers:

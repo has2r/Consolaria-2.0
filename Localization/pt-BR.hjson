@@ -1222,7 +1222,7 @@ Mods: {
 				Bestiary: Como se o seu tamanho não fosse problemático o suficiente, este coelho pode reproduzir-se através de ovos coloridos, espalhados pelo mundo na Primavera para os tolos apanharem.
 
 				BossChecklistIntegration: {
-					SpawnInfo: Use um [i:Consolaria/SuspiciousLookingEgg] durante o dia
+					SpawnInfo: Use um [i:Consolaria/SuspiciousLookingEgg]
 					DespawnMessage: Lepus desaparece em alegria!
 				}
 			}

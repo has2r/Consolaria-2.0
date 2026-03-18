@@ -1222,7 +1222,7 @@ Mods: {
 				Bestiary: Como si su tamaño no fuera suficientemente problemático, este conejo puede reproducirse a través de huevos coloridos, repartidos por todo el mundo en primavera para que los tontos los recojan.
 
 				BossChecklistIntegration: {
-					SpawnInfo: Usando [i:5642] de dia
+					SpawnInfo: Usando [i:5642]
 					DespawnMessage: ¡Lepus salta hacia el atardecer!
 				}
 			}

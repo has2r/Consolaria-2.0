@@ -1222,7 +1222,7 @@ Mods: {
 				Bestiary: As if its size wasn't troublesome enough, this rabbit can reproduce through colorful eggs, spread around the world in Spring for fools to pick up.
 
 				BossChecklistIntegration: {
-					SpawnInfo: Use a [i:Consolaria/SuspiciousLookingEgg] at day time
+					SpawnInfo: Use a [i:Consolaria/SuspiciousLookingEgg]
 					DespawnMessage: Lepus hops back to where it came from!
 				}
 			}

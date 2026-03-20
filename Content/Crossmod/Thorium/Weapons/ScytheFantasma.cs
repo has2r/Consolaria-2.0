@@ -14,7 +14,7 @@ public sealed class ScytheFantasma : ThoriumItem_ScytheBase {
 
     public sealed class ScytheFantasma_Use : ThoriumProjectile_ScytheBase {
         public override void SetScytheDefaults() {
-            Projectile.SetSizeValues(124);
+            Projectile.SetSizeValues(164, 156);
         }
 
         public override void SetScytheValues(ref int dustCount, ref int dustType, ref Vector2 dustOffset) {

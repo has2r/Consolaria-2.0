@@ -9,11 +9,45 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.Localization;
+using Terraria.ModLoader;
 using Terraria.Utilities;
 
 namespace Consolaria;
 
 public static class Helper {
+    public static void SetSizeValues(this Projectile projectile, int size) => projectile.width = projectile.height = size;
+
+    public static void SetSizeValues(this Projectile projectile, int width, int height) {
+        projectile.width = width;
+        projectile.height = height;
+    }
+
+    public static void SetShootableValues(this Item item, ushort shootType = 0, float shootSpeed = 1f, bool noMelee = true) {
+        item.shoot = shootType == 0 ? (ushort)ProjectileID.WoodenArrowFriendly : shootType;
+        item.shootSpeed = shootSpeed;
+        item.noMelee = noMelee;
+    }
+
+    public static void SetShootableValues<T>(this Item item, float shootSpeed = 1f, bool noMelee = true) where T : ModProjectile {
+        item.shoot = ModContent.ProjectileType<T>();
+        item.shootSpeed = shootSpeed;
+        item.noMelee = noMelee;
+    }
+
+    public static void SetWeaponValues(this Item item, int dmg, float knockback, int bonusCritChance = 0, DamageClass? damageClass = null) {
+        item.damage = dmg;
+        item.knockBack = knockback;
+        item.crit = bonusCritChance;
+        if (damageClass != null) {
+            item.DamageType = damageClass;
+        }
+    }
+
+    public static void SetSizeValues(this Item item, int width, int height) {
+        item.width = width;
+        item.height = height;
+    }
+
     [UnsafeAccessor(UnsafeAccessorKind.StaticField, Name = "swapMusic")]
     public extern static ref bool Main_swapMusic(Main self);
 

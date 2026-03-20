@@ -5,4 +5,13 @@
     <AssemblyName>Consolaria</AssemblyName>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="Content\Crossmod\Thorium\Food\" />
+    <Folder Include="Content\Crossmod\Thorium\Miscellaneous\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="ThoriumMod">
+      <HintPath>..\ModAssemblies\ThoriumMod.dll</HintPath>
+    </Reference>
+  </ItemGroup>
 </Project>

@@ -11,4 +11,6 @@ includeSource = true
 buildIgnore = *.csproj, *.sln, *.user, obj\*, bin\*, .vs\*, Properties\*, .git\*, .gitattributes, .gitignore
 includePDB = true
 
-sortAfter = RoA
+weakReferences = ThoriumMod
+
+sortAfter = RoA, ThoriumMod

@@ -1181,6 +1181,101 @@ Mods: {
 				// DisplayName: Eggplant
 				// Tooltip: ""
 			}
+
+			OldSeraphimChestplate: {
+				// DisplayName: Old Seraphim Chestplate
+				// Tooltip: ""
+			}
+
+			OldSeraphimHelmet: {
+				// DisplayName: Old Seraphim Helmet
+				// Tooltip: ""
+			}
+
+			OldSeraphimLegs: {
+				// DisplayName: Old Seraphim Legs
+				// Tooltip: ""
+			}
+
+			OldSirenChestplate: {
+				// DisplayName: Old Siren Chestplate
+				// Tooltip: ""
+			}
+
+			OldSirenHelmet: {
+				// DisplayName: Old Siren Helmet
+				// Tooltip: ""
+			}
+
+			OldSirenLegs: {
+				// DisplayName: Old Siren Legs
+				// Tooltip: ""
+			}
+
+			OldViperChestplate: {
+				// DisplayName: Old Viper Chestplate
+				// Tooltip: ""
+			}
+
+			OldViperHelmet: {
+				// DisplayName: Old Viper Helmet
+				// Tooltip: ""
+			}
+
+			OldViperLegs: {
+				// DisplayName: Old Viper Legs
+				// Tooltip: ""
+			}
+
+			SeraphimChestplate: {
+				// DisplayName: Seraphim Chestplate
+				// Tooltip: ""
+			}
+
+			SeraphimHelmet: {
+				// DisplayName: Seraphim Helmet
+				// Tooltip: ""
+			}
+
+			SeraphimLegs: {
+				// DisplayName: Seraphim Legs
+				// Tooltip: ""
+			}
+
+			SirenChestplate: {
+				// DisplayName: Siren Chestplate
+				// Tooltip: ""
+			}
+
+			SirenHelmet: {
+				// DisplayName: Siren Helmet
+				// Tooltip: ""
+			}
+
+			SirenLegs: {
+				// DisplayName: Siren Legs
+				// Tooltip: ""
+			}
+
+			ViperChestplate: {
+				// DisplayName: Viper Chestplate
+				// Tooltip: ""
+			}
+
+			ViperHelmet: {
+				// DisplayName: Viper Helmet
+				// Tooltip: ""
+			}
+
+			ViperLegs: {
+				// DisplayName: Viper Legs
+				// Tooltip: ""
+			}
+
+			ScytheFantasma: {
+				// DisplayName: Scythe Fantasma
+				// Tooltip: ""
+			}
 		}
 
 		NPCs: {
@@ -1453,6 +1548,7 @@ Mods: {
 			// Eggplant_Root.DisplayName: Eggplant
 			// Eggplant_Shoot.DisplayName: Eggplant
 			// Eggplant_Stem.DisplayName: Eggplant
+			// ScytheFantasma_Use.DisplayName: Scythe Fantasma_ Use
 		}
 
 		Tiles: {

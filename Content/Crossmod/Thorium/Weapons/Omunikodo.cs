@@ -81,7 +81,7 @@ public sealed class Omunikodo : ThoriumItem_BardBase {
             ThoriumSounds.Zunpet_Sound
         ];
         Item.UseSound = Main.rand.NextFromList(prePlanteraSounds);
-        if (Main.rand.NextBool()) {
+        if (Main.rand.NextBool(10)) {
             Item.UseSound = new SoundStyle($"{nameof(Consolaria)}/Assets/Sounds/Omunikodo{Main.rand.NextBool().ToInt() + 1}");
         }
     }

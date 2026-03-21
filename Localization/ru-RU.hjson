@@ -1296,6 +1296,11 @@ Mods: {
 				// DisplayName: Omunikodo
 				// Tooltip: ""
 			}
+
+			PortableSpecialCorn: {
+				// DisplayName: Portable Special Corn
+				// Tooltip: ""
+			}
 		}
 
 		NPCs: {

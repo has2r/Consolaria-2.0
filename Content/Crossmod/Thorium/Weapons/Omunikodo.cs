@@ -88,7 +88,7 @@ public sealed class Omunikodo : ThoriumItem_BardBase {
     }
 
     public override bool BardShoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
-        Vector2 vector = Vector2.Normalize(velocity) * 60f;
+        Vector2 vector = Vector2.Normalize(velocity) * 68f;
         if (ThoriumUtils.CanHitLine(position, position + vector)) {
             position += vector;
         }

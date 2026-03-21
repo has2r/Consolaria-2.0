@@ -28,8 +28,14 @@ public abstract class JadeDust_Base : ModDust {
         if (num111 > 1f)
             num111 = 1f;
 
-        if (!dust.noLight)
-            Lighting.AddLight((int)(dust.position.X / 16f), (int)(dust.position.Y / 16f), num111 * 0.2f, num111 * 0.7f, num111 * 1f);
+        if (DustLoader.GetDust(dust.type) is JadeDust2) {
+            Vector3 color = new Color(241, 206, 77).ToVector3() * 0.5f;
+            Lighting.AddLight((int)(dust.position.X / 16f), (int)(dust.position.Y / 16f), num111 * color.X, num111 * color.Y, num111 * color.Z);
+        }
+        else {
+            Vector3 color = new Color(23, 246, 160).ToVector3() * 0.5f;
+            Lighting.AddLight((int)(dust.position.X / 16f), (int)(dust.position.Y / 16f), num111 * color.X, num111 * color.Y, num111 * color.Z);
+        }
 
         if (dust.noGravity) {
             dust.velocity *= 0.93f;

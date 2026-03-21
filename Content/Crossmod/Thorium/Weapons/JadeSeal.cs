@@ -92,6 +92,8 @@ public sealed class JadeSeal : ThoriumItem_HealerBase {
         }
 
         public override void AI() {
+            Lighting.AddLight(Projectile.Center, new Color(23, 246, 160).ToVector3());
+
             MakeJadeDusts(Projectile);
 
             Projectile.rotation = Projectile.velocity.X * 0.025f;
@@ -150,6 +152,8 @@ public sealed class JadeSeal : ThoriumItem_HealerBase {
         }
 
         public override void AI() {
+            Lighting.AddLight(Projectile.Center, new Color(241, 206, 77).ToVector3());
+
             float healTime = 30f;
             if (++HealTime > healTime) {
                 int radius = 125;
@@ -159,7 +163,7 @@ public sealed class JadeSeal : ThoriumItem_HealerBase {
                 HealTime = 0f;
             }
 
-            JadeSeal_Lamp.MakeJadeDusts(Projectile);
+            JadeSeal_Lamp.MakeJadeDusts(Projectile, true);
 
             if (Projectile.IsOwnerLocal()) {
                 _mousePosition = Projectile.GetOwnerAsPlayer().GetViableMousePosition();

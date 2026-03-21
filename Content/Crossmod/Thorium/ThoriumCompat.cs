@@ -3,10 +3,12 @@ using Microsoft.Xna.Framework;
 
 using Terraria.ModLoader;
 
+using ThoriumMod;
 using ThoriumMod.Items;
 using ThoriumMod.Items.HealerItems;
+using ThoriumMod.Projectiles;
 using ThoriumMod.Projectiles.Scythe;
-using ThoriumMod.Rarities;
+using ThoriumMod.Projectiles.Thrower;
 
 namespace Consolaria.Content.Crossmod.Thorium;
 
@@ -62,14 +64,18 @@ public abstract class ThoriumItem_ThrowerBase : ThoriumItem {
     public sealed override void SetDefaults() {
         isThrower = true;
 
-        SetThrowerValues(ref isThrowerNeedle, ref isThrowerTomahawk, ref isThrowerCaltrop);
+        SetThrowerValues(ref isThrowerNon, ref isThrowerNeedle, ref isThrowerTomahawk, ref isThrowerCaltrop);
 
         SetThrowerDefaults();
+
+        if (Item.IsAWeapon()) {
+            Item.DamageType = DamageClass.Throwing;
+        }
     }
 
     public virtual void SetThrowerDefaults() { }
 
-    public virtual void SetThrowerValues(ref bool IsThrowerNeedle, ref bool IsThrowerTomahawk, ref bool IsThrowerCaltrop) { }
+    public virtual void SetThrowerValues(ref bool isThrowerNon, ref bool IsThrowerNeedle, ref bool IsThrowerTomahawk, ref bool IsThrowerCaltrop) { }
 }
 
 [ExtendsFromMod(ThoriumCompat.THORIUMMODNAME)]
@@ -112,4 +118,38 @@ public abstract class ThoriumProjectile_ScytheBase : ScythePro {
     public virtual void SetScytheDefaults() { }
 
     public virtual void SetScytheValues(ref int dustCount, ref int dustType, ref Vector2 dustOffset) { }
+}
+
+[ExtendsFromMod(ThoriumCompat.THORIUMMODNAME)]
+[JITWhenModsEnabled(ThoriumCompat.THORIUMMODNAME)]
+public abstract class ThoriumProjectile_HealerBase : ThoriumProjectile {
+    public override bool IsLoadingEnabled(Mod mod) => ThoriumCompat.IsThoriumEnabled;
+
+    public sealed override void SetDefaults() {
+        Projectile.DamageType = ThoriumDamageBase<HealerDamage>.Instance;
+
+        SetHealerDefaults();
+    }
+
+    public virtual void SetHealerDefaults() { }
+}
+
+[ExtendsFromMod(ThoriumCompat.THORIUMMODNAME)]
+[JITWhenModsEnabled(ThoriumCompat.THORIUMMODNAME)]
+public abstract class ThoriumProjectile_ThrowerBase : ThoriumProjectile {
+    public override bool IsLoadingEnabled(Mod mod) => ThoriumCompat.IsThoriumEnabled;
+
+    public sealed override void SetDefaults() {
+        Projectile.DamageType = DamageClass.Throwing;
+
+        SetThrowerDefaults();
+    }
+
+    public virtual void SetThrowerDefaults() { }
+}
+
+[ExtendsFromMod(ThoriumCompat.THORIUMMODNAME)]
+[JITWhenModsEnabled(ThoriumCompat.THORIUMMODNAME)]
+public abstract class ThoriumProjectile_TomahawkBase : TomahawkProBase {
+    public override bool IsLoadingEnabled(Mod mod) => ThoriumCompat.IsThoriumEnabled;
 }

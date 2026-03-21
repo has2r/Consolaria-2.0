@@ -6,7 +6,9 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 
 using Terraria;
+using Terraria.Audio;
 using Terraria.DataStructures;
+using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -15,6 +17,74 @@ using Terraria.Utilities;
 namespace Consolaria;
 
 public static class Helper {
+    public static SpriteEffects ToSpriteEffects(this bool facedRight) => facedRight ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
+    public static SpriteEffects ToSpriteEffects(this int direction) => direction > 0 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
+    public static SpriteEffects ToSpriteEffects2(this bool facedRight) => facedRight ? SpriteEffects.None : SpriteEffects.FlipVertically;
+    public static SpriteEffects ToSpriteEffects2(this int direction) => direction > 0 ? SpriteEffects.None : SpriteEffects.FlipVertically;
+
+    public static Texture2D GetTexture(this Projectile projectile) => TextureAssets.Projectile[projectile.type].Value;
+
+    public static void SetTrail(this Projectile projectile, int trailingMode = 2, int length = -1) {
+        if (length > 0) {
+            ProjectileID.Sets.TrailCacheLength[projectile.type] = length;
+        }
+        ProjectileID.Sets.TrailingMode[projectile.type] = trailingMode;
+    }
+
+    public static string GetItemTexturePath<T>() where T : ModItem => ItemLoader.GetItem(ModContent.ItemType<T>()).Texture;
+    public static string GetProjectileTexturePath<T>() where T : ModProjectile => ProjectileLoader.GetProjectile(ModContent.ProjectileType<T>()).Texture;
+
+    public static void SetDefaultsToUsable(this Item item, int vanillaUseStyleID, int useTime, int animationTime, bool showItemOnUse = true, bool useTurn = false, bool autoReuse = false, SoundStyle? useSound = null) {
+        item.useStyle = vanillaUseStyleID;
+        item.useTime = useTime;
+        item.useAnimation = animationTime;
+        item.noUseGraphic = !showItemOnUse;
+        item.useTurn = useTurn;
+        item.autoReuse = autoReuse;
+        if (useSound != null) {
+            item.UseSound = useSound;
+        }
+    }
+
+    public static void SetUsableValues(this Item item, int vanillaUseStyleID, int timeToUse, bool showItemOnUse = true, bool useTurn = false, bool autoReuse = false, SoundStyle? useSound = null)
+        => item.SetDefaultsToUsable(vanillaUseStyleID, timeToUse, timeToUse, showItemOnUse, useTurn, autoReuse, useSound);
+
+    public static void SetDefaultsToUsable(this Item item, int vanillaUseStyleID, int timeToUse, bool showItemOnUse = true, bool useTurn = false, bool autoReuse = false, SoundStyle? useSound = null) 
+        => item.SetUsableValues(vanillaUseStyleID, timeToUse, showItemOnUse, useTurn, autoReuse, useSound);
+
+    public static bool IsAWeapon(this Item item) => item.damage > 0;
+
+    public static float Clamp01(this float value) => MathHelper.Clamp(value, 0f, 1f);
+
+    public static void InertiaMoveTowards(ref Vector2 velocity, Vector2 position, Vector2 destination, float inertia = 15f, float speed = 5f, float minDistance = 10f, bool max = false) {
+        Vector2 direction = destination - position;
+        bool flag = max && velocity.Length() >= 1f || !max;
+        if (direction.Length() > minDistance) {
+            direction.Normalize();
+            velocity = (velocity * inertia + direction * speed) / (inertia + 1f);
+        }
+        else if (flag) {
+            velocity *= (float)Math.Pow(0.97, inertia * 2.0 / inertia);
+        }
+    }
+
+    public static Player GetOwnerAsPlayer(this Projectile projectile) => Main.player[projectile.owner];
+    public static bool IsOwnerLocal(this Projectile projectile) => projectile.owner == Main.myPlayer;
+
+    public static ushort SecondsToFrames(float seconds) => (ushort)MathF.Round(seconds * 60f);
+
+    public static void Animate(this Projectile projectile, int frameCounter, int maxFrames = 0) {
+        if (++projectile.frameCounter >= frameCounter) {
+            projectile.frameCounter = 0;
+            if (++projectile.frame >= (maxFrames > 0 ? maxFrames : projectile.GetFrameCount())) {
+                projectile.frame = 0;
+            }
+        }
+    }
+
+    public static void SetFrameCount(this Projectile projectile, int frameCount) => Main.projFrames[projectile.type] = frameCount;
+    public static int GetFrameCount(this Projectile projectile) => Main.projFrames[projectile.type];
+
     public static void SetSizeValues(this Projectile projectile, int size) => projectile.width = projectile.height = size;
 
     public static void SetSizeValues(this Projectile projectile, int width, int height) {

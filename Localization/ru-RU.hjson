@@ -1276,6 +1276,11 @@ Mods: {
 				// DisplayName: Scythe Fantasma
 				// Tooltip: ""
 			}
+
+			SpineCracker: {
+				// DisplayName: Spine Cracker
+				// Tooltip: ""
+			}
 		}
 
 		NPCs: {
@@ -1549,6 +1554,9 @@ Mods: {
 			Eggplant_Shoot.DisplayName: Баклажан
 			Eggplant_Stem.DisplayName: Баклажан
 			// ScytheFantasma_Use.DisplayName: Scythe Fantasma_ Use
+			// ScytheFantasma_Spirit.DisplayName: Scythe Fantasma_ Spirit
+			// SpineCracker_Throw.DisplayName: Spine Cracker_ Throw
+			// SpineCracker_Scythe.DisplayName: Spine Cracker_ Scythe
 		}
 
 		Tiles: {

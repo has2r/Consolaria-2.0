@@ -37,6 +37,12 @@ public sealed class OmunikodoDust : ModDust {
             }
         }
 
+        float num111 = dust.scale;
+        if (num111 > 1f)
+            num111 = 1f;
+        Vector3 color = dust.color.ToVector3() * 0.625f;
+        Lighting.AddLight((int)(dust.position.X / 16f), (int)(dust.position.Y / 16f), num111 * color.X, num111 * color.Y, num111 * color.Z);
+
         //if (!dust.noLight && !dust.noLightEmittence) {
         //    float num56 = dust.scale * 1.4f;
         //    if (num56 > 0.6f)

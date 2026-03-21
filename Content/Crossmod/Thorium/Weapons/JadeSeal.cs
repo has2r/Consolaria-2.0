@@ -117,7 +117,8 @@ public sealed class JadeSeal : ThoriumItem_HealerBase {
             Vector2 vector2 = new Vector2(projectile.Top.X, projectile.position.Y + (float)num4);
             for (int j = 0; j < 4; j++) {
                 Vector2 vector3 = Main.rand.NextVector2Unit();
-                if (!(Math.Abs(vector3.X) < 0.12f)) {
+                //if (!(Math.Abs(vector3.X) < 0.12f))
+                {
                     Vector2 targetPosition = projectile.Center + vector3 * new Vector2((projectile.height - num4) / 2);
                     Dust dust = Dust.NewDustDirect(targetPosition, 0, 0, yellow ? ModContent.DustType<JadeDust2>() : ModContent.DustType<JadeDust>(), 0f, 0f, 100);
                     dust.position = targetPosition;

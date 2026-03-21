@@ -78,6 +78,10 @@ public sealed class JadeSeal : ThoriumItem_HealerBase {
     }
 
     public sealed class JadeSeal_Lamp : ThoriumProjectile_HealerBase {
+        public override void SetStaticDefaults() {
+            Projectile.SetFrameCount(4);
+        }
+
         public override void SetHealerDefaults() {
             Projectile.SetSizeValues(46, 52);
 
@@ -90,7 +94,7 @@ public sealed class JadeSeal : ThoriumItem_HealerBase {
         public override void AI() {
             MakeJadeDusts(Projectile);
 
-            Projectile.rotation = Projectile.velocity.X * 0.05f;
+            Projectile.rotation = Projectile.velocity.X * 0.025f;
 
             int radius = 125;
             Player player = Main.player[Projectile.owner];
@@ -102,16 +106,18 @@ public sealed class JadeSeal : ThoriumItem_HealerBase {
                     }
                 }
             }
+
+            Projectile.Animate(4);
         }
 
-        public static void MakeJadeDusts(Projectile projectile) {
+        public static void MakeJadeDusts(Projectile projectile, bool yellow = false) {
             int num4 = 300;
             Vector2 vector2 = new Vector2(projectile.Top.X, projectile.position.Y + (float)num4);
             for (int j = 0; j < 4; j++) {
                 Vector2 vector3 = Main.rand.NextVector2Unit();
                 if (!(Math.Abs(vector3.X) < 0.12f)) {
                     Vector2 targetPosition = projectile.Center + vector3 * new Vector2((projectile.height - num4) / 2);
-                    Dust dust = Dust.NewDustDirect(targetPosition, 0, 0, ModContent.DustType<JadeDust>(), 0f, 0f, 100);
+                    Dust dust = Dust.NewDustDirect(targetPosition, 0, 0, yellow ? ModContent.DustType<JadeDust2>() : ModContent.DustType<JadeDust>(), 0f, 0f, 100);
                     dust.position = targetPosition;
                     dust.velocity = (vector2 - dust.position).SafeNormalize(Vector2.Zero);
                     dust.velocity += dust.position.DirectionTo(projectile.Center) * Main.rand.NextFloat(2.5f, 5f);
@@ -129,6 +135,10 @@ public sealed class JadeSeal : ThoriumItem_HealerBase {
         private Vector2 _mousePosition;
 
         public ref float HealTime => ref Projectile.localAI[0];
+
+        public override void SetStaticDefaults() {
+            Projectile.SetFrameCount(4);
+        }
 
         public override void SetHealerDefaults() {
             Projectile.SetSizeValues(46, 52);
@@ -156,9 +166,11 @@ public sealed class JadeSeal : ThoriumItem_HealerBase {
                 Projectile.netUpdate = true;
             }
 
-            Helper.InertiaMoveTowards(ref Projectile.velocity, Projectile.Center, _mousePosition, 10f, 5f, 60f);
+            Helper.InertiaMoveTowards(ref Projectile.velocity, Projectile.Center, _mousePosition, 20f, 2.5f, 60f);
 
-            Projectile.rotation = Projectile.velocity.X * 0.05f;
+            Projectile.rotation = Projectile.velocity.X * 0.025f;
+
+            Projectile.Animate(4);
         }
 
         public override void SendExtraAI(BinaryWriter writer) {

@@ -109,13 +109,24 @@ public sealed class SpineCracker : ThoriumItem_ThrowerBase {
             Projectile.friendly = true;
 
             Projectile.penetrate = 1;
-            Projectile.tileCollide = false;
+            Projectile.tileCollide = true;
 
             Projectile.light = 0.25f;
             Projectile.scale = 0.6f;
+
+            Projectile.usesLocalNPCImmunity = true;
+            Projectile.localNPCHitCooldown = 10;
+        }
+
+        public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac) {
+            width = height = 20;
+
+            return base.TileCollideStyle(ref width, ref height, ref fallThrough, ref hitboxCenterFrac);
         }
 
         public override void AI() {
+            Projectile.timeLeft -= 100;
+
             while (Projectile.scale < 1)
                 Projectile.scale += 0.1f;
 

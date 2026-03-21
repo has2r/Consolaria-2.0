@@ -5,7 +5,10 @@ using Terraria.ModLoader;
 
 namespace Consolaria.Content.Crossmod.Thorium.Dusts;
 
-public sealed class JadeDust : ModDust {
+public sealed class JadeDust : JadeDust_Base { }
+public sealed class JadeDust2 : JadeDust_Base { }
+
+public abstract class JadeDust_Base : ModDust {
     public override Color? GetAlpha(Dust dust, Color lightColor) {
         lightColor = Color.Lerp(lightColor, Color.White, 0.8f);
         return new Color(lightColor.R, lightColor.G, lightColor.B, 25);
@@ -14,9 +17,11 @@ public sealed class JadeDust : ModDust {
     public override bool Update(Dust dust) {
         dust.BasicDust();
 
-        if (dust.customData != null && dust.customData is Projectile) {
-            Projectile player9 = (Projectile)dust.customData;
-            dust.position += player9.position - player9.oldPosition;
+        if (dust.customData != null && dust.customData is Projectile projectile) {
+            if (projectile.active) {
+                Projectile player9 = (Projectile)dust.customData;
+                dust.position += player9.position - player9.oldPosition;
+            }
         }
 
         float num111 = dust.scale;

@@ -23,7 +23,7 @@ public sealed class ScytheFantasma : ThoriumItem_ScytheBase {
         }
 
         public override void SetScytheValues(ref int dustCount, ref int dustType, ref Vector2 dustOffset) {
-            dustCount = 10;
+            dustCount = 5;
             dustType = DustID.PurpleTorch;
             dustOffset = new Vector2(0f, 20f);
         }
@@ -72,7 +72,7 @@ public sealed class ScytheFantasma : ThoriumItem_ScytheBase {
 
         public bool CanExplode => Projectile.localAI[0] >= 30f || !Target.active;
 
-        public override Color? GetAlpha(Color lightColor) => Color.White;
+        public override Color? GetAlpha(Color lightColor) => Color.Lerp(lightColor, Color.White, 0.5f);
 
         public override void SetStaticDefaults() {
             ProjectileID.Sets.PlayerHurtDamageIgnoresDifficultyScaling[Type] = true;
@@ -100,6 +100,9 @@ public sealed class ScytheFantasma : ThoriumItem_ScytheBase {
             Projectile.timeLeft = TIMELEFT;
 
             Projectile.tileCollide = false;
+
+            Projectile.usesLocalNPCImmunity = true;
+            Projectile.localNPCHitCooldown = 10;
         }
 
         public override void AI() {

@@ -1291,6 +1291,11 @@ Mods: {
 				// DisplayName: Jade Seal
 				// Tooltip: ""
 			}
+
+			Omunikodo: {
+				// DisplayName: Omunikodo
+				// Tooltip: ""
+			}
 		}
 
 		NPCs: {
@@ -1569,6 +1574,7 @@ Mods: {
 			// SpineCracker_Scythe.DisplayName: Spine Cracker_ Scythe
 			// JadeSeal_Lamp.DisplayName: Jade Seal_ Lamp
 			// JadeSeal_GoldenLamp.DisplayName: Jade Seal_ Golden Lamp
+			// Omunikodo_Shot.DisplayName: Omunikodo_ Shot
 		}
 
 		Tiles: {

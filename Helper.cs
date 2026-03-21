@@ -17,6 +17,77 @@ using Terraria.Utilities;
 namespace Consolaria;
 
 public static class Helper {
+    public static void KillDustThatOutOfScreen(this Dust dust) {
+        if (dust.position.Y > Main.screenPosition.Y + (float)Main.screenHeight)
+            dust.active = false;
+    }
+
+    public static void ApplyDustScale(this Dust dust, bool killDust = true) {
+        KillDustThatOutOfScreen(dust);
+
+        float num113 = 0.1f;
+        if ((double)Dust.dCount == 0.5)
+            dust.scale -= 0.001f;
+
+        if ((double)Dust.dCount == 0.6)
+            dust.scale -= 0.0025f;
+
+        if ((double)Dust.dCount == 0.7)
+            dust.scale -= 0.005f;
+
+        if ((double)Dust.dCount == 0.8)
+            dust.scale -= 0.01f;
+
+        if ((double)Dust.dCount == 0.9)
+            dust.scale -= 0.02f;
+
+        if ((double)Dust.dCount == 0.5)
+            num113 = 0.11f;
+
+        if ((double)Dust.dCount == 0.6)
+            num113 = 0.13f;
+
+        if ((double)Dust.dCount == 0.7)
+            num113 = 0.16f;
+
+        if ((double)Dust.dCount == 0.8)
+            num113 = 0.22f;
+
+        if ((double)Dust.dCount == 0.9)
+            num113 = 0.25f;
+
+        if (killDust && dust.scale < num113)
+            dust.active = false;
+    }
+
+    public static void BasicDust(this Dust dust, bool applyGravity = true, bool onlyScale = false) {
+        ApplyDustScale(dust);
+
+        if (!onlyScale) {
+            if (applyGravity && !dust.noGravity) {
+                dust.velocity.Y += 0.1f;
+            }
+        }
+        dust.position += dust.velocity;
+        dust.rotation += dust.velocity.X * 0.5f;
+        if (dust.fadeIn > 0f && dust.fadeIn < 100f) {
+            dust.scale += 0.03f;
+            if (dust.scale > dust.fadeIn)
+                dust.fadeIn = 0f;
+        }
+        else {
+            dust.scale -= 0.01f;
+        }
+
+        if (dust.noGravity) {
+            if (!onlyScale) {
+                dust.velocity *= 0.92f;
+            }
+            if (dust.fadeIn == 0f)
+                dust.scale -= 0.04f;
+        }
+    }
+
     public static SpriteEffects ToSpriteEffects(this bool facedRight) => facedRight ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
     public static SpriteEffects ToSpriteEffects(this int direction) => direction > 0 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
     public static SpriteEffects ToSpriteEffects2(this bool facedRight) => facedRight ? SpriteEffects.None : SpriteEffects.FlipVertically;
@@ -52,6 +123,7 @@ public static class Helper {
     public static void SetDefaultsToUsable(this Item item, int vanillaUseStyleID, int timeToUse, bool showItemOnUse = true, bool useTurn = false, bool autoReuse = false, SoundStyle? useSound = null) 
         => item.SetUsableValues(vanillaUseStyleID, timeToUse, showItemOnUse, useTurn, autoReuse, useSound);
 
+    public static bool IsAWeapon(this Projectile projectile) => projectile.damage > 0;
     public static bool IsAWeapon(this Item item) => item.damage > 0;
 
     public static float Clamp01(this float value) => MathHelper.Clamp(value, 0f, 1f);
@@ -121,20 +193,16 @@ public static class Helper {
     [UnsafeAccessor(UnsafeAccessorKind.StaticField, Name = "swapMusic")]
     public extern static ref bool Main_swapMusic(Main self);
 
-    public static Vector2 GetViableMousePosition(this Player player) {
-        Vector2 result = Main.MouseWorld;
-        player.LimitPointToPlayerReachableArea(ref result);
+    public static Vector2 GetPlayerCorePoint(this Player player, bool addGfY = true) {
+        Vector2 vector = player.Bottom;
+        Vector2 pos = player.MountedCenter;
+        Vector2 result = Utils.Floor(vector + (pos - vector) + new Vector2(0f, addGfY ? player.gfxOffY : 0f));
         return result;
     }
 
-    public static Vector2 GetViableMousePosition(this Player player, float maxX = 960f, float maxY = 600f) {
-        Vector2 result = Main.ReverseGravitySupport(Main.MouseScreen) + Main.screenPosition;
-        player.LimitPointToPlayerReachableArea(ref result, maxX, maxY);
-        return result;
-    }
-
+    // adapted vanilla
     public static void LimitPointToPlayerReachableArea(this Player player, ref Vector2 pointPoisition, float maxX = 960f, float maxY = 600f) {
-        Vector2 center = player.Center;
+        Vector2 center = player.GetPlayerCorePoint();
         Vector2 vector = pointPoisition - center;
         float num = Math.Abs(vector.X);
         float num2 = Math.Abs(vector.Y);
@@ -153,6 +221,22 @@ public static class Helper {
 
         Vector2 vector2 = vector * num3;
         pointPoisition = center + vector2;
+    }
+
+    public static Vector2 GetViableMousePosition(this Player player) {
+        Vector2 result = Main.ReverseGravitySupport(Main.MouseScreen) + Main.screenPosition;
+        player.LimitPointToPlayerReachableArea(ref result);
+        return result;
+    }
+
+    public static Vector2 GetViableMousePosition(this Player player, float maxX = 960f, float maxY = 600f) {
+        //float num14 = (float)Main.mouseX + Main.screenPosition.X;
+        //float num15 = (float)Main.mouseY + Main.screenPosition.Y;
+        //if (player.gravDir == -1f)
+        //    num15 = Main.screenPosition.Y + (float)Main.screenHeight - (float)Main.mouseY;
+        Vector2 result = Main.ReverseGravitySupport(Main.MouseScreen) + Main.screenPosition;
+        player.LimitPointToPlayerReachableArea(ref result, maxX, maxY);
+        return result;
     }
 
     public static Vector2 GetLimitedPosition(Vector2 startPosition, Vector2 endPosition, float maxLength, float minLength = 0f) {

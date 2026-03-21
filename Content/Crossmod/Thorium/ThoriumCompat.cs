@@ -1,14 +1,22 @@
 ﻿
 using Microsoft.Xna.Framework;
 
+using System;
+using System.Runtime.CompilerServices;
+
+using Terraria;
 using Terraria.ModLoader;
 
 using ThoriumMod;
+using ThoriumMod.Buffs.Healer;
 using ThoriumMod.Items;
 using ThoriumMod.Items.HealerItems;
+using ThoriumMod.NPCs;
 using ThoriumMod.Projectiles;
+using ThoriumMod.Projectiles.Healer;
 using ThoriumMod.Projectiles.Scythe;
 using ThoriumMod.Projectiles.Thrower;
+using ThoriumMod.Utilities;
 
 namespace Consolaria.Content.Crossmod.Thorium;
 
@@ -43,17 +51,22 @@ public abstract class ThoriumItem_HealerBase : ThoriumItem {
     public sealed override void SetDefaults() {
         isHealer = true;
 
-        SetHealerValues(ref isDarkHealer);
+        bool isAHealerTool = false;
+        SetHealerValues(ref isDarkHealer, ref healType, ref healAmount, ref healDisplay, ref isAHealerTool);
         if (isDarkHealer) {
             isHealer = false;
         }
 
         SetHealerDefaults();
+
+        if (isAHealerTool) {
+            Item.DamageType = ThoriumDamageBase<HealerTool>.Instance;
+        }
     }
 
     public virtual void SetHealerDefaults() { }
 
-    public virtual void SetHealerValues(ref bool IsDarkHealer) { }
+    public virtual void SetHealerValues(ref bool IsDarkHealer, ref HealType healType, ref int healAmount, ref bool healDisplay, ref bool isAHealerTool) { }
 }
 
 [ExtendsFromMod(ThoriumCompat.THORIUMMODNAME)]
@@ -126,7 +139,9 @@ public abstract class ThoriumProjectile_HealerBase : ThoriumProjectile {
     public override bool IsLoadingEnabled(Mod mod) => ThoriumCompat.IsThoriumEnabled;
 
     public sealed override void SetDefaults() {
-        Projectile.DamageType = ThoriumDamageBase<HealerDamage>.Instance;
+        if (Projectile.IsAWeapon()) {
+            Projectile.DamageType = ThoriumDamageBase<HealerDamage>.Instance;
+        }
 
         SetHealerDefaults();
     }
@@ -152,4 +167,156 @@ public abstract class ThoriumProjectile_ThrowerBase : ThoriumProjectile {
 [JITWhenModsEnabled(ThoriumCompat.THORIUMMODNAME)]
 public abstract class ThoriumProjectile_TomahawkBase : TomahawkProBase {
     public override bool IsLoadingEnabled(Mod mod) => ThoriumCompat.IsThoriumEnabled;
+}
+
+[ExtendsFromMod(ThoriumCompat.THORIUMMODNAME)]
+[JITWhenModsEnabled(ThoriumCompat.THORIUMMODNAME)]
+public static class ThoriumUtils {
+    internal delegate void CustomHealing(Player player, Player target, ref int heals, ref int selfHeals);
+
+    private static bool ThoriumHealTarget(this Projectile projectile, Player target, int healAmount, bool onHealEffects = true, bool bonusHealing = true, bool ignoreSetTarget = false, bool statistics = true, CustomHealing customHealing = null) {
+        //IL_0206: Unknown result type (might be due to invalid IL or missing references)
+        //IL_0211: Unknown result type (might be due to invalid IL or missing references)
+        //IL_0194: Unknown result type (might be due to invalid IL or missing references)
+        //IL_019f: Unknown result type (might be due to invalid IL or missing references)
+        if (projectile.owner != Main.myPlayer) {
+            return false;
+        }
+        Player player = Main.player[projectile.owner];
+        ThoriumPlayer thoriumPlayer = player.GetThoriumPlayer();
+        ThoriumPlayer thoriumTarget = target.GetThoriumPlayer();
+        int heals = healAmount;
+        int selfHeals = 0;
+        bool self = player == target;
+        customHealing?.Invoke(player, target, ref heals, ref selfHeals);
+        if (bonusHealing) {
+            heals += thoriumPlayer.healBonus;
+        }
+        if (onHealEffects) {
+            if (thoriumPlayer.accForgottenCrossNecklace) {
+                target.AddBuff(ModContent.BuffType<ForgottenCrossNecklaceBuff>(), 900, false, false);
+            }
+            if (thoriumPlayer.setBlooming) {
+                target.AddBuff(ModContent.BuffType<BloomingSetBuff>(), 600, false, false);
+            }
+            if (thoriumPlayer.setLifeBinder) {
+                target.AddBuff(ModContent.BuffType<LifeBinderSetBuff>(), 600, false, false);
+            }
+            if (thoriumPlayer.accVerdantOrnament) {
+                target.AddBuff(ModContent.BuffType<VerdantOrnamentBuff>(), 300, false, false);
+            }
+            if (thoriumPlayer.buffDreamWeaversHoodDream) {
+                target.AddBuff(ModContent.BuffType<DreamWeaversHoodDreamAllyBuff>(), 60, false, false);
+            }
+            if (!self && thoriumPlayer.honeyHeart && target.statLife <= player.statLife) {
+                target.AddPVPBuff(48, 300);
+            }
+            ref int coralShieldCounter = ref thoriumPlayer.setCoralShieldCounter;
+            if (!self && target != player && thoriumPlayer.setCoral && coralShieldCounter > 0) {
+                thoriumPlayer.HandleCoralSetTransfer(thoriumTarget, coralShieldCounter, request: true);
+                coralShieldCounter = 0;
+            }
+            if (!self && thoriumPlayer.accBeltoftheQuickResponse) {
+                player.AddBuff(ModContent.BuffType<BeltoftheQuickResponseBuff>(), 180, false, false);
+            }
+            if (!self && thoriumPlayer.prydwen) {
+                selfHeals += 4;
+            }
+            if (!self && thoriumPlayer.innerFlame.Active && thoriumPlayer.LowestPlayer != ((Entity)player).whoAmI) {
+                Projectile.NewProjectile(player.GetSource_Accessory(thoriumPlayer.innerFlame.Item, (string)null), ((Entity)player).Center.X, ((Entity)player).Center.Y - 50f, 0f, 0f, ModContent.ProjectileType<InnerFlamePro>(), 0, 0f, ((Entity)player).whoAmI, 0f, 0f, 0f);
+            }
+            if (!self && thoriumPlayer.accDewCollector.Active) {
+                Projectile.NewProjectile(player.GetSource_Accessory(thoriumPlayer.accDewCollector.Item, (string)null), ((Entity)target).Center.X, ((Entity)target).Center.Y, Utils.NextFloat(Main.rand, -1f, 1f), Utils.NextFloat(Main.rand, -3f, -1f), ModContent.ProjectileType<DewCollectorPro>(), 0, 0f, ((Entity)player).whoAmI, 0f, 0f, 0f);
+            }
+            if (thoriumPlayer.aloePlant) {
+                thoriumTarget.SetLifeRecoveryEffect(LifeRecoveryEffectType.AloeLeaf, 600, request: true);
+            }
+            if (thoriumPlayer.medicalAcc && !thoriumTarget.OutOfCombat) {
+                thoriumTarget.SetLifeRecoveryEffect(LifeRecoveryEffectType.MedicalBag, 300, request: true);
+            }
+            if (!self && thoriumPlayer.equilibrium) {
+                ((player.statLife > target.statLife) ? thoriumTarget : thoriumPlayer).SetLifeRecoveryEffect(LifeRecoveryEffectType.Equalizer, 300, request: true);
+            }
+        }
+        if (heals > 0) {
+            target.HealLife(heals, player, healOverMax: true, statistics);
+            thoriumTarget.mostRecentHeal = heals;
+            thoriumTarget.mostRecentHealer = ((Entity)player).whoAmI;
+            if (!ignoreSetTarget) {
+                thoriumPlayer.healedTarget = ((Entity)target).whoAmI;
+            }
+            player.ApplyInteractionNearbyNPCs();
+        }
+        if (selfHeals > 0) {
+            player.HealLife(selfHeals);
+        }
+        if (projectile.penetrate > 0) {
+            projectile.penetrate--;
+        }
+        if (projectile.penetrate == 0) {
+            projectile.Kill();
+            return true;
+        }
+        return false;
+    }
+
+    public static bool CanBeHealed(this Projectile projectile, Player healer, Player target, float radius = 0f, Func<Player, bool> canHealPlayer = null, int specificPlayer = -1, bool ignoreHealer = true) {
+        //IL_0084: Unknown result type (might be due to invalid IL or missing references)
+        bool isSpecificPlayer = specificPlayer > -1 && specificPlayer < 255;
+        if (!((Entity)target).active || target.dead || target.statLife >= target.statLifeMax2 || (!isSpecificPlayer && ignoreHealer && ((Entity)healer).whoAmI == ((Entity)target).whoAmI) || (isSpecificPlayer && specificPlayer != ((Entity)target).whoAmI) || (canHealPlayer != null && !canHealPlayer(target)) || (healer.team != target.team && healer.team != 0)) {
+            return false;
+        }
+        if (radius != 0f && ((Entity)target).DistanceSQ(((Entity)projectile).Center) > radius * radius) {
+            return false;
+        }
+        return true;
+    }
+
+    internal static void ThoriumHeal(this Projectile projectile, int healAmount, float radius = 30f, bool onHealEffects = true, bool bonusHealing = true, CustomHealing customHealing = null, Func<Player, bool> canHealPlayer = null, int specificPlayer = -1, bool ignoreHealer = true, bool ignoreSetTarget = false, bool statistics = true) {
+        //IL_00e6: Unknown result type (might be due to invalid IL or missing references)
+        if (projectile.owner != Main.myPlayer) {
+            return;
+        }
+        Player healer = Main.player[projectile.owner];
+        if (specificPlayer > -1 && specificPlayer < 255) {
+            Player target = Main.player[specificPlayer];
+            if (projectile.CanBeHealed(healer, target, radius, canHealPlayer, specificPlayer, ignoreHealer)) {
+                projectile.ThoriumHealTarget(target, healAmount, onHealEffects, bonusHealing, ignoreSetTarget, statistics, customHealing);
+            }
+        }
+        else {
+            for (int i = 0; i < 255; i++) {
+                Player target = Main.player[i];
+                if (projectile.CanBeHealed(healer, target, radius, canHealPlayer, specificPlayer, ignoreHealer) && projectile.ThoriumHealTarget(target, healAmount, onHealEffects, bonusHealing, ignoreSetTarget, statistics, customHealing)) {
+                    break;
+                }
+            }
+        }
+        if (projectile.penetrate == 0) {
+            return;
+        }
+        ThoriumPlayer thoriumPlayer = healer.GetThoriumPlayer();
+        int dummyType = ModContent.NPCType<HealingDummy>();
+        for (int u = 0; u < Main.maxNPCs; u++) {
+            NPC dummy = Main.npc[u];
+            if (((Entity)dummy).active && dummy.type == dummyType && !(((Entity)dummy).DistanceSQ(((Entity)projectile).Center) > radius * radius)) {
+                int heals = healAmount;
+                if (bonusHealing) {
+                    heals += thoriumPlayer.healBonus;
+                }
+                dummy.life += heals;
+                dummy.HealEffect(heals, true);
+                if (dummy.localAI[0] <= 0f) {
+                    dummy.localAI[0] = 300f;
+                }
+                if (projectile.penetrate > 0) {
+                    projectile.penetrate--;
+                }
+                if (projectile.penetrate == 0) {
+                    projectile.Kill();
+                    break;
+                }
+            }
+        }
+    }
 }

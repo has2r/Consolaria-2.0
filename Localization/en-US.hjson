@@ -160,6 +160,11 @@ Mods: {
 				DisplayName: Pet Old Lady
 				Description: Don't judge on the looks
 			}
+
+			JadeBuff: {
+				DisplayName: Jade Buff
+				Description: Mods.Consolaria.Buffs.JadeBuff.Description
+			}
 		}
 
 		Items: {
@@ -1281,6 +1286,11 @@ Mods: {
 				DisplayName: Spine Cracker
 				Tooltip: ""
 			}
+
+			JadeSeal: {
+				DisplayName: Jade Seal
+				Tooltip: ""
+			}
 		}
 
 		NPCs: {
@@ -1557,6 +1567,8 @@ Mods: {
 			ScytheFantasma_Spirit.DisplayName: Scythe Fantasma_ Spirit
 			SpineCracker_Throw.DisplayName: Spine Cracker_ Throw
 			SpineCracker_Scythe.DisplayName: Spine Cracker_ Scythe
+			JadeSeal_Lamp.DisplayName: Jade Seal_ Lamp
+			JadeSeal_GoldenLamp.DisplayName: Jade Seal_ Golden Lamp
 		}
 
 		Tiles: {

@@ -88,7 +88,7 @@ public sealed class Chocoplotion : ThoriumItem_ThrowerBase {
                     }
                 }
 
-                Projectile.tileCollide = Projectile.timeLeft < TIMELEFT - 5;
+                //Projectile.tileCollide = Projectile.timeLeft < TIMELEFT - 5;
 
                 // Smoke and fuse dust spawn. The position is calculated to spawn the dust directly on the fuse.
                 if (Main.rand.NextBool()) {
@@ -96,12 +96,12 @@ public sealed class Chocoplotion : ThoriumItem_ThrowerBase {
                     dust.scale = 0.1f + Main.rand.Next(5) * 0.1f;
                     dust.fadeIn = 1.5f + Main.rand.Next(5) * 0.1f;
                     dust.noGravity = true;
-                    dust.position = Projectile.Center + Vector2.UnitY.RotatedBy(Projectile.rotation - MathHelper.Pi + 0.5f) * 26f;
+                    dust.position = Projectile.Center + Vector2.UnitY.RotatedBy(Projectile.rotation - MathHelper.Pi + 0.5f * Projectile.spriteDirection) * 26f;
 
                     dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Torch, 0f, 0f, 100, default, 1f);
                     dust.scale = 1f + Main.rand.Next(5) * 0.1f;
                     dust.noGravity = true;
-                    dust.position = Projectile.Center + Vector2.UnitY.RotatedBy(Projectile.rotation - MathHelper.Pi + 0.5f) * 26f;
+                    dust.position = Projectile.Center + Vector2.UnitY.RotatedBy(Projectile.rotation - MathHelper.Pi + 0.5f * Projectile.spriteDirection) * 26f;
                 }
             }
 
@@ -111,13 +111,15 @@ public sealed class Chocoplotion : ThoriumItem_ThrowerBase {
             if (Projectile.velocity.Y > 16f)
                 Projectile.velocity.Y = 16f;
 
-            Projectile.rotation += Projectile.velocity.X * 0.025f;
+            Projectile.rotation = Utils.AngleLerp(Projectile.rotation, Projectile.velocity.X * 0.1f, 0.2f);
+
+            Projectile.spriteDirection = Projectile.direction = (Projectile.velocity.X > 0f).ToDirectionInt();
 
             Projectile.ai[2] = 0f;
         }
 
         public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac) {
-            width = height = (int)(50 * 0.875f);
+            width = height = (int)(50 * 1f) - 2;
 
             return base.TileCollideStyle(ref width, ref height, ref fallThrough, ref hitboxCenterFrac);
         }
@@ -202,7 +204,7 @@ public sealed class Chocoplotion : ThoriumItem_ThrowerBase {
         }
 
         public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac) {
-            width = height = (int)(24 * 0.875f);
+            width = height = (int)(24 * 1f) - 2;
 
             return base.TileCollideStyle(ref width, ref height, ref fallThrough, ref hitboxCenterFrac);
         }

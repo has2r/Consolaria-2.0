@@ -108,7 +108,7 @@ public sealed class FiveStarBuffet : ThoriumItem_HealerBase {
 
             void disappear() {
                 Projectile.Opacity -= 0.1f;
-                Projectile.scale -= 0.1f;
+                Projectile.scale -= 0.15f;
                 if (Projectile.Opacity <= 0f) {
                     Projectile.Kill();
                 }
@@ -125,6 +125,7 @@ public sealed class FiveStarBuffet : ThoriumItem_HealerBase {
                 vector = vector.Floor();
 
                 Projectile.Center = Vector2.Lerp(Projectile.Center, vector, 0.15f);
+                Projectile.Center += player.velocity * 0.2f;
                 Projectile.Center += player.position - player.oldPosition;
 
                 Projectile.rotation = Utils.AngleLerp(Projectile.rotation, -(vector.X - Projectile.Center.X) * 0.025f, 0.15f);
@@ -335,20 +336,21 @@ public sealed class FiveStarBuffet : ThoriumItem_HealerBase {
 
                     vector4.Y *= 0.75f;
 
-                    Projectile.velocity = vector4;
+                    Projectile.velocity = new Vector2(MathF.Abs(vector4.X) * player.direction, vector4.Y);
                 }
                 else {
                     Projectile.Kill();
                 }
             }
 
-            if (velocity.X > 0f)
-                Main.player[owner].ChangeDir(1);
-            else if (velocity.X < 0f)
-                Main.player[owner].ChangeDir(-1);
+            //if (velocity.X > 0f)
+            //    Main.player[owner].ChangeDir(1);
+            //else if (velocity.X < 0f)
+            //    Main.player[owner].ChangeDir(-1);
 
-            //Main.player[owner].ChangeDir((int)Projectile.ai[1]);
+            Main.player[owner].ChangeDir((int)Projectile.ai[1]);
 
+            Projectile.direction = (Projectile.velocity.X > 0f).ToDirectionInt();
             Projectile.spriteDirection = Projectile.direction;
             Main.player[owner].heldProj = Projectile.whoAmI;
             Main.player[owner].SetDummyItemTime(2);

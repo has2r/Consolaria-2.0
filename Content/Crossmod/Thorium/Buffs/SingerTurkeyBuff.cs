@@ -1,4 +1,4 @@
-﻿using Consolaria.Content.Crossmod.Thorium.Weapons;
+﻿using Consolaria.Content.Crossmod.Thorium.Accessories;
 
 using Microsoft.Xna.Framework;
 
@@ -21,7 +21,7 @@ public sealed class SingerTurkeyBuff : ModBuff {
     public override void Update(Player player, ref int buffIndex) {
         player.GetModPlayer<SingerTurkeyBuff_Handler>().IsEffectActive = true;
 
-        int type = ModContent.ProjectileType<SingerTurkey.SingerTurkey_Summon>();
+        int type = ModContent.ProjectileType<PortableSpecialCorn.PortableSpecialCorn_Summon>();
         int count = player.ownedProjectileCounts[type];
         if (count >= 2) {
             foreach (Projectile projectile in Main.ActiveProjectiles) {

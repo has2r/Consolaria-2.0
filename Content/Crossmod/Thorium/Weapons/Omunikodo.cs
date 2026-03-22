@@ -105,13 +105,23 @@ public sealed class Omunikodo : ThoriumItem_BardBase {
         double num4 = num2 + 0f * num0;
         double num5 = num2 - 0.4f * num0;
         float num6 = Main.rand.NextFloat() * 0.2f + 0.95f;
-        Projectile.NewProjectile(source, position.X, position.Y, velocity.X, velocity.Y, type, damage, knockback, player.whoAmI, ai2: player.direction);
+
+        position += velocity * 1.25f;
+
+        Projectile.NewProjectile(source, position.X, position.Y, velocity.X, velocity.Y, type, damage, knockback, player.whoAmI, ai2: 0);
+
+        position -= velocity * 2.5f;
+        Projectile.NewProjectile(source, position.X, position.Y, velocity.X, velocity.Y, type, damage, knockback, player.whoAmI, ai2: 1);
+
+        position += velocity * 5f;
+        Projectile.NewProjectile(source, position.X, position.Y, velocity.X, velocity.Y, type, damage, knockback, player.whoAmI, ai2: 2);
 
         return false;
     }
 
     public sealed class Omunikodo_Shot : ThoriumProjectile_BardBase {
         private float _wave;
+        private byte _option = 255;
 
         public override string Texture => "Consolaria/Assets/Textures/Empty";
 
@@ -137,6 +147,11 @@ public sealed class Omunikodo : ThoriumItem_BardBase {
         }
 
         public override void AI() {
+            if (_option == 255) {
+                _option = (byte)Projectile.ai[2];
+                Projectile.ai[2] = Projectile.GetOwnerAsPlayer().direction;
+            }
+
             if (_wave == 0f) {
                 _wave = 1f;
             }
@@ -165,13 +180,25 @@ public sealed class Omunikodo : ThoriumItem_BardBase {
             if (Vector2.Distance(vector6, vector7) % 3f != 0f)
                 num5++;
 
+            Color color = Color.Lerp(new Color(198, 17, 185), new Color(255, 81, 206), Main.rand.NextFloat());
+            switch (_option) {
+                case 0:
+                    break;
+                case 1:
+                    color = Color.Lerp(new Color(115, 17, 196), new Color(176, 81, 255), Main.rand.NextFloat());
+                    break;
+                case 2:
+                    color = Color.Lerp(new Color(196, 145, 17), new Color(255, 194, 81), Main.rand.NextFloat());
+                    break;
+            }
+
             for (float num6 = 1f; num6 <= (float)num5; num6 += 1f) {
                 Dust obj = Main.dust[Dust.NewDust(Projectile.position, 0, 0, ModContent.DustType<OmunikodoDust>())];
                 obj.position = Vector2.Lerp(vector7, vector6, num6 / (float)num5) + new Vector2(Projectile.width, Projectile.height) / 2f;
                 obj.noGravity = true;
                 obj.velocity.Y *= 0.5f;
                 obj.scale *= Main.rand.NextFromList(0.9f, 1.3f);
-                obj.color = Color.Lerp(new Color(198, 17, 185), new Color(255, 81, 206), Main.rand.NextFloat());
+                obj.color = color;
                 obj.alpha = Main.rand.Next(150);
             }
         }

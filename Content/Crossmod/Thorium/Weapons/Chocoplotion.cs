@@ -27,6 +27,8 @@ public sealed class Chocoplotion : ThoriumItem_ThrowerBase {
     }
 
     public sealed class Chocoplotion_Throw : ThoriumProjectile_ThrowerBase {
+        private static ushort TIMELEFT => 120;
+
         public override string Texture => Helper.GetItemTexturePath<Chocoplotion>();
 
         public override void SetStaticDefaults() {
@@ -47,7 +49,7 @@ public sealed class Chocoplotion : ThoriumItem_ThrowerBase {
             Projectile.localNPCHitCooldown = -1;
 
             Projectile.tileCollide = true;
-            Projectile.timeLeft = 120;
+            Projectile.timeLeft = TIMELEFT;
         }
 
         public override bool PreDraw(ref Color lightColor) {
@@ -77,6 +79,8 @@ public sealed class Chocoplotion : ThoriumItem_ThrowerBase {
                 Projectile.PrepareBombToBlow();
             }
             else {
+                Projectile.tileCollide = Projectile.timeLeft < TIMELEFT - 5;
+
                 // Smoke and fuse dust spawn. The position is calculated to spawn the dust directly on the fuse.
                 if (Main.rand.NextBool()) {
                     Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Smoke, 0f, 0f, 100, default, 1f);
@@ -102,7 +106,7 @@ public sealed class Chocoplotion : ThoriumItem_ThrowerBase {
         }
 
         public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac) {
-            width = height = 50;
+            width = height = (int)(50 * 0.875f);
 
             return base.TileCollideStyle(ref width, ref height, ref fallThrough, ref hitboxCenterFrac);
         }
@@ -118,7 +122,7 @@ public sealed class Chocoplotion : ThoriumItem_ThrowerBase {
 
         public override void OnKill(int timeLeft) {
             if (Projectile.IsOwnerLocal()) {
-                int count = 4;
+                int count = 6;
                 for (int i = 0; i < count; i++) {
                     float angle = MathHelper.TwoPi * i / count;
                     float bulletSpeed = 4f;
@@ -185,14 +189,14 @@ public sealed class Chocoplotion : ThoriumItem_ThrowerBase {
         }
 
         public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac) {
-            width = height = 24;
+            width = height = (int)(24 * 0.875f);
 
             return base.TileCollideStyle(ref width, ref height, ref fallThrough, ref hitboxCenterFrac);
         }
 
         public override void OnKill(int timeLeft) {
-            for (int i = 0; i < 10; i++) {
-                int ind4 = Dust.NewDust(Projectile.Center - Vector2.One * 5, 10, 10, ModContent.DustType<ChocoplotionDust>(), 0f, 0f, 0, default, 1.15f + Main.rand.NextFloat(-0.1f, 0.1f));
+            for (int i = 0; i < 6; i++) {
+                int ind4 = Dust.NewDust(Projectile.Center - Vector2.One * 4, 8, 8, ModContent.DustType<ChocoplotionDust>(), 0f, 0f, 0, default, 1.15f + Main.rand.NextFloat(-0.1f, 0.1f));
                 Main.dust[ind4].velocity *= 0.5f;
                 Main.dust[ind4].noGravity = true;
             }

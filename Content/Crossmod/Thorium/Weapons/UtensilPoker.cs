@@ -251,7 +251,7 @@ public sealed class UtensilPoker : ThoriumItem_ThrowerBase {
         }
 
         public override void AI() {
-            Projectile.tileCollide = Projectile.timeLeft < TIMELEFT - 10;
+            Projectile.tileCollide = Projectile.timeLeft < TIMELEFT - 5;
 
             if (Projectile.ai[0] == 0f) {
                 Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2;
@@ -361,7 +361,7 @@ public sealed class UtensilPoker : ThoriumItem_ThrowerBase {
         }
 
         public override void AI() {
-            Projectile.tileCollide = Projectile.timeLeft < TIMELEFT - 10;
+            Projectile.tileCollide = Projectile.timeLeft < TIMELEFT - 5;
 
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2;
         }

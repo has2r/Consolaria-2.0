@@ -60,6 +60,8 @@ public sealed class PortableSpecialCorn : ThoriumItem_BardBase {
             if (Projectile.localAI[2] == 0f) {
                 Projectile.localAI[2] = 1f;
 
+                SoundEngine.PlaySound(new SoundStyle($"{nameof(Consolaria)}/Assets/Sounds/TurkorGobble") with { Pitch = 0.5f }, Projectile.Center);
+
                 flag = true;
 
                 Projectile.direction = Projectile.spriteDirection = -(((Main.player[Projectile.owner].Center.X - 10f * Main.player[Projectile.owner].direction) - Projectile.Center.X) > 0).ToDirectionInt();
@@ -74,7 +76,7 @@ public sealed class PortableSpecialCorn : ThoriumItem_BardBase {
             Player player = Projectile.GetOwnerAsPlayer();
             Item selectedItem = player.HeldItem;
             int animationTime = 30;
-            if (Projectile.IsOwnerLocal() && !selectedItem.IsAir && selectedItem.ModItem is BardItem && player.ItemAnimationJustStarted && player.GetModPlayer<SingerTurkeyBuff_Handler>().BardAttackCount >= 4) {
+            if (Projectile.IsOwnerLocal() && SingerTurkeyBuff_Handler.JustUsedBardWeapon(player) && player.GetModPlayer<SingerTurkeyBuff_Handler>().BardAttackCount >= 4) {
                 Vector2 position = player.Center;
                 player.Center = Projectile.Center;
                 Player_ItemCheck_Shoot(player, player.whoAmI, player.HeldItem, (int)(player.GetWeaponDamage(player.HeldItem) * 0.45f));

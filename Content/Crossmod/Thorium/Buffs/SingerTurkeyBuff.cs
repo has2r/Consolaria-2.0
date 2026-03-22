@@ -53,14 +53,18 @@ public sealed class SingerTurkeyBuff_Handler : ModPlayer {
         IsEffectActive = false;
     }
 
+    public static bool JustUsedBardWeapon(Player player) {
+        Item selectedItem = player.HeldItem;
+        return !selectedItem.IsAir && selectedItem.ModItem is BardItem && player.ItemAnimationJustStarted;
+    }
+
     public override void PostUpdateEquips() {
         if (!IsEffectActive) {
             BardAttackCount = 0;
             return;
         }
 
-        Item selectedItem = Player.HeldItem;
-        if (Player.whoAmI == Main.myPlayer && !selectedItem.IsAir && selectedItem.ModItem is BardItem && Player.ItemAnimationJustStarted) {
+        if (Player.whoAmI == Main.myPlayer && JustUsedBardWeapon(Player)) {
             BardAttackCount++;
         }
     }

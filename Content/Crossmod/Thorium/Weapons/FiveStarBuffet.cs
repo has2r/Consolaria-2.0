@@ -7,6 +7,7 @@ using RoA.Core.Utility.Vanilla;
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 using Terraria;
 using Terraria.Audio;
@@ -40,7 +41,7 @@ public sealed class FiveStarBuffet : ThoriumItem_HealerBase {
     }
 
     public sealed class FiveStarBuffet_Food : ThoriumProjectile_HealerBase {
-        private static Asset<Texture2D>[] _foodTextures = null!;
+        public static Asset<Texture2D>[] FoodTextures { get; private set; } = null!;
 
         public override string Texture => "Consolaria/Assets/Textures/Empty";
 
@@ -49,12 +50,12 @@ public sealed class FiveStarBuffet : ThoriumItem_HealerBase {
                 return;
             }
 
-            _foodTextures = new Asset<Texture2D>[4];
+            FoodTextures = new Asset<Texture2D>[4];
             string itemTexture = Helper.GetItemTexturePath<FiveStarBuffet>();
-            _foodTextures[0] = ModContent.Request<Texture2D>(itemTexture + "_Food1");
-            _foodTextures[1] = ModContent.Request<Texture2D>(itemTexture + "_Food2");
-            _foodTextures[2] = ModContent.Request<Texture2D>(itemTexture + "_Food3");
-            _foodTextures[3] = ModContent.Request<Texture2D>(itemTexture + "_Food4");
+            FoodTextures[0] = ModContent.Request<Texture2D>(itemTexture + "_Food1");
+            FoodTextures[1] = ModContent.Request<Texture2D>(itemTexture + "_Food2");
+            FoodTextures[2] = ModContent.Request<Texture2D>(itemTexture + "_Food3");
+            FoodTextures[3] = ModContent.Request<Texture2D>(itemTexture + "_Food4");
         }
 
         public override void SetHealerDefaults() {
@@ -74,7 +75,7 @@ public sealed class FiveStarBuffet : ThoriumItem_HealerBase {
             if (Projectile.localAI[0] == 0f) {
                 Projectile.localAI[0] = 1f;
 
-                Projectile.ai[0] = Main.rand.Next(4);
+                //Projectile.ai[0] = Main.rand.Next(4);
                 Projectile.netUpdate = true;
             }
 
@@ -194,7 +195,7 @@ public sealed class FiveStarBuffet : ThoriumItem_HealerBase {
         }
 
         public override bool PreDraw(ref Color lightColor) {
-            Texture2D texture = _foodTextures[(int)Projectile.ai[0]].Value;
+            Texture2D texture = FoodTextures[(int)Projectile.ai[0]].Value;
             Projectile.QuickDraw(lightColor * Projectile.Opacity, texture: texture);
 
             return false;
@@ -209,6 +210,7 @@ public sealed class FiveStarBuffet : ThoriumItem_HealerBase {
         public override string Texture => "Consolaria/Assets/Textures/Empty";
 
         private Vector2 _shake;
+        private byte _nextFoodIndex;
 
         public override void SetStaticDefaults() {
             if (Main.dedServ) {
@@ -249,6 +251,9 @@ public sealed class FiveStarBuffet : ThoriumItem_HealerBase {
             texture = _bottomTexture.Value;
             Main.EntitySpriteDraw(texture, pos, null, Projectile.GetAlpha(lightColor), rotation, texture.Frame().Left(), Projectile.scale, effects);
 
+            texture = FiveStarBuffet_Food.FoodTextures[_nextFoodIndex].Value;
+            Main.EntitySpriteDraw(texture, pos + Projectile.velocity * 28f, null, Projectile.GetAlpha(lightColor), rotation, texture.Frame().Center(), Projectile.scale, effects);
+
             texture = _topTexture.Value;
             float y = -10f * Helper.Clamp01(MathF.Pow(Projectile.ai[2], 1.5f));
             Main.EntitySpriteDraw(texture, pos + _shake + Vector2.UnitY * y, null, Projectile.GetAlpha(lightColor), rotation, texture.Frame().Left(), Projectile.scale, effects);
@@ -260,6 +265,14 @@ public sealed class FiveStarBuffet : ThoriumItem_HealerBase {
         public override bool? CanCutTiles() => false;
         public override bool ShouldUpdatePosition() => false;
 
+        public override void SendExtraAI(BinaryWriter writer) {
+            writer.Write(_nextFoodIndex);
+        }
+
+        public override void ReceiveExtraAI(BinaryReader reader) {
+            _nextFoodIndex = reader.ReadByte();
+        }
+
         public override void AI() {
             Player player4 = Projectile.GetOwnerAsPlayer();
             //if (!player4.CheckMana(player4.GetSelectedItem(), pay: false)) {
@@ -269,6 +282,12 @@ public sealed class FiveStarBuffet : ThoriumItem_HealerBase {
             float time = 120f;
             int foodType = ModContent.ProjectileType<FiveStarBuffet_Food>();
             if (player4.ownedProjectileCounts[foodType] < 5) {
+                if (Projectile.ai[0] == 0f) {
+                    if (player4.whoAmI == Projectile.owner) {
+                        _nextFoodIndex = (byte)Main.rand.Next(4);
+                        Projectile.netUpdate = true;
+                    }
+                }
                 Projectile.ai[0]++;
                 if (Projectile.ai[0] > time) {
                     Projectile.ai[0] = 0f;
@@ -280,7 +299,8 @@ public sealed class FiveStarBuffet : ThoriumItem_HealerBase {
                                                        foodType,
                                                        0,
                                                        0f,
-                                                       player4.whoAmI);
+                                                       player4.whoAmI,
+                                                       _nextFoodIndex);
                     }
 
                     if (Projectile.localAI[1] != 0f) {

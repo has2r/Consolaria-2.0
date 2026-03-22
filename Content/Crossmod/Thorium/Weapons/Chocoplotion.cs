@@ -9,8 +9,6 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-using static Consolaria.Content.Crossmod.Thorium.Weapons.Chocoplotion;
-
 namespace Consolaria.Content.Crossmod.Thorium.Weapons;
 
 public sealed class Chocoplotion : ThoriumItem_ThrowerBase {

@@ -17,7 +17,7 @@ using Terraria.Utilities;
 namespace Consolaria;
 
 public static class Helper {
-    public static float Wave(float minimum, float maximum, float speed = 1f, float offset = 0f) => Wave((float)Main.timeForVisualEffects, minimum, maximum, speed, offset);
+    public static float Wave(float minimum, float maximum, float speed = 1f, float offset = 0f) => Wave((float)Main.GlobalTimeWrappedHourly, minimum, maximum, speed, offset);
     public static float Wave(float step, float minimum, float maximum, float speed = 1f, float offset = 0f) => minimum + ((float)Math.Sin(step * (double)speed + (double)offset) + 1f) / 2f * (maximum - minimum);
 
 

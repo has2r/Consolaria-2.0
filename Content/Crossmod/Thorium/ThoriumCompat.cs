@@ -179,9 +179,9 @@ public abstract class ThoriumProjectile_TomahawkBase : TomahawkProBase {
 [ExtendsFromMod(ThoriumCompat.THORIUMMODNAME)]
 [JITWhenModsEnabled(ThoriumCompat.THORIUMMODNAME)]
 public static class ThoriumUtils {
-    internal delegate void CustomHealing(Player player, Player target, ref int heals, ref int selfHeals);
+    public delegate void CustomHealing(Player player, Player target, ref int heals, ref int selfHeals);
 
-    private static bool ThoriumHealTarget(this Projectile projectile, Player target, int healAmount, bool onHealEffects = true, bool bonusHealing = true, bool ignoreSetTarget = false, bool statistics = true, CustomHealing customHealing = null) {
+    public static bool ThoriumHealTarget(this Projectile projectile, Player target, int healAmount, bool onHealEffects = true, bool bonusHealing = true, bool ignoreSetTarget = false, bool statistics = true, CustomHealing customHealing = null) {
         //IL_0206: Unknown result type (might be due to invalid IL or missing references)
         //IL_0211: Unknown result type (might be due to invalid IL or missing references)
         //IL_0194: Unknown result type (might be due to invalid IL or missing references)
@@ -279,7 +279,7 @@ public static class ThoriumUtils {
         return true;
     }
 
-    internal static void ThoriumHeal(this Projectile projectile, int healAmount, float radius = 30f, bool onHealEffects = true, bool bonusHealing = true, CustomHealing customHealing = null, Func<Player, bool> canHealPlayer = null, int specificPlayer = -1, bool ignoreHealer = true, bool ignoreSetTarget = false, bool statistics = true) {
+    public static void ThoriumHeal(this Projectile projectile, int healAmount, float radius = 30f, bool onHealEffects = true, bool bonusHealing = true, CustomHealing customHealing = null, Func<Player, bool> canHealPlayer = null, int specificPlayer = -1, bool ignoreHealer = true, bool ignoreSetTarget = false, bool statistics = true) {
         //IL_00e6: Unknown result type (might be due to invalid IL or missing references)
         if (projectile.owner != Main.myPlayer) {
             return;

@@ -1321,6 +1321,11 @@ Mods: {
 				DisplayName: Chocoplotion
 				Tooltip: ""
 			}
+
+			FiveStarBuffet: {
+				DisplayName: Five Star Buffet
+				Tooltip: ""
+			}
 		}
 
 		NPCs: {
@@ -1605,6 +1610,8 @@ Mods: {
 			UtensilPoker_BigFork.DisplayName: Utensil Poker_ Big Fork
 			PortableSpecialCorn_Summon.DisplayName: Singer Turkey
 			Chocoplotion_Throw.DisplayName: Chocoplotion_ Throw
+			FiveStarBuffet_Use.DisplayName: Five Star Buffet_ Use
+			FiveStarBuffet_Food.DisplayName: Five Star Buffet_ Food
 		}
 
 		Tiles: {

@@ -396,7 +396,7 @@ public sealed class UtensilPoker : ThoriumItem_ThrowerBase {
             Vector2 vector50 = Projectile.position;
             Vector2 vector51 = (Projectile.rotation - (float)Math.PI / 2f).ToRotationVector2();
             vector50 += vector51 * 16f;
-            for (int num445 = 0; num445 < 20; num445++) {
+            for (int num445 = 0; num445 < 14; num445++) {
                 int num446 = Dust.NewDust(vector50, Projectile.width, Projectile.height, DustID.Silver);
                 Main.dust[num446].position = (Main.dust[num446].position + Projectile.Center) / 2f;
                 Dust dust2 = Main.dust[num446];

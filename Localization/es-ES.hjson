@@ -1316,6 +1316,11 @@ Mods: {
 				// DisplayName: Utensil Poker
 				// Tooltip: ""
 			}
+
+			Chocoplotion: {
+				// DisplayName: Chocoplotion
+				// Tooltip: ""
+			}
 		}
 
 		NPCs: {
@@ -1599,6 +1604,7 @@ Mods: {
 			// UtensilPoker_Throw.DisplayName: Utensil Poker_ Throw
 			// UtensilPoker_BigFork.DisplayName: Utensil Poker_ Big Fork
 			// PortableSpecialCorn_Summon.DisplayName: Singer Turkey
+			// Chocoplotion_Throw.DisplayName: Chocoplotion_ Throw
 		}
 
 		Tiles: {

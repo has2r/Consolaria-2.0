@@ -66,8 +66,8 @@ public sealed class UtensilPoker : ThoriumItem_ThrowerBase {
             }
 
             CurrentCharge++;
-            if (CurrentCharge > 6) {
-                CurrentCharge = 6;
+            if (CurrentCharge > 5) {
+                CurrentCharge = 5;
             }
 
             CombatText.NewText(Player.getRect(), CombatText.DamagedHostile, CurrentCharge, false, false);
@@ -179,6 +179,13 @@ public sealed class UtensilPoker : ThoriumItem_ThrowerBase {
         }
 
         public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers) {
+            for (int i = 0; i < 4; i++) {
+                int num = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Blood, Main.rand.Next(-5, 5), Main.rand.Next(-5, 5), 100);
+                Main.dust[num].position = Projectile.Center + Main.rand.NextVector2Circular(10f, 10f);
+                Main.dust[num].noGravity = true;
+                Main.dust[num].velocity += Projectile.velocity * 0.5f;
+            }
+
             Projectile.ai[0] = 1f;
             Projectile.ai[1] = target.whoAmI;
             Projectile.velocity = (target.Center - Projectile.Center) * 0.75f;
@@ -187,11 +194,6 @@ public sealed class UtensilPoker : ThoriumItem_ThrowerBase {
 
             Point[] bufferForScan = _forkMax8;
             KillOldestFork(Projectile.whoAmI, Projectile.type, target.whoAmI, bufferForScan);
-
-            //for (int i = 0; i < 15; i++) {
-            //    int num = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Blood, Main.rand.Next(-5, 5), Main.rand.Next(-5, 5), 100, default, 1.35f);
-            //    Main.dust[num].noGravity = true;
-            //}
 
             //if (target.ai[1] == (float)target.whoAmI) {
             //    target.AddBuff(BuffID.BoneJavelin, 900);

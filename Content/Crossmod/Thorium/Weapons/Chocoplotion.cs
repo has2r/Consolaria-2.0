@@ -27,7 +27,7 @@ public sealed class Chocoplotion : ThoriumItem_ThrowerBase {
     }
 
     public sealed class Chocoplotion_Throw : ThoriumProjectile_ThrowerBase {
-        private static ushort TIMELEFT => 120;
+        private static ushort TIMELEFT => 180;
 
         public override string Texture => Helper.GetItemTexturePath<Chocoplotion>();
 
@@ -79,6 +79,15 @@ public sealed class Chocoplotion : ThoriumItem_ThrowerBase {
                 Projectile.PrepareBombToBlow();
             }
             else {
+                NPC target = ThoriumUtils.FindNearestNPC(Projectile, 600f, checkCollision: false);
+                if (Projectile.ai[2] == 1f && target is not null) {
+                    if (++Projectile.ai[1] > 5f) {
+                        Projectile.velocity.Y -= 2.5f;
+                        Projectile.velocity.X += Projectile.DirectionTo(target.Center).X * 5f;
+                        Projectile.ai[1] = 0f;
+                    }
+                }
+
                 Projectile.tileCollide = Projectile.timeLeft < TIMELEFT - 5;
 
                 // Smoke and fuse dust spawn. The position is calculated to spawn the dust directly on the fuse.
@@ -96,13 +105,15 @@ public sealed class Chocoplotion : ThoriumItem_ThrowerBase {
                 }
             }
 
-                Projectile.ai[0] += 1f;
+            Projectile.ai[0] += 1f;
             if (Projectile.ai[0] >= 10f && Projectile.tileCollide)
                 Projectile.velocity.Y = Projectile.velocity.Y + 0.2f; // 0.1f for arrow gravity, 0.4f for knife gravity
             if (Projectile.velocity.Y > 16f)
                 Projectile.velocity.Y = 16f;
 
             Projectile.rotation += Projectile.velocity.X * 0.025f;
+
+            Projectile.ai[2] = 0f;
         }
 
         public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac) {
@@ -112,6 +123,8 @@ public sealed class Chocoplotion : ThoriumItem_ThrowerBase {
         }
 
         public override bool OnTileCollide(Vector2 oldVelocity) {
+            Projectile.ai[2] = 1f;
+
             return base.OnTileCollide(oldVelocity);
         }
 

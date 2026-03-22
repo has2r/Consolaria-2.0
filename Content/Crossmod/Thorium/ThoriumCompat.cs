@@ -370,4 +370,22 @@ public static class ThoriumUtils {
         }
         return true;
     }
+
+    public static NPC FindNearestNPC(this Projectile projectile, float maxRange, bool absoluteDistance = true, bool ignoreDontTakeDamage = false, Func<NPC, bool> isValidTarget = null, bool checkCollision = true) {
+        NPC nearest = null;
+        if (!absoluteDistance) {
+            maxRange *= maxRange;
+        }
+        for (int i = 0; i < Main.maxNPCs; i++) {
+            NPC npc = Main.npc[i];
+            if (npc.CanBeChasedBy((object)projectile, ignoreDontTakeDamage) && (isValidTarget == null || isValidTarget(npc))) {
+                float currentDistance = ((!absoluteDistance) ? ((Entity)projectile).DistanceSQ(((Entity)npc).Center) : (Math.Abs(((Entity)projectile).Center.X - ((Entity)npc).Center.X) + Math.Abs(((Entity)projectile).Center.Y - ((Entity)npc).Center.Y)));
+                if (currentDistance < maxRange && (!checkCollision || ((Entity)(object)projectile).CanHitLine((Entity)(object)npc))) {
+                    maxRange = currentDistance;
+                    nearest = npc;
+                }
+            }
+        }
+        return nearest;
+    }
 }

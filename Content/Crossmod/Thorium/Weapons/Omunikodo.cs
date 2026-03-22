@@ -9,11 +9,9 @@ using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.ModLoader.Config;
 
 using ThoriumMod;
 using ThoriumMod.Empowerments;
-using ThoriumMod.Items.BardItems;
 using ThoriumMod.Sounds;
 
 namespace Consolaria.Content.Crossmod.Thorium.Weapons;

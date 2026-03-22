@@ -170,6 +170,11 @@ Mods: {
 				// DisplayName: Utensil Poker Debuff
 				// Description: Mods.Consolaria.Buffs.UtensilPokerDebuff.Description
 			}
+
+			SingerTurkeyBuff: {
+				// DisplayName: Singer Turkey Buff
+				// Description: Mods.Consolaria.Buffs.SingerTurkeyBuff.Description
+			}
 		}
 
 		Items: {
@@ -1311,6 +1316,11 @@ Mods: {
 				// DisplayName: Utensil Poker
 				// Tooltip: ""
 			}
+
+			SingerTurkey: {
+				// DisplayName: Singer Turkey
+				// Tooltip: ""
+			}
 		}
 
 		NPCs: {
@@ -1593,6 +1603,7 @@ Mods: {
 			// UtensilPoker_Fork.DisplayName: Utensil Poker_ Fork
 			// UtensilPoker_Throw.DisplayName: Utensil Poker_ Throw
 			// UtensilPoker_BigFork.DisplayName: Utensil Poker_ Big Fork
+			// SingerTurkey_Summon.DisplayName: Singer Turkey_ Summon
 		}
 
 		Tiles: {

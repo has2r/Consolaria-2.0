@@ -56,6 +56,11 @@ public sealed class PortableSpecialCorn : ThoriumItem_BardBase {
         }
 
         public override void AI() {
+            if (!Projectile.GetOwnerAsPlayer().GetModPlayer<SingerTurkeyBuff_Handler>().IsEffectActive) {
+                Projectile.Kill();
+                return;
+            }
+
             bool flag = false;
             if (Projectile.localAI[2] == 0f) {
                 Projectile.localAI[2] = 1f;
@@ -68,10 +73,6 @@ public sealed class PortableSpecialCorn : ThoriumItem_BardBase {
             }
 
             Projectile.timeLeft = 2;
-
-            if (!Projectile.GetOwnerAsPlayer().GetModPlayer<SingerTurkeyBuff_Handler>().IsEffectActive) {
-                Projectile.Kill();
-            }
 
             Player player = Projectile.GetOwnerAsPlayer();
             Item selectedItem = player.HeldItem;

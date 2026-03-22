@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Consolaria.Content.Crossmod.Thorium.Dusts;
+
+using Microsoft.Xna.Framework;
 
 using RoA.Core.Utility.Vanilla;
 
@@ -6,6 +8,8 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
+
+using static Consolaria.Content.Crossmod.Thorium.Weapons.Chocoplotion;
 
 namespace Consolaria.Content.Crossmod.Thorium.Weapons;
 
@@ -100,7 +104,7 @@ public sealed class Chocoplotion : ThoriumItem_ThrowerBase {
         }
 
         public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac) {
-            width = height = 30;
+            width = height = 50;
 
             return base.TileCollideStyle(ref width, ref height, ref fallThrough, ref hitboxCenterFrac);
         }
@@ -115,6 +119,23 @@ public sealed class Chocoplotion : ThoriumItem_ThrowerBase {
         }
 
         public override void OnKill(int timeLeft) {
+            if (Projectile.IsOwnerLocal()) {
+                int count = 4;
+                for (int i = 0; i < count; i++) {
+                    float angle = MathHelper.TwoPi * i / count;
+                    float bulletSpeed = 4f;
+                    bulletSpeed *= Main.rand.NextFloat(0.75f, 1.25f);
+                    Vector2 velocity = Vector2.One.RotatedBy(angle + MathHelper.PiOver4 * 0.5f * Main.rand.NextFloatDirection()) * bulletSpeed;
+                    Projectile.NewProjectileDirect(Projectile.GetSource_Death(),
+                                                   Projectile.Center,
+                                                   velocity,
+                                                   ModContent.ProjectileType<Chocoplotion_Droplet>(),
+                                                   Projectile.damage,
+                                                   0f,
+                                                   Projectile.owner);
+                }
+            }
+
             Projectile.Resize(150, 150);
 
             SoundEngine.PlaySound(SoundID.Item14, Projectile.position);
@@ -146,6 +167,61 @@ public sealed class Chocoplotion : ThoriumItem_ThrowerBase {
             Projectile.height = 22;
             Projectile.position.X = Projectile.position.X - (Projectile.width / 2);
             Projectile.position.Y = Projectile.position.Y - (Projectile.height / 2);
+        }
+    }
+
+    public sealed class Chocoplotion_Droplet : ThoriumProjectile_ThrowerBase {
+        private static ushort TIMELEFT => Helper.SecondsToFrames(5);
+
+        public override void SetThrowerDefaults() {
+            Projectile.SetSizeValues(24);
+
+            Projectile.friendly = true;
+            Projectile.penetrate = 3;
+            Projectile.usesLocalNPCImmunity = true;
+            Projectile.localNPCHitCooldown = 10;
+
+            Projectile.tileCollide = true;
+
+            Projectile.timeLeft = TIMELEFT;
+        }
+
+        public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac) {
+            width = height = 24;
+
+            return base.TileCollideStyle(ref width, ref height, ref fallThrough, ref hitboxCenterFrac);
+        }
+
+        public override void OnKill(int timeLeft) {
+            for (int i = 0; i < 10; i++) {
+                int ind4 = Dust.NewDust(Projectile.Center - Vector2.One * 5, 10, 10, ModContent.DustType<ChocoplotionDust>(), 0f, 0f, 0, default, 1.15f + Main.rand.NextFloat(-0.1f, 0.1f));
+                Main.dust[ind4].velocity *= 0.5f;
+                Main.dust[ind4].noGravity = true;
+            }
+        }
+
+        public override bool OnTileCollide(Vector2 oldVelocity) {
+            return false;
+        }
+
+        public override void AI() {
+            //Projectile.Opacity = Utils.GetLerpValue(0, 50, Projectile.timeLeft, true);
+
+            Projectile.ai[0] += 1f;
+            if (Projectile.ai[0] > 15f) {
+                if (Projectile.velocity.Y == 0f) {
+                    Projectile.velocity.X *= 0.95f;
+                }
+                Projectile.velocity.Y += 0.2f;
+            }
+            Projectile.rotation += Projectile.velocity.X * 0.1f;
+        }
+
+        public override bool PreDraw(ref Color lightColor) {
+            Projectile.QuickDrawShadowTrails(lightColor * Projectile.Opacity, 0.5f, 1, Projectile.rotation);
+            Projectile.QuickDrawAnimated(lightColor * Projectile.Opacity, 0f);
+
+            return false;
         }
     }
 }

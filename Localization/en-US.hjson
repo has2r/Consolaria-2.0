@@ -1612,6 +1612,7 @@ Mods: {
 			Chocoplotion_Throw.DisplayName: Chocoplotion_ Throw
 			FiveStarBuffet_Use.DisplayName: Five Star Buffet_ Use
 			FiveStarBuffet_Food.DisplayName: Five Star Buffet_ Food
+			Chocoplotion_Droplet.DisplayName: Chocoplotion_ Droplet
 		}
 
 		Tiles: {

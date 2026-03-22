@@ -5,13 +5,15 @@ using Microsoft.Xna.Framework;
 using RoA.Core.Utility.Vanilla;
 
 using System;
+using System.Runtime.CompilerServices;
 
 using Terraria;
+using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.ModLoader.Config;
 
 using ThoriumMod;
+using ThoriumMod.Items;
 
 namespace Consolaria.Content.Crossmod.Thorium.Weapons;
 
@@ -19,27 +21,26 @@ public sealed class SingerTurkey : ThoriumItem_BardBase {
     public override BardInstrumentType InstrumentType => BardInstrumentType.Other;
 
     public override void SetBardDefaults() {
+        Item.DefaultToAccessory();
+
         Item.SetSizeValues(62, 32);
 
         Item.SetShopValues(Terraria.Enums.ItemRarityColor.White0, Item.sellPrice());
-        Item.SetShootableValues<SingerTurkey_Summon>(0f);
 
-        Item.SetWeaponValues(60, 5f);
         Item.SetDefaultsToUsable(ItemUseStyleID.Swing, 18);
-
-        InspirationCost = 0;
     }
 
-    public override bool? BardUseItem(Player player) {
-        if (player.ItemAnimationJustStarted) {
-            player.AddBuff(ModContent.BuffType<SingerTurkeyBuff>(), 2, false);
-        }
-
-        return base.BardUseItem(player);
+    public override void UpdateEquip(Player player) {
+        player.AddBuff(ModContent.BuffType<SingerTurkeyBuff>(), 2);
     }
 
     public sealed class SingerTurkey_Summon : ThoriumProjectile_BardBase {
+        [UnsafeAccessor(UnsafeAccessorKind.Method, Name = "ItemCheck_Shoot")]
+        public extern static void Player_ItemCheck_Shoot(Player player, int i, Item sItem, int weaponDamage);
+
         private Vector2 _velocity;
+
+        public ref float ShotValue => ref Projectile.ai[0];
 
         public override void SetStaticDefaults() {
             Projectile.SetFrameCount(7);
@@ -58,8 +59,42 @@ public sealed class SingerTurkey : ThoriumItem_BardBase {
         }
 
         public override void AI() {
+            bool flag = false;
+            if (Projectile.localAI[2] == 0f) {
+                Projectile.localAI[2] = 1f;
+
+                flag = true;
+
+                Projectile.direction = Projectile.spriteDirection = -(((Main.player[Projectile.owner].Center.X - 10f * Main.player[Projectile.owner].direction) - Projectile.Center.X) > 0).ToDirectionInt();
+            }
+
+            Projectile.timeLeft = 2;
+
             if (!Projectile.GetOwnerAsPlayer().GetModPlayer<SingerTurkeyBuff_Handler>().IsEffectActive) {
                 Projectile.Kill();
+            }
+
+            Player player = Projectile.GetOwnerAsPlayer();
+            Item selectedItem = player.HeldItem;
+            int animationTime = 30;
+            if (Projectile.IsOwnerLocal() && !selectedItem.IsAir && selectedItem.ModItem is BardItem && player.ItemAnimationJustStarted && player.GetModPlayer<SingerTurkeyBuff_Handler>().BardAttackCount >= 4) {
+                Vector2 position = player.Center;
+                player.Center = Projectile.Center;
+                Player_ItemCheck_Shoot(player, player.whoAmI, player.HeldItem, (int)(player.GetWeaponDamage(player.HeldItem) * 0.45f));
+                player.Center = position;
+
+                ShotValue = animationTime;
+                Projectile.netUpdate = true;
+
+                player.GetModPlayer<SingerTurkeyBuff_Handler>().BardAttackCount = 0;
+            }
+
+            if (ShotValue == animationTime) {
+                SoundEngine.PlaySound(new SoundStyle($"{nameof(Consolaria)}/Assets/Sounds/TurkorGobble") with { Pitch = 0.5f }, Projectile.Center);
+            }
+
+            if (ShotValue > 0f) {
+                ShotValue--;
             }
 
             float num55 = 0.1f;
@@ -138,13 +173,27 @@ public sealed class SingerTurkey : ThoriumItem_BardBase {
                     _velocity.Y -= num55;
             }
 
-            Projectile.direction = -Main.player[Projectile.owner].direction;
-            Projectile.spriteDirection = -((Main.player[Projectile.owner].Center.X - Projectile.Center.X) > 0).ToDirectionInt();
+            if (!flag) {
+                Projectile.direction = -Main.player[Projectile.owner].direction;
+                if (MathF.Abs(Main.player[Projectile.owner].Center.X - Projectile.Center.X) > 10f) 
+                {
+                    Projectile.spriteDirection = -(((Main.player[Projectile.owner].Center.X - 10f * Main.player[Projectile.owner].direction) - Projectile.Center.X) > 0).ToDirectionInt();
+                }
+            }
             Projectile.rotation = _velocity.Y * 0.05f * (float)(-Projectile.direction);
+
+            Projectile.position.Y += Helper.Wave(-1f, 1f, 0.1f, Projectile.identity);
 
             Projectile.velocity = Vector2.Lerp(Projectile.velocity, _velocity, 0.5f);
 
             Projectile.position += Projectile.velocity;
+
+            if (ShotValue > 0f) {
+                Projectile.frameCounter = 0;
+                Projectile.frame = 6;
+
+                return;
+            }
 
             Projectile.frameCounter++;
             if (Projectile.frameCounter > 4) {

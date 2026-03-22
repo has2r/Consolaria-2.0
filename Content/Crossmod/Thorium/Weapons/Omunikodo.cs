@@ -108,13 +108,13 @@ public sealed class Omunikodo : ThoriumItem_BardBase {
 
         position += velocity * 1.25f;
 
-        Projectile.NewProjectile(source, position.X, position.Y, velocity.X, velocity.Y, type, damage, knockback, player.whoAmI, ai2: 0);
+        Projectile.NewProjectile(source, position.X, position.Y, velocity.X, velocity.Y, type, damage, knockback, player.whoAmI, ai2: 2);
 
         position -= velocity * 2.5f;
         Projectile.NewProjectile(source, position.X, position.Y, velocity.X, velocity.Y, type, damage, knockback, player.whoAmI, ai2: 1);
 
         position += velocity * 5f;
-        Projectile.NewProjectile(source, position.X, position.Y, velocity.X, velocity.Y, type, damage, knockback, player.whoAmI, ai2: 2);
+        Projectile.NewProjectile(source, position.X, position.Y, velocity.X, velocity.Y, type, damage, knockback, player.whoAmI, ai2: 0);
 
         return false;
     }

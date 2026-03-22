@@ -13,6 +13,9 @@ namespace Consolaria.Content.Crossmod.Thorium.Buffs;
 public sealed class SingerTurkeyBuff : ModBuff {
     public override void SetStaticDefaults() {
         Main.buffNoTimeDisplay[Type] = true;
+
+        Main.debuff[Type] = true;
+        BuffID.Sets.NurseCannotRemoveDebuff[Type] = true;
     }
 
     public override void Update(Player player, ref int buffIndex) {

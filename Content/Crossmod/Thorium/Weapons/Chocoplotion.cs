@@ -79,9 +79,9 @@ public sealed class Chocoplotion : ThoriumItem_ThrowerBase {
                 Projectile.PrepareBombToBlow();
             }
             else {
-                NPC target = ThoriumUtils.FindNearestNPC(Projectile, 600f, checkCollision: false);
+                NPC target = ThoriumUtils.FindNearestNPC(Projectile, 600f);
                 if (Projectile.ai[2] == 1f && target is not null) {
-                    if (++Projectile.ai[1] > 5f) {
+                    if (++Projectile.ai[1] > 60f) {
                         Projectile.velocity.Y -= 2.5f;
                         Projectile.velocity.X += Projectile.DirectionTo(target.Center).X * 5f;
                         Projectile.ai[1] = 0f;

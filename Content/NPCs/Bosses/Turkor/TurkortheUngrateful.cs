@@ -93,7 +93,7 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
         }
 
         public override void FindFrame(int frameHeight) {
-            if (!NPC.AnyNPCs(ModContent.NPCType<TurkortheUngratefulHead>())) {
+            if (!HasHead()/*NPC.AnyNPCs(turkorHead)*/){//NPC.AnyNPCs(ModContent.NPCType<TurkortheUngratefulHead>())) {
                 NPC.frameCounter += 0.15f;
                 NPC.frameCounter %= Main.npcFrameCount[NPC.type];
                 int frame = (int)NPC.frameCounter;
@@ -218,7 +218,18 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
             return Main.maxTilesY;
         }
 
-
+        public bool HasHead()
+        {
+            for (int i = 0; i < Main.maxNPCs; i++)
+            {
+                if (Main.npc[i].active && Main.npc[i].type == ModContent.NPCType<TurkortheUngratefulHead>() &&
+                    NPC == Main.npc[(int)Main.npc[i].ai[1]])
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
         public override void AI() {
             if (!Main.dedServ) {
                 bool drank = Helper.Main_swapMusic(null);
@@ -227,7 +238,6 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
                     (drank ? MusicID.OtherworldlyBoss1 : MusicID.Boss1)
                     : drank ? MusicLoader.GetMusicSlot(Mod, "Assets/Music/OtherwordlyTurkor") : MusicLoader.GetMusicSlot(Mod, "Assets/Music/Turkor");
             }
-
             Player player = Main.player[NPC.target];
 
             NPC.TargetClosest(true);
@@ -294,7 +304,7 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
                     colo = 0;
                     if (isNotMpClient) NPC.ai[2] = 0;
                     enraged = false;
-                    if (NPC.AnyNPCs(turkorHead)) timer = 0;
+                    if (HasHead()/*NPC.AnyNPCs(turkorHead)*/) timer = 0;
                 }
             }
 
@@ -312,7 +322,7 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
                 NPC.netUpdate = true;
             }
 
-            NPC.dontTakeDamage = NPC.AnyNPCs(turkorHead) || NPC.ai[1] == 40 || enraged;
+            NPC.dontTakeDamage = HasHead()/*NPC.AnyNPCs(turkorHead)*/ || NPC.ai[1] == 40 || enraged;
 
             //spawn heads
             if (Main.netMode != NetmodeID.MultiplayerClient) {
@@ -332,7 +342,7 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
             }
 
             //shoot projectiles at player 
-            if ((!NPC.AnyNPCs(turkorHead) || enraged) && (Main.netMode == NetmodeID.MultiplayerClient || Main.netMode == NetmodeID.SinglePlayer)) {
+            if ((!HasHead()/*NPC.AnyNPCs(turkorHead)*/ || enraged) && (Main.netMode == NetmodeID.MultiplayerClient || Main.netMode == NetmodeID.SinglePlayer)) {
                 timer++;
                 if (timer >= 140 && NPC.ai[1] != 40) {
                     if (!findPlayer && timer < 160) {
@@ -382,7 +392,7 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
                         if (timer >= 180) {
                             posX = 0;
                             posY = 0;
-                            timer = NPC.AnyNPCs(turkorHead) ? 0 : 70;
+                            timer = HasHead()/*NPC.AnyNPCs(turkorHead)*/ ? 0 : 70;
                             findPlayer = false;
                         }
                     }
@@ -390,7 +400,15 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
             }
 
             //idling phase
-            if (!NPC.AnyNPCs(turkorHead)) {
+            if (!HasHead()/*NPC.AnyNPCs(turkorHead)*/)
+            {
+                if(timer2 == 0)
+                {
+                    posX = 0;
+                    posY = 0;
+                    timer = HasHead()/*NPC.AnyNPCs(turkorHead)*/ ? 0 : 70;
+                    findPlayer = false;
+                }
                 timer2++;
 
                 if (timer2 >= jumpTimer - 100) {

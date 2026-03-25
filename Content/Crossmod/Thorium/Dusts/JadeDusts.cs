@@ -8,6 +8,8 @@ namespace Consolaria.Content.Crossmod.Thorium.Dusts;
 public sealed class JadeDust : JadeDust_Base { }
 public sealed class JadeDust2 : JadeDust_Base { }
 
+[ExtendsFromMod(ThoriumCompat.THORIUMMODNAME)]
+[JITWhenModsEnabled(ThoriumCompat.THORIUMMODNAME)]
 public abstract class JadeDust_Base : ModDust {
     public override Color? GetAlpha(Dust dust, Color lightColor) {
         lightColor = Color.Lerp(lightColor, Color.White, 0.8f);

@@ -1717,19 +1717,19 @@ Mods: {
 		}
 
 		Achievements: {
-			KillLepus: {
-				Name: Liebre desesperada
+			LepusKillAchievement: {
+				FriendlyName: Liebre desesperada
 				Description: Derroa a Lepus, el gran alborotador de la pascua.
 			}
 
-			KillTurkor: {
-				Name: Pavo asado Kentucky
-				Description: Derrota a Turkor el malagradecido, la ardiente mostruosidad de la acción de gracias.
+			OcramKillAchievement: {
+				FriendlyName: Biblia de la bestia
+				Description: Derrota a Ocram, el demonio maldito que inquieta el cielo sin estrellas.
 			}
 
-			KillOcram: {
-				Name: Biblia de la bestia
-				Description: Derrota a Ocram, el demonio maldito que inquieta el cielo sin estrellas.
+			TurkorKillAchievement: {
+				FriendlyName: Pavo asado Kentucky
+				Description: Derrota a Turkor el malagradecido, la ardiente mostruosidad de la acción de gracias.
 			}
 		}
 

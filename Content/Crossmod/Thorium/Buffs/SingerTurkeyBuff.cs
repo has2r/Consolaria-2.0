@@ -10,7 +10,7 @@ using ThoriumMod.Items;
 
 namespace Consolaria.Content.Crossmod.Thorium.Buffs;
 
-public sealed class SingerTurkeyBuff : ModBuff {
+public sealed class SingerTurkeyBuff : ThoriumBuff_Base {
     public override void SetStaticDefaults() {
         Main.buffNoTimeDisplay[Type] = true;
 
@@ -45,6 +45,8 @@ public sealed class SingerTurkeyBuff : ModBuff {
     }
 }
 
+[ExtendsFromMod(ThoriumCompat.THORIUMMODNAME)]
+[JITWhenModsEnabled(ThoriumCompat.THORIUMMODNAME)]
 public sealed class SingerTurkeyBuff_Handler : ModPlayer {
     public bool IsEffectActive;
     public byte BardAttackCount;

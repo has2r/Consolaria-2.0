@@ -1717,19 +1717,19 @@ Mods: {
 		}
 
 		Achievements: {
-			KillLepus: {
-				Name: Um Salto de Cada Vez
+			LepusKillAchievement: {
+				FriendlyName: Um Salto de Cada Vez
 				Description: Derrote Lepus, o maior encrenqueiro da Páscoa
 			}
 
-			KillTurkor: {
-				Name: Fome por Matança... e Peru!
-				Description: Derrote Peruno o Ingrato, a monstruosidade em chamas do Dia de Ação de Graças.
+			OcramKillAchievement: {
+				FriendlyName: Bíblia da Besta
+				Description: Derrote Ocram, o demônio amaldiçoado que assombra o céu sem estrelas.
 			}
 
-			KillOcram: {
-				Name: Bíblia da Besta
-				Description: Derrote Ocram, o demônio amaldiçoado que assombra o céu sem estrelas.
+			TurkorKillAchievement: {
+				FriendlyName: Fome por Matança... e Peru!
+				Description: Derrote Peruno o Ingrato, a monstruosidade em chamas do Dia de Ação de Graças.
 			}
 		}
 

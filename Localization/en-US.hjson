@@ -1717,19 +1717,19 @@ Mods: {
 		}
 
 		Achievements: {
-			KillLepus: {
-				Name: Hare Despair
+			LepusKillAchievement: {
+				FriendlyName: Hare Despair
 				Description: Defeat Lepus, the greatest Easter troublemaker.
 			}
 
-			KillTurkor: {
-				Name: Kentucky Fried Turkey
-				Description: Defeat Turkor the Ungrateful, the burning Thanksgiving monstrocity.
+			OcramKillAchievement: {
+				FriendlyName: Bible of the Beast
+				Description: Defeat Ocram, the cursed fiend haunting the starless sky.
 			}
 
-			KillOcram: {
-				Name: Bible of the Beast
-				Description: Defeat Ocram, the cursed fiend haunting the starless sky.
+			TurkorKillAchievement: {
+				FriendlyName: Kentucky Fried Turkey
+				Description: Defeat Turkor the Ungrateful, the burning Thanksgiving monstrocity.
 			}
 		}
 

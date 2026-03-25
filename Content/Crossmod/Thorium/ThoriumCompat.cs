@@ -38,6 +38,12 @@ public sealed class ThoriumCompat : ModSystem {
 
 [ExtendsFromMod(ThoriumCompat.THORIUMMODNAME)]
 [JITWhenModsEnabled(ThoriumCompat.THORIUMMODNAME)]
+public abstract class ThoriumBuff_Base : ModBuff {
+    public override bool IsLoadingEnabled(Mod mod) => ThoriumCompat.IsThoriumEnabled;
+}
+
+[ExtendsFromMod(ThoriumCompat.THORIUMMODNAME)]
+[JITWhenModsEnabled(ThoriumCompat.THORIUMMODNAME)]
 public abstract class ThoriumItem_BardBase : BardItem {
     public override bool IsLoadingEnabled(Mod mod) => ThoriumCompat.IsThoriumEnabled;
 }

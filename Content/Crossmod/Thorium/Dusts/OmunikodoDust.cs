@@ -5,6 +5,8 @@ using Terraria.ModLoader;
 
 namespace Consolaria.Content.Crossmod.Thorium.Dusts;
 
+[ExtendsFromMod(ThoriumCompat.THORIUMMODNAME)]
+[JITWhenModsEnabled(ThoriumCompat.THORIUMMODNAME)]
 public sealed class OmunikodoDust : ModDust {
     public override Color? GetAlpha(Dust dust, Color lightColor) {
         lightColor = Color.Lerp(lightColor, Color.White, 0.8f);

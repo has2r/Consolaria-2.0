@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace Consolaria.Content.Crossmod.Thorium.Buffs;
 
-public sealed class JadeBuff : ModBuff {
+public sealed class JadeBuff : ThoriumBuff_Base {
     public override void SetStaticDefaults() {
         Main.buffNoTimeDisplay[Type] = true;
 

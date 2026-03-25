@@ -1717,19 +1717,19 @@ Mods: {
 		}
 
 		Achievements: {
-			KillLepus: {
-				Name: Двух зайцев одним выстрелом
+			LepusKillAchievement: {
+				FriendlyName: Двух зайцев одним выстрелом
 				Description: Победите Лепуса - пасхального баламута-переростка.
 			}
 
-			KillTurkor: {
-				Name: Индейка - и точка
-				Description: Победите Туркора Неблагодарного - пылающее чудовище Дня Благодарения.
+			OcramKillAchievement: {
+				FriendlyName: Мракобесие
+				Description: Победите Окрама - проклятого демона, скрывающегося под покровом ночи.
 			}
 
-			KillOcram: {
-				Name: Мракобесие
-				Description: Победите Окрама - проклятого демона, скрывающегося под покровом ночи.
+			TurkorKillAchievement: {
+				FriendlyName: Индейка - и точка
+				Description: Победите Туркора Неблагодарного - пылающее чудовище Дня Благодарения.
 			}
 		}
 

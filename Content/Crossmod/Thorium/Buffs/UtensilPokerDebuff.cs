@@ -5,12 +5,14 @@ using Terraria.ModLoader;
 
 namespace Consolaria.Content.Crossmod.Thorium.Buffs;
 
-public sealed class UtensilPokerDebuff : ModBuff {
+public sealed class UtensilPokerDebuff : ThoriumBuff_Base {
     public override void Update(NPC npc, ref int buffIndex) {
         npc.GetGlobalNPC<UtensilPokerDebuff_Handler>().IsEffectActive = true;
     }
 }
 
+[ExtendsFromMod(ThoriumCompat.THORIUMMODNAME)]
+[JITWhenModsEnabled(ThoriumCompat.THORIUMMODNAME)]
 public sealed class UtensilPokerDebuff_Handler : GlobalNPC {
     public bool IsEffectActive;
 

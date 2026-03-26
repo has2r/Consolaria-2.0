@@ -101,8 +101,8 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
             }
         }
 
-        private float posBX = 0f;
-        private float posBY = 0f;
+        //private float posBX = 0f;
+        //private float posBY = 0f;
         private float h = 0f;
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
@@ -110,15 +110,18 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
             Texture2D texture = (Texture2D)ModContent.Request<Texture2D>(Texture);
             Vector2 origin = new Vector2(texture.Width / 2, texture.Height / Main.npcFrameCount[NPC.type] / 2);
             h += 0.1f;
-            posBX += (float)Math.Cos(h) * 4;
-            posBY += (float)Math.Sin(h) * 4;
+            //posBX += (float)Math.Cos(h) * 4;
+            //posBY += (float)Math.Sin(h) * 4;
 
             if (enraged) {
-                for (int i = 0; i < 1; i++) {
+                for (int i = 0; i < 3; i++) {
                     Color color2 = drawColor;
                     color2 = NPC.GetAlpha(color2) * colo;
-                    Main.spriteBatch.Draw(texture, new Vector2(NPC.position.X + 20 + posBX - Main.screenPosition.X + NPC.width / 2 - texture.Width * NPC.scale / 2f + origin.X * NPC.scale, NPC.position.Y - 40 + posBY - Main.screenPosition.Y + NPC.height - texture.Height * NPC.scale / Main.npcFrameCount[NPC.type] + 4f + origin.Y * NPC.scale) - NPC.velocity * i * 0.5f, new Rectangle?(NPC.frame), color2, NPC.rotation, origin, NPC.scale, effects, 0f);
-                    Main.spriteBatch.Draw(texture, new Vector2(NPC.position.X - 20 - posBX - Main.screenPosition.X + NPC.width / 2 - texture.Width * NPC.scale / 2f + origin.X * NPC.scale, NPC.position.Y + 40 - posBY - Main.screenPosition.Y + NPC.height - texture.Height * NPC.scale / Main.npcFrameCount[NPC.type] + 4f + origin.Y * NPC.scale) - NPC.velocity * i * 0.5f, new Rectangle?(NPC.frame), color2, NPC.rotation, origin, NPC.scale, effects, 0f);
+                    spriteBatch.Draw(texture, NPC.Center + new Vector2((float)Math.Cos(h + Math.PI * 2 * i / 3), (float)Math.Sin(h + Math.PI * 2 * i / 3))*20 - Main.screenPosition,
+                       new Rectangle?(NPC.frame), color2, NPC.rotation,
+                       origin, 1f, SpriteEffects.None, 0f);
+                    //Main.spriteBatch.Draw(texture, new Vector2(NPC.position.X + 20 + posBX - Main.screenPosition.X + NPC.width / 2 - texture.Width * NPC.scale / 2f + origin.X * NPC.scale, NPC.position.Y - 40 + posBY - Main.screenPosition.Y + NPC.height - texture.Height * NPC.scale / Main.npcFrameCount[NPC.type] + 4f + origin.Y * NPC.scale) - NPC.velocity * i * 0.5f, new Rectangle?(NPC.frame), color2, NPC.rotation, origin, NPC.scale, effects, 0f);
+                    //Main.spriteBatch.Draw(texture, new Vector2(NPC.position.X - 20 - posBX - Main.screenPosition.X + NPC.width / 2 - texture.Width * NPC.scale / 2f + origin.X * NPC.scale, NPC.position.Y + 40 - posBY - Main.screenPosition.Y + NPC.height - texture.Height * NPC.scale / Main.npcFrameCount[NPC.type] + 4f + origin.Y * NPC.scale) - NPC.velocity * i * 0.5f, new Rectangle?(NPC.frame), color2, NPC.rotation, origin, NPC.scale, effects, 0f);
                 }
             }
             return true;

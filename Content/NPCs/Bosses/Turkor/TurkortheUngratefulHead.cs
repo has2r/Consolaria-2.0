@@ -126,7 +126,7 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
             for (int k = 1; k < segmentCount-1; k++)
             {
                 spriteBatch.Draw(texture, body[k] - Main.screenPosition,
-                       null, Lighting.GetColor((int)body[k].X / 16, (int)(body[k].Y / 16f)), rotor[k] - 1.57f,
+                       null, Lighting.GetColor((int)body[k].X / 16, (int)(body[k].Y / 16f))*((255-NPC.alpha)/255f), rotor[k] - 1.57f,
                        texture.Size()/2, 1f, SpriteEffects.None, 0f);
             }
             return true;
@@ -162,25 +162,25 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
                     //F
                     for (int k = segmentCount - 2; k > 0; k--)
                     {
-                        Vector2 To = Vector2.Normalize(body[k + 1] - body[k - 1] - new Vector2(0, (float)Math.Sin((float)(Math.PI * 2 * k / (segmentCount - 1))) * 3.4f));
-                        float dis = 7f;
-                        body[k] += (body[k + 1] - To * dis - body[k]) / 1.43f;
+                        Vector2 To = Vector2.Normalize(body[k + 1] - body[k - 1] - new Vector2(0, (float)Math.Sin((float)(Math.PI * 2 * k / (segmentCount - 1))) * 4f));
+                        float dis = 7.3f;
+                        body[k] += (body[k + 1] - To * dis - body[k]) / ((k> (int)(segmentCount/1.5f)) ?1.1f:1.35f);
 
                     }
                     //B
                     for (int k = 1; k < segmentCount - 1; k++)
                     {
-                        Vector2 To = Vector2.Normalize(body[k + 1] - body[k - 1] + new Vector2(0, (float)Math.Sin((float)(Math.PI * 2 * k / (segmentCount - 1))) * 3.4f));
+                        Vector2 To = Vector2.Normalize(body[k + 1] - body[k - 1] + new Vector2(0, (float)Math.Sin((float)(Math.PI * 2 * k / (segmentCount - 1))) * 4f));
                         //rotor[k] = To.ToRotation();
-                        float dis = 7f;
-                        body[k] += (body[k - 1] + To * dis - body[k]) / 1.43f;
+                        float dis = 7.3f;
+                        body[k] += (body[k - 1] + To * dis - body[k]) / 1.35f;
                     }
                     for(int k = 1; k <segmentCount-1; k++)
                     {
                         rotor[k] = (body[k + 1] - body[k]).ToRotation();
                     }
                     body[0] = NPC.Center + new Vector2(0, 30);
-                    body[segmentCount - 1] = Main.npc[(int)NPC.ai[1]].Center + new Vector2(-30, 30);
+                    body[segmentCount - 1] = Main.npc[(int)NPC.ai[1]].Center + new Vector2(-50, 20);
                 }
             }
             if (!Main.npc[(int)NPC.ai[1]].active) {

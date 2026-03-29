@@ -79,7 +79,7 @@ public sealed class ThoriumNPC_Consolaria : GlobalNPC {
         if (ThoriumPlayer_Consolaria.AnyViperSetNearby(npc.Center)) {
             if (npc.venom || npc.poisoned) {
                 if (Main.rand.Next(20) == 0) {
-                    Dust dust2 = Dust.NewDustDirect(npc.position, npc.width, npc.height, ModContent.DustType<ViperDust>(), 0f, 0f, 100, default(Color), Main.rand.NextFloat(0.5f, 0.75f));
+                    Dust dust2 = Dust.NewDustDirect(npc.position, npc.width, npc.height, ModContent.DustType<ViperDust>(), 0f, 0f, 125, default(Color), Main.rand.NextFloat(0.5f, 0.75f));
                     dust2.position.Y -= npc.height / 2;
                     dust2.noGravity = true;
                     dust2.fadeIn = 1.5f;

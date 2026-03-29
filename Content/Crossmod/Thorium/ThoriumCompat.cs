@@ -1,5 +1,6 @@
 ﻿
 using Consolaria.Content.Crossmod.Thorium.Buffs;
+using Consolaria.Content.Crossmod.Thorium.Dusts;
 using Consolaria.Content.Crossmod.Thorium.Projectiles;
 
 using Microsoft.Xna.Framework;
@@ -16,6 +17,7 @@ using Terraria.ModLoader;
 
 using ThoriumMod;
 using ThoriumMod.Buffs.Healer;
+using ThoriumMod.Empowerments;
 using ThoriumMod.Items;
 using ThoriumMod.Items.EarlyMagic;
 using ThoriumMod.Items.HealerItems;
@@ -63,6 +65,25 @@ public sealed class ThoriumNPC_Consolaria : GlobalNPC {
                     npc.lifeRegen = 0;
 
                 npc.lifeRegen -= (int)(12 * ThoriumPlayer_Consolaria.VIPEREFFECTDAMAGEINCREASE);
+            }
+        }
+    }
+
+    public override void DrawEffects(NPC npc, ref Color drawColor) {
+        if (!npc.active) {
+            return;
+        }
+        if (!npc.canDisplayBuffs) {
+            return;
+        }
+        if (ThoriumPlayer_Consolaria.AnyViperSetNearby(npc.Center)) {
+            if (npc.venom || npc.poisoned) {
+                if (Main.rand.Next(20) == 0) {
+                    Dust dust2 = Dust.NewDustDirect(npc.position, npc.width, npc.height, ModContent.DustType<ViperDust>(), 0f, 0f, 100, default(Color), Main.rand.NextFloat(0.5f, 0.75f));
+                    dust2.position.Y -= npc.height / 2;
+                    dust2.noGravity = true;
+                    dust2.fadeIn = 1.5f;
+                }
             }
         }
     }

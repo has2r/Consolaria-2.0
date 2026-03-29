@@ -1,10 +1,17 @@
 ﻿
+using Consolaria.Content.Crossmod.Thorium.Buffs;
+using Consolaria.Content.Crossmod.Thorium.Projectiles;
+
 using Microsoft.Xna.Framework;
 
 using System;
 using System.Runtime.CompilerServices;
 
 using Terraria;
+using Terraria.Audio;
+using Terraria.DataStructures;
+using Terraria.GameInput;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 using ThoriumMod;
@@ -34,6 +41,117 @@ public sealed class ThoriumCompat : ModSystem {
     }
 
     public static bool IsThoriumEnabled => ThoriumMod != null;
+}
+
+[ExtendsFromMod(ThoriumCompat.THORIUMMODNAME)]
+[JITWhenModsEnabled(ThoriumCompat.THORIUMMODNAME)]
+public sealed class ThoriumPlayer_Consolaria : ModPlayer {
+    private static ushort SERAPHIMEFFECTTIME => Helper.SecondsToFrames(4);
+    private static ushort SERAPHIMEFFECTCOOLDOWN => Helper.SecondsToFrames(30);
+
+    public static Color SERAPHIMGLOWCOLOR => Color.Gold with { A = 100 };
+
+    public double PressedSpecial;
+
+    public bool IsSeraphimSetBonusActive, IsSeraphimSetBonusActive2;
+    public int SeraphimFlightTime;
+    public float SeraphimEffectOpacity;
+
+    public bool IsSeraphimEffectActive => SeraphimFlightTime > 0;
+    public bool IsSeraphimEffectOnCooldown => Player.HasBuff<SeraphimCooldown>();
+
+    public override void ResetEffects() {
+        IsSeraphimSetBonusActive = false;
+    }
+
+    public override void PostUpdateEquips() {
+        UpdateSeraphimSetBonus();
+    }
+
+    private void UpdateSeraphimSetBonus() {
+        if (IsSeraphimSetBonusActive2 && IsSeraphimEffectActive) {
+            SeraphimFlightTime--;
+            if (SeraphimFlightTime <= 0) {
+                IsSeraphimSetBonusActive2 = false;
+
+                Player.AddBuff<SeraphimCooldown>(SERAPHIMEFFECTCOOLDOWN);
+                SeraphimFlightTime = -SERAPHIMEFFECTCOOLDOWN;
+            }
+
+            ApplySeraphimEffect();
+        }
+        if (SeraphimFlightTime < 0) {
+            SeraphimFlightTime++;
+            if (!IsSeraphimEffectOnCooldown) {
+                SeraphimFlightTime = 0;
+            }
+        }
+        float to = IsSeraphimEffectActive.ToInt();
+        float lerpValue = 0.1f;
+        if (to < 1f) {
+            lerpValue /= 2;
+        }
+        SeraphimEffectOpacity = Helper.Approach(SeraphimEffectOpacity, to, lerpValue);
+        Lighting.AddLight(Player.GetPlayerCorePoint(), SERAPHIMGLOWCOLOR.ToVector3() * 1f * SeraphimEffectOpacity);
+    }
+
+    public override void TransformDrawData(ref PlayerDrawSet drawInfo) {
+        ApplySeraphimGlow(ref drawInfo);
+    }
+
+    private void ApplySeraphimGlow(ref PlayerDrawSet drawInfo) {
+        int count = drawInfo.DrawDataCache.Count;
+        if (SeraphimEffectOpacity > 0f) {
+            for (int i = 0; i < count; i++) {
+                DrawData value = drawInfo.DrawDataCache[i];
+                value.color = Color.Lerp(value.color, SERAPHIMGLOWCOLOR, SeraphimEffectOpacity);
+                drawInfo.DrawDataCache[i] = value;
+            }
+        }
+    }
+
+    private void ApplySeraphimEffect() {
+        Player.wingTime = Player.wingTimeMax;
+    }
+
+    public override void ProcessTriggers(TriggersSet triggersSet) {
+        TriggerArmorKeybind();
+    }
+
+    private void TriggerArmorKeybind() {
+        if (Player.CCed) {
+            return;
+        }
+
+        ThoriumPlayer handler = Player.GetModPlayer<ThoriumPlayer>();
+        bool pressedSpecial = Math.Abs(handler.ThoriumTime - PressedSpecial) > 30.0;
+        if (ThoriumHotkeySystem.ArmorKey.JustPressed && pressedSpecial) {
+            PressedSpecial = handler.ThoriumTime;
+            OnArmorKeyPressed();
+        }
+    }
+
+    private void OnArmorKeyPressed() {
+        if (IsSeraphimEffectOnCooldown) {
+            return;
+        }
+        if (IsSeraphimSetBonusActive) {
+            if (!IsSeraphimSetBonusActive2) {
+                SeraphimFlightTime = SERAPHIMEFFECTTIME;
+
+                IsSeraphimSetBonusActive2 = true;
+
+                if (Player.IsLocal()) {
+                    Projectile.NewProjectileDirect(Player.GetSource_FromThis(),
+                                                   Player.GetPlayerCorePoint(),
+                                                   Vector2.Zero,
+                                                   ModContent.ProjectileType<SeraphimHeal>(),
+                                                   0, 0,
+                                                   Player.whoAmI);
+                }
+            }
+        }
+    }
 }
 
 [ExtendsFromMod(ThoriumCompat.THORIUMMODNAME)]

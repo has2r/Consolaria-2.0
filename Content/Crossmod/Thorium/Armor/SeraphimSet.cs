@@ -2,7 +2,7 @@
 using Terraria.Enums;
 using Terraria.ModLoader;
 
-using ThoriumMod.Items.HealerItems;
+using ThoriumMod;
 
 namespace Consolaria.Content.Crossmod.Thorium.Armor;
 
@@ -25,7 +25,7 @@ public sealed class SeraphimHelmet : ThoriumItem_HealerBase {
         => head.type == Type && body.type == ModContent.ItemType<SeraphimChestplate>() && legs.type == ModContent.ItemType<SeraphimLegs>();
 
     public override void UpdateArmorSet(Player player) {
-        
+        player.GetModPlayer<ThoriumPlayer_Consolaria>().IsSeraphimSetBonusActive = true;
     }
 }
 

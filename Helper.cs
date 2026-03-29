@@ -17,9 +17,19 @@ using Terraria.Utilities;
 namespace Consolaria;
 
 public static class Helper {
+    public static bool IsAliveAndFree(this Player player) => player.IsAlive() && !player.CCed;
+    public static bool IsAlive(this Player player) => player.active && !player.dead;
+
+    public static bool IsLocal(this Player player) => player.whoAmI == Main.myPlayer;
+
+    public static void AddBuff<T>(this Player player, ushort time) where T : ModBuff => player.AddBuff(ModContent.BuffType<T>(), time);
+
+    public static float Approach(float val, float target, float maxMove) => (double)val <= (double)target ? Math.Min(val + maxMove, target) : Math.Max(val - maxMove, target);
+    public static int Approach(int val, int target, int maxMove) => (double)val <= (double)target ? Math.Min(val + maxMove, target) : Math.Max(val - maxMove, target);
+
+    public static Vector2 Approach(Vector2 val, Vector2 target, float maxMove) => new(Approach(val.X, target.X, maxMove), Approach(val.Y, target.Y, maxMove));
     public static float Wave(float minimum, float maximum, float speed = 1f, float offset = 0f) => Wave((float)Main.GlobalTimeWrappedHourly, minimum, maximum, speed, offset);
     public static float Wave(float step, float minimum, float maximum, float speed = 1f, float offset = 0f) => minimum + ((float)Math.Sin(step * (double)speed + (double)offset) + 1f) / 2f * (maximum - minimum);
-
 
     public static void KillDustThatOutOfScreen(this Dust dust) {
         if (dust.position.Y > Main.screenPosition.Y + (float)Main.screenHeight)

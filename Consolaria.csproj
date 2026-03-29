@@ -6,8 +6,14 @@
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="Content\Crossmod\Thorium\Food\" />
-    <Folder Include="Content\Crossmod\Thorium\Miscellaneous\" />
+    <AdditionalFiles Remove="Content\Crossmod\Thorium\Food\**" />
+    <AdditionalFiles Remove="Content\Crossmod\Thorium\Miscellaneous\**" />
+    <Compile Remove="Content\Crossmod\Thorium\Food\**" />
+    <Compile Remove="Content\Crossmod\Thorium\Miscellaneous\**" />
+    <EmbeddedResource Remove="Content\Crossmod\Thorium\Food\**" />
+    <EmbeddedResource Remove="Content\Crossmod\Thorium\Miscellaneous\**" />
+    <None Remove="Content\Crossmod\Thorium\Food\**" />
+    <None Remove="Content\Crossmod\Thorium\Miscellaneous\**" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="ThoriumMod">

@@ -175,6 +175,11 @@ Mods: {
 				// DisplayName: Singer Turkey Buff
 				// Description: Mods.Consolaria.Buffs.SingerTurkeyBuff.Description
 			}
+
+			SeraphimCooldown: {
+				// DisplayName: Seraphim Cooldown
+				// Description: Mods.Consolaria.Buffs.SeraphimCooldown.Description
+			}
 		}
 
 		Items: {
@@ -1613,6 +1618,7 @@ Mods: {
 			// FiveStarBuffet_Use.DisplayName: Five Star Buffet_ Use
 			// FiveStarBuffet_Food.DisplayName: Five Star Buffet_ Food
 			// Chocoplotion_Droplet.DisplayName: Chocoplotion_ Droplet
+			// SeraphimHeal.DisplayName: Seraphim Heal
 		}
 
 		Tiles: {

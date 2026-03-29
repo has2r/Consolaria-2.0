@@ -124,7 +124,7 @@ public sealed class SeraphimHeal : ThoriumProjectile_HealerBase {
                 Vector2 targetPosition = projectile.Center + vector3 * new Vector2((projectile.height - num4) / 2) * 0.75f;
                 Dust dust = Dust.NewDustDirect(targetPosition, 0, 0, DustID.TintableDustLighted, 0f, 0f, 100, newColor:
                     Color.Lerp(ThoriumPlayer_Consolaria.SERAPHIMGLOWCOLOR, Color.Lerp(Color.White, Color.LightYellow, Main.rand.NextFloat(0.5f, 1f)), 0.5f) with { A = 100 });
-                dust.position = targetPosition;
+                dust.position = targetPosition - Vector2.UnitY * 4f;
                 dust.velocity = (vector2 - dust.position).SafeNormalize(Vector2.Zero);
                 dust.velocity += dust.position.DirectionTo(projectile.Center).RotatedBy(-owner.direction * 0.5f) * Main.rand.NextFloat(2.5f, 5f) * 0.125f;
                 //dust.velocity += dust.position.DirectionTo(projectile.Center).RotatedBy(0f) * Main.rand.NextFloat(2.5f, 5f) * 0.5f;

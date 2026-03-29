@@ -17,6 +17,7 @@ using Terraria.ModLoader;
 using ThoriumMod;
 using ThoriumMod.Buffs.Healer;
 using ThoriumMod.Items;
+using ThoriumMod.Items.EarlyMagic;
 using ThoriumMod.Items.HealerItems;
 using ThoriumMod.NPCs;
 using ThoriumMod.Projectiles;
@@ -45,9 +46,36 @@ public sealed class ThoriumCompat : ModSystem {
 
 [ExtendsFromMod(ThoriumCompat.THORIUMMODNAME)]
 [JITWhenModsEnabled(ThoriumCompat.THORIUMMODNAME)]
+public sealed class ThoriumNPC_Consolaria : GlobalNPC {
+    public override void UpdateLifeRegen(NPC npc, ref int damage) {
+        if (ThoriumPlayer_Consolaria.AnyViperSetNearby(npc.Center)) {
+            if (npc.venom) {
+                if (npc.lifeRegen > 0)
+                    npc.lifeRegen = 0;
+
+                npc.lifeRegen -= (int)(60 * ThoriumPlayer_Consolaria.VIPEREFFECTDAMAGEINCREASE);
+                int minDamage = (int)(15 * ThoriumPlayer_Consolaria.VIPEREFFECTDAMAGEINCREASE);
+                if (damage < minDamage)
+                    damage = minDamage;
+            }
+            if (npc.poisoned) {
+                if (npc.lifeRegen > 0)
+                    npc.lifeRegen = 0;
+
+                npc.lifeRegen -= (int)(12 * ThoriumPlayer_Consolaria.VIPEREFFECTDAMAGEINCREASE);
+            }
+        }
+    }
+}
+
+[ExtendsFromMod(ThoriumCompat.THORIUMMODNAME)]
+[JITWhenModsEnabled(ThoriumCompat.THORIUMMODNAME)]
 public sealed class ThoriumPlayer_Consolaria : ModPlayer {
     private static ushort SERAPHIMEFFECTTIME => Helper.SecondsToFrames(4);
     private static ushort SERAPHIMEFFECTCOOLDOWN => Helper.SecondsToFrames(30);
+
+    private static ushort VIPEREFFECTDISTANCE => (ushort)(Helper.TILESIZE * 20);
+    public static float VIPEREFFECTDAMAGEINCREASE => 1.5f;
 
     public static Color SERAPHIMGLOWCOLOR => Color.Gold with { A = 100 };
 
@@ -59,11 +87,48 @@ public sealed class ThoriumPlayer_Consolaria : ModPlayer {
 
     public int HealedBySeraphim_HealerWhoAmI = -1;
 
+    public bool IsViperSetBonusActive;
+
     public bool IsSeraphimEffectActive => SeraphimFlightTime > 0;
     public bool IsSeraphimEffectOnCooldown => Player.HasBuff<SeraphimCooldown>();
 
     public override void ResetEffects() {
         IsSeraphimSetBonusActive = false;
+        IsViperSetBonusActive = false;
+    }
+
+    public static bool AnyViperSetNearby(Vector2 checkPosition) {
+        bool result = false;
+        foreach (Player player in Main.ActivePlayers) {
+            if (player.Distance(checkPosition) > VIPEREFFECTDISTANCE) {
+                continue;
+            }
+            if (player.GetModPlayer<ThoriumPlayer_Consolaria>().IsViperSetBonusActive) {
+                result = true;
+                break;
+            }
+        }
+        return result;
+    }
+
+    public override void OnHitNPCWithItem(Item item, NPC target, NPC.HitInfo hit, int damageDone) {
+        if (!IsViperSetBonusActive) {
+            return;
+        }
+
+        if (item.DamageType == DamageClass.Throwing && Main.rand.NextBool(5)) {
+            target.AddBuff(BuffID.Venom, Helper.SecondsToFrames(Main.rand.Next(2, 5)));
+        }
+    }
+
+    public override void OnHitNPCWithProj(Projectile proj, NPC target, NPC.HitInfo hit, int damageDone) {
+        if (!IsViperSetBonusActive) {
+            return;
+        }
+
+        if (proj.DamageType == DamageClass.Throwing && Main.rand.NextBool(5)) {
+            target.AddBuff(BuffID.Venom, Helper.SecondsToFrames(Main.rand.Next(2, 5)));
+        }
     }
 
     public override void PostUpdateEquips() {

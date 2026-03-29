@@ -23,7 +23,7 @@ public sealed class ViperHelmet : ThoriumItem_ThrowerBase {
         => head.type == Type && body.type == ModContent.ItemType<ViperChestplate>() && legs.type == ModContent.ItemType<ViperLegs>();
 
     public override void UpdateArmorSet(Player player) {
-        
+        player.GetModPlayer<ThoriumPlayer_Consolaria>().IsViperSetBonusActive = true;
     }
 }
 

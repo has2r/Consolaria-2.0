@@ -19,6 +19,8 @@ using static Consolaria.Helper;
 namespace Consolaria;
 
 public static class Helper {
+    public static ushort TILESIZE => 16;
+
     public static Color MultiplyAlpha(this Color color, float alpha) => new(color.R, color.G, color.B, (int)(color.A / 255f * MathHelper.Clamp(alpha, 0f, 1f) * 255f));
     public static Color SetAlpha(this Color color, byte alpha) => new(color.R, color.G, color.B, alpha);
 

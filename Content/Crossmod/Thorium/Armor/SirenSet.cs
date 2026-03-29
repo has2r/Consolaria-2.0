@@ -25,6 +25,8 @@ public sealed class SirenHelmet : ThoriumItem_BardBase {
     public override void UpdateArmorSet(Player player) {
         
     }
+
+    public override void ArmorSetShadows(Player player) => player.armorEffectDrawOutlines = true;
 }
 
 [AutoloadEquip(EquipType.Body)]

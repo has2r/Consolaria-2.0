@@ -25,6 +25,8 @@ public sealed class OldSeraphimHelmet : ThoriumItem_HealerBase {
     public override void UpdateArmorSet(Player player) {
         player.GetModPlayer<ThoriumPlayer_Consolaria>().IsSeraphimSetBonusActive = true;
     }
+
+    public override void ArmorSetShadows(Player player) => player.armorEffectDrawShadow = true;
 }
 
 [AutoloadEquip(EquipType.Body)]

@@ -25,6 +25,8 @@ public sealed class OldViperHelmet : ThoriumItem_ThrowerBase {
     public override void UpdateArmorSet(Player player) {
         player.GetModPlayer<ThoriumPlayer_Consolaria>().IsViperSetBonusActive = true;
     }
+
+    public override void ArmorSetShadows(Player player) => player.armorEffectDrawOutlinesForbidden = true;
 }
 
 [AutoloadEquip(EquipType.Body)]

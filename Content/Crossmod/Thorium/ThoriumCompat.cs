@@ -57,6 +57,8 @@ public sealed class ThoriumPlayer_Consolaria : ModPlayer {
     public int SeraphimFlightTime;
     public float SeraphimEffectOpacity;
 
+    public int HealedBySeraphim_HealerWhoAmI = -1;
+
     public bool IsSeraphimEffectActive => SeraphimFlightTime > 0;
     public bool IsSeraphimEffectOnCooldown => Player.HasBuff<SeraphimCooldown>();
 

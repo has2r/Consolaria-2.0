@@ -28,6 +28,13 @@ public sealed class SeraphimHeal : ThoriumProjectile_HealerBase {
         Player owner = Projectile.GetOwnerAsPlayer();
         if (!owner.IsAlive() || owner.GetModPlayer<ThoriumPlayer_Consolaria>().IsSeraphimEffectOnCooldown) {
             Projectile.Kill();
+
+            foreach (Player player in Main.ActivePlayers) {
+                ThoriumPlayer_Consolaria handler = player.GetModPlayer<ThoriumPlayer_Consolaria>();
+                if (handler.HealedBySeraphim_HealerWhoAmI == owner.whoAmI) {
+                    handler.HealedBySeraphim_HealerWhoAmI = -1;
+                }
+            }
         }
 
         Projectile.Center = owner.GetPlayerCorePoint();
@@ -35,9 +42,14 @@ public sealed class SeraphimHeal : ThoriumProjectile_HealerBase {
         float healTime = 15f;
         if (++HealTime > healTime) {
             int radius = 75;
-            Projectile.ThoriumHeal(1, radius, onHealEffects: true, bonusHealing: true, delegate {
+            int heal = 30;
+            Projectile.ThoriumHeal(heal, radius, onHealEffects: true, bonusHealing: true, (Player player, Player target, ref int heals, ref int selfHeals) => {
                 SoundEngine.PlaySound(in SoundID.Item85, Projectile.position);
-            }, null, -1, ignoreHealer: false);
+
+                target.GetModPlayer<ThoriumPlayer_Consolaria>().HealedBySeraphim_HealerWhoAmI = owner.whoAmI;
+            }, (player) => {
+                return player.GetModPlayer<ThoriumPlayer_Consolaria>().HealedBySeraphim_HealerWhoAmI != owner.whoAmI;
+            }, -1, ignoreHealer: false);
 
             HealTime = 0f;
         }

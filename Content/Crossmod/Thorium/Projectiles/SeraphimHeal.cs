@@ -93,7 +93,7 @@ public sealed class SeraphimHeal : ThoriumProjectile_HealerBase {
 
         float healTime = 15f;
         if (++HealTime > healTime) {
-            int radius = 75;
+            int radius = 60;
             int heal = 30;
             Projectile.ThoriumHeal(heal, radius, onHealEffects: true, bonusHealing: true, (Player player, Player target, ref int heals, ref int selfHeals) => {
                 SoundEngine.PlaySound(in SoundID.Item85, Projectile.position);
@@ -109,7 +109,7 @@ public sealed class SeraphimHeal : ThoriumProjectile_HealerBase {
         AICounter_ForDusts++;
 
         Projectile projectile = Projectile;
-        int num4 = 150;
+        int num4 = 100;
         Vector2 vector2 = new Vector2(projectile.Top.X, projectile.position.Y + (float)num4);
         for (int j = 0; j < 4; j++) {
             if (!Main.rand.NextChance(Projectile.Opacity)) {

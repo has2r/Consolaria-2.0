@@ -14,9 +14,147 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.Utilities;
 
+using static Consolaria.Helper;
+
 namespace Consolaria;
 
 public static class Helper {
+    public static Color MultiplyAlpha(this Color color, float alpha) => new(color.R, color.G, color.B, (int)(color.A / 255f * MathHelper.Clamp(alpha, 0f, 1f) * 255f));
+    public static Color SetAlpha(this Color color, byte alpha) => new(color.R, color.G, color.B, alpha);
+
+    public static Vector2 Centered(this Rectangle rectangle) => rectangle.Size() / 2f;
+
+    public static Vector2 BottomCenter(this Rectangle rectangle) => new(rectangle.Width / 2f, rectangle.Height);
+    public static Vector2 TopCenter(this Rectangle rectangle) => new(rectangle.Width / 2f, 0);
+    public static Vector2 LeftCenter(this Rectangle rectangle) => new(rectangle.Width / 2f, rectangle.Height / 2f);
+
+    /// <summary>Contains the data for a <see cref="SpriteBatch.Begin(SpriteSortMode, BlendState, SamplerState, DepthStencilState, RasterizerState, Effect, Matrix)"/> call.</summary>
+    public struct SpriteBatchSnapshot {
+        private static readonly Matrix identityMatrix = Matrix.Identity;
+        public SpriteSortMode sortMode;
+        public BlendState blendState;
+        public SamplerState samplerState;
+        public DepthStencilState depthStencilState;
+        public RasterizerState rasterizerState;
+        public Effect? effect;
+        public Matrix transformationMatrix;
+
+        public SpriteBatchSnapshot(SpriteSortMode sortMode = SpriteSortMode.Deferred, BlendState? blendState = null, SamplerState? samplerState = null, DepthStencilState? depthStencilState = null, RasterizerState? rasterizerState = null, Effect? effect = null, Matrix? transformationMatrix = null) {
+            this.sortMode = sortMode;
+            this.blendState = blendState ?? BlendState.AlphaBlend;
+            this.samplerState = samplerState ?? SamplerState.LinearClamp;
+            this.depthStencilState = depthStencilState ?? DepthStencilState.None;
+            this.rasterizerState = rasterizerState ?? RasterizerState.CullCounterClockwise;
+            this.effect = effect;
+            this.transformationMatrix = transformationMatrix ?? identityMatrix;
+        }
+
+        /// <summary>Calls <seealso cref="SpriteBatch.Begin(SpriteSortMode, BlendState, SamplerState, DepthStencilState, RasterizerState, Effect, Matrix)"/> with the data on this <seealso cref="SpriteBatchSnapshot"/> instance.</summary>
+        /// <param name="spriteBatch">The spritebatch to begin.</param>
+        public readonly void Begin(SpriteBatch spriteBatch) {
+            spriteBatch.Begin(sortMode, blendState, samplerState, depthStencilState, rasterizerState, effect, transformationMatrix);
+        }
+
+        public static SpriteBatchSnapshot Capture(SpriteBatch spriteBatch) {
+            SpriteSortMode sortMode = (SpriteSortMode)SpriteBatchSnapshotCache.SortModeField.GetValue(spriteBatch);
+            BlendState blendState = (BlendState)SpriteBatchSnapshotCache.BlendStateField.GetValue(spriteBatch);
+            SamplerState samplerState = (SamplerState)SpriteBatchSnapshotCache.SamplerStateField.GetValue(spriteBatch);
+            DepthStencilState depthStencilState = (DepthStencilState)SpriteBatchSnapshotCache.DepthStencilStateField.GetValue(spriteBatch);
+            RasterizerState rasterizerState = (RasterizerState)SpriteBatchSnapshotCache.RasterizerStateField.GetValue(spriteBatch);
+            Effect effect = (Effect)SpriteBatchSnapshotCache.EffectField.GetValue(spriteBatch);
+            Matrix transformMatrix = (Matrix)SpriteBatchSnapshotCache.TransformMatrixField.GetValue(spriteBatch);
+
+            return new SpriteBatchSnapshot(sortMode, blendState, samplerState, depthStencilState, rasterizerState, effect, transformMatrix);
+        }
+
+        //void Revalidate()
+        //{
+        //    blendState ??= BlendState.AlphaBlend;
+        //    samplerState ??= SamplerState.LinearClamp;
+        //    depthStencilState ??= DepthStencilState.None;
+        //    rasterizerState ??= RasterizerState.CullCounterClockwise;
+        //}
+    }
+
+    public readonly struct DrawInfo() {
+        public static DrawInfo Default => new();
+
+        public Vector2 Origin { get; init; } = Vector2.Zero;
+
+        public Vector2 Offset { get; init; } = Vector2.Zero;
+
+        public float Rotation { get; init; } = 0f;
+        public Vector2 Scale { get; init; } = Vector2.One;
+        public Color Color { get; init; } = Color.White;
+
+        public SpriteEffects ImageFlip { get; init; } = SpriteEffects.None;
+
+        public Rectangle Clip { get; init; } = Rectangle.Empty;
+
+        public DrawInfo WithScale(float scale) => this with { Scale = Scale * scale };
+        public DrawInfo WithScaleX(float scale) => this with { Scale = new Vector2(Scale.X * scale, Scale.Y) };
+        public DrawInfo WithScaleY(float scale) => this with { Scale = new Vector2(Scale.X, Scale.Y * scale) };
+
+        public DrawInfo WithColor(Color color) => this with { Color = Color.MultiplyRGB(color) };
+        public DrawInfo WithColorModifier(float colorModifier) => this with { Color = Color * colorModifier };
+        public DrawInfo WithColorRGBModifier(float colorModifier) => this with { Color = Color.ModifyRGB(colorModifier) };
+
+        public DrawInfo WithRotation(float rotation) => this with { Rotation = Rotation + rotation };
+    }
+
+    public static void Draw(this SpriteBatch spriteBatch, Texture2D textureToDraw, Vector2 position, DrawInfo drawInfo, bool onScreen = true) {
+        spriteBatch.Draw(textureToDraw, position - (onScreen ? Main.screenPosition : Vector2.Zero), drawInfo.Clip, drawInfo.Color, drawInfo.Rotation, drawInfo.Origin, drawInfo.Scale, drawInfo.ImageFlip, 0f);
+    }
+
+    public static void DrawWithSnapshot(this SpriteBatch spriteBatch, Texture2D textureToDraw, Vector2 position, DrawInfo drawInfo, bool onScreen = true, SpriteSortMode? sortMode = null, BlendState? blendState = null, SamplerState? samplerState = null, DepthStencilState? depthStencilState = null, RasterizerState? rasterizerState = null, Effect? effect = null, Matrix? transformationMatrix = null) {
+        SpriteBatchSnapshot snapshot = SpriteBatchSnapshot.Capture(spriteBatch);
+        sortMode ??= snapshot.sortMode;
+        blendState ??= snapshot.blendState;
+        samplerState ??= snapshot.samplerState;
+        depthStencilState ??= snapshot.depthStencilState;
+        rasterizerState ??= snapshot.rasterizerState;
+        effect ??= snapshot.effect;
+        transformationMatrix ??= snapshot.transformationMatrix;
+        spriteBatch.Begin(new SpriteBatchSnapshot(sortMode.Value, blendState, samplerState, depthStencilState, rasterizerState, effect, transformationMatrix), true);
+        Draw(spriteBatch, textureToDraw, position, drawInfo, onScreen);
+        spriteBatch.Begin(in snapshot, true);
+    }
+
+    public static void DrawWithSnapshot(this SpriteBatch spriteBatch, Action draw, SpriteSortMode? sortMode = null, BlendState? blendState = null, SamplerState? samplerState = null, DepthStencilState? depthStencilState = null, RasterizerState? rasterizerState = null, Effect? effect = null, Matrix? transformationMatrix = null) {
+        SpriteBatchSnapshot snapshot = SpriteBatchSnapshot.Capture(spriteBatch);
+        sortMode ??= snapshot.sortMode;
+        blendState ??= snapshot.blendState;
+        samplerState ??= snapshot.samplerState;
+        depthStencilState ??= snapshot.depthStencilState;
+        rasterizerState ??= snapshot.rasterizerState;
+        effect ??= snapshot.effect;
+        transformationMatrix ??= snapshot.transformationMatrix;
+        spriteBatch.Begin(new SpriteBatchSnapshot(sortMode.Value, blendState, samplerState, depthStencilState, rasterizerState, effect, transformationMatrix), true);
+        draw();
+        spriteBatch.Begin(in snapshot, true);
+    }
+
+    public static void DrawOutlined(this SpriteBatch spriteBatch, Texture2D textureToDraw, Vector2 position, DrawInfo drawInfo, float outlineSize = 2f, bool onScreen = true) {
+        for (int i = 0; i < 4; i++) {
+            switch (i) {
+                case 0:
+                    spriteBatch.Draw(textureToDraw, position + -Vector2.UnitX * outlineSize, drawInfo, onScreen);
+                    break;
+                case 1:
+                    spriteBatch.Draw(textureToDraw, position + Vector2.UnitX * outlineSize, drawInfo, onScreen);
+                    break;
+                case 2:
+                    spriteBatch.Draw(textureToDraw, position + -Vector2.UnitY * outlineSize, drawInfo, onScreen);
+                    break;
+                case 3:
+                    spriteBatch.Draw(textureToDraw, position + -Vector2.UnitY * outlineSize, drawInfo, onScreen);
+                    break;
+            }
+        }
+    }
+
+    public static Color ModifyRGB(this Color color, float modifier) => (color * modifier) with { A = color.A };
+
     public static bool IsAliveAndFree(this Player player) => player.IsAlive() && !player.CCed;
     public static bool IsAlive(this Player player) => player.active && !player.dead;
 
@@ -489,4 +627,145 @@ public static class Helper {
     }
 	
 	public static string ArmorSetBonusKey => Language.GetTextValue(Main.ReversedUpDownArmorSetBonuses ? "Key.UP" : "Key.DOWN");
+}
+
+public static class SpriteBatchSnapshotCache {
+    private const BindingFlags SBBindingFlags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance;
+    internal static FieldInfo _sortModeField, _blendStateField, _samplerStateField, _depthStencilStateField, _rasterizerStateField, _effectField, _transformMatrixField;
+    internal static FieldInfo SortModeField => _sortModeField ??= typeof(SpriteBatch).GetField("sortMode", SBBindingFlags);
+    internal static FieldInfo BlendStateField => _blendStateField ??= typeof(SpriteBatch).GetField("blendState", SBBindingFlags);
+    internal static FieldInfo SamplerStateField => _samplerStateField ??= typeof(SpriteBatch).GetField("samplerState", SBBindingFlags);
+    internal static FieldInfo DepthStencilStateField => _depthStencilStateField ??= typeof(SpriteBatch).GetField("depthStencilState", SBBindingFlags);
+    internal static FieldInfo RasterizerStateField => _rasterizerStateField ??= typeof(SpriteBatch).GetField("rasterizerState", SBBindingFlags);
+    internal static FieldInfo EffectField => _effectField ??= typeof(SpriteBatch).GetField("customEffect", SBBindingFlags);
+    internal static FieldInfo TransformMatrixField => _transformMatrixField ??= typeof(SpriteBatch).GetField("transformMatrix", SBBindingFlags);
+
+    public static void Begin(this SpriteBatch spriteBatch, in SpriteBatchSnapshot snapshot, bool end = false) {
+        if (end) {
+            spriteBatch.End();
+        }
+        spriteBatch.Begin(snapshot.sortMode, snapshot.blendState, snapshot.samplerState, snapshot.depthStencilState, snapshot.rasterizerState, snapshot.effect, snapshot.transformationMatrix);
+    }
+
+    /// <inheritdoc cref="SpriteBatchSnapshot.Capture(SpriteBatch)"/>
+    public static SpriteBatchSnapshot CaptureSnapshot(this SpriteBatch spriteBatch) {
+        return SpriteBatchSnapshot.Capture(spriteBatch);
+    }
+
+    class Loader : ILoadable {
+        void ILoadable.Load(Mod mod) {
+        }
+
+        void ILoadable.Unload() {
+            _sortModeField = null;
+            _blendStateField = null;
+            _samplerStateField = null;
+            _depthStencilStateField = null;
+            _rasterizerStateField = null;
+            _effectField = null;
+            _transformMatrixField = null;
+        }
+    }
+}
+
+public static class Ease {
+    public delegate float Easer(float value);
+
+    public static Easer SineIn => value => -(float)Math.Cos(MathHelper.PiOver2 * value) + 1;
+    public static Easer SineOut => value => (float)Math.Sin(MathHelper.PiOver2 * value);
+    public static Easer SineInOut => value => -(float)Math.Cos(MathHelper.Pi * value) / 2f + 0.5f;
+
+    public static Easer ExpoIn => value => (float)Math.Pow(2.0, 10.0 * ((double)value - 1.0));
+    public static Easer ExpoOut => Invert(ExpoIn);
+    public static Easer ExpoInOut => Follow(ExpoIn, ExpoOut);
+
+    public static Easer ExpoInSinOut => Follow(ExpoIn, SineOut);
+    public static Easer SineInExpoOut => Follow(SineIn, ExpoOut);
+
+    public static Easer CubeIn => value => value * value * value;
+    public static Easer CubeOut => Invert(CubeIn);
+    public static Easer CubeInOut => Follow(CubeIn, CubeOut);
+
+    public static Easer CubeInExpoOut => Follow(CubeIn, ExpoOut);
+
+    public static Easer ExpoInCubeOut => Follow(ExpoIn, CubeOut);
+
+    public static Easer QuadIn => value => value * value;
+    public static Easer QuadOut => Invert(QuadIn);
+    public static Easer QuadInOut => Follow(QuadIn, QuadOut);
+
+    public static Easer QuartIn => value => value * value * value * value;
+    public static Easer QuartOut => value => 1f - (float)Math.Pow(1.0 - (double)value, 4);
+    public static Easer QuartInOut => Follow(QuartIn, QuartIn);
+
+    public static Easer QuintIn => value => value * value * value * value * value;
+    public static Easer QuintOut => value => 1f - (float)Math.Pow(1.0 - (double)value, 5);
+    public static Easer QuintInOut => Follow(QuintIn, QuintOut);
+
+    public static Easer TestIn => value => value * value * value * value * value * value * value;
+
+    public static Easer CircOut => value => (float)Math.Sqrt(1 - Math.Pow(value - 1.0, 2));
+    public static Easer CircIn => Invert(CircOut);
+
+    private const float B1 = 1f / 2.75f;
+    private const float B2 = 2f / 2.75f;
+    private const float B3 = 1.5f / 2.75f;
+    private const float B4 = 2.5f / 2.75f;
+    private const float B5 = 2.25f / 2.75f;
+    private const float B6 = 2.625f / 2.75f;
+
+    public static readonly Easer BounceIn = (float value) => {
+        value = 1 - value;
+        if (value < B1) {
+            return 1 - 7.5625f * value * value;
+        }
+        if (value < B2) {
+            return 1 - (7.5625f * (value - B3) * (value - B3) + .75f);
+        }
+        if (value < B4) {
+            return 1 - (7.5625f * (value - B5) * (value - B5) + .9375f);
+        }
+        return 1 - (7.5625f * (value - B6) * (value - B6) + .984375f);
+    };
+
+    public static readonly Easer BounceOut = (float value) => {
+        if (value < B1)
+            return 7.5625f * value * value;
+        if (value < B2)
+            return 7.5625f * (value - B3) * (value - B3) + .75f;
+        if (value < B4)
+            return 7.5625f * (value - B5) * (value - B5) + .9375f;
+        return 7.5625f * (value - B6) * (value - B6) + .984375f;
+    };
+
+    public static readonly Easer BounceInOut = (float value) => {
+        if (value < .5f) {
+            value = 1 - value * 2;
+            if (value < B1) {
+                return (1 - 7.5625f * value * value) / 2;
+            }
+            if (value < B2) {
+                return (1 - (7.5625f * (value - B3) * (value - B3) + .75f)) / 2;
+            }
+            if (value < B4) {
+                return (1 - (7.5625f * (value - B5) * (value - B5) + .9375f)) / 2;
+            }
+            return (1 - (7.5625f * (value - B6) * (value - B6) + .984375f)) / 2;
+        }
+        value = value * 2 - 1;
+        if (value < B1) {
+            return (7.5625f * value * value) / 2 + .5f;
+        }
+        if (value < B2) {
+            return (7.5625f * (value - B3) * (value - B3) + .75f) / 2 + .5f;
+        }
+        if (value < B4) {
+            return (7.5625f * (value - B5) * (value - B5) + .9375f) / 2 + .5f;
+        }
+        return (7.5625f * (value - B6) * (value - B6) + .984375f) / 2 + .5f;
+    };
+
+    public static Easer Invert(Easer easer) => value => 1f - easer(1f - value);
+
+    public static Easer Follow(Easer first, Easer second) => value => value > 0.5f ? second(value * 2f - 1f) / 2f + 0.5f : first(value * 2f) / 2f;
 }

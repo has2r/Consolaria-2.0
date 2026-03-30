@@ -238,13 +238,15 @@ public sealed class ThoriumPlayer_Consolaria : ModPlayer {
             int count = types.Count;
             for (int i = 0; i < count; i++) {
                 float maxX = 300f;
-                Vector2 position = Player.GetPlayerCorePoint() + new Vector2(MathHelper.Lerp(-maxX, maxX, (float)i / count), 300f);
+                float x = MathHelper.Lerp(-maxX, maxX, (float)i / count) + maxX / count;
+                Vector2 position = Player.GetPlayerCorePoint() + new Vector2(x, 300f);
                 Projectile.NewProjectileDirect(Player.GetSource_FromThis(),
                                                position,
                                                Vector2.Zero,
                                                ModContent.ProjectileType<SirenSeaCreature>(),
                                                0, 0,
                                                Player.whoAmI,
+                                               ai0: x,
                                                ai2: types.TakeRandom() - 1);
             }
         }

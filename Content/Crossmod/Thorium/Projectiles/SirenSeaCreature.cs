@@ -35,15 +35,17 @@ public sealed class SirenSeaCreature : ThoriumProjectile_BardBase {
 
         Projectile.rotation = Projectile.velocity.Y * 0.1f;
 
-        Vector2 targetPosition = owner.Center - new Vector2(0, 80);
-        float distance = Projectile.Center.DistanceSQ(targetPosition);
-        bool far = distance > 700 * 700;
+        Vector2 targetPosition = owner.Center - new Vector2(0, 100f);
+        Vector2 targetPosition2 = closestPlayer.Center + new Vector2(Projectile.ai[0], 0f);
+        float distance = Projectile.Center.Distance(targetPosition);
+        bool far = distance > 700;
         (float mod, float factor, float fade) = far ? (9, 0.25f, 0) : (6, 0.15f, 1);
-        if (distance < 40 * 40) {
+        if (distance < 40) {
             Projectile.velocity.Y *= 0.97f;
         }
         else {
             Projectile.velocity.Y = Vector2.SmoothStep(Projectile.velocity, (targetPosition - Projectile.Center).SafeNormalize(Vector2.Zero) * mod, factor).Y;
+            Projectile.velocity.X = Vector2.SmoothStep(Projectile.velocity, (targetPosition2 - Projectile.Center).SafeNormalize(Vector2.Zero) * mod, factor * 1f).X;
         }
     }
 

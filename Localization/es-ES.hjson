@@ -180,6 +180,11 @@ Mods: {
 				// DisplayName: Seraphim Cooldown
 				// Description: Mods.Consolaria.Buffs.SeraphimCooldown.Description
 			}
+
+			SeraphimBuff: {
+				// DisplayName: Seraphim Buff
+				// Description: Mods.Consolaria.Buffs.SeraphimBuff.Description
+			}
 		}
 
 		Items: {

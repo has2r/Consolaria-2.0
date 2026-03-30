@@ -192,7 +192,7 @@ public sealed class ThoriumPlayer_Consolaria : ModPlayer {
         if (SeraphimEffectOpacity > 0f) {
             for (int i = 0; i < count; i++) {
                 DrawData value = drawInfo.DrawDataCache[i];
-                value.color = Color.Lerp(value.color, SERAPHIMGLOWCOLOR * (1f - drawInfo.shadow), SeraphimEffectOpacity * 0.875f);
+                value.color = Color.Lerp(value.color, drawInfo.drawPlayer.GetImmuneAlphaPure(SERAPHIMGLOWCOLOR, drawInfo.shadow), SeraphimEffectOpacity * 0.875f);
                 drawInfo.DrawDataCache[i] = value;
             }
         }
@@ -226,6 +226,8 @@ public sealed class ThoriumPlayer_Consolaria : ModPlayer {
         if (IsSeraphimSetBonusActive) {
             if (!IsSeraphimSetBonusActive2) {
                 SeraphimFlightTime = SERAPHIMEFFECTTIME;
+
+                Player.AddBuff<SeraphimBuff>(SERAPHIMEFFECTTIME);
 
                 IsSeraphimSetBonusActive2 = true;
 

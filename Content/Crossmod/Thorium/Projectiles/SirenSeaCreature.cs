@@ -49,6 +49,7 @@ public sealed class SirenSeaCreature : ThoriumProjectile_BardBase {
             float to = 1f;
             to *= Utils.GetLerpValue(0, 150, Projectile.timeLeft, true);
             Projectile.Opacity = Helper.Approach(Projectile.Opacity, to, lerpValue);
+            Main.NewText(Projectile.Opacity);
             if (Projectile.Opacity >= 1f) {
                 Projectile.localAI[1] = Helper.Approach(Projectile.localAI[1], 1f, 0.025f);
             }

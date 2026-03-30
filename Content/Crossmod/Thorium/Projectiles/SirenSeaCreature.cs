@@ -7,7 +7,7 @@ using Terraria;
 namespace Consolaria.Content.Crossmod.Thorium.Projectiles;
 
 public sealed class SirenSeaCreature : ThoriumProjectile_BardBase {
-    private static ushort TIMELEFT => Helper.SecondsToFrames(10);
+    private static ushort TIMELEFT => Helper.SecondsToFrames(15);
 
     public enum SeaCreatureType : byte {
         Red,
@@ -47,7 +47,7 @@ public sealed class SirenSeaCreature : ThoriumProjectile_BardBase {
         float lerpValue = 0.01f;
         if (Projectile.localAI[2] >= 0f) {
             float to = 1f;
-            to *= Utils.GetLerpValue(0, 60, Projectile.timeLeft, true);
+            to *= Utils.GetLerpValue(0, 140, Projectile.timeLeft, true);
             Projectile.Opacity = Helper.Approach(Projectile.Opacity, to, lerpValue);
             if (Projectile.Opacity >= 1f) {
                 Projectile.localAI[1] = Helper.Approach(Projectile.localAI[1], 1f, 0.025f);

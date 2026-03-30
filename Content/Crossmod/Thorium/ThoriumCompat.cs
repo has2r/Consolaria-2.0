@@ -6,6 +6,7 @@ using Consolaria.Content.Crossmod.Thorium.Projectiles;
 using Microsoft.Xna.Framework;
 
 using System;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
 using Terraria;
@@ -110,12 +111,15 @@ public sealed class ThoriumPlayer_Consolaria : ModPlayer {
 
     public bool IsViperSetBonusActive;
 
+    public bool IsSirenSetBonusActive;
+
     public bool IsSeraphimEffectActive => SeraphimFlightTime > 0;
     public bool IsSeraphimEffectOnCooldown => Player.HasBuff<SeraphimCooldown>();
 
     public override void ResetEffects() {
         IsSeraphimSetBonusActive = false;
         IsViperSetBonusActive = false;
+        IsSirenSetBonusActive = false;
     }
 
     public static bool AnyViperSetNearby(Vector2 checkPosition) {
@@ -220,6 +224,33 @@ public sealed class ThoriumPlayer_Consolaria : ModPlayer {
     }
 
     private void OnArmorKeyPressed() {
+        ActivateSeraphimEffect();
+        ActivateSirenEffect();
+    }
+
+    private void ActivateSirenEffect() {
+        if (!IsSirenSetBonusActive) {
+            return;
+        }
+
+        if (Player.IsLocal()) {
+            List<int> types = [1, 2, 3, 4, 5, 6];
+            int count = types.Count;
+            for (int i = 0; i < count; i++) {
+                float maxX = 300f;
+                Vector2 position = Player.GetPlayerCorePoint() + new Vector2(MathHelper.Lerp(-maxX, maxX, (float)i / count), 300f);
+                Projectile.NewProjectileDirect(Player.GetSource_FromThis(),
+                                               position,
+                                               Vector2.Zero,
+                                               ModContent.ProjectileType<SirenSeaCreature>(),
+                                               0, 0,
+                                               Player.whoAmI,
+                                               ai2: types.TakeRandom() - 1);
+            }
+        }
+    }
+
+    private void ActivateSeraphimEffect() {
         if (IsSeraphimEffectOnCooldown) {
             return;
         }

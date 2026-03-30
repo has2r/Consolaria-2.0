@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 
 using System;
+using System.Collections.Generic;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
@@ -19,6 +20,13 @@ using static Consolaria.Helper;
 namespace Consolaria;
 
 public static class Helper {
+    public static T TakeRandom<T>(this List<T> list) {
+        int index = Main.rand.Next(list.Count);
+        T item = list[index];
+        list.RemoveAt(index);
+        return item;
+    }
+
     public static ushort TILESIZE => 16;
 
     public static Color MultiplyAlpha(this Color color, float alpha) => new(color.R, color.G, color.B, (int)(color.A / 255f * MathHelper.Clamp(alpha, 0f, 1f) * 255f));

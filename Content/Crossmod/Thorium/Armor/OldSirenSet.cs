@@ -23,7 +23,7 @@ public sealed class OldSirenHelmet : ThoriumItem_BardBase {
         => head.type == Type && body.type == ModContent.ItemType<OldSirenChestplate>() && legs.type == ModContent.ItemType<OldSirenLegs>();
 
     public override void UpdateArmorSet(Player player) {
-        
+        player.GetModPlayer<ThoriumPlayer_Consolaria>().IsSirenSetBonusActive = true;
     }
 
     public override void ArmorSetShadows(Player player) => player.armorEffectDrawOutlines = true;

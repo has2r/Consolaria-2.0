@@ -1624,6 +1624,7 @@ Mods: {
 			// FiveStarBuffet_Food.DisplayName: Five Star Buffet_ Food
 			// Chocoplotion_Droplet.DisplayName: Chocoplotion_ Droplet
 			// SeraphimHeal.DisplayName: Seraphim Heal
+			// SirenSeaCreature.DisplayName: Siren Sea Creature
 		}
 
 		Tiles: {

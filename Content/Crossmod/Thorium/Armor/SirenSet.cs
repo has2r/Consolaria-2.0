@@ -1,9 +1,17 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Consolaria.Content.Crossmod.Thorium.Projectiles;
+
+using Microsoft.Xna.Framework;
+
+using System;
 
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.Enums;
 using Terraria.ModLoader;
+
+using ThoriumMod;
+using ThoriumMod.Empowerments;
+using ThoriumMod.Utilities;
 
 namespace Consolaria.Content.Crossmod.Thorium.Armor;
 
@@ -47,6 +55,86 @@ public sealed class SirenHelmet : ThoriumItem_BardBase {
 
     public override void UpdateArmorSet(Player player) {
         player.GetModPlayer<ThoriumPlayer_Consolaria>().IsSirenSetBonusActive = true;
+
+        ThoriumPlayer thoriumPlayer = player.GetThoriumPlayer();
+        thoriumPlayer.setCyberPunk = true;
+        ApplyEmpowerments(player);
+        Player player2 = player;
+        if (Main.netMode == 1) {
+            player2 = Main.LocalPlayer;
+        }
+
+        ThoriumPlayer thoriumPlayer2 = player2.GetThoriumPlayer();
+        foreach (Projectile projectile in Main.ActiveProjectiles) {
+            if (projectile.type != ModContent.ProjectileType<SirenSeaCreature>()) {
+                continue;
+            }
+            if (projectile.Opacity < 1f) {
+                continue;
+            }
+            switch ((SirenSeaCreature.SeaCreatureType)projectile.ai[2]) {
+                case SirenSeaCreature.SeaCreatureType.Red:
+                    SetFade(thoriumPlayer2.GetEmpTimer<Damage>());
+                    break;
+                case SirenSeaCreature.SeaCreatureType.Orange:
+                    SetFade(thoriumPlayer2.GetEmpTimer<AttackSpeed>());
+                    break;
+                case SirenSeaCreature.SeaCreatureType.Yellow:
+                    SetFade(thoriumPlayer2.GetEmpTimer<CriticalStrikeChance>());
+                    break;
+                case SirenSeaCreature.SeaCreatureType.Green:
+                    SetFade(thoriumPlayer2.GetEmpTimer<MovementSpeed>());
+                    break;
+                case SirenSeaCreature.SeaCreatureType.Blue:
+                    SetFade(thoriumPlayer2.GetEmpTimer<DamageReduction>());
+                    break;
+                case SirenSeaCreature.SeaCreatureType.Purple:
+                    SetFade(thoriumPlayer2.GetEmpTimer<ResourceRegen>());
+                    break;
+            }
+        }
+    }
+
+    private static void SetFade(EmpowermentTimer timer) {
+        if (timer.level >= 2) {
+            timer.fade = false;
+        }
+    }
+
+    public override void ModifyEmpowermentPool(Player player, Player target, EmpowermentPool empPool) {
+        byte level = Convert.ToByte(2);
+        foreach (Projectile projectile in Main.ActiveProjectiles) {
+            if (projectile.type != ModContent.ProjectileType<SirenSeaCreature>()) {
+                continue;
+            }
+            if (projectile.Opacity < 1f) {
+                continue;
+            }
+            switch ((SirenSeaCreature.SeaCreatureType)projectile.ai[2]) {
+                case SirenSeaCreature.SeaCreatureType.Red:
+                    empPool.Add<Damage>(level);
+                    break;
+                case SirenSeaCreature.SeaCreatureType.Orange:
+                    empPool.Add<AttackSpeed>(level);
+                    break;
+                case SirenSeaCreature.SeaCreatureType.Yellow:
+                    empPool.Add<CriticalStrikeChance>(level);
+                    break;
+                case SirenSeaCreature.SeaCreatureType.Green:
+                    empPool.Add<MovementSpeed>(level);
+                    break;
+                case SirenSeaCreature.SeaCreatureType.Blue:
+                    empPool.Add<DamageReduction>(level);
+                    break;
+                case SirenSeaCreature.SeaCreatureType.Purple:
+                    empPool.Add<ResourceRegen>(level);
+                    break;
+            }
+        }
+    }
+
+    public override void ModifyEmpowerment(ThoriumPlayer player, ThoriumPlayer target, byte type, ref byte level, ref short duration) {
+        duration = 60;
     }
 
     public override void ArmorSetShadows(Player player) => player.armorEffectDrawOutlines = true;

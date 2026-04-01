@@ -28,7 +28,7 @@ namespace Consolaria.Content.Items.Accessories {
 
         public bool HasOwner => !_ownerName.Equals(string.Empty);
 
-        public bool IsInOwnerInventory(Player owner) => !_ownerName.Equals(owner.name);
+        public bool IsInOwnerInventory(Player owner) => _ownerName.Equals(owner.name);
 
         public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 1;

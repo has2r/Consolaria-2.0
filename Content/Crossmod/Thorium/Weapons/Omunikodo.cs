@@ -127,8 +127,8 @@ public sealed class Omunikodo : ThoriumItem_BardBase {
             int width = 16; int height = width;
             Projectile.Size = new Vector2(width, height);
 
-            Projectile.aiStyle = -1;
-            AIType = ProjectileID.Bullet;
+            //Projectile.aiStyle = -1;
+            //AIType = ProjectileID.Bullet;
 
             Projectile.friendly = true;
             Projectile.tileCollide = true;
@@ -141,7 +141,7 @@ public sealed class Omunikodo : ThoriumItem_BardBase {
 
         public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac) {
             width = height = 6;
-            return true;
+            return base.TileCollideStyle(ref width, ref height, ref fallThrough, ref hitboxCenterFrac);
         }
 
         public override void AI() {
@@ -161,9 +161,9 @@ public sealed class Omunikodo : ThoriumItem_BardBase {
             else Projectile.ai[0] += 1;
             if (Projectile.ai[0] <= -6) Projectile.ai[1] = 1f;
             if (Projectile.ai[0] >= 6) Projectile.ai[1] = 0f;
-            if (Collision.SolidTiles(Projectile.Center - Vector2.One * 6, 3, 3)) {
-                Projectile.Kill();
-            }
+            //if (Collision.SolidTiles(Projectile.Center - Vector2.One * 6, 3, 3)) {
+            //    Projectile.Kill();
+            //}
 
             if (Projectile.timeLeft > 120 - 1) {
                 return;
@@ -192,7 +192,7 @@ public sealed class Omunikodo : ThoriumItem_BardBase {
 
             for (float num6 = 1f; num6 <= (float)num5; num6 += 1f) {
                 Dust obj = Main.dust[Dust.NewDust(Projectile.position, 0, 0, ModContent.DustType<OmunikodoDust>())];
-                obj.position = Vector2.Lerp(vector7, vector6, num6 / (float)num5) + new Vector2(Projectile.width, Projectile.height) / 2f;
+                obj.position = Vector2.Lerp(vector7, vector6, num6 / (float)num5);
                 obj.noGravity = true;
                 obj.velocity.Y *= 0.5f;
                 obj.scale *= Main.rand.NextFromList(0.9f, 1.3f);

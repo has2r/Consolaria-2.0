@@ -96,13 +96,13 @@ public sealed class SirenHelmet : ThoriumItem_BardBase {
     }
 
     private static void SetFade(EmpowermentTimer timer) {
-        if (timer.level >= 2) {
-            timer.fade = false;
-        }
+        //if (timer.level >= 2) {
+        //    timer.fade = false;
+        //}
     }
 
     public override void ModifyEmpowermentPool(Player player, Player target, EmpowermentPool empPool) {
-        byte level = Convert.ToByte(2);
+        byte level = Convert.ToByte(1);
         foreach (Projectile projectile in Main.ActiveProjectiles) {
             if (projectile.type != ModContent.ProjectileType<SirenSeaCreature>()) {
                 continue;
@@ -134,7 +134,7 @@ public sealed class SirenHelmet : ThoriumItem_BardBase {
     }
 
     public override void ModifyEmpowerment(ThoriumPlayer player, ThoriumPlayer target, byte type, ref byte level, ref short duration) {
-        duration = 60;
+        duration = 300;
     }
 
     public override void ArmorSetShadows(Player player) => player.armorEffectDrawOutlines = true;

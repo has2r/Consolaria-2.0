@@ -93,6 +93,7 @@ public sealed class ThoriumNPC_Consolaria : GlobalNPC {
 [ExtendsFromMod(ThoriumCompat.THORIUMMODNAME)]
 [JITWhenModsEnabled(ThoriumCompat.THORIUMMODNAME)]
 public sealed class ThoriumPlayer_Consolaria : ModPlayer {
+    private static ushort SIRENSPAWNSEACREATURECOOLDOWN => Helper.SecondsToFrames(5);
     private static ushort SERAPHIMEFFECTTIME => Helper.SecondsToFrames(4);
     private static ushort SERAPHIMEFFECTCOOLDOWN => Helper.SecondsToFrames(30);
 
@@ -112,9 +113,11 @@ public sealed class ThoriumPlayer_Consolaria : ModPlayer {
     public bool IsViperSetBonusActive;
 
     public bool IsSirenSetBonusActive;
+    public ushort CanSpawnSirenSeaCreatureCounter;
 
     public bool IsSeraphimEffectActive => SeraphimFlightTime > 0;
     public bool IsSeraphimEffectOnCooldown => Player.HasBuff<SeraphimCooldown>();
+    public bool CanSpawnSirenSeaCreature => IsSirenSetBonusActive && CanSpawnSirenSeaCreatureCounter <= 0;
 
     public override void ResetEffects() {
         IsSeraphimSetBonusActive = false;
@@ -147,17 +150,67 @@ public sealed class ThoriumPlayer_Consolaria : ModPlayer {
     }
 
     public override void OnHitNPCWithProj(Projectile proj, NPC target, NPC.HitInfo hit, int damageDone) {
+        if (!target.CanBeChasedBy()) {
+            return;
+        }
+
+        TriggerViperSetBonus(proj, target, hit, damageDone);
+        TriggerSirenSetBonus(proj, target, hit, damageDone);
+    }
+
+    private void TriggerSirenSetBonus(Projectile proj, NPC target, NPC.HitInfo hit, int damageDone) {
+        if (!proj.CountsAsClass(ThoriumDamageBase<BardDamage>.Instance)) {
+            return;
+        }
+
+        SpawnSirenCreature(proj.GetSource_OnHit(target));
+    }
+
+    private void TriggerViperSetBonus(Projectile proj, NPC target, NPC.HitInfo hit, int damageDone) {
         if (!IsViperSetBonusActive) {
             return;
         }
 
-        if (proj.DamageType == DamageClass.Throwing && Main.rand.NextBool(5)) {
+        if (proj.CountsAsClass(DamageClass.Throwing) && Main.rand.NextBool(5)) {
             target.AddBuff(BuffID.Venom, Helper.SecondsToFrames(Main.rand.Next(2, 5)));
         }
     }
 
     public override void PostUpdateEquips() {
         UpdateSeraphimSetBonus();
+
+        UpdateSirenSetBonus();
+    }
+
+    private void UpdateSirenSetBonus() {
+        if (CanSpawnSirenSeaCreatureCounter > 0) {
+            CanSpawnSirenSeaCreatureCounter--;
+        }
+    }
+
+    public void SpawnSirenCreature(IEntitySource source_OnHit) {
+        if (!CanSpawnSirenSeaCreature) {
+            return;
+        }
+
+        if (Player.IsLocal()) {
+            List<int> types = [1, 2, 3, 4, 5, 6];
+            int count = types.Count;
+            int i = Main.rand.Next(count);
+            float maxX = 300f;
+            float x = MathHelper.Lerp(-maxX, maxX, (float)i / count) + maxX / count;
+            Vector2 position = Player.GetPlayerCorePoint() + new Vector2(x, 300f);
+            Projectile.NewProjectileDirect(source_OnHit,
+                                           position,
+                                           Vector2.Zero,
+                                           ModContent.ProjectileType<SirenSeaCreature>(),
+                                           0, 0,
+                                           Player.whoAmI,
+                                           ai0: x,
+                                           ai2: types.TakeRandom() - 1);
+        }
+
+        CanSpawnSirenSeaCreatureCounter = SIRENSPAWNSEACREATURECOOLDOWN;
     }
 
     private void UpdateSeraphimSetBonus() {
@@ -225,31 +278,6 @@ public sealed class ThoriumPlayer_Consolaria : ModPlayer {
 
     private void OnArmorKeyPressed() {
         ActivateSeraphimEffect();
-        ActivateSirenEffect();
-    }
-
-    private void ActivateSirenEffect() {
-        if (!IsSirenSetBonusActive) {
-            return;
-        }
-
-        if (Player.IsLocal()) {
-            List<int> types = [1, 2, 3, 4, 5, 6];
-            int count = types.Count;
-            for (int i = 0; i < count; i++) {
-                float maxX = 300f;
-                float x = MathHelper.Lerp(-maxX, maxX, (float)i / count) + maxX / count;
-                Vector2 position = Player.GetPlayerCorePoint() + new Vector2(x, 300f);
-                Projectile.NewProjectileDirect(Player.GetSource_FromThis(),
-                                               position,
-                                               Vector2.Zero,
-                                               ModContent.ProjectileType<SirenSeaCreature>(),
-                                               0, 0,
-                                               Player.whoAmI,
-                                               ai0: x,
-                                               ai2: types.TakeRandom() - 1);
-            }
-        }
     }
 
     private void ActivateSeraphimEffect() {

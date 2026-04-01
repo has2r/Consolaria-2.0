@@ -140,7 +140,7 @@ public sealed class Omunikodo : ThoriumItem_BardBase {
         }
 
         public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac) {
-            width = height = 6;
+            width = height = 2;
             return base.TileCollideStyle(ref width, ref height, ref fallThrough, ref hitboxCenterFrac);
         }
 
@@ -169,6 +169,11 @@ public sealed class Omunikodo : ThoriumItem_BardBase {
                 return;
             }
 
+            int size = 3;
+            if (Collision.SolidTiles(Projectile.Center - Vector2.One * size * 2, size, size)) {
+                Projectile.Kill();
+            }
+
             float num3 = 0f;
             Vector2 vector6 = Projectile.position;
             Vector2 vector7 = Projectile.oldPosition;
@@ -192,7 +197,15 @@ public sealed class Omunikodo : ThoriumItem_BardBase {
 
             for (float num6 = 1f; num6 <= (float)num5; num6 += 1f) {
                 Dust obj = Main.dust[Dust.NewDust(Projectile.position, 0, 0, ModContent.DustType<OmunikodoDust>())];
-                obj.position = Vector2.Lerp(vector7, vector6, num6 / (float)num5);
+
+                Vector2 position = Vector2.Lerp(vector7, vector6, num6 / (float)num5);
+
+                obj.position = position;
+
+                if (Collision.SolidTiles(position + Projectile.Size / 2 - Vector2.One * size * 2, size, size)) {
+                    Projectile.Kill();
+                }
+
                 obj.noGravity = true;
                 obj.velocity.Y *= 0.5f;
                 obj.scale *= Main.rand.NextFromList(0.9f, 1.3f);

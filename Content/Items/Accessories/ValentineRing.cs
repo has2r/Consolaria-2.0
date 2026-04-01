@@ -68,18 +68,19 @@ namespace Consolaria.Content.Items.Accessories {
                 SpriteBatch batch = Main.spriteBatch;
                 float maxRotation = 0.25f;
                 float rotationWaveFrequency = 2.5f;
+                float rgbFactor = 0.75f;
                 for (float num5 = 0f; num5 < 1f; num5 += 0.25f) {
                     Vector2 vector2 = (num5 * ((float)Math.PI * 2f)).ToRotationVector2() * 2f * scale;
-                    batch.Draw(icon, getPosition(0f) + vector2, null, color.MultiplyAlpha(0f) * 0.1f, Helper.Wave(-maxRotation, maxRotation, rotationWaveFrequency, 0f), icon.Size() / 2, scale, default, 0);
+                    batch.Draw(icon, getPosition(0f) + vector2, null, (color.MultiplyAlpha(0f) * 0.125f).ModifyRGB(rgbFactor), Helper.Wave(-maxRotation, maxRotation, rotationWaveFrequency, 0f), icon.Size() / 2, scale, default, 0);
                 }
-                batch.Draw(icon, getPosition(0f), null, color.MultiplyAlpha(0f) * 1f, Helper.Wave(-maxRotation, maxRotation, rotationWaveFrequency, 0f), icon.Size() / 2, scale, default, 0);
+                batch.Draw(icon, getPosition(0f), null, (color.MultiplyAlpha(0f) * 1f).ModifyRGB(rgbFactor), Helper.Wave(-maxRotation, maxRotation, rotationWaveFrequency, 0f), icon.Size() / 2, scale, default, 0);
                 Utils.DrawBorderString(Main.spriteBatch, line.Text, new Vector2(line.X + 20f, line.Y), color.MultiplyAlpha(0.5f));
                 Vector2 offset = Vector2.UnitX * FontAssets.MouseText.Value.MeasureString(line.Text).X + Vector2.UnitX * 20f;
                 for (float num5 = 0f; num5 < 1f; num5 += 0.25f) {
                     Vector2 vector2 = (num5 * ((float)Math.PI * 2f)).ToRotationVector2() * 2f * scale;
-                    batch.Draw(icon, getPosition(2f) + offset + vector2, null, color.MultiplyAlpha(0f) * 0.1f, Helper.Wave(-maxRotation, maxRotation, rotationWaveFrequency, 2f), icon.Size() / 2, scale, default, 0);
+                    batch.Draw(icon, getPosition(2f) + offset + vector2, null, (color.MultiplyAlpha(0f) * 0.125f).ModifyRGB(rgbFactor), Helper.Wave(-maxRotation, maxRotation, rotationWaveFrequency, 2f), icon.Size() / 2, scale, default, 0);
                 }
-                batch.Draw(icon, getPosition(2f) + offset, null, color.MultiplyAlpha(0f), Helper.Wave(-maxRotation, maxRotation, rotationWaveFrequency, 2f), icon.Size() / 2, scale, default, 0);
+                batch.Draw(icon, getPosition(2f) + offset, null, (color.MultiplyAlpha(0f) * 1f).ModifyRGB(rgbFactor), Helper.Wave(-maxRotation, maxRotation, rotationWaveFrequency, 2f), icon.Size() / 2, scale, default, 0);
 
                 return false;
             }

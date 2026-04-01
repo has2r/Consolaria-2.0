@@ -9,6 +9,8 @@ Mods: {
 			Regenera la vida poco a poco
 			Aumenta la altura de los saltos
 			'''
+		// ValentineRingTooltip3: Owned by {0}
+		// ValentineRingTooltip4: Gifted by {0}
 		McMoneypantsInvitationUsage: La invitación vuela a su destinatario...
 		Munchies.McMoneypantsInvitation.HowToAcquire: Obtenido de un sobre rojo
 		McMoneypantsButton1Text: Invertir

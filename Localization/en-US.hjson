@@ -9,6 +9,8 @@ Mods: {
 			Slowly regenerates life
 			Increases jump height
 			'''
+		ValentineRingTooltip3: Owned by {0}
+		ValentineRingTooltip4: Gifted by {0}
 		McMoneypantsInvitationUsage: The invitation flies away to its recipient...
 		Munchies.McMoneypantsInvitation.HowToAcquire: Obtained from Red Envelope
 		McMoneypantsButton1Text: Invest

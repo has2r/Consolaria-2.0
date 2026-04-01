@@ -202,7 +202,7 @@ public sealed class Omunikodo : ThoriumItem_BardBase {
 
                 obj.position = position;
 
-                if (Collision.SolidTiles(position + Projectile.Size / 2 - Vector2.One * size * 2, size, size)) {
+                if (Collision.SolidTiles(position - Vector2.One * size * 2, size, size)) {
                     Projectile.Kill();
                 }
 

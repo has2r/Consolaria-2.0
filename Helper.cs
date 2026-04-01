@@ -352,9 +352,6 @@ public static class Helper {
         item.height = height;
     }
 
-    [UnsafeAccessor(UnsafeAccessorKind.StaticField, Name = "swapMusic")]
-    public extern static ref bool Main_swapMusic(Main self);
-
     public static Vector2 GetPlayerCorePoint(this Player player, bool addGfY = true) {
         Vector2 vector = player.Bottom;
         Vector2 pos = player.MountedCenter;

@@ -96,6 +96,7 @@ public sealed class ThoriumPlayer_Consolaria : ModPlayer {
     private static ushort SIRENSPAWNSEACREATURECOOLDOWN => Helper.SecondsToFrames(5);
     private static ushort SERAPHIMEFFECTTIME => Helper.SecondsToFrames(4);
     private static ushort SERAPHIMEFFECTCOOLDOWN => Helper.SecondsToFrames(30);
+    private static float SERAPHIMMOVESPEEDBOOSTMODIFIER => 2f;
 
     private static ushort VIPEREFFECTDISTANCE => (ushort)(Helper.TILESIZE * 20);
     public static float VIPEREFFECTDAMAGEINCREASE => 1.5f;
@@ -116,8 +117,26 @@ public sealed class ThoriumPlayer_Consolaria : ModPlayer {
     public ushort CanSpawnSirenSeaCreatureCounter;
 
     public bool IsSeraphimEffectActive => SeraphimFlightTime > 0;
+    public bool IsSeraphimEffectActive2 => IsSeraphimSetBonusActive2 && IsSeraphimEffectActive;
     public bool IsSeraphimEffectOnCooldown => Player.HasBuff<SeraphimCooldown>();
     public bool CanSpawnSirenSeaCreature => IsSirenSetBonusActive && CanSpawnSirenSeaCreatureCounter <= 0;
+
+    public override void Load() {
+        On_Player.UpdateJumpHeight += On_Player_UpdateJumpHeight;
+    }
+
+    private void On_Player_UpdateJumpHeight(On_Player.orig_UpdateJumpHeight orig, Player self) {
+        orig(self);
+        if (!self.mount.Active && self.GetModPlayer<ThoriumPlayer_Consolaria>().IsSeraphimEffectActive2) {
+            self.jumpSpeedBoost += 1.8f * SERAPHIMMOVESPEEDBOOSTMODIFIER;
+        }
+    }
+
+    public override void PostUpdateRunSpeeds() {
+        if (IsSeraphimEffectActive2) {
+            Player.runAcceleration *= 1.75f * SERAPHIMMOVESPEEDBOOSTMODIFIER;
+        }
+    }
 
     public override void ResetEffects() {
         IsSeraphimSetBonusActive = false;
@@ -228,7 +247,7 @@ public sealed class ThoriumPlayer_Consolaria : ModPlayer {
     }
 
     private void UpdateSeraphimSetBonus() {
-        if (IsSeraphimSetBonusActive2 && IsSeraphimEffectActive) {
+        if (IsSeraphimEffectActive2) {
             SeraphimFlightTime--;
             if (SeraphimFlightTime <= 0) {
                 IsSeraphimSetBonusActive2 = false;
@@ -271,6 +290,8 @@ public sealed class ThoriumPlayer_Consolaria : ModPlayer {
 
     private void ApplySeraphimEffect() {
         Player.wingTime = Player.wingTimeMax;
+        Player.rocketTime = Player.rocketTimeMax;
+        Player.moveSpeed += 0.075f * SERAPHIMMOVESPEEDBOOSTMODIFIER;
     }
 
     public override void ProcessTriggers(TriggersSet triggersSet) {

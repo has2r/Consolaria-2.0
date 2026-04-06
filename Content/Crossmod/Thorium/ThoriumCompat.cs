@@ -185,6 +185,10 @@ public sealed class ThoriumPlayer_Consolaria : ModPlayer {
     }
 
     private void TriggerSirenSetBonus(Projectile proj, NPC target, NPC.HitInfo hit, int damageDone) {
+        if (!target.CanBeChasedBy()) {
+            return;
+        }
+
         if (!proj.CountsAsClass(ThoriumDamageBase<BardDamage>.Instance)) {
             return;
         }

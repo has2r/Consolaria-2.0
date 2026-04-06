@@ -90,9 +90,10 @@ public sealed class Omunikodo : ThoriumItem_BardBase {
 
     public override bool BardShoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
         Vector2 vector = Vector2.Normalize(velocity) * 68f;
-        if (ThoriumUtils.CanHitLine(position, position + vector)) {
-            position += vector;
-        }
+        //if (ThoriumUtils.CanHitLine(position, position + vector)) {
+        //    position += vector;
+        //}
+        position += vector;
 
         float speedX, speedY;
         speedX = velocity.X; speedY = velocity.Y;
@@ -120,6 +121,9 @@ public sealed class Omunikodo : ThoriumItem_BardBase {
     public sealed class Omunikodo_Shot : ThoriumProjectile_BardBase {
         private float _wave;
         private byte _option = 255;
+        private float _bounceCooldown;
+        private bool _collided;
+        private float _moveSpeed = 1f;
 
         public override string Texture => "Consolaria/Assets/Textures/Empty";
 
@@ -131,7 +135,7 @@ public sealed class Omunikodo : ThoriumItem_BardBase {
             //AIType = ProjectileID.Bullet;
 
             Projectile.friendly = true;
-            Projectile.tileCollide = true;
+            Projectile.tileCollide = false;
 
             Projectile.penetrate = 1;
             Projectile.timeLeft = 120;
@@ -144,7 +148,15 @@ public sealed class Omunikodo : ThoriumItem_BardBase {
             return base.TileCollideStyle(ref width, ref height, ref fallThrough, ref hitboxCenterFrac);
         }
 
+        public override bool OnTileCollide(Vector2 oldVelocity) {
+            return false;
+        }
+
         public override void AI() {
+            if (_bounceCooldown > 0) {
+                _bounceCooldown--;
+            }
+
             if (_option == 255) {
                 _option = (byte)Projectile.ai[2];
                 Projectile.ai[2] = Projectile.GetOwnerAsPlayer().direction;
@@ -156,11 +168,18 @@ public sealed class Omunikodo : ThoriumItem_BardBase {
             if (_wave < 20f) {
                 _wave += 0.2f;
             }
-            Projectile.position += new Vector2(0f, Projectile.ai[0] * Projectile.ai[2]).RotatedBy(Projectile.velocity.ToRotation()) * _wave;
+            if (_collided) {
+                _moveSpeed = Helper.Approach(_moveSpeed, 0f, 0.02f);
+                if (_moveSpeed <= 0.2f) {
+                    Projectile.Kill();
+                }
+            }
+            Projectile.velocity *= Utils.Remap(_moveSpeed, 0f, 1f, 0.985f, 1f, true);
+            Projectile.position += new Vector2(0f, Projectile.ai[0] * Projectile.ai[2]).RotatedBy(Projectile.velocity.ToRotation()) * _wave * _moveSpeed;
             if (Projectile.ai[1] != 1f) Projectile.ai[0] -= 1f;
             else Projectile.ai[0] += 1;
-            if (Projectile.ai[0] <= -6) Projectile.ai[1] = 1f;
-            if (Projectile.ai[0] >= 6) Projectile.ai[1] = 0f;
+            if (Projectile.ai[0] <= -6 * _moveSpeed) Projectile.ai[1] = 1f;
+            if (Projectile.ai[0] >= 6 * _moveSpeed) Projectile.ai[1] = 0f;
             //if (Collision.SolidTiles(Projectile.Center - Vector2.One * 6, 3, 3)) {
             //    Projectile.Kill();
             //}
@@ -169,9 +188,17 @@ public sealed class Omunikodo : ThoriumItem_BardBase {
                 return;
             }
 
+            void bounce() {
+                _collided = true;
+                //if (_bounceCooldown <= 0) {
+                //    Projectile.velocity = -Projectile.velocity;
+                //    _bounceCooldown = 30;
+                //}
+            }
+
             int size = 3;
             if (Collision.SolidTiles(Projectile.Center - Vector2.One * size * 2, size, size)) {
-                Projectile.Kill();
+                bounce();
             }
 
             float num3 = 0f;
@@ -195,6 +222,7 @@ public sealed class Omunikodo : ThoriumItem_BardBase {
                     break;
             }
 
+            bool bounced = false;
             for (float num6 = 1f; num6 <= (float)num5; num6 += 1f) {
                 Dust obj = Main.dust[Dust.NewDust(Projectile.position, 0, 0, ModContent.DustType<OmunikodoDust>())];
 
@@ -203,8 +231,9 @@ public sealed class Omunikodo : ThoriumItem_BardBase {
                 obj.position = position;
 
                 Vector2 position2 = Vector2.Lerp(vector7, vector6, num6 / (float)num5) + new Vector2(Projectile.width, Projectile.height) / 2f;
-                if (Collision.SolidTiles(position2 + Projectile.Size / 2 - Vector2.One * size * 2, size, size)) {
-                    Projectile.Kill();
+                if (!bounced && Collision.SolidTiles(position2 + Projectile.Size / 2 - Vector2.One * size * 2, size, size)) {
+                    bounce();
+                    bounced = true;
                 }
 
                 obj.noGravity = true;

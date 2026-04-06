@@ -7,11 +7,14 @@ using System;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.Enums;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 using ThoriumMod;
 using ThoriumMod.Empowerments;
 using ThoriumMod.Utilities;
+
+using static Consolaria.Helper;
 
 namespace Consolaria.Content.Crossmod.Thorium.Armor;
 
@@ -158,6 +161,10 @@ public sealed class SirenChestplate : ThoriumItem_BardBase {
 
 [AutoloadEquip(EquipType.Legs)]
 public sealed class SirenLegs : ThoriumItem_BardBase {
+    public override void SetStaticDefaults() {
+        ArmorIDs.Legs.Sets.OverridesLegs[Item.legSlot] = true;
+    }
+
     public override void SetBardDefaults() {
         Item.SetSizeValues(30, 18);
 

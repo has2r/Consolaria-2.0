@@ -1261,17 +1261,37 @@ Mods: {
 
 			SeraphimHelmet: {
 				DisplayName: Seraphim Helmet
-				Tooltip: ""
+				Tooltip:
+					'''
+					20% decreased non-radiant damage
+					15% increased radiant damage
+					20% decreased mana cost
+					Maximum mana increased by 60
+					Healing spells will heal an additional 2 life
+					'''
 			}
 
 			SeraphimLegs: {
 				DisplayName: Seraphim Legs
-				Tooltip: ""
+				Tooltip:
+					'''
+					30% decreased non-radiant damage
+					20% increased radiant damage
+					20% decreased mana cost
+					Healing spells will heal an additional 3 life
+					'''
 			}
 
 			SirenChestplate: {
 				DisplayName: Siren Chestplate
-				Tooltip: ""
+				Tooltip:
+					'''
+					20% decreased non-radiant damage
+					15% increased radiant damage
+					15% decreased mana cost
+					Healing spells will heal an additional 2 life
+					15% increased movement speed
+					'''
 			}
 
 			SirenHelmet: {

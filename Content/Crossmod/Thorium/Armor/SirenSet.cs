@@ -12,14 +12,18 @@ using Terraria.ModLoader;
 
 using ThoriumMod;
 using ThoriumMod.Empowerments;
+using ThoriumMod.Items.BardItems;
 using ThoriumMod.Utilities;
-
-using static Consolaria.Helper;
 
 namespace Consolaria.Content.Crossmod.Thorium.Armor;
 
 [AutoloadEquip(EquipType.Head)]
 public sealed class SirenHelmet : ThoriumItem_BardBase {
+    public override void SetStaticDefaults() {
+        Item.ResearchUnlockCount = 1;
+        ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<OldSirenHelmet>();
+    }
+
     public override void Load() {
         On_PlayerDrawLayers.DrawPlayer_13_Leggings += On_PlayerDrawLayers_DrawPlayer_13_Leggings;
     }
@@ -43,20 +47,32 @@ public sealed class SirenHelmet : ThoriumItem_BardBase {
     public override void SetBardDefaults() {
         Item.SetSizeValues(30, 28);
 
-        Item.SetShopValues(ItemRarityColor.White0, Item.sellPrice());
+        Item.SetShopValues(ItemRarityColor.Lime7, Item.sellPrice(gold: 5));
 
-        int defense = 0;
+        int defense = 18;
         Item.defense = defense;
     }
 
     public override void UpdateEquip(Player player) {
-        
+        ApplyEquipEffects(player);
+    }
+
+
+    public static void ApplyEquipEffects(Player player) {
+        player.GetAttackSpeed(ThoriumDamageBase<BardDamage>.Instance) += 0.08f;
+        player.GetCritChance(ThoriumDamageBase<BardDamage>.Instance) += 4;
+        player.GetThoriumPlayer().inspirationRegenBonus += 0.2f;
     }
 
     public override bool IsArmorSet(Item head, Item body, Item legs)
-        => head.type == Type && body.type == ModContent.ItemType<SirenChestplate>() && legs.type == ModContent.ItemType<SirenLegs>();
+        => (body.type == ModContent.ItemType<SirenChestplate>() || body.type == ModContent.ItemType<OldSirenChestplate>())
+        && (legs.type == ModContent.ItemType<SirenLegs>() || legs.type == ModContent.ItemType<OldSirenLegs>());
 
     public override void UpdateArmorSet(Player player) {
+        ApplySirenSetBonus(player);
+    }
+
+    public void ApplySirenSetBonus(Player player) {
         player.GetModPlayer<ThoriumPlayer_Consolaria>().IsSirenSetBonusActive = true;
 
         ThoriumPlayer thoriumPlayer = player.GetThoriumPlayer();
@@ -145,37 +161,57 @@ public sealed class SirenHelmet : ThoriumItem_BardBase {
 
 [AutoloadEquip(EquipType.Body)]
 public sealed class SirenChestplate : ThoriumItem_BardBase {
+    public override void SetStaticDefaults() {
+        Item.ResearchUnlockCount = 1;
+        ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<OldSirenChestplate>();
+    }
+
     public override void SetBardDefaults() {
         Item.SetSizeValues(34, 22);
 
-        Item.SetShopValues(ItemRarityColor.White0, Item.sellPrice());
+        Item.SetShopValues(ItemRarityColor.Lime7, Item.sellPrice(gold: 6, silver: 40));
 
-        int defense = 0;
+        int defense = 20;
         Item.defense = defense;
     }
 
     public override void UpdateEquip(Player player) {
+        ApplyEquipEffects(player);
+    }
 
+    public static void ApplyEquipEffects(Player player) {
+        player.GetDamage(ThoriumDamageBase<BardDamage>.Instance) += 0.1f;
+        player.GetThoriumPlayer().bardResourceDropBoost += 0.1f;
+        player.GetThoriumPlayer().bardBuffDuration += 360;
     }
 }
 
 [AutoloadEquip(EquipType.Legs)]
 public sealed class SirenLegs : ThoriumItem_BardBase {
     public override void SetStaticDefaults() {
+        Item.ResearchUnlockCount = 1;
+        ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<OldSirenLegs>();
+
         ArmorIDs.Legs.Sets.OverridesLegs[Item.legSlot] = true;
     }
 
     public override void SetBardDefaults() {
         Item.SetSizeValues(30, 18);
 
-        Item.SetShopValues(ItemRarityColor.White0, Item.sellPrice());
+        Item.SetShopValues(ItemRarityColor.Lime7, Item.sellPrice(gold: 4));
 
-        int defense = 0;
+        int defense = 18;
         Item.defense = defense;
     }
 
     public override void UpdateEquip(Player player) {
+        ApplyEquipEffects(player);
+    }
 
+    public static void ApplyEquipEffects(Player player) {
+        player.GetDamage(ThoriumDamageBase<BardDamage>.Instance) += 0.1f;
+        player.GetCritChance(ThoriumDamageBase<BardDamage>.Instance) += 6;
+        player.moveSpeed += 0.15f;
     }
 }
 

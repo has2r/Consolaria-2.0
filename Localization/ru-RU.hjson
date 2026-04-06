@@ -1211,52 +1211,108 @@ Mods: {
 
 			OldSeraphimChestplate: {
 				// DisplayName: Ancient Seraphim Chestplate
-				// Tooltip: ""
+				/* Tooltip:
+					'''
+					30% decreased non-radiant damage
+					20% increased radiant damage
+					20% decreased mana cost
+					Healing spells will heal an additional 3 life
+					''' */
 			}
 
 			OldSeraphimHelmet: {
 				// DisplayName: Ancient Seraphim Helmet
-				// Tooltip: ""
+				/* Tooltip:
+					'''
+					20% decreased non-radiant damage
+					15% increased radiant damage
+					20% decreased mana cost
+					Maximum mana increased by 60
+					Healing spells will heal an additional 2 life
+					''' */
 			}
 
 			OldSeraphimLegs: {
 				// DisplayName: Ancient Seraphim Legs
-				// Tooltip: ""
+				/* Tooltip:
+					'''
+					20% decreased non-radiant damage
+					15% increased radiant damage
+					15% decreased mana cost
+					Healing spells will heal an additional 2 life
+					15% increased movement speed
+					''' */
 			}
 
 			OldSirenChestplate: {
 				// DisplayName: Ancient Siren Chestplate
-				// Tooltip: ""
+				/* Tooltip:
+					'''
+					10% increased symphonic damage
+					Increases the chance for inspiration notes to drop by 10%
+					Increases the duration of your symphonic empowerments by 6 seconds
+					''' */
 			}
 
 			OldSirenHelmet: {
 				// DisplayName: Ancient Siren Helmet
-				// Tooltip: ""
+				/* Tooltip:
+					'''
+					8% increased symphonic playing speed
+					4% increased symphonic critical strike chance
+					Increases inspiration regeneration rate by 20%
+					''' */
 			}
 
 			OldSirenLegs: {
 				// DisplayName: Ancient Siren Legs
-				// Tooltip: ""
+				/* Tooltip:
+					'''
+					10% increased symphonic damage
+					6% increased symphonic critical strike chance
+					15% increased movement speed
+					''' */
 			}
 
 			OldViperChestplate: {
 				// DisplayName: Ancient Viper Chestplate
-				// Tooltip: ""
+				/* Tooltip:
+					'''
+					10% increased throwing damage
+					20% increased throwing velocity
+					15% increased throwing speed
+					''' */
 			}
 
 			OldViperHelmet: {
 				// DisplayName: Ancient Viper Helmet
-				// Tooltip: ""
+				/* Tooltip:
+					'''
+					20% increased throwing damage
+					33% chance not to consume thrown items
+					Increases your maximum technique points by 2
+					''' */
 			}
 
 			OldViperLegs: {
 				// DisplayName: Ancient Viper Legs
-				// Tooltip: ""
+				/* Tooltip:
+					'''
+					20% increased throwing damage
+					25% increased throwing critical strike chance
+					15% increased movement speed
+					''' */
 			}
 
 			SeraphimChestplate: {
 				// DisplayName: Seraphim Chestplate
-				// Tooltip: ""
+				/* Tooltip:
+					'''
+					30% decreased non-radiant damage
+					20% increased radiant damage
+					20% decreased mana cost
+					Healing spells will heal an additional 3 life
+					''' */
 			}
 
 			SeraphimHelmet: {
@@ -1275,17 +1331,6 @@ Mods: {
 				// DisplayName: Seraphim Legs
 				/* Tooltip:
 					'''
-					30% decreased non-radiant damage
-					20% increased radiant damage
-					20% decreased mana cost
-					Healing spells will heal an additional 3 life
-					''' */
-			}
-
-			SirenChestplate: {
-				// DisplayName: Siren Chestplate
-				/* Tooltip:
-					'''
 					20% decreased non-radiant damage
 					15% increased radiant damage
 					15% decreased mana cost
@@ -1294,14 +1339,34 @@ Mods: {
 					''' */
 			}
 
+			SirenChestplate: {
+				// DisplayName: Siren Chestplate
+				/* Tooltip:
+					'''
+					10% increased symphonic damage
+					Increases the chance for inspiration notes to drop by 10%
+					Increases the duration of your symphonic empowerments by 6 seconds
+					''' */
+			}
+
 			SirenHelmet: {
 				// DisplayName: Siren Helmet
-				// Tooltip: ""
+				/* Tooltip:
+					'''
+					8% increased symphonic playing speed
+					4% increased symphonic critical strike chance
+					Increases inspiration regeneration rate by 20%
+					''' */
 			}
 
 			SirenLegs: {
 				// DisplayName: Siren Legs
-				// Tooltip: ""
+				/* Tooltip:
+					'''
+					10% increased symphonic damage
+					6% increased symphonic critical strike chance
+					15% increased movement speed
+					''' */
 			}
 
 			ViperChestplate: {

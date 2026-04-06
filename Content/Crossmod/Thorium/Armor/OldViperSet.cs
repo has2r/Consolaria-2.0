@@ -26,7 +26,8 @@ public sealed class OldViperHelmet : ThoriumItem_ThrowerBase {
     }
 
     public override bool IsArmorSet(Item head, Item body, Item legs)
-        => head.type == Type && body.type == ModContent.ItemType<OldViperChestplate>() && legs.type == ModContent.ItemType<OldViperLegs>();
+        => (body.type == ModContent.ItemType<ViperChestplate>() || body.type == ModContent.ItemType<OldViperChestplate>())
+        && (legs.type == ModContent.ItemType<ViperLegs>() || legs.type == ModContent.ItemType<OldViperChestplate>());
 
     public override void UpdateArmorSet(Player player) {
         player.GetModPlayer<ThoriumPlayer_Consolaria>().IsViperSetBonusActive = true;

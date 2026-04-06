@@ -1210,47 +1210,47 @@ Mods: {
 			}
 
 			OldSeraphimChestplate: {
-				// DisplayName: Old Seraphim Chestplate
+				// DisplayName: Ancient Seraphim Chestplate
 				// Tooltip: ""
 			}
 
 			OldSeraphimHelmet: {
-				// DisplayName: Old Seraphim Helmet
+				// DisplayName: Ancient Seraphim Helmet
 				// Tooltip: ""
 			}
 
 			OldSeraphimLegs: {
-				// DisplayName: Old Seraphim Legs
+				// DisplayName: Ancient Seraphim Legs
 				// Tooltip: ""
 			}
 
 			OldSirenChestplate: {
-				// DisplayName: Old Siren Chestplate
+				// DisplayName: Ancient Siren Chestplate
 				// Tooltip: ""
 			}
 
 			OldSirenHelmet: {
-				// DisplayName: Old Siren Helmet
+				// DisplayName: Ancient Siren Helmet
 				// Tooltip: ""
 			}
 
 			OldSirenLegs: {
-				// DisplayName: Old Siren Legs
+				// DisplayName: Ancient Siren Legs
 				// Tooltip: ""
 			}
 
 			OldViperChestplate: {
-				// DisplayName: Old Viper Chestplate
+				// DisplayName: Ancient Viper Chestplate
 				// Tooltip: ""
 			}
 
 			OldViperHelmet: {
-				// DisplayName: Old Viper Helmet
+				// DisplayName: Ancient Viper Helmet
 				// Tooltip: ""
 			}
 
 			OldViperLegs: {
-				// DisplayName: Old Viper Legs
+				// DisplayName: Ancient Viper Legs
 				// Tooltip: ""
 			}
 
@@ -1301,42 +1301,66 @@ Mods: {
 
 			ScytheFantasma: {
 				// DisplayName: Scythe Fantasma
-				// Tooltip: ""
+				/* Tooltip:
+					'''
+					Rapidly spins a phantasmal scythe all around you
+					Dealing direct damage may summon a homing spirit
+					''' */
 			}
 
 			SpineCracker: {
 				// DisplayName: Spine Cracker
-				// Tooltip: ""
+				/* Tooltip:
+					'''
+					Spins in place, scattering shadow scythes
+					Overuse of this weapon exhausts you, massively reducing its damage
+					Killing enemies recovers some of your exhaustion
+					''' */
 			}
 
 			JadeSeal: {
 				// DisplayName: Jade Seal
-				// Tooltip: ""
+				/* Tooltip:
+					'''
+					Left click to summon a golden lantern that boosts damage and defense of allies within its aura
+					Right click to summon a jade lantern that hovers in place and heals allies within its aura
+					''' */
 			}
 
 			Omunikodo: {
 				// DisplayName: Omunikodo
-				// Tooltip: ""
+				// Tooltip: Releases a wave of chaotic noise
 			}
 
 			PortableSpecialCorn: {
 				// DisplayName: Portable Special Corn
-				// Tooltip: ""
+				// Tooltip: Replicates every 5th symphonic attack with 45% of its damage
 			}
 
 			UtensilPoker: {
 				// DisplayName: Utensil Poker
-				// Tooltip: ""
+				/* Tooltip:
+					'''
+					Right click to prepare up to five throwable forks
+					Forks get stuck in enemies, bleeding them out
+					Overuse of this weapon exhausts you, massively reducing its damage
+					Killing enemies recovers some of your exhaustion
+					''' */
 			}
 
 			Chocoplotion: {
-				// DisplayName: Chocoplotion
-				// Tooltip: ""
+				// DisplayName: Choxplosion
+				/* Tooltip:
+					'''
+					Hops towards an enemy and explodes into chocolate droplets
+					Overuse of this weapon exhausts you, massively reducing its damage
+					Killing enemies recovers some of your exhaustion
+					''' */
 			}
 
 			FiveStarBuffet: {
-				// DisplayName: Five Star Buffet
-				// Tooltip: ""
+				// DisplayName: Five-Star Buffet
+				// Tooltip: Prepares up to five succulent meals, then feeds them to allies with the least health
 			}
 		}
 

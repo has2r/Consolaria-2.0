@@ -240,6 +240,12 @@ public sealed class Chocoplotion : ThoriumItem_ThrowerBase {
                 Projectile.velocity.Y += 0.2f;
             }
             Projectile.rotation += Projectile.velocity.X * 0.1f;
+			
+			if (Main.rand.NextBool(10) && Projectile.ai[0] < 50f) {
+				int ind4 = Dust.NewDust(Projectile.Center - Vector2.One * 4, 8, 8, ModContent.DustType<ChocoplotionDust>(), 0f, 0f, 0, default, 1.15f + Main.rand.NextFloat(-0.1f, 0.1f));
+                Main.dust[ind4].velocity *= 0.5f;
+                Main.dust[ind4].noGravity = true;
+			}
         }
 
         public override bool PreDraw(ref Color lightColor) {

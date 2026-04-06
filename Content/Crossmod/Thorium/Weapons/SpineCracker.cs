@@ -8,6 +8,7 @@ using RoA.Core.Utility.Vanilla;
 using System;
 
 using Terraria;
+using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -17,10 +18,10 @@ public sealed class SpineCracker : ThoriumItem_ThrowerBase {
     public override void SetThrowerDefaults() {
         Item.SetSizeValues(40, 36);
 
-        Item.SetShopValues(Terraria.Enums.ItemRarityColor.White0, Item.sellPrice());
-        Item.SetShootableValues<SpineCracker_Throw>(12f);
+        Item.SetShopValues(Terraria.Enums.ItemRarityColor.Lime7, Item.sellPrice());
+        Item.SetShootableValues<SpineCracker_Throw>(14f);
 
-        Item.SetWeaponValues(60, 5f);
+        Item.SetWeaponValues(98, 6f, 10);
         Item.SetDefaultsToUsable(ItemUseStyleID.Swing, 36, showItemOnUse: false, autoReuse: true, useSound: SoundID.Item19);
     }
 
@@ -48,31 +49,42 @@ public sealed class SpineCracker : ThoriumItem_ThrowerBase {
         }
 
         public override void SafeAI() {
-            if (Main.rand.NextBool(2) && Main.rand.NextChance(Helper.Clamp01(Projectile.timeLeft / (float)base.TimeLeftToRotateSlow) / 2f)) {
-                int num876 = Dust.NewDust(Projectile.position - Vector2.One * 1f, Projectile.width, Projectile.height, DustID.PurpleTorch);
-                Dust dust = Main.dust[num876];
-                dust.velocity *= 2f;
-                dust.velocity += Vector2.UnitY
-                    .RotatedBy(Projectile.rotation - MathHelper.Pi * -Projectile.direction - MathHelper.PiOver4 * 1.25f * -Projectile.direction)
-                    .RotatedBy(MathHelper.PiOver2 * -Projectile.direction) * 2.5f;
-                bool shadowFlameDust = Main.rand.NextBool();
-                dust.type = shadowFlameDust ? DustID.Shadowflame : DustID.PurpleTorch;
-                dust.scale = Main.rand.NextBool() ? 3f : 2f;
-                dust.scale *= 0.5f;
-                dust.alpha = 100;
-                dust.position += dust.position.DirectionFrom(Projectile.Center) * Projectile.width * 0.25f;
-                Main.dust[num876].noGravity = true;
+            float chance = Helper.Clamp01(Projectile.timeLeft / (float)base.TimeLeftToRotateSlow) / 2f;
+            float count = 4f;
+            float factor2 = count - MathF.Min(count, Projectile.velocity.Length());
+            Projectile.localAI[2] = Helper.Approach(Projectile.localAI[2], factor2, 0.025f);
+            for (int i = 0; i < MathF.Max(1, (int)Projectile.localAI[2]); i++) {
+                if (Projectile.Opacity >= 0.875f && Main.rand.NextBool(2) && Main.rand.NextChance(chance)) {
+                    int num876 = Dust.NewDust(Projectile.position - Vector2.One * 1f, Projectile.width, Projectile.height, DustID.PurpleTorch);
+                    Dust dust = Main.dust[num876];
+                    dust.velocity *= 2f;
+                    dust.velocity += Vector2.UnitY
+                        .RotatedBy(Projectile.rotation - MathHelper.Pi * -Projectile.direction - MathHelper.PiOver4 * 1.25f * -Projectile.direction)
+                        .RotatedBy(MathHelper.PiOver2 * -Projectile.direction) * 2.5f;
+                    bool shadowFlameDust = Main.rand.NextBool();
+                    dust.type = shadowFlameDust ? DustID.Shadowflame : DustID.PurpleTorch;
+                    dust.scale = Main.rand.NextBool() ? 3f : 2f;
+                    dust.scale *= 0.5f;
+                    dust.alpha = 100;
+                    dust.position += dust.position.DirectionFrom(Projectile.Center) * Projectile.width * 0.25f;
+                    Main.dust[num876].noGravity = true;
+                }
             }
 
-            if (Projectile.Opacity >= 1f && Projectile.timeLeft < base.TimeLeftToRotateSlow * 2 && ++ScytheSpawnTimer > 10f) {
+            if (Projectile.Opacity >= 1f && Projectile.timeLeft > base.TimeLeftToRotateSlow * 0.75f && Projectile.timeLeft < base.TimeLeftToRotateSlow * 2.5f && ++ScytheSpawnTimer > 10f) {
                 ScytheSpawnTimer = 0f;
 
+                if (Projectile.soundDelay == 0) {
+                    SoundEngine.PlaySound(SoundID.Item8 with { Pitch = -0.1f, MaxInstances = 5 }, Projectile.Center);
+                    Projectile.soundDelay = 20;
+                }
+
                 if (Projectile.IsOwnerLocal()) {
+                    Vector2 velocity = Vector2.UnitY.RotatedBy(Projectile.rotation - MathHelper.Pi * -Projectile.direction - MathHelper.PiOver4 * 1.25f * -Projectile.direction)
+                                                    .RotatedBy(MathHelper.PiOver2 * -Projectile.direction) * 5f;
                     Projectile.NewProjectileDirect(Projectile.GetSource_FromThis(),
-                                                   Projectile.Center,
-                                                   Vector2.UnitY
-                                                          .RotatedBy(Projectile.rotation - MathHelper.Pi * -Projectile.direction - MathHelper.PiOver4 * 1.25f * -Projectile.direction)
-                                                          .RotatedBy(MathHelper.PiOver2 * -Projectile.direction) * 5f,
+                                                   Projectile.Center - velocity + new Vector2(8f, -5f),
+                                                   velocity,
                                                    ModContent.ProjectileType<SpineCracker_Scythe>(),
                                                    Projectile.damage,
                                                    Projectile.knockBack,
@@ -116,6 +128,8 @@ public sealed class SpineCracker : ThoriumItem_ThrowerBase {
 
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = 10;
+
+            Projectile.Opacity = 0.6f;
         }
 
         public override void ModifyDamageHitbox(ref Rectangle hitbox) {
@@ -129,10 +143,11 @@ public sealed class SpineCracker : ThoriumItem_ThrowerBase {
         }
 
         public override void AI() {
+            Projectile.Opacity = Helper.Approach(Projectile.Opacity, 1f, 0.2f);
+
             Projectile.timeLeft -= 100;
 
-            while (Projectile.scale < 1)
-                Projectile.scale += 0.1f;
+            Projectile.scale = Helper.Approach(Projectile.scale, 1f, 0.1f);
 
             if (Projectile.timeLeft > 200)
                 Projectile.velocity *= 1.05f;
@@ -173,6 +188,6 @@ public sealed class SpineCracker : ThoriumItem_ThrowerBase {
             => target.AddBuff(BuffID.ShadowFlame, 180);
 
         public override Color? GetAlpha(Color lightColor)
-            => new Color(255, 255, 255, 200);
+            => new Color(255, 255, 255, 200) * Projectile.Opacity;
     }
 }

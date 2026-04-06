@@ -26,7 +26,7 @@ public sealed class FiveStarBuffet : ThoriumItem_HealerBase {
         Item.SetShopValues(Terraria.Enums.ItemRarityColor.White0, Item.sellPrice());
         Item.SetShootableValues<FiveStarBuffet_Use>();
 
-        Item.SetDefaultsToUsable(ItemUseStyleID.Shoot, 50, showItemOnUse: false, useSound: SoundID.Item34);
+        Item.SetDefaultsToUsable(ItemUseStyleID.Shoot, 50, showItemOnUse: false, useSound: SoundID.Item35);
 
         Item.channel = true;
 
@@ -121,6 +121,8 @@ public sealed class FiveStarBuffet : ThoriumItem_HealerBase {
                 if (target is null) {
                     return;
                 }
+
+                SoundEngine.PlaySound(SoundID.Item2 with { MaxInstances = 1 }, Projectile.Center);
 
                 Color[] food1 = [new Color(238, 220, 158),
                                      new Color(223, 197, 122),
@@ -262,6 +264,8 @@ public sealed class FiveStarBuffet : ThoriumItem_HealerBase {
 
         private Vector2 _shake;
         private byte _nextFoodIndex;
+        private float _spawnProgress = 1f;
+        private float _bellSoundCounter;
 
         public override void SetStaticDefaults() {
             if (Main.dedServ) {
@@ -284,6 +288,8 @@ public sealed class FiveStarBuffet : ThoriumItem_HealerBase {
             Projectile.localNPCHitCooldown = 10;
 
             Projectile.penetrate = -1;
+
+            //Projectile.Opacity = 0f;
         }
 
         public override bool PreDraw(ref Color lightColor) {
@@ -310,7 +316,7 @@ public sealed class FiveStarBuffet : ThoriumItem_HealerBase {
                 Projectile.scale * progress2, effects);
 
             texture = _topTexture.Value;
-            float y = -20f * progress;
+            float y = -20f * MathF.Max(Ease.CubeInOut(_spawnProgress) * 0.5f, progress);
             Main.EntitySpriteDraw(texture, pos + _shake + Vector2.UnitY * y, null, Projectile.GetAlpha(lightColor), rotation, texture.Frame().Left(), Projectile.scale, effects);
 
             return false;
@@ -329,6 +335,10 @@ public sealed class FiveStarBuffet : ThoriumItem_HealerBase {
         }
 
         public override void AI() {
+            _spawnProgress = Helper.Approach(_spawnProgress, 0f, 0.1f);
+
+            Projectile.Opacity = Helper.Approach(Projectile.Opacity, 1f, 0.5f);
+
             Player player4 = Projectile.GetOwnerAsPlayer();
             //if (!player4.CheckMana(player4.GetSelectedItem(), pay: false)) {
             //    Projectile.Kill();
@@ -336,7 +346,8 @@ public sealed class FiveStarBuffet : ThoriumItem_HealerBase {
 
             float time = 120f;
             int foodType = ModContent.ProjectileType<FiveStarBuffet_Food>();
-            if (player4.ownedProjectileCounts[foodType] < 5) {
+            int foodCount = player4.ownedProjectileCounts[foodType];
+            if (foodCount < 5) {
                 if (Projectile.ai[0] == 0f) {
                     if (player4.whoAmI == Projectile.owner) {
                         _nextFoodIndex = (byte)Main.rand.Next(4);
@@ -346,6 +357,8 @@ public sealed class FiveStarBuffet : ThoriumItem_HealerBase {
                 Projectile.ai[0]++;
                 if (Projectile.ai[0] > time) {
                     Projectile.ai[0] = 0f;
+
+                    SoundEngine.PlaySound(SoundID.Item53 with { Pitch = 1f, PitchVariance = 0.1f, MaxInstances = 1 }, Projectile.Center);
 
                     if (Projectile.IsOwnerLocal()) {
                         Projectile.NewProjectileDirect(Projectile.GetSource_FromThis(),
@@ -371,6 +384,19 @@ public sealed class FiveStarBuffet : ThoriumItem_HealerBase {
             Projectile.ai[2] = MathHelper.Lerp(Projectile.ai[2], Utils.GetLerpValue(time * 0.75f, time, Projectile.ai[0], true), 0.2f);
             Projectile.localAI[2] = MathHelper.Lerp(Projectile.localAI[2], Utils.GetLerpValue(time * 0.5f, time, Projectile.ai[0], true), 0.2f);
             _shake = Vector2.Lerp(_shake, Main.rand.NextVector2Unit() * 5f * Projectile.localAI[2], 0.25f);
+            if (Projectile.localAI[2] < 0.1f && foodCount > 0) {
+                if (_bellSoundCounter < 10f) {
+                    _bellSoundCounter++;
+                }
+                if (_bellSoundCounter == 9f) {
+                    SoundEngine.PlaySound(SoundID.Item35 with { PitchVariance = 0.1f, MaxInstances = 1 }, Projectile.Center);
+
+                    _bellSoundCounter = 10f;
+                }
+            }
+            else {
+                _bellSoundCounter = 0f;
+            }
 
             if (player4.noItems || !player4.active || player4.dead) {
                 Projectile.Kill();

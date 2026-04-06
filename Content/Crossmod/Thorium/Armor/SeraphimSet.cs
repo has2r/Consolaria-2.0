@@ -1,6 +1,7 @@
 ﻿using Terraria;
 using Terraria.Enums;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 using ThoriumMod;
@@ -10,9 +11,15 @@ namespace Consolaria.Content.Crossmod.Thorium.Armor;
 
 [AutoloadEquip(EquipType.Head)]
 public sealed class SeraphimHelmet : ThoriumItem_HealerBase {
+    public static LocalizedText SetBonusText {
+        get; private set;
+    }
+
     public override void SetStaticDefaults() {
         Item.ResearchUnlockCount = 1;
         ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<OldSeraphimHelmet>();
+
+        SetBonusText = this.GetLocalization("SetBonus");
     }
 
     public override void SetHealerDefaults() {
@@ -41,6 +48,8 @@ public sealed class SeraphimHelmet : ThoriumItem_HealerBase {
         && (legs.type == ModContent.ItemType<SeraphimLegs>() || legs.type == ModContent.ItemType<OldSeraphimLegs>());
 
     public override void UpdateArmorSet(Player player) {
+        player.setBonus = SetBonusText.ToString();
+
         player.GetModPlayer<ThoriumPlayer_Consolaria>().IsSeraphimSetBonusActive = true;
     }
 

@@ -1325,6 +1325,7 @@ Mods: {
 					Maximum mana increased by 60
 					Healing spells will heal an additional 2 life
 					'''
+				SetBonus: Pressing the Armor Ability key will activate Angelic Embrace, granting infinite flight and healing allies on touch for 4 seconds
 			}
 
 			SeraphimLegs: {
@@ -1357,6 +1358,7 @@ Mods: {
 					4% increased symphonic critical strike chance
 					Increases inspiration regeneration rate by 20%
 					'''
+				SetBonus: Striking an enemy with symphonic damage occasionally summons a sea creature to grant an empowerment to nearby allies
 			}
 
 			SirenLegs: {
@@ -1386,6 +1388,11 @@ Mods: {
 					20% increased throwing damage
 					33% chance not to consume thrown items
 					Increases your maximum technique points by 2
+					'''
+				SetBonus:
+					'''
+					Throwing damage has a 10% chance to poison enemies
+					Nearby enemies take extra damage from poison and venom
 					'''
 			}
 

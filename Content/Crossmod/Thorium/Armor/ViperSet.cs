@@ -1,6 +1,7 @@
 ﻿using Terraria;
 using Terraria.Enums;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 using ThoriumMod.Items.ThrownItems;
@@ -10,9 +11,15 @@ namespace Consolaria.Content.Crossmod.Thorium.Armor;
 
 [AutoloadEquip(EquipType.Head)]
 public sealed class ViperHelmet : ThoriumItem_ThrowerBase {
+    public static LocalizedText SetBonusText {
+        get; private set;
+    }
+
     public override void SetStaticDefaults() {
         Item.ResearchUnlockCount = 1;
         ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<OldViperHelmet>();
+
+        SetBonusText = this.GetLocalization("SetBonus");
     }
 
     public override void SetThrowerDefaults() {
@@ -39,6 +46,8 @@ public sealed class ViperHelmet : ThoriumItem_ThrowerBase {
         && (legs.type == ModContent.ItemType<ViperLegs>() || legs.type == ModContent.ItemType<OldViperChestplate>());
 
     public override void UpdateArmorSet(Player player) {
+        player.setBonus = SetBonusText.ToString();
+
         player.GetModPlayer<ThoriumPlayer_Consolaria>().IsViperSetBonusActive = true;
     }
 

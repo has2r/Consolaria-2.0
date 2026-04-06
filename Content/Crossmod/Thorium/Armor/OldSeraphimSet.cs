@@ -30,6 +30,8 @@ public sealed class OldSeraphimHelmet : ThoriumItem_HealerBase {
         && (legs.type == ModContent.ItemType<SeraphimLegs>() || legs.type == ModContent.ItemType<OldSeraphimLegs>());
 
     public override void UpdateArmorSet(Player player) {
+        player.setBonus = SeraphimHelmet.SetBonusText.ToString();
+
         player.GetModPlayer<ThoriumPlayer_Consolaria>().IsSeraphimSetBonusActive = true;
     }
 

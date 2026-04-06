@@ -42,6 +42,8 @@ public sealed class OldSirenHelmet : ThoriumItem_BardBase {
     }
 
     public void ApplySirenSetBonus(Player player) {
+        player.setBonus = SirenHelmet.SetBonusText.ToString();
+
         player.GetModPlayer<ThoriumPlayer_Consolaria>().IsSirenSetBonusActive = true;
 
         ThoriumPlayer thoriumPlayer = player.GetThoriumPlayer();

@@ -8,6 +8,7 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.Enums;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 using ThoriumMod;
@@ -19,9 +20,15 @@ namespace Consolaria.Content.Crossmod.Thorium.Armor;
 
 [AutoloadEquip(EquipType.Head)]
 public sealed class SirenHelmet : ThoriumItem_BardBase {
+    public static LocalizedText SetBonusText {
+        get; private set;
+    }
+
     public override void SetStaticDefaults() {
         Item.ResearchUnlockCount = 1;
         ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<OldSirenHelmet>();
+
+        SetBonusText = this.GetLocalization("SetBonus");
     }
 
     public override void Load() {
@@ -73,6 +80,8 @@ public sealed class SirenHelmet : ThoriumItem_BardBase {
     }
 
     public void ApplySirenSetBonus(Player player) {
+        player.setBonus = SetBonusText.ToString();
+
         player.GetModPlayer<ThoriumPlayer_Consolaria>().IsSirenSetBonusActive = true;
 
         ThoriumPlayer thoriumPlayer = player.GetThoriumPlayer();

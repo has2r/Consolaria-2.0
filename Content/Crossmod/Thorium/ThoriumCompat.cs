@@ -144,15 +144,22 @@ public sealed class ThoriumPlayer_Consolaria : ModPlayer {
             return;
         }
 
-        if (item.DamageType == DamageClass.Throwing && Main.rand.NextBool(5)) {
+        if (!item.CountsAsClass(DamageClass.Throwing)) {
+            return;
+        }
+
+        if (Main.rand.NextBool(5)) {
             target.AddBuff(BuffID.Venom, Helper.SecondsToFrames(Main.rand.Next(2, 5)));
+        }
+        if (Main.rand.NextBool(10)) {
+            target.AddBuff(BuffID.Poisoned, Helper.SecondsToFrames(Main.rand.Next(2, 5)));
         }
     }
 
     public override void OnHitNPCWithProj(Projectile proj, NPC target, NPC.HitInfo hit, int damageDone) {
-        if (!target.CanBeChasedBy()) {
-            return;
-        }
+        //if (!target.CanBeChasedBy()) {
+        //    return;
+        //}
 
         TriggerViperSetBonus(proj, target, hit, damageDone);
         TriggerSirenSetBonus(proj, target, hit, damageDone);
@@ -171,8 +178,15 @@ public sealed class ThoriumPlayer_Consolaria : ModPlayer {
             return;
         }
 
-        if (proj.CountsAsClass(DamageClass.Throwing) && Main.rand.NextBool(5)) {
+        if (!proj.CountsAsClass(DamageClass.Throwing)) {
+            return;
+        }
+
+        if (Main.rand.NextBool(5)) {
             target.AddBuff(BuffID.Venom, Helper.SecondsToFrames(Main.rand.Next(2, 5)));
+        }
+        if (Main.rand.NextBool(10)) {
+            target.AddBuff(BuffID.Poisoned, Helper.SecondsToFrames(Main.rand.Next(2, 5)));
         }
     }
 

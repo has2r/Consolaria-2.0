@@ -64,12 +64,12 @@ public sealed class JadeSeal : ThoriumItem_HealerBase {
             }
         }
         Vector2 position2 = position;
-        position2.X -= 46 / 2;
+        //position2.X -= 46 / 2;
         bool hasMainLamp = player.ownedProjectileCounts[num] > 0;
-        if (rightClicking || !hasMainLamp) {
+        if (rightClicking/* || !hasMainLamp*/) {
             Projectile.NewProjectileDirect(source, position2, velocity, num, 0, 0f, player.whoAmI);
         }
-        position2.X += 46;
+        //position2.X += 46;
         if (!rightClicking) {
             Projectile.NewProjectileDirect(source, hasMainLamp ? position : position2, velocity, num2, 0, 0f, player.whoAmI);
         }

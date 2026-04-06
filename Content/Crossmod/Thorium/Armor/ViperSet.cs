@@ -1,5 +1,6 @@
 ﻿using Terraria;
 using Terraria.Enums;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 using ThoriumMod.Items.ThrownItems;
@@ -9,6 +10,11 @@ namespace Consolaria.Content.Crossmod.Thorium.Armor;
 
 [AutoloadEquip(EquipType.Head)]
 public sealed class ViperHelmet : ThoriumItem_ThrowerBase {
+    public override void SetStaticDefaults() {
+        Item.ResearchUnlockCount = 1;
+        ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<OldViperHelmet>();
+    }
+
     public override void SetThrowerDefaults() {
         Item.SetSizeValues(32, 28);
 
@@ -40,6 +46,11 @@ public sealed class ViperHelmet : ThoriumItem_ThrowerBase {
 
 [AutoloadEquip(EquipType.Body)]
 public sealed class ViperChestplate : ThoriumItem_ThrowerBase {
+    public override void SetStaticDefaults() {
+        Item.ResearchUnlockCount = 1;
+        ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<OldViperChestplate>();
+    }
+
     public override void SetThrowerDefaults() {
         Item.SetSizeValues(38, 24);
 
@@ -62,6 +73,11 @@ public sealed class ViperChestplate : ThoriumItem_ThrowerBase {
 
 [AutoloadEquip(EquipType.Legs)]
 public sealed class ViperLegs : ThoriumItem_ThrowerBase {
+    public override void SetStaticDefaults() {
+        Item.ResearchUnlockCount = 1;
+        ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<OldViperLegs>();
+    }
+
     public override void SetThrowerDefaults() {
         Item.SetSizeValues(26, 18);
 

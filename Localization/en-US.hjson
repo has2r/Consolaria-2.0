@@ -1286,7 +1286,7 @@ Mods: {
 
 			ViperChestplate: {
 				DisplayName: Viper Chestplate
-				Tooltip: 
+				Tooltip:
 					'''
 					10% increased throwing damage
 					20% increased throwing velocity
@@ -1296,7 +1296,7 @@ Mods: {
 
 			ViperHelmet: {
 				DisplayName: Viper Helmet
-				Tooltip: 
+				Tooltip:
 					'''
 					20% increased throwing damage
 					33% chance not to consume thrown items
@@ -1306,7 +1306,7 @@ Mods: {
 
 			ViperLegs: {
 				DisplayName: Viper Legs
-				Tooltip: 
+				Tooltip:
 					'''
 					20% increased throwing damage
 					25% increased throwing critical strike chance

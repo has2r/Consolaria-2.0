@@ -3,6 +3,8 @@
 using Terraria;
 using Terraria.ModLoader;
 
+using static Consolaria.Content.Crossmod.Thorium.Weapons.UtensilPoker;
+
 namespace Consolaria.Content.Crossmod.Thorium.Buffs;
 
 public sealed class UtensilPokerDebuff : ThoriumBuff_Base {
@@ -33,7 +35,7 @@ public sealed class UtensilPokerDebuff_Handler : GlobalNPC {
         int num2 = 0;
         int num3 = 1;
         for (int i = 0; i < 1000; i++) {
-            if (Main.projectile[i].active && Main.projectile[i].type == ModContent.ProjectileType<UtensilPoker.UtensilPoker_Fork>() && Main.projectile[i].ai[0] == 1f && Main.projectile[i].ai[1] == (float)npc.whoAmI)
+            if (Main.projectile[i].active && Main.projectile[i].type == ModContent.ProjectileType<UtensilPoker.UtensilPoker_Fork>() && (Main.projectile[i].ModProjectile as UtensilPoker_Fork).IsStickingToTarget == 1f && (Main.projectile[i].ModProjectile as UtensilPoker_Fork).TargetWhoAmI == (float)npc.whoAmI)
                 num2++;
         }
 

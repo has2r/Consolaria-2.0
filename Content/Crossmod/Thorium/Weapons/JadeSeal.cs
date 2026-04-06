@@ -89,6 +89,8 @@ public sealed class JadeSeal : ThoriumItem_HealerBase {
             Projectile.timeLeft = 1200;
             Projectile.netImportant = true;
             Projectile.tileCollide = false;
+
+            Projectile.Opacity = 0f;
         }
 
         public override void AI() {
@@ -113,7 +115,10 @@ public sealed class JadeSeal : ThoriumItem_HealerBase {
         }
 
         public static void MakeJadeDusts(Projectile projectile, bool yellow = false) {
-            int num4 = 300;
+            projectile.localAI[2] = Helper.Approach(projectile.localAI[2], 1f, 0.15f * 0.75f);
+            projectile.Opacity = Helper.Approach(projectile.Opacity, 1f, 0.2f * 0.75f);
+
+            int num4 = (int)(300 * Ease.CubeOut(projectile.localAI[2]));
             Vector2 vector2 = new Vector2(projectile.Top.X, projectile.position.Y + (float)num4);
             for (int j = 0; j < 4; j++) {
                 Vector2 vector3 = Main.rand.NextVector2Unit();
@@ -150,6 +155,8 @@ public sealed class JadeSeal : ThoriumItem_HealerBase {
             Projectile.timeLeft = 1200;
             Projectile.netImportant = true;
             Projectile.tileCollide = false;
+
+            Projectile.Opacity = 0f;
         }
 
         public override void AI() {

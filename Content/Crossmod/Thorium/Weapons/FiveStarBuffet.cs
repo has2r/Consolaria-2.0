@@ -166,7 +166,7 @@ public sealed class FiveStarBuffet : ThoriumItem_HealerBase {
                 float num2 = (float)Math.PI * 2f / (float)totalIndexesInGroup;
                 float num3 = (float)totalIndexesInGroup * 2f;
                 Vector2 vector2 = new Vector2(60f, 20f) / 4f * (totalIndexesInGroup - 1);
-                Vector2 vector3 = Vector2.UnitY.RotatedBy(num2 * (float)index + Main.GlobalTimeWrappedHourly % num3 / num3 * ((float)Math.PI * 2f));
+                Vector2 vector3 = Vector2.UnitY.RotatedBy(num2 * (float)index + (Main.GlobalTimeWrappedHourly * player.direction) % num3 / num3 * ((float)Math.PI * 2f)) * player.direction;
                 vector += vector3 * vector2;
                 vector = vector.Floor();
 

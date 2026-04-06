@@ -164,8 +164,8 @@ Mods: {
 			}
 
 			JadeBuff: {
-				DisplayName: Jade Buff
-				Description: Mods.Consolaria.Buffs.JadeBuff.Description
+				DisplayName: Jade Blessing
+				Description: Damage and defense are increased
 			}
 
 			UtensilPokerDebuff: {
@@ -179,13 +179,13 @@ Mods: {
 			}
 
 			SeraphimCooldown: {
-				DisplayName: Seraphim Cooldown
-				Description: Mods.Consolaria.Buffs.SeraphimCooldown.Description
+				DisplayName: Heavenly Rejection
+				Description: Angelic Embrace is recharging
 			}
 
 			SeraphimBuff: {
-				DisplayName: Seraphim Buff
-				Description: Mods.Consolaria.Buffs.SeraphimBuff.Description
+				DisplayName: Angelic Embrace
+				Description: Soar freely, healing allies on touch
 			}
 		}
 

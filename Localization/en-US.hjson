@@ -1741,21 +1741,21 @@ Mods: {
 			Eggplant_Root.DisplayName: Eggplant
 			Eggplant_Shoot.DisplayName: Eggplant
 			Eggplant_Stem.DisplayName: Eggplant
-			ScytheFantasma_Use.DisplayName: Scythe Fantasma_ Use
-			ScytheFantasma_Spirit.DisplayName: Scythe Fantasma_ Spirit
-			SpineCracker_Throw.DisplayName: Spine Cracker_ Throw
-			SpineCracker_Scythe.DisplayName: Spine Cracker_ Scythe
-			JadeSeal_Lamp.DisplayName: Jade Seal_ Lamp
-			JadeSeal_GoldenLamp.DisplayName: Jade Seal_ Golden Lamp
-			Omunikodo_Shot.DisplayName: Omunikodo_ Shot
-			UtensilPoker_Fork.DisplayName: Utensil Poker_ Fork
-			UtensilPoker_Throw.DisplayName: Utensil Poker_ Throw
-			UtensilPoker_BigFork.DisplayName: Utensil Poker_ Big Fork
+			ScytheFantasma_Use.DisplayName: Scythe Fantasma
+			ScytheFantasma_Spirit.DisplayName: Phantasm
+			SpineCracker_Throw.DisplayName: Spine Cracker
+			SpineCracker_Scythe.DisplayName: Spine Cracker Scythe
+			JadeSeal_Lamp.DisplayName: Jade Lamp
+			JadeSeal_GoldenLamp.DisplayName: Golden Lamp
+			Omunikodo_Shot.DisplayName: Noise Wave
+			UtensilPoker_Fork.DisplayName: Fork
+			UtensilPoker_Throw.DisplayName: Utensil Poker
+			UtensilPoker_BigFork.DisplayName: Big Fork
 			PortableSpecialCorn_Summon.DisplayName: Singer Turkey
-			Chocoplotion_Throw.DisplayName: Chocoplotion_ Throw
-			FiveStarBuffet_Use.DisplayName: Five Star Buffet_ Use
-			FiveStarBuffet_Food.DisplayName: Five Star Buffet_ Food
-			Chocoplotion_Droplet.DisplayName: Chocoplotion_ Droplet
+			Chocoplotion_Throw.DisplayName: Choxplosion
+			FiveStarBuffet_Use.DisplayName: Five Star Buffet
+			FiveStarBuffet_Food.DisplayName: Five Star Meal
+			Chocoplotion_Droplet.DisplayName: Chocolate Droplet
 			SeraphimHeal.DisplayName: Seraphim Heal
 			SirenSeaCreature.DisplayName: Siren Sea Creature
 		}

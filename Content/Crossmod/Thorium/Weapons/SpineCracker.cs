@@ -83,12 +83,14 @@ public sealed class SpineCracker : ThoriumItem_ThrowerBase {
                     Vector2 velocity = Vector2.UnitY.RotatedBy(Projectile.rotation - MathHelper.Pi * -Projectile.direction - MathHelper.PiOver4 * 1.25f * -Projectile.direction)
                                                     .RotatedBy(MathHelper.PiOver2 * -Projectile.direction) * 5f;
                     Projectile.NewProjectileDirect(Projectile.GetSource_FromThis(),
-                                                   Projectile.Center - velocity + new Vector2(8f, -5f),
+                                                   Projectile.Center - velocity + new Vector2(5f, -5f),
                                                    velocity,
                                                    ModContent.ProjectileType<SpineCracker_Scythe>(),
                                                    Projectile.damage,
                                                    Projectile.knockBack,
-                                                   Projectile.owner);
+                                                   Projectile.owner,
+                                                   Projectile.rotation,
+                                                   Projectile.direction);
                 }
             }
         }
@@ -130,6 +132,8 @@ public sealed class SpineCracker : ThoriumItem_ThrowerBase {
             Projectile.localNPCHitCooldown = 10;
 
             Projectile.Opacity = 0.6f;
+
+            Projectile.manualDirectionChange = true;
         }
 
         public override void ModifyDamageHitbox(ref Rectangle hitbox) {
@@ -143,6 +147,14 @@ public sealed class SpineCracker : ThoriumItem_ThrowerBase {
         }
 
         public override void AI() {
+            if (Projectile.localAI[2] == 0f) {
+                Projectile.localAI[2] = 1f;
+
+                Projectile.rotation = Projectile.ai[0];
+            }
+
+            Projectile.direction = (int)Projectile.ai[1];
+
             Projectile.Opacity = Helper.Approach(Projectile.Opacity, 1f, 0.2f);
 
             Projectile.timeLeft -= 100;
@@ -155,7 +167,7 @@ public sealed class SpineCracker : ThoriumItem_ThrowerBase {
             int dust2 = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Shadowflame, Projectile.velocity.X * 0.2f, Projectile.velocity.Y * 0.2f, 100, default, 1.2f);
             Main.dust[dust2].noGravity = true;
 
-            Projectile.rotation += 2 / rotationTimer;
+            Projectile.rotation += 2 / rotationTimer * Projectile.direction;
             rotationTimer += 0.05f;
         }
 

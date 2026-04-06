@@ -4,6 +4,8 @@ using Microsoft.Xna.Framework;
 
 using RoA.Core.Utility.Vanilla;
 
+using System;
+
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
@@ -80,12 +82,18 @@ public sealed class Chocoplotion : ThoriumItem_ThrowerBase {
             }
             else {
                 NPC target = ThoriumUtils.FindNearestNPC(Projectile, 600f);
-                if (Projectile.ai[2] == 1f && target is not null) {
-                    if (++Projectile.ai[1] > 60f) {
-                        Projectile.velocity.Y -= 2.5f;
-                        Projectile.velocity.X += Projectile.DirectionTo(target.Center).X * 5f;
-                        Projectile.ai[1] = 0f;
-                    }
+                if (Projectile.ai[2] == 1f) {
+					if (target is not null) {
+						if (++Projectile.ai[1] > 60f) {
+							Projectile.velocity.Y -= 3f;
+							Projectile.velocity.X += Projectile.DirectionTo(target.Center).X * 5f;
+							Projectile.ai[1] = 0f;
+						}
+					}
+					else {
+						Projectile.velocity.Y -= Math.Abs(Projectile.velocity.X) * 0.6f;
+						Projectile.velocity.X *= 0.8f;
+					}
                 }
 
                 //Projectile.tileCollide = Projectile.timeLeft < TIMELEFT - 5;

@@ -358,7 +358,7 @@ public sealed class FiveStarBuffet : ThoriumItem_HealerBase {
                 if (Projectile.ai[0] > time) {
                     Projectile.ai[0] = 0f;
 
-                    SoundEngine.PlaySound(SoundID.Item53 with { Pitch = 1f, PitchVariance = 0.1f, MaxInstances = 1 }, Projectile.Center);
+                    SoundEngine.PlaySound(SoundID.Item53 with { Pitch = 1f, PitchVariance = 0.1f, MaxInstances = 2 }, Projectile.Center);
 
                     if (Projectile.IsOwnerLocal()) {
                         Projectile.NewProjectileDirect(Projectile.GetSource_FromThis(),
@@ -385,13 +385,14 @@ public sealed class FiveStarBuffet : ThoriumItem_HealerBase {
             Projectile.localAI[2] = MathHelper.Lerp(Projectile.localAI[2], Utils.GetLerpValue(time * 0.5f, time, Projectile.ai[0], true), 0.2f);
             _shake = Vector2.Lerp(_shake, Main.rand.NextVector2Unit() * 5f * Projectile.localAI[2], 0.25f);
             if (Projectile.localAI[2] < 0.1f && foodCount > 0) {
-                if (_bellSoundCounter < 10f) {
+                float time2 = 10f;
+                if (_bellSoundCounter < time2) {
                     _bellSoundCounter++;
                 }
-                if (_bellSoundCounter == 9f) {
-                    SoundEngine.PlaySound(SoundID.Item35 with { PitchVariance = 0.1f, MaxInstances = 1 }, Projectile.Center);
+                if (_bellSoundCounter == time2 - 1f) {
+                    SoundEngine.PlaySound(SoundID.Item35 with { Pitch = 0.075f * foodCount, MaxInstances = 1 }, Projectile.Center);
 
-                    _bellSoundCounter = 10f;
+                    _bellSoundCounter = time2;
                 }
             }
             else {

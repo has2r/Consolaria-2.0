@@ -80,7 +80,7 @@ public sealed class PortableSpecialCorn : ThoriumItem_BardBase {
             if (Projectile.IsOwnerLocal() && SingerTurkeyBuff_Handler.JustUsedBardWeapon(player) && player.GetModPlayer<SingerTurkeyBuff_Handler>().BardAttackCount >= 4) {
                 Vector2 position = player.Center;
                 player.Center = Projectile.Center;
-                Player_ItemCheck_Shoot(player, player.whoAmI, player.HeldItem, (int)(player.GetWeaponDamage(player.HeldItem) * 0.5f));
+                Player_ItemCheck_Shoot(player, player.whoAmI, player.HeldItem, (int)(player.GetWeaponDamage(player.HeldItem) * 0.45f));
                 player.Center = position;
 
                 ShotValue = animationTime;

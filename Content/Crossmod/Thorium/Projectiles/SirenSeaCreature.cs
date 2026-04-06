@@ -22,6 +22,8 @@ public sealed class SirenSeaCreature : ThoriumProjectile_BardBase {
 
     public override void SetStaticDefaults() {
         Projectile.SetFrameCount(6);
+
+        Projectile.SetTrail(2, 5);
     }
 
     public override void SetBardDefaults() {
@@ -94,6 +96,7 @@ public sealed class SirenSeaCreature : ThoriumProjectile_BardBase {
     }
 
     public override bool PreDraw(ref Color lightColor) {
+        Projectile.QuickDrawShadowTrails(lightColor * 4f * Projectile.Opacity, 0.5f, 1);
         Projectile.QuickDrawAnimated(lightColor * 4f * Projectile.Opacity);
 
         return false;

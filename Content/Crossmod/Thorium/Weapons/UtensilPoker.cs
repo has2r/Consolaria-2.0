@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 using System;
+using System.IO;
 
 using Terraria;
 using Terraria.Audio;
@@ -70,7 +71,7 @@ public sealed class UtensilPoker : ThoriumItem_ThrowerBase {
                 CurrentCharge = 5;
             }
 
-            CombatText.NewText(Player.getRect(), CombatText.DamagedHostile, CurrentCharge, false, false);
+            CombatText.NewText(Player.getRect(), new Color(130, 130, 130, 255), CurrentCharge, false, false);
         }
 
         public void ResetCharge() => CurrentCharge = 0;
@@ -108,7 +109,10 @@ public sealed class UtensilPoker : ThoriumItem_ThrowerBase {
                                                    type,
                                                    Projectile.damage,
                                                    Projectile.knockBack,
-                                                   Projectile.owner);
+                                                   Projectile.owner,
+                                                   0f,
+                                                   Projectile.Center.X,
+                                                   Projectile.Center.Y);
                 }
                 float rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2;
                 int direction = Projectile.direction;
@@ -162,14 +166,35 @@ public sealed class UtensilPoker : ThoriumItem_ThrowerBase {
 
         private static ushort TIMELEFT => Helper.SecondsToFrames(4);
 
+        private float _isStickingToTarget;
+        private float _targetWhoAmI;
+
         public float IsStickingToTarget {
-            get => Projectile.ai[0];
-            set => Projectile.ai[0] = value;
+            get => _isStickingToTarget;
+            set => _isStickingToTarget = value;
         }
 
         public float TargetWhoAmI {
-            get => Projectile.ai[1];
-            set => Projectile.ai[1] = value;
+            get => _targetWhoAmI;
+            set => _targetWhoAmI = value;
+        }
+
+        public Vector2 MainCenter {
+            get => new Vector2(Projectile.ai[1], Projectile.ai[2]);
+            set {
+                Projectile.ai[1] = value.X;
+                Projectile.ai[2] = value.Y;
+            }
+        }
+
+        public override void SendExtraAI(BinaryWriter writer) {
+            writer.Write(_isStickingToTarget);
+            writer.Write(_targetWhoAmI);
+        }
+
+        public override void ReceiveExtraAI(BinaryReader reader) {
+            _isStickingToTarget = reader.ReadSingle();
+            _targetWhoAmI = reader.ReadSingle();
         }
 
         public override void ModifyDamageHitbox(ref Rectangle hitbox) {
@@ -186,8 +211,8 @@ public sealed class UtensilPoker : ThoriumItem_ThrowerBase {
                 Main.dust[num].velocity += Projectile.velocity * 0.5f;
             }
 
-            Projectile.ai[0] = 1f;
-            Projectile.ai[1] = target.whoAmI;
+            _isStickingToTarget = 1f;
+            _targetWhoAmI = target.whoAmI;
             Projectile.velocity = (target.Center - Projectile.Center) * 0.75f;
             Projectile.netUpdate = true;
             Projectile.friendly = false;
@@ -199,7 +224,7 @@ public sealed class UtensilPoker : ThoriumItem_ThrowerBase {
             //    target.AddBuff(BuffID.BoneJavelin, 900);
             //}
 
-            if (Projectile.ai[1] == (float)target.whoAmI) {
+            if (_targetWhoAmI == (float)target.whoAmI) {
                 target.AddBuff(ModContent.BuffType<UtensilPokerDebuff>(), 900);
             }
         }
@@ -207,7 +232,7 @@ public sealed class UtensilPoker : ThoriumItem_ThrowerBase {
         public static void KillOldestFork(int protectedProjectileIndex, int projectileType, int targetNPCIndex, Point[] bufferForScan) {
             int num = 0;
             for (int i = 0; i < 1000; i++) {
-                if (i != protectedProjectileIndex && Main.projectile[i].active && Main.projectile[i].owner == Main.myPlayer && Main.projectile[i].type == projectileType && Main.projectile[i].ai[0] == 1f && Main.projectile[i].ai[1] == (float)targetNPCIndex) {
+                if (i != protectedProjectileIndex && Main.projectile[i].active && Main.projectile[i].owner == Main.myPlayer && Main.projectile[i].type == projectileType && (Main.projectile[i].ModProjectile as UtensilPoker_Fork)._isStickingToTarget == 1f && (Main.projectile[i].ModProjectile as UtensilPoker_Fork)._targetWhoAmI == (float)targetNPCIndex) {
                     bufferForScan[num++] = new Point(i, Main.projectile[i].timeLeft);
                     if (num >= bufferForScan.Length)
                         break;
@@ -226,6 +251,35 @@ public sealed class UtensilPoker : ThoriumItem_ThrowerBase {
             Main.projectile[bufferForScan[num2].X].Kill();
         }
 
+        public override void Load() {
+            On_Projectile.HandleMovement += On_Projectile_HandleMovement;
+            On_Projectile.UpdatePosition += On_Projectile_UpdatePosition;
+        }
+
+        private static Vector2 _tempPosition, _tempPosition2;
+
+        private void On_Projectile_UpdatePosition(On_Projectile.orig_UpdatePosition orig, Projectile self, Vector2 wetVelocity) {
+            if (self.type == ModContent.ProjectileType<UtensilPoker_Fork>() && self.timeLeft > TIMELEFT - 60) {
+                self.position = _tempPosition;
+            }
+            if (self.type == ModContent.ProjectileType<UtensilPoker_BigFork>() && self.timeLeft > TIMELEFT - 60) {
+                self.position = _tempPosition2;
+            }
+            orig(self, wetVelocity);
+        }
+
+        private void On_Projectile_HandleMovement(On_Projectile.orig_HandleMovement orig, Projectile self, Vector2 wetVelocity, out int overrideWidth, out int overrideHeight) {
+            if (self.type == ModContent.ProjectileType<UtensilPoker_Fork>() && self.timeLeft > TIMELEFT - 60) {
+                _tempPosition = self.position;
+                self.position = (self.ModProjectile as UtensilPoker_Fork).MainCenter - self.Size / 2;
+            }
+            if (self.type == ModContent.ProjectileType<UtensilPoker_BigFork>() && self.timeLeft > TIMELEFT - 60) {
+                _tempPosition2 = self.position;
+                self.position = (self.ModProjectile as UtensilPoker_BigFork).MainCenter - self.Size / 2;
+            }
+            orig(self, wetVelocity, out overrideWidth, out overrideHeight);
+        }
+
         public override void SetStaticDefaults() {
             Projectile.SetTrail(0, 5);
         }
@@ -237,6 +291,8 @@ public sealed class UtensilPoker : ThoriumItem_ThrowerBase {
             Projectile.tileCollide = true;
 
             Projectile.penetrate = -1;
+
+            Projectile.aiStyle = -1;
 
             Projectile.timeLeft = TIMELEFT;
 
@@ -251,12 +307,14 @@ public sealed class UtensilPoker : ThoriumItem_ThrowerBase {
         }
 
         public override void AI() {
-            Projectile.tileCollide = Projectile.timeLeft < TIMELEFT - 5;
+            //Projectile.tileCollide = Projectile.timeLeft < TIMELEFT - 5;
 
-            if (Projectile.ai[0] == 0f) {
+            MainCenter += Projectile.velocity;
+
+            if (_isStickingToTarget == 0f) {
                 Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2;
             }
-            else if (Projectile.ai[0] == 1f) {
+            else if (_isStickingToTarget == 1f) {
                 Vector2 center17 = Projectile.Center;
                 Projectile.ignoreWater = true;
                 Projectile.tileCollide = false;
@@ -268,7 +326,7 @@ public sealed class UtensilPoker : ThoriumItem_ThrowerBase {
                 if (Projectile.localAI[0] % 30f == 0f)
                     flag53 = true;
 
-                int num908 = (int)Projectile.ai[1];
+                int num908 = (int)_targetWhoAmI;
                 if (Projectile.localAI[0] >= (float)(60 * num907)) {
                     flag52 = true;
                 }
@@ -336,6 +394,14 @@ public sealed class UtensilPoker : ThoriumItem_ThrowerBase {
     public sealed class UtensilPoker_BigFork : ThoriumProjectile_ThrowerBase {
         private static ushort TIMELEFT => Helper.SecondsToFrames(4);
 
+        public Vector2 MainCenter {
+            get => new Vector2(Projectile.ai[1], Projectile.ai[2]);
+            set {
+                Projectile.ai[1] = value.X;
+                Projectile.ai[2] = value.Y;
+            }
+        }
+
         public override void SetStaticDefaults() {
             Projectile.SetTrail(0, 5);
         }
@@ -347,6 +413,8 @@ public sealed class UtensilPoker : ThoriumItem_ThrowerBase {
             Projectile.tileCollide = true;
 
             Projectile.penetrate = -1;
+
+            Projectile.aiStyle = -1;
 
             Projectile.timeLeft = TIMELEFT;
 
@@ -361,7 +429,9 @@ public sealed class UtensilPoker : ThoriumItem_ThrowerBase {
         }
 
         public override void AI() {
-            Projectile.tileCollide = Projectile.timeLeft < TIMELEFT - 5;
+            //Projectile.tileCollide = Projectile.timeLeft < TIMELEFT - 5;
+
+            MainCenter += Projectile.velocity;
 
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2;
         }

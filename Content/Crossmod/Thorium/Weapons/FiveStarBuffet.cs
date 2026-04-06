@@ -248,14 +248,18 @@ public sealed class FiveStarBuffet : ThoriumItem_HealerBase {
 
             float rotation = Projectile.rotation;
 
+            float progress = Helper.Clamp01(MathF.Pow(Projectile.ai[2], 1.5f));
+            float progress2 = Ease.CubeOut(progress);
+
             texture = _bottomTexture.Value;
             Main.EntitySpriteDraw(texture, pos, null, Projectile.GetAlpha(lightColor), rotation, texture.Frame().Left(), Projectile.scale, effects);
 
             texture = FiveStarBuffet_Food.FoodTextures[_nextFoodIndex].Value;
-            Main.EntitySpriteDraw(texture, pos + Projectile.velocity * 28f, null, Projectile.GetAlpha(lightColor), rotation, texture.Frame().Center(), Projectile.scale, effects);
+            Main.EntitySpriteDraw(texture, pos + Projectile.velocity * 28f, null, Projectile.GetAlpha(lightColor) * progress2, rotation, texture.Frame().Center(), 
+                Projectile.scale * progress2, effects);
 
             texture = _topTexture.Value;
-            float y = -10f * Helper.Clamp01(MathF.Pow(Projectile.ai[2], 1.5f));
+            float y = -20f * progress;
             Main.EntitySpriteDraw(texture, pos + _shake + Vector2.UnitY * y, null, Projectile.GetAlpha(lightColor), rotation, texture.Frame().Left(), Projectile.scale, effects);
 
             return false;

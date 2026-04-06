@@ -3,6 +3,7 @@
 using Microsoft.Xna.Framework;
 
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -19,6 +20,10 @@ public sealed class SingerTurkeyBuff : ThoriumBuff_Base {
     }
 
     public override void Update(Player player, ref int buffIndex) {
+        SummonTurkeyHead(player, player.GetSource_Buff(buffIndex));
+    }
+
+    public static void SummonTurkeyHead(Player player, IEntitySource source) {
         player.GetModPlayer<SingerTurkeyBuff_Handler>().IsEffectActive = true;
 
         int type = ModContent.ProjectileType<PortableSpecialCorn.PortableSpecialCorn_Summon>();
@@ -33,7 +38,7 @@ public sealed class SingerTurkeyBuff : ThoriumBuff_Base {
         }
         if (count < 1) {
             if (player.whoAmI == Main.myPlayer) {
-                Projectile.NewProjectileDirect(player.GetSource_Buff(buffIndex),
+                Projectile.NewProjectileDirect(source,
                                                player.Center,
                                                Vector2.Zero,
                                                type,

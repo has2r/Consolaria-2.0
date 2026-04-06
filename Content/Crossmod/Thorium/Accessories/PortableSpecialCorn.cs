@@ -12,7 +12,6 @@ using Terraria.Audio;
 using Terraria.ModLoader;
 
 using ThoriumMod;
-using ThoriumMod.Items;
 
 namespace Consolaria.Content.Crossmod.Thorium.Accessories;
 
@@ -28,7 +27,8 @@ public sealed class PortableSpecialCorn : ThoriumItem_BardBase {
     }
 
     public override void UpdateEquip(Player player) {
-        player.AddBuff(ModContent.BuffType<SingerTurkeyBuff>(), 2);
+        //player.AddBuff(ModContent.BuffType<SingerTurkeyBuff>(), 2);
+        SingerTurkeyBuff.SummonTurkeyHead(player, player.GetSource_Accessory(Item));
     }
 
     public sealed class PortableSpecialCorn_Summon : ThoriumProjectile_BardBase {

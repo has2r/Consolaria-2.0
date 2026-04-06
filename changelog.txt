@@ -1,9 +1,13 @@
+- Added Thorium cross-mod content:
+-- Added Choxplosion, Five-Star Buffet, Jade Seal, Omunikodo, Portable Special Corn, Scythe Fantasma, Spine Cracker and Utensil Poker
+-- Added Seraphim, Viper and Siren armor sets, and their Ancient counterparts
 - The Otherworldly Turkor theme by Jteoh has been remastered!
 - Updated Consolaria achievements to the built-in tModLoader system
 - Stunned debuff now reduces the speed of affected enemies more smoothly
 - Stunned debuff no longer drops flying enemies to the ground
 - Stunned debuff now affects more enemy types, including fish, vultures, beetles and some casters
 - Rebalanced Roman Candle, sacrificing attack speed for more damage and making it more difficult to land multi-hits
-- Changed Roman Candle explosion sounds to make them easier on the ears
+- Updated Arch Demon and Arch Demon Mask sprites and visual effects
+- Updated Roman Candle explosion sounds
 - Vampire Miner's Bestiary entry now correctly displays its biome as Caverns
 - Updated localization

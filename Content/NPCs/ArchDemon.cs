@@ -80,19 +80,12 @@ namespace Consolaria.Content.NPCs {
             if (aiTimer >= 25f && aiTimer <= 95f) NPC.dontTakeDamage = false;
             else {
                 if (Main.netMode != NetmodeID.Server) {
-                    int dust = Dust.NewDust(new Vector2(NPC.position.X + NPC.width * 0.5f + 35, NPC.position.Y + NPC.height * 0.5f), 2, 2, DustID.Torch, 0, -1f, 0, default, 1.75f);
-                    Main.dust[dust].noGravity = true;
-                    Main.dust[dust].scale *= 0.95f;
-                    int dust2 = Dust.NewDust(new Vector2(NPC.position.X + NPC.width * 0.5f - 35, NPC.position.Y + NPC.height * 0.5f), 2, 2, DustID.Torch, 0, -1f, 0, default, 1.75f);
-                    Main.dust[dust2].noGravity = true;
-                    Main.dust[dust2].scale *= 0.95f;
-                    int dust3 = Dust.NewDust(new Vector2(NPC.position.X + NPC.width * 0.5f, NPC.position.Y + NPC.height * 0.5f + 35), 2, 2, DustID.Torch, 0, -1f, 0, default, 1.75f);
-                    Main.dust[dust3].noGravity = true;
-                    Main.dust[dust3].scale *= 0.95f;
-                    int dust4 = Dust.NewDust(new Vector2(NPC.position.X + NPC.width * 0.5f, NPC.position.Y + NPC.height * 0.5f - 35), 2, 2, DustID.Torch, 0, -1f, 0, default, 1.75f);
-                    Main.dust[dust4].noGravity = true;
-                    Main.dust[dust4].scale *= 0.95f;
-                }
+					for (int i = 0; i < 2; i++) {
+						int dust = Dust.NewDust(NPC.position + new Vector2(NPC.width * 0.5f, NPC.height * 0.5f) + new Vector2(0, 42f + (float)Math.Sin(aiTimer) * 3f).RotatedBy(i * MathHelper.Pi + aiTimer * 0.1f), 2, 2, DustID.Torch, 0, -1f, 0, default, 1.75f);
+						Main.dust[dust].noGravity = true;
+						Main.dust[dust].scale *= 0.95f;
+					}
+				}
                 NPC.dontTakeDamage = true;
             }
 

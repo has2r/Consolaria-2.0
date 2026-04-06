@@ -12,6 +12,7 @@ Tons of exclusive mobile & old-gen console features were removed with the releas
 [*][b]Exclusive vanity items[/b] - including the Horned God set, George's set & many others
 [*][b]A variety of ported pets[/b], complete with extra animations
 [*][b]Mc MoneyPants NPC[/b]
+[*][b]Cross-mod content for [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2909886416]Thorium Mod[/url]'s classes
 [*][b]Support for[/b] [b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2669644269]Boss Checklist[/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2570931073]Fargo's Mutant Mod[/url][/b], [b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2927542027]Achievement Mod[/url][/b], [b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2985966860]Music Display[/url][/b] and [b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3310041861]Munchies[/url][/b]
 [*][b]Holy Hand Grenade![/b]
 [/list]
@@ -36,6 +37,7 @@ Contributors:
 [*][b]Synoxsis[/b] - Lepus, Turkor & Ocram themes
 [*][b]Jteoh[/b] - Otherworldly boss themes
 [*][b]Fyerow & Croul[/b] - legacy Ocram theme
+[*][b]EduaRRdo[/b] - Thorium cross-mod content sprites
 [*][b]StrikerRKT[/b] - extracting files from Japanese versions of the game
 [*][b]Sparcdoctor[/b] - extensive testing and content suggestions
 [*][b]CrezyDud[/b] - Turkor multiplayer fixes

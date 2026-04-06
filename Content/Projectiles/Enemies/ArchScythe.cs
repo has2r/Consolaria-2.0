@@ -60,7 +60,7 @@ namespace Consolaria.Content.Projectiles.Enemies {
             => target.AddBuff(BuffID.OnFire, 180);
 
         public override void OnKill(int timeLeft) {
-            SoundEngine.PlaySound(SoundID.Item14, Projectile.position);
+            SoundEngine.PlaySound(SoundID.Item14 with { Volume = 0.3f, PitchVariance = 0.1f }, Projectile.position);
             if (Main.netMode != NetmodeID.Server) {
                 for (int i = 0; i < 30; i++) {
                     int num506 = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, DustID.Torch, Projectile.velocity.X, Projectile.velocity.Y, 100, default, 1.5f);

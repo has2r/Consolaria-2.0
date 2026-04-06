@@ -107,14 +107,59 @@ public sealed class FiveStarBuffet : ThoriumItem_HealerBase {
                 }
             }
 
-            void disappear() {
+            void disappear(Entity? target) {
                 Projectile.Opacity -= 0.1f;
                 Projectile.scale -= 0.15f;
+
                 if (Projectile.Opacity <= 0f) {
                     Projectile.Kill();
                 }
             }
 
+            Entity? target2 = null;
+            void foodDusts(Entity? target) {
+                if (target is null) {
+                    return;
+                }
+
+                Color[] food1 = [new Color(238, 220, 158),
+                                     new Color(223, 197, 122),
+                                     new Color(211, 162, 82)];
+
+                Color[] food2 = [new Color(255, 235, 132),
+                                     new Color(194, 204, 197),
+                                     new Color(162, 218, 137)];
+
+                Color[] food3 = [new Color(235, 194, 151),
+                                     new Color(200, 147, 115),
+                                     new Color(166, 106, 86)];
+
+                Color[] food4 = [new Color(255, 190, 97),
+                                     new Color(247, 111, 111),
+                                     new Color(255, 115, 0),
+                                     new Color(227, 62, 18)];
+
+                Color[] array = food1;
+                switch ((int)Projectile.ai[0]) {
+                    case 1:
+                        array = food2;
+                        break;
+                    case 2:
+                        array = food3;
+                        break;
+                    case 3:
+                        array = food4;
+                        break;
+                }
+                for (int i = 0; i < 10; i++) {
+                    if (array != null && array.Length != 0) {
+                        Vector2 mouthPosition = target.Top + Vector2.UnitY * target.height * 0.375f;
+                        Vector2 vector = mouthPosition + Main.rand.NextVector2Square(-4f, 4f);
+                        Vector2 spinningpoint = new Vector2(target.direction, target is Player player ? ((0f - player.gravDir) * 0.8f) : (-1f * 0.8f));
+                        Dust.NewDustPerfect(vector, DustID.FoodPiece, 1.3f * spinningpoint.RotatedBy((float)Math.PI / 5f * Main.rand.NextFloatDirection()), 0, array[Main.rand.Next(array.Length)], 0.8f + 0.2f * Main.rand.NextFloat()).fadeIn = 0f;
+                    }
+                }
+            }
             if (Projectile.ai[2] == 0f) {
                 Vector2 vector = player.GetPlayerCorePoint() - Vector2.UnitY * 50f;
                 AI_GetMyGroupIndexAndFillBlackList(null, out var index, out var totalIndexesInGroup);
@@ -136,8 +181,9 @@ public sealed class FiveStarBuffet : ThoriumItem_HealerBase {
 
                 if (Projectile.ai[1] >= 0f) {
                     Player playerToHeal = Main.player[(int)Projectile.ai[1]];
+                    target2 = playerToHeal;
                     if (!playerToHeal.active || playerToHeal.dead) {
-                        disappear();
+                        disappear(playerToHeal);
                         return;
                     }
 
@@ -146,6 +192,8 @@ public sealed class FiveStarBuffet : ThoriumItem_HealerBase {
 
                     if (Projectile.getRect().Intersects(playerToHeal.getRect())) {
                         if (Projectile.ai[2] != 10f) {
+                            foodDusts(target2);
+
                             Projectile.ThoriumHeal(5, 60f, onHealEffects: true, bonusHealing: true, delegate {
                                 SoundEngine.PlaySound(in SoundID.Item85, Projectile.position);
                             }, null, -1, ignoreHealer: false);
@@ -155,8 +203,9 @@ public sealed class FiveStarBuffet : ThoriumItem_HealerBase {
                 }
                 if (Projectile.ai[1] < 0f) {
                     NPC healDummy = Main.npc[-(int)Projectile.ai[1] - 200];
+                    target2 = healDummy;
                     if (!healDummy.active) {
-                        disappear();
+                        disappear(healDummy);
                         return;
                     }
 
@@ -165,6 +214,8 @@ public sealed class FiveStarBuffet : ThoriumItem_HealerBase {
 
                     if (Projectile.getRect().Intersects(healDummy.getRect())) {
                         if (Projectile.ai[2] != 10f) {
+                            foodDusts(target2);
+
                             Projectile.ThoriumHeal(5, 60f, onHealEffects: true, bonusHealing: true, delegate {
                                 SoundEngine.PlaySound(in SoundID.Item85, Projectile.position);
                             }, null, -1, ignoreHealer: false);
@@ -174,7 +225,7 @@ public sealed class FiveStarBuffet : ThoriumItem_HealerBase {
                 }
             }
             if (Projectile.ai[2] == 10f) {
-                disappear();
+                disappear(target2);
             }
 
             Projectile.velocity *= 0f;

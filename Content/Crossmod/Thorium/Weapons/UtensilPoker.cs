@@ -165,6 +165,7 @@ public sealed class UtensilPoker : ThoriumItem_ThrowerBase {
         private static Point[] _forkMax8 = new Point[8];
 
         private static ushort TIMELEFT => Helper.SecondsToFrames(4);
+        private static ushort COLLISIONCOPYTIME => Helper.SecondsToFrames(1);
 
         private float _isStickingToTarget;
         private float _targetWhoAmI;
@@ -259,21 +260,21 @@ public sealed class UtensilPoker : ThoriumItem_ThrowerBase {
         private static Vector2 _tempPosition, _tempPosition2;
 
         private void On_Projectile_UpdatePosition(On_Projectile.orig_UpdatePosition orig, Projectile self, Vector2 wetVelocity) {
-            if (self.type == ModContent.ProjectileType<UtensilPoker_Fork>() && self.timeLeft > TIMELEFT - 60) {
+            if (self.type == ModContent.ProjectileType<UtensilPoker_Fork>() && self.timeLeft > TIMELEFT - COLLISIONCOPYTIME) {
                 self.position = _tempPosition;
             }
-            if (self.type == ModContent.ProjectileType<UtensilPoker_BigFork>() && self.timeLeft > TIMELEFT - 60) {
+            if (self.type == ModContent.ProjectileType<UtensilPoker_BigFork>() && self.timeLeft > TIMELEFT - COLLISIONCOPYTIME) {
                 self.position = _tempPosition2;
             }
             orig(self, wetVelocity);
         }
 
         private void On_Projectile_HandleMovement(On_Projectile.orig_HandleMovement orig, Projectile self, Vector2 wetVelocity, out int overrideWidth, out int overrideHeight) {
-            if (self.type == ModContent.ProjectileType<UtensilPoker_Fork>() && self.timeLeft > TIMELEFT - 60) {
+            if (self.type == ModContent.ProjectileType<UtensilPoker_Fork>() && self.timeLeft > TIMELEFT - COLLISIONCOPYTIME) {
                 _tempPosition = self.position;
                 self.position = (self.ModProjectile as UtensilPoker_Fork).MainCenter - self.Size / 2;
             }
-            if (self.type == ModContent.ProjectileType<UtensilPoker_BigFork>() && self.timeLeft > TIMELEFT - 60) {
+            if (self.type == ModContent.ProjectileType<UtensilPoker_BigFork>() && self.timeLeft > TIMELEFT - COLLISIONCOPYTIME) {
                 _tempPosition2 = self.position;
                 self.position = (self.ModProjectile as UtensilPoker_BigFork).MainCenter - self.Size / 2;
             }

@@ -78,7 +78,7 @@ public sealed class PortableSpecialCorn : ThoriumItem_BardBase {
             if (Projectile.localAI[2] == 0f) {
                 Projectile.localAI[2] = 1f;
 
-                SoundEngine.PlaySound(new SoundStyle($"{nameof(Consolaria)}/Assets/Sounds/TurkorGobble") with { Pitch = 0.5f }, Projectile.Center);
+                SoundEngine.PlaySound(new SoundStyle($"{nameof(Consolaria)}/Assets/Sounds/TurkorGobble") with { Pitch = 0.5f, Volume = 0.75f }, Projectile.Center);
 
                 flag = true;
 

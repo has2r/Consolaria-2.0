@@ -105,7 +105,7 @@ public sealed class Omunikodo : ThoriumItem_BardBase {
         double num5 = num2 - 0.4f * num0;
         float num6 = Main.rand.NextFloat() * 0.2f + 0.95f;
 
-        position += velocity * 1.25f;
+        position += velocity * 1.375f;
 
         Projectile.NewProjectile(source, position.X, position.Y, velocity.X, velocity.Y, type, damage, knockback, player.whoAmI, ai2: 2);
 
@@ -226,12 +226,11 @@ public sealed class Omunikodo : ThoriumItem_BardBase {
             for (float num6 = 1f; num6 <= (float)num5; num6 += 1f) {
                 Dust obj = Main.dust[Dust.NewDust(Projectile.position, 0, 0, ModContent.DustType<OmunikodoDust>())];
 
-                Vector2 position = Vector2.Lerp(vector7, vector6, num6 / (float)num5);
+                Vector2 position = Vector2.Lerp(vector7, vector6, num6 / (float)num5) + Projectile.Size / 2;
 
                 obj.position = position;
 
-                Vector2 position2 = Vector2.Lerp(vector7, vector6, num6 / (float)num5) + new Vector2(Projectile.width, Projectile.height) / 2f;
-                if (!bounced && Collision.SolidTiles(position2 + Projectile.Size / 2 - Vector2.One * size * 2, size, size)) {
+                if (!bounced && Collision.SolidTiles(position + Projectile.Size / 2 - Vector2.One * size * 2, size, size)) {
                     bounce();
                     bounced = true;
                 }

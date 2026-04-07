@@ -109,12 +109,12 @@ public sealed class Chocoplotion : ThoriumItem_ThrowerBase {
                     dust.scale = 0.1f + Main.rand.Next(5) * 0.1f;
                     dust.fadeIn = 1.5f + Main.rand.Next(5) * 0.1f;
                     dust.noGravity = true;
-                    dust.position = Projectile.Center + Vector2.UnitY.RotatedBy(Projectile.rotation - MathHelper.Pi + 0.5f * Projectile.spriteDirection) * 26f;
+                    dust.position = Projectile.Center + Vector2.UnitY.RotatedBy(Projectile.rotation - MathHelper.Pi + 0.4f * Projectile.spriteDirection) * 30f;
 
                     dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Torch, 0f, 0f, 100, default, 1f);
                     dust.scale = 1f + Main.rand.Next(5) * 0.1f;
                     dust.noGravity = true;
-                    dust.position = Projectile.Center + Vector2.UnitY.RotatedBy(Projectile.rotation - MathHelper.Pi + 0.5f * Projectile.spriteDirection) * 26f;
+                    dust.position = Projectile.Center + Vector2.UnitY.RotatedBy(Projectile.rotation - MathHelper.Pi + 0.4f * Projectile.spriteDirection) * 30f;
                 }
             }
 

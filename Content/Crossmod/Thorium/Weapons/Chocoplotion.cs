@@ -11,13 +11,13 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-using ThoriumMod.Projectiles;
-
 namespace Consolaria.Content.Crossmod.Thorium.Weapons;
 
 public sealed class Chocoplotion : ThoriumItem_ThrowerBase {
+    public override string Texture => "Consolaria/Content/Crossmod/Thorium/Weapons/Chocoplotion_Item";
+
     public override void SetThrowerDefaults() {
-        Item.SetSizeValues(38, 50);
+        Item.SetSizeValues(30, 42);
 
         Item.SetShopValues(Terraria.Enums.ItemRarityColor.Blue1, Item.sellPrice());
         Item.SetShootableValues<Chocoplotion_Throw>(6f);
@@ -33,7 +33,7 @@ public sealed class Chocoplotion : ThoriumItem_ThrowerBase {
     public sealed class Chocoplotion_Throw : ThoriumProjectile_ThrowerBase {
         private static ushort TIMELEFT => 180;
 
-        public override string Texture => Helper.GetItemTexturePath<Chocoplotion>();
+        public override string Texture => "Consolaria/Content/Crossmod/Thorium/Weapons/Chocoplotion";
 
         public override void SetStaticDefaults() {
             ProjectileID.Sets.PlayerHurtDamageIgnoresDifficultyScaling[Type] = true;
@@ -178,33 +178,47 @@ public sealed class Chocoplotion : ThoriumItem_ThrowerBase {
 
             SoundEngine.PlaySound(SoundID.Item14, Projectile.position);
 
-            for (int i = 0; i < 15; i++) {
-                int dustIndex = Dust.NewDust(new Vector2(Projectile.position.X + (Projectile.width / 2), Projectile.position.Y + (Projectile.height / 2)), 4, 4, 31, 0f, 0f, 100, default(Color), 1.5f);
-                Main.dust[dustIndex].velocity *= 1.2f;
+            // Resize the projectile again so the explosion dust and gore spawn from the middle.
+            // Rocket I: 22, Rocket III: 80, Mini Nuke Rocket: 50
+            Projectile.Resize(22, 22);
+
+            // Spawn a bunch of smoke dusts.
+            for (int i = 0; i < 30; i++) {
+                var smoke = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Smoke, 0f, 0f, 100, default, 1.5f);
+                smoke.velocity *= 1.4f;
             }
 
-            for (int i = 0; i < 10; i++) {
-                int dustIndex = Dust.NewDust(new Vector2(Projectile.position.X + (Projectile.width / 2), Projectile.position.Y + (Projectile.height / 2)), 4, 4, 6, 0f, 0f, 100, default(Color), 1f);
-                Main.dust[dustIndex].noGravity = true;
-                Main.dust[dustIndex].velocity *= 4f;
-                dustIndex = Dust.NewDust(new Vector2(Projectile.position.X + (Projectile.width / 2), Projectile.position.Y + (Projectile.height / 2)), 4, 4, 6, 0f, 0f, 100, default(Color), 1.5f);
-                Main.dust[dustIndex].velocity *= 2.5f;
+            // Spawn a bunch of fire dusts.
+            for (int j = 0; j < 20; j++) {
+                var fireDust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Torch, 0f, 0f, 100, default, 3.5f);
+                fireDust.noGravity = true;
+                fireDust.velocity *= 7f;
+                fireDust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Torch, 0f, 0f, 100, default, 1.5f);
+                fireDust.velocity *= 3f;
             }
 
-            if (!Main.dedServ) {
-                for (int g = 0; g < 1; g++) {
-                    int goreIndex = Gore.NewGore(Projectile.GetSource_Death(), new Vector2(Projectile.position.X + (Projectile.width / 2), Projectile.position.Y + (Projectile.height / 2)), default(Vector2), Main.rand.Next(61, 64), 1f);
-                    goreIndex = Gore.NewGore(Projectile.GetSource_Death(), new Vector2(Projectile.position.X + (Projectile.width / 2), Projectile.position.Y + (Projectile.height / 2)), default(Vector2), Main.rand.Next(61, 64), 1f);
-                    goreIndex = Gore.NewGore(Projectile.GetSource_Death(), new Vector2(Projectile.position.X + (Projectile.width / 2), Projectile.position.Y + (Projectile.height / 2)), default(Vector2), Main.rand.Next(61, 64), 1f);
+            // Spawn a bunch of smoke gores.
+            for (int k = 0; k < 2; k++) {
+                float speedMulti = 0.4f;
+                if (k == 1) {
+                    speedMulti = 0.8f;
                 }
-            }
 
-            Projectile.position.X = Projectile.position.X + (Projectile.width / 2);
-            Projectile.position.Y = Projectile.position.Y + (Projectile.height / 2);
-            Projectile.width = 22;
-            Projectile.height = 22;
-            Projectile.position.X = Projectile.position.X - (Projectile.width / 2);
-            Projectile.position.Y = Projectile.position.Y - (Projectile.height / 2);
+                var smokeGore = Gore.NewGoreDirect(Projectile.GetSource_Death(), Projectile.position, default, Main.rand.Next(GoreID.Smoke1, GoreID.Smoke3 + 1));
+                smokeGore.velocity *= speedMulti;
+                smokeGore.velocity += Vector2.One;
+                smokeGore = Gore.NewGoreDirect(Projectile.GetSource_Death(), Projectile.position, default, Main.rand.Next(GoreID.Smoke1, GoreID.Smoke3 + 1));
+                smokeGore.velocity *= speedMulti;
+                smokeGore.velocity.X -= 1f;
+                smokeGore.velocity.Y += 1f;
+                smokeGore = Gore.NewGoreDirect(Projectile.GetSource_Death(), Projectile.position, default, Main.rand.Next(GoreID.Smoke1, GoreID.Smoke3 + 1));
+                smokeGore.velocity *= speedMulti;
+                smokeGore.velocity.X += 1f;
+                smokeGore.velocity.Y -= 1f;
+                smokeGore = Gore.NewGoreDirect(Projectile.GetSource_Death(), Projectile.position, default, Main.rand.Next(GoreID.Smoke1, GoreID.Smoke3 + 1));
+                smokeGore.velocity *= speedMulti;
+                smokeGore.velocity -= Vector2.One;
+            }
         }
     }
 

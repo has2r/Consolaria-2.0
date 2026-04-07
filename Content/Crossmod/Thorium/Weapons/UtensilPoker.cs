@@ -369,7 +369,7 @@ public sealed class UtensilPoker : ThoriumItem_ThrowerBase {
                 Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2;
             }
             else if (_isStickingToTarget == 1f) {
-                Projectile.Opacity = Utils.GetLerpValue(0f, 15, Projectile.timeLeft, true);
+                Projectile.Opacity = Utils.GetLerpValue(0f, 10, Projectile.timeLeft, true);
 
                 Vector2 center17 = Projectile.Center;
                 Projectile.ignoreWater = true;

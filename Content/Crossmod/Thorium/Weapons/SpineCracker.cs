@@ -122,7 +122,7 @@ public sealed class SpineCracker : ThoriumItem_ThrowerBase {
 
             Projectile.friendly = true;
 
-            Projectile.penetrate = 1;
+            Projectile.penetrate = 3;
             Projectile.tileCollide = true;
 
             Projectile.light = 0.25f;

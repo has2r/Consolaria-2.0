@@ -204,7 +204,7 @@ public sealed class PortableSpecialCorn : ThoriumItem_BardBase {
 
             Projectile.rotation = Utils.AngleLerp(Projectile.rotation, _velocity.Y * 0.05f * (float)(-Projectile.direction), 0.5f);
 
-            _y = Helper.Wave(-6f, 6f, 2f, Projectile.identity);
+            _y = Helper.Wave(-5f, 5f, 2.5f, Projectile.identity);
 
             Projectile.velocity = Vector2.Lerp(Projectile.velocity, _velocity, 0.5f);
 

@@ -197,7 +197,7 @@ public sealed class UtensilPoker : ThoriumItem_ThrowerBase {
         private static Point[] _forkMax8 = new Point[8];
 
         private static ushort TIMELEFT => Helper.SecondsToFrames(4);
-        private static ushort COLLISIONCOPYTIME => Helper.SecondsToFrames(1);
+        private static ushort COLLISIONCOPYTIME => Helper.SecondsToFrames(0.5f);
 
         private float _isStickingToTarget;
         private float _targetWhoAmI;
@@ -311,6 +311,12 @@ public sealed class UtensilPoker : ThoriumItem_ThrowerBase {
                 _tempPosition2 = self.position;
                 self.position = (self.ModProjectile as UtensilPoker_BigFork).MainCenter - self.Size / 2;
             }
+            if (self.type == ModContent.ProjectileType<UtensilPoker_Fork>() && !self.active) {
+                self.position = _tempPosition;
+            }
+            if (self.type == ModContent.ProjectileType<UtensilPoker_BigFork>() && !self.active) {
+                self.position = _tempPosition2;
+            }
             orig(self, wetVelocity, out overrideWidth, out overrideHeight);
         }
 
@@ -363,6 +369,8 @@ public sealed class UtensilPoker : ThoriumItem_ThrowerBase {
                 Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2;
             }
             else if (_isStickingToTarget == 1f) {
+                Projectile.Opacity = Utils.GetLerpValue(0f, 15, Projectile.timeLeft, true);
+
                 Vector2 center17 = Projectile.Center;
                 Projectile.ignoreWater = true;
                 Projectile.tileCollide = false;
@@ -422,6 +430,10 @@ public sealed class UtensilPoker : ThoriumItem_ThrowerBase {
         }
 
         public override void OnKill(int timeLeft) {
+            if (_isStickingToTarget != 0f) {
+                return;
+            }
+
             SoundEngine.PlaySound(SoundID.Dig, Projectile.position);
             Vector2 vector50 = Projectile.position;
             Vector2 vector51 = (Projectile.rotation - (float)Math.PI / 2f).ToRotationVector2();
@@ -433,7 +445,7 @@ public sealed class UtensilPoker : ThoriumItem_ThrowerBase {
                 int num446 = Dust.NewDust(vector50, Projectile.width, Projectile.height, ModContent.DustType<UtensilForkDust>());
                 Vector2 velocity = Projectile.velocity * 0.1f;
                 Main.dust[num446].velocity *= 0.75f;
-                Main.dust[num446].position = (Main.dust[num446].position + Projectile.Center) / 2f - velocity * 2f;
+                Main.dust[num446].position = (Main.dust[num446].position + Projectile.Center) / 2f - velocity * 20f;
                 Main.dust[num446].velocity += velocity;
                 Main.dust[num446].scale *= Main.rand.NextFloat(0.9f, 1.1f) * 1f;
                 //Main.dust[num446].alpha = 50;
@@ -543,7 +555,7 @@ public sealed class UtensilPoker : ThoriumItem_ThrowerBase {
                 int num446 = Dust.NewDust(vector50, Projectile.width, Projectile.height, DustID.Silver);
                 Vector2 velocity = Projectile.velocity * 0.1f;
                 Main.dust[num446].velocity *= 0.75f;
-                Main.dust[num446].position = (Main.dust[num446].position + Projectile.Center) / 2f - velocity * 2f;
+                Main.dust[num446].position = (Main.dust[num446].position + Projectile.Center) / 2f - velocity * 20f;
                 Main.dust[num446].velocity += velocity;
                 Main.dust[num446].scale *= Main.rand.NextFloat(0.9f, 1.1f) * 1f;
                 Dust dust2 = Main.dust[num446];

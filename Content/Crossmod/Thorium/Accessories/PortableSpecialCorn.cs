@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using RoA.Core.Utility.Vanilla;
 
 using System;
+using System.IO;
 using System.Runtime.CompilerServices;
 
 using Terraria;
@@ -36,6 +37,8 @@ public sealed class PortableSpecialCorn : ThoriumItem_BardBase {
         public extern static void Player_ItemCheck_Shoot(Player player, int i, Item sItem, int weaponDamage);
 
         private Vector2 _velocity;
+        private float _y;
+        private float _forcedDirection;
 
         public ref float ShotValue => ref Projectile.ai[0];
 
@@ -55,11 +58,21 @@ public sealed class PortableSpecialCorn : ThoriumItem_BardBase {
             Projectile.manualDirectionChange = true;
         }
 
+        public override void SendExtraAI(BinaryWriter writer) {
+            writer.Write(_forcedDirection);
+        }
+
+        public override void ReceiveExtraAI(BinaryReader reader) {
+            _forcedDirection = reader.ReadSingle();
+        }
+
         public override void AI() {
             if (!Projectile.GetOwnerAsPlayer().GetModPlayer<SingerTurkeyBuff_Handler>().IsEffectActive) {
                 Projectile.Kill();
                 return;
             }
+
+            _forcedDirection = Helper.Approach(_forcedDirection, 0f, 1f);
 
             bool flag = false;
             if (Projectile.localAI[2] == 0f) {
@@ -84,6 +97,9 @@ public sealed class PortableSpecialCorn : ThoriumItem_BardBase {
                 player.Center = position;
 
                 ShotValue = animationTime;
+
+                _forcedDirection = ((player.GetViableMousePosition().X - Projectile.Center.X) > 0).ToDirectionInt() * animationTime * 2;
+
                 Projectile.netUpdate = true;
 
                 player.GetModPlayer<SingerTurkeyBuff_Handler>().BardAttackCount = 0;
@@ -105,6 +121,8 @@ public sealed class PortableSpecialCorn : ThoriumItem_BardBase {
             float num58 = Main.player[Projectile.owner].position.Y + (float)(Main.player[Projectile.owner].height / 2) - vector6.Y;
             num58 -= Main.player[Projectile.owner].height / 2;
             num57 -= 40f * Main.player[Projectile.owner].direction;
+
+            Helper.InertiaMoveTowards(ref _velocity, Projectile.Center, Projectile.Center + new Vector2(num57, num58), inertia: 20f);
 
             float num59 = (float)Math.Sqrt(num57 * num57 + num58 * num58);
             float num60 = 4f;
@@ -175,18 +193,24 @@ public sealed class PortableSpecialCorn : ThoriumItem_BardBase {
 
             if (!flag) {
                 Projectile.direction = -Main.player[Projectile.owner].direction;
-                if (MathF.Abs(Main.player[Projectile.owner].Center.X - Projectile.Center.X) > 10f) 
-                {
-                    Projectile.spriteDirection = -(((Main.player[Projectile.owner].Center.X - 10f * Main.player[Projectile.owner].direction) - Projectile.Center.X) > 0).ToDirectionInt();
+                if (MathF.Abs(Main.player[Projectile.owner].Center.X - Projectile.Center.X) > 20f)  {
+                    Projectile.spriteDirection = -(((Main.player[Projectile.owner].Center.X - 20f * Main.player[Projectile.owner].direction) - Projectile.Center.X) > 0).ToDirectionInt();
                 }
             }
-            Projectile.rotation = _velocity.Y * 0.05f * (float)(-Projectile.direction);
 
-            Projectile.position.Y += Helper.Wave(-1f, 1f, 0.1f, Projectile.identity);
+            if (MathF.Abs(_forcedDirection) > 0f) {
+                Projectile.direction = Projectile.spriteDirection = -(_forcedDirection > 0).ToDirectionInt();
+            }
+
+            Projectile.rotation = Utils.AngleLerp(Projectile.rotation, _velocity.Y * 0.05f * (float)(-Projectile.direction), 0.5f);
+
+            _y = Helper.Wave(-6f, 6f, 2f, Projectile.identity);
 
             Projectile.velocity = Vector2.Lerp(Projectile.velocity, _velocity, 0.5f);
 
             Projectile.position += Projectile.velocity;
+
+            Projectile.Center = Utils.Floor(Projectile.Center);
 
             if (ShotValue > 0f) {
                 Projectile.frameCounter = 0;
@@ -243,7 +267,15 @@ public sealed class PortableSpecialCorn : ThoriumItem_BardBase {
         public override bool ShouldUpdatePosition() => false;
 
         public override bool PreDraw(ref Color lightColor) {
+            Vector2 position = Projectile.position;
+            Projectile.position.Y += _y;
+
+            float copyOpacity = MathF.Abs(_forcedDirection) / 60f;
+            copyOpacity = Ease.QuartIn(copyOpacity);
+            Projectile.QuickDrawAnimated(lightColor * copyOpacity * 0.75f, scale_float: 1f + 0.75f * (1f - copyOpacity));
+
             Projectile.QuickDrawAnimated(lightColor);
+            Projectile.position = position;
 
             return false;
         }

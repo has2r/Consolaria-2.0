@@ -7,6 +7,8 @@ using Terraria.ModLoader;
 
 namespace Consolaria.Content.Crossmod.Thorium.Dusts;
 
+[ExtendsFromMod(ThoriumCompat.THORIUMMODNAME)]
+[JITWhenModsEnabled(ThoriumCompat.THORIUMMODNAME)]
 public sealed class ViperDust : ModDust {
     public override void OnSpawn(Dust dust) {
         dust.velocity.X *= 0.5f;

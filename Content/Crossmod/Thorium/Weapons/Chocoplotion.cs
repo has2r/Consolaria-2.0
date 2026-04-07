@@ -11,16 +11,18 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
+using ThoriumMod.Projectiles;
+
 namespace Consolaria.Content.Crossmod.Thorium.Weapons;
 
 public sealed class Chocoplotion : ThoriumItem_ThrowerBase {
     public override void SetThrowerDefaults() {
         Item.SetSizeValues(38, 50);
 
-        Item.SetShopValues(Terraria.Enums.ItemRarityColor.White0, Item.sellPrice());
+        Item.SetShopValues(Terraria.Enums.ItemRarityColor.Blue1, Item.sellPrice());
         Item.SetShootableValues<Chocoplotion_Throw>(6f);
 
-        Item.SetWeaponValues(60, 5f);
+        Item.SetWeaponValues(20, 5f);
         Item.SetDefaultsToUsable(ItemUseStyleID.Swing, 36, showItemOnUse: false, autoReuse: true, useSound: SoundID.Item19);
     }
 
@@ -55,7 +57,10 @@ public sealed class Chocoplotion : ThoriumItem_ThrowerBase {
         }
 
         public override bool PreDraw(ref Color lightColor) {
+            Vector2 position = Projectile.position;
+            Projectile.position.Y -= 4f;
             Projectile.QuickDraw(lightColor * Projectile.Opacity);
+            Projectile.position = position;
 
             return false;
         }
@@ -128,6 +133,7 @@ public sealed class Chocoplotion : ThoriumItem_ThrowerBase {
 
         public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac) {
             width = height = (int)(50 * 1f) - 2;
+            hitboxCenterFrac.Y += 0.1f;
 
             return base.TileCollideStyle(ref width, ref height, ref fallThrough, ref hitboxCenterFrac);
         }
@@ -144,6 +150,13 @@ public sealed class Chocoplotion : ThoriumItem_ThrowerBase {
         }
 
         public override void OnKill(int timeLeft) {
+            for (int i = 0; i < 20; i++) {
+                int dustIndex = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<ChocoplotionDust>(), 0f, 0f, 0, default(Color), 1.15f + Main.rand.NextFloat(-0.1f, 0.1f));
+                Main.dust[dustIndex].position = Projectile.Center + Main.rand.NextVector2Circular(30, 30);
+                Main.dust[dustIndex].velocity *= 1.2f;
+                Main.dust[dustIndex].noGravity = true;
+            }
+
             if (Projectile.IsOwnerLocal()) {
                 int count = 6;
                 for (int i = 0; i < count; i++) {
@@ -218,8 +231,9 @@ public sealed class Chocoplotion : ThoriumItem_ThrowerBase {
         }
 
         public override void OnKill(int timeLeft) {
-            for (int i = 0; i < 6; i++) {
-                int ind4 = Dust.NewDust(Projectile.Center - Vector2.One * 4, 8, 8, ModContent.DustType<ChocoplotionDust>(), 0f, 0f, 0, default, 1.15f + Main.rand.NextFloat(-0.1f, 0.1f));
+            for (int i = 0; i < 10; i++) {
+                int size = 8;
+                int ind4 = Dust.NewDust(Projectile.Center - Vector2.One * size, size * 2, size * 2, ModContent.DustType<ChocoplotionDust>(), 0f, 0f, 0, default, 1.15f + Main.rand.NextFloat(-0.1f, 0.1f));
                 Main.dust[ind4].velocity *= 0.5f;
                 Main.dust[ind4].noGravity = true;
             }
@@ -238,14 +252,19 @@ public sealed class Chocoplotion : ThoriumItem_ThrowerBase {
                     Projectile.velocity.X *= 0.95f;
                 }
                 Projectile.velocity.Y += 0.2f;
+                if (Projectile.velocity.Y < 0f) {
+                    Projectile.velocity.Y += 0.2f;
+                }
             }
-            Projectile.rotation += Projectile.velocity.X * 0.1f;
-			
-			if (Main.rand.NextBool(10) && Projectile.ai[0] < 50f) {
-				int ind4 = Dust.NewDust(Projectile.Center - Vector2.One * 4, 8, 8, ModContent.DustType<ChocoplotionDust>(), 0f, 0f, 0, default, 1.15f + Main.rand.NextFloat(-0.1f, 0.1f));
+            Projectile.velocity.X *= 0.9f;
+            Projectile.rotation = Utils.AngleLerp(Projectile.rotation, Projectile.velocity.ToRotation() + MathHelper.PiOver2, 0.2f);
+
+            if (Main.rand.NextBool(30) && Main.rand.NextChance(MathF.Max(0.25f, 1f - Helper.Clamp01(Projectile.ai[0] / 120f)))) {
+                int size = 8;
+                int ind4 = Dust.NewDust(Projectile.Center - Vector2.One * size, size * 2, size * 2, ModContent.DustType<ChocoplotionDust>(), 0f, 0f, 0, default, 1.15f + Main.rand.NextFloat(-0.1f, 0.1f));
                 Main.dust[ind4].velocity *= 0.5f;
                 Main.dust[ind4].noGravity = true;
-			}
+            }
         }
 
         public override bool PreDraw(ref Color lightColor) {

@@ -20,7 +20,7 @@ public sealed class Omunikodo : ThoriumItem_BardBase {
     public override BardInstrumentType InstrumentType => BardInstrumentType.Electronic;
 
     public override void SetStaticDefaults() {
-        Empowerments.AddInfo<EmpowermentProlongation>(2);
+        Empowerments.AddInfo<EmpowermentProlongation>(3);
     }
 
     public override void SetBardDefaults() {

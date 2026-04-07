@@ -31,6 +31,11 @@ public sealed class UtensilPoker : ThoriumItem_ThrowerBase {
         Item.SetDefaultsToUsable(ItemUseStyleID.Swing, BASEATTACKSPEED_LEFTCLICK, showItemOnUse: false, autoReuse: true);
     }
 
+    public override bool CanUseItem(Player player) {
+        bool rightClick = player.altFunctionUse == 2;
+        return !rightClick || (rightClick && !player.GetModPlayer<UtensilPoker_ChargeHandler>().Charged);
+    }
+
     public override bool AltFunctionUse(Player player) {
         return true;
     }
@@ -79,6 +84,8 @@ public sealed class UtensilPoker : ThoriumItem_ThrowerBase {
 
     public sealed class UtensilPoker_ChargeHandler : ModPlayer {
         public byte CurrentCharge { get; private set; }
+
+        public bool Charged => CurrentCharge >= 5;
 
         public bool CanCharge() {
             Item selectedItem = Player.HeldItem;
@@ -426,7 +433,7 @@ public sealed class UtensilPoker : ThoriumItem_ThrowerBase {
                 Vector2 velocity = Projectile.velocity * 0.1f;
                 Main.dust[num446].position = (Main.dust[num446].position + Projectile.Center) / 2f - velocity;
                 Main.dust[num446].velocity += velocity;
-                Main.dust[num446].scale *= Main.rand.NextFloat(0.9f, 1.1f) * 1.25f;
+                Main.dust[num446].scale *= Main.rand.NextFloat(0.9f, 1.1f);
                 //Main.dust[num446].alpha = 50;
                 Dust dust2 = Main.dust[num446];
                 dust2.velocity += vector51 * 2f;

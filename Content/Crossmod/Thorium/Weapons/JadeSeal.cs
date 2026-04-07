@@ -2,6 +2,11 @@
 using Consolaria.Content.Crossmod.Thorium.Dusts;
 
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+
+using ReLogic.Content;
+
+using RoA.Core.Utility.Vanilla;
 
 using System;
 using System.IO;
@@ -27,7 +32,7 @@ public sealed class JadeSeal : ThoriumItem_HealerBase {
         Item.SetShopValues(Terraria.Enums.ItemRarityColor.White0, Item.sellPrice());
         Item.SetShootableValues<JadeSeal_Lamp>();
 
-        Item.SetDefaultsToUsable(ItemUseStyleID.Shoot, 50, useSound: SoundID.Item34);
+        Item.SetDefaultsToUsable(ItemUseStyleID.Shoot, 50, useSound: SoundID.Item82 with { Pitch = 0.5f });
 
         Item.mana = 100;
     }
@@ -78,8 +83,14 @@ public sealed class JadeSeal : ThoriumItem_HealerBase {
     }
 
     public sealed class JadeSeal_Lamp : ThoriumProjectile_HealerBase {
+        private static Asset<Texture2D> _glowTexture = null!;
+
         public override void SetStaticDefaults() {
             Projectile.SetFrameCount(4);
+
+            if (!Main.dedServ) {
+                _glowTexture = ModContent.Request<Texture2D>(Texture + "_Glow");
+            }
         }
 
         public override void SetHealerDefaults() {
@@ -111,16 +122,18 @@ public sealed class JadeSeal : ThoriumItem_HealerBase {
                 }
             }
 
-            Projectile.Animate(4);
+            Projectile.Animate(6);
         }
 
         public static void MakeJadeDusts(Projectile projectile, bool yellow = false) {
             projectile.localAI[2] = Helper.Approach(projectile.localAI[2], 1f, 0.15f * 0.875f);
-            projectile.Opacity = Helper.Approach(projectile.Opacity, 1f, 0.2f * 0.875f);
+            projectile.Opacity = Helper.Approach(projectile.Opacity, 1f, 0.2f * 0.75f);
 
-            int num4 = (int)(300 * Ease.CubeOut(projectile.localAI[2]));
+            float progress = Ease.CubeOut(projectile.localAI[2]);
+            int num4 = (int)(300 * progress);
             Vector2 vector2 = new Vector2(projectile.Top.X, projectile.position.Y + (float)num4);
-            for (int j = 0; j < 4; j++) {
+            int count = (int)(20 - 16 * progress);
+            for (int j = 0; j < count; j++) {
                 Vector2 vector3 = Main.rand.NextVector2Unit();
                 //if (!(Math.Abs(vector3.X) < 0.12f))
                 {
@@ -136,16 +149,51 @@ public sealed class JadeSeal : ThoriumItem_HealerBase {
                     dust.customData = projectile;
                 }
             }
+
+            num4 = (int)(num4 * 0.2f);
+            for (int j = 0; j < 1; j++) {
+                Vector2 vector3 = Main.rand.NextVector2Unit();
+                //if (!(Math.Abs(vector3.X) < 0.12f))
+                if (Main.rand.NextBool(10)) {
+                    Vector2 targetPosition = projectile.Center + vector3 * new Vector2((projectile.height - num4) / 2);
+                    Dust dust = Dust.NewDustDirect(targetPosition, 0, 0, yellow ? ModContent.DustType<JadeDust2>() : ModContent.DustType<JadeDust>(), 0f, 0f, 100);
+                    dust.position = targetPosition;
+                    dust.velocity = (vector2 - dust.position).SafeNormalize(Vector2.Zero);
+                    dust.velocity += dust.position.DirectionTo(projectile.Center) * Main.rand.NextFloat(2.5f, 5f) * 0.5f;
+                    dust.position += (vector2 - dust.position).SafeNormalize(Vector2.Zero) * projectile.width * 1f;
+                    dust.position.Y -= projectile.width / 2f;
+                    dust.velocity *= Main.rand.NextFloat(1.5f, 2f);
+                    dust.velocity.Y = MathF.Abs(dust.velocity.Y) * -2f;
+                    dust.scale = 0.7f + 0.7f * Main.rand.NextFloatDirection();
+                    dust.fadeIn = 1f;
+                    dust.noGravity = true;
+                    dust.noLight = true;
+                    dust.customData = projectile;
+                }
+            }
+        }
+
+        public override bool PreDraw(ref Color lightColor) {
+            Projectile.QuickDrawAnimated(lightColor * Projectile.Opacity);
+            Projectile.QuickDrawAnimated(Color.White.MultiplyAlpha(0.5f) * 0.375f * Projectile.Opacity, texture: _glowTexture.Value);
+
+            return false;
         }
     }
 
     public sealed class JadeSeal_GoldenLamp : ThoriumProjectile_HealerBase {
+        private static Asset<Texture2D> _glowTexture = null!;
+
         private Vector2 _mousePosition;
 
         public ref float HealTime => ref Projectile.localAI[0];
 
         public override void SetStaticDefaults() {
             Projectile.SetFrameCount(4);
+
+            if (!Main.dedServ) {
+                _glowTexture = ModContent.Request<Texture2D>(Texture + "_Glow");
+            }
         }
 
         public override void SetHealerDefaults() {
@@ -182,7 +230,7 @@ public sealed class JadeSeal : ThoriumItem_HealerBase {
 
             Projectile.rotation = Projectile.velocity.X * 0.025f;
 
-            Projectile.Animate(4);
+            Projectile.Animate(6);
         }
 
         public override void SendExtraAI(BinaryWriter writer) {
@@ -191,6 +239,13 @@ public sealed class JadeSeal : ThoriumItem_HealerBase {
 
         public override void ReceiveExtraAI(BinaryReader reader) {
             _mousePosition = reader.ReadVector2();
+        }
+
+        public override bool PreDraw(ref Color lightColor) {
+            Projectile.QuickDrawAnimated(lightColor * Projectile.Opacity);
+            Projectile.QuickDrawAnimated(Color.White.MultiplyAlpha(0.5f) * 0.375f * Projectile.Opacity, texture: _glowTexture.Value);
+
+            return false;
         }
     }
 }

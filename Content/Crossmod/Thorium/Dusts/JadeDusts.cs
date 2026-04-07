@@ -24,6 +24,9 @@ public abstract class JadeDust_Base : ModDust {
                 Projectile player9 = (Projectile)dust.customData;
                 dust.position += player9.position - player9.oldPosition;
             }
+            if (!projectile.active || projectile.timeLeft >= 1200 - 1) {
+                dust.customData = null;
+            }
         }
 
         float num111 = dust.scale;

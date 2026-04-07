@@ -1429,8 +1429,8 @@ Mods: {
 				DisplayName: Jade Seal
 				Tooltip:
 					'''
-					Left click to summon a golden lantern that boosts damage and defense of allies within its aura
-					Right click to summon a jade lantern that hovers in place and heals allies within its aura
+					Left click to summon a jade lantern that boosts damage and defense of allies within its aura
+					Right click to summon a golden lantern that hovers in place and heals allies within its aura
 					'''
 			}
 

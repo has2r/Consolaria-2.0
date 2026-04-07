@@ -427,14 +427,15 @@ public sealed class UtensilPoker : ThoriumItem_ThrowerBase {
             Vector2 vector51 = (Projectile.rotation - (float)Math.PI / 2f).ToRotationVector2();
             vector50 += vector51 * 16f;
             for (int num445 = 0; num445 < 14; num445++) {
-                if (Main.rand.NextChance(0.2f)) {
+                if (Main.rand.NextChance(0.25f)) {
                     continue;
                 }
                 int num446 = Dust.NewDust(vector50, Projectile.width, Projectile.height, ModContent.DustType<UtensilForkDust>());
                 Vector2 velocity = Projectile.velocity * 0.1f;
-                Main.dust[num446].position = (Main.dust[num446].position + Projectile.Center) / 2f - velocity;
+                Main.dust[num446].velocity *= 0.75f;
+                Main.dust[num446].position = (Main.dust[num446].position + Projectile.Center) / 2f - velocity * 2f;
                 Main.dust[num446].velocity += velocity;
-                Main.dust[num446].scale *= Main.rand.NextFloat(0.9f, 1.1f);
+                Main.dust[num446].scale *= Main.rand.NextFloat(0.9f, 1.1f) * 1f;
                 //Main.dust[num446].alpha = 50;
                 Dust dust2 = Main.dust[num446];
                 dust2.velocity += vector51 * 2f;
@@ -536,10 +537,15 @@ public sealed class UtensilPoker : ThoriumItem_ThrowerBase {
             Vector2 vector51 = (Projectile.rotation - (float)Math.PI / 2f).ToRotationVector2();
             vector50 += vector51 * 16f;
             for (int num445 = 0; num445 < 14; num445++) {
+                if (Main.rand.NextChance(0.25f)) {
+                    continue;
+                }
                 int num446 = Dust.NewDust(vector50, Projectile.width, Projectile.height, DustID.Silver);
                 Vector2 velocity = Projectile.velocity * 0.1f;
-                Main.dust[num446].position = (Main.dust[num446].position + Projectile.Center) / 2f - velocity;
+                Main.dust[num446].velocity *= 0.75f;
+                Main.dust[num446].position = (Main.dust[num446].position + Projectile.Center) / 2f - velocity * 2f;
                 Main.dust[num446].velocity += velocity;
+                Main.dust[num446].scale *= Main.rand.NextFloat(0.9f, 1.1f) * 1f;
                 Dust dust2 = Main.dust[num446];
                 dust2.velocity += vector51 * 2f;
                 dust2 = Main.dust[num446];

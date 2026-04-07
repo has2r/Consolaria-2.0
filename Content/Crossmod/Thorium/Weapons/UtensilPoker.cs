@@ -1,4 +1,5 @@
 ﻿using Consolaria.Content.Crossmod.Thorium.Buffs;
+using Consolaria.Content.Crossmod.Thorium.Dusts;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -13,28 +14,50 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-using ThoriumMod.Projectiles.Thrower;
+using ThoriumMod.Utilities;
 
 namespace Consolaria.Content.Crossmod.Thorium.Weapons;
 
 public sealed class UtensilPoker : ThoriumItem_ThrowerBase {
+    private static ushort BASEATTACKSPEED_LEFTCLICK => 16;
+
     public override void SetThrowerDefaults() {
         Item.SetSizeValues(44, 36);
 
         Item.SetShopValues(Terraria.Enums.ItemRarityColor.White0, Item.sellPrice());
-        Item.SetShootableValues<UtensilPoker_Throw>(12f);
+        Item.SetShootableValues<UtensilPoker_Throw>(15f);
 
-        Item.SetWeaponValues(60, 5f);
-        Item.SetDefaultsToUsable(ItemUseStyleID.Swing, 18, showItemOnUse: false, autoReuse: true, useSound: SoundID.Item19);
+        Item.SetWeaponValues(32, 0f);
+        Item.SetDefaultsToUsable(ItemUseStyleID.Swing, BASEATTACKSPEED_LEFTCLICK, showItemOnUse: false, autoReuse: true);
     }
 
-    public override bool AltFunctionUse(Player player) => true;
+    public override bool AltFunctionUse(Player player) {
+        return true;
+    }
+
+    public override float UseAnimationMultiplier(Player player) {
+        bool rightClick = player.altFunctionUse == 2;
+        return rightClick ? 0.5f : 1f;
+    }
+
+    public override float UseTimeMultiplier(Player player) {
+        bool rightClick = player.altFunctionUse == 2;
+        return rightClick ? 0.5f : 1f;
+    }
 
     public override bool? UseItem(Player player) {
+        bool rightClick = player.altFunctionUse == 2;
         if (player.ItemAnimationJustStarted) {
             UtensilPoker_ChargeHandler handler = player.GetModPlayer<UtensilPoker_ChargeHandler>();
-            if (player.altFunctionUse == 2) {
+            if (rightClick) {
+                player.GetThoriumPlayer().throwerExhaustion -= Item.useTime * 2;
+
+                SoundEngine.PlaySound(SoundID.Item1 with { Pitch = 0.2f * handler.CurrentCharge }, player.Center);
+
                 handler.Charge();
+            }
+            else {
+                SoundEngine.PlaySound(SoundID.Item19 with { Pitch = 1f }, player.Center);
             }
         }
 
@@ -42,7 +65,8 @@ public sealed class UtensilPoker : ThoriumItem_ThrowerBase {
     }
 
     public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
-        if (player.altFunctionUse == 2) {
+        bool rightClick = player.altFunctionUse == 2;
+        if (rightClick) {
             return false;
         }
 
@@ -169,6 +193,7 @@ public sealed class UtensilPoker : ThoriumItem_ThrowerBase {
 
         private float _isStickingToTarget;
         private float _targetWhoAmI;
+        private bool _fall;
 
         public float IsStickingToTarget {
             get => _isStickingToTarget;
@@ -209,7 +234,7 @@ public sealed class UtensilPoker : ThoriumItem_ThrowerBase {
                 int num = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Blood, Main.rand.Next(-5, 5), Main.rand.Next(-5, 5), 100);
                 Main.dust[num].position = Projectile.Center + Main.rand.NextVector2Circular(10f, 10f);
                 Main.dust[num].noGravity = true;
-                Main.dust[num].velocity += Projectile.velocity * 0.5f;
+                Main.dust[num].velocity += Projectile.velocity * 0.25f;
             }
 
             _isStickingToTarget = 1f;
@@ -308,6 +333,20 @@ public sealed class UtensilPoker : ThoriumItem_ThrowerBase {
         }
 
         public override void AI() {
+            if (_isStickingToTarget == 0f) {
+                if (Projectile.velocity.Length() < 15f && !_fall) {
+                    _fall = true;
+                }
+                if (_fall) {
+                    Projectile.velocity.Y = Projectile.velocity.Y + 0.1f;
+                    if (Projectile.velocity.Y > 16f)
+                        Projectile.velocity.Y = 16f;
+                }
+                else {
+                    Projectile.velocity *= 0.98f;
+                }
+            }
+
             //Projectile.tileCollide = Projectile.timeLeft < TIMELEFT - 5;
 
             MainCenter += Projectile.velocity;
@@ -380,8 +419,15 @@ public sealed class UtensilPoker : ThoriumItem_ThrowerBase {
             Vector2 vector51 = (Projectile.rotation - (float)Math.PI / 2f).ToRotationVector2();
             vector50 += vector51 * 16f;
             for (int num445 = 0; num445 < 14; num445++) {
-                int num446 = Dust.NewDust(vector50, Projectile.width, Projectile.height, DustID.Silver);
-                Main.dust[num446].position = (Main.dust[num446].position + Projectile.Center) / 2f;
+                if (Main.rand.NextChance(0.2f)) {
+                    continue;
+                }
+                int num446 = Dust.NewDust(vector50, Projectile.width, Projectile.height, ModContent.DustType<UtensilForkDust>());
+                Vector2 velocity = Projectile.velocity * 0.1f;
+                Main.dust[num446].position = (Main.dust[num446].position + Projectile.Center) / 2f - velocity;
+                Main.dust[num446].velocity += velocity;
+                Main.dust[num446].scale *= Main.rand.NextFloat(0.9f, 1.1f) * 1.25f;
+                //Main.dust[num446].alpha = 50;
                 Dust dust2 = Main.dust[num446];
                 dust2.velocity += vector51 * 2f;
                 dust2 = Main.dust[num446];
@@ -394,6 +440,8 @@ public sealed class UtensilPoker : ThoriumItem_ThrowerBase {
 
     public sealed class UtensilPoker_BigFork : ThoriumProjectile_ThrowerBase {
         private static ushort TIMELEFT => Helper.SecondsToFrames(4);
+
+        private bool _fall;
 
         public Vector2 MainCenter {
             get => new Vector2(Projectile.ai[1], Projectile.ai[2]);
@@ -430,6 +478,18 @@ public sealed class UtensilPoker : ThoriumItem_ThrowerBase {
         }
 
         public override void AI() {
+            if (Projectile.velocity.Length() < 15f && !_fall) {
+                _fall = true;
+            }
+            if (_fall) {
+                Projectile.velocity.Y = Projectile.velocity.Y + 0.1f;
+                if (Projectile.velocity.Y > 16f)
+                    Projectile.velocity.Y = 16f;
+            }
+            else {
+                Projectile.velocity *= 0.98f;
+            }
+
             //Projectile.tileCollide = Projectile.timeLeft < TIMELEFT - 5;
 
             MainCenter += Projectile.velocity;
@@ -469,7 +529,9 @@ public sealed class UtensilPoker : ThoriumItem_ThrowerBase {
             vector50 += vector51 * 16f;
             for (int num445 = 0; num445 < 14; num445++) {
                 int num446 = Dust.NewDust(vector50, Projectile.width, Projectile.height, DustID.Silver);
-                Main.dust[num446].position = (Main.dust[num446].position + Projectile.Center) / 2f;
+                Vector2 velocity = Projectile.velocity * 0.1f;
+                Main.dust[num446].position = (Main.dust[num446].position + Projectile.Center) / 2f - velocity;
+                Main.dust[num446].velocity += velocity;
                 Dust dust2 = Main.dust[num446];
                 dust2.velocity += vector51 * 2f;
                 dust2 = Main.dust[num446];

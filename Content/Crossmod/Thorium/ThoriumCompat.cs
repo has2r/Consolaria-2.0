@@ -167,7 +167,7 @@ public sealed class ThoriumPlayer_Consolaria : ModPlayer {
             return;
         }
 
-        if (Main.rand.NextBool(5)) {
+        if (Main.rand.NextBool(10)) {
             target.AddBuff(BuffID.Venom, Helper.SecondsToFrames(Main.rand.Next(2, 5)));
         }
         if (Main.rand.NextBool(10)) {
@@ -205,7 +205,7 @@ public sealed class ThoriumPlayer_Consolaria : ModPlayer {
             return;
         }
 
-        if (Main.rand.NextBool(5)) {
+        if (Main.rand.NextBool(10)) {
             target.AddBuff(BuffID.Venom, Helper.SecondsToFrames(Main.rand.Next(2, 5)));
         }
         if (Main.rand.NextBool(10)) {

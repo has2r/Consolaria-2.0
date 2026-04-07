@@ -78,9 +78,9 @@ public sealed class Omunikodo : ThoriumItem_BardBase {
             ThoriumSounds.Xylophone_Sound,
             ThoriumSounds.Zunpet_Sound
         ];
-        Item.UseSound = Main.rand.NextFromList(prePlanteraSounds);
+        Item.UseSound = Main.rand.NextFromList(prePlanteraSounds) with { PitchVariance = 0.25f, MaxInstances = 2 };
         if (Main.rand.NextBool(10)) {
-            Item.UseSound = new SoundStyle($"{nameof(Consolaria)}/Assets/Sounds/OmunikodoUseSound1");
+            Item.UseSound = new SoundStyle($"{nameof(Consolaria)}/Assets/Sounds/OmunikodoUseSound1") with { PitchVariance = 0.25f, MaxInstances = 2 };
         }
     }
 
@@ -241,6 +241,8 @@ public sealed class Omunikodo : ThoriumItem_BardBase {
                 obj.scale *= Main.rand.NextFromList(0.9f, 1.3f);
                 obj.color = color;
                 obj.alpha = Main.rand.Next(150);
+
+                obj.scale *= Ease.QuintOut(_moveSpeed);
             }
         }
     }

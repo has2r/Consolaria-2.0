@@ -499,6 +499,8 @@ public sealed class UtensilPoker : ThoriumItem_ThrowerBase {
         }
 
         public override void AI() {
+            Projectile.penetrate = Projectile.maxPenetrate = -1;
+
             if (Projectile.velocity.Length() < 15f && !_fall) {
                 _fall = true;
             }

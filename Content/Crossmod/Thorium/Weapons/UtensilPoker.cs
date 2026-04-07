@@ -14,6 +14,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
+using ThoriumMod.Items.BardItems;
 using ThoriumMod.Utilities;
 
 namespace Consolaria.Content.Crossmod.Thorium.Weapons;
@@ -27,7 +28,7 @@ public sealed class UtensilPoker : ThoriumItem_ThrowerBase {
         Item.SetShopValues(Terraria.Enums.ItemRarityColor.White0, Item.sellPrice());
         Item.SetShootableValues<UtensilPoker_Throw>(15f);
 
-        Item.SetWeaponValues(32, 0f);
+        Item.SetWeaponValues(32, 6.5f);
         Item.SetDefaultsToUsable(ItemUseStyleID.Swing, BASEATTACKSPEED_LEFTCLICK, showItemOnUse: false, autoReuse: true);
     }
 

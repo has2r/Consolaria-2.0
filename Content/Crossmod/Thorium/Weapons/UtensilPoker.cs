@@ -341,7 +341,7 @@ public sealed class UtensilPoker : ThoriumItem_ThrowerBase {
         }
 
         public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac) {
-            width = height = 12;
+            width = height = Projectile.width / 3;
 
             return base.TileCollideStyle(ref width, ref height, ref fallThrough, ref hitboxCenterFrac);
         }
@@ -493,7 +493,7 @@ public sealed class UtensilPoker : ThoriumItem_ThrowerBase {
         }
 
         public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac) {
-            width = height = 16;
+            width = height = Projectile.width / 3;
 
             return base.TileCollideStyle(ref width, ref height, ref fallThrough, ref hitboxCenterFrac);
         }

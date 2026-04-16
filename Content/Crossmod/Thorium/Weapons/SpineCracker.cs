@@ -41,7 +41,7 @@ public sealed class SpineCracker : ThoriumItem_ThrowerBase {
         public ref float ScytheSpawnTimer => ref Projectile.localAI[0];
 
         public override void SafeSetStaticDefaults() {
-            Projectile.SetTrail(2, 8);
+            Projectile.SetTrail(1, 8);
         }
 
         public override void SafeSetDefaults() {

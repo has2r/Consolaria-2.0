@@ -128,6 +128,8 @@ public sealed class ScytheFantasma : ThoriumItem_ScytheBase {
             return false;
         }
 
+        public override bool? CanDamage() => CanExplode ? base.CanDamage() : false;
+
         public override void AI() {
             Projectile.SetTrail(2, 5);
 

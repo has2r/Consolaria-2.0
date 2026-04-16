@@ -152,7 +152,7 @@ public sealed class Chocoplotion : ThoriumItem_ThrowerBase {
         public override void OnKill(int timeLeft) {
             for (int i = 0; i < 20; i++) {
                 int dustIndex = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<ChocoplotionDust>(), 0f, 0f, 0, default(Color), 1.15f + Main.rand.NextFloat(-0.1f, 0.1f));
-                Main.dust[dustIndex].position = Projectile.Center + Main.rand.NextVector2Circular(30, 30);
+                Main.dust[dustIndex].position = Projectile.Center + Main.rand.NextVector2Circular(30, 30) * 0.75f;
                 Main.dust[dustIndex].velocity *= 1.2f;
                 Main.dust[dustIndex].noGravity = true;
             }
@@ -250,10 +250,13 @@ public sealed class Chocoplotion : ThoriumItem_ThrowerBase {
                 int ind4 = Dust.NewDust(Projectile.Center - Vector2.One * size, size * 2, size * 2, ModContent.DustType<ChocoplotionDust>(), 0f, 0f, 0, default, 1.15f + Main.rand.NextFloat(-0.1f, 0.1f));
                 Main.dust[ind4].velocity *= 0.5f;
                 Main.dust[ind4].noGravity = true;
+                Main.dust[ind4].velocity += Projectile.velocity * Main.rand.NextFloat() * 0.75f;
             }
         }
 
         public override bool OnTileCollide(Vector2 oldVelocity) {
+            Projectile.Kill();
+
             return false;
         }
 

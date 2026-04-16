@@ -2,7 +2,11 @@
 
 using RoA.Core.Utility.Vanilla;
 
+using System.Media;
+
 using Terraria;
+using Terraria.Audio;
+using Terraria.ID;
 
 namespace Consolaria.Content.Crossmod.Thorium.Projectiles;
 
@@ -10,6 +14,8 @@ public sealed class SirenSeaCreature : ThoriumProjectile_BardBase {
     private static ushort TIMELEFT => Helper.SecondsToFrames(15);
 
     private float _y;
+    private float _lerpValueY;
+    private bool _soundPlayed;
 
     public enum SeaCreatureType : byte {
         Red,
@@ -46,6 +52,8 @@ public sealed class SirenSeaCreature : ThoriumProjectile_BardBase {
 
             Projectile.localAI[2] = Main.rand.NextFloat(-0.25f, 0f);
 
+            SoundEngine.PlaySound(new SoundStyle("ThoriumMod/Sounds/Item/Command"), Projectile.Center);
+
             _y = 100f;
         }
         Projectile.frame = (byte)(SeaCreatureType)Projectile.ai[2];
@@ -60,6 +68,10 @@ public sealed class SirenSeaCreature : ThoriumProjectile_BardBase {
                 Projectile.Opacity = Helper.Approach(Projectile.Opacity, to, lerpValue);
             }
             if (Projectile.Opacity >= 1f) {
+                if (Projectile.localAI[1] >= 0.1f && !_soundPlayed) {
+                    _soundPlayed = true;
+                    SoundEngine.PlaySound(new SoundStyle("ThoriumMod/Sounds/Custom/InspirationFull") with { Pitch = 0.5f }, Projectile.Center);
+                }
                 Projectile.localAI[1] = Helper.Approach(Projectile.localAI[1], 1f, 0.025f);
             }
         }
@@ -72,7 +84,11 @@ public sealed class SirenSeaCreature : ThoriumProjectile_BardBase {
             }
         }
 
-        _y = Helper.Approach(_y, shouldDisappear ? -300f : 100f, 5f);
+        if (shouldDisappear) {
+            _lerpValueY = Helper.Approach(_lerpValueY, 1f, 0.05f);
+        }
+
+        _y = Helper.Approach(_y, shouldDisappear ? -300f : 100f, 1f + 4f * _lerpValueY);
 
         Player closestPlayer = Main.player[Player.FindClosest(Projectile.position, Projectile.width, Projectile.height)];
         Projectile.direction = Projectile.spriteDirection = ((Projectile.Center.X - closestPlayer.Center.X) > 0).ToDirectionInt();

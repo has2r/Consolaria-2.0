@@ -331,6 +331,8 @@ public sealed class ThoriumPlayer_Consolaria : ModPlayer {
 
                 IsSeraphimSetBonusActive2 = true;
 
+                SoundEngine.PlaySound(new SoundStyle("ThoriumMod/Sounds/Item/Pulse"), Player.Center);
+
                 if (Player.IsLocal()) {
                     Projectile.NewProjectileDirect(Player.GetSource_FromThis(),
                                                    Player.GetPlayerCorePoint(),

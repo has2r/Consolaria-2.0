@@ -152,6 +152,7 @@ public sealed class SeraphimHeal : ThoriumProjectile_HealerBase {
             float rotation = rayInfo.Rotation + wave * 0.25f;
             Vector2 scale = new Vector2(0.75f, 0.25f * rayInfo.ScaleFactor * Projectile.Opacity) * 0.375f * wave2;
             Color color = ThoriumPlayer_Consolaria.SERAPHIMGLOWCOLOR.SetAlpha(255) * 0.875f * Ease.CubeOut(Projectile.Opacity) * rayInfo.Opacity;
+            color *= Helper.Wave(0.75f, 0.875f, 5f, Projectile.identity) * 1.25f;
             Helper.DrawInfo drawInfo = new() {
                 Clip = clip,
                 Origin = origin,

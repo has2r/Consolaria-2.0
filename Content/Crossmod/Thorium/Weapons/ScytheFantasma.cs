@@ -19,6 +19,10 @@ public sealed class ScytheFantasma : ThoriumItem_ScytheBase {
         Item.SetWeaponValues(64, 7f);
     }
 
+    public override void SetScytheValues(ref int scytheSoulCharge) {
+        scytheSoulCharge = 2;
+    }
+
     public sealed class ScytheFantasma_Use : ThoriumProjectile_ScytheBase {
         public override void SetScytheDefaults() {
             Projectile.SetSizeValues(164, 156);

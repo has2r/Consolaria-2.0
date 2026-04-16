@@ -47,6 +47,7 @@ namespace Consolaria.Content.Items.Accessories {
                 tooltips.Add(new TooltipLine(Mod, nameof(ValentineRing) + "isInOwnerInventory", Language.GetTextValue("Mods.Consolaria.ValentineRingTooltip1")));
                 TooltipLine specialTooltip = new(Mod, SPECIALKEY1, Language.GetText("Mods.Consolaria.ValentineRingTooltip3").Format(_ownerName));
                 specialTooltip.OverrideColor = specialTooltipColor_Gray;
+                specialTooltip.Text += "      ";
                 tooltips.Add(specialTooltip);
                 return;
             }
@@ -54,6 +55,7 @@ namespace Consolaria.Content.Items.Accessories {
                 tooltips.Add(new TooltipLine(Mod, nameof(ValentineRing) + "isNotInOwnerInventory", Language.GetTextValue("Mods.Consolaria.ValentineRingTooltip2")));
                 TooltipLine specialTooltip = new(Mod, SPECIALKEY2, Language.GetText("Mods.Consolaria.ValentineRingTooltip4").Format(_ownerName));
                 specialTooltip.OverrideColor = specialTooltipColor_Red;
+                specialTooltip.Text += "      ";
                 tooltips.Add(specialTooltip);
             }
         }
@@ -61,7 +63,8 @@ namespace Consolaria.Content.Items.Accessories {
         public override bool PreDrawTooltipLine(DrawableTooltipLine line, ref int yOffset) {
             if (line.Name.Equals(SPECIALKEY2)) {
                 Texture2D icon = TextureAssets.Item[ItemID.Heart].Value;
-                Vector2 getPosition(float waveOffset = 0f) => new Vector2(line.X, line.Y) + new Vector2(10, 10 + (float)Math.Sin(Main.timeForVisualEffects / 20f + waveOffset) * 2f);
+                float x = line.X;
+                Vector2 getPosition(float waveOffset = 0f) => new Vector2(x, line.Y) + new Vector2(10, 10 + (float)Math.Sin(Main.timeForVisualEffects / 20f + waveOffset) * 2f);
                 float scale = Math.Max(icon.Width, icon.Height) / 20f;
                 Color color = Color.Lerp(line.OverrideColor.Value, Color.Lerp(line.OverrideColor.Value, GetShimmerGradient().MultiplyAlpha(1f), 0.25f), 1f);
                 color = Color.Lerp(color, Color.Red, 0.25f);
@@ -75,7 +78,7 @@ namespace Consolaria.Content.Items.Accessories {
                 }
                 batch.Draw(icon, getPosition(0f), null, (color.MultiplyAlpha(0f) * 1f).ModifyRGB(rgbFactor), Helper.Wave(-maxRotation, maxRotation, rotationWaveFrequency, 0f), icon.Size() / 2, scale, default, 0);
                 Utils.DrawBorderString(Main.spriteBatch, line.Text, new Vector2(line.X + 20f, line.Y), color.MultiplyAlpha(0.5f));
-                Vector2 offset = Vector2.UnitX * FontAssets.MouseText.Value.MeasureString(line.Text).X + Vector2.UnitX * 20f;
+                Vector2 offset = Vector2.UnitX * FontAssets.MouseText.Value.MeasureString(line.Text).X + Vector2.UnitX * -20f;
                 for (float num5 = 0f; num5 < 1f; num5 += 0.25f) {
                     Vector2 vector2 = (num5 * ((float)Math.PI * 2f)).ToRotationVector2() * 2f * scale;
                     batch.Draw(icon, getPosition(2f) + offset + vector2, null, (color.MultiplyAlpha(0f) * 0.125f).ModifyRGB(rgbFactor), Helper.Wave(-maxRotation, maxRotation, rotationWaveFrequency, 2f), icon.Size() / 2, scale, default, 0);

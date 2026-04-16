@@ -129,12 +129,6 @@ namespace Consolaria.Content.Tiles {
                     itemType = ModContent.ItemType<Items.Placeable.Banners.AlbinoChargerBanner>();
                     break;
                 case 20:
-                    itemType = ModContent.ItemType<Items.Placeable.Banners.AlbinoChargerBanner>();
-                    break;
-                case 21:
-                    itemType = ModContent.ItemType<Items.Placeable.Banners.AlbinoSwarmerBanner>();
-                    break;
-                case 22:
                     itemType = ModContent.ItemType<Items.Placeable.Banners.AlbinoSwarmerBanner>();
                     break;
                 default:
@@ -212,16 +206,18 @@ namespace Consolaria.Content.Tiles {
                         npcType = ModContent.NPCType<NPCs.FleshAxe>();
                         break;
                     case 19:
-                        npcType = ModContent.NPCType<NPCs.AlbinoCharger>();
+                        Main.SceneMetrics.NPCBannerBuff[ModContent.NPCType<NPCs.AlbinoCharger>()] = true;
+                        //Main.SceneMetrics.NPCBannerBuff[ModContent.NPCType<NPCs.GiantAlbinoCharger>()] = true;
+                        Main.SceneMetrics.hasBanner = true;
+
+                        bannerType = -1;
                         break;
                     case 20:
-                        npcType = ModContent.NPCType<NPCs.GiantAlbinoCharger>();
-                        break;
-                    case 21:
-                        npcType = ModContent.NPCType<NPCs.AlbinoSwarmer>();
-                        break;
-                    case 22:
-                        npcType = ModContent.NPCType<NPCs.GiantAlbinoSwarmer>();
+                        Main.SceneMetrics.NPCBannerBuff[ModContent.NPCType<NPCs.AlbinoSwarmer>()] = true;
+                        //Main.SceneMetrics.NPCBannerBuff[ModContent.NPCType<NPCs.GiantAlbinoSwarmer>()] = true;
+                        Main.SceneMetrics.hasBanner = true;
+
+                        bannerType = -1;
                         break;
                     default:
                         return;

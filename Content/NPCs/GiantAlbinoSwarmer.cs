@@ -33,8 +33,7 @@ public sealed class GiantAlbinoSwarmer : ModNPC {
 
         NPC.rarity = 1;
 
-        Banner = Type;
-        BannerItem = ModContent.ItemType<Items.Placeable.Banners.AlbinoSwarmerBanner>();
+        Banner = ModContent.NPCType<AlbinoSwarmer>();
     }
 
     public override void HitEffect(NPC.HitInfo hit) {

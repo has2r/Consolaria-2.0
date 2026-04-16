@@ -46,7 +46,7 @@ namespace Consolaria.Content.NPCs {
             AnimationType = NPCID.WalkingAntlion;
 
             Banner = ModContent.NPCType<AlbinoCharger>();
-            BannerItem = ModContent.ItemType<Items.Placeable.Banners.AlbinoChargerBanner>();
+            //BannerItem = ModContent.ItemType<Items.Placeable.Banners.AlbinoChargerBanner>();
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {

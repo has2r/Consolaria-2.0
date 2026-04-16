@@ -1469,6 +1469,11 @@ Mods: {
 				// DisplayName: Five-Star Buffet
 				// Tooltip: Prepares up to five succulent meals, then feeds them to allies with the least health
 			}
+
+			AlbinoSwarmerBanner: {
+				// DisplayName: Albino Swarmer Banner
+				// Tooltip: ""
+			}
 		}
 
 		NPCs: {
@@ -1666,6 +1671,16 @@ Mods: {
 				Quote8: Cuando esos raros bloques de tierra suban de precio, ¡voy a ganar millones!
 				Quote9: ¿Mi consejo financiero? No dispares tus monedas con esa horrible arma.
 				Quote10: ¿Bitcoin? ¿Por qué alguna vez ganaría una moneda?
+			}
+
+			AlbinoSwarmer: {
+				// Bestiary: Mods.Consolaria.NPCs.AlbinoSwarmer.Bestiary
+				// DisplayName: Albino Swarmer
+			}
+
+			GiantAlbinoSwarmer: {
+				// Bestiary: Mods.Consolaria.NPCs.GiantAlbinoSwarmer.Bestiary
+				// DisplayName: Giant Albino Swarmer
 			}
 		}
 

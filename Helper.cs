@@ -257,6 +257,13 @@ public static class Helper {
 
     public static Texture2D GetTexture(this Projectile projectile) => TextureAssets.Projectile[projectile.type].Value;
 
+    public static void SetTrail(this NPC npc, int trailingMode = 6, int length = -1) {
+        if (length > 0) {
+            NPCID.Sets.TrailCacheLength[npc.type] = length;
+        }
+        NPCID.Sets.TrailingMode[npc.type] = trailingMode;
+    }
+
     public static void SetTrail(this Projectile projectile, int trailingMode = 2, int length = -1) {
         if (length > 0) {
             ProjectileID.Sets.TrailCacheLength[projectile.type] = length;

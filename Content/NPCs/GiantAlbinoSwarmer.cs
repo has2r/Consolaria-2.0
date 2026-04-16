@@ -34,6 +34,12 @@ public sealed class GiantAlbinoSwarmer : ModNPC {
         NPC.rarity = 1;
 
         Banner = ModContent.NPCType<AlbinoSwarmer>();
+
+        float scale = 1.25f;
+        NPC.damage = (int)((float)NPC.damage * scale);
+        NPC.defense = (int)((float)NPC.defense * scale);
+        NPC.lifeMax = (int)((float)NPC.lifeMax * scale);
+        NPC.value = (int)(NPC.value * scale);
     }
 
     public override void HitEffect(NPC.HitInfo hit) {

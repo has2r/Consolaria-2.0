@@ -187,6 +187,11 @@ Mods: {
 				// DisplayName: Angelic Embrace
 				// Description: Soar freely, healing allies on touch
 			}
+
+			AlbinoRuntBuff: {
+				// DisplayName: Albino Runt Buff
+				// Description: Mods.Consolaria.Buffs.AlbinoRuntBuff.Description
+			}
 		}
 
 		Items: {
@@ -1474,6 +1479,11 @@ Mods: {
 				// DisplayName: Albino Swarmer Banner
 				// Tooltip: ""
 			}
+
+			BleachCanister: {
+				// DisplayName: Bleach Canister
+				// Tooltip: ""
+			}
 		}
 
 		NPCs: {
@@ -1773,6 +1783,7 @@ Mods: {
 			// Chocoplotion_Droplet.DisplayName: Chocolate Droplet
 			// SeraphimHeal.DisplayName: Seraphim Heal
 			// SirenSeaCreature.DisplayName: Siren Sea Creature
+			// AlbinoRunt.DisplayName: Albino Runt
 		}
 
 		Tiles: {

@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
+using Newtonsoft.Json.Linq;
+
 using System;
 
 using Terraria;
@@ -9,6 +11,8 @@ using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+
+using ThoriumMod.Empowerments;
 
 namespace Consolaria.Content.NPCs;
 
@@ -44,6 +48,12 @@ public sealed class AlbinoSwarmer : ModNPC {
 
         Banner = Type;
         BannerItem = ModContent.ItemType<Items.Placeable.Banners.AlbinoSwarmerBanner>();
+
+        float scale = 1.25f;
+        NPC.damage = (int)((float)NPC.damage * scale);
+        NPC.defense = (int)((float)NPC.defense * scale);
+        NPC.lifeMax = (int)((float)NPC.lifeMax * scale);
+        NPC.value = (int)(NPC.value * scale);
     }
 
     public override void HitEffect(NPC.HitInfo hit) {

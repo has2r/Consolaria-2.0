@@ -47,6 +47,12 @@ namespace Consolaria.Content.NPCs {
 
             Banner = ModContent.NPCType<AlbinoCharger>();
             //BannerItem = ModContent.ItemType<Items.Placeable.Banners.AlbinoChargerBanner>();
+
+            float scale = 1.25f;
+            NPC.damage = (int)((float)NPC.damage * scale);
+            NPC.defense = (int)((float)NPC.defense * scale);
+            NPC.lifeMax = (int)((float)NPC.lifeMax * scale);
+            NPC.value = (int)(NPC.value * scale);
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {

@@ -189,8 +189,8 @@ Mods: {
 			}
 
 			AlbinoRuntBuff: {
-				// DisplayName: Albino Runt Buff
-				// Description: Mods.Consolaria.Buffs.AlbinoRuntBuff.Description
+				// DisplayName: Pet Albino Runt
+				// Description: Wouldn't survive in the wild
 			}
 		}
 
@@ -1215,7 +1215,7 @@ Mods: {
 			}
 
 			OldSeraphimChestplate: {
-				// DisplayName: Ancient Seraphim Chestplate
+				// DisplayName: Ancient Seraphim Vesture
 				/* Tooltip:
 					'''
 					30% decreased non-radiant damage
@@ -1226,7 +1226,7 @@ Mods: {
 			}
 
 			OldSeraphimHelmet: {
-				// DisplayName: Ancient Seraphim Helmet
+				// DisplayName: Ancient Seraphim Visage
 				/* Tooltip:
 					'''
 					20% decreased non-radiant damage
@@ -1238,7 +1238,7 @@ Mods: {
 			}
 
 			OldSeraphimLegs: {
-				// DisplayName: Ancient Seraphim Legs
+				// DisplayName: Ancient Seraphim Treads
 				/* Tooltip:
 					'''
 					20% decreased non-radiant damage
@@ -1260,7 +1260,7 @@ Mods: {
 			}
 
 			OldSirenHelmet: {
-				// DisplayName: Ancient Siren Helmet
+				// DisplayName: Ancient Siren Headgear
 				/* Tooltip:
 					'''
 					8% increased symphonic playing speed
@@ -1270,7 +1270,7 @@ Mods: {
 			}
 
 			OldSirenLegs: {
-				// DisplayName: Ancient Siren Legs
+				// DisplayName: Ancient Siren Tail
 				/* Tooltip:
 					'''
 					10% increased symphonic damage
@@ -1280,7 +1280,7 @@ Mods: {
 			}
 
 			OldViperChestplate: {
-				// DisplayName: Ancient Viper Chestplate
+				// DisplayName: Ancient Viper Jacket
 				/* Tooltip:
 					'''
 					10% increased throwing damage
@@ -1300,7 +1300,7 @@ Mods: {
 			}
 
 			OldViperLegs: {
-				// DisplayName: Ancient Viper Legs
+				// DisplayName: Ancient Viper Pants
 				/* Tooltip:
 					'''
 					20% increased throwing damage
@@ -1310,7 +1310,7 @@ Mods: {
 			}
 
 			SeraphimChestplate: {
-				// DisplayName: Seraphim Chestplate
+				// DisplayName: Seraphim Vesture
 				/* Tooltip:
 					'''
 					30% decreased non-radiant damage
@@ -1321,7 +1321,7 @@ Mods: {
 			}
 
 			SeraphimHelmet: {
-				// DisplayName: Seraphim Helmet
+				// DisplayName: Seraphim Visage
 				/* Tooltip:
 					'''
 					20% decreased non-radiant damage
@@ -1334,7 +1334,7 @@ Mods: {
 			}
 
 			SeraphimLegs: {
-				// DisplayName: Seraphim Legs
+				// DisplayName: Seraphim Treads
 				/* Tooltip:
 					'''
 					20% decreased non-radiant damage
@@ -1356,7 +1356,7 @@ Mods: {
 			}
 
 			SirenHelmet: {
-				// DisplayName: Siren Helmet
+				// DisplayName: Siren Headgear
 				/* Tooltip:
 					'''
 					8% increased symphonic playing speed
@@ -1367,7 +1367,7 @@ Mods: {
 			}
 
 			SirenLegs: {
-				// DisplayName: Siren Legs
+				// DisplayName: Siren Tail
 				/* Tooltip:
 					'''
 					10% increased symphonic damage
@@ -1377,7 +1377,7 @@ Mods: {
 			}
 
 			ViperChestplate: {
-				// DisplayName: Viper Chestplate
+				// DisplayName: Viper Jacket
 				/* Tooltip:
 					'''
 					10% increased throwing damage
@@ -1402,7 +1402,7 @@ Mods: {
 			}
 
 			ViperLegs: {
-				// DisplayName: Viper Legs
+				// DisplayName: Viper Pants
 				/* Tooltip:
 					'''
 					20% increased throwing damage
@@ -1434,8 +1434,8 @@ Mods: {
 				// DisplayName: Jade Seal
 				/* Tooltip:
 					'''
-					Left click to summon a jade lantern that boosts damage and defense of allies within its aura
-					Right click to summon a golden lantern that hovers in place and heals allies within its aura
+					Left click to summon a jade lantern that boosts damage and defense of allies
+					Right click to summon a golden lantern that hovers in place and heals allies
 					''' */
 			}
 
@@ -1482,7 +1482,7 @@ Mods: {
 
 			BleachCanister: {
 				// DisplayName: Bleach Canister
-				// Tooltip: ""
+				// Tooltip: Summons a pet albino runt
 			}
 		}
 
@@ -1684,12 +1684,12 @@ Mods: {
 			}
 
 			AlbinoSwarmer: {
-				// Bestiary: Mods.Consolaria.NPCs.AlbinoSwarmer.Bestiary
+				// Bestiary: Albino antlions may not be suited to blending into the dunes, but the sight of their pale figure is said to instill primal fear in their prey.
 				// DisplayName: Albino Swarmer
 			}
 
 			GiantAlbinoSwarmer: {
-				// Bestiary: Mods.Consolaria.NPCs.GiantAlbinoSwarmer.Bestiary
+				// Bestiary: Albino antlions may not be suited to blending into the dunes, but the sight of their pale figure is said to instill primal fear in their prey.
 				// DisplayName: Giant Albino Swarmer
 			}
 		}

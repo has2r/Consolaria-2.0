@@ -12,6 +12,7 @@
 - Stunned debuff no longer drops flying enemies to the ground
 - Stunned debuff now affects more enemy types, including fish, vultures, beetles and some casters
 - Rebalanced Roman Candle, sacrificing attack speed for higher damage and making it more difficult to land multi-hits
-- Updated Roman Candle explosion sounds
+- Improved sound effects for Roman Candle, Tizona and Egg Cannon
 - Vampire Miner's Bestiary entry now correctly displays its biome as Caverns
+- Fixed some minor sprite inconsistencies
 - Updated localization

@@ -115,12 +115,10 @@ public sealed class JadeSeal : ThoriumItem_HealerBase {
 
             int radius = 125;
             Player player = Main.player[Projectile.owner];
-            if (Main.myPlayer == Projectile.owner) {
-                IEntitySource source_FromThis = Projectile.GetSource_FromThis();
-                foreach (Player player2 in Main.ActivePlayers) {
-                    if (player2.active && !player2.InOpposingTeam(player) && !player2.dead && Projectile.Distance(player2.Center) < radius) {
-                        player.AddBuff(ModContent.BuffType<JadeBuff>(), 2);
-                    }
+            IEntitySource source_FromThis = Projectile.GetSource_FromThis();
+            foreach (Player player2 in Main.ActivePlayers) {
+                if (player2.active && !player2.InOpposingTeam(player) && !player2.IsAlive() && Projectile.Distance(player2.Center) < radius) {
+                    player.AddBuff(ModContent.BuffType<JadeBuff>(), 2);
                 }
             }
 

@@ -22,7 +22,7 @@ public sealed class Chocoplotion : ThoriumItem_ThrowerBase {
         Item.SetShopValues(Terraria.Enums.ItemRarityColor.Blue1, Item.sellPrice());
         Item.SetShootableValues<Chocoplotion_Throw>(6f);
 
-        Item.SetWeaponValues(10, 5f);
+        Item.SetWeaponValues(12, 5f);
         Item.SetDefaultsToUsable(ItemUseStyleID.Swing, 40, showItemOnUse: false, autoReuse: true, useSound: SoundID.Item19);
     }
 

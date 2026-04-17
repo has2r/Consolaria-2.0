@@ -24,7 +24,7 @@ public sealed class PortableSpecialCorn : ThoriumItem_BardBase {
 
         Item.SetSizeValues(36, 34);
 
-        Item.SetShopValues(Terraria.Enums.ItemRarityColor.White0, Item.sellPrice());
+        Item.SetShopValues(Terraria.Enums.ItemRarityColor.Orange3, Item.sellPrice(gold: 1, silver: 20));
     }
 
     public override void UpdateEquip(Player player) {
@@ -90,10 +90,10 @@ public sealed class PortableSpecialCorn : ThoriumItem_BardBase {
             Player player = Projectile.GetOwnerAsPlayer();
             Item selectedItem = player.HeldItem;
             int animationTime = 30;
-            if (Projectile.IsOwnerLocal() && SingerTurkeyBuff_Handler.JustUsedBardWeapon(player) && player.GetModPlayer<SingerTurkeyBuff_Handler>().BardAttackCount >= 4) {
+            if (Projectile.IsOwnerLocal() && SingerTurkeyBuff_Handler.JustUsedBardWeapon(player) && player.GetModPlayer<SingerTurkeyBuff_Handler>().BardAttackCount >= 3) {
                 Vector2 position = player.Center;
                 player.Center = Projectile.Center;
-                Player_ItemCheck_Shoot(player, player.whoAmI, player.HeldItem, (int)(player.GetWeaponDamage(player.HeldItem) * 0.45f));
+                Player_ItemCheck_Shoot(player, player.whoAmI, player.HeldItem, (int)(player.GetWeaponDamage(player.HeldItem) * 0.5f));
                 player.Center = position;
 
                 ShotValue = animationTime;

@@ -20,15 +20,15 @@ using ThoriumMod.Utilities;
 namespace Consolaria.Content.Crossmod.Thorium.Weapons;
 
 public sealed class UtensilPoker : ThoriumItem_ThrowerBase {
-    private static ushort BASEATTACKSPEED_LEFTCLICK => 16;
+    private static ushort BASEATTACKSPEED_LEFTCLICK => 20;
 
     public override void SetThrowerDefaults() {
         Item.SetSizeValues(44, 36);
 
-        Item.SetShopValues(Terraria.Enums.ItemRarityColor.White0, Item.sellPrice());
+        Item.SetShopValues(Terraria.Enums.ItemRarityColor.Orange3, Item.sellPrice(gold: 1, silver: 15));
         Item.SetShootableValues<UtensilPoker_Throw>(15f);
 
-        Item.SetWeaponValues(32, 5f);
+        Item.SetWeaponValues(40, 5f, 6);
         Item.SetDefaultsToUsable(ItemUseStyleID.Swing, BASEATTACKSPEED_LEFTCLICK, showItemOnUse: false, autoReuse: true);
     }
 
@@ -411,9 +411,11 @@ public sealed class UtensilPoker : ThoriumItem_ThrowerBase {
 
             SpriteEffects effects = Projectile.direction.ToSpriteEffects();
 
-            for (int i = 1; i < Projectile.oldPos.Length; i++) {
-                Color color = Projectile.GetAlpha(lightColor) * ((float)(Projectile.oldPos.Length - i) / (float)Projectile.oldPos.Length);
-                Main.EntitySpriteDraw(value, Projectile.oldPos[i] + Projectile.Size / 2f - Main.screenPosition, null, color * 0.5f, Projectile.rotation, vector, Projectile.scale, effects);
+            if (_isStickingToTarget == 0f) {
+                for (int i = 1; i < Projectile.oldPos.Length; i++) {
+                    Color color = Projectile.GetAlpha(lightColor) * ((float)(Projectile.oldPos.Length - i) / (float)Projectile.oldPos.Length);
+                    Main.EntitySpriteDraw(value, Projectile.oldPos[i] + Projectile.Size / 2f - Main.screenPosition, null, color * 0.5f, Projectile.rotation, vector, Projectile.scale, effects);
+                }
             }
 
             Main.EntitySpriteDraw(value, Projectile.Center - Main.screenPosition, null, Projectile.GetAlpha(lightColor), Projectile.rotation, vector, Projectile.scale, effects);

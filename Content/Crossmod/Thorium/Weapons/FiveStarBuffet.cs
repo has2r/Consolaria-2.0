@@ -23,7 +23,7 @@ public sealed class FiveStarBuffet : ThoriumItem_HealerBase {
     public override void SetHealerDefaults() {
         Item.SetSizeValues(54, 54);
 
-        Item.SetShopValues(Terraria.Enums.ItemRarityColor.White0, Item.sellPrice());
+        Item.SetShopValues(Terraria.Enums.ItemRarityColor.Orange3, Item.sellPrice(gold: 1, silver: 25));
         Item.SetShootableValues<FiveStarBuffet_Use>();
 
         Item.SetDefaultsToUsable(ItemUseStyleID.Shoot, 50, showItemOnUse: false, useSound: SoundID.Item35);

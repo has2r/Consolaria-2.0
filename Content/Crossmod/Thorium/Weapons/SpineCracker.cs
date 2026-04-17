@@ -15,10 +15,12 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Crossmod.Thorium.Weapons;
 
 public sealed class SpineCracker : ThoriumItem_ThrowerBase {
+    public override void SetStaticDefaults() => Item.ResearchUnlockCount = 1;
+
     public override void SetThrowerDefaults() {
         Item.SetSizeValues(40, 36);
 
-        Item.SetShopValues(Terraria.Enums.ItemRarityColor.Lime7, Item.sellPrice());
+        Item.SetShopValues(Terraria.Enums.ItemRarityColor.Lime7, Item.sellPrice(5));
         Item.SetShootableValues<SpineCracker_Throw>(14f);
 
         Item.SetWeaponValues(98, 6f, 10);

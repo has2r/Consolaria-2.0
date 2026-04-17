@@ -20,16 +20,18 @@ public sealed class Omunikodo : ThoriumItem_BardBase {
     public override BardInstrumentType InstrumentType => BardInstrumentType.Electronic;
 
     public override void SetStaticDefaults() {
+        Item.ResearchUnlockCount = 1;
+
         Empowerments.AddInfo<EmpowermentProlongation>(3);
     }
 
     public override void SetBardDefaults() {
         Item.SetSizeValues(62, 32);
 
-        Item.SetShopValues(Terraria.Enums.ItemRarityColor.White0, Item.sellPrice());
+        Item.SetShopValues(Terraria.Enums.ItemRarityColor.Lime7, Item.sellPrice(5));
         Item.SetShootableValues<Omunikodo_Shot>(12f);
 
-        Item.SetWeaponValues(60, 5f);
+        Item.SetWeaponValues(85, 4f, 6);
         Item.SetDefaultsToUsable(ItemUseStyleID.Shoot, 18, autoReuse: true, useSound: null);
 
         Item.holdStyle = ItemHoldStyleID.HoldHeavy;

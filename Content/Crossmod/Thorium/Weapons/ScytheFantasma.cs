@@ -10,10 +10,12 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.Crossmod.Thorium.Weapons;
 
 public sealed class ScytheFantasma : ThoriumItem_ScytheBase {
+    public override void SetScytheStaticDefaults() => Item.ResearchUnlockCount = 1;
+
     public override void SetScytheDefaults() {
         Item.SetSizeValues(64, 60);
 
-        Item.SetShopValues(Terraria.Enums.ItemRarityColor.Lime7, Item.sellPrice());
+        Item.SetShopValues(Terraria.Enums.ItemRarityColor.Lime7, Item.sellPrice(5));
         Item.SetShootableValues<ScytheFantasma_Use>();
 
         Item.SetWeaponValues(64, 7f);

@@ -23,13 +23,15 @@ namespace Consolaria.Content.Crossmod.Thorium.Weapons;
 
 public sealed class JadeSeal : ThoriumItem_HealerBase {
     public override void SetStaticDefaults() {
+        Item.ResearchUnlockCount = 1;
+
         Item.staff[Type] = true;
     }
 
     public override void SetHealerDefaults() {
         Item.SetSizeValues(54, 54);
 
-        Item.SetShopValues(Terraria.Enums.ItemRarityColor.White0, Item.sellPrice());
+        Item.SetShopValues(Terraria.Enums.ItemRarityColor.Lime7, Item.sellPrice(5));
         Item.SetShootableValues<JadeSeal_Lamp>();
 
         Item.SetDefaultsToUsable(ItemUseStyleID.Shoot, 50, useSound: SoundID.Item82 with { Pitch = 0.5f });
@@ -41,7 +43,7 @@ public sealed class JadeSeal : ThoriumItem_HealerBase {
 
     public override void SetHealerValues(ref bool IsDarkHealer, ref HealType healType, ref int healAmount, ref bool healDisplay, ref bool isAHealerTool) {
         healType = HealType.AllyAndPlayer;
-        healAmount = 1;
+        healAmount = 2;
         healDisplay = true;
         isAHealerTool = true;
     }
@@ -51,9 +53,9 @@ public sealed class JadeSeal : ThoriumItem_HealerBase {
     }
 
     public override void ModifyManaCost(Player player, ref float reduce, ref float mult) {
-        if (player.altFunctionUse == 2) {
-            mult *= 0f;
-        }
+        //if (player.altFunctionUse == 2) {
+        //    mult *= 0f;
+        //}
     }
 
     public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
@@ -213,7 +215,7 @@ public sealed class JadeSeal : ThoriumItem_HealerBase {
             float healTime = 30f;
             if (++HealTime > healTime) {
                 int radius = 125;
-                Projectile.ThoriumHeal(1, radius, onHealEffects: true, bonusHealing: true, delegate {
+                Projectile.ThoriumHeal(2, radius, onHealEffects: true, bonusHealing: true, delegate {
                     SoundEngine.PlaySound(in SoundID.Item85, Projectile.position);
                 }, null, -1, ignoreHealer: false);
                 HealTime = 0f;

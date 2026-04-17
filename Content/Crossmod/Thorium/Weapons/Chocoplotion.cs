@@ -22,8 +22,8 @@ public sealed class Chocoplotion : ThoriumItem_ThrowerBase {
         Item.SetShopValues(Terraria.Enums.ItemRarityColor.Blue1, Item.sellPrice());
         Item.SetShootableValues<Chocoplotion_Throw>(6f);
 
-        Item.SetWeaponValues(20, 5f);
-        Item.SetDefaultsToUsable(ItemUseStyleID.Swing, 36, showItemOnUse: false, autoReuse: true, useSound: SoundID.Item19);
+        Item.SetWeaponValues(10, 5f);
+        Item.SetDefaultsToUsable(ItemUseStyleID.Swing, 40, showItemOnUse: false, autoReuse: true, useSound: SoundID.Item19);
     }
 
     public override void SetThrowerValues(ref bool isThrowerNon, ref bool IsThrowerNeedle, ref bool IsThrowerTomahawk, ref bool IsThrowerCaltrop) {
@@ -229,7 +229,7 @@ public sealed class Chocoplotion : ThoriumItem_ThrowerBase {
             Projectile.SetSizeValues(24);
 
             Projectile.friendly = true;
-            Projectile.penetrate = 3;
+            Projectile.penetrate = 1;
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = 10;
 

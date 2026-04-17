@@ -255,6 +255,8 @@ public sealed class Chocoplotion : ThoriumItem_ThrowerBase {
         }
 
         public override bool OnTileCollide(Vector2 oldVelocity) {
+            SoundEngine.PlaySound(new SoundStyle($"Terraria/Sounds/Drip_", 0, 2) { Pitch = -1f, Volume = 0.5f, PitchVariance = 0.6f }, Projectile.Center);
+
             Projectile.Kill();
 
             return false;

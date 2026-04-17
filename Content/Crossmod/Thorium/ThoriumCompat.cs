@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Runtime.CompilerServices;
 
 using Terraria;
@@ -325,23 +326,29 @@ public sealed class ThoriumPlayer_Consolaria : ModPlayer {
         }
         if (IsSeraphimSetBonusActive) {
             if (!IsSeraphimSetBonusActive2) {
-                SeraphimFlightTime = SERAPHIMEFFECTTIME;
-
-                Player.AddBuff<SeraphimBuff>(SERAPHIMEFFECTTIME);
-
-                IsSeraphimSetBonusActive2 = true;
-
-                SoundEngine.PlaySound(new SoundStyle("ThoriumMod/Sounds/Item/Pulse"), Player.Center);
-
-                if (Player.IsLocal()) {
-                    Projectile.NewProjectileDirect(Player.GetSource_FromThis(),
-                                                   Player.GetPlayerCorePoint(),
-                                                   Vector2.Zero,
-                                                   ModContent.ProjectileType<SeraphimHeal>(),
-                                                   0, 0,
-                                                   Player.whoAmI);
-                }
+                TriggerSeraphimEffect();
             }
+        }
+    }
+
+    internal void TriggerSeraphimEffect_Inner() {
+        SeraphimFlightTime = SERAPHIMEFFECTTIME;
+
+        Player.AddBuff<SeraphimBuff>(SERAPHIMEFFECTTIME);
+
+        IsSeraphimSetBonusActive2 = true;
+
+        SoundEngine.PlaySound(new SoundStyle("ThoriumMod/Sounds/Item/Pulse"), Player.Center);
+    }
+
+    private void TriggerSeraphimEffect() {
+        if (Player.IsLocal()) {
+            Projectile.NewProjectileDirect(Player.GetSource_FromThis(),
+                                           Player.GetPlayerCorePoint(),
+                                           Vector2.Zero,
+                                           ModContent.ProjectileType<SeraphimHeal>(),
+                                           0, 0,
+                                           Player.whoAmI);
         }
     }
 }

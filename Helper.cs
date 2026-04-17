@@ -8,6 +8,7 @@ using System.Runtime.CompilerServices;
 
 using Terraria;
 using Terraria.Audio;
+using Terraria.Chat;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.ID;
@@ -20,6 +21,15 @@ using static Consolaria.Helper;
 namespace Consolaria;
 
 public static class Helper {
+    public static void NewMessage(object text, Color? color = null) {
+        if (Main.netMode == NetmodeID.SinglePlayer) {
+            Main.NewText(text, color);
+        }
+        else {
+            ChatHelper.BroadcastChatMessage(NetworkText.FromKey(text.ToString()), color ?? Color.White);
+        }
+    }
+
     public static T TakeRandom<T>(this List<T> list) {
         int index = Main.rand.Next(list.Count);
         T item = list[index];

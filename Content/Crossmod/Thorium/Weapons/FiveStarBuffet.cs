@@ -87,7 +87,7 @@ public sealed class FiveStarBuffet : ThoriumItem_HealerBase {
                     if (player.whoAmI == Projectile.owner) {
                         int playerWhoAmIToHeal = player.whoAmI;
                         foreach (Player target in Main.ActivePlayers) {
-                            if (ThoriumUtils.CanBeHealed(Projectile, player, target) && target.statLife < player.statLife) {
+                            if (target.IsAlive() && ThoriumUtils.CanBeHealed(Projectile, player, target) && !target.InOpposingTeam(player) && target.statLife < player.statLife) {
                                 playerWhoAmIToHeal = target.whoAmI;
                             }
                         }
@@ -184,7 +184,7 @@ public sealed class FiveStarBuffet : ThoriumItem_HealerBase {
                 if (Projectile.ai[1] >= 0f) {
                     Player playerToHeal = Main.player[(int)Projectile.ai[1]];
                     target2 = playerToHeal;
-                    if (!playerToHeal.active || playerToHeal.dead) {
+                    if (!playerToHeal.IsAlive()) {
                         disappear(playerToHeal);
                         return;
                     }

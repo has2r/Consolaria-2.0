@@ -1446,7 +1446,7 @@ Mods: {
 
 			PortableSpecialCorn: {
 				DisplayName: Portable Special Corn
-				Tooltip: Replicates every 3th symphonic attack with 50% of its damage
+				Tooltip: Replicates every 4th symphonic attack with 50% of its damage
 			}
 
 			UtensilPoker: {

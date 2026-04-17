@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Consolaria.Content.Crossmod.Thorium.Buffs;
+
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 using Newtonsoft.Json.Linq;
@@ -67,6 +69,8 @@ public sealed class SeraphimHeal : ThoriumProjectile_HealerBase {
                     handler.HealedBySeraphim_HealerWhoAmI = -1;
                 }
             }
+
+            return;
         }
 
         if (Init) {
@@ -87,6 +91,8 @@ public sealed class SeraphimHeal : ThoriumProjectile_HealerBase {
                                            Main.rand.NextFloat(0.75f, 1.5f),
                                            Main.rand.NextFloat(0.75f, 1f));
             }
+
+            Projectile.GetOwnerAsPlayer().GetModPlayer<ThoriumPlayer_Consolaria>().TriggerSeraphimEffect_Inner();
         }
  
         Projectile.Center = owner.GetPlayerCorePoint();
@@ -100,7 +106,7 @@ public sealed class SeraphimHeal : ThoriumProjectile_HealerBase {
 
                 target.GetModPlayer<ThoriumPlayer_Consolaria>().HealedBySeraphim_HealerWhoAmI = owner.whoAmI;
             }, (player) => {
-                return player.GetModPlayer<ThoriumPlayer_Consolaria>().HealedBySeraphim_HealerWhoAmI != owner.whoAmI;
+                return player.whoAmI != Projectile.owner && player.GetModPlayer<ThoriumPlayer_Consolaria>().HealedBySeraphim_HealerWhoAmI != owner.whoAmI;
             }, -1, ignoreHealer: false);
 
             HealTime = 0f;

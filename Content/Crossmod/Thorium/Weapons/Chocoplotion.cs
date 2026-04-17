@@ -153,7 +153,7 @@ public sealed class Chocoplotion : ThoriumItem_ThrowerBase {
             for (int i = 0; i < 20; i++) {
                 int dustIndex = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<ChocoplotionDust>(), 0f, 0f, 0, default(Color), 1.15f + Main.rand.NextFloat(-0.1f, 0.1f));
                 Main.dust[dustIndex].position = Projectile.Center + Main.rand.NextVector2Circular(30, 30) * 0.75f;
-                Main.dust[dustIndex].velocity *= 1.2f;
+                Main.dust[dustIndex].velocity *= 1f;
                 Main.dust[dustIndex].noGravity = true;
             }
 

@@ -30,12 +30,12 @@ public sealed class FiveStarBuffet : ThoriumItem_HealerBase {
 
         Item.channel = true;
 
-        Item.mana = 20;
+        Item.mana = 25;
     }
 
     public override void SetHealerValues(ref bool IsDarkHealer, ref HealType healType, ref int healAmount, ref bool healDisplay, ref bool isAHealerTool) {
         healType = HealType.AllyAndPlayer;
-        healAmount = 5;
+        healAmount = 20;
         healDisplay = true;
         isAHealerTool = true;
     }
@@ -196,7 +196,7 @@ public sealed class FiveStarBuffet : ThoriumItem_HealerBase {
                         if (Projectile.ai[2] != 10f) {
                             foodDusts(target2);
 
-                            Projectile.ThoriumHeal(5, 60f, onHealEffects: true, bonusHealing: true, delegate {
+                            Projectile.ThoriumHeal(20, 60f, onHealEffects: true, bonusHealing: true, delegate {
                                 SoundEngine.PlaySound(in SoundID.Item85, Projectile.position);
                             }, null, -1, ignoreHealer: false);
                         }
@@ -218,7 +218,7 @@ public sealed class FiveStarBuffet : ThoriumItem_HealerBase {
                         if (Projectile.ai[2] != 10f) {
                             foodDusts(target2);
 
-                            Projectile.ThoriumHeal(5, 60f, onHealEffects: true, bonusHealing: true, delegate {
+                            Projectile.ThoriumHeal(20, 60f, onHealEffects: true, bonusHealing: true, delegate {
                                 SoundEngine.PlaySound(in SoundID.Item85, Projectile.position);
                             }, null, -1, ignoreHealer: false);
                         }

@@ -28,7 +28,7 @@ public sealed class UtensilPoker : ThoriumItem_ThrowerBase {
         Item.SetShopValues(Terraria.Enums.ItemRarityColor.Orange3, Item.sellPrice(gold: 1, silver: 15));
         Item.SetShootableValues<UtensilPoker_Throw>(15f);
 
-        Item.SetWeaponValues(40, 5f, 6);
+        Item.SetWeaponValues(37, 5f, 6);
         Item.SetDefaultsToUsable(ItemUseStyleID.Swing, BASEATTACKSPEED_LEFTCLICK, showItemOnUse: false, autoReuse: true);
     }
 

@@ -2,6 +2,8 @@ Mods: {
 	Consolaria: {
 		// DownloadRoA: Check out Rise of Ages, from the team behind Consolaria!
 		// DownloadRoA2: (hide)
+		// DownloadThorium: Consolaria x Thorium is now available!
+		// DownloadThorium2: (hide)
 		LepusDropCondition: Será dropado se Lepus não estiver presente
 		ValentineRingTooltip1: Dê a alguém especial!
 		ValentineRingTooltip2:

@@ -16,7 +16,7 @@ using Terraria.UI.Chat;
 
 namespace Consolaria.Common;
 
-sealed class DownloadRoAButton : ILoadable {
+sealed class DownloadThoriumButton : ILoadable {
     private static bool _shouldBeShown = true;
     private static string _url;
     private static bool _isNew = true;
@@ -34,11 +34,11 @@ sealed class DownloadRoAButton : ILoadable {
     }
 
     private void LoadFile() {
-        if (ModLoader.HasMod("RoA")) {
+        if (ModLoader.HasMod("ThoriumMod")) {
             return;
         }
 
-        string dir = Path.Join(Main.SavePath, "Consolaria");
+        string dir = Path.Join(Main.SavePath, "Consolaria_Thorium");
         if (!File.Exists(dir)) {
             File.WriteAllText(dir, null);
         }
@@ -54,7 +54,7 @@ sealed class DownloadRoAButton : ILoadable {
     private void On_Main_HandleNews(On_Main.orig_HandleNews orig, Microsoft.Xna.Framework.Color menuColor) {
         orig(menuColor);
 
-        if (ModLoader.HasMod("RoA")) {
+        if (ModLoader.HasMod("ThoriumMod")) {
             return;
         }
 
@@ -78,8 +78,8 @@ sealed class DownloadRoAButton : ILoadable {
             _requested = true;
         }
 
-        string latestNewsText = Language.GetTextValue("Mods.Consolaria.DownloadRoA");
-        string latestNewsText2 = Language.GetTextValue("Mods.Consolaria.DownloadRoA2");
+        string latestNewsText = Language.GetTextValue("Mods.Consolaria.DownloadThorium");
+        string latestNewsText2 = Language.GetTextValue("Mods.Consolaria.DownloadThorium2");
         bool shouldDrawHideButton = false;
         var newsScale = 1.2f;
         var newsScales = new Vector2(newsScale);
@@ -93,7 +93,7 @@ sealed class DownloadRoAButton : ILoadable {
             shouldDrawHideButton = true;
         }
         if (_isNew) {
-            menuColor = GetLerpColor([new Color(77, 210, 89), new Color(138, 241, 95)]);
+            menuColor = GetLerpColor([new Color(41, 223, 255), new Color(3, 188, 188)]);
         }
         newsPosition = new Vector2(Main.screenWidth - 10f, Main.screenHeight - 69f);
         newsSize = ChatManager.GetStringSize(FontAssets.MouseText.Value, latestNewsText, newsScales);

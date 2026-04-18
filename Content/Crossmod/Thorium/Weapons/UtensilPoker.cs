@@ -14,7 +14,6 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-using ThoriumMod.Items.BardItems;
 using ThoriumMod.Utilities;
 
 namespace Consolaria.Content.Crossmod.Thorium.Weapons;

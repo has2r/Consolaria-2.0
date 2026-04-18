@@ -1,16 +1,11 @@
-using Consolaria.Common;
-
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-
-using ReLogic.Content;
 
 using System;
 using System.Collections.Generic;
 using System.IO;
 
 using Terraria;
-using Terraria.Chat;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.Localization;

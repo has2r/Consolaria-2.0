@@ -1,5 +1,4 @@
-﻿using Consolaria.Content.NPCs.Bosses.Lepus;
-using Consolaria.Content.NPCs.Bosses.Turkor;
+﻿using Consolaria.Content.NPCs.Bosses.Turkor;
 
 using Terraria.ModLoader;
 

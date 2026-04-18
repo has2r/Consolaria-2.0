@@ -15,7 +15,6 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 
-using Terraria.Achievements;
 using Terraria.Localization;
 using Terraria.ModLoader;
 

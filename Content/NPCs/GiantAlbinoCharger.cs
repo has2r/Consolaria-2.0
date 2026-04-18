@@ -6,7 +6,6 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
-using Terraria.ModLoader.Utilities;
 
 namespace Consolaria.Content.NPCs {
     public class GiantAlbinoCharger : ModNPC {

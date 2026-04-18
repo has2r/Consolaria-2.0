@@ -1,7 +1,7 @@
-using System;
-
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+
+using System;
 
 using Terraria;
 using Terraria.ID;
@@ -16,7 +16,7 @@ sealed class EasterBunny : ModProjectile {
         Main.projPet[Type] = true;
 
         ProjectileID.Sets.MinionTargettingFeature[Type] = true;
-        ProjectileID.Sets.MinionSacrificable[Type] = true; 
+        ProjectileID.Sets.MinionSacrificable[Type] = true;
         ProjectileID.Sets.CultistIsResistantTo[Type] = true;
     }
 
@@ -102,7 +102,7 @@ sealed class EasterBunny : ModProjectile {
 
         PlayAnimation();
     }
-    
+
     private bool CheckActive() {
         Player player = Main.player[Projectile.owner];
         if (!player.active) {
@@ -238,7 +238,7 @@ sealed class EasterBunny : ModProjectile {
             if (num20 > 2000f)
                 Projectile.position = player.Center - new Vector2(Projectile.width, Projectile.height) / 2f;
 
-            if (num20 < (float)num19 && player.velocity.Y == 0f && Projectile.position.Y + (float)Projectile.height <= player.position.Y + (float)player.height 
+            if (num20 < (float)num19 && player.velocity.Y == 0f && Projectile.position.Y + (float)Projectile.height <= player.position.Y + (float)player.height
                 && !Collision.SolidCollision(Projectile.position, Projectile.width, Projectile.height)) {
                 Projectile.ai[0] = 0f;
                 Projectile.netUpdate = true;

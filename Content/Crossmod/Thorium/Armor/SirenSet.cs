@@ -13,7 +13,6 @@ using Terraria.ModLoader;
 
 using ThoriumMod;
 using ThoriumMod.Empowerments;
-using ThoriumMod.Items.BardItems;
 using ThoriumMod.Utilities;
 
 namespace Consolaria.Content.Crossmod.Thorium.Armor;

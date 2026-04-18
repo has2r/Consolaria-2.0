@@ -4,7 +4,6 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
-using ThoriumMod.Items.ThrownItems;
 using ThoriumMod.Utilities;
 
 namespace Consolaria.Content.Crossmod.Thorium.Armor;

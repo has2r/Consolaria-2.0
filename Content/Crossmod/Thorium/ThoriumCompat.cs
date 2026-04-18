@@ -7,8 +7,6 @@ using Microsoft.Xna.Framework;
 
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Runtime.CompilerServices;
 
 using Terraria;
 using Terraria.Audio;
@@ -19,9 +17,7 @@ using Terraria.ModLoader;
 
 using ThoriumMod;
 using ThoriumMod.Buffs.Healer;
-using ThoriumMod.Empowerments;
 using ThoriumMod.Items;
-using ThoriumMod.Items.EarlyMagic;
 using ThoriumMod.Items.HealerItems;
 using ThoriumMod.NPCs;
 using ThoriumMod.Projectiles;

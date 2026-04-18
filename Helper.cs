@@ -4,7 +4,6 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using System.Runtime.CompilerServices;
 
 using Terraria;
 using Terraria.Audio;
@@ -299,7 +298,7 @@ public static class Helper {
     public static void SetUsableValues(this Item item, int vanillaUseStyleID, int timeToUse, bool showItemOnUse = true, bool useTurn = false, bool autoReuse = false, SoundStyle? useSound = null)
         => item.SetDefaultsToUsable(vanillaUseStyleID, timeToUse, timeToUse, showItemOnUse, useTurn, autoReuse, useSound);
 
-    public static void SetDefaultsToUsable(this Item item, int vanillaUseStyleID, int timeToUse, bool showItemOnUse = true, bool useTurn = false, bool autoReuse = false, SoundStyle? useSound = null) 
+    public static void SetDefaultsToUsable(this Item item, int vanillaUseStyleID, int timeToUse, bool showItemOnUse = true, bool useTurn = false, bool autoReuse = false, SoundStyle? useSound = null)
         => item.SetUsableValues(vanillaUseStyleID, timeToUse, showItemOnUse, useTurn, autoReuse, useSound);
 
     public static bool IsAWeapon(this Projectile projectile) => projectile.damage > 0;
@@ -649,8 +648,8 @@ public static class Helper {
             }
         }
     }
-	
-	public static string ArmorSetBonusKey => Language.GetTextValue(Main.ReversedUpDownArmorSetBonuses ? "Key.UP" : "Key.DOWN");
+
+    public static string ArmorSetBonusKey => Language.GetTextValue(Main.ReversedUpDownArmorSetBonuses ? "Key.UP" : "Key.DOWN");
 }
 
 public static class SpriteBatchSnapshotCache {

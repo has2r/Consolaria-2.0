@@ -1,11 +1,6 @@
-﻿using Consolaria.Content.Crossmod.Thorium.Buffs;
-
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-using Newtonsoft.Json.Linq;
-
-using System;
 using System.Collections.Generic;
 
 using Terraria;
@@ -94,7 +89,7 @@ public sealed class SeraphimHeal : ThoriumProjectile_HealerBase {
 
             Projectile.GetOwnerAsPlayer().GetModPlayer<ThoriumPlayer_Consolaria>().TriggerSeraphimEffect_Inner();
         }
- 
+
         Projectile.Center = owner.GetPlayerCorePoint();
 
         float healTime = 15f;

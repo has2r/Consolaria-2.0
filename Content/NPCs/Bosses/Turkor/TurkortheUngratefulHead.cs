@@ -2,6 +2,7 @@
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+
 using System;
 
 using Terraria;
@@ -92,15 +93,13 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
                     //if (NPC.velocity.X * NPC.direction > 0) { turntimer = 0; }
                     if (!projSpam) NPC.spriteDirection = NPC.direction;
                     if (charge || !attackingPhase) {
-                        if (turntimer <= 0 || charge)
-                        {
+                        if (turntimer <= 0 || charge) {
                             NPC.frameCounter += 0.08f;
                             NPC.frameCounter %= 2;
                             int frame = (int)NPC.frameCounter;
                             NPC.frame.Y = frame * frameHeight;
                         }
-                        else
-                        {
+                        else {
                             turntimer--;
                             NPC.spriteDirection = 1;
                             NPC.frame = GetFrame(4);
@@ -119,23 +118,20 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
         float[] rotor = new float[segmentCount];
         int oldDir;
         Vector2 RandP;
-        public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color lightColor)
-        {
+        public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color lightColor) {
             Texture2D texture = (Texture2D)ModContent.Request<Texture2D>("Consolaria/Content/NPCs/Bosses/Turkor/TurkorNeck");
-            
-            for (int k = 1; k < segmentCount-1; k++)
-            {
+
+            for (int k = 1; k < segmentCount - 1; k++) {
                 spriteBatch.Draw(texture, body[k] - Main.screenPosition,
-                       null, Lighting.GetColor((int)body[k].X / 16, (int)(body[k].Y / 16f))*((255-NPC.alpha)/255f), rotor[k] - 1.57f,
-                       texture.Size()/2, 1f, SpriteEffects.None, 0f);
+                       null, Lighting.GetColor((int)body[k].X / 16, (int)(body[k].Y / 16f)) * ((255 - NPC.alpha) / 255f), rotor[k] - 1.57f,
+                       texture.Size() / 2, 1f, SpriteEffects.None, 0f);
             }
             return true;
         }
 
         public override void AI() {
             NPC.direction = Main.player[NPC.target].Center.X < NPC.Center.X ? -1 : 1;
-            if (NPC.direction != oldDir && turntimer<=0)
-            {
+            if (NPC.direction != oldDir && turntimer <= 0) {
                 turntimer = 10;
             }
             if (Main.netMode != NetmodeID.MultiplayerClient) {
@@ -150,33 +146,28 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
                     Main.npc[neck].ai[1] = NPC.whoAmI;
                     Main.npc[neck].position = NPC.position;
                     NetMessage.SendData(MessageID.SyncNPC, number: neck);*/
-                    for (int k = 0; k < segmentCount; k++)
-                    {
+                    for (int k = 0; k < segmentCount; k++) {
                         body[k] = NPC.Center;
                     }
                     spawn = true;
                     NPC.netUpdate = true;
                 }
-                else
-                {
+                else {
                     //F
-                    for (int k = segmentCount - 2; k > 0; k--)
-                    {
+                    for (int k = segmentCount - 2; k > 0; k--) {
                         Vector2 To = Vector2.Normalize(body[k + 1] - body[k - 1] - new Vector2(0, (float)Math.Sin((float)(Math.PI * 2 * k / (segmentCount - 1))) * 4f));
                         float dis = 7.3f;
-                        body[k] += (body[k + 1] - To * dis - body[k]) / ((k> (int)(segmentCount/1.5f)) ?1.1f:1.35f);
+                        body[k] += (body[k + 1] - To * dis - body[k]) / ((k > (int)(segmentCount / 1.5f)) ? 1.1f : 1.35f);
 
                     }
                     //B
-                    for (int k = 1; k < segmentCount - 1; k++)
-                    {
+                    for (int k = 1; k < segmentCount - 1; k++) {
                         Vector2 To = Vector2.Normalize(body[k + 1] - body[k - 1] + new Vector2(0, (float)Math.Sin((float)(Math.PI * 2 * k / (segmentCount - 1))) * 4f));
                         //rotor[k] = To.ToRotation();
                         float dis = 7.3f;
                         body[k] += (body[k - 1] + To * dis - body[k]) / 1.35f;
                     }
-                    for(int k = 1; k <segmentCount-1; k++)
-                    {
+                    for (int k = 1; k < segmentCount - 1; k++) {
                         rotor[k] = (body[k + 1] - body[k]).ToRotation();
                     }
                     body[0] = NPC.Center + new Vector2(0, 30);
@@ -279,7 +270,7 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
                 if (timer % 80 == 0 && rotatepoint >= 1.5f) {
                     if (Main.netMode != NetmodeID.MultiplayerClient)
                         for (int i = 0; i < 3; i++) {
-                            int proj = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, Main.rand.NextFloat(-5, 5) + (Main.player[NPC.target].Center-NPC.Center).X/50, -12 + Main.rand.NextFloat(-3, 0), ModContent.ProjectileType<TurkorFeather>(), 
+                            int proj = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, Main.rand.NextFloat(-5, 5) + (Main.player[NPC.target].Center - NPC.Center).X / 50, -12 + Main.rand.NextFloat(-3, 0), ModContent.ProjectileType<TurkorFeather>(),
                                 26, 1, Main.myPlayer);
                             NetMessage.SendData(MessageID.SyncProjectile, -1, -1, null, proj);
                         }
@@ -301,23 +292,19 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 
             if (!charge) {
                 Vector2 pPos = Main.player[NPC.target].Center + RandP;
-                Vector2 getTo = Main.npc[(int)NPC.ai[1]].Center + Vector2.Normalize(pPos - NPC.Center)*Math.Min(800, pPos.Distance(NPC.Center));
+                Vector2 getTo = Main.npc[(int)NPC.ai[1]].Center + Vector2.Normalize(pPos - NPC.Center) * Math.Min(800, pPos.Distance(NPC.Center));
                 if (getTo.Distance(NPC.Center) <= 100)
                     RandP = new Vector2(Main.rand.NextFloat(-200, 201), Main.rand.NextFloat(-200, -100));
-                if (getTo.X < NPC.Center.X)
-                {
+                if (getTo.X < NPC.Center.X) {
                     if (NPC.velocity.X > -6) NPC.velocity.X -= 0.08f;
                 }
-                else if (getTo.X > NPC.Center.X)
-                {
+                else if (getTo.X > NPC.Center.X) {
                     if (NPC.velocity.X < 6) NPC.velocity.X += 0.08f;
                 }
-                if (getTo.Y < NPC.Center.Y)
-                {
+                if (getTo.Y < NPC.Center.Y) {
                     if (NPC.velocity.Y > -6) NPC.velocity.Y -= 0.08f;
                 }
-                else if (getTo.Y > NPC.Center.Y)
-                {
+                else if (getTo.Y > NPC.Center.Y) {
                     if (NPC.velocity.Y < 6) NPC.velocity.Y += 0.08f;
                 }
                 /*if (!chase) {
@@ -372,10 +359,8 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
                     Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), ModContent.Find<ModGore>("Consolaria/TurkorFeatherGore").Type);
                     Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), ModContent.Find<ModGore>("Consolaria/TurkorFeatherGore").Type);
                 }
-                for(int k = 1; k < segmentCount - 1; k++)
-                {
-                    if (Main.netMode != NetmodeID.Server)
-                    {
+                for (int k = 1; k < segmentCount - 1; k++) {
+                    if (Main.netMode != NetmodeID.Server) {
                         Gore.NewGore(NPC.GetSource_Death(), body[k], new Vector2(Main.rand.Next(-1, 1), Main.rand.Next(-1, 1)), ModContent.Find<ModGore>("Consolaria/TurkorNeck").Type);
                     }
                 }

@@ -105,7 +105,7 @@ public sealed class SpineCracker : ThoriumItem_ThrowerBase {
         }
 
         public override void OnKill(int timeLeft) {
-            
+
         }
     }
 

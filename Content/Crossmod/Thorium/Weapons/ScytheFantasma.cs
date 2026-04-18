@@ -72,7 +72,7 @@ public sealed class ScytheFantasma : ThoriumItem_ScytheBase {
                 return;
             }
 
-            Projectile.NewProjectileDirect(Projectile.GetSource_FromThis(), 
+            Projectile.NewProjectileDirect(Projectile.GetSource_FromThis(),
                                            target.Center,
                                            Vector2.One.RotatedByRandom(MathHelper.TwoPi) * 10f,
                                            ModContent.ProjectileType<ScytheFantasma_Spirit>(),

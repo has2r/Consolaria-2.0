@@ -93,7 +93,7 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
         }
 
         public override void FindFrame(int frameHeight) {
-            if (!HasHead()/*NPC.AnyNPCs(turkorHead)*/){//NPC.AnyNPCs(ModContent.NPCType<TurkortheUngratefulHead>())) {
+            if (!HasHead()/*NPC.AnyNPCs(turkorHead)*/) {//NPC.AnyNPCs(ModContent.NPCType<TurkortheUngratefulHead>())) {
                 NPC.frameCounter += 0.15f;
                 NPC.frameCounter %= Main.npcFrameCount[NPC.type];
                 int frame = (int)NPC.frameCounter;
@@ -117,7 +117,7 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
                 for (int i = 0; i < 3; i++) {
                     Color color2 = drawColor;
                     color2 = NPC.GetAlpha(color2) * colo;
-                    spriteBatch.Draw(texture, NPC.Center + new Vector2((float)Math.Cos(h + Math.PI * 2 * i / 3), (float)Math.Sin(h + Math.PI * 2 * i / 3))*20 - Main.screenPosition,
+                    spriteBatch.Draw(texture, NPC.Center + new Vector2((float)Math.Cos(h + Math.PI * 2 * i / 3), (float)Math.Sin(h + Math.PI * 2 * i / 3)) * 20 - Main.screenPosition,
                        new Rectangle?(NPC.frame), color2, NPC.rotation,
                        origin, 1f, SpriteEffects.None, 0f);
                     //Main.spriteBatch.Draw(texture, new Vector2(NPC.position.X + 20 + posBX - Main.screenPosition.X + NPC.width / 2 - texture.Width * NPC.scale / 2f + origin.X * NPC.scale, NPC.position.Y - 40 + posBY - Main.screenPosition.Y + NPC.height - texture.Height * NPC.scale / Main.npcFrameCount[NPC.type] + 4f + origin.Y * NPC.scale) - NPC.velocity * i * 0.5f, new Rectangle?(NPC.frame), color2, NPC.rotation, origin, NPC.scale, effects, 0f);
@@ -221,13 +221,10 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
             return Main.maxTilesY;
         }
 
-        public bool HasHead()
-        {
-            for (int i = 0; i < Main.maxNPCs; i++)
-            {
+        public bool HasHead() {
+            for (int i = 0; i < Main.maxNPCs; i++) {
                 if (Main.npc[i].active && Main.npc[i].type == ModContent.NPCType<TurkortheUngratefulHead>() &&
-                    NPC == Main.npc[(int)Main.npc[i].ai[1]])
-                {
+                    NPC == Main.npc[(int)Main.npc[i].ai[1]]) {
                     return true;
                 }
             }
@@ -402,10 +399,8 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
             }
 
             //idling phase
-            if (!HasHead()/*NPC.AnyNPCs(turkorHead)*/)
-            {
-                if(timer2 == 0)
-                {
+            if (!HasHead()/*NPC.AnyNPCs(turkorHead)*/) {
+                if (timer2 == 0) {
                     posX = 0;
                     posY = 0;
                     timer = HasHead()/*NPC.AnyNPCs(turkorHead)*/ ? 0 : 70;

@@ -80,12 +80,12 @@ namespace Consolaria.Content.NPCs {
             if (aiTimer >= 25f && aiTimer <= 95f) NPC.dontTakeDamage = false;
             else {
                 if (Main.netMode != NetmodeID.Server) {
-					for (int i = 0; i < 2; i++) {
-						int dust = Dust.NewDust(NPC.position + new Vector2(NPC.width * 0.5f, NPC.height * 0.5f) + new Vector2(0, 42f + (float)Math.Sin(aiTimer) * 3f).RotatedBy(i * MathHelper.Pi + aiTimer * 0.1f), 2, 2, DustID.Torch, 0, -1f, 0, default, 1.75f);
-						Main.dust[dust].noGravity = true;
-						Main.dust[dust].scale *= 0.95f;
-					}
-				}
+                    for (int i = 0; i < 2; i++) {
+                        int dust = Dust.NewDust(NPC.position + new Vector2(NPC.width * 0.5f, NPC.height * 0.5f) + new Vector2(0, 42f + (float)Math.Sin(aiTimer) * 3f).RotatedBy(i * MathHelper.Pi + aiTimer * 0.1f), 2, 2, DustID.Torch, 0, -1f, 0, default, 1.75f);
+                        Main.dust[dust].noGravity = true;
+                        Main.dust[dust].scale *= 0.95f;
+                    }
+                }
                 NPC.dontTakeDamage = true;
             }
 

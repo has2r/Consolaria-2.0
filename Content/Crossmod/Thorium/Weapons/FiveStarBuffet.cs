@@ -314,7 +314,7 @@ public sealed class FiveStarBuffet : ThoriumItem_HealerBase {
             Main.EntitySpriteDraw(texture, pos, null, Projectile.GetAlpha(lightColor), rotation, texture.Frame().Left(), Projectile.scale, effects);
 
             texture = FiveStarBuffet_Food.FoodTextures[_nextFoodIndex].Value;
-            Main.EntitySpriteDraw(texture, pos + Projectile.velocity * 28f, null, Projectile.GetAlpha(lightColor) * progress2, rotation, texture.Frame().Center(), 
+            Main.EntitySpriteDraw(texture, pos + Projectile.velocity * 28f, null, Projectile.GetAlpha(lightColor) * progress2, rotation, texture.Frame().Center(),
                 Projectile.scale * progress2, effects);
 
             texture = _topTexture.Value;

@@ -10,7 +10,6 @@ using System.Runtime.CompilerServices;
 
 using Terraria;
 using Terraria.Audio;
-using Terraria.ModLoader;
 
 using ThoriumMod;
 
@@ -195,7 +194,7 @@ public sealed class PortableSpecialCorn : ThoriumItem_BardBase {
 
             if (!flag) {
                 Projectile.direction = -Main.player[Projectile.owner].direction;
-                if (MathF.Abs(Main.player[Projectile.owner].Center.X - Projectile.Center.X) > 20f)  {
+                if (MathF.Abs(Main.player[Projectile.owner].Center.X - Projectile.Center.X) > 20f) {
                     Projectile.spriteDirection = -(((Main.player[Projectile.owner].Center.X - 20f * Main.player[Projectile.owner].direction) - Projectile.Center.X) > 0).ToDirectionInt();
                 }
             }

@@ -2,11 +2,8 @@
 
 using RoA.Core.Utility.Vanilla;
 
-using System.Media;
-
 using Terraria;
 using Terraria.Audio;
-using Terraria.ID;
 
 namespace Consolaria.Content.Crossmod.Thorium.Projectiles;
 

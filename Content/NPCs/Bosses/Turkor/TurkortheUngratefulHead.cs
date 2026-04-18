@@ -122,8 +122,10 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
             Texture2D texture = (Texture2D)ModContent.Request<Texture2D>("Consolaria/Content/NPCs/Bosses/Turkor/TurkorNeck");
 
             for (int k = 1; k < segmentCount - 1; k++) {
+                Color color = Lighting.GetColor((int)body[k].X / 16, (int)(body[k].Y / 16f)) * ((255 - NPC.alpha) / 255f);
+                color = NPC.GetNPCColorTintedByBuffs(color);
                 spriteBatch.Draw(texture, body[k] - Main.screenPosition,
-                       null, Lighting.GetColor((int)body[k].X / 16, (int)(body[k].Y / 16f)) * ((255 - NPC.alpha) / 255f), rotor[k] - 1.57f,
+                       null, color, rotor[k] - 1.57f,
                        texture.Size() / 2, 1f, SpriteEffects.None, 0f);
             }
             return true;

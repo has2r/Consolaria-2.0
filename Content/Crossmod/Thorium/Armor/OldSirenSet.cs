@@ -127,7 +127,7 @@ public sealed class OldSirenHelmet : ThoriumItem_BardBase {
         duration = 300;
     }
 
-    public override void ArmorSetShadows(Player player) => player.armorEffectDrawOutlines = true;
+    public override void ArmorSetShadows(Player player) { }
 }
 
 [AutoloadEquip(EquipType.Body)]

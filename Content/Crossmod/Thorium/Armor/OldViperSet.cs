@@ -27,7 +27,7 @@ public sealed class OldViperHelmet : ThoriumItem_ThrowerBase {
 
     public override bool IsArmorSet(Item head, Item body, Item legs)
         => (body.type == ModContent.ItemType<ViperChestplate>() || body.type == ModContent.ItemType<OldViperChestplate>())
-        && (legs.type == ModContent.ItemType<ViperLegs>() || legs.type == ModContent.ItemType<OldViperChestplate>());
+        && (legs.type == ModContent.ItemType<ViperLegs>() || legs.type == ModContent.ItemType<OldViperLegs>());
 
     public override void UpdateArmorSet(Player player) {
         player.setBonus = ViperHelmet.SetBonusText.ToString();

@@ -28,6 +28,8 @@ sealed class DownloadRoAButton : ILoadable {
     private static Color _lerpColor;
     private static Color? _currentColor = null, _nextColor = null;
 
+    bool ILoadable.IsLoadingEnabled(Mod mod) => false;
+
     void ILoadable.Load(Mod mod) {
         LoadFile();
         On_Main.HandleNews += On_Main_HandleNews;

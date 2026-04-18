@@ -20,6 +20,8 @@ using ThoriumMod.NPCs;
 namespace Consolaria.Content.Crossmod.Thorium.Weapons;
 
 public sealed class FiveStarBuffet : ThoriumItem_HealerBase {
+    public override void SetStaticDefaults() => Item.ResearchUnlockCount = 1;
+
     public override void SetHealerDefaults() {
         Item.SetSizeValues(54, 54);
 

@@ -19,6 +19,8 @@ namespace Consolaria.Content.Crossmod.Thorium.Accessories;
 public sealed class PortableSpecialCorn : ThoriumItem_BardBase {
     public override BardInstrumentType InstrumentType => BardInstrumentType.Other;
 
+    public override void SetStaticDefaults() => Item.ResearchUnlockCount = 1;
+
     public override void SetBardDefaults() {
         Item.DefaultToAccessory();
 

@@ -16,6 +16,8 @@ namespace Consolaria.Content.Crossmod.Thorium.Weapons;
 public sealed class Chocoplotion : ThoriumItem_ThrowerBase {
     public override string Texture => "Consolaria/Content/Crossmod/Thorium/Weapons/Chocoplotion_Item";
 
+    public override void SetStaticDefaults() => Item.ResearchUnlockCount = 1;
+
     public override void SetThrowerDefaults() {
         Item.SetSizeValues(30, 42);
 

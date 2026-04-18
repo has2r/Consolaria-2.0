@@ -22,6 +22,8 @@ namespace Consolaria.Content.Crossmod.Thorium.Weapons;
 public sealed class UtensilPoker : ThoriumItem_ThrowerBase {
     private static ushort BASEATTACKSPEED_LEFTCLICK => 20;
 
+    public override void SetStaticDefaults() => Item.ResearchUnlockCount = 1;
+
     public override void SetThrowerDefaults() {
         Item.SetSizeValues(44, 36);
 

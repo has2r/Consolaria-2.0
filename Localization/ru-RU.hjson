@@ -1477,7 +1477,7 @@ Mods: {
 
 			AlbinoSwarmerBanner: {
 				// DisplayName: Albino Swarmer Banner
-				// Tooltip: ""
+				// Tooltip: "{$CommonItemTooltip.BannerBonus}Albino Swarmer"
 			}
 
 			BleachCanister: {

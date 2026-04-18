@@ -16,9 +16,9 @@ public sealed class AlbinoRunt : ModProjectile {
         ProjectileID.Sets.LightPet[Type] = false;
 
         ProjectileID.Sets.CharacterPreviewAnimations[Type] = ProjectileID.Sets.SimpleLoop(0, Main.projFrames[Type])
-            .WithOffset(0, 0)
-            .WithSpriteDirection(1)
-            .WithCode(DelegateMethods.CharacterPreview.Float);
+            .WithOffset(-12f, -36f)
+            .WithSpriteDirection(-1)
+            .WithCode(DelegateMethods.CharacterPreview.EtsyPet);
     }
 
     public override void SetDefaults() {

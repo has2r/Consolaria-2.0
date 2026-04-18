@@ -106,7 +106,7 @@ public sealed class PortableSpecialCorn : ThoriumItem_BardBase {
                 player.GetModPlayer<SingerTurkeyBuff_Handler>().BardAttackCount = 0;
             }
 
-            if (ShotValue == animationTime) {
+            if (ShotValue == animationTime && Main.rand.NextBool(4)) {
                 SoundEngine.PlaySound(new SoundStyle($"{nameof(Consolaria)}/Assets/Sounds/TurkorGobble") with { Pitch = 0.5f, Volume = 0.75f }, Projectile.Center);
             }
 

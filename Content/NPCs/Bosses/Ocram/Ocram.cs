@@ -1131,8 +1131,6 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
                     ModContent.ItemType<OcramsEye>(),
                     ModContent.ItemType<Tizona>(),
                     ModContent.ItemType<ScytheFantasma>(),
-                    ModContent.ItemType<JadeSeal>(),
-                    ModContent.ItemType<Omunikodo>(),
                     ModContent.ItemType<SpineCracker>()));
             }
             else {

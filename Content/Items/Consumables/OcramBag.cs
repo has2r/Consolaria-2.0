@@ -46,8 +46,6 @@ namespace Consolaria.Content.Items.Consumables {
                     ItemDropRule.Common(ModContent.ItemType<OcramsEye>()),
                     ItemDropRule.Common(ModContent.ItemType<Tizona>()),
                     ItemDropRule.Common(ModContent.ItemType<ScytheFantasma>()),
-                    ItemDropRule.Common(ModContent.ItemType<JadeSeal>()),
-                    ItemDropRule.Common(ModContent.ItemType<Omunikodo>()),
                     ItemDropRule.Common(ModContent.ItemType<SpineCracker>())));
             }
             else {

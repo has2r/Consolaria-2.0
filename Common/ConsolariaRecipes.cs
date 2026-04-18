@@ -1,4 +1,5 @@
 ﻿using Consolaria.Content.Crossmod.Thorium.Armor;
+using Consolaria.Content.Crossmod.Thorium.Weapons;
 using Consolaria.Content.Items.Accessories;
 using Consolaria.Content.Items.Armor.Magic;
 using Consolaria.Content.Items.Armor.Melee;
@@ -16,6 +17,8 @@ using Consolaria.Content.Items.Weapons.Throwing;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+
+using ThoriumMod;
 
 namespace Consolaria.Common;
 
@@ -167,6 +170,29 @@ sealed class ConsolariaRecipes : ModSystem {
         item.SortAfterFirstRecipesOf(ItemID.HallowedRepeater);
         item.Register();
 
+        string thoriumModName = "ThoriumMod";
+        if (ModLoader.HasMod(thoriumModName)) {
+            Mod thoriumMod = ModLoader.GetMod(thoriumModName);
+            if (thoriumMod.TryFind("HolyStaff", out ModItem holyStaff)) {
+                item = Recipe.Create(ModContent.ItemType<JadeSeal>(), 1);
+                item.AddIngredient(holyStaff.Type, 1);
+                item.AddRecipeGroup(RecipeGroups.Titanium, 10);
+                item.AddIngredient(ModContent.ItemType<SoulofBlight>(), 15);
+                item.AddTile(TileID.MythrilAnvil);
+                item.SortAfterFirstRecipesOf(holyStaff.Type);
+                item.Register();
+            }
+            if (thoriumMod.TryFind("HallowedMegaphone", out ModItem hallowedMegaphone)) {
+                item = Recipe.Create(ModContent.ItemType<Omunikodo>(), 1);
+                item.AddIngredient(hallowedMegaphone.Type, 1);
+                item.AddRecipeGroup(RecipeGroups.Titanium, 10);
+                item.AddIngredient(ModContent.ItemType<SoulofBlight>(), 15);
+                item.AddTile(TileID.MythrilAnvil);
+                item.SortAfterFirstRecipesOf(hallowedMegaphone.Type);
+                item.Register();
+            }
+        }
+
         // hallowed
         // melee
         item = Recipe.Create(ModContent.ItemType<DragonMask>(), 1);
@@ -283,7 +309,6 @@ sealed class ConsolariaRecipes : ModSystem {
         item.SortAfter(temp);
         item.Register();
 
-        string thoriumModName = "ThoriumMod";
         if (ModLoader.HasMod(thoriumModName)) {
             Mod thoriumMod = ModLoader.GetMod(thoriumModName);
             // thrower

@@ -1,5 +1,6 @@
 using Consolaria.Common;
 using Consolaria.Common.ModSystems;
+using Consolaria.Content.Crossmod.Thorium.Weapons;
 using Consolaria.Content.Items.Consumables;
 using Consolaria.Content.Items.Materials;
 using Consolaria.Content.Items.Pets;
@@ -1122,7 +1123,26 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
             npcLoot.Add(ItemDropRule.MasterModeDropOnAllPlayers(ModContent.ItemType<CursedFang>(), 4));
 
             LeadingConditionRule notExpertRule = new LeadingConditionRule(new Conditions.NotExpert());
-            notExpertRule.OnSuccess(new OneFromOptionsDropRule(1, 1, ModContent.ItemType<EternityStaff>(), ModContent.ItemType<DragonBreath>(), ModContent.ItemType<OcramsEye>(), ModContent.ItemType<Tizona>()));
+
+            if (ModLoader.HasMod("ThoriumMod")) {
+                notExpertRule.OnSuccess(new OneFromOptionsDropRule(1, 1,
+                    ModContent.ItemType<EternityStaff>(),
+                    ModContent.ItemType<DragonBreath>(),
+                    ModContent.ItemType<OcramsEye>(),
+                    ModContent.ItemType<Tizona>(),
+                    ModContent.ItemType<ScytheFantasma>(),
+                    ModContent.ItemType<JadeSeal>(),
+                    ModContent.ItemType<Omunikodo>(),
+                    ModContent.ItemType<SpineCracker>()));
+            }
+            else {
+                notExpertRule.OnSuccess(new OneFromOptionsDropRule(1, 1, 
+                    ModContent.ItemType<EternityStaff>(),
+                    ModContent.ItemType<DragonBreath>(),
+                    ModContent.ItemType<OcramsEye>(), 
+                    ModContent.ItemType<Tizona>()));
+            }
+
             npcLoot.Add(notExpertRule);
             npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<SoulofBlight>(), 1, 25, 40));
             npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<OcramMask>(), 7));

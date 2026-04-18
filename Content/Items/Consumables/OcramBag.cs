@@ -1,3 +1,4 @@
+using Consolaria.Content.Crossmod.Thorium.Weapons;
 using Consolaria.Content.Items.Accessories;
 using Consolaria.Content.Items.Materials;
 using Consolaria.Content.Items.Vanity;
@@ -38,10 +39,24 @@ namespace Consolaria.Content.Items.Consumables {
             => true;
 
         public override void ModifyItemLoot(ItemLoot itemLoot) {
-            itemLoot.Add(new OneFromRulesRule(1, ItemDropRule.Common(ModContent.ItemType<EternityStaff>()),
-                ItemDropRule.Common(ModContent.ItemType<DragonBreath>()),
-                ItemDropRule.Common(ModContent.ItemType<OcramsEye>()),
-                ItemDropRule.Common(ModContent.ItemType<Tizona>())));
+            if (ModLoader.HasMod("ThoriumMod")) {
+                itemLoot.Add(new OneFromRulesRule(1,
+                    ItemDropRule.Common(ModContent.ItemType<EternityStaff>()),
+                    ItemDropRule.Common(ModContent.ItemType<DragonBreath>()),
+                    ItemDropRule.Common(ModContent.ItemType<OcramsEye>()),
+                    ItemDropRule.Common(ModContent.ItemType<Tizona>()),
+                    ItemDropRule.Common(ModContent.ItemType<ScytheFantasma>()),
+                    ItemDropRule.Common(ModContent.ItemType<JadeSeal>()),
+                    ItemDropRule.Common(ModContent.ItemType<Omunikodo>()),
+                    ItemDropRule.Common(ModContent.ItemType<SpineCracker>())));
+            }
+            else {
+                itemLoot.Add(new OneFromRulesRule(1,
+                    ItemDropRule.Common(ModContent.ItemType<EternityStaff>()),
+                    ItemDropRule.Common(ModContent.ItemType<DragonBreath>()),
+                    ItemDropRule.Common(ModContent.ItemType<OcramsEye>()),
+                    ItemDropRule.Common(ModContent.ItemType<Tizona>())));
+            }
 
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<OcramMask>(), 8));
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<SoulofBlight>(), 1, 25, 40));

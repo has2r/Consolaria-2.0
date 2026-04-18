@@ -1,5 +1,7 @@
 ﻿using Consolaria.Common;
 using Consolaria.Common.ModSystems;
+using Consolaria.Content.Crossmod.Thorium.Accessories;
+using Consolaria.Content.Crossmod.Thorium.Weapons;
 using Consolaria.Content.Items.Consumables;
 using Consolaria.Content.Items.Mounts;
 using Consolaria.Content.Items.Placeable;
@@ -504,7 +506,23 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
             npcLoot.Add(ItemDropRule.MasterModeDropOnAllPlayers(ModContent.ItemType<FruitfulPlate>(), 4));
 
             LeadingConditionRule notExpertRule = new LeadingConditionRule(new Conditions.NotExpert());
-            notExpertRule.OnSuccess(new OneFromOptionsDropRule(1, 1, ModContent.ItemType<FeatherStorm>(), ModContent.ItemType<GreatDrumstick>(), ModContent.ItemType<TurkeyStuff>()));
+
+            if (ModLoader.HasMod("ThoriumMod")) {
+                notExpertRule.OnSuccess(new OneFromOptionsDropRule(1, 1,
+                    ModContent.ItemType<FeatherStorm>(),
+                    ModContent.ItemType<GreatDrumstick>(),
+                    ModContent.ItemType<TurkeyStuff>(),
+                    ModContent.ItemType<PortableSpecialCorn>(),
+                    ModContent.ItemType<FiveStarBuffet>(),
+                    ModContent.ItemType<UtensilPoker>()));
+            }
+            else {
+                notExpertRule.OnSuccess(new OneFromOptionsDropRule(1, 1, 
+                    ModContent.ItemType<FeatherStorm>(), 
+                    ModContent.ItemType<GreatDrumstick>(),
+                    ModContent.ItemType<TurkeyStuff>()));
+            }
+
             npcLoot.Add(notExpertRule);
             npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<SpicySauce>(), 2, 15, 34));
             npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<TurkorMask>(), 7));

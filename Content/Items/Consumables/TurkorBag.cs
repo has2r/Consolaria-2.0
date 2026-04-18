@@ -1,3 +1,5 @@
+using Consolaria.Content.Crossmod.Thorium.Accessories;
+using Consolaria.Content.Crossmod.Thorium.Weapons;
 using Consolaria.Content.Items.Misc;
 using Consolaria.Content.Items.Vanity;
 using Consolaria.Content.Items.Weapons.Magic;
@@ -39,7 +41,22 @@ namespace Consolaria.Content.Items.Consumables {
             => true;
 
         public override void ModifyItemLoot(ItemLoot itemLoot) {
-            itemLoot.Add(ItemDropRule.OneFromOptionsNotScalingWithLuck(1, new int[] { ModContent.ItemType<FeatherStorm>(), ModContent.ItemType<GreatDrumstick>(), ModContent.ItemType<TurkeyStuff>() }));
+            if (ModLoader.HasMod("ThoriumMod")) {
+                itemLoot.Add(ItemDropRule.OneFromOptionsNotScalingWithLuck(1,
+                    [ModContent.ItemType<FeatherStorm>(),
+                     ModContent.ItemType<GreatDrumstick>(),
+                     ModContent.ItemType<TurkeyStuff>(),
+                     ModContent.ItemType<PortableSpecialCorn>(),
+                     ModContent.ItemType<FiveStarBuffet>(),
+                     ModContent.ItemType<UtensilPoker>()]));
+            }
+            else {
+                itemLoot.Add(ItemDropRule.OneFromOptionsNotScalingWithLuck(1,
+                    [ModContent.ItemType<FeatherStorm>(),
+                     ModContent.ItemType<GreatDrumstick>(),
+                     ModContent.ItemType<TurkeyStuff>()]));
+            }
+
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<SpicySauce>(), 2, 20, 39));
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<TurkorMask>(), 8));
 

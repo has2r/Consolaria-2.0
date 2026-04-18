@@ -1,4 +1,5 @@
-﻿using Consolaria.Content.Items.Accessories;
+﻿using Consolaria.Content.Crossmod.Thorium.Armor;
+using Consolaria.Content.Items.Accessories;
 using Consolaria.Content.Items.Armor.Magic;
 using Consolaria.Content.Items.Armor.Melee;
 using Consolaria.Content.Items.Armor.Ranged;
@@ -282,6 +283,103 @@ sealed class ConsolariaRecipes : ModSystem {
         item.SortAfter(temp);
         item.Register();
 
+        string thoriumModName = "ThoriumMod";
+        if (ModLoader.HasMod(thoriumModName)) {
+            Mod thoriumMod = ModLoader.GetMod(thoriumModName);
+            // thrower
+            if (thoriumMod.TryFind("HallowedGuise", out ModItem hallowedGuise)) {
+                temp = item;
+                item = Recipe.Create(ModContent.ItemType<ViperHelmet>(), 1);
+                item.AddIngredient(hallowedGuise.Type, 1);
+                item.AddRecipeGroup(RecipeGroups.Titanium, 10);
+                item.AddIngredient(ItemID.SoulofLight, 10);
+                item.AddIngredient(ModContent.ItemType<SoulofBlight>(), 10);
+                item.AddTile(TileID.MythrilAnvil);
+                item.SortAfter(temp);
+                item.Register();
+                temp = item;
+                item = Recipe.Create(ModContent.ItemType<ViperChestplate>(), 1);
+                item.AddIngredient(ItemID.HallowedPlateMail, 1);
+                item.AddRecipeGroup(RecipeGroups.Titanium, 12);
+                item.AddIngredient(ItemID.SoulofLight, 15);
+                item.AddIngredient(ModContent.ItemType<SoulofBlight>(), 15);
+                item.AddTile(TileID.MythrilAnvil);
+                item.SortAfter(temp);
+                item.Register();
+                temp = item;
+                item = Recipe.Create(ModContent.ItemType<ViperLegs>(), 1);
+                item.AddIngredient(ItemID.HallowedGreaves, 1);
+                item.AddRecipeGroup(RecipeGroups.Titanium, 10);
+                item.AddIngredient(ItemID.SoulofLight, 10);
+                item.AddIngredient(ModContent.ItemType<SoulofBlight>(), 10);
+                item.AddTile(TileID.MythrilAnvil);
+                item.SortAfter(temp);
+                item.Register();
+            }
+            // healer
+            if (thoriumMod.TryFind("HallowedCowl", out ModItem hallowedCowl)) {
+                temp = item;
+                item = Recipe.Create(ModContent.ItemType<SeraphimHelmet>(), 1);
+                item.AddIngredient(hallowedCowl.Type, 1);
+                item.AddRecipeGroup(RecipeGroups.Titanium, 10);
+                item.AddIngredient(ItemID.SoulofFlight, 10);
+                item.AddIngredient(ModContent.ItemType<SoulofBlight>(), 10);
+                item.AddTile(TileID.MythrilAnvil);
+                item.SortAfter(temp);
+                item.Register();
+                temp = item;
+                item = Recipe.Create(ModContent.ItemType<SeraphimChestplate>(), 1);
+                item.AddIngredient(ItemID.HallowedPlateMail, 1);
+                item.AddRecipeGroup(RecipeGroups.Titanium, 12);
+                item.AddIngredient(ItemID.SoulofFlight, 15);
+                item.AddIngredient(ModContent.ItemType<SoulofBlight>(), 15);
+                item.AddTile(TileID.MythrilAnvil);
+                item.SortAfter(temp);
+                item.Register();
+                temp = item;
+                item = Recipe.Create(ModContent.ItemType<SeraphimLegs>(), 1);
+                item.AddIngredient(ItemID.HallowedGreaves, 1);
+                item.AddRecipeGroup(RecipeGroups.Titanium, 10);
+                item.AddIngredient(ItemID.SoulofFlight, 10);
+                item.AddIngredient(ModContent.ItemType<SoulofBlight>(), 10);
+                item.AddTile(TileID.MythrilAnvil);
+                item.SortAfter(temp);
+                item.Register();
+            }
+            // bard
+            if (thoriumMod.TryFind("HallowedChapeau", out ModItem hallowedChapeau)) {
+                if (thoriumMod.TryFind("SoulofPlight", out ModItem soulofPlight)) {
+                    temp = item;
+                    item = Recipe.Create(ModContent.ItemType<SirenHelmet>(), 1);
+                    item.AddIngredient(hallowedChapeau.Type, 1);
+                    item.AddRecipeGroup(RecipeGroups.Titanium, 10);
+                    item.AddIngredient(soulofPlight.Type, 10);
+                    item.AddIngredient(ModContent.ItemType<SoulofBlight>(), 10);
+                    item.AddTile(TileID.MythrilAnvil);
+                    item.SortAfter(temp);
+                    item.Register();
+                    temp = item;
+                    item = Recipe.Create(ModContent.ItemType<SirenChestplate>(), 1);
+                    item.AddIngredient(ItemID.HallowedPlateMail, 1);
+                    item.AddRecipeGroup(RecipeGroups.Titanium, 12);
+                    item.AddIngredient(soulofPlight, 15);
+                    item.AddIngredient(ModContent.ItemType<SoulofBlight>(), 15);
+                    item.AddTile(TileID.MythrilAnvil);
+                    item.SortAfter(temp);
+                    item.Register();
+                    temp = item;
+                    item = Recipe.Create(ModContent.ItemType<SirenLegs>(), 1);
+                    item.AddIngredient(ItemID.HallowedGreaves, 1);
+                    item.AddRecipeGroup(RecipeGroups.Titanium, 10);
+                    item.AddIngredient(soulofPlight, 10);
+                    item.AddIngredient(ModContent.ItemType<SoulofBlight>(), 10);
+                    item.AddTile(TileID.MythrilAnvil);
+                    item.SortAfter(temp);
+                    item.Register();
+                }
+            }
+        }
+
         // ancient hallowed
         // melee
         item = Recipe.Create(ModContent.ItemType<AncientDragonMask>(), 1);
@@ -397,6 +495,102 @@ sealed class ConsolariaRecipes : ModSystem {
         item.AddTile(TileID.DemonAltar);
         item.SortAfter(temp);
         item.Register();
+
+        if (ModLoader.HasMod(thoriumModName)) {
+            Mod thoriumMod = ModLoader.GetMod(thoriumModName);
+            // thrower
+            if (thoriumMod.TryFind("AncientHallowedGuise", out ModItem ancientHallowedGuise)) {
+                temp = item;
+                item = Recipe.Create(ModContent.ItemType<OldViperHelmet>(), 1);
+                item.AddIngredient(ancientHallowedGuise.Type, 1);
+                item.AddRecipeGroup(RecipeGroups.Titanium, 10);
+                item.AddIngredient(ItemID.SoulofLight, 10);
+                item.AddIngredient(ModContent.ItemType<SoulofBlight>(), 10);
+                item.AddTile(TileID.MythrilAnvil);
+                item.SortAfter(temp);
+                item.Register();
+                temp = item;
+                item = Recipe.Create(ModContent.ItemType<OldViperChestplate>(), 1);
+                item.AddIngredient(ItemID.AncientHallowedPlateMail, 1);
+                item.AddRecipeGroup(RecipeGroups.Titanium, 12);
+                item.AddIngredient(ItemID.SoulofLight, 15);
+                item.AddIngredient(ModContent.ItemType<SoulofBlight>(), 15);
+                item.AddTile(TileID.MythrilAnvil);
+                item.SortAfter(temp);
+                item.Register();
+                temp = item;
+                item = Recipe.Create(ModContent.ItemType<OldViperLegs>(), 1);
+                item.AddIngredient(ItemID.AncientHallowedGreaves, 1);
+                item.AddRecipeGroup(RecipeGroups.Titanium, 10);
+                item.AddIngredient(ItemID.SoulofLight, 10);
+                item.AddIngredient(ModContent.ItemType<SoulofBlight>(), 10);
+                item.AddTile(TileID.MythrilAnvil);
+                item.SortAfter(temp);
+                item.Register();
+            }
+            // healer
+            if (thoriumMod.TryFind("AncientHallowedCowl", out ModItem ancientHallowedCowl)) {
+                temp = item;
+                item = Recipe.Create(ModContent.ItemType<OldSeraphimHelmet>(), 1);
+                item.AddIngredient(ancientHallowedCowl.Type, 1);
+                item.AddRecipeGroup(RecipeGroups.Titanium, 10);
+                item.AddIngredient(ItemID.SoulofFlight, 10);
+                item.AddIngredient(ModContent.ItemType<SoulofBlight>(), 10);
+                item.AddTile(TileID.MythrilAnvil);
+                item.SortAfter(temp);
+                item.Register();
+                temp = item;
+                item = Recipe.Create(ModContent.ItemType<OldSeraphimChestplate>(), 1);
+                item.AddIngredient(ItemID.AncientHallowedPlateMail, 1);
+                item.AddRecipeGroup(RecipeGroups.Titanium, 12);
+                item.AddIngredient(ItemID.SoulofFlight, 15);
+                item.AddIngredient(ModContent.ItemType<SoulofBlight>(), 15);
+                item.AddTile(TileID.MythrilAnvil);
+                item.SortAfter(temp);
+                item.Register();
+                temp = item;
+                item = Recipe.Create(ModContent.ItemType<OldSeraphimLegs>(), 1);
+                item.AddIngredient(ItemID.AncientHallowedGreaves, 1);
+                item.AddRecipeGroup(RecipeGroups.Titanium, 10);
+                item.AddIngredient(ItemID.SoulofFlight, 10);
+                item.AddIngredient(ModContent.ItemType<SoulofBlight>(), 10);
+                item.AddTile(TileID.MythrilAnvil);
+                item.SortAfter(temp);
+                item.Register();
+            }
+            // bard
+            if (thoriumMod.TryFind("AncientHallowedChapeau", out ModItem ancientHallowedChapeau)) {
+                if (thoriumMod.TryFind("SoulofPlight", out ModItem soulofPlight)) {
+                    temp = item;
+                    item = Recipe.Create(ModContent.ItemType<OldSirenHelmet>(), 1);
+                    item.AddIngredient(ancientHallowedChapeau.Type, 1);
+                    item.AddRecipeGroup(RecipeGroups.Titanium, 10);
+                    item.AddIngredient(soulofPlight.Type, 10);
+                    item.AddIngredient(ModContent.ItemType<SoulofBlight>(), 10);
+                    item.AddTile(TileID.MythrilAnvil);
+                    item.SortAfter(temp);
+                    item.Register();
+                    temp = item;
+                    item = Recipe.Create(ModContent.ItemType<OldSirenChestplate>(), 1);
+                    item.AddIngredient(ItemID.AncientHallowedPlateMail, 1);
+                    item.AddRecipeGroup(RecipeGroups.Titanium, 12);
+                    item.AddIngredient(soulofPlight, 15);
+                    item.AddIngredient(ModContent.ItemType<SoulofBlight>(), 15);
+                    item.AddTile(TileID.MythrilAnvil);
+                    item.SortAfter(temp);
+                    item.Register();
+                    temp = item;
+                    item = Recipe.Create(ModContent.ItemType<OldSirenLegs>(), 1);
+                    item.AddIngredient(ItemID.AncientHallowedGreaves, 1);
+                    item.AddRecipeGroup(RecipeGroups.Titanium, 10);
+                    item.AddIngredient(soulofPlight, 10);
+                    item.AddIngredient(ModContent.ItemType<SoulofBlight>(), 10);
+                    item.AddTile(TileID.MythrilAnvil);
+                    item.SortAfter(temp);
+                    item.Register();
+                }
+            }
+        }
 
         // sharanga
         item = Recipe.Create(ModContent.ItemType<Sharanga>(), 1);

@@ -79,7 +79,9 @@ public sealed class PortableSpecialCorn : ThoriumItem_BardBase {
             if (Projectile.localAI[2] == 0f) {
                 Projectile.localAI[2] = 1f;
 
-                SoundEngine.PlaySound(new SoundStyle($"{nameof(Consolaria)}/Assets/Sounds/TurkorGobble") with { Pitch = 0.5f, Volume = 0.75f }, Projectile.Center);
+                if (Main.rand.NextBool(1)) {
+                    SoundEngine.PlaySound(new SoundStyle($"{nameof(Consolaria)}/Assets/Sounds/TurkorGobbleShort"), Projectile.Center);
+                }
 
                 flag = true;
 
@@ -106,8 +108,8 @@ public sealed class PortableSpecialCorn : ThoriumItem_BardBase {
                 player.GetModPlayer<SingerTurkeyBuff_Handler>().BardAttackCount = 0;
             }
 
-            if (ShotValue == animationTime && Main.rand.NextBool(4)) {
-                SoundEngine.PlaySound(new SoundStyle($"{nameof(Consolaria)}/Assets/Sounds/TurkorGobble") with { Pitch = 0.5f, Volume = 0.75f }, Projectile.Center);
+            if (ShotValue == animationTime && Main.rand.NextBool(1)) {
+                SoundEngine.PlaySound(new SoundStyle($"{nameof(Consolaria)}/Assets/Sounds/TurkorGobbleShort"), Projectile.Center);
             }
 
             if (ShotValue > 0f) {

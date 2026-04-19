@@ -1,5 +1,9 @@
 Mods: {
 	Consolaria: {
+		DownloadRoA: Check out Rise of Ages, from the team behind Consolaria!
+		DownloadRoA2: (hide)
+		DownloadThorium: Consolaria x Thorium Mod is now available!
+		DownloadThorium2: (hide)
 		LepusDropCondition: Drops if Lepus is not present
 		ValentineRingTooltip1: Give it to someone special!
 		ValentineRingTooltip2:
@@ -7,6 +11,8 @@ Mods: {
 			Slowly regenerates life
 			Increases jump height
 			'''
+		ValentineRingTooltip3: Owned by {0}
+		ValentineRingTooltip4: Gifted by {0}
 		McMoneypantsInvitationUsage: The invitation flies away to its recipient...
 		Munchies.McMoneypantsInvitation.HowToAcquire: Obtained from Red Envelope
 		McMoneypantsButton1Text: Invest
@@ -50,7 +56,7 @@ Mods: {
 			}
 
 			EasterBunny: {
-				DisplayName: Easter bunny
+				DisplayName: Easter Bunny
 				Description: The easter bunny will fight for you
 			}
 
@@ -157,6 +163,36 @@ Mods: {
 			OldLady: {
 				DisplayName: Pet Old Lady
 				Description: Don't judge on the looks
+			}
+
+			JadeBuff: {
+				DisplayName: Jade Blessing
+				Description: Damage and defense are increased
+			}
+
+			UtensilPokerDebuff: {
+				DisplayName: Utensil Poker Debuff
+				Description: Mods.Consolaria.Buffs.UtensilPokerDebuff.Description
+			}
+
+			SingerTurkeyBuff: {
+				DisplayName: Singer Turkey Buff
+				Description: Mods.Consolaria.Buffs.SingerTurkeyBuff.Description
+			}
+
+			SeraphimCooldown: {
+				DisplayName: Heavenly Rejection
+				Description: Angelic Embrace is recharging
+			}
+
+			SeraphimBuff: {
+				DisplayName: Angelic Embrace
+				Description: Soar freely, healing allies on touch
+			}
+
+			AlbinoRuntBuff: {
+				DisplayName: Pet Albino Runt
+				Description: Wouldn't survive in the wild
 			}
 		}
 
@@ -343,7 +379,11 @@ Mods: {
 					10% increased ranged critical strike chance
 					25% chance to not consume ammo
 					'''
-				SetBonus: Using ranged weapons triggers a recoil blast
+				SetBonus:
+					'''
+					Using ranged weapons triggers a recoil blast
+					Double tap {0} to toggle this effect
+					'''
 			}
 
 			TitanLeggings: {
@@ -998,7 +1038,7 @@ Mods: {
 				Tooltip:
 					'''
 					Has a chance to stun enemies on hit
-					'Legendary arrows from cupid himself'
+					'Legendary arrows from Cupid himself'
 					'''
 			}
 
@@ -1173,7 +1213,278 @@ Mods: {
 
 			Eggplant: {
 				DisplayName: Eggplant
-				Tooltip: ""
+				Tooltip: Grows a spinning eggplant stalk
+			}
+
+			OldSeraphimChestplate: {
+				DisplayName: Ancient Seraphim Vesture
+				Tooltip:
+					'''
+					30% decreased non-radiant damage
+					20% increased radiant damage
+					20% decreased mana cost
+					Healing spells will heal an additional 3 life
+					'''
+			}
+
+			OldSeraphimHelmet: {
+				DisplayName: Ancient Seraphim Visage
+				Tooltip:
+					'''
+					20% decreased non-radiant damage
+					15% increased radiant damage
+					20% decreased mana cost
+					Maximum mana increased by 60
+					Healing spells will heal an additional 2 life
+					'''
+			}
+
+			OldSeraphimLegs: {
+				DisplayName: Ancient Seraphim Treads
+				Tooltip:
+					'''
+					20% decreased non-radiant damage
+					15% increased radiant damage
+					15% decreased mana cost
+					Healing spells will heal an additional 2 life
+					15% increased movement speed
+					'''
+			}
+
+			OldSirenChestplate: {
+				DisplayName: Ancient Siren Chestplate
+				Tooltip:
+					'''
+					10% increased symphonic damage
+					Increases the chance for inspiration notes to drop by 10%
+					Increases the duration of your symphonic empowerments by 6 seconds
+					'''
+			}
+
+			OldSirenHelmet: {
+				DisplayName: Ancient Siren Headgear
+				Tooltip:
+					'''
+					8% increased symphonic playing speed
+					4% increased symphonic critical strike chance
+					Increases inspiration regeneration rate by 20%
+					'''
+			}
+
+			OldSirenLegs: {
+				DisplayName: Ancient Siren Tail
+				Tooltip:
+					'''
+					10% increased symphonic damage
+					6% increased symphonic critical strike chance
+					15% increased movement speed
+					'''
+			}
+
+			OldViperChestplate: {
+				DisplayName: Ancient Viper Jacket
+				Tooltip:
+					'''
+					10% increased throwing damage
+					20% increased throwing velocity
+					15% increased throwing speed
+					'''
+			}
+
+			OldViperHelmet: {
+				DisplayName: Ancient Viper Helmet
+				Tooltip:
+					'''
+					20% increased throwing damage
+					33% chance not to consume thrown items
+					Increases your maximum technique points by 2
+					'''
+			}
+
+			OldViperLegs: {
+				DisplayName: Ancient Viper Pants
+				Tooltip:
+					'''
+					20% increased throwing damage
+					25% increased throwing critical strike chance
+					15% increased movement speed
+					'''
+			}
+
+			SeraphimChestplate: {
+				DisplayName: Seraphim Vesture
+				Tooltip:
+					'''
+					30% decreased non-radiant damage
+					20% increased radiant damage
+					20% decreased mana cost
+					Healing spells will heal an additional 3 life
+					'''
+			}
+
+			SeraphimHelmet: {
+				DisplayName: Seraphim Visage
+				Tooltip:
+					'''
+					20% decreased non-radiant damage
+					15% increased radiant damage
+					20% decreased mana cost
+					Maximum mana increased by 60
+					Healing spells will heal an additional 2 life
+					'''
+				SetBonus: Pressing the Armor Ability key will activate Angelic Embrace, granting infinite flight and healing allies on touch for 4 seconds
+			}
+
+			SeraphimLegs: {
+				DisplayName: Seraphim Treads
+				Tooltip:
+					'''
+					20% decreased non-radiant damage
+					15% increased radiant damage
+					15% decreased mana cost
+					Healing spells will heal an additional 2 life
+					15% increased movement speed
+					'''
+			}
+
+			SirenChestplate: {
+				DisplayName: Siren Chestplate
+				Tooltip:
+					'''
+					10% increased symphonic damage
+					Increases the chance for inspiration notes to drop by 10%
+					Increases the duration of your symphonic empowerments by 6 seconds
+					'''
+			}
+
+			SirenHelmet: {
+				DisplayName: Siren Headgear
+				Tooltip:
+					'''
+					8% increased symphonic playing speed
+					4% increased symphonic critical strike chance
+					Increases inspiration regeneration rate by 20%
+					'''
+				SetBonus: Striking an enemy with symphonic damage occasionally summons a sea creature to grant an empowerment to nearby allies
+			}
+
+			SirenLegs: {
+				DisplayName: Siren Tail
+				Tooltip:
+					'''
+					10% increased symphonic damage
+					6% increased symphonic critical strike chance
+					15% increased movement speed
+					'''
+			}
+
+			ViperChestplate: {
+				DisplayName: Viper Jacket
+				Tooltip:
+					'''
+					10% increased throwing damage
+					20% increased throwing velocity
+					15% increased throwing speed
+					'''
+			}
+
+			ViperHelmet: {
+				DisplayName: Viper Helmet
+				Tooltip:
+					'''
+					20% increased throwing damage
+					33% chance not to consume thrown items
+					Increases your maximum technique points by 2
+					'''
+				SetBonus:
+					'''
+					Throwing damage has a 10% chance to poison enemies
+					Nearby enemies take extra damage from poison and venom
+					'''
+			}
+
+			ViperLegs: {
+				DisplayName: Viper Pants
+				Tooltip:
+					'''
+					20% increased throwing damage
+					25% increased throwing critical strike chance
+					15% increased movement speed
+					'''
+			}
+
+			ScytheFantasma: {
+				DisplayName: Fantasma
+				Tooltip:
+					'''
+					Rapidly spins a phantasmal scythe all around you
+					Dealing direct damage may summon a homing spirit
+					'''
+			}
+
+			SpineCracker: {
+				DisplayName: Spine Cracker
+				Tooltip:
+					'''
+					Spins in place, scattering shadow scythes
+					Overuse of this weapon exhausts you, massively reducing its damage
+					Killing enemies recovers some of your exhaustion
+					'''
+			}
+
+			JadeSeal: {
+				DisplayName: Jade Seal
+				Tooltip:
+					'''
+					Left click to summon a jade lantern that boosts damage and defense of allies
+					Right click to summon a golden lantern that hovers in place and heals allies
+					'''
+			}
+
+			Omunikodo: {
+				DisplayName: Omunikodo
+				Tooltip: Releases a wave of chaotic noise
+			}
+
+			PortableSpecialCorn: {
+				DisplayName: Portable Special Corn
+				Tooltip: Replicates every 4th symphonic attack with 50% of its damage
+			}
+
+			UtensilPoker: {
+				DisplayName: Utensil Poker
+				Tooltip:
+					'''
+					Right click to prepare up to five throwable forks
+					Forks get stuck in enemies, bleeding them out
+					Overuse of this weapon exhausts you, massively reducing its damage
+					Killing enemies recovers some of your exhaustion
+					'''
+			}
+
+			Chocoplotion: {
+				DisplayName: Choxplosion
+				Tooltip:
+					'''
+					Hops towards an enemy and explodes into chocolate droplets
+					Overuse of this weapon exhausts you, massively reducing its damage
+					Killing enemies recovers some of your exhaustion
+					'''
+			}
+
+			FiveStarBuffet: {
+				DisplayName: Five-Star Buffet
+				Tooltip: Prepares up to five succulent meals, then feeds them to allies with the least health
+			}
+
+			AlbinoSwarmerBanner: {
+				DisplayName: Albino Swarmer Banner
+				Tooltip: "{$CommonItemTooltip.BannerBonus}Albino Swarmer"
+			}
+
+			BleachCanister: {
+				DisplayName: Bleach Canister
+				Tooltip: Summons a pet albino runt
 			}
 		}
 
@@ -1216,7 +1527,7 @@ Mods: {
 				Bestiary: As if its size wasn't troublesome enough, this rabbit can reproduce through colorful eggs, spread around the world in Spring for fools to pick up.
 
 				BossChecklistIntegration: {
-					SpawnInfo: Use a [i:Consolaria/SuspiciousLookingEgg] at day time
+					SpawnInfo: Use a [i:Consolaria/SuspiciousLookingEgg]
 					DespawnMessage: Lepus hops back to where it came from!
 				}
 			}
@@ -1373,6 +1684,16 @@ Mods: {
 				Quote9: My financial advice? Don't shoot your coins out of that awful gun.
 				Quote10: Bitcoin? Why would I ever beat a coin?
 			}
+
+			AlbinoSwarmer: {
+				Bestiary: Albino antlions may not be suited to blending into the dunes, but the sight of their pale figure is said to instill primal fear in their prey.
+				DisplayName: Albino Swarmer
+			}
+
+			GiantAlbinoSwarmer: {
+				Bestiary: Albino antlions may not be suited to blending into the dunes, but the sight of their pale figure is said to instill primal fear in their prey.
+				DisplayName: Giant Albino Swarmer
+			}
 		}
 
 		Projectiles: {
@@ -1447,6 +1768,24 @@ Mods: {
 			Eggplant_Root.DisplayName: Eggplant
 			Eggplant_Shoot.DisplayName: Eggplant
 			Eggplant_Stem.DisplayName: Eggplant
+			ScytheFantasma_Use.DisplayName: Scythe Fantasma
+			ScytheFantasma_Spirit.DisplayName: Phantasm
+			SpineCracker_Throw.DisplayName: Spine Cracker
+			SpineCracker_Scythe.DisplayName: Spine Cracker Scythe
+			JadeSeal_Lamp.DisplayName: Jade Lamp
+			JadeSeal_GoldenLamp.DisplayName: Golden Lamp
+			Omunikodo_Shot.DisplayName: Noise Wave
+			UtensilPoker_Fork.DisplayName: Fork
+			UtensilPoker_Throw.DisplayName: Utensil Poker
+			UtensilPoker_BigFork.DisplayName: Big Fork
+			PortableSpecialCorn_Summon.DisplayName: Singer Turkey
+			Chocoplotion_Throw.DisplayName: Choxplosion
+			FiveStarBuffet_Use.DisplayName: Five Star Buffet
+			FiveStarBuffet_Food.DisplayName: Five Star Meal
+			Chocoplotion_Droplet.DisplayName: Chocolate Droplet
+			SeraphimHeal.DisplayName: Seraphim Heal
+			SirenSeaCreature.DisplayName: Siren Sea Creature
+			AlbinoRunt.DisplayName: Albino Runt
 		}
 
 		Tiles: {
@@ -1545,25 +1884,25 @@ Mods: {
 
 				pyramidMessageLoot: {
 					Label: Special pyramid loot
-					Tooltip: If enabled,
+					Tooltip: If enabled, a special message will appear in the second pyramid room chest
 				}
 			}
 		}
 
 		Achievements: {
-			KillLepus: {
-				Name: Hare Despair
+			LepusKillAchievement: {
+				FriendlyName: Hare Despair
 				Description: Defeat Lepus, the greatest Easter troublemaker.
 			}
 
-			KillTurkor: {
-				Name: Kentucky Fried Turkey
-				Description: Defeat Turkor the Ungrateful, the burning Thanksgiving monstrocity.
+			OcramKillAchievement: {
+				FriendlyName: Cerebrawl
+				Description: Defeat Ocram, the cursed fiend haunting the starless sky.
 			}
 
-			KillOcram: {
-				Name: Bible of the Beast
-				Description: Defeat Ocram, the cursed fiend haunting the starless sky.
+			TurkorKillAchievement: {
+				FriendlyName: Kentucky Fried Turkey
+				Description: Defeat Turkor the Ungrateful, the burning Thanksgiving monstrocity.
 			}
 		}
 

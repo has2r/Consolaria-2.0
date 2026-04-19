@@ -90,7 +90,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
             float num5 = 75f; // duration?
 
             if (Projectile.localAI[0] == 0f) {
-                SoundEngine.PlaySound(SoundID.Item8, Projectile.position);
+                SoundEngine.PlaySound(SoundID.Item8 with { Volume = 0.75f, PitchVariance = 0.1f }, Projectile.position);
                 velRem = Projectile.velocity;
             }
 

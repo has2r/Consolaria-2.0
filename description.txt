@@ -9,12 +9,13 @@ This includes:
 - Exclusive vanity items - including the Horned God set, George's set & many others
 - A variety of ported pets, complete with extra animations
 - Mc MoneyPants NPC
+- Cross-mod content for Thorium Mod's classes
 - Support for Boss Checklist, Fargo's Mutant Mod, Achievement Mod, Music Display and Munchies
 - Holy Hand Grenade!
 
 Holiday content is always active by default and can be restricted to the corresponding dates using the config menu.
 
-Also try Heartbeataria for content from Chinese editions of the game: together, the mods make PC Terraria the most complete experience ever!
+Also try Heartbeataria for content from Chinese editions of the game and Miscellanaria for unreleased items: together, the mods make PC Terraria the most complete experience ever!
 
 
 Developers:
@@ -28,6 +29,7 @@ Contributors:
 - Synoxsis - Lepus, Turkor & Ocram themes
 - Jteoh - Otherworldly boss themes
 - Fyerow & Croul - legacy Ocram theme
+- EduaRRdo - Thorium cross-mod content sprites
 - StrikerRKT - extracting files from Japanese versions of the game
 - Sparcdoctor - extensive testing and content suggestions
 - CrezyDud - Turkor multiplayer fixes

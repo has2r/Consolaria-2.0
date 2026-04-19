@@ -63,7 +63,8 @@ namespace Consolaria.Content.Items.Weapons.Ranged {
 
         public override void ModifyTooltips(List<TooltipLine> tooltips) {
             TooltipLine tooltip = new(Mod, "Flamethrower Tooltip", Language.GetTextValue("ItemTooltip.Flamethrower") + "\n" + Language.GetTextValue("ItemTooltip.CandyCornRifle").Replace("33", "70"));
-            tooltips.Add(tooltip);
+            int index = tooltips.FindIndex(x => x.Name == "Tooltip0");
+            tooltips.Insert(index, tooltip);
         }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using Consolaria.Common;
 using Consolaria.Common.ModSystems;
+using Consolaria.Content.Crossmod.Thorium.Accessories;
+using Consolaria.Content.Crossmod.Thorium.Weapons;
 using Consolaria.Content.Items.Consumables;
 using Consolaria.Content.Items.Mounts;
 using Consolaria.Content.Items.Placeable;
@@ -93,7 +95,7 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
         }
 
         public override void FindFrame(int frameHeight) {
-            if (!NPC.AnyNPCs(ModContent.NPCType<TurkortheUngratefulHead>())) {
+            if (!HasHead()/*NPC.AnyNPCs(turkorHead)*/) {//NPC.AnyNPCs(ModContent.NPCType<TurkortheUngratefulHead>())) {
                 NPC.frameCounter += 0.15f;
                 NPC.frameCounter %= Main.npcFrameCount[NPC.type];
                 int frame = (int)NPC.frameCounter;
@@ -101,8 +103,8 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
             }
         }
 
-        private float posBX = 0f;
-        private float posBY = 0f;
+        //private float posBX = 0f;
+        //private float posBY = 0f;
         private float h = 0f;
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
@@ -110,15 +112,18 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
             Texture2D texture = (Texture2D)ModContent.Request<Texture2D>(Texture);
             Vector2 origin = new Vector2(texture.Width / 2, texture.Height / Main.npcFrameCount[NPC.type] / 2);
             h += 0.1f;
-            posBX += (float)Math.Cos(h) * 4;
-            posBY += (float)Math.Sin(h) * 4;
+            //posBX += (float)Math.Cos(h) * 4;
+            //posBY += (float)Math.Sin(h) * 4;
 
             if (enraged) {
-                for (int i = 0; i < 1; i++) {
+                for (int i = 0; i < 3; i++) {
                     Color color2 = drawColor;
                     color2 = NPC.GetAlpha(color2) * colo;
-                    Main.spriteBatch.Draw(texture, new Vector2(NPC.position.X + 20 + posBX - Main.screenPosition.X + NPC.width / 2 - texture.Width * NPC.scale / 2f + origin.X * NPC.scale, NPC.position.Y - 40 + posBY - Main.screenPosition.Y + NPC.height - texture.Height * NPC.scale / Main.npcFrameCount[NPC.type] + 4f + origin.Y * NPC.scale) - NPC.velocity * i * 0.5f, new Rectangle?(NPC.frame), color2, NPC.rotation, origin, NPC.scale, effects, 0f);
-                    Main.spriteBatch.Draw(texture, new Vector2(NPC.position.X - 20 - posBX - Main.screenPosition.X + NPC.width / 2 - texture.Width * NPC.scale / 2f + origin.X * NPC.scale, NPC.position.Y + 40 - posBY - Main.screenPosition.Y + NPC.height - texture.Height * NPC.scale / Main.npcFrameCount[NPC.type] + 4f + origin.Y * NPC.scale) - NPC.velocity * i * 0.5f, new Rectangle?(NPC.frame), color2, NPC.rotation, origin, NPC.scale, effects, 0f);
+                    spriteBatch.Draw(texture, NPC.Center + new Vector2((float)Math.Cos(h + Math.PI * 2 * i / 3), (float)Math.Sin(h + Math.PI * 2 * i / 3)) * 20 - Main.screenPosition,
+                       new Rectangle?(NPC.frame), color2, NPC.rotation,
+                       origin, 1f, SpriteEffects.None, 0f);
+                    //Main.spriteBatch.Draw(texture, new Vector2(NPC.position.X + 20 + posBX - Main.screenPosition.X + NPC.width / 2 - texture.Width * NPC.scale / 2f + origin.X * NPC.scale, NPC.position.Y - 40 + posBY - Main.screenPosition.Y + NPC.height - texture.Height * NPC.scale / Main.npcFrameCount[NPC.type] + 4f + origin.Y * NPC.scale) - NPC.velocity * i * 0.5f, new Rectangle?(NPC.frame), color2, NPC.rotation, origin, NPC.scale, effects, 0f);
+                    //Main.spriteBatch.Draw(texture, new Vector2(NPC.position.X - 20 - posBX - Main.screenPosition.X + NPC.width / 2 - texture.Width * NPC.scale / 2f + origin.X * NPC.scale, NPC.position.Y + 40 - posBY - Main.screenPosition.Y + NPC.height - texture.Height * NPC.scale / Main.npcFrameCount[NPC.type] + 4f + origin.Y * NPC.scale) - NPC.velocity * i * 0.5f, new Rectangle?(NPC.frame), color2, NPC.rotation, origin, NPC.scale, effects, 0f);
                 }
             }
             return true;
@@ -218,16 +223,22 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
             return Main.maxTilesY;
         }
 
-
+        public bool HasHead() {
+            for (int i = 0; i < Main.maxNPCs; i++) {
+                if (Main.npc[i].active && Main.npc[i].type == ModContent.NPCType<TurkortheUngratefulHead>() &&
+                    NPC == Main.npc[(int)Main.npc[i].ai[1]]) {
+                    return true;
+                }
+            }
+            return false;
+        }
         public override void AI() {
             if (!Main.dedServ) {
-                bool drank = Helper.Main_swapMusic(null);
-                if (Main.drunkWorld) drank = !drank;
+                bool drank = !Main.swapMusic == Main.drunkWorld && !Main.remixWorld;
                 Music = ModContent.GetInstance<ConsolariaConfig>().vanillaBossMusicEnabled ?
                     (drank ? MusicID.OtherworldlyBoss1 : MusicID.Boss1)
                     : drank ? MusicLoader.GetMusicSlot(Mod, "Assets/Music/OtherwordlyTurkor") : MusicLoader.GetMusicSlot(Mod, "Assets/Music/Turkor");
             }
-
             Player player = Main.player[NPC.target];
 
             NPC.TargetClosest(true);
@@ -294,7 +305,7 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
                     colo = 0;
                     if (isNotMpClient) NPC.ai[2] = 0;
                     enraged = false;
-                    if (NPC.AnyNPCs(turkorHead)) timer = 0;
+                    if (HasHead()/*NPC.AnyNPCs(turkorHead)*/) timer = 0;
                 }
             }
 
@@ -312,7 +323,7 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
                 NPC.netUpdate = true;
             }
 
-            NPC.dontTakeDamage = NPC.AnyNPCs(turkorHead) || NPC.ai[1] == 40 || enraged;
+            NPC.dontTakeDamage = HasHead()/*NPC.AnyNPCs(turkorHead)*/ || NPC.ai[1] == 40 || enraged;
 
             //spawn heads
             if (Main.netMode != NetmodeID.MultiplayerClient) {
@@ -332,7 +343,7 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
             }
 
             //shoot projectiles at player 
-            if ((!NPC.AnyNPCs(turkorHead) || enraged) && (Main.netMode == NetmodeID.MultiplayerClient || Main.netMode == NetmodeID.SinglePlayer)) {
+            if ((!HasHead()/*NPC.AnyNPCs(turkorHead)*/ || enraged) && (Main.netMode == NetmodeID.MultiplayerClient || Main.netMode == NetmodeID.SinglePlayer)) {
                 timer++;
                 if (timer >= 140 && NPC.ai[1] != 40) {
                     if (!findPlayer && timer < 160) {
@@ -382,7 +393,7 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
                         if (timer >= 180) {
                             posX = 0;
                             posY = 0;
-                            timer = NPC.AnyNPCs(turkorHead) ? 0 : 70;
+                            timer = HasHead()/*NPC.AnyNPCs(turkorHead)*/ ? 0 : 70;
                             findPlayer = false;
                         }
                     }
@@ -390,7 +401,13 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
             }
 
             //idling phase
-            if (!NPC.AnyNPCs(turkorHead)) {
+            if (!HasHead()/*NPC.AnyNPCs(turkorHead)*/) {
+                if (timer2 == 0) {
+                    posX = 0;
+                    posY = 0;
+                    timer = HasHead()/*NPC.AnyNPCs(turkorHead)*/ ? 0 : 70;
+                    findPlayer = false;
+                }
                 timer2++;
 
                 if (timer2 >= jumpTimer - 100) {
@@ -489,7 +506,23 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
             npcLoot.Add(ItemDropRule.MasterModeDropOnAllPlayers(ModContent.ItemType<FruitfulPlate>(), 4));
 
             LeadingConditionRule notExpertRule = new LeadingConditionRule(new Conditions.NotExpert());
-            notExpertRule.OnSuccess(new OneFromOptionsDropRule(1, 1, ModContent.ItemType<FeatherStorm>(), ModContent.ItemType<GreatDrumstick>(), ModContent.ItemType<TurkeyStuff>()));
+
+            if (ModLoader.HasMod("ThoriumMod")) {
+                notExpertRule.OnSuccess(new OneFromOptionsDropRule(1, 1,
+                    ModContent.ItemType<FeatherStorm>(),
+                    ModContent.ItemType<GreatDrumstick>(),
+                    ModContent.ItemType<TurkeyStuff>(),
+                    ModContent.ItemType<PortableSpecialCorn>(),
+                    ModContent.ItemType<FiveStarBuffet>(),
+                    ModContent.ItemType<UtensilPoker>()));
+            }
+            else {
+                notExpertRule.OnSuccess(new OneFromOptionsDropRule(1, 1, 
+                    ModContent.ItemType<FeatherStorm>(), 
+                    ModContent.ItemType<GreatDrumstick>(),
+                    ModContent.ItemType<TurkeyStuff>()));
+            }
+
             npcLoot.Add(notExpertRule);
             npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<SpicySauce>(), 2, 15, 34));
             npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<TurkorMask>(), 7));

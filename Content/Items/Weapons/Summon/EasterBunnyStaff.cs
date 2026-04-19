@@ -19,7 +19,7 @@ sealed class EasterBunnyStaff : ModItem {
         int width = 40, height = width;
         Item.width = width; Item.height = height;
 
-        Item.damage = 9;
+        Item.damage = 12;
         Item.DamageType = DamageClass.Summon;
         Item.noMelee = true;
         Item.mana = 10;

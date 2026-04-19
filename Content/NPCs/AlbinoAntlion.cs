@@ -6,12 +6,23 @@ using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
-using Terraria.ModLoader.Utilities;
 
 namespace Consolaria.Content.NPCs {
     public class AlbinoAntlion : ModNPC {
         public static LocalizedText BestiaryText {
             get; private set;
+        }
+
+        public override void Load() {
+            On_NPC.NewNPC += On_NPC_NewNPC;
+        }
+
+        private int On_NPC_NewNPC(On_NPC.orig_NewNPC orig, Terraria.DataStructures.IEntitySource source, int X, int Y, int Type, int Start, float ai0, float ai1, float ai2, float ai3, int Target) {
+            if (Type == NPCID.Antlion && Main.rand.NextBool(20)) {
+                Type = ModContent.NPCType<AlbinoAntlion>();
+            }
+
+            return orig(source, X, Y, Type, Start, ai0, ai1, ai2, ai3, Target);
         }
 
         public override void SetStaticDefaults() {
@@ -49,6 +60,12 @@ namespace Consolaria.Content.NPCs {
 
             Banner = NPC.type;
             BannerItem = ModContent.ItemType<Items.Placeable.Banners.AlbinoAntlionBanner>();
+
+            float scale = 1.25f;
+            NPC.damage = (int)((float)NPC.damage * scale);
+            NPC.defense = (int)((float)NPC.defense * scale);
+            NPC.lifeMax = (int)((float)NPC.lifeMax * scale);
+            NPC.value = (int)(NPC.value * scale);
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
@@ -87,7 +104,6 @@ namespace Consolaria.Content.NPCs {
                 npcLoot.Add(antlionsDropRule);
         }
 
-        public override float SpawnChance(NPCSpawnInfo spawnInfo)
-            => SpawnCondition.OverworldDayDesert.Chance * 0.025f;
+        public override float SpawnChance(NPCSpawnInfo spawnInfo) => 0f;
     }
 }

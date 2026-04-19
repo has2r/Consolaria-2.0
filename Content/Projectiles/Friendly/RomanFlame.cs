@@ -32,6 +32,8 @@ namespace Consolaria.Content.Projectiles.Friendly {
                 int dust = Dust.NewDust(Projectile.position + Projectile.velocity, Projectile.width, Projectile.height, dustType, Projectile.velocity.X * 1.1f, Projectile.velocity.Y * 1.1f, 100, colorType, 1.5f);
                 Main.dust[dust].noGravity = true;
             }
+
+            Projectile.velocity *= 0.98f;
         }
 
         public override void OnKill(int timeLeft) {
@@ -40,7 +42,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
             float rotation = MathHelper.ToRadians(45);
 
             Vector2 velocity = Projectile.velocity;
-            if (timeLeft < 10) {
+            if (timeLeft < 5) {
                 for (int i = 0; i < projectilesCount; i++) {
                     Vector2 perturbedSpeed = velocity.RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (projectilesCount - 1))) * 1.1f;
                     Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.oldPosition, perturbedSpeed, ModContent.ProjectileType<RomanFlameMid>(), Projectile.damage, Projectile.knockBack, player.whoAmI);
@@ -59,7 +61,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
             }
             if (Projectile.soundDelay == 0) {
                 Projectile.soundDelay = 100;
-                SoundEngine.PlaySound(SoundID.Item14 with { Volume = 0.8f }, Projectile.Center);
+                SoundEngine.PlaySound(SoundID.Item110 with { Volume = 0.4f, Pitch = 0.1f, PitchVariance = 0.2f }, Projectile.Center);
             }
         }
     }

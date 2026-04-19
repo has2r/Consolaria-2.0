@@ -18,9 +18,12 @@ namespace Consolaria.Content.Projectiles.Friendly {
 
             Projectile.aiStyle = 1;
             Projectile.penetrate = 1;
+            Projectile.knockBack = 0f;
 
             Projectile.friendly = true;
             Projectile.tileCollide = true;
+
+
         }
 
         public override void AI() {
@@ -30,10 +33,12 @@ namespace Consolaria.Content.Projectiles.Friendly {
                     Main.dust[dust].noGravity = true;
                 }
             }
+
+            Projectile.knockBack = 0f;
         }
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) {
-            if (!target.buffImmune[BuffID.Confused] && Main.rand.NextBool(2)) {
+            if ((!target.buffImmune[BuffID.Confused] || target.type == NPCID.Gnome || target.type == NPCID.CyanBeetle || target.type == NPCID.CochinealBeetle || target.type == NPCID.LacBeetle || target.type == NPCID.Crab || target.type == NPCID.SeaSnail || target.type == NPCID.MeteorHead || target.type == NPCID.DarkCaster || target.type == NPCID.FireImp || target.type == NPCID.GoblinSorcerer || target.type == NPCID.Harpy || target.type == NPCID.Demon || target.type == NPCID.VoodooDemon || target.type == NPCID.AnglerFish || target.type == NPCID.Arapaima || target.type == NPCID.BloodFeeder || target.type == NPCID.CorruptGoldfish || target.type == NPCID.CrimsonGoldfish || target.type == NPCID.Piranha || target.type == NPCID.Shark || target.type == NPCID.Raven || target.type == NPCID.Vulture || target.type == NPCID.Squid || target.type == NPCID.BlueJellyfish || target.type == NPCID.GreenJellyfish || target.type == NPCID.PinkJellyfish || target.type == NPCID.BloodJelly || target.type == NPCID.FungoFish || target.type == NPCID.FloatyGross || target.type == NPCID.Gastropod || target.type == NPCID.IceElemental || target.type == NPCID.GraniteFlyer) && Main.rand.NextBool(2)) {
                 target.AddBuff(BuffID.Lovestruck, 90);
                 target.AddBuff(ModContent.BuffType<Stunned>(), 90);
             }

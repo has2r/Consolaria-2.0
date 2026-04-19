@@ -36,7 +36,7 @@ namespace Consolaria.Content.Projectiles.Friendly {
                     Gore.NewGore(Projectile.GetSource_Death(), Projectile.position, new Vector2(Main.rand.Next(-2, 2), -1), easterEggGoreType);
                 }
             }
-            SoundEngine.PlaySound(new SoundStyle($"{nameof(Consolaria)}/Assets/Sounds/EggCrack") { Volume = 0.4f, Pitch = 0.1f, MaxInstances = 0 }, Projectile.position);
+            SoundEngine.PlaySound(new SoundStyle($"{nameof(Consolaria)}/Assets/Sounds/EggCrack") { Volume = 0.4f, Pitch = 0.2f, MaxInstances = 0, PitchVariance = 0.1f }, Projectile.position);
         }
     }
 }

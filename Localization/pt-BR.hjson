@@ -1,15 +1,21 @@
 Mods: {
 	Consolaria: {
-		// LepusDropCondition: Drops if Lepus is not present
-		// ValentineRingTooltip1: Give it to someone special!
-		/* ValentineRingTooltip2:
+		// DownloadRoA: Check out Rise of Ages, from the team behind Consolaria!
+		// DownloadRoA2: (hide)
+		// DownloadThorium: Consolaria x Thorium Mod is now available!
+		// DownloadThorium2: (hide)
+		LepusDropCondition: Será dropado se Lepus não estiver presente
+		ValentineRingTooltip1: Dê a alguém especial!
+		ValentineRingTooltip2:
 			'''
-			Slowly regenerates life
-			Increases jump height
-			''' */
-		// McMoneypantsInvitationUsage: The invitation flies away to its recipient...
-		// Munchies.McMoneypantsInvitation.HowToAcquire: Obtained from Red Envelope
-		// McMoneypantsButton1Text: Invest
+			Regenera a vida lentamente
+			Aumenta a altura do salto
+			'''
+		// ValentineRingTooltip3: Owned by {0}
+		// ValentineRingTooltip4: Gifted by {0}
+		McMoneypantsInvitationUsage: O convite voa para o seu destinatário...
+		Munchies.McMoneypantsInvitation.HowToAcquire: Obtido de Envelope Vermelho
+		McMoneypantsButton1Text: Investir
 		Others.NPCTitle: "{0} {1}"
 
 		Biomes: {
@@ -157,6 +163,36 @@ Mods: {
 			OldLady: {
 				DisplayName: Senhorinha
 				Description: Não julgue pela aparência
+			}
+
+			JadeBuff: {
+				// DisplayName: Jade Blessing
+				// Description: Damage and defense are increased
+			}
+
+			UtensilPokerDebuff: {
+				// DisplayName: Utensil Poker Debuff
+				// Description: Mods.Consolaria.Buffs.UtensilPokerDebuff.Description
+			}
+
+			SingerTurkeyBuff: {
+				// DisplayName: Singer Turkey Buff
+				// Description: Mods.Consolaria.Buffs.SingerTurkeyBuff.Description
+			}
+
+			SeraphimCooldown: {
+				// DisplayName: Heavenly Rejection
+				// Description: Angelic Embrace is recharging
+			}
+
+			SeraphimBuff: {
+				// DisplayName: Angelic Embrace
+				// Description: Soar freely, healing allies on touch
+			}
+
+			AlbinoRuntBuff: {
+				// DisplayName: Pet Albino Runt
+				// Description: Wouldn't survive in the wild
 			}
 		}
 
@@ -343,7 +379,11 @@ Mods: {
 					10% chance de acerto crítico à distância aumentada
 					25% de chance de não consumir munição
 					'''
-				SetBonus: Usar armas de longo alcance desencadeia um recuo explosivo
+				SetBonus:
+					'''
+					Usar armas de longo alcance desencadeia um recuo explosivo
+					Double tap {0} to toggle this effect
+					'''
 			}
 
 			TitanLeggings: {
@@ -1152,17 +1192,17 @@ Mods: {
 			}
 
 			OtherworldlyMusicBox1: {
-				// DisplayName: Otherworldly Music Box (Lepus)
+				DisplayName: Caixinha de Música Otherworldly (Lepus)
 				// Tooltip: ""
 			}
 
 			OtherworldlyMusicBox2: {
-				// DisplayName: Otherworldly Music Box (Turkor)
+				DisplayName: Caixinha de Música Otherworldly (Peruno o Ingrato)
 				// Tooltip: ""
 			}
 
 			OtherworldlyMusicBox3: {
-				// DisplayName: Otherworldly Music Box (Ocram)
+				DisplayName: Caixinha de Música Otherworldly (Ocram)
 				// Tooltip: ""
 			}
 
@@ -1173,7 +1213,278 @@ Mods: {
 
 			Eggplant: {
 				// DisplayName: Eggplant
-				// Tooltip: ""
+				// Tooltip: Grows a spinning eggplant stalk
+			}
+
+			OldSeraphimChestplate: {
+				// DisplayName: Ancient Seraphim Vesture
+				/* Tooltip:
+					'''
+					30% decreased non-radiant damage
+					20% increased radiant damage
+					20% decreased mana cost
+					Healing spells will heal an additional 3 life
+					''' */
+			}
+
+			OldSeraphimHelmet: {
+				// DisplayName: Ancient Seraphim Visage
+				/* Tooltip:
+					'''
+					20% decreased non-radiant damage
+					15% increased radiant damage
+					20% decreased mana cost
+					Maximum mana increased by 60
+					Healing spells will heal an additional 2 life
+					''' */
+			}
+
+			OldSeraphimLegs: {
+				// DisplayName: Ancient Seraphim Treads
+				/* Tooltip:
+					'''
+					20% decreased non-radiant damage
+					15% increased radiant damage
+					15% decreased mana cost
+					Healing spells will heal an additional 2 life
+					15% increased movement speed
+					''' */
+			}
+
+			OldSirenChestplate: {
+				// DisplayName: Ancient Siren Chestplate
+				/* Tooltip:
+					'''
+					10% increased symphonic damage
+					Increases the chance for inspiration notes to drop by 10%
+					Increases the duration of your symphonic empowerments by 6 seconds
+					''' */
+			}
+
+			OldSirenHelmet: {
+				// DisplayName: Ancient Siren Headgear
+				/* Tooltip:
+					'''
+					8% increased symphonic playing speed
+					4% increased symphonic critical strike chance
+					Increases inspiration regeneration rate by 20%
+					''' */
+			}
+
+			OldSirenLegs: {
+				// DisplayName: Ancient Siren Tail
+				/* Tooltip:
+					'''
+					10% increased symphonic damage
+					6% increased symphonic critical strike chance
+					15% increased movement speed
+					''' */
+			}
+
+			OldViperChestplate: {
+				// DisplayName: Ancient Viper Jacket
+				/* Tooltip:
+					'''
+					10% increased throwing damage
+					20% increased throwing velocity
+					15% increased throwing speed
+					''' */
+			}
+
+			OldViperHelmet: {
+				// DisplayName: Ancient Viper Helmet
+				/* Tooltip:
+					'''
+					20% increased throwing damage
+					33% chance not to consume thrown items
+					Increases your maximum technique points by 2
+					''' */
+			}
+
+			OldViperLegs: {
+				// DisplayName: Ancient Viper Pants
+				/* Tooltip:
+					'''
+					20% increased throwing damage
+					25% increased throwing critical strike chance
+					15% increased movement speed
+					''' */
+			}
+
+			SeraphimChestplate: {
+				// DisplayName: Seraphim Vesture
+				/* Tooltip:
+					'''
+					30% decreased non-radiant damage
+					20% increased radiant damage
+					20% decreased mana cost
+					Healing spells will heal an additional 3 life
+					''' */
+			}
+
+			SeraphimHelmet: {
+				// DisplayName: Seraphim Visage
+				/* Tooltip:
+					'''
+					20% decreased non-radiant damage
+					15% increased radiant damage
+					20% decreased mana cost
+					Maximum mana increased by 60
+					Healing spells will heal an additional 2 life
+					''' */
+				// SetBonus: Pressing the Armor Ability key will activate Angelic Embrace, granting infinite flight and healing allies on touch for 4 seconds
+			}
+
+			SeraphimLegs: {
+				// DisplayName: Seraphim Treads
+				/* Tooltip:
+					'''
+					20% decreased non-radiant damage
+					15% increased radiant damage
+					15% decreased mana cost
+					Healing spells will heal an additional 2 life
+					15% increased movement speed
+					''' */
+			}
+
+			SirenChestplate: {
+				// DisplayName: Siren Chestplate
+				/* Tooltip:
+					'''
+					10% increased symphonic damage
+					Increases the chance for inspiration notes to drop by 10%
+					Increases the duration of your symphonic empowerments by 6 seconds
+					''' */
+			}
+
+			SirenHelmet: {
+				// DisplayName: Siren Headgear
+				/* Tooltip:
+					'''
+					8% increased symphonic playing speed
+					4% increased symphonic critical strike chance
+					Increases inspiration regeneration rate by 20%
+					''' */
+				// SetBonus: Striking an enemy with symphonic damage occasionally summons a sea creature to grant an empowerment to nearby allies
+			}
+
+			SirenLegs: {
+				// DisplayName: Siren Tail
+				/* Tooltip:
+					'''
+					10% increased symphonic damage
+					6% increased symphonic critical strike chance
+					15% increased movement speed
+					''' */
+			}
+
+			ViperChestplate: {
+				// DisplayName: Viper Jacket
+				/* Tooltip:
+					'''
+					10% increased throwing damage
+					20% increased throwing velocity
+					15% increased throwing speed
+					''' */
+			}
+
+			ViperHelmet: {
+				// DisplayName: Viper Helmet
+				/* Tooltip:
+					'''
+					20% increased throwing damage
+					33% chance not to consume thrown items
+					Increases your maximum technique points by 2
+					''' */
+				/* SetBonus:
+					'''
+					Throwing damage has a 10% chance to poison enemies
+					Nearby enemies take extra damage from poison and venom
+					''' */
+			}
+
+			ViperLegs: {
+				// DisplayName: Viper Pants
+				/* Tooltip:
+					'''
+					20% increased throwing damage
+					25% increased throwing critical strike chance
+					15% increased movement speed
+					''' */
+			}
+
+			ScytheFantasma: {
+				// DisplayName: Fantasma
+				/* Tooltip:
+					'''
+					Rapidly spins a phantasmal scythe all around you
+					Dealing direct damage may summon a homing spirit
+					''' */
+			}
+
+			SpineCracker: {
+				// DisplayName: Spine Cracker
+				/* Tooltip:
+					'''
+					Spins in place, scattering shadow scythes
+					Overuse of this weapon exhausts you, massively reducing its damage
+					Killing enemies recovers some of your exhaustion
+					''' */
+			}
+
+			JadeSeal: {
+				// DisplayName: Jade Seal
+				/* Tooltip:
+					'''
+					Left click to summon a jade lantern that boosts damage and defense of allies
+					Right click to summon a golden lantern that hovers in place and heals allies
+					''' */
+			}
+
+			Omunikodo: {
+				// DisplayName: Omunikodo
+				// Tooltip: Releases a wave of chaotic noise
+			}
+
+			PortableSpecialCorn: {
+				// DisplayName: Portable Special Corn
+				// Tooltip: Replicates every 4th symphonic attack with 50% of its damage
+			}
+
+			UtensilPoker: {
+				// DisplayName: Utensil Poker
+				/* Tooltip:
+					'''
+					Right click to prepare up to five throwable forks
+					Forks get stuck in enemies, bleeding them out
+					Overuse of this weapon exhausts you, massively reducing its damage
+					Killing enemies recovers some of your exhaustion
+					''' */
+			}
+
+			Chocoplotion: {
+				// DisplayName: Choxplosion
+				/* Tooltip:
+					'''
+					Hops towards an enemy and explodes into chocolate droplets
+					Overuse of this weapon exhausts you, massively reducing its damage
+					Killing enemies recovers some of your exhaustion
+					''' */
+			}
+
+			FiveStarBuffet: {
+				// DisplayName: Five-Star Buffet
+				// Tooltip: Prepares up to five succulent meals, then feeds them to allies with the least health
+			}
+
+			AlbinoSwarmerBanner: {
+				// DisplayName: Albino Swarmer Banner
+				// Tooltip: "{$CommonItemTooltip.BannerBonus}Albino Swarmer"
+			}
+
+			BleachCanister: {
+				// DisplayName: Bleach Canister
+				// Tooltip: Summons a pet albino runt
 			}
 		}
 
@@ -1216,7 +1527,7 @@ Mods: {
 				Bestiary: Como se o seu tamanho não fosse problemático o suficiente, este coelho pode reproduzir-se através de ovos coloridos, espalhados pelo mundo na Primavera para os tolos apanharem.
 
 				BossChecklistIntegration: {
-					SpawnInfo: Use um [i:Consolaria/SuspiciousLookingEgg] durante o dia
+					SpawnInfo: Use um [i:Consolaria/SuspiciousLookingEgg]
 					DespawnMessage: Lepus desaparece em alegria!
 				}
 			}
@@ -1247,7 +1558,7 @@ Mods: {
 				BossChecklistIntegration: {
 					EntryName: Peruno o Ingrato
 					SpawnInfo: Use um [i:Consolaria/CursedStuffing] após invocar um peru de estimação
-					DespawnMessage: Peruno o Ingrato escapou do prato!
+					DespawnMessage: Peruno o Ingrato não ficou para o jantar!
 				}
 			}
 
@@ -1373,6 +1684,16 @@ Mods: {
 				Quote9: Meu conselho financeiro? Não atire suas moedas com essa arma horrível.
 				Quote10: Bitcoin? Por que eu morderia uma moeda?
 			}
+
+			AlbinoSwarmer: {
+				// Bestiary: Albino antlions may not be suited to blending into the dunes, but the sight of their pale figure is said to instill primal fear in their prey.
+				// DisplayName: Albino Swarmer
+			}
+
+			GiantAlbinoSwarmer: {
+				// Bestiary: Albino antlions may not be suited to blending into the dunes, but the sight of their pale figure is said to instill primal fear in their prey.
+				// DisplayName: Giant Albino Swarmer
+			}
 		}
 
 		Projectiles: {
@@ -1447,6 +1768,24 @@ Mods: {
 			// Eggplant_Root.DisplayName: Eggplant
 			// Eggplant_Shoot.DisplayName: Eggplant
 			// Eggplant_Stem.DisplayName: Eggplant
+			// ScytheFantasma_Use.DisplayName: Scythe Fantasma
+			// ScytheFantasma_Spirit.DisplayName: Phantasm
+			// SpineCracker_Throw.DisplayName: Spine Cracker
+			// SpineCracker_Scythe.DisplayName: Spine Cracker Scythe
+			// JadeSeal_Lamp.DisplayName: Jade Lamp
+			// JadeSeal_GoldenLamp.DisplayName: Golden Lamp
+			// Omunikodo_Shot.DisplayName: Noise Wave
+			// UtensilPoker_Fork.DisplayName: Fork
+			// UtensilPoker_Throw.DisplayName: Utensil Poker
+			// UtensilPoker_BigFork.DisplayName: Big Fork
+			// PortableSpecialCorn_Summon.DisplayName: Singer Turkey
+			// Chocoplotion_Throw.DisplayName: Choxplosion
+			// FiveStarBuffet_Use.DisplayName: Five Star Buffet
+			// FiveStarBuffet_Food.DisplayName: Five Star Meal
+			// Chocoplotion_Droplet.DisplayName: Chocolate Droplet
+			// SeraphimHeal.DisplayName: Seraphim Heal
+			// SirenSeaCreature.DisplayName: Siren Sea Creature
+			// AlbinoRunt.DisplayName: Albino Runt
 		}
 
 		Tiles: {
@@ -1539,31 +1878,31 @@ Mods: {
 				}
 
 				pyramidEnabled: {
-					// Label: Guaranteed pyramid
-					// Tooltip: If enabled, at least 1 pyramid will always generate in the world
+					Label: Pirâmide garantida
+					Tooltip: Se habilitado, pelo menos 1 pirâmide sempre será gerada no mundo
 				}
 
 				pyramidMessageLoot: {
-					// Label: Special pyramid loot
-					// Tooltip: If enabled,
+					Label: Saque de pirâmide especial
+					Tooltip: Se habilitado, uma mensagem especial aparecerá no baú da segunda sala da pirâmide
 				}
 			}
 		}
 
 		Achievements: {
-			KillLepus: {
-				Name: Um Salto de Cada Vez
+			LepusKillAchievement: {
+				FriendlyName: Um Salto de Cada Vez
 				Description: Derrote Lepus, o maior encrenqueiro da Páscoa
 			}
 
-			KillTurkor: {
-				Name: Fome por Matança... e Peru!
-				Description: Derrote Peruno o Ingrato, a monstruosidade em chamas do Dia de Ação de Graças.
+			OcramKillAchievement: {
+				FriendlyName: Bíblia da Besta
+				Description: Derrote Ocram, o demônio amaldiçoado que assombra o céu sem estrelas.
 			}
 
-			KillOcram: {
-				Name: Bíblia da Besta
-				Description: Derrote Ocram, o demônio amaldiçoado que assombra o céu sem estrelas.
+			TurkorKillAchievement: {
+				FriendlyName: Fome por Matança... e Peru!
+				Description: Derrote Peruno o Ingrato, a monstruosidade em chamas do Dia de Ação de Graças.
 			}
 		}
 
@@ -1576,38 +1915,38 @@ Mods: {
 
 		MusicDisplayCompability: {
 			Lepus: {
-				// Author: by Synoxsis
-				// DisplayName: Lepus
+				Author: por Synoxsis
+				DisplayName: Lepus
 			}
 
 			Ocram: {
-				// Author: by Synoxsis
-				// DisplayName: Ocram
+				Author: por Synoxsis
+				DisplayName: Ocram
 			}
 
 			EerieOcram: {
-				// Author: by Fyerow & Croul
-				// DisplayName: Eerie Ocram
+				Author: por Fyerow & Croul
+				DisplayName: Eerie Ocram
 			}
 
 			Turkor: {
-				// Author: by Synoxsis
-				// DisplayName: Turkor the Ungrateful
+				Author: por Synoxsis
+				DisplayName: Peruno o Ingrato
 			}
 
 			AltLepus: {
-				// Author: by Jteoh
-				// DisplayName: Blight of Spring (Otherworldly Lepus)
+				Author: por Jteoh
+				DisplayName: Praga da Primavera (Otherworldly Lepus)
 			}
 
 			AltOcram: {
-				// Author: by Jteoh
-				// DisplayName: Mirror Image (Otherworldly Ocram)
+				Author: por Jteoh
+				DisplayName: Doações Ingratas (Otherworldly Peruno o Ingrato)
 			}
 
 			AltTurkor: {
-				// Author: by Jteoh
-				// DisplayName: Ungracious Givings (Otherworldly Turkor)
+				Author: por Jteoh
+				DisplayName: Imagem espelhada (Otherworldly Ocram)
 			}
 		}
 	}

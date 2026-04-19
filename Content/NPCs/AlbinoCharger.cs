@@ -6,12 +6,23 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
-using Terraria.ModLoader.Utilities;
 
 namespace Consolaria.Content.NPCs {
     public class AlbinoCharger : ModNPC {
         public static LocalizedText BestiaryText {
             get; private set;
+        }
+
+        public override void Load() {
+            On_NPC.NewNPC += On_NPC_NewNPC;
+        }
+
+        private int On_NPC_NewNPC(On_NPC.orig_NewNPC orig, Terraria.DataStructures.IEntitySource source, int X, int Y, int Type, int Start, float ai0, float ai1, float ai2, float ai3, int Target) {
+            if (Type == NPCID.WalkingAntlion && Main.rand.NextBool(20)) {
+                Type = ModContent.NPCType<AlbinoCharger>();
+            }
+
+            return orig(source, X, Y, Type, Start, ai0, ai1, ai2, ai3, Target);
         }
 
         public override void SetStaticDefaults() {
@@ -48,6 +59,12 @@ namespace Consolaria.Content.NPCs {
 
             Banner = NPC.type;
             BannerItem = ModContent.ItemType<Items.Placeable.Banners.AlbinoChargerBanner>();
+
+            float scale = 1.25f;
+            NPC.damage = (int)((float)NPC.damage * scale);
+            NPC.defense = (int)((float)NPC.defense * scale);
+            NPC.lifeMax = (int)((float)NPC.lifeMax * scale);
+            NPC.value = (int)(NPC.value * scale);
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
@@ -74,11 +91,11 @@ namespace Consolaria.Content.NPCs {
         }
 
         public override void ModifyNPCLoot(NPCLoot npcLoot) {
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Weapons.Melee.AlbinoMandible>(), 30));
-            npcLoot.Add(ItemDropRule.Common(ItemID.AntlionMandible, 3, 1, 2));
+            npcLoot.Add(ItemDropRule.Common(3772, 50));
+            npcLoot.Add(ItemDropRule.Common(323, 3, 1, 2));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Weapons.Melee.AlbinoMandible>(), 25));
         }
 
-        public override float SpawnChance(NPCSpawnInfo spawnInfo)
-            => SpawnCondition.DesertCave.Chance * 0.025f;
+        public override float SpawnChance(NPCSpawnInfo spawnInfo) => 0f;
     }
 }

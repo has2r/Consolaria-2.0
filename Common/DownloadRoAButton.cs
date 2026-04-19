@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 using System;
 using System.Collections.Generic;
@@ -29,8 +28,7 @@ sealed class DownloadRoAButton : ILoadable {
     private static Color _lerpColor;
     private static Color? _currentColor = null, _nextColor = null;
 
-    private sealed class VariableStorage : ModSystem {
-    }
+    bool ILoadable.IsLoadingEnabled(Mod mod) => false;
 
     void ILoadable.Load(Mod mod) {
         LoadFile();

@@ -1,7 +1,7 @@
 displayName = Consolaria
-author = RoA Gang (has2r, peege.on, smeqe, Heretic)
+author = RoA Gang (has2r, peege.on, Serork)
 
-version = 2.1.3
+version = 2.1.4
 homepage = https://forums.terraria.org/index.php?threads/consolaria.62570/
 
 hideCode = false
@@ -11,4 +11,6 @@ includeSource = true
 buildIgnore = *.csproj, *.sln, *.user, obj\*, bin\*, .vs\*, Properties\*, .git\*, .gitattributes, .gitignore
 includePDB = true
 
-sortAfter = RoA
+weakReferences = ThoriumMod
+
+sortAfter = RoA, ThoriumMod

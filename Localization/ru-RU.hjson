@@ -1,15 +1,21 @@
 Mods: {
 	Consolaria: {
-		// LepusDropCondition: Drops if Lepus is not present
-		// ValentineRingTooltip1: Give it to someone special!
-		/* ValentineRingTooltip2:
+		DownloadRoA: Зацените Rise of Ages, от разработчиков Consolaria!
+		DownloadRoA2: (скрыть)
+		// DownloadThorium: Consolaria x Thorium Mod is now available!
+		// DownloadThorium2: (hide)
+		LepusDropCondition: Падает при отсутствии Лепуса в мире
+		ValentineRingTooltip1: Подарите его кому-то особенному!
+		ValentineRingTooltip2:
 			'''
-			Slowly regenerates life
-			Increases jump height
-			''' */
-		// McMoneypantsInvitationUsage: The invitation flies away to its recipient...
-		// Munchies.McMoneypantsInvitation.HowToAcquire: Obtained from Red Envelope
-		// McMoneypantsButton1Text: Invest
+			Медленно восстанавливает здоровье
+			Увеличивает высоту прыжка
+			'''
+		// ValentineRingTooltip3: Owned by {0}
+		// ValentineRingTooltip4: Gifted by {0}
+		McMoneypantsInvitationUsage: Приглашение улетает к своему получателю...
+		Munchies.McMoneypantsInvitation.HowToAcquire: Находится в Красном Конверте
+		McMoneypantsButton1Text: Инвестировать
 		Others.NPCTitle: "{0} {1}"
 
 		Biomes: {
@@ -158,6 +164,36 @@ Mods: {
 				DisplayName: Старушка
 				Description: Не суди по внешности
 			}
+
+			JadeBuff: {
+				// DisplayName: Jade Blessing
+				// Description: Damage and defense are increased
+			}
+
+			UtensilPokerDebuff: {
+				// DisplayName: Utensil Poker Debuff
+				// Description: Mods.Consolaria.Buffs.UtensilPokerDebuff.Description
+			}
+
+			SingerTurkeyBuff: {
+				// DisplayName: Singer Turkey Buff
+				// Description: Mods.Consolaria.Buffs.SingerTurkeyBuff.Description
+			}
+
+			SeraphimCooldown: {
+				// DisplayName: Heavenly Rejection
+				// Description: Angelic Embrace is recharging
+			}
+
+			SeraphimBuff: {
+				// DisplayName: Angelic Embrace
+				// Description: Soar freely, healing allies on touch
+			}
+
+			AlbinoRuntBuff: {
+				// DisplayName: Pet Albino Runt
+				// Description: Wouldn't survive in the wild
+			}
 		}
 
 		Items: {
@@ -208,7 +244,7 @@ Mods: {
 					Магический урон увеличен на 10%
 					Увеличен шанс критического удара магией на 10%
 					'''
-				// SetBonus: Siphons mana out of nearby enemies
+				SetBonus: Высасывает ману из ближайших врагов
 			}
 
 			PhantasmalRobe: {
@@ -286,7 +322,7 @@ Mods: {
 					Урон ближнего боя увеличен на 15%
 					Скорость ближнего боя увеличена на 15%
 					'''
-				// SetBonus: Creates a burst of flames after taking damage
+				SetBonus: Вызывает залп огня при получении урона
 			}
 
 			OstaraBoots: {
@@ -297,7 +333,7 @@ Mods: {
 			OstaraHat: {
 				DisplayName: Шляпа Остары
 				Tooltip: Скорость передвижения увеличена на 7%
-				// SetBonus: Negates fall damage
+				SetBonus: Поглощает весь урон от падения
 			}
 
 			OstaraJacket: {
@@ -343,7 +379,11 @@ Mods: {
 					Увеличен шанс критического удара дальнего боя на 10%
 					Шанс не потратить снаряды увеличен на 25%
 					'''
-				// SetBonus: Using ranged weapons triggers a recoil blast
+				SetBonus:
+					'''
+					Использование оружия дальнего боя вызывает взрыв с отдачей
+					Дважды нажмите {0}, чтобы отключить этот эффект
+					'''
 			}
 
 			TitanLeggings: {
@@ -401,7 +441,7 @@ Mods: {
 					Увеличивает максимальное количество миньонов на 1
 					Урон призывателя увеличен на 20%
 					'''
-				// SetBonus: Enemies killed by minions heal the player
+				SetBonus: Враги, убитые миньонами, восстанавливают ваше здоровье
 			}
 
 			WarlockLeggings: {
@@ -614,8 +654,9 @@ Mods: {
 				DisplayName: Экзоскелет Привязанных Теней
 				Tooltip:
 					'''
-					Позволяет игроку делать ракетный прыжок
-					Нажмите ВВЕРХ дважды
+					{0} урона ближнего боя
+					Позволяет вам делать ракетный прыжок
+					Нажмите {1} дважды
 					'''
 			}
 
@@ -1141,38 +1182,309 @@ Mods: {
 			}
 
 			OktoberLocks: {
-				// Tooltip: ""
-				// DisplayName: Oktober Locks
+				Tooltip: ""
+				DisplayName: Прическа Октоберфеста
 			}
 
 			PurpleThread: {
-				// Tooltip: ""
-				// DisplayName: Purple Thread
+				Tooltip: ""
+				DisplayName: Фиолетовые нитки
 			}
 
 			OtherworldlyMusicBox1: {
-				// DisplayName: Otherworldly Music Box (Lepus)
-				// Tooltip: ""
+				DisplayName: Иная музыкальная шкатулка (Лепус)
+				Tooltip: ""
 			}
 
 			OtherworldlyMusicBox2: {
-				// DisplayName: Otherworldly Music Box (Turkor)
-				// Tooltip: ""
+				DisplayName: Иная музыкальная шкатулка (Туркор)
+				Tooltip: ""
 			}
 
 			OtherworldlyMusicBox3: {
-				// DisplayName: Otherworldly Music Box (Ocram)
-				// Tooltip: ""
+				DisplayName: Иная музыкальная шкатулка (Окрам)
+				Tooltip: ""
 			}
 
 			EasterBunnyStaff: {
-				// DisplayName: Easter Bunny Staff
-				// Tooltip: Summons an easter bunny to fight for you
+				DisplayName: Посох пасхального кролика
+				Tooltip: Призывает пасхального кролика, сражающегося за вас
 			}
 
 			Eggplant: {
-				// DisplayName: Eggplant
-				// Tooltip: ""
+				DisplayName: Баклажан
+				Tooltip: ""
+			}
+
+			OldSeraphimChestplate: {
+				// DisplayName: Ancient Seraphim Vesture
+				/* Tooltip:
+					'''
+					30% decreased non-radiant damage
+					20% increased radiant damage
+					20% decreased mana cost
+					Healing spells will heal an additional 3 life
+					''' */
+			}
+
+			OldSeraphimHelmet: {
+				// DisplayName: Ancient Seraphim Visage
+				/* Tooltip:
+					'''
+					20% decreased non-radiant damage
+					15% increased radiant damage
+					20% decreased mana cost
+					Maximum mana increased by 60
+					Healing spells will heal an additional 2 life
+					''' */
+			}
+
+			OldSeraphimLegs: {
+				// DisplayName: Ancient Seraphim Treads
+				/* Tooltip:
+					'''
+					20% decreased non-radiant damage
+					15% increased radiant damage
+					15% decreased mana cost
+					Healing spells will heal an additional 2 life
+					15% increased movement speed
+					''' */
+			}
+
+			OldSirenChestplate: {
+				// DisplayName: Ancient Siren Chestplate
+				/* Tooltip:
+					'''
+					10% increased symphonic damage
+					Increases the chance for inspiration notes to drop by 10%
+					Increases the duration of your symphonic empowerments by 6 seconds
+					''' */
+			}
+
+			OldSirenHelmet: {
+				// DisplayName: Ancient Siren Headgear
+				/* Tooltip:
+					'''
+					8% increased symphonic playing speed
+					4% increased symphonic critical strike chance
+					Increases inspiration regeneration rate by 20%
+					''' */
+			}
+
+			OldSirenLegs: {
+				// DisplayName: Ancient Siren Tail
+				/* Tooltip:
+					'''
+					10% increased symphonic damage
+					6% increased symphonic critical strike chance
+					15% increased movement speed
+					''' */
+			}
+
+			OldViperChestplate: {
+				// DisplayName: Ancient Viper Jacket
+				/* Tooltip:
+					'''
+					10% increased throwing damage
+					20% increased throwing velocity
+					15% increased throwing speed
+					''' */
+			}
+
+			OldViperHelmet: {
+				// DisplayName: Ancient Viper Helmet
+				/* Tooltip:
+					'''
+					20% increased throwing damage
+					33% chance not to consume thrown items
+					Increases your maximum technique points by 2
+					''' */
+			}
+
+			OldViperLegs: {
+				// DisplayName: Ancient Viper Pants
+				/* Tooltip:
+					'''
+					20% increased throwing damage
+					25% increased throwing critical strike chance
+					15% increased movement speed
+					''' */
+			}
+
+			SeraphimChestplate: {
+				// DisplayName: Seraphim Vesture
+				/* Tooltip:
+					'''
+					30% decreased non-radiant damage
+					20% increased radiant damage
+					20% decreased mana cost
+					Healing spells will heal an additional 3 life
+					''' */
+			}
+
+			SeraphimHelmet: {
+				// DisplayName: Seraphim Visage
+				/* Tooltip:
+					'''
+					20% decreased non-radiant damage
+					15% increased radiant damage
+					20% decreased mana cost
+					Maximum mana increased by 60
+					Healing spells will heal an additional 2 life
+					''' */
+				// SetBonus: Pressing the Armor Ability key will activate Angelic Embrace, granting infinite flight and healing allies on touch for 4 seconds
+			}
+
+			SeraphimLegs: {
+				// DisplayName: Seraphim Treads
+				/* Tooltip:
+					'''
+					20% decreased non-radiant damage
+					15% increased radiant damage
+					15% decreased mana cost
+					Healing spells will heal an additional 2 life
+					15% increased movement speed
+					''' */
+			}
+
+			SirenChestplate: {
+				// DisplayName: Siren Chestplate
+				/* Tooltip:
+					'''
+					10% increased symphonic damage
+					Increases the chance for inspiration notes to drop by 10%
+					Increases the duration of your symphonic empowerments by 6 seconds
+					''' */
+			}
+
+			SirenHelmet: {
+				// DisplayName: Siren Headgear
+				/* Tooltip:
+					'''
+					8% increased symphonic playing speed
+					4% increased symphonic critical strike chance
+					Increases inspiration regeneration rate by 20%
+					''' */
+				// SetBonus: Striking an enemy with symphonic damage occasionally summons a sea creature to grant an empowerment to nearby allies
+			}
+
+			SirenLegs: {
+				// DisplayName: Siren Tail
+				/* Tooltip:
+					'''
+					10% increased symphonic damage
+					6% increased symphonic critical strike chance
+					15% increased movement speed
+					''' */
+			}
+
+			ViperChestplate: {
+				// DisplayName: Viper Jacket
+				/* Tooltip:
+					'''
+					10% increased throwing damage
+					20% increased throwing velocity
+					15% increased throwing speed
+					''' */
+			}
+
+			ViperHelmet: {
+				// DisplayName: Viper Helmet
+				/* Tooltip:
+					'''
+					20% increased throwing damage
+					33% chance not to consume thrown items
+					Increases your maximum technique points by 2
+					''' */
+				/* SetBonus:
+					'''
+					Throwing damage has a 10% chance to poison enemies
+					Nearby enemies take extra damage from poison and venom
+					''' */
+			}
+
+			ViperLegs: {
+				// DisplayName: Viper Pants
+				/* Tooltip:
+					'''
+					20% increased throwing damage
+					25% increased throwing critical strike chance
+					15% increased movement speed
+					''' */
+			}
+
+			ScytheFantasma: {
+				// DisplayName: Fantasma
+				/* Tooltip:
+					'''
+					Rapidly spins a phantasmal scythe all around you
+					Dealing direct damage may summon a homing spirit
+					''' */
+			}
+
+			SpineCracker: {
+				// DisplayName: Spine Cracker
+				/* Tooltip:
+					'''
+					Spins in place, scattering shadow scythes
+					Overuse of this weapon exhausts you, massively reducing its damage
+					Killing enemies recovers some of your exhaustion
+					''' */
+			}
+
+			JadeSeal: {
+				// DisplayName: Jade Seal
+				/* Tooltip:
+					'''
+					Left click to summon a jade lantern that boosts damage and defense of allies
+					Right click to summon a golden lantern that hovers in place and heals allies
+					''' */
+			}
+
+			Omunikodo: {
+				// DisplayName: Omunikodo
+				// Tooltip: Releases a wave of chaotic noise
+			}
+
+			PortableSpecialCorn: {
+				// DisplayName: Portable Special Corn
+				// Tooltip: Replicates every 4th symphonic attack with 50% of its damage
+			}
+
+			UtensilPoker: {
+				// DisplayName: Utensil Poker
+				/* Tooltip:
+					'''
+					Right click to prepare up to five throwable forks
+					Forks get stuck in enemies, bleeding them out
+					Overuse of this weapon exhausts you, massively reducing its damage
+					Killing enemies recovers some of your exhaustion
+					''' */
+			}
+
+			Chocoplotion: {
+				// DisplayName: Choxplosion
+				/* Tooltip:
+					'''
+					Hops towards an enemy and explodes into chocolate droplets
+					Overuse of this weapon exhausts you, massively reducing its damage
+					Killing enemies recovers some of your exhaustion
+					''' */
+			}
+
+			FiveStarBuffet: {
+				// DisplayName: Five-Star Buffet
+				// Tooltip: Prepares up to five succulent meals, then feeds them to allies with the least health
+			}
+
+			AlbinoSwarmerBanner: {
+				// DisplayName: Albino Swarmer Banner
+				// Tooltip: "{$CommonItemTooltip.BannerBonus}Albino Swarmer"
+			}
+
+			BleachCanister: {
+				// DisplayName: Bleach Canister
+				// Tooltip: Summons a pet albino runt
 			}
 		}
 
@@ -1215,7 +1527,7 @@ Mods: {
 				// Bestiary: As if its size wasn't troublesome enough, this rabbit can reproduce through colorful eggs, spread around the world in Spring for fools to pick up.
 
 				BossChecklistIntegration: {
-					// SpawnInfo: Use a [i:Consolaria/SuspiciousLookingEgg] at day time
+					SpawnInfo: Используйте [i:Consolaria/SuspiciousLookingEgg]
 					DespawnMessage: Лепус упрыгивает в рассвет!
 				}
 			}
@@ -1372,6 +1684,16 @@ Mods: {
 				// Quote9: My financial advice? Don't shoot your coins out of that awful gun.
 				// Quote10: Bitcoin? Why would I ever beat a coin?
 			}
+
+			AlbinoSwarmer: {
+				// Bestiary: Albino antlions may not be suited to blending into the dunes, but the sight of their pale figure is said to instill primal fear in their prey.
+				// DisplayName: Albino Swarmer
+			}
+
+			GiantAlbinoSwarmer: {
+				// Bestiary: Albino antlions may not be suited to blending into the dunes, but the sight of their pale figure is said to instill primal fear in their prey.
+				// DisplayName: Giant Albino Swarmer
+			}
 		}
 
 		Projectiles: {
@@ -1443,9 +1765,27 @@ Mods: {
 			Explosion.DisplayName: Взрыв
 			MythicalWyvernProjectile.DisplayName: Мифическая Виверна
 			MythicalWyvernKiteProjectile.DisplayName: Воздушный змей «Мифическая Виверна»
-			// Eggplant_Root.DisplayName: Eggplant
-			// Eggplant_Shoot.DisplayName: Eggplant
-			// Eggplant_Stem.DisplayName: Eggplant
+			Eggplant_Root.DisplayName: Баклажан
+			Eggplant_Shoot.DisplayName: Баклажан
+			Eggplant_Stem.DisplayName: Баклажан
+			// ScytheFantasma_Use.DisplayName: Scythe Fantasma
+			// ScytheFantasma_Spirit.DisplayName: Phantasm
+			// SpineCracker_Throw.DisplayName: Spine Cracker
+			// SpineCracker_Scythe.DisplayName: Spine Cracker Scythe
+			// JadeSeal_Lamp.DisplayName: Jade Lamp
+			// JadeSeal_GoldenLamp.DisplayName: Golden Lamp
+			// Omunikodo_Shot.DisplayName: Noise Wave
+			// UtensilPoker_Fork.DisplayName: Fork
+			// UtensilPoker_Throw.DisplayName: Utensil Poker
+			// UtensilPoker_BigFork.DisplayName: Big Fork
+			// PortableSpecialCorn_Summon.DisplayName: Singer Turkey
+			// Chocoplotion_Throw.DisplayName: Choxplosion
+			// FiveStarBuffet_Use.DisplayName: Five Star Buffet
+			// FiveStarBuffet_Food.DisplayName: Five Star Meal
+			// Chocoplotion_Droplet.DisplayName: Chocolate Droplet
+			// SeraphimHeal.DisplayName: Seraphim Heal
+			// SirenSeaCreature.DisplayName: Siren Sea Creature
+			// AlbinoRunt.DisplayName: Albino Runt
 		}
 
 		Tiles: {
@@ -1459,9 +1799,9 @@ Mods: {
 			SellingDuringValentineDay: Mods.Consolaria.Conditions.SellingDuringValentineDay
 			SellingIfMale: Mods.Consolaria.Conditions.SellingIfMale
 			SellingWhenWoman: Mods.Consolaria.Conditions.SellingWhenWoman
-			// SellingDuringWishboneCooldown: Mods.Consolaria.Conditions.SellingDuringWishboneCooldown
-			// TurkorDowned: Mods.Consolaria.Conditions.TurkorDowned
-			// OcramDowned: Mods.Consolaria.Conditions.OcramDowned
+			SellingDuringWishboneCooldown: Mods.Consolaria.Conditions.SellingDuringWishboneCooldown
+			TurkorDowned: Mods.Consolaria.Conditions.TurkorDowned
+			OcramDowned: Mods.Consolaria.Conditions.OcramDowned
 		}
 
 		Configs: {
@@ -1469,9 +1809,9 @@ Mods: {
 				DisplayName: Конфигурация
 
 				Headers: {
-					SeasonalEvents: Сезонные События
+					SeasonalEvents: Сезонные события
 					Miscellaneous: Разное
-					// WorldGeneration: World Generation
+					WorldGeneration: Создание мира
 				}
 
 				easterEnabled: {
@@ -1503,66 +1843,66 @@ Mods: {
 				}
 
 				tizonaZenithIntegrationEnabled: {
-					// Label: Tizona integration in Zenith
-					// Tooltip: If enabled, Tizona will be added to Zenith's crafting recipe and it's projectiles.
+					Label: Интеграция Тизоны в Зенит
+					Tooltip: При включении Тизона будет использована в рецепте создания Зенита и появится среди его снарядов
 				}
 
 				oktoberLocksEnabled: {
-					// Label: Oktober Locks vanity item
-					// Tooltip: If enabled, the Oktober Locks will be available to buy from Clothier during Oktoberfest
+					Label: Декоративный предмет - Прическа Октоберфеста
+					Tooltip: При включении Прическа Октоберфеста будет продаваться Портным во время Октоберфеста
 				}
 
 				mythicalWyvernKiteVanillaDropruleEnabled: {
-					// Label: Mythical Wyvern Kite vanilla droprule
-					// Tooltip: If enabled, Mythical Wyvern Kite will have a 4% chance to be dropped from Mythical Wyvern during the Windy Days instead of being obtained from Red Envelope
+					Label: Ванильное правило выпадения Воздушного змея «Мифическая Виверна»
+					Tooltip: При включении Воздушный змей «Мифическая Виверна» будет выпадать из Мифической Виверны с 4%-ным шансом, вместо Красного конверта
 				}
 
 				heartbeatariaIntegrationEnabled: {
-					// Label: Heartbeataria Mod integration
-					// Tooltip: If enabled, exclusive Heartbeataria Mod items can be obtained from Red Envelope
+					Label: Интеграция мода Heartbeataria
+					Tooltip: При включении некоторые предметы из Heartbeataria можно получить из Красных конвертов
 				}
 
 				originalAncientHeroSetRecipeEnabled: {
-					// Label: Original Ancient Hero set crafting recipe
-					// Tooltip: If enabled, the Ancient Hero set can be crafted using Silk and Purple Thread in a Loom instead of shimmering
+					Label: Изначальный рецепт создания Древнего набора Героя
+					Tooltip: При включении Древний набор Героя может быть создан из Шелка и Фиолетовой нитки на Ткацком станке вместо шиммера
 				}
 
 				genderRestrictShopEnabled: {
-					// Label: Restrict George's set and Fabulous set by player's gender
-					/* Tooltip:
+					Label: Ограничить покупку набора Джорджа и Потрясающего набора по полу персонажа
+					Tooltip:
 						'''
-						If enabled, the relevant sets will only appear in Clothier's shop during Blood Moon if player has a certain gender
-						Male - George's set
-						Female - Fabulous set
-						''' */
+						При включении Портной будет продавать эти наборы во время Кровавой луны только если у персонажа определенный пол
+						Мужской - набор Джорджа
+						Женский - Потрясающий набор
+						'''
 				}
 
 				pyramidEnabled: {
-					// Label: Guaranteed pyramid
-					// Tooltip: If enabled, at least 1 pyramid will always generate in the world
+					Label: Гарантированная пирамида
+					Tooltip: При включении в мире всегда будет создана как минимум одна пирамида
 				}
 
 				pyramidMessageLoot: {
-					// Label: Special pyramid loot
-					// Tooltip: If enabled,
+					Label: Особые предметы в пирамиде
+					Tooltip: При включении в сундуке тайной комнаты пирамиды появится зашифрованное сообщение
 				}
 			}
 		}
 
 		Achievements: {
-			KillLepus: {
-				// Name: Hare Despair
-				// Description: Defeat Lepus, the greatest Easter troublemaker.
+			LepusKillAchievement: {
+				FriendlyName: Двух зайцев одним выстрелом
+				Description: Победите Лепуса - пасхального баламута-переростка.
 			}
 
-			KillTurkor: {
-				// Name: Kentucky Fried Turkey
-				// Description: Defeat Turkor the Ungrateful, the burning Thanksgiving monstrocity.
+			OcramKillAchievement: {
+				FriendlyName: Мракобесие
+				Description: Победите Окрама - проклятого демона, скрывающегося под покровом ночи.
 			}
 
-			KillOcram: {
-				// Name: Bible of the Beast
-				// Description: Defeat Ocram, the cursed fiend haunting the starless sky.
+			TurkorKillAchievement: {
+				FriendlyName: Индейка - и точка
+				Description: Победите Туркора Неблагодарного - пылающее чудовище Дня Благодарения.
 			}
 		}
 
@@ -1595,18 +1935,18 @@ Mods: {
 			}
 
 			AltLepus: {
-				// Author: by Jteoh
-				// DisplayName: Blight of Spring (Otherworldly Lepus)
+				Author: Jteoh
+				DisplayName: Blight of Spring (Иной Лепус)
 			}
 
 			AltOcram: {
-				// Author: by Jteoh
-				// DisplayName: Mirror Image (Otherworldly Ocram)
+				Author: Jteoh
+				DisplayName: Mirror Image (Иной Окрам)
 			}
 
 			AltTurkor: {
-				// Author: by Jteoh
-				// DisplayName: Ungracious Givings (Otherworldly Turkor)
+				Author: Jteoh
+				DisplayName: Ungracious Givings (Иной Туркор)
 			}
 		}
 	}

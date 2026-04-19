@@ -129,7 +129,7 @@ namespace Consolaria.Content.Tiles {
                     itemType = ModContent.ItemType<Items.Placeable.Banners.AlbinoChargerBanner>();
                     break;
                 case 20:
-                    itemType = ModContent.ItemType<Items.Placeable.Banners.AlbinoChargerBanner>();
+                    itemType = ModContent.ItemType<Items.Placeable.Banners.AlbinoSwarmerBanner>();
                     break;
                 default:
                     return;
@@ -206,10 +206,18 @@ namespace Consolaria.Content.Tiles {
                         npcType = ModContent.NPCType<NPCs.FleshAxe>();
                         break;
                     case 19:
-                        npcType = ModContent.NPCType<NPCs.AlbinoCharger>();
+                        Main.SceneMetrics.NPCBannerBuff[ModContent.NPCType<NPCs.AlbinoCharger>()] = true;
+                        //Main.SceneMetrics.NPCBannerBuff[ModContent.NPCType<NPCs.GiantAlbinoCharger>()] = true;
+                        Main.SceneMetrics.hasBanner = true;
+
+                        bannerType = -1;
                         break;
                     case 20:
-                        npcType = ModContent.NPCType<NPCs.GiantAlbinoCharger>();
+                        Main.SceneMetrics.NPCBannerBuff[ModContent.NPCType<NPCs.AlbinoSwarmer>()] = true;
+                        //Main.SceneMetrics.NPCBannerBuff[ModContent.NPCType<NPCs.GiantAlbinoSwarmer>()] = true;
+                        Main.SceneMetrics.hasBanner = true;
+
+                        bannerType = -1;
                         break;
                     default:
                         return;

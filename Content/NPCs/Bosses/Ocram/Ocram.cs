@@ -1,5 +1,6 @@
 using Consolaria.Common;
 using Consolaria.Common.ModSystems;
+using Consolaria.Content.Crossmod.Thorium.Weapons;
 using Consolaria.Content.Items.Consumables;
 using Consolaria.Content.Items.Materials;
 using Consolaria.Content.Items.Pets;
@@ -147,8 +148,7 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
         //abandon hope all ye who enter here
         public override void AI() {
             if (!Main.dedServ) {
-                bool drank = Helper.Main_swapMusic(null);
-                if (Main.drunkWorld) drank = !drank;
+                bool drank = !Main.swapMusic == Main.drunkWorld && !Main.remixWorld;
                 Music = ModContent.GetInstance<ConsolariaConfig>().vanillaBossMusicEnabled ?
                     (drank ? MusicID.OtherworldlyBoss2 : MusicID.Boss5)
                     : bloodMoonMode ? MusicLoader.GetMusicSlot(Mod, "Assets/Music/EerieOcram") :
@@ -361,7 +361,7 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
                                     Vector2 vector8 = new Vector2(NPC.position.X + (NPC.width / 2), NPC.position.Y + (NPC.height / 2));
                                     SoundEngine.PlaySound(SoundID.Item33, NPC.position);
                                     float rotation = (float)Math.Atan2(vector8.Y - (Main.player[NPC.target].position.Y + (Main.player[NPC.target].height * 0.5f)), vector8.X - (Main.player[NPC.target].position.X + (Main.player[NPC.target].width * 0.5f)));
-                                    Projectile.NewProjectile(NPC.GetSource_FromAI(), vector8.X, vector8.Y, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), ModContent.ProjectileType<OcramLaser1>(), 
+                                    Projectile.NewProjectile(NPC.GetSource_FromAI(), vector8.X, vector8.Y, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), ModContent.ProjectileType<OcramLaser1>(),
                                         27, 1.5f);
                                     if (NPC.ai[3] >= 70) {
                                         NPC.ai[3] = 0;
@@ -1123,7 +1123,24 @@ namespace Consolaria.Content.NPCs.Bosses.Ocram {
             npcLoot.Add(ItemDropRule.MasterModeDropOnAllPlayers(ModContent.ItemType<CursedFang>(), 4));
 
             LeadingConditionRule notExpertRule = new LeadingConditionRule(new Conditions.NotExpert());
-            notExpertRule.OnSuccess(new OneFromOptionsDropRule(1, 1, ModContent.ItemType<EternityStaff>(), ModContent.ItemType<DragonBreath>(), ModContent.ItemType<OcramsEye>(), ModContent.ItemType<Tizona>()));
+
+            if (ModLoader.HasMod("ThoriumMod")) {
+                notExpertRule.OnSuccess(new OneFromOptionsDropRule(1, 1,
+                    ModContent.ItemType<EternityStaff>(),
+                    ModContent.ItemType<DragonBreath>(),
+                    ModContent.ItemType<OcramsEye>(),
+                    ModContent.ItemType<Tizona>(),
+                    ModContent.ItemType<ScytheFantasma>(),
+                    ModContent.ItemType<SpineCracker>()));
+            }
+            else {
+                notExpertRule.OnSuccess(new OneFromOptionsDropRule(1, 1, 
+                    ModContent.ItemType<EternityStaff>(),
+                    ModContent.ItemType<DragonBreath>(),
+                    ModContent.ItemType<OcramsEye>(), 
+                    ModContent.ItemType<Tizona>()));
+            }
+
             npcLoot.Add(notExpertRule);
             npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<SoulofBlight>(), 1, 25, 40));
             npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<OcramMask>(), 7));

@@ -16,16 +16,16 @@ namespace Consolaria.Content.Items.Weapons.Magic {
             int width = 40; int height = 16;
             Item.Size = new Vector2(width, height);
 
-            Item.damage = 10;
+            Item.damage = 14;
             Item.knockBack = 4.5f;
             Item.DamageType = DamageClass.Magic;
 
             Item.useStyle = ItemUseStyleID.Shoot;
-            Item.useTime = Item.useAnimation = 16;
+            Item.useTime = Item.useAnimation = 22;
 
             Item.mana = 5;
             Item.shoot = ModContent.ProjectileType<RomanFlame>();
-            Item.shootSpeed = 2.5f;
+            Item.shootSpeed = 5.5f;
 
             Item.value = Item.buyPrice(gold: 5);
             Item.rare = ItemRarityID.Orange;

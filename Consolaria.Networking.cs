@@ -1,9 +1,10 @@
+using Consolaria.Content.Items.Armor.Ranged;
+
 using System.IO;
 
-using Terraria.ID;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
-using Consolaria.Content.Items.Armor.Ranged;
 
 namespace Consolaria {
     public partial class Consolaria : Mod {
@@ -16,13 +17,14 @@ namespace Consolaria {
 
             switch (msgType) {
                 // This message syncs ExampleStatIncreasePlayer.exampleLifeFruits and ExampleStatIncreasePlayer.exampleManaCrystals
-                case MessageType.TitanPower:
-                    byte playerNumber = reader.ReadByte();
-                    TitanPlayer examplePlayer = Main.player[playerNumber].GetModPlayer<TitanPlayer>();
-                    examplePlayer.ReceivePlayerSync(reader);
-                    if (Main.netMode == NetmodeID.Server) {
-                        // Forward the changes to the other clients
-                        examplePlayer.SyncPlayer(-1, whoAmI, false);
+                case MessageType.TitanPower: {
+                        byte playerNumber = reader.ReadByte();
+                        TitanPlayer examplePlayer = Main.player[playerNumber].GetModPlayer<TitanPlayer>();
+                        examplePlayer.ReceivePlayerSync(reader);
+                        if (Main.netMode == NetmodeID.Server) {
+                            // Forward the changes to the other clients
+                            examplePlayer.SyncPlayer(-1, whoAmI, false);
+                        }
                     }
                     break;
                 default:

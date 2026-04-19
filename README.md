@@ -11,12 +11,13 @@ This includes:
 - **Exclusive vanity items** - including the Horned God set, George's set & many others
 - **A variety of ported pets**, complete with extra animations
 - **Mc MoneyPants** NPC
+- **Cross-mod content** for **[Thorium Mod](https://steamcommunity.com/sharedfiles/filedetails/?id=2909886416)**'s classes
 - **Support for** **[Boss Checklist](https://steamcommunity.com/sharedfiles/filedetails/?id=2669644269)**, **[Fargo's Mutant Mod](https://steamcommunity.com/sharedfiles/filedetails/?id=2570931073)**, **[Achievement Mod](https://steamcommunity.com/sharedfiles/filedetails/?id=2927542027)**, **[Music Display](https://steamcommunity.com/sharedfiles/filedetails/?id=2985966860)** and **[Munchies](https://steamcommunity.com/sharedfiles/filedetails/?id=3310041861)**
 - **Holy Hand Grenade!**
 
 Holiday content is always active by default and can be restricted to the corresponding dates using the config menu.
 
-Also try [Heartbeataria](https://steamcommunity.com/sharedfiles/filedetails/?id=2958674071) for content from Chinese editions of the game: together, the mods make PC Terraria the most complete experience ever!
+Also try [Heartbeataria](https://steamcommunity.com/sharedfiles/filedetails/?id=2958674071) for content from Chinese editions of the game  and [Miscellanaria](https://steamcommunity.com/sharedfiles/filedetails/?id=3131402417) for unreleased items: together, the mods make PC Terraria the most complete experience ever!
 
 ## Credits
 
@@ -31,6 +32,7 @@ Contributors:
 - **Synoxsis** - Lepus, Turkor & Ocram themes
 - **Jteoh** - Otherworldly boss themes
 - **Fyerow & Croul** - legacy Ocram theme
+- **EduaRRdo** - Thorium cross-mod content sprites
 - **StrikerRKT** - extracting files from Japanese versions of the game
 - **Sparcdoctor** - extensive testing and content suggestions
 - **CrezyDud** - Turkor multiplayer fixes
@@ -54,7 +56,7 @@ Contributors:
 🌐 [Discord](https://discord.gg/DTABXbd)
 📖 [Consolaria Wiki](https://terrariamods.wiki.gg/wiki/Consolaria)
 🌳 [Forum post](https://forums.terraria.org/index.php?threads/consolaria.62570)
-🍂 [Rise of Ages](https://forums.terraria.org/index.php?threads/rise-of-ages-backwoods-and-druids.72219) - Our WIP bigger project
+🍂 [Rise of Ages](https://steamcommunity.com/sharedfiles/filedetails/?id=3456940039) - Our main project
 🖥 [Mod on Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=2864843929)
 
 💟 [Donations](https://www.buymeacoffee.com/roagang)

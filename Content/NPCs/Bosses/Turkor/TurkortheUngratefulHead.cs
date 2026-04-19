@@ -1,6 +1,7 @@
 ﻿using Consolaria.Content.Projectiles.Enemies;
 
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 using System;
 
@@ -78,22 +79,31 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 
         public override void FindFrame(int frameHeight) {
             if (!attackingPhase || charge && timer > 230 || projSpam) {
-                if (!projSpam && NPC.velocity.X * NPC.direction < 0 && turntimer < 15) {
+                /*if (!projSpam && NPC.velocity.X * NPC.direction < 0 && turntimer < 15) {
                     turntimer++;
                     NPC.frame = GetFrame(4);
                 }
-                else if (hurtFrame > 0) {
+                else */
+                if (hurtFrame > 0) {
                     NPC.frame = GetFrame(3);
                     hurtFrame--;
                 }
                 else {
-                    if (NPC.velocity.X * NPC.direction > 0) { turntimer = 0; }
-                    NPC.spriteDirection = NPC.direction;
-                    if (charge) {
-                        NPC.frameCounter += 0.08f;
-                        NPC.frameCounter %= 2;
-                        int frame = (int)NPC.frameCounter;
-                        NPC.frame.Y = frame * frameHeight;
+
+                    //if (NPC.velocity.X * NPC.direction > 0) { turntimer = 0; }
+                    if (!projSpam) NPC.spriteDirection = NPC.direction;
+                    if (charge || !attackingPhase) {
+                        if (turntimer <= 0 || charge) {
+                            NPC.frameCounter += 0.08f;
+                            NPC.frameCounter %= 2;
+                            int frame = (int)NPC.frameCounter;
+                            NPC.frame.Y = frame * frameHeight;
+                        }
+                        else {
+                            turntimer--;
+                            NPC.spriteDirection = 1;
+                            NPC.frame = GetFrame(4);
+                        }
                     }
                     else if (projSpam && timer % 80 < 20) NPC.frame = GetFrame(2);
                     else NPC.frame = GetFrame(1);
@@ -103,22 +113,67 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
         }
 
         //public override bool CanHitPlayer (Player target, ref int cooldownSlot) => charge;
+        static int segmentCount = 31;
+        Vector2[] body = new Vector2[segmentCount];
+        float[] rotor = new float[segmentCount];
+        int oldDir;
+        Vector2 RandP;
+        public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color lightColor) {
+            Texture2D texture = (Texture2D)ModContent.Request<Texture2D>("Consolaria/Content/NPCs/Bosses/Turkor/TurkorNeck");
+
+            for (int k = 1; k < segmentCount - 1; k++) {
+                Color color = Lighting.GetColor((int)body[k].X / 16, (int)(body[k].Y / 16f)) * ((255 - NPC.alpha) / 255f);
+                color = NPC.GetNPCColorTintedByBuffs(color);
+                spriteBatch.Draw(texture, body[k] - Main.screenPosition,
+                       null, color, rotor[k] - 1.57f,
+                       texture.Size() / 2, 1f, SpriteEffects.None, 0f);
+            }
+            return true;
+        }
 
         public override void AI() {
             NPC.direction = Main.player[NPC.target].Center.X < NPC.Center.X ? -1 : 1;
+            if (NPC.direction != oldDir && turntimer <= 0) {
+                turntimer = 10;
+            }
             if (Main.netMode != NetmodeID.MultiplayerClient) {
                 if (!spawn) {
+                    oldDir = NPC.direction;
                     NPC.realLife = NPC.whoAmI;
-                    int neck = NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, ModContent.NPCType<TurkorNeck>(), NPC.whoAmI, 0, NPC.whoAmI); //, 1, NPC.ai[1]);
+                    /*int neck = NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, ModContent.NPCType<TurkorNeck>(), NPC.whoAmI, 0, NPC.whoAmI); //, 1, NPC.ai[1]);
                     Main.npc[neck].ai[2] = 30;
                     Main.npc[neck].ai[3] = -1f;
                     Main.npc[neck].realLife = NPC.whoAmI;
                     Main.npc[neck].ai[0] = NPC.whoAmI;
                     Main.npc[neck].ai[1] = NPC.whoAmI;
                     Main.npc[neck].position = NPC.position;
-                    NetMessage.SendData(MessageID.SyncNPC, number: neck);
+                    NetMessage.SendData(MessageID.SyncNPC, number: neck);*/
+                    for (int k = 0; k < segmentCount; k++) {
+                        body[k] = NPC.Center;
+                    }
                     spawn = true;
                     NPC.netUpdate = true;
+                }
+                else {
+                    //F
+                    for (int k = segmentCount - 2; k > 0; k--) {
+                        Vector2 To = Vector2.Normalize(body[k + 1] - body[k - 1] - new Vector2(0, (float)Math.Sin((float)(Math.PI * 2 * k / (segmentCount - 1))) * 4f));
+                        float dis = 7.3f;
+                        body[k] += (body[k + 1] - To * dis - body[k]) / ((k > (int)(segmentCount / 1.5f)) ? 1.1f : 1.35f);
+
+                    }
+                    //B
+                    for (int k = 1; k < segmentCount - 1; k++) {
+                        Vector2 To = Vector2.Normalize(body[k + 1] - body[k - 1] + new Vector2(0, (float)Math.Sin((float)(Math.PI * 2 * k / (segmentCount - 1))) * 4f));
+                        //rotor[k] = To.ToRotation();
+                        float dis = 7.3f;
+                        body[k] += (body[k - 1] + To * dis - body[k]) / 1.35f;
+                    }
+                    for (int k = 1; k < segmentCount - 1; k++) {
+                        rotor[k] = (body[k + 1] - body[k]).ToRotation();
+                    }
+                    body[0] = NPC.Center + new Vector2(0, 30);
+                    body[segmentCount - 1] = Main.npc[(int)NPC.ai[1]].Center + new Vector2(-50, 20);
                 }
             }
             if (!Main.npc[(int)NPC.ai[1]].active) {
@@ -217,7 +272,7 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
                 if (timer % 80 == 0 && rotatepoint >= 1.5f) {
                     if (Main.netMode != NetmodeID.MultiplayerClient)
                         for (int i = 0; i < 3; i++) {
-                            int proj = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, Main.rand.Next(0, 8) * NPC.direction, -10 + Main.rand.Next(-3, 3), ModContent.ProjectileType<TurkorFeather>(), 
+                            int proj = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, Main.rand.NextFloat(-5, 5) + (Main.player[NPC.target].Center - NPC.Center).X / 50, -12 + Main.rand.NextFloat(-3, 0), ModContent.ProjectileType<TurkorFeather>(),
                                 26, 1, Main.myPlayer);
                             NetMessage.SendData(MessageID.SyncProjectile, -1, -1, null, proj);
                         }
@@ -238,7 +293,23 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
             }
 
             if (!charge) {
-                if (!chase) {
+                Vector2 pPos = Main.player[NPC.target].Center + RandP;
+                Vector2 getTo = Main.npc[(int)NPC.ai[1]].Center + Vector2.Normalize(pPos - NPC.Center) * Math.Min(800, pPos.Distance(NPC.Center));
+                if (getTo.Distance(NPC.Center) <= 100)
+                    RandP = new Vector2(Main.rand.NextFloat(-200, 201), Main.rand.NextFloat(-200, -100));
+                if (getTo.X < NPC.Center.X) {
+                    if (NPC.velocity.X > -6) NPC.velocity.X -= 0.08f;
+                }
+                else if (getTo.X > NPC.Center.X) {
+                    if (NPC.velocity.X < 6) NPC.velocity.X += 0.08f;
+                }
+                if (getTo.Y < NPC.Center.Y) {
+                    if (NPC.velocity.Y > -6) NPC.velocity.Y -= 0.08f;
+                }
+                else if (getTo.Y > NPC.Center.Y) {
+                    if (NPC.velocity.Y < 6) NPC.velocity.Y += 0.08f;
+                }
+                /*if (!chase) {
                     if (Main.player[NPC.target].Center.X - Main.rand.Next(-200, 201) < NPC.Center.X) {
                         if (NPC.velocity.X > -6) NPC.velocity.X -= 0.08f;
                     }
@@ -271,9 +342,10 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
                 float num856 = Main.npc[(int)NPC.ai[1]].Center.Y - vector101.Y;
                 float num857 = (float)Math.Sqrt((double)(num855 * num855 + num856 * num856));
                 if (num857 > 600f) chase = true;
-                if (num857 <= 400 && chase) chase = false;
+                if (num857 <= 400 && chase) chase = false;*/
                 NPC.netUpdate = true;
             }
+            oldDir = NPC.direction;
         }
 
         public override void HitEffect(NPC.HitInfo hit) {
@@ -288,6 +360,11 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
                     Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), ModContent.Find<ModGore>("Consolaria/TurkorFeatherGore").Type);
                     Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), ModContent.Find<ModGore>("Consolaria/TurkorFeatherGore").Type);
                     Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), ModContent.Find<ModGore>("Consolaria/TurkorFeatherGore").Type);
+                }
+                for (int k = 1; k < segmentCount - 1; k++) {
+                    if (Main.netMode != NetmodeID.Server) {
+                        Gore.NewGore(NPC.GetSource_Death(), body[k], new Vector2(Main.rand.Next(-1, 1), Main.rand.Next(-1, 1)), ModContent.Find<ModGore>("Consolaria/TurkorNeck").Type);
+                    }
                 }
                 for (int k = 0; k < 10; k++) {
                     int dust_ = Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Bone, 3f * hit.HitDirection, -3f, 0, default, 2f);

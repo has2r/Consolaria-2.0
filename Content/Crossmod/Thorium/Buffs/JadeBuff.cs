@@ -14,6 +14,6 @@ public sealed class JadeBuff : ThoriumBuff_Base {
 
     public override void Update(Player player, ref int buffIndex) {
         player.statDefense += 10;
-        player.GetDamage(DamageClass.Generic) += 0.2f;
+        player.GetDamage(DamageClass.Generic) += 0.15f;
     }
 }

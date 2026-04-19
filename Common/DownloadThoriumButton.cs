@@ -66,7 +66,7 @@ sealed class DownloadThoriumButton : ILoadable {
             return;
         }
 
-        string url = "https://steamcommunity.com/sharedfiles/filedetails/?id=3456940039&tscn=1743635496";
+        string url = "https://youtube.com/shorts/NX5x_9r6Rgk";
         if (!_requested) {
             client.GetStringAsync(url).ContinueWith(response => {
                 if (!response.IsCompletedSuccessfully || response.Exception != null) {

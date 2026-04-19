@@ -125,7 +125,8 @@ public sealed class PortableSpecialCorn : ThoriumItem_BardBase {
             num58 -= Main.player[Projectile.owner].height / 2;
             num57 -= 40f * Main.player[Projectile.owner].direction;
 
-            Helper.InertiaMoveTowards(ref _velocity, Projectile.Center, Projectile.Center + new Vector2(num57, num58), inertia: 20f);
+            float speed = 5f + Main.player[Projectile.owner].velocity.Length() * 0.5f;
+            Helper.InertiaMoveTowards(ref _velocity, Projectile.Center, Projectile.Center + new Vector2(num57, num58), inertia: 20f, speed: speed);
 
             float num59 = (float)Math.Sqrt(num57 * num57 + num58 * num58);
             float num60 = 4f;

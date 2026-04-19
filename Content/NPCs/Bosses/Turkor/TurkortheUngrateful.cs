@@ -1,5 +1,6 @@
 ﻿using Consolaria.Common;
 using Consolaria.Common.ModSystems;
+using Consolaria.Content.Crossmod.Thorium;
 using Consolaria.Content.Crossmod.Thorium.Accessories;
 using Consolaria.Content.Crossmod.Thorium.Weapons;
 using Consolaria.Content.Items.Consumables;
@@ -507,14 +508,8 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
 
             LeadingConditionRule notExpertRule = new LeadingConditionRule(new Conditions.NotExpert());
 
-            if (ModLoader.HasMod("ThoriumMod")) {
-                notExpertRule.OnSuccess(new OneFromOptionsDropRule(1, 1,
-                    ModContent.ItemType<FeatherStorm>(),
-                    ModContent.ItemType<GreatDrumstick>(),
-                    ModContent.ItemType<TurkeyStuff>(),
-                    ModContent.ItemType<PortableSpecialCorn>(),
-                    ModContent.ItemType<FiveStarBuffet>(),
-                    ModContent.ItemType<UtensilPoker>()));
+            if (ModLoader.HasMod(ThoriumCompat.THORIUMMODNAME)) {
+                AddThoriumLoot(notExpertRule);
             }
             else {
                 notExpertRule.OnSuccess(new OneFromOptionsDropRule(1, 1, 
@@ -526,6 +521,17 @@ namespace Consolaria.Content.NPCs.Bosses.Turkor {
             npcLoot.Add(notExpertRule);
             npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<SpicySauce>(), 2, 15, 34));
             npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<TurkorMask>(), 7));
+        }
+
+        [JITWhenModsEnabled(ThoriumCompat.THORIUMMODNAME)]
+        private void AddThoriumLoot(LeadingConditionRule notExpertRule) {
+            notExpertRule.OnSuccess(new OneFromOptionsDropRule(1, 1,
+                ModContent.ItemType<FeatherStorm>(),
+                ModContent.ItemType<GreatDrumstick>(),
+                ModContent.ItemType<TurkeyStuff>(),
+                ModContent.ItemType<PortableSpecialCorn>(),
+                ModContent.ItemType<FiveStarBuffet>(),
+                ModContent.ItemType<UtensilPoker>()));
         }
     }
 }

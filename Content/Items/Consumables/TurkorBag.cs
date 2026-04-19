@@ -1,3 +1,4 @@
+using Consolaria.Content.Crossmod.Thorium;
 using Consolaria.Content.Crossmod.Thorium.Accessories;
 using Consolaria.Content.Crossmod.Thorium.Weapons;
 using Consolaria.Content.Items.Misc;
@@ -41,14 +42,8 @@ namespace Consolaria.Content.Items.Consumables {
             => true;
 
         public override void ModifyItemLoot(ItemLoot itemLoot) {
-            if (ModLoader.HasMod("ThoriumMod")) {
-                itemLoot.Add(ItemDropRule.OneFromOptionsNotScalingWithLuck(1,
-                    [ModContent.ItemType<FeatherStorm>(),
-                     ModContent.ItemType<GreatDrumstick>(),
-                     ModContent.ItemType<TurkeyStuff>(),
-                     ModContent.ItemType<PortableSpecialCorn>(),
-                     ModContent.ItemType<FiveStarBuffet>(),
-                     ModContent.ItemType<UtensilPoker>()]));
+            if (ModLoader.HasMod(ThoriumCompat.THORIUMMODNAME)) {
+                AddThoriumLoot(itemLoot);
             }
             else {
                 itemLoot.Add(ItemDropRule.OneFromOptionsNotScalingWithLuck(1,
@@ -62,6 +57,17 @@ namespace Consolaria.Content.Items.Consumables {
 
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<HornoPlenty>()));
             itemLoot.Add(ItemDropRule.CoinsBasedOnNPCValue(ModContent.NPCType<NPCs.Bosses.Turkor.TurkortheUngrateful>()));
+        }
+
+        [JITWhenModsEnabled(ThoriumCompat.THORIUMMODNAME)]
+        private void AddThoriumLoot(ItemLoot itemLoot) {
+            itemLoot.Add(ItemDropRule.OneFromOptionsNotScalingWithLuck(1,
+                    [ModContent.ItemType<FeatherStorm>(),
+                     ModContent.ItemType<GreatDrumstick>(),
+                     ModContent.ItemType<TurkeyStuff>(),
+                     ModContent.ItemType<PortableSpecialCorn>(),
+                     ModContent.ItemType<FiveStarBuffet>(),
+                     ModContent.ItemType<UtensilPoker>()]));
         }
 
         public override Color? GetAlpha(Color lightColor)

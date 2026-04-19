@@ -1,6 +1,7 @@
 using Consolaria.Common;
 using Consolaria.Common.ModSystems;
 using Consolaria.Content.Crossmod.RoA.DruidWeapons;
+using Consolaria.Content.Crossmod.Thorium;
 using Consolaria.Content.Crossmod.Thorium.Weapons;
 using Consolaria.Content.Items.Armor.Misc;
 using Consolaria.Content.Items.Consumables;
@@ -215,6 +216,21 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
         public override void BossLoot(ref string name, ref int potionType)
             => potionType = NPC.CountNPCS(Type) <= 1 ? ItemID.LesserHealingPotion : -1;
 
+        [JITWhenModsEnabled(ThoriumCompat.THORIUMMODNAME)]
+        private void AddThoriumLoot1(LeadingConditionRule notExpertRule, Conditions.NotExpert notExpert) {
+            notExpertRule.OnSuccess(new OneFromRulesRule(1,
+                ItemDropRule.ByCondition(notExpert, ModContent.ItemType<EasterBunnyStaff>()),
+                ItemDropRule.ByCondition(notExpert, ModContent.ItemType<Eggplant>()),
+                ItemDropRule.ByCondition(notExpert, ModContent.ItemType<Chocoplotion>())));
+        }
+
+        [JITWhenModsEnabled(ThoriumCompat.THORIUMMODNAME)]
+        private void AddThoriumLoot2(LeadingConditionRule notExpertRule, Conditions.NotExpert notExpert) {
+            notExpertRule.OnSuccess(new OneFromRulesRule(1,
+                ItemDropRule.ByCondition(notExpert, ModContent.ItemType<EasterBunnyStaff>()),
+                ItemDropRule.ByCondition(notExpert, ModContent.ItemType<Chocoplotion>())));
+        }
+
         public override void ModifyNPCLoot(NPCLoot npcLoot) {
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<LepusTrophy>(), 10));
 
@@ -227,17 +243,12 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
             notExpertRule.OnSuccess(new OneFromRulesRule(1, ItemDropRule.ByCondition(notExpert, ModContent.ItemType<OstaraHat>()), ItemDropRule.ByCondition(notExpert, ModContent.ItemType<OstaraJacket>()), ItemDropRule.ByCondition(notExpert, ModContent.ItemType<OstaraBoots>())));
 
             bool hasRoa = ModLoader.HasMod("RoA");
-            if (ModLoader.HasMod("ThoriumMod")) {
+            if (ModLoader.HasMod(ThoriumCompat.THORIUMMODNAME)) {
                 if (hasRoa) {
-                    notExpertRule.OnSuccess(new OneFromRulesRule(1,
-                        ItemDropRule.ByCondition(notExpert, ModContent.ItemType<EasterBunnyStaff>()),
-                        ItemDropRule.ByCondition(notExpert, ModContent.ItemType<Eggplant>()),
-                        ItemDropRule.ByCondition(notExpert, ModContent.ItemType<Chocoplotion>())));
+                    AddThoriumLoot1(notExpertRule, notExpert);
                 }
                 else {
-                    notExpertRule.OnSuccess(new OneFromRulesRule(1,
-                        ItemDropRule.ByCondition(notExpert, ModContent.ItemType<EasterBunnyStaff>()),
-                        ItemDropRule.ByCondition(notExpert, ModContent.ItemType<Chocoplotion>())));
+                    AddThoriumLoot2(notExpertRule, notExpert);
                 }
             }
             else {

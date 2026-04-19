@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Consolaria.Content.Crossmod.Thorium;
+
+using Microsoft.Xna.Framework;
 
 using System;
 using System.Collections.Generic;
@@ -34,7 +36,7 @@ sealed class DownloadThoriumButton : ILoadable {
     }
 
     private void LoadFile() {
-        if (ModLoader.HasMod("ThoriumMod")) {
+        if (ModLoader.HasMod(ThoriumCompat.THORIUMMODNAME)) {
             return;
         }
 
@@ -54,7 +56,7 @@ sealed class DownloadThoriumButton : ILoadable {
     private void On_Main_HandleNews(On_Main.orig_HandleNews orig, Microsoft.Xna.Framework.Color menuColor) {
         orig(menuColor);
 
-        if (ModLoader.HasMod("ThoriumMod")) {
+        if (ModLoader.HasMod(ThoriumCompat.THORIUMMODNAME)) {
             return;
         }
 

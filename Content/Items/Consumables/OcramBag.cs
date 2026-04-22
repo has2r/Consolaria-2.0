@@ -1,3 +1,4 @@
+using Consolaria.Content.Crossmod.Thorium;
 using Consolaria.Content.Crossmod.Thorium.Weapons;
 using Consolaria.Content.Items.Accessories;
 using Consolaria.Content.Items.Materials;
@@ -39,14 +40,8 @@ namespace Consolaria.Content.Items.Consumables {
             => true;
 
         public override void ModifyItemLoot(ItemLoot itemLoot) {
-            if (ModLoader.HasMod("ThoriumMod")) {
-                itemLoot.Add(new OneFromRulesRule(1,
-                    ItemDropRule.Common(ModContent.ItemType<EternityStaff>()),
-                    ItemDropRule.Common(ModContent.ItemType<DragonBreath>()),
-                    ItemDropRule.Common(ModContent.ItemType<OcramsEye>()),
-                    ItemDropRule.Common(ModContent.ItemType<Tizona>()),
-                    ItemDropRule.Common(ModContent.ItemType<ScytheFantasma>()),
-                    ItemDropRule.Common(ModContent.ItemType<SpineCracker>())));
+            if (ModLoader.HasMod(ThoriumCompat.THORIUMMODNAME)) {
+                AddThoriumLoot(itemLoot);
             }
             else {
                 itemLoot.Add(new OneFromRulesRule(1,
@@ -61,6 +56,17 @@ namespace Consolaria.Content.Items.Consumables {
 
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<ShadowboundExoskeleton>()));
             itemLoot.Add(ItemDropRule.CoinsBasedOnNPCValue(ModContent.NPCType<NPCs.Bosses.Ocram.Ocram>()));
+        }
+
+        [JITWhenModsEnabled(ThoriumCompat.THORIUMMODNAME)]
+        private void AddThoriumLoot(ItemLoot itemLoot) {
+            itemLoot.Add(new OneFromRulesRule(1,
+                ItemDropRule.Common(ModContent.ItemType<EternityStaff>()),
+                ItemDropRule.Common(ModContent.ItemType<DragonBreath>()),
+                ItemDropRule.Common(ModContent.ItemType<OcramsEye>()),
+                ItemDropRule.Common(ModContent.ItemType<Tizona>()),
+                ItemDropRule.Common(ModContent.ItemType<ScytheFantasma>()),
+                ItemDropRule.Common(ModContent.ItemType<SpineCracker>())));
         }
 
         public override Color? GetAlpha(Color lightColor)

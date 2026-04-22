@@ -1,4 +1,5 @@
 using Consolaria.Content.Crossmod.RoA.DruidWeapons;
+using Consolaria.Content.Crossmod.Thorium;
 using Consolaria.Content.Crossmod.Thorium.Weapons;
 using Consolaria.Content.Items.Accessories;
 using Consolaria.Content.Items.Armor.Misc;
@@ -14,6 +15,7 @@ using Terraria.GameContent;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.UI;
 
 namespace Consolaria.Content.Items.Consumables {
     public class LepusBag : ModItem {
@@ -47,17 +49,12 @@ namespace Consolaria.Content.Items.Consumables {
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Eggplant>(), 3));
 
             bool hasRoa = ModLoader.HasMod("RoA");
-            if (ModLoader.HasMod("ThoriumMod")) {
+            if (ModLoader.HasMod(ThoriumCompat.THORIUMMODNAME)) {
                 if (hasRoa) {
-                    itemLoot.Add(new OneFromRulesRule(1,
-                      ItemDropRule.Common(ModContent.ItemType<EasterBunnyStaff>()),
-                      ItemDropRule.Common(ModContent.ItemType<Eggplant>()),
-                      ItemDropRule.Common(ModContent.ItemType<Chocoplotion>())));
+                    AddThoriumLoot1(itemLoot);
                 }
                 else {
-                    itemLoot.Add(new OneFromRulesRule(1,
-                        ItemDropRule.Common(ModContent.ItemType<EasterBunnyStaff>()),
-                        ItemDropRule.Common(ModContent.ItemType<Chocoplotion>())));
+                    AddThoriumLoot2(itemLoot);
                 }
             }
             else {
@@ -77,6 +74,21 @@ namespace Consolaria.Content.Items.Consumables {
 
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<OstarasGift>()));
             itemLoot.Add(ItemDropRule.CoinsBasedOnNPCValue(ModContent.NPCType<NPCs.Bosses.Lepus.Lepus>()));
+        }
+
+        [JITWhenModsEnabled(ThoriumCompat.THORIUMMODNAME)]
+        private void AddThoriumLoot1(ItemLoot itemLoot) {
+            itemLoot.Add(new OneFromRulesRule(1,
+                  ItemDropRule.Common(ModContent.ItemType<EasterBunnyStaff>()),
+                  ItemDropRule.Common(ModContent.ItemType<Eggplant>()),
+                  ItemDropRule.Common(ModContent.ItemType<Chocoplotion>())));
+        }
+
+        [JITWhenModsEnabled(ThoriumCompat.THORIUMMODNAME)]
+        private void AddThoriumLoot2(ItemLoot itemLoot) {
+            itemLoot.Add(new OneFromRulesRule(1,
+                  ItemDropRule.Common(ModContent.ItemType<EasterBunnyStaff>()),
+                  ItemDropRule.Common(ModContent.ItemType<Chocoplotion>())));
         }
 
         public override Color? GetAlpha(Color lightColor)

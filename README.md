@@ -11,7 +11,7 @@ This includes:
 - **Exclusive vanity items** - including the Horned God set, George's set & many others
 - **A variety of ported pets**, complete with extra animations
 - **Mc MoneyPants** NPC
-- **Cross-mod content** for **[Thorium Mod](https://steamcommunity.com/sharedfiles/filedetails/?id=2909886416)**'s classes
+- **Cross-mod content** for **[Thorium Mod](https://steamcommunity.com/sharedfiles/filedetails/?id=2909886416)**'s Bard, Healer and Thrower classes
 - **Support for** **[Boss Checklist](https://steamcommunity.com/sharedfiles/filedetails/?id=2669644269)**, **[Fargo's Mutant Mod](https://steamcommunity.com/sharedfiles/filedetails/?id=2570931073)**, **[Achievement Mod](https://steamcommunity.com/sharedfiles/filedetails/?id=2927542027)**, **[Music Display](https://steamcommunity.com/sharedfiles/filedetails/?id=2985966860)** and **[Munchies](https://steamcommunity.com/sharedfiles/filedetails/?id=3310041861)**
 - **Holy Hand Grenade!**
 
@@ -32,7 +32,7 @@ Contributors:
 - **Synoxsis** - Lepus, Turkor & Ocram themes
 - **Jteoh** - Otherworldly boss themes
 - **Fyerow & Croul** - legacy Ocram theme
-- **EduaRRdo** - Thorium cross-mod content sprites
+- **EduaRRdo** - Thorium cross-mod content sprites and ideas
 - **StrikerRKT** - extracting files from Japanese versions of the game
 - **Sparcdoctor** - extensive testing and content suggestions
 - **CrezyDud** - Turkor multiplayer fixes
@@ -47,7 +47,7 @@ Contributors:
 - **Gaerzi** - calendar code optimisation
 - **kittenchilly** - multiplayer boss scaling improvement
 - **Efromomr** - some Mc MoneyPants interaction quotes
-- **HenryChe** - Russian localization
+- **HenryChe, htoya23** - Russian localization
 - **Auraz** - Spanish localization
 - **KaffaZ** - Brazilian Portuguese localization
 

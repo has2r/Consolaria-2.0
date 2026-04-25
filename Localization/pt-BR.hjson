@@ -171,7 +171,7 @@ Mods: {
 			}
 
 			UtensilPokerDebuff: {
-				// DisplayName: Utensil Poker Debuff
+				// DisplayName: Utensil Piercer Debuff
 				// Description: Mods.Consolaria.Buffs.UtensilPokerDebuff.Description
 			}
 
@@ -1414,7 +1414,7 @@ Mods: {
 			}
 
 			ScytheFantasma: {
-				// DisplayName: Fantasma
+				// DisplayName: Scythe Fantasma
 				/* Tooltip:
 					'''
 					Rapidly spins a phantasmal scythe all around you
@@ -1452,7 +1452,7 @@ Mods: {
 			}
 
 			UtensilPoker: {
-				// DisplayName: Utensil Poker
+				// DisplayName: Utensil Piercer
 				/* Tooltip:
 					'''
 					Right click to prepare up to five throwable forks
@@ -1776,7 +1776,7 @@ Mods: {
 			// JadeSeal_GoldenLamp.DisplayName: Golden Lamp
 			// Omunikodo_Shot.DisplayName: Noise Wave
 			// UtensilPoker_Fork.DisplayName: Fork
-			// UtensilPoker_Throw.DisplayName: Utensil Poker
+			// UtensilPoker_Throw.DisplayName: Utensil Piercer
 			// UtensilPoker_BigFork.DisplayName: Big Fork
 			// PortableSpecialCorn_Summon.DisplayName: Singer Turkey
 			// Chocoplotion_Throw.DisplayName: Choxplosion

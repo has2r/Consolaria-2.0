@@ -11,7 +11,7 @@ Mods: {
 			Медленно восстанавливает здоровье
 			Увеличивает высоту прыжка
 			'''
-		ValentineRingTooltip3: Принадлежит{0}
+		ValentineRingTooltip3: Принадлежит {0}
 		ValentineRingTooltip4: Подарок от {0}
 		McMoneypantsInvitationUsage: Приглашение улетает к своему получателю...
 		Munchies.McMoneypantsInvitation.HowToAcquire: Находится в красном конверте

@@ -21,7 +21,7 @@ public sealed class Chocoplotion : ThoriumItem_ThrowerBase {
     public override void SetThrowerDefaults() {
         Item.SetSizeValues(30, 42);
 
-        Item.SetShopValues(Terraria.Enums.ItemRarityColor.Blue1, Item.sellPrice());
+        Item.SetShopValues(Terraria.Enums.ItemRarityColor.Blue1, Item.sellPrice(gold: 1));
         Item.SetShootableValues<Chocoplotion_Throw>(6f);
 
         Item.SetWeaponValues(12, 5f);

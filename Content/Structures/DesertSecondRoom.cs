@@ -23,9 +23,11 @@ sealed class DesertSecondRoom : ILoadable {
             RoomCounts = 0;
         }
 
+        private bool HasFargos => ModLoader.HasMod("FargowiltasSouls") || ModLoader.HasMod("FargosSoulsMod");
+
         public override void ModifyWorldGenTasks(List<GenPass> tasks, ref double totalWeight) {
             int genIndexToReplace = tasks.FindIndex(genpass => genpass.Name.Equals("Pyramids"));
-            if (!ModLoader.HasMod("FargowiltasSouls")) {
+            if (!HasFargos) {
                 tasks.RemoveAt(genIndexToReplace);
             }
             tasks.Insert(genIndexToReplace, new PassLegacy("Pyramids", Pyramids, 0.3045f));

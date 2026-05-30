@@ -9,18 +9,21 @@ using Terraria.ModLoader;
 
 namespace Consolaria {
     public sealed class WingsGlowmask : PlayerDrawLayer {
-        private static Dictionary<int, DrawLayerData> WingsLayerData { get; set; }
+        private static Dictionary<int, DrawLayerData> WingsLayerData { get; set; } = null;
 
         public static void RegisterData(int wingSlot, DrawLayerData data) {
             if (!WingsLayerData.ContainsKey(wingSlot))
                 WingsLayerData.Add(wingSlot, data);
         }
 
-        public override void Load()
-            => WingsLayerData = new Dictionary<int, DrawLayerData>();
+        public override void Load() {
+            WingsLayerData = [];
+        }
 
-        public override void Unload()
-            => WingsLayerData = null;
+        public override void Unload() {
+            WingsLayerData.Clear();
+            WingsLayerData = null;
+        }
 
         public override Position GetDefaultPosition()
             => new AfterParent(PlayerDrawLayers.Wings);
@@ -34,6 +37,10 @@ namespace Consolaria {
         }
 
         protected override void Draw(ref PlayerDrawSet drawInfo) {
+            if (WingsLayerData is null) {
+                return;
+            }
+
             Player drawPlayer = drawInfo.drawPlayer;
 
             if (!WingsLayerData.TryGetValue(drawPlayer.wings, out DrawLayerData data))

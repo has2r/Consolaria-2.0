@@ -105,7 +105,7 @@ sealed class DownloadThoriumButton : ILoadable {
         var newsColor = newsMouseOver /*&& newsURL != null */? Main.highVersionColor : menuColor;
         ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, FontAssets.MouseText.Value, latestNewsText, newsPosition - newsSize, newsColor, 0f, Vector2.Zero, newsScales);
 
-        string dir = Path.Join(Main.SavePath, "Consolaria");
+        string dir = Path.Join(Main.SavePath, "Consolaria_Thorium");
         if (newsMouseOver && Main.hasFocus/* && newsURL != null*/) {
             if (_isNew) {
                 _isNew = false;

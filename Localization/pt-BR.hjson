@@ -284,10 +284,7 @@ Mods: {
 
 			AncientDragonMask: {
 				DisplayName: Máscara de Dragão Antigo
-				Tooltip:
-					'''
-					Dano físico e velocidade de ataque físico aumentado em 15%
-					'''
+				Tooltip: Dano físico e velocidade de ataque físico aumentado em 15%
 			}
 
 			DragonBreastplate: {
@@ -310,10 +307,7 @@ Mods: {
 
 			DragonMask: {
 				DisplayName: Máscara de Dragão
-				Tooltip:
-					'''
-					Dano físico e velocidade de ataque físico aumentada em 15%
-					'''
+				Tooltip: Dano físico e velocidade de ataque físico aumentada em 15%
 				SetBonus: Cria uma explosão de chamas após sofrer dano
 			}
 
@@ -1465,12 +1459,11 @@ Mods: {
 
 			FiveStarBuffet: {
 				DisplayName: Buffet Cinco Estrelas
-				Tooltip: 
+				Tooltip:
 					'''
 					Prepara até cinco refeições suculentas e as serve aos aliados com a menor quantidade de vida
 					Se você tem menos quantidade de vida, te cura por uma quantidade menor
 					'''
-				
 			}
 
 			AlbinoSwarmerBanner: {

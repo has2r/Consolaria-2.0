@@ -1474,7 +1474,11 @@ Mods: {
 
 			FiveStarBuffet: {
 				// DisplayName: Five-Star Buffet
-				// Tooltip: Prepares up to five succulent meals, then feeds them to allies with the least health
+				/* Tooltip:
+					'''
+					Prepares up to five succulent meals, then feeds them to allies with the least health
+					If you have the least health, heals you for a lesser amount
+					''' */
 			}
 
 			AlbinoSwarmerBanner: {

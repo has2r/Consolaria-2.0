@@ -1474,7 +1474,11 @@ Mods: {
 
 			FiveStarBuffet: {
 				DisplayName: Five-Star Buffet
-				Tooltip: Prepares up to five succulent meals, then feeds them to allies with the least health
+				Tooltip:
+					'''
+					Prepares up to five succulent meals, then feeds them to allies with the least health
+					If you have the least health, heals you for a lesser amount
+					'''
 			}
 
 			AlbinoSwarmerBanner: {
@@ -1553,7 +1557,7 @@ Mods: {
 
 			TurkortheUngrateful: {
 				DisplayName: Turkor the Ungrateful
-				Bestiary: Existing out of pure spite, this monstrocity is on a yearly vendetta against those who dare to take a bite of Thanksgiving turkey.
+				Bestiary: Existing out of pure spite, this monstrosity is on a yearly vendetta against those who dare to take a bite of Thanksgiving turkey.
 
 				BossChecklistIntegration: {
 					EntryName: Turkor The Ungrateful
@@ -1902,7 +1906,7 @@ Mods: {
 
 			TurkorKillAchievement: {
 				FriendlyName: Kentucky Fried Turkey
-				Description: Defeat Turkor the Ungrateful, the burning Thanksgiving monstrocity.
+				Description: Defeat Turkor the Ungrateful, the burning Thanksgiving monstrosity.
 			}
 		}
 

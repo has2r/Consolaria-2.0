@@ -36,7 +36,7 @@ public sealed class FiveStarBuffet : ThoriumItem_HealerBase {
     }
 
     public override void SetHealerValues(ref bool IsDarkHealer, ref HealType healType, ref int healAmount, ref bool healDisplay, ref bool isAHealerTool) {
-        healType = HealType.AllyAndPlayer;
+        healType = HealType.Ally;
         healAmount = 20;
         healDisplay = true;
         isAHealerTool = true;
@@ -90,7 +90,10 @@ public sealed class FiveStarBuffet : ThoriumItem_HealerBase {
                         int playerWhoAmIToHeal = player.whoAmI;
                         foreach (Player target in Main.ActivePlayers) {
                             if (target.IsAlive() && ThoriumUtils.CanBeHealed(Projectile, player, target) && !target.InOpposingTeam(player) && target.statLife < player.statLife) {
-                                playerWhoAmIToHeal = target.whoAmI;
+                                if (target.Distance(Projectile.Center) > 16f * 30f) {
+									continue;
+								}
+								playerWhoAmIToHeal = target.whoAmI;
                             }
                         }
                         if (player.statLife == player.statLifeMax2 && playerWhoAmIToHeal == player.whoAmI) {
@@ -98,6 +101,9 @@ public sealed class FiveStarBuffet : ThoriumItem_HealerBase {
                             for (int u = 0; u < Main.maxNPCs; u++) {
                                 NPC dummy = Main.npc[u];
                                 if (((Entity)dummy).active && dummy.type == dummyType) {
+									if (dummy.Distance(Projectile.Center) > 16f * 30f) {
+										continue;
+									}
                                     playerWhoAmIToHeal = -(u + 200);
                                 }
                             }
@@ -198,7 +204,7 @@ public sealed class FiveStarBuffet : ThoriumItem_HealerBase {
                         if (Projectile.ai[2] != 10f) {
                             foodDusts(target2);
 
-                            Projectile.ThoriumHeal(20, 60f, onHealEffects: true, bonusHealing: true, delegate {
+                            Projectile.ThoriumHeal((int)Projectile.ai[1] == Projectile.owner ? 10 : 20, 60f, onHealEffects: true, bonusHealing: true, delegate {
                                 SoundEngine.PlaySound(in SoundID.Item85, Projectile.position);
                             }, null, -1, ignoreHealer: false);
                         }

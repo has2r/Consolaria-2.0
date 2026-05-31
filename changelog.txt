@@ -1,24 +1,7 @@
-- Added Thorium cross-mod content:
--- Added Choxplosion, Five-Star Buffet, Jade Seal, Omunikodo, Portable Special Corn, Scythe Fantasma, Spine Cracker and Utensil Poker
--- Added Seraphim, Viper and Siren armor sets, and their Ancient counterparts
-- Updated and expanded Albino Antlion-related content:
--- Added Albino Swarmer and Giant Albino Swarmer
--- Added Albino Runt pet and its summoning item
--- All Albinos now have a 5% chance to replace regular antlions, rather than being individual enemies in the Desert pool
--- Slightly increased Albino Mandible drop chance
--- Albino Antlions now have a chance to drop Banana Split, like their regular counterparts
-- Updated the Otherworldly Turkor theme by Jteoh to its remastered version
-- Updated Consolaria achievements to the built-in tModLoader system
-- Updated Arch Demon and Arch Demon Mask sprites and visual effects
-- Updated some Banner sprites
-- Updated Turkor's neck code
-- Updated Stunned debuff mechanics:
--- Stunned now reduces the speed of affected enemies more smoothly
--- Stunned no longer drops flying enemies to the ground
--- Stunned now affects more enemy types, including fish, vultures, beetles and some casters
-- Valentine Ring now needs to be gifted to another player for its effect to activate, as intended in the original version
-- Rebalanced Roman Candle, sacrificing attack speed for higher damage and making it more difficult to land multi-hits
-- Updated sound effects for Roman Candle, Tizona and Egg Cannon
-- Vampire Miner's Bestiary entry now correctly displays its biome as Caverns
-- Fixed some minor sprite inconsistencies
+- Five-Star Buffet is now less effective when healing yourself and has a maximum range of 30 tiles
+- Disaster Bunny spawn rate now scales with player's luck
+- Fixed Choxplosion sell price
+- Fixed an issue that prevented generating a proper pyramid with Fargo's Souls Mod enabled
+- Fixed the title screen announcement message not being hidden correctly
+- Fixed a crash when loading a glow mask for Sparkly Wings
 - Updated localization

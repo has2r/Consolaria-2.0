@@ -1,9 +1,9 @@
 Mods: {
 	Consolaria: {
-		// DownloadRoA: Check out Rise of Ages, from the team behind Consolaria!
-		// DownloadRoA2: (hide)
-		// DownloadThorium: Consolaria x Thorium Mod is now available!
-		// DownloadThorium2: (hide)
+		DownloadRoA: Confira Rise of Ages, da equipe por trás de Consolaria!
+		DownloadRoA2: (hide)
+		DownloadThorium: Consolaria x Thorium Mod já está disponível!
+		DownloadThorium2: (hide)
 		LepusDropCondition: Será dropado se Lepus não estiver presente
 		ValentineRingTooltip1: Dê a alguém especial!
 		ValentineRingTooltip2:
@@ -11,8 +11,8 @@ Mods: {
 			Regenera a vida lentamente
 			Aumenta a altura do salto
 			'''
-		// ValentineRingTooltip3: Owned by {0}
-		// ValentineRingTooltip4: Gifted by {0}
+		ValentineRingTooltip3: Propriedade de {0}
+		ValentineRingTooltip4: Presenteado por {0}
 		McMoneypantsInvitationUsage: O convite voa para o seu destinatário...
 		Munchies.McMoneypantsInvitation.HowToAcquire: Obtido de Envelope Vermelho
 		McMoneypantsButton1Text: Investir
@@ -38,7 +38,7 @@ Mods: {
 
 			Cupid: {
 				DisplayName: Cupido
-				Description: Ama amor
+				Description: Ama amar
 			}
 
 			Drone: {
@@ -50,8 +50,8 @@ Mods: {
 				DisplayName: Bêbado
 				Description:
 					'''
-					50% de redução de dano recebido
-					50% de dano causado reduzido
+					Dano recebido reduzido em 50%
+					Dano causado reduzido em 50%
 					'''
 			}
 
@@ -81,7 +81,7 @@ Mods: {
 					'''
 					Não posso mais comer cenouras douradas
 					A defesa diminuiu ligeiramente
-					'EU DISSE QUE A CENOURA ERA DE OURO, EU DISSE!!!'
+					'EU FALEI QUE A CENOURA ERA DE OURO, EU FALEI!!!'
 					'''
 			}
 
@@ -166,33 +166,33 @@ Mods: {
 			}
 
 			JadeBuff: {
-				// DisplayName: Jade Blessing
-				// Description: Damage and defense are increased
+				DisplayName: Bênção de Jade
+				Description: Dano e defesa foram aumentados.
 			}
 
 			UtensilPokerDebuff: {
-				// DisplayName: Utensil Piercer Debuff
+				DisplayName: Debuff Perfurador de Utensílios
 				// Description: Mods.Consolaria.Buffs.UtensilPokerDebuff.Description
 			}
 
 			SingerTurkeyBuff: {
-				// DisplayName: Singer Turkey Buff
+				DisplayName: Buff Cantor Turquia
 				// Description: Mods.Consolaria.Buffs.SingerTurkeyBuff.Description
 			}
 
 			SeraphimCooldown: {
-				// DisplayName: Heavenly Rejection
-				// Description: Angelic Embrace is recharging
+				DisplayName: Rejeição Celestial
+				Description: O Abranger Angélico está recarregando
 			}
 
 			SeraphimBuff: {
-				// DisplayName: Angelic Embrace
-				// Description: Soar freely, healing allies on touch
+				DisplayName: Abranger Angélico
+				Description: Voem livremente, curando aliados ao toque
 			}
 
 			AlbinoRuntBuff: {
-				// DisplayName: Pet Albino Runt
-				// Description: Wouldn't survive in the wild
+				DisplayName: Pet Albino Nanico
+				Description: Não sobreviveria na natureza
 			}
 		}
 
@@ -212,8 +212,7 @@ Mods: {
 				Tooltip:
 					'''
 					Aumenta a mana máxima em 50
-					10% do dano mágico aumentado
-					10% de chance de acerto crítico mágico aumentado
+					Dano mágico e chance de acerto crítico mágico aumentado em 10%
 					'''
 			}
 
@@ -222,7 +221,7 @@ Mods: {
 				Tooltip:
 					'''
 					Aumenta a mana máxima em 70
-					15% de dano mágico aumentado
+					Dano mágico aumentado em 15% 
 					'''
 			}
 
@@ -231,8 +230,8 @@ Mods: {
 				Tooltip:
 					'''
 					Aumenta a mana máxima em 30
-					5% do dano mágico aumentado
-					12% de velocidade de movimento aumentada
+					Dano mágico aumentado em 5%
+					Velocidade de movimento aumentada em 12%
 					'''
 			}
 
@@ -241,10 +240,9 @@ Mods: {
 				Tooltip:
 					'''
 					Aumenta a mana máxima em 50
-					10% do dano mágico aumentado
-					10% de chance de acerto crítico mágico aumentado
+					Dano mágico e chance de acerto crítico mágico aumentado em 10%
 					'''
-				SetBonus: Siphons mana out of nearby enemies
+				SetBonus: Drena mana de inimigos próximos
 			}
 
 			PhantasmalRobe: {
@@ -252,7 +250,7 @@ Mods: {
 				Tooltip:
 					'''
 					Aumenta a mana máxima em 70
-					15% de dano mágico aumentado
+					Dano mágico aumentado em 15%
 					'''
 			}
 
@@ -261,8 +259,8 @@ Mods: {
 				Tooltip:
 					'''
 					Aumenta a mana máxima em 30
-					5% do dano mágico aumentado
-					12% de velocidade de movimento aumentada
+					Dano mágico aumentado em 5%
+					Velocidade de movimento aumentada em 12%
 					'''
 			}
 
@@ -270,9 +268,8 @@ Mods: {
 				DisplayName: Peitoral de Dragão Antigo
 				Tooltip:
 					'''
-					10% de aumento de dano físico
-					10% chance de acerto crítico físico aumentada
-					15% velocidade de ataque físico aumentada
+					Dano físico chance de acerto crítico físico aumentado em 10%
+					Velocidade de ataque físico aumentada em 15%
 					'''
 			}
 
@@ -280,28 +277,22 @@ Mods: {
 				DisplayName: Grevas de Dragão Antigo
 				Tooltip:
 					'''
-					5% de aumento de dano físico
-					5% chance de acerto crítico físico aumentada
-					20% velocidade de movimento aumentada
+					Dano físico e chance de acerto crítico físico aumentado em 5%
+					Velocidade de movimento aumentada em 20%
 					'''
 			}
 
 			AncientDragonMask: {
 				DisplayName: Máscara de Dragão Antigo
-				Tooltip:
-					'''
-					15% de aumento de dano físico
-					15% velocidade de ataque físico aumentada
-					'''
+				Tooltip: Dano físico e velocidade de ataque físico aumentado em 15%
 			}
 
 			DragonBreastplate: {
 				DisplayName: Peitoral de Dragão
 				Tooltip:
 					'''
-					10% de aumento de dano físico
-					10% chance de acerto crítico físico aumentada
-					15% velocidade de ataque físico aumentada
+					Dano físico e chance de acerto crítico físico aumentado em 10%
+					Velocidade de ataque físico aumentada em 15%
 					'''
 			}
 
@@ -309,19 +300,14 @@ Mods: {
 				DisplayName: Grevas de Dragão
 				Tooltip:
 					'''
-					5% de aumento de dano físico
-					5% chance de acerto crítico físico aumentada
-					20% velocidade de movimento aumentada
+					Dano físico e chance de acerto crítico físico aumentado em 5%
+					Velocidade de movimento aumentada em 20%
 					'''
 			}
 
 			DragonMask: {
 				DisplayName: Máscara de Dragão
-				Tooltip:
-					'''
-					15% de aumento de dano físico
-					15% velocidade de ataque físico aumentada
-					'''
+				Tooltip: Dano físico e velocidade de ataque físico aumentada em 15%
 				SetBonus: Cria uma explosão de chamas após sofrer dano
 			}
 
@@ -332,22 +318,21 @@ Mods: {
 
 			OstaraHat: {
 				DisplayName: Chapéu de Ostara
-				Tooltip: 7% de aumento na velocidade de movimento
+				Tooltip: Velocidade de movimento aumentada em 7%
 				SetBonus: Nega dano de queda
 			}
 
 			OstaraJacket: {
 				DisplayName: Jaqueta de Ostara
-				Tooltip: 7% de aumento na velocidade de movimento
+				Tooltip: Velocidade de movimento aumentada em 7%
 			}
 
 			AncientTitanHelmet: {
 				DisplayName: Capacete de Titã Antigo
 				Tooltip:
 					'''
-					10% do dano à distância aumentado
-					10% chance de acerto crítico à distância aumentada
-					25% de chance de não consumir munição
+					Dano e chance de acerto crítico à distância aumentada em 10%
+					Chance de 25% de não consumir munição
 					'''
 			}
 
@@ -355,9 +340,9 @@ Mods: {
 				DisplayName: Grevas de Titã Antigo
 				Tooltip:
 					'''
-					10% do dano à distância aumentado
-					18% velocidade de movimento aumentada
-					15% de chance de não consumir munição
+					Dano à distância aumentado em 10%
+					Velocidade de movimento aumentada em 18%
+					Chance de 15% de não consumir munição
 					'''
 			}
 
@@ -365,9 +350,9 @@ Mods: {
 				DisplayName: Peitoral de Titã Antigo
 				Tooltip:
 					'''
-					15% do dano à distância aumentado
-					10% chance de acerto crítico à distância aumentada
-					20% de chance de não consumir munição
+					Dano à distância aumentado em 15%
+					Chance de acerto crítico à distância aumentada em 10%
+					Chance de 20% de não consumir munição
 					'''
 			}
 
@@ -375,14 +360,14 @@ Mods: {
 				DisplayName: Capacete de Titã
 				Tooltip:
 					'''
-					10% do dano à distância aumentado
-					10% chance de acerto crítico à distância aumentada
-					25% de chance de não consumir munição
+					Dano à distância aumentado em 10%
+					Chance de acerto crítico à distância aumentada em 10%
+					Chance de 25% de não consumir munição
 					'''
 				SetBonus:
 					'''
 					Usar armas de longo alcance desencadeia um recuo explosivo
-					Double tap {0} to toggle this effect
+					Toque duas vezes {0} para ativar este efeito
 					'''
 			}
 
@@ -390,9 +375,9 @@ Mods: {
 				DisplayName: Grevas de Titã
 				Tooltip:
 					'''
-					10% do dano à distância aumentado
-					18% velocidade de movimento aumentada
-					15% de chance de não consumir munição
+					Dano à distância aumentado em 10%
+					Velocidade de movimento aumentada em 18%
+					Chance de 15% de não consumir munição
 					'''
 			}
 
@@ -400,9 +385,9 @@ Mods: {
 				DisplayName: Peitoral de Titã
 				Tooltip:
 					'''
-					15% do dano à distância aumentado
-					10% chance de acerto crítico à distância aumentada
-					20% de chance de não consumir munição
+					Dano à distância aumentado em 15%
+					Chance de acerto crítico à distância aumentada em 10%
+					Chance de 20% de não consumir munição
 					'''
 			}
 
@@ -450,7 +435,7 @@ Mods: {
 					'''
 					Aumenta seu número máximo de lacaios em 1
 					Aumenta o dano de invocação em 20%
-					15% da velocidade de movimento aumentada
+					Velocidade de movimento aumentada em 15%
 					'''
 			}
 
@@ -615,7 +600,7 @@ Mods: {
 				DisplayName: Presa Amaldiçoada
 				Tooltip:
 					'''
-					Invoca um lil' Marco
+					Invoca um Marco pequenino
 					'Você é meu amigo agora'
 					'''
 			}
@@ -740,7 +725,7 @@ Mods: {
 
 			RainbowPiece: {
 				DisplayName: Pedaço de Arco-Íris
-				Tooltip: Usado para criar um Pot O' Gold
+				Tooltip: Usado para criar um Pote D' Ouro
 			}
 
 			SoulofBlight: {
@@ -764,7 +749,7 @@ Mods: {
 			}
 
 			Beeswax: {
-				DisplayName: Beeswax
+				DisplayName: Cerabelha
 				Tooltip: Invoca um Tífia de estimação
 			}
 
@@ -809,7 +794,7 @@ Mods: {
 			}
 
 			PotOfGold: {
-				DisplayName: Pot O' Gold
+				DisplayName: Pote D' Ouro
 				Tooltip: Invoca um Leprechaun O'Fyffe de estimação
 			}
 
@@ -925,31 +910,31 @@ Mods: {
 
 			GeorgesHat: {
 				DisplayName: Chapéu Smoking de George
-				Tooltip: "'Oh céus!'"
+				Tooltip: "'Ai qui diliça!'"
 			}
 
 			GeorgesTuxedoPants: {
 				DisplayName: Calças Smoking de George
-				Tooltip: "'Oh céus!'"
+				Tooltip: "'Ai qui diliça!'"
 			}
 
 			GeorgesTuxedoShirt: {
 				DisplayName: Camisa Smoking de George
-				Tooltip: "'Oh céus!'"
+				Tooltip: "'Ai qui diliça!'"
 			}
 
 			HornedGodBoots: {
-				DisplayName: Botas de Horned God
+				DisplayName: Botas de Deus Chifrudo
 				Tooltip: "'Remanescente de uma era de maravilhas'"
 			}
 
 			HornedGodMask: {
-				DisplayName: Máscara de Horned God
+				DisplayName: Máscara de Deus Chifrudo
 				Tooltip: "'Remanescente de uma era de maravilhas'"
 			}
 
 			HornedGodRobe: {
-				DisplayName: Manto de Horned God
+				DisplayName: Manto de Deus Chifrudo
 				Tooltip: "'Remanescente de uma era de maravilhas'"
 			}
 
@@ -1037,7 +1022,7 @@ Mods: {
 				DisplayName: Flecha de Coração
 				Tooltip:
 					'''
-					Tem a chance de atordoar os inimigos ao acertar
+					Tem a chance de atordoar os inimigos ao toque
 					'Flechas lendárias do próprio Cupido'
 					'''
 			}
@@ -1048,13 +1033,13 @@ Mods: {
 			}
 
 			VulcanBolt: {
-				DisplayName: Flecha do Vulcão
+				DisplayName: Flecha de Vulcão
 				Tooltip: ""
 			}
 
 			FeatherStorm: {
 				DisplayName: Tempestade de Penas
-				Tooltip: Lança penas do céu
+				Tooltip: Dispara penas do céu
 			}
 
 			OcramsEye: {
@@ -1078,7 +1063,7 @@ Mods: {
 					'''
 					Cobre os inimigos em óleo
 					Coloque fogo em inimigos em óleo para causar dano extra
-					'Gosto de batatas fritas, mas não de peru frito'
+					'Gosto de batata frita, mas não de peru frito'
 					'''
 			}
 
@@ -1093,13 +1078,13 @@ Mods: {
 			}
 
 			DragonBreath: {
-				DisplayName: Baforada do Dragão
+				DisplayName: Baforada de Dragão
 				Tooltip: ""
 			}
 
 			EggCannon: {
 				DisplayName: Canhão de Ovos
-				Tooltip: "'Para matar um goblin, você precisa quebrar alguns ovos'"
+				Tooltip: "'Para matar um goblin, vai precisar quebrar alguns ovos'"
 			}
 
 			Sharanga: {
@@ -1118,7 +1103,7 @@ Mods: {
 
 			VolcanicRepeater: {
 				DisplayName: Repetidora Vulcânica
-				Tooltip: Transforma flechas em Flechas do Vulcão
+				Tooltip: Transforma flechas em Flechas de Vulcão
 			}
 
 			EternityStaff: {
@@ -1207,284 +1192,288 @@ Mods: {
 			}
 
 			EasterBunnyStaff: {
-				// DisplayName: Easter Bunny Staff
-				// Tooltip: Summons an easter bunny to fight for you
+				DisplayName: Cajado do Coelhinho da Páscoa
+				Tooltip: Invoca um coelho da Páscoa para lutar por você
 			}
 
 			Eggplant: {
-				// DisplayName: Eggplant
-				// Tooltip: Grows a spinning eggplant stalk
+				DisplayName: Beringela
+				Tooltip: Cria um caule de berinjela giratório
 			}
 
 			OldSeraphimChestplate: {
-				// DisplayName: Ancient Seraphim Vesture
-				/* Tooltip:
+				DisplayName: Vestimento Serafim Antigo
+				Tooltip:
 					'''
-					30% decreased non-radiant damage
-					20% increased radiant damage
-					20% decreased mana cost
+					Danos não radiantes reduzidos em 30%
+					Dano radiante aumentado em 20%
+					Custo de mana reduzido em 20%
 					Healing spells will heal an additional 3 life
-					''' */
+					'''
 			}
 
 			OldSeraphimHelmet: {
-				// DisplayName: Ancient Seraphim Visage
-				/* Tooltip:
+				DisplayName: Rosto de Serafim Antigo
+				Tooltip:
 					'''
-					20% decreased non-radiant damage
-					15% increased radiant damage
-					20% decreased mana cost
-					Maximum mana increased by 60
-					Healing spells will heal an additional 2 life
-					''' */
+					Danos não radiantes reduzidos em 20%
+					Dano radiante aumentado em 15%
+					Custo de mana reduzido em 20%
+					Mana máxima aumentada em 60
+					Feitiços de cura curarão 2 pontos de vida adicionais
+					'''
 			}
 
 			OldSeraphimLegs: {
-				// DisplayName: Ancient Seraphim Treads
-				/* Tooltip:
+				DisplayName: Pernas Serafins Antigos
+				Tooltip:
 					'''
-					20% decreased non-radiant damage
-					15% increased radiant damage
-					15% decreased mana cost
-					Healing spells will heal an additional 2 life
-					15% increased movement speed
-					''' */
+					Danos não radiantes reduzidos em 20%
+					Dano radiante aumentado em 15%
+					Custo de mana reduzido em 15%
+					Feitiços de cura curarão 2 pontos de vida adicionais
+					Velocidade de movimento aumentada em 15%
+					'''
 			}
 
 			OldSirenChestplate: {
-				// DisplayName: Ancient Siren Chestplate
-				/* Tooltip:
+				DisplayName: Peitoral de Sereia Antigo
+				Tooltip:
 					'''
-					10% increased symphonic damage
-					Increases the chance for inspiration notes to drop by 10%
-					Increases the duration of your symphonic empowerments by 6 seconds
-					''' */
+					Aumento de 10% nos danos sinfônicos
+					Aumenta em 10% a probabilidade de surgirem notas de inspiração.
+					Aumenta a duração dos seus empoderamentos sinfônicos em 6 segundos.
+					'''
 			}
 
 			OldSirenHelmet: {
-				// DisplayName: Ancient Siren Headgear
-				/* Tooltip:
+				DisplayName: Capacete de Sereia Antigo
+				Tooltip:
 					'''
-					8% increased symphonic playing speed
-					4% increased symphonic critical strike chance
-					Increases inspiration regeneration rate by 20%
-					''' */
+					Aumento de 8% na velocidade de execução sinfônica
+					4% de aumento na chance de acerto crítico sinfônico
+					Aumenta a taxa de regeneração de inspiração em 20%.
+					'''
 			}
 
 			OldSirenLegs: {
-				// DisplayName: Ancient Siren Tail
-				/* Tooltip:
+				DisplayName: Cauda de Sereia Antigo
+				Tooltip:
 					'''
-					10% increased symphonic damage
-					6% increased symphonic critical strike chance
-					15% increased movement speed
-					''' */
+					Aumento de 10% nos danos sinfônicos
+					6% de aumento na chance de acerto crítico sinfônico
+					Aumento de 15% na velocidade de movimento
+					'''
 			}
 
 			OldViperChestplate: {
-				// DisplayName: Ancient Viper Jacket
-				/* Tooltip:
+				DisplayName: Jaqueta de Víbora Antiga
+				Tooltip:
 					'''
-					10% increased throwing damage
-					20% increased throwing velocity
-					15% increased throwing speed
-					''' */
+					10% de aumento no dano de arremesso
+					Aumento de 20% na velocidade de arremesso
+					Aumento de 15% na velocidade de arremesso
+					'''
 			}
 
 			OldViperHelmet: {
-				// DisplayName: Ancient Viper Helmet
-				/* Tooltip:
+				DisplayName: Elmo de Víbora Antiga
+				Tooltip:
 					'''
-					20% increased throwing damage
-					33% chance not to consume thrown items
-					Increases your maximum technique points by 2
-					''' */
+					20% de aumento no dano de arremesso
+					33% de chance de não consumir itens arremessados
+					Aumenta sua pontuação técnica máxima em 2.
+					'''
 			}
 
 			OldViperLegs: {
-				// DisplayName: Ancient Viper Pants
-				/* Tooltip:
+				DisplayName: Calças de Víbora Antiga
+				Tooltip:
 					'''
-					20% increased throwing damage
-					25% increased throwing critical strike chance
-					15% increased movement speed
-					''' */
+					20% de aumento no dano de arremesso
+					25% de aumento na chance de acerto crítico ao arremessar
+					Aumento de 15% na velocidade de movimento
+					'''
 			}
 
 			SeraphimChestplate: {
-				// DisplayName: Seraphim Vesture
-				/* Tooltip:
+				DisplayName: Vestimenta Serafim
+				Tooltip:
 					'''
-					30% decreased non-radiant damage
-					20% increased radiant damage
-					20% decreased mana cost
-					Healing spells will heal an additional 3 life
-					''' */
+					Redução de 30% nos danos não radiantes
+					Aumento de 20% nos danos radiantes
+					Redução de 20% no custo de mana
+					Feitiços de cura curarão 3 pontos de vida adicionais.
+					'''
 			}
 
 			SeraphimHelmet: {
-				// DisplayName: Seraphim Visage
-				/* Tooltip:
+				DisplayName: Rosto de Serafim
+				Tooltip:
 					'''
-					20% decreased non-radiant damage
-					15% increased radiant damage
-					20% decreased mana cost
-					Maximum mana increased by 60
-					Healing spells will heal an additional 2 life
-					''' */
-				// SetBonus: Pressing the Armor Ability key will activate Angelic Embrace, granting infinite flight and healing allies on touch for 4 seconds
+					Redução de 20% nos danos não radiantes
+					Aumento de 15% nos danos radiantes
+					Redução de 20% no custo de mana
+					Mana máxima aumentada em 60
+					Feitiços de cura curarão 2 pontos de vida adicionais.
+					'''
+				SetBonus: Ao pressionar a tecla de habilidade da armadura, você ativará o Abranger Angélico, que concede voo infinito e cura aliados ao toque por 4 segundos
 			}
 
 			SeraphimLegs: {
-				// DisplayName: Seraphim Treads
-				/* Tooltip:
+				DisplayName: Pernas de Serafim
+				Tooltip:
 					'''
-					20% decreased non-radiant damage
-					15% increased radiant damage
-					15% decreased mana cost
-					Healing spells will heal an additional 2 life
-					15% increased movement speed
-					''' */
+					Redução de 20% nos danos não radiantes
+					Aumento de 15% nos danos radiantes
+					Redução de 15% no custo de mana
+					Feitiços de cura curarão 2 pontos de vida adicionais.
+					Aumento de 15% na velocidade de movimento
+					'''
 			}
 
 			SirenChestplate: {
-				// DisplayName: Siren Chestplate
-				/* Tooltip:
+				DisplayName: Peitoral de Sereia
+				Tooltip:
 					'''
-					10% increased symphonic damage
-					Increases the chance for inspiration notes to drop by 10%
-					Increases the duration of your symphonic empowerments by 6 seconds
-					''' */
+					Aumento de 10% nos danos sinfônicos
+					Aumenta em 10% a probabilidade de surgirem notas de inspiração
+					Aumenta a duração dos seus empoderamentos sinfônicos em 6 segundos
+					'''
 			}
 
 			SirenHelmet: {
-				// DisplayName: Siren Headgear
-				/* Tooltip:
+				DisplayName: Capacete de Sereia
+				Tooltip:
 					'''
-					8% increased symphonic playing speed
-					4% increased symphonic critical strike chance
-					Increases inspiration regeneration rate by 20%
-					''' */
-				// SetBonus: Striking an enemy with symphonic damage occasionally summons a sea creature to grant an empowerment to nearby allies
+					Aumento de 8% na velocidade de execução sinfônica
+					4% de aumento na chance de acerto crítico sinfônico
+					Aumenta a taxa de regeneração da inspiração em 20%.
+					'''
+				SetBonus: Ao atingir um inimigo com dano sinfônico, ocasionalmente uma criatura marinha é invocada para conceder um fortalecimento aos aliados próximos
 			}
 
 			SirenLegs: {
-				// DisplayName: Siren Tail
-				/* Tooltip:
+				DisplayName: Cauda de Sereia
+				Tooltip:
 					'''
-					10% increased symphonic damage
-					6% increased symphonic critical strike chance
-					15% increased movement speed
-					''' */
+					Aumento de 10% nos danos sinfônicos
+					6% de aumento na chance de acerto crítico sinfônico
+					Aumento de 15% na velocidade de movimento
+					'''
 			}
 
 			ViperChestplate: {
-				// DisplayName: Viper Jacket
-				/* Tooltip:
+				DisplayName: Jaqueta de Víbora
+				Tooltip:
 					'''
-					10% increased throwing damage
-					20% increased throwing velocity
-					15% increased throwing speed
-					''' */
+					10% de aumento no dano de arremesso
+					Aumento de 20% na velocidade de arremesso
+					Aumento de 15% na velocidade de arremesso
+					'''
 			}
 
 			ViperHelmet: {
-				// DisplayName: Viper Helmet
-				/* Tooltip:
+				DisplayName: Capacete de Víbora
+				Tooltip:
 					'''
-					20% increased throwing damage
-					33% chance not to consume thrown items
-					Increases your maximum technique points by 2
-					''' */
-				/* SetBonus:
+					20% de aumento no dano de arremesso
+					33% de chance de não consumir itens arremessados
+					Aumenta sua pontuação máxima de técnica em 2
 					'''
-					Throwing damage has a 10% chance to poison enemies
-					Nearby enemies take extra damage from poison and venom
-					''' */
+				SetBonus:
+					'''
+					O dano de arremesso tem 10% de chance de envenenar os inimigos
+					Inimigos próximos sofrem dano extra por veneno e toxina
+					'''
 			}
 
 			ViperLegs: {
-				// DisplayName: Viper Pants
-				/* Tooltip:
+				DisplayName: Calças de Víbora
+				Tooltip:
 					'''
-					20% increased throwing damage
-					25% increased throwing critical strike chance
-					15% increased movement speed
-					''' */
+					20% de aumento no dano de arremesso
+					25% de aumento na chance de acerto crítico ao arremessar
+					Aumento de 15% na velocidade de movimento
+					'''
 			}
 
 			ScytheFantasma: {
-				// DisplayName: Scythe Fantasma
-				/* Tooltip:
+				DisplayName: Foice Fantasma
+				Tooltip:
 					'''
-					Rapidly spins a phantasmal scythe all around you
-					Dealing direct damage may summon a homing spirit
-					''' */
+					Gira rapidamente uma foice fantasmagórica ao seu redor
+					Causar dano direto pode invocar um espírito
+					'''
 			}
 
 			SpineCracker: {
-				// DisplayName: Spine Cracker
-				/* Tooltip:
+				DisplayName: Quebra-coluna
+				Tooltip:
 					'''
-					Spins in place, scattering shadow scythes
-					Overuse of this weapon exhausts you, massively reducing its damage
-					Killing enemies recovers some of your exhaustion
-					''' */
+					Gira no mesmo lugar, espalhando foices de sombra
+					O uso excessivo desta arma causa exaustão, reduzindo drasticamente seu dano
+					Matar inimigos recupera parte do seu cansaço
+					'''
 			}
 
 			JadeSeal: {
-				// DisplayName: Jade Seal
-				/* Tooltip:
+				DisplayName: Selo de Jade
+				Tooltip:
 					'''
-					Left click to summon a jade lantern that boosts damage and defense of allies
-					Right click to summon a golden lantern that hovers in place and heals allies
-					''' */
+					Botão esquerdo para invocar uma lanterna de jade que aumenta o dano e a defesa dos aliados
+					Botão direito para invocar uma lanterna dourada que paira no ar e cura aliados
+					'''
 			}
 
 			Omunikodo: {
-				// DisplayName: Omunikodo
-				// Tooltip: Releases a wave of chaotic noise
+				DisplayName: Omunikodo
+				Tooltip: Libera uma onda de ruído caótico
 			}
 
 			PortableSpecialCorn: {
-				// DisplayName: Portable Special Corn
-				// Tooltip: Replicates every 4th symphonic attack with 50% of its damage
+				DisplayName: Milho Especial Portátil
+				Tooltip: Replica cada 4 ataques sinfônicos com 50% do seu dano
 			}
 
 			UtensilPoker: {
-				// DisplayName: Utensil Piercer
-				/* Tooltip:
+				DisplayName: Perfurador de Utensílios
+				Tooltip:
 					'''
-					Right click to prepare up to five throwable forks
-					Forks get stuck in enemies, bleeding them out
-					Overuse of this weapon exhausts you, massively reducing its damage
-					Killing enemies recovers some of your exhaustion
-					''' */
+					Botão direito para preparar até cinco garfos arremessáveis
+					Garfos ficam presos nos inimigos, causando sangramento até a morte
+					O uso excessivo desta arma causa exaustão, reduzindo drasticamente seu dano
+					Matar inimigos recupera parte do seu cansaço
+					'''
 			}
 
 			Chocoplotion: {
-				// DisplayName: Choxplosion
-				/* Tooltip:
+				DisplayName: Choxplosão
+				Tooltip:
 					'''
-					Hops towards an enemy and explodes into chocolate droplets
-					Overuse of this weapon exhausts you, massively reducing its damage
-					Killing enemies recovers some of your exhaustion
-					''' */
+					Salta em direção a um inimigo e explode em gotas de chocolate
+					O uso excessivo desta arma causa exaustão, reduzindo drasticamente seu dano
+					Matar inimigos recupera parte do seu cansaço
+					'''
 			}
 
 			FiveStarBuffet: {
-				// DisplayName: Five-Star Buffet
-				// Tooltip: Prepares up to five succulent meals, then feeds them to allies with the least health
+				DisplayName: Buffet Cinco Estrelas
+				Tooltip:
+					'''
+					Prepara até cinco refeições suculentas e as serve aos aliados com a menor quantidade de vida
+					Se você tem menos quantidade de vida, te cura por uma quantidade menor
+					'''
 			}
 
 			AlbinoSwarmerBanner: {
-				// DisplayName: Albino Swarmer Banner
-				// Tooltip: "{$CommonItemTooltip.BannerBonus}Albino Swarmer"
+				DisplayName: Bandeira de Formiga-leão Albina Voadora
+				Tooltip: "{$CommonItemTooltip.BannerBonus}Formiga-leão Albina Voadora"
 			}
 
 			BleachCanister: {
-				// DisplayName: Bleach Canister
-				// Tooltip: Summons a pet albino runt
+				DisplayName: Vasilha de água sanitária
+				Tooltip: Invoca um filhote albino de estimação
 			}
 		}
 
@@ -1653,24 +1642,24 @@ Mods: {
 			McMoneypants: {
 				DisplayName: Mc MoneyPants
 				Bestiary: Extravagante e carismático, Mc MoneyPants é um excelente barão disposto a facilitar a vida de qualquer pessoa... Por um preço!
-				AlreadyInvested1: Não há algo melhor do que ouro, mas já estou farto do seu por hoje.
+				AlreadyInvested1: Não há nada melhor do que ouro, porém já estou farto do seu por hoje.
 				AlreadyInvested2: Desculpe, mas meus bolsos já estão cheios.
-				AlreadyInvested3: Você está sortudo demais por hoje
+				AlreadyInvested3: Você está sortudo demais por hoje.
 				AlreadyInvested4: Agora, não seja tão ganancioso, a menos que queira acabar como aquele Grego.
 				PlayerHasNoMoney1: Desculpe, não posso dar crédito! Volte quando estiver um pouco mais – mmmm – rico.
-				PlayerHasNoMoney2: Não estou administrando uma instituição de caridade, sabe...
+				PlayerHasNoMoney2: Não estou administrando uma instituição de caridade, desculpe...
 				PlayerHasNoMoney3: Mostre-me o dinheiro e depois conversaremos.
-				PlayerHasNoMoney4: Não, você não pode pagar com boleto.
+				PlayerHasNoMoney4: Não, você não pode pagar com "pix".
 				FirstTimeInvested1: Ferragamo Ouro!
 				FirstTimeInvested2: Quando sou pago, sua sorte vai pro talo.
 				FirstTimeInvested3: Hoje é seu dia de sorte.
 				FirstTimeInvested4: Um ótimo investimento! Sorte sua!
 				WhenInvested1: Tempo é dinheiro. Então volte amanhã para gastar o seu!
 				WhenInvested2: Acredite em mim, não é um esquema de Pirâmide.
-				WhenInvested3: Multiplicador de dinheiro em andamento...
+				WhenInvested3: Lavagem de dinheiro em andamento...
 				WhenInvested4: Quantas vezes tenho que dizer isso? Sem reembolsos!
 				WhenInvested5: Onde está minha caneta? Não me diga que você pegou depois de assinar o contrato!
-				WhenInvested6: Prazer em fazer negócios! Estarei de volta em um dia para que possamos renovar nosso acordo.
+				WhenInvested6: Prazer em fazer negócios! Estarei de volta em um dia para que possamos renovar nosso contrato.
 				WhenInvested7: Pela última vez, pare de me perguntar sobre inflação!
 				WhenInvested8: Bombeie! Não, jogue fora! Ah, é você de novo.
 				Quote1: Pra ser sincero, um centavo pelos meus pensamentos não é muito.
@@ -1678,21 +1667,21 @@ Mods: {
 				Quote3: Aquelas malditas geleias continuam tentando engolir minhas moedas!
 				Quote4: Se o dinheiro faz o mundo girar, este lugar então é muito pobre. Vamos mudar isso!
 				Quote5: Sinto-me tão limpo, como uma máquina de fazer dinheiro!
-				Quote6: Você sabe o que eu mais gosto no ouro? O fato de que tenho muito disso!
+				Quote6: Você sabe o que eu mais gosto no ouro? O fato de que tenho muito dele!
 				Quote7: Ei, uma coisa que posso prometer é que nunca peço aos meus clientes que me julguem pelos meus vencedores. Peço-lhes que me julguem pelos meus perdedores, porque tenho tão poucos.
 				Quote8: Quando o preço desses blocos de terra raros subir, vou ganhar milhões!
 				Quote9: Meu conselho financeiro? Não atire suas moedas com essa arma horrível.
-				Quote10: Bitcoin? Por que eu morderia uma moeda?
+				Quote10: Criptomoeda? Nunca ouvi falar.
 			}
 
 			AlbinoSwarmer: {
-				// Bestiary: Albino antlions may not be suited to blending into the dunes, but the sight of their pale figure is said to instill primal fear in their prey.
-				// DisplayName: Albino Swarmer
+				Bestiary: Embora formigas-leões albinas não sejam muito adequadas para se camuflarem nas dunas, diz-se que a visão de sua figura pálida instila um medo primitivo em suas presas.
+				DisplayName: Formiga-leão Albina Voadora
 			}
 
 			GiantAlbinoSwarmer: {
-				// Bestiary: Albino antlions may not be suited to blending into the dunes, but the sight of their pale figure is said to instill primal fear in their prey.
-				// DisplayName: Giant Albino Swarmer
+				Bestiary: Embora formigas-leões albinas não sejam muito adequadas para se camuflarem nas dunas, diz-se que a visão de sua figura pálida instila um medo primitivo em suas presas.
+				DisplayName: Formiga-leão Albina Voadora Gigante
 			}
 		}
 
@@ -1765,27 +1754,27 @@ Mods: {
 			Explosion.DisplayName: Explosion
 			MythicalWyvernProjectile.DisplayName: Projétil Serpe Mítica
 			MythicalWyvernKiteProjectile.DisplayName: Projétil Pipa de Serpe Mítica
-			// Eggplant_Root.DisplayName: Eggplant
-			// Eggplant_Shoot.DisplayName: Eggplant
-			// Eggplant_Stem.DisplayName: Eggplant
-			// ScytheFantasma_Use.DisplayName: Scythe Fantasma
-			// ScytheFantasma_Spirit.DisplayName: Phantasm
-			// SpineCracker_Throw.DisplayName: Spine Cracker
-			// SpineCracker_Scythe.DisplayName: Spine Cracker Scythe
-			// JadeSeal_Lamp.DisplayName: Jade Lamp
-			// JadeSeal_GoldenLamp.DisplayName: Golden Lamp
-			// Omunikodo_Shot.DisplayName: Noise Wave
-			// UtensilPoker_Fork.DisplayName: Fork
-			// UtensilPoker_Throw.DisplayName: Utensil Piercer
-			// UtensilPoker_BigFork.DisplayName: Big Fork
-			// PortableSpecialCorn_Summon.DisplayName: Singer Turkey
-			// Chocoplotion_Throw.DisplayName: Choxplosion
-			// FiveStarBuffet_Use.DisplayName: Five Star Buffet
-			// FiveStarBuffet_Food.DisplayName: Five Star Meal
-			// Chocoplotion_Droplet.DisplayName: Chocolate Droplet
-			// SeraphimHeal.DisplayName: Seraphim Heal
-			// SirenSeaCreature.DisplayName: Siren Sea Creature
-			// AlbinoRunt.DisplayName: Albino Runt
+			Eggplant_Root.DisplayName: Beringela
+			Eggplant_Shoot.DisplayName: Beringela
+			Eggplant_Stem.DisplayName: Beringela
+			ScytheFantasma_Use.DisplayName: Foice Fantasma
+			ScytheFantasma_Spirit.DisplayName: Espectro
+			SpineCracker_Throw.DisplayName: Quebra-coluna
+			SpineCracker_Scythe.DisplayName: Foice Quebra-coluna
+			JadeSeal_Lamp.DisplayName: Lâmpada de Jade
+			JadeSeal_GoldenLamp.DisplayName: Lâmpada Dourada
+			Omunikodo_Shot.DisplayName: Onda de ruído
+			UtensilPoker_Fork.DisplayName: Garfo
+			UtensilPoker_Throw.DisplayName: Perfurador de Utensílios
+			UtensilPoker_BigFork.DisplayName: Garfo Grande
+			PortableSpecialCorn_Summon.DisplayName: Turquia Cantora
+			Chocoplotion_Throw.DisplayName: Choxplosão
+			FiveStarBuffet_Use.DisplayName: Buffet Cinco Estrelas
+			FiveStarBuffet_Food.DisplayName: Refeição Cinco Estrelas
+			Chocoplotion_Droplet.DisplayName: Gota de Chocolate
+			SeraphimHeal.DisplayName: Cura Serafim
+			SirenSeaCreature.DisplayName: Criatura marinha sereia
+			AlbinoRunt.DisplayName: Albino nanico
 		}
 
 		Tiles: {
@@ -1811,7 +1800,7 @@ Mods: {
 				Headers: {
 					SeasonalEvents: Eventos Sazonais
 					Miscellaneous: Outros
-					// WorldGeneration: World Generation
+					WorldGeneration: Geração de Mundo
 				}
 
 				easterEnabled: {
@@ -1838,13 +1827,13 @@ Mods: {
 				}
 
 				vanillaBossMusicEnabled: {
-					Label: Música Vanilla para os chefes de Consolaria
+					Label: Música Padrão para os chefes de Consolaria
 					Tooltip: Se ativado, a trilha sonora personalizada será substituída por temas originalmente usados ​​nas versões de console
 				}
 
 				tizonaZenithIntegrationEnabled: {
-					Label: Integração da Tizona na Zenith
-					Tooltip: Se ativado, a Tizona será adicionada à receita de fabricação da Zenith e aos seus projéteis.
+					Label: Integração da Tizona na Zênite
+					Tooltip: Se ativado, a Tizona será adicionada à receita de fabricação da Zênite e aos seus projéteis.
 				}
 
 				oktoberLocksEnabled: {
@@ -1853,7 +1842,7 @@ Mods: {
 				}
 
 				mythicalWyvernKiteVanillaDropruleEnabled: {
-					Label: Regra de Drop Vanilla para a Pipa de Serpezinha Mítica
+					Label: Regra de Drop Padrão para a Pipa de Serpezinha Mítica
 					Tooltip: Se ativado, a Pipa de Serpe Mítica terá 4% de chance de ser obtido da Serpe Mítica durante os Dias Ventosos, em vez de ser obtido no Envelope Vermelho
 				}
 
@@ -1892,12 +1881,12 @@ Mods: {
 		Achievements: {
 			LepusKillAchievement: {
 				FriendlyName: Um Salto de Cada Vez
-				Description: Derrote Lepus, o maior encrenqueiro da Páscoa
+				Description: Derrote Lepus, o maior encrenqueiro da Páscoa.
 			}
 
 			OcramKillAchievement: {
 				FriendlyName: Bíblia da Besta
-				Description: Derrote Ocram, o demônio amaldiçoado que assombra o céu sem estrelas.
+				Description: Derrote Ocram, o demônio amaldiçoado que assombra o céu sombrio.
 			}
 
 			TurkorKillAchievement: {
@@ -1925,7 +1914,7 @@ Mods: {
 			}
 
 			EerieOcram: {
-				Author: por Fyerow & Croul
+				Author: por Fyerow e Croul
 				DisplayName: Eerie Ocram
 			}
 

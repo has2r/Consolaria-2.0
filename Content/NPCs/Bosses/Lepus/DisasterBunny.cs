@@ -89,9 +89,18 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo) {
             float spawnChance = DownedBossSystem.downedLepus ? 0.01f : 0.035f;
-            if (SeasonalEvents.configEnabled) return SeasonalEvents.IsEaster() ?
-                    SpawnCondition.OverworldDaySlime.Chance * spawnChance : 0f;
-            else return SpawnCondition.OverworldDaySlime.Chance * spawnChance;
+            spawnChance *= 3;
+            bool rollLuck() => spawnInfo.Player.RollLuck(3) == 0;
+            if (rollLuck()) {
+                if (SeasonalEvents.configEnabled) {
+                    return SeasonalEvents.IsEaster() ?
+                        SpawnCondition.OverworldDaySlime.Chance * spawnChance : 0f;
+                }
+                else {
+                    return SpawnCondition.OverworldDaySlime.Chance * spawnChance;
+                }
+            }
+            return 0f;
         }
     }
 }

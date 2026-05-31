@@ -16,6 +16,8 @@ using Terraria.WorldBuilding;
 namespace Consolaria.Content.Structures;
 
 sealed class DesertSecondRoom : ILoadable {
+    private static bool HasFargos => ModLoader.HasMod("FargowiltasSouls") || ModLoader.HasMod("FargosSoulsMod");
+
     private class DesertSecondRoom_ReplaceVanillaPass : ModSystem {
         public static byte RoomCounts { get; internal set; }
 
@@ -25,7 +27,7 @@ sealed class DesertSecondRoom : ILoadable {
 
         public override void ModifyWorldGenTasks(List<GenPass> tasks, ref double totalWeight) {
             int genIndexToReplace = tasks.FindIndex(genpass => genpass.Name.Equals("Pyramids"));
-            if (!ModLoader.HasMod("FargowiltasSouls")) {
+            if (!HasFargos) {
                 tasks.RemoveAt(genIndexToReplace);
             }
             tasks.Insert(genIndexToReplace, new PassLegacy("Pyramids", Pyramids, 0.3045f));
@@ -223,7 +225,7 @@ sealed class DesertSecondRoom : ILoadable {
                     int xOffsetExtra = genRand.Next(50, 80);
                     int xOffset = xOffsetExtra * -direction;
                     int x2 = x + xOffset;
-                    int yOffsetExtra = genRand.Next(num19_2 / 6, num19_2 - 5);
+                    int yOffsetExtra = genRand.Next(num19_2 / 6, num19_2 - 5) + (HasFargos ? -5 : 0);
 
                     if (canPlace) {
                         while (lootRoomSizeY2 > 0) {

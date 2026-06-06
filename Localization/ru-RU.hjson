@@ -465,62 +465,62 @@ Mods: {
 			}
 
 			AlbinoAntlionBanner: {
-				DisplayName: Баннер муравьиного льва-альбиноса
+				DisplayName: Знамя муравьиного льва-альбиноса
 				Tooltip: "{$CommonItemTooltip.BannerBonus}Муравьиный лев-альбинос"
 			}
 
 			AlbinoChargerBanner: {
-				DisplayName: Баннер муравьиного воителя-альбиноса
+				DisplayName: Знамя муравьиного воителя-альбиноса
 				Tooltip: "{$CommonItemTooltip.BannerBonus}Муравьиный воитель-альбинос"
 			}
 
 			ArchDemonBanner: {
-				DisplayName: Баннер архидемона
+				DisplayName: Знамя архидемона
 				Tooltip: "{$CommonItemTooltip.BannerBonus}Архидемон"
 			}
 
 			ArchWyvernBanner: {
-				DisplayName: Баннер архививерны
+				DisplayName: Знамя архививерны
 				Tooltip: "{$CommonItemTooltip.BannerBonus}Архививерна"
 			}
 
 			DisasterBunnyBanner: {
-				DisplayName: Баннер пасхального зайца
+				DisplayName: Знамя пасхального зайца
 				Tooltip: "{$CommonItemTooltip.BannerBonus}Пасхальный заяц"
 			}
 
 			DragonHornetBanner: {
-				DisplayName: Баннер драконьего шершня
+				DisplayName: Знамя драконьего шершня
 				Tooltip: "{$CommonItemTooltip.BannerBonus}Драконий шершень"
 			}
 
 			DragonSkullBanner: {
-				DisplayName: Баннер драконьего черепа
+				DisplayName: Знамя драконьего черепа
 				Tooltip: "{$CommonItemTooltip.BannerBonus}Драконий череп"
 			}
 
 			DragonSnatcherBanner: {
-				DisplayName: Баннер драконьего хватателя
+				DisplayName: Знамя драконьего хватателя
 				Tooltip: "{$CommonItemTooltip.BannerBonus}Драконий хвататель"
 			}
 
 			FleshAxeBanner: {
-				DisplayName: Баннер топора из плоти
+				DisplayName: Знамя топора из плоти
 				Tooltip: "{$CommonItemTooltip.BannerBonus}Топор из плоти"
 			}
 
 			FleshMummyBanner: {
-				DisplayName: Баннер мумии из плоти
+				DisplayName: Знамя мумии из плоти
 				Tooltip: "{$CommonItemTooltip.BannerBonus}Мумия из плоти"
 			}
 
 			FleshSlimeBanner: {
-				DisplayName: Баннер слизня из плоти
+				DisplayName: Знамя слизня из плоти
 				Tooltip: "{$CommonItemTooltip.BannerBonus}Слизень из плоти"
 			}
 
 			MythicalWyvernBanner: {
-				DisplayName: Баннер мифической виверны
+				DisplayName: Знамя мифической виверны
 				Tooltip: "{$CommonItemTooltip.BannerBonus}Мифическая виверна"
 			}
 
@@ -530,42 +530,42 @@ Mods: {
 			}
 
 			OrcaBanner: {
-				DisplayName: Баннер касатки
+				DisplayName: Знамя касатки
 				Tooltip: "{$CommonItemTooltip.BannerBonus}Касатка"
 			}
 
 			ShadowHammerBanner: {
-				DisplayName: Баннер теневого молота
+				DisplayName: Знамя теневого молота
 				Tooltip: "{$CommonItemTooltip.BannerBonus}Теневой молот"
 			}
 
 			ShadowMummyBanner: {
-				DisplayName: Баннер теневой мумии
+				DisplayName: Знамя теневой мумии
 				Tooltip: "{$CommonItemTooltip.BannerBonus}Теневая мумия"
 			}
 
 			ShadowSlimeBanner: {
-				DisplayName: Баннер теневого слизня
+				DisplayName: Знамя теневого слизня
 				Tooltip: "{$CommonItemTooltip.BannerBonus}Теневой слизень"
 			}
 
 			SpectralElementalBanner: {
-				DisplayName: Баннер спектрального элементаля
+				DisplayName: Знамя спектрального элементаля
 				Tooltip: "{$CommonItemTooltip.BannerBonus}Спектральный элементаль"
 			}
 
 			SpectralGastropodBanner: {
-				DisplayName: Баннер спектрального брюхонога
+				DisplayName: Знамя спектрального брюхонога
 				Tooltip: "{$CommonItemTooltip.BannerBonus}Спектральный брюхоног"
 			}
 
 			SpectralMummyBanner: {
-				DisplayName: Баннер спектральной мумии
+				DisplayName: Знамя спектральной мумии
 				Tooltip: "{$CommonItemTooltip.BannerBonus}Спектральная мумия"
 			}
 
 			VampireMinerBanner: {
-				DisplayName: Баннер шахтёра-вампира
+				DisplayName: Знамя шахтёра-вампира
 				Tooltip: "{$CommonItemTooltip.BannerBonus}Шахтёр-вампир"
 			}
 
@@ -622,7 +622,7 @@ Mods: {
 			}
 
 			EerieOcramMusicBox: {
-				DisplayName: Музыкальная Шкатулка (Кровавая луна Окрама)
+				DisplayName: Музыкальная шкатулка (Кровавая луна Окрама)
 				Tooltip: ""
 			}
 
@@ -637,7 +637,7 @@ Mods: {
 			}
 
 			OcramMusicBox: {
-				DisplayName: Музыкальная Шкатулка (Окрам)
+				DisplayName: Музыкальная шкатулка (Окрам)
 				Tooltip: ""
 			}
 
@@ -682,7 +682,7 @@ Mods: {
 			}
 
 			TurkorMusicBox: {
-				DisplayName: Музыкальная Шкатулка (Туркор Неблагодарный)
+				DisplayName: Музыкальная шкатулка (Туркор Неблагодарный)
 				Tooltip: ""
 			}
 
@@ -706,7 +706,7 @@ Mods: {
 			}
 
 			HolyHandgrenade2: {
-				DisplayName: Святая Граната II
+				DisplayName: Святая граната II
 				Tooltip:
 					'''
 					Огромный взрыв который уничтожает большинство блоков
@@ -759,7 +759,7 @@ Mods: {
 				Tooltip:
 					'''
 					{$BuffDescription.WellFed2}
-					Повышает время всех баффов на 15 секунд
+					Увеличивает время всех баффов на 15 секунд
 					'ЗОЛОТАЯ МОРКОВКА?! ЧТО?!'
 					'''
 			}
@@ -776,7 +776,7 @@ Mods: {
 
 			BrokenHeart: {
 				DisplayName: Разбитое сердце
-				Tooltip: Призывает Купидона, излучающего свет
+				Tooltip: Призывает купидона, излучающего свет
 			}
 
 			Cabbage: {
@@ -1039,7 +1039,7 @@ Mods: {
 				Tooltip:
 					'''
 					Может оглушить врага при попадании
-					'Легендарные стрелы самого Купидона'
+					'Легендарные стрелы самого купидона'
 					'''
 			}
 
@@ -1419,7 +1419,7 @@ Mods: {
 				Tooltip:
 					'''
 					Стремительно вращает призрачную косу вокруг вас 
-					При нанесении урона призывает самонаводящегося духа 
+					При нанесении урона призывает самонаводящихся духов
 					'''
 			}
 
@@ -1529,7 +1529,7 @@ Mods: {
 
 			Lepus: {
 				DisplayName: Лепус
-				Bestiary: Как будто его размеров было недостаточно, этот кролик способен размножаться с помощью разноцветных яиц, которые весной разлетаются по всему миру, а глупцы, в свою очередь, могут их подобрать.
+				Bestiary: Как будто его размеров было недостаточно, так этот кролик способен размножаться с помощью разноцветных яиц, которые весной разлетаются по всему миру, а глупцы, в свою очередь, могут их подобрать.
 
 				BossChecklistIntegration: {
 					SpawnInfo: Используйте [i:Consolaria/SuspiciousLookingEgg]
@@ -1541,7 +1541,7 @@ Mods: {
 
 			Ocram: {
 				DisplayName: Окрам
-				Bestiary: Этот забытый, отравленный демон однажды был императором тьмы. Теперь он ищет мести против всех жителей поверхности.
+				Bestiary: Этот забытый, гниющий демон однажды был императором тьмы. Теперь он ищет мести против всех жителей поверхности.
 
 				BossChecklistIntegration: {
 					SpawnInfo: Используйте [i:5643] ночью
@@ -1551,7 +1551,7 @@ Mods: {
 
 			ServantofOcram: {
 				DisplayName: Прислужник Окрама
-				Bestiary: Порождения зла, служащие Окраму, были созданы чтобы защищать своего хозяина любой ценой.
+				Bestiary: Злобные существа, управляемые Окрамом и призванные им же для защиты своего хозяина любыми способами.
 			}
 
 			TurkorNeck.DisplayName: Шея Туркора

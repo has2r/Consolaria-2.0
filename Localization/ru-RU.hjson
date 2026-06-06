@@ -1581,32 +1581,32 @@ Mods: {
 
 			DragonSnatcher: {
 				DisplayName: Драконий хвататель
-				// Bestiary: This species of Snatcher learned to repurpose the stingers of Hornets that fell prey to it to hunt bigger targets.
+				// Bestiary: Эти виды хватателей научились использовать жала шершней, ставших их жертвами, чтобы охотиться на более крупные цели 
 			}
 
 			FleshAxe: {
 				DisplayName: Топор из поти
-				// Bestiary: Ensorcelled by the Crimson collective, this weapon moves about and chops its enemies by its own will.
+				// Bestiary: Заколдованное коллективом Багрянца, это оружие передвигается и рубит своих врагов по собственной воле.
 			}
 
 			FleshMummy: {
 				DisplayName: Мумия из плоти
-				// Bestiary: With the sands transmogrified by outside forces, those put to rest in the desert, whether good or evil, now rise to maim and kill.
+				// Bestiary: С трансформацией песков внешними силами, те, кто был захоронен в пустыни, будь то добрые или злые, чтобы калечить и убивать.
 			}
 
 			FleshSlime: {
 				DisplayName: Слизень из плоти
-				// Bestiary: Steeped in the power of Crimson, these slimes can spread their excretas.
+				// Bestiary: Пропитанные силой Багрянца, эти слизни могут разбрасывать свои выделения. 
 			}
 
 			GiantAlbinoCharger: {
 				DisplayName: Большой муравьиный воитель-альбинос
-				// Bestiary: Rarely some antlion soldiers mutate, losing their coloring and becoming even more ferocious than their brothers-in-swarm.
+				// Bestiary: Иногда муравьиные воители мутируют, теряя свою окраску и становясь более свирепыми, чем их собратья по рою.
 			}
 
 			MythicalWyvernHead: {
 				DisplayName: Мифическая Виверна
-				// Bestiary: Beings of legends, these reclusive wyverns only appear at a particular time of year.
+				// Bestiary: Легендарные существа, эти виверны-затворники приходят в определённое время года. 
 			}
 
 			MythicalWyvernBody.DisplayName: Мифическая Виверна

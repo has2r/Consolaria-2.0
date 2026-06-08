@@ -745,8 +745,8 @@ Mods: {
 			}
 
 			SoulofBlight: {
-				DisplayName: Эссенция отравления
-				Tooltip: "'Эссенция зараженных существ'"
+				DisplayName: Эссенция гниения
+				Tooltip: "'Эссенция гнилых существ'"
 			}
 
 			WhiteThread: {

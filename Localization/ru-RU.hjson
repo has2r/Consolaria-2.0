@@ -1484,7 +1484,7 @@ Mods: {
 
 			AlbinoSwarmerBanner: {
 				DisplayName: Знамя роевика-альбиноса
-				// Tooltip: "{$CommonItemTooltip.BannerBonus}Albino Swarmer"
+				Tooltip: "{$CommonItemTooltip.BannerBonus}Albino Swarmer"
 			}
 
 			BleachCanister: {
@@ -1581,32 +1581,32 @@ Mods: {
 
 			DragonSnatcher: {
 				DisplayName: Драконий хвататель
-				// Bestiary: Эти виды хватателей научились использовать жала шершней, ставших их жертвами, чтобы охотиться на более крупные цели 
+				Bestiary: Эти виды хватателей научились использовать жала шершней, ставших их жертвами, чтобы охотиться на более крупные цели 
 			}
 
 			FleshAxe: {
 				DisplayName: Топор из поти
-				// Bestiary: Заколдованное коллективом Багрянца, это оружие передвигается и рубит своих врагов по собственной воле.
+				Bestiary: Заколдованное коллективом Багрянца, это оружие передвигается и рубит своих врагов по собственной воле.
 			}
 
 			FleshMummy: {
 				DisplayName: Мумия из плоти
-				// Bestiary: С трансформацией песков внешними силами, те, кто был захоронен в пустыни, будь то добрые или злые, чтобы калечить и убивать.
+				Bestiary: С трансформацией песков внешними силами, те, кто был захоронен в пустыни, будь то добрые или злые, чтобы калечить и убивать.
 			}
 
 			FleshSlime: {
 				DisplayName: Слизень из плоти
-				// Bestiary: Пропитанные силой Багрянца, эти слизни могут разбрасывать свои выделения. 
+				Bestiary: Пропитанные силой Багрянца, эти слизни могут разбрасывать свои выделения. 
 			}
 
 			GiantAlbinoCharger: {
 				DisplayName: Большой муравьиный воитель-альбинос
-				// Bestiary: Иногда муравьиные воители мутируют, теряя свою окраску и становясь более свирепыми, чем их собратья по рою.
+				Bestiary: Иногда муравьиные воители мутируют, теряя свою окраску и становясь более свирепыми, чем их собратья по рою.
 			}
 
 			MythicalWyvernHead: {
 				DisplayName: Мифическая Виверна
-				// Bestiary: Легендарные существа, эти виверны-затворники приходят в определённое время года. 
+				Bestiary: Легендарные существа, эти виверны-затворники приходят в определённое время года. 
 			}
 
 			MythicalWyvernBody.DisplayName: Мифическая Виверна
@@ -1617,42 +1617,42 @@ Mods: {
 
 			Orca: {
 				DisplayName: Касатка
-				// Bestiary: Since there are no whales to be seen in the oceans, these black and white predators will hunt anything else... including you!
+				Bestiary: Since there are no whales to be seen in the oceans, these black and white predators will hunt anything else... including you!
 			}
 
 			ShadowHammer: {
 				DisplayName: Теневой молот
-				// Bestiary: Magicked through the pure hatred of the Corruption, this weapon flails about attempting to smash anything that breathes.
+				Bestiary: Magicked through the pure hatred of the Corruption, this weapon flails about attempting to smash anything that breathes.
 			}
 
 			ShadowMummy: {
 				DisplayName: Теневая мумия
-				// Bestiary: With the sands transmogrified by outside forces, those put to rest in the desert, whether good or evil, now rise to maim and kill.
+				Bestiary: With the sands transmogrified by outside forces, those put to rest in the desert, whether good or evil, now rise to maim and kill.
 			}
 
 			ShadowSlime: {
 				DisplayName: Теневой слизень
-				// Bestiary: Steeped in the power of Corruption, these slimes can spread their excretas.
+				Bestiary: Steeped in the power of Corruption, these slimes can spread their excretas.
 			}
 
 			SpectralElemental: {
 				DisplayName: Спектральный элементаль
-				// Bestiary: Sometimes released spirits of light would transform chaos elementals into more powerful beings, giving them the ability to move in and out of the material realm at will while placing explosive spectral runes.
+				Bestiary: Sometimes released spirits of light would transform chaos elementals into more powerful beings, giving them the ability to move in and out of the material realm at will while placing explosive spectral runes.
 			}
 
 			SpectralGastropod: {
 				DisplayName: Спектральный брюхоног
-				// Bestiary: Once ordinary Gastropods, these slimes possessed by spirits of light can spit out balls of concentrated luminous energy.
+				Bestiary: Once ordinary Gastropods, these slimes possessed by spirits of light can spit out balls of concentrated luminous energy.
 			}
 
 			SpectralMummy: {
 				DisplayName: Спектральная мумия
-				// Bestiary: The overflowing light energy of these mummies made their tattered bodies highly unstable.
+				Bestiary: The overflowing light energy of these mummies made their tattered bodies highly unstable.
 			}
 
 			VampireMiner: {
 				DisplayName: Шахтёр-вампир
-				// Bestiary: Evidence indicates that some spelunkers got bitten by vampire bats before passing away... Now their rotten remains are out for blood.
+				Bestiary: Evidence indicates that some spelunkers got bitten by vampire bats before passing away... Now their rotten remains are out for blood.
 			}
 
 			McMoneypants: {
@@ -1691,13 +1691,13 @@ Mods: {
 			}
 
 			AlbinoSwarmer: {
-				// Bestiary: Albino antlions may not be suited to blending into the dunes, but the sight of their pale figure is said to instill primal fear in their prey.
 				DisplayName: Роевик-альбинос
+				// Bestiary: Albino antlions may not be suited to blending into the dunes, but the sight of their pale figure is said to instill primal fear in their prey.
 			}
 
 			GiantAlbinoSwarmer: {
-				// Bestiary: Albino antlions may not be suited to blending into the dunes, but the sight of their pale figure is said to instill primal fear in their prey.
 				DisplayName: Большой роевик-альбинос
+				// Bestiary: Albino antlions may not be suited to blending into the dunes, but the sight of their pale figure is said to instill primal fear in their prey.
 			}
 		}
 

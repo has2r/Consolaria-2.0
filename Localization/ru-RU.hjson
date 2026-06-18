@@ -218,7 +218,7 @@ Mods: {
 			}
 
 			AncientPhantasmalRobe: {
-				DisplayName: Древняя фантазмальная роба
+				DisplayName: Древняя фантазмальная одеяние
 				Tooltip:
 					'''
 					Увеличивает максимальный запас маны на 70
@@ -248,7 +248,7 @@ Mods: {
 			}
 
 			PhantasmalRobe: {
-				DisplayName: Фантазмальная роба
+				DisplayName: Фантазмальное одеяние
 				Tooltip:
 					'''
 					Увеличивает максимальный запас маны на 70
@@ -271,7 +271,7 @@ Mods: {
 				Tooltip:
 					'''
 					Увеличивает урон ближнего боя на 10%
-					Увеличивает шанс критического удара ближним боем на 10%
+					Увеличивает шанс критического удара ближнего боя на 10%
 					Увеличивает скорость ближнего боя на 15%
 					'''
 			}
@@ -281,7 +281,7 @@ Mods: {
 				Tooltip:
 					'''
 					Увеличивает урон ближнего боя на 5%
-					Увеличивает шанс критического удара ближним боем на 5%
+					Увеличивает шанс критического удара ближнего боя на 5%
 					Увеличивает скорость передвижения на 20%
 					'''
 			}
@@ -300,7 +300,7 @@ Mods: {
 				Tooltip:
 					'''
 					Увеличивает урон ближнего боя на 10%
-					Увеличивает шанс критического удара ближним боем на 10%
+					Увеличивает шанс критического удара ближнего боя на 10%
 					Увеличивает скорость ближнего боя на 15%
 					'''
 			}
@@ -310,7 +310,7 @@ Mods: {
 				Tooltip:
 					'''
 					Увеличивает урон ближнего боя на 5%
-					Увеличивает шанс критического удара ближним боем на 5%
+					Увеличивает шанс критического удара ближнего боя на 5%
 					Увеличивает скорость передвижения на 20%
 					'''
 			}
@@ -333,7 +333,7 @@ Mods: {
 			OstaraHat: {
 				DisplayName: Шляпа Остары
 				Tooltip: Увеличивает скорость передвижения на 7%
-				SetBonus: Даёт иммунитет к урону от падения
+				SetBonus: Даёт невосприимчивость к урону от падения
 			}
 
 			OstaraJacket: {
@@ -417,7 +417,7 @@ Mods: {
 			}
 
 			AncientWarlockLeggings: {
-				DisplayName: Древние Поножи Чернокнижника
+				DisplayName: Древние поножи чернокнижника
 				Tooltip:
 					'''
 					Увеличивает максимальное количество миньонов на 1
@@ -427,7 +427,7 @@ Mods: {
 			}
 
 			AncientWarlockRobe: {
-				DisplayName: Древняя Роба Чернокнижника
+				DisplayName: Древнее одеяние чернокнижника
 				Tooltip:
 					'''
 					Увеличивает максимальное количество миньонов на 1
@@ -436,7 +436,7 @@ Mods: {
 			}
 
 			WarlockHood: {
-				DisplayName: Капюшон Чернокнижника
+				DisplayName: Капюшон чернокнижника
 				Tooltip:
 					'''
 					Увеличивает максимальное количество миньонов на 1
@@ -446,7 +446,7 @@ Mods: {
 			}
 
 			WarlockLeggings: {
-				DisplayName: Поножи Чернокнижника
+				DisplayName: Поножи чернокнижника
 				Tooltip:
 					'''
 					Увеличивает максимальное количество миньонов на 1
@@ -456,7 +456,7 @@ Mods: {
 			}
 
 			WarlockRobe: {
-				DisplayName: Роба Чернокнижника
+				DisplayName: Одеяние чернокнижника
 				Tooltip:
 					'''
 					Увеличивает максимальное количество миньонов на 1
@@ -580,7 +580,7 @@ Mods: {
 			}
 
 			LepusMusicBox: {
-				DisplayName: Музыкальная Шкатулка (Лепус)
+				DisplayName: Музыкальная шкатулка (Лепус)
 				Tooltip: ""
 			}
 
@@ -607,7 +607,7 @@ Mods: {
 				DisplayName: Кроличья лапа
 				Tooltip:
 					'''
-					Призывает Детеныша Лепуса
+					Призывает детеныша Лепуса
 					'Удача - это иллюзия, но кролик - нет'
 					'''
 			}
@@ -655,7 +655,7 @@ Mods: {
 				DisplayName: Экзоскелет привязанных теней
 				Tooltip:
 					'''
-					{0} урона ближнего боя
+					{0} ед. урона ближнего боя
 					Позволяет вам делать ракетный прыжок
 					Нажмите {1} дважды
 					'''
@@ -709,7 +709,7 @@ Mods: {
 				DisplayName: Святая граната II
 				Tooltip:
 					'''
-					Огромный взрыв который уничтожает большинство блоков
+					Вызывает огромный взрыв, разрушающий большинство блоков
 					'Господи...'
 					'''
 			}
@@ -720,7 +720,7 @@ Mods: {
 			}
 
 			SoulOfBlightInABottle: {
-				DisplayName: Эссенция отравления в бутылке
+				DisplayName: Эссенция гниения в бутылке
 				Tooltip: ""
 			}
 
@@ -741,7 +741,7 @@ Mods: {
 
 			RainbowPiece: {
 				DisplayName: Кусочек радуги
-				Tooltip: Используется для крафта Горшка Золота
+				Tooltip: Используется для крафта горшка золота
 			}
 
 			SoulofBlight: {
@@ -785,7 +785,7 @@ Mods: {
 			}
 
 			GoldenLantern: {
-				DisplayName: Золотой Фонарь
+				DisplayName: Золотой фонарь
 				Tooltip: Призывает мифическую виверну, излучающую свет
 			}
 
@@ -1039,17 +1039,17 @@ Mods: {
 				Tooltip:
 					'''
 					Может оглушить врага при попадании
-					'Легендарные стрелы самого купидона'
+					'Легендарные стрелы самого Купидона'
 					'''
 			}
 
 			SpectralArrow: {
-				DisplayName: Спектральная Стрела
+				DisplayName: Спектральная стрела
 				Tooltip: Проходит сквозь блоки и врагов, но быстро рассеивается в воздухе
 			}
 
 			VulcanBolt: {
-				DisplayName: Вулканический Болт
+				DisplayName: Вулканический болт
 				Tooltip: ""
 			}
 
@@ -1123,7 +1123,7 @@ Mods: {
 			}
 
 			EternityStaff: {
-				DisplayName: Посох Вечности
+				DisplayName: Посох вечности
 				Tooltip: Призывает Глаз Вечности, который будет сражаться за вас
 			}
 
@@ -1223,8 +1223,8 @@ Mods: {
 					'''
 					Снижает весь урон, кроме лучезарного, на 30%
 					Увеличивает лучезарный урон на 20%
-					Уменьшает расход маны на 20%
-					Исцеляющие заклинания восстанавливают дополнительно 3 здоровья
+					Снижает расход маны на 20%
+					Исцеляющие заклинания восстанавливают дополнительно 3 ед. здоровья
 					'''
 			}
 
@@ -1234,9 +1234,9 @@ Mods: {
 					'''
 					Снижает весь урон, кроме лучезарного, на 20%
 					Увеличивает лучезарный урон на 15%
-					Уменьшает расход маны на 20%
+					Снижает расход маны на 20%
 					Увеличивает максимальный запас маны на 60 
-					Исцеляющие заклинания восстанавливают дополнительно 2 здоровья
+					Исцеляющие заклинания восстанавливают дополнительно 2 ед. здоровья
 					'''
 			}
 
@@ -1246,8 +1246,8 @@ Mods: {
 					'''
 					Снижает весь урон, кроме лучезарного, на 20%
 					Увеличивает лучезарный урон на 15% 
-					Уменьшает расход маны на 15%
-					Исцеляющие заклинания восстанавливают дополнительно 2 здоровья
+					Снижает расход маны на 15%
+					Исцеляющие заклинания восстанавливают дополнительно 2 ед. здоровья
 					Увеличивает скорость передвижения на 15%
 					'''
 			}
@@ -1319,7 +1319,7 @@ Mods: {
 					Снижает весь урон, кроме лучезарного, на 30%
 					Увеличивает лучезарный урон на 20%
 					Уменьшает расход маны на 20%
-					Исцеляющие заклинания восстанавливают дополнительно 3 здоровья
+					Исцеляющие заклинания восстанавливают дополнительно 3 ед. здоровья
 					'''
 			}
 
@@ -1331,7 +1331,7 @@ Mods: {
 					Увеличивает лучезарный урон на 15%
 					Уменьшает расход маны на 20%
 					Увеличивает максимальный запас маны на 60 
-					Исцеляющие заклинания восстанавливают дополнительно 2 здоровья
+					Исцеляющие заклинания восстанавливают дополнительно 2 ед. здоровья
 					'''
 				SetBonus: Нажатие клавиши 'Способность брони' активирует ангельские объятия, даруя бесконечный полёт и исцеляя союзников при касании на 4 секунды
 			}
@@ -1343,7 +1343,7 @@ Mods: {
 					Снижает весь урон, кроме лучезарного, на 20%
 					Увеличивает лучезарный урон на 15% 
 					Уменьшает расход маны на 15%
-					Исцеляющие заклинания восстанавливают дополнительно 2 здоровья
+					Исцеляющие заклинания восстанавливают дополнительно 2 ед. здоровья
 					Увеличивает скорость передвижения на 15%
 					'''
 			}
@@ -1424,7 +1424,7 @@ Mods: {
 			}
 
 			SpineCracker: {
-				DisplayName: Крушитель хребетов
+				DisplayName: Крушитель хребтов
 				Tooltip:
 					'''
 					Кружится на месте, разбрасывая теневые косы 
@@ -1617,87 +1617,88 @@ Mods: {
 
 			Orca: {
 				DisplayName: Касатка
-				Bestiary: Since there are no whales to be seen in the oceans, these black and white predators will hunt anything else... including you!
+				Bestiary: Так как в океанах киты не водятся, эти чёрно-белые хищники охотятся на всё, что движется... включая вас!
 			}
 
 			ShadowHammer: {
 				DisplayName: Теневой молот
-				Bestiary: Magicked through the pure hatred of the Corruption, this weapon flails about attempting to smash anything that breathes.
+				Bestiary: Заколдованное чистой ненавистью искажения, это орудие беспорядочно мечется от места к месту, пытаясь прибить всё, что дышит.
 			}
 
 			ShadowMummy: {
 				DisplayName: Теневая мумия
-				Bestiary: With the sands transmogrified by outside forces, those put to rest in the desert, whether good or evil, now rise to maim and kill.
+				Bestiary: С трансформацией песков внешними силами, те, кто был захоронен в пустыни, будь то добрые или злые, чтобы калечить и убивать.
+			}
 			}
 
 			ShadowSlime: {
 				DisplayName: Теневой слизень
-				Bestiary: Steeped in the power of Corruption, these slimes can spread their excretas.
+				Bestiary:Пропитанные силой Порчи, эти слизни могут разбрасывать свои выделения.
 			}
 
 			SpectralElemental: {
 				DisplayName: Спектральный элементаль
-				Bestiary: Sometimes released spirits of light would transform chaos elementals into more powerful beings, giving them the ability to move in and out of the material realm at will while placing explosive spectral runes.
+				Bestiary: Иногда вышедшие духи света превращают элементалей хаоса в более могущественных существ, позволяя им проходить сквозь ткань реальности пока они размещают взрывные спектральные руны.
 			}
 
 			SpectralGastropod: {
 				DisplayName: Спектральный брюхоног
-				Bestiary: Once ordinary Gastropods, these slimes possessed by spirits of light can spit out balls of concentrated luminous energy.
+				Bestiary: Когда-то они были самыми обычными брюхоногим. Эти слизни, одержимые эссенцией, могут плеваться в своих врагов сферами концентрированной энергии света.
 			}
 
 			SpectralMummy: {
 				DisplayName: Спектральная мумия
-				Bestiary: The overflowing light energy of these mummies made their tattered bodies highly unstable.
+				Bestiary: Энергия света, переполняющая этих мумий, сделал их и так изношенные тела ещё более нестабильными.
 			}
 
 			VampireMiner: {
 				DisplayName: Шахтёр-вампир
-				Bestiary: Evidence indicates that some spelunkers got bitten by vampire bats before passing away... Now their rotten remains are out for blood.
+				Bestiary: Похоже, перед смертью, некоторых шахтёров успели покусать летучие мыши-вампиры... И теперь их гнилые останки бродят, жаждая поживиться чей-нибудь кровью.
 			}
 
 			McMoneypants: {
 				DisplayName: Мак МаниПэнтс
-				// Bestiary: Flamboyant and charismatic, Mc MoneyPants is a fine baron willing to make anyone's life easier... For a price!
-				// AlreadyInvested1: There is no such thing as enough gold, but I've had enough of you today.
-				// AlreadyInvested2: Sorry, but my pockets are already full.
-				// AlreadyInvested3: You're all lucked out for the day.
-				// AlreadyInvested4: Now, don't get too greedy unless you want to end up like that Greek fella.
-				// PlayerHasNoMoney1: Sorry, I can't give credit! Come back when you're a little – mmmm – richer.
-				// PlayerHasNoMoney2: I'm not running a charity, you know...
-				// PlayerHasNoMoney3: Show me the money, then we'll talk.
-				// PlayerHasNoMoney4: No, you can't pay in vouchers.
-				// FirstTimeInvested1: Ferragamo Gold!
-				// FirstTimeInvested2: A bargain is struck, up goes your luck.
-				// FirstTimeInvested3: Today is your lucky day.
-				// FirstTimeInvested4: A great investment! Lucky you are!
-				// WhenInvested1: Time is money. So come again tomorrow to spend some!
-				// WhenInvested2: Trust me, it's not a Ponzi scheme.
-				// WhenInvested3: Multiplying money in-progress...
-				// WhenInvested4: How many times do I have to say it? No refunds!
-				// WhenInvested5: Where's my pen? Don't tell me you took it after signing the contract!
-				// WhenInvested6: Pleasure doing business! I'll be back in a day so that we can renew our deal.
-				// WhenInvested7: For the last time, stop asking me about inflation!
-				// WhenInvested8: Pump it! No, dump it! Oh, it's you again.
-				// Quote1: Honestly, a penny for my thoughts really isn't that much.
-				// Quote2: If I had a nickel for every monster I saw last night, I'd be even more rich and a little less scared.
-				// Quote3: Those blasted slimes keep trying to swallow my coins!
-				// Quote4: If money makes the world go round, this place is looking very poor indeed. Let's change it!
-				// Quote5: I feel so clean, like a money machine!
-				// Quote6: You know what I like about gold? I have a lot of it!
-				// Quote7: Hey, one thing I can promise you is that I never ask my clients to judge me on my winners. I ask them to judge me on my losers, because I have so few.
-				// Quote8: When those rare dirt blocks go up in price, I'm going to make millions!
-				// Quote9: My financial advice? Don't shoot your coins out of that awful gun.
-				// Quote10: Bitcoin? Why would I ever beat a coin?
+				// Bestiary: Яркая и харизматичная личность, Мак МаниПэнтс прекрасный богатей, желающий сделать жизни простых горожан чуточку проще... за определённую стоимость, само собой!
+				// AlreadyInvested1: Много золота конечно не бывает, но на сегодня с меня хватит.
+				// AlreadyInvested2: Извини, но ты уже до этого успел наполнить мои карманы своими денежками.
+				// AlreadyInvested3: Твоя удача уже переходит все границы.
+				// AlreadyInvested4:  Не будь таким жадиной, ну разве что если ты не хочешь стать тем самым мужиком из Греции.
+				// PlayerHasNoMoney1: Прости, но тебе сделку я одобрить не могу! Возвращайся когда станешь чуточку... побогаче.
+				// PlayerHasNoMoney2: Я благотворительность не занимаюсь, знаешь ли...
+				// PlayerHasNoMoney3: Сначала деньги, потом сделка.
+				// PlayerHasNoMoney4: Нет, я не принимаю купонами.
+				// FirstTimeInvested1: Феррагамо голд!
+				// FirstTimeInvested2: Наша сделка заключена, твоя удача стала чуточку больше.
+				// FirstTimeInvested3: Сегодня такой удачный день!
+				// FirstTimeInvested4: Прекрасное вложение! Везунчик ты мой!
+				// WhenInvested1: Время - деньги. Так, что возвращайся завтра и потрать их ещё!
+				// WhenInvested2: Поверь мне, это точно НЕ финансовая пирамида.
+				// WhenInvested3: Увеличение капитала в процессе...
+				// WhenInvested4: Сколько раз я должен повторять? Никаких возвратов!
+				// WhenInvested5: Где моя ручка? Ты что, забрал её у меня после подписания договора?!
+				// WhenInvested6: Приятно иметь с вами дело! Возвращайтесь завтра, и я продлю нашу сделку.
+				// WhenInvested7: Прошу тебя, хватит уже спрашивать у меня про инфляцию!
+				// WhenInvested8: Качай! Нет-нет, выливай! А, это опять ты.
+				// Quote1: Честно, копеечка за мои размышления - не так уж и много.
+				// Quote2: Если бы мне давали по пять копеек за каждого монстрюгу, что я успел повстречать прошлой ночью, я бы стал ещё богаче и чуть меньше боялся.
+				// Quote3: Эти тупоголовые слизни всё ещё пытаются проглотить весь мой капитал!
+				// Quote4: Если мир вращается из-за денег, то это место действительно выглядит очень бедным. Давайте изменим это!
+				// Quote5: Я чувствую себя таким чистым, как та денежная машина! 
+				// Quote6: Знаешь, что мне нравится в золоте? Его количество в моих карманах!
+				// Quote7: Эй, одно я могу вам пообещать: я никогда не прошу своих клиентов судить меня по моим победителям. Я прошу их судить обо мне по моим неудачникам, потому что их у меня так мало.
+				// Quote8: Если эти раритетные блоки земли когда-нибудь вырастут в цене, я смогу заработать миллионы на них!
+				// Quote9: Хочешь совет по финансам? Не использую ту мерзкую штуку, стреляющую монетами.
+				// Quote10: Биткоин? Это та штука, делающая крутые биты?
 			}
 
 			AlbinoSwarmer: {
 				DisplayName: Роевик-альбинос
-				// Bestiary: Albino antlions may not be suited to blending into the dunes, but the sight of their pale figure is said to instill primal fear in their prey.
+				// Bestiary: Может муравьиные львы-альбиносы и не могут сливаться с пейзажами дюн, как это делают их более частые собратья, но одного лишь взгляда на их бледные тела уже достаточно, чтобы заставить любую дичь бояться.
 			}
 
 			GiantAlbinoSwarmer: {
 				DisplayName: Большой роевик-альбинос
-				// Bestiary: Albino antlions may not be suited to blending into the dunes, but the sight of their pale figure is said to instill primal fear in their prey.
+				// Bestiary: Может муравьиные львы-альбиносы и не могут сливаться с пейзажами дюн, как это делают их более частые собратья, но одного лишь взгляда на их бледные тела уже достаточно, чтобы заставить любую дичь бояться.
 			}
 		}
 
@@ -1794,8 +1795,8 @@ Mods: {
 		}
 
 		Tiles: {
-			SanctumLantern.MapEntry: Перевозной Фонарь
-			SoulOfBlightInABottleTile.MapEntry: Эссенция Отравления в Бутылке
+			SanctumLantern.MapEntry: Перевозной фонарь
+			SoulOfBlightInABottleTile.MapEntry: Эссенция гниения в банке
 		}
 
 		Conditions: {
@@ -1829,10 +1830,10 @@ Mods: {
 				}
 
 				thanksgivingEnabled: {
-					Label: Ограничить сезонный контент по системной дате (День Благодарения)
+					Label: Ограничить сезонный контент по системной дате (День благодарения)
 					Tooltip:
 						'''
-						При включении соответствующие предметы и враги будут появляться только в День Благодарения
+						При включении соответствующие предметы и враги будут появляться только в День благодарения
 						1 Ноября - 30 Ноября
 						'''
 				}
@@ -1912,10 +1913,10 @@ Mods: {
 		}
 
 		Emotes: {
-			// McMoneyPantsEmote.Command: mcmoneypants
-			// TurkorEmote.Command: turkor
-			// OcramEmote.Command: ocram
-			// LepusEmote.Command: lepus
+			// McMoneyPantsEmote.Command: макманипентс 
+			// TurkorEmote.Command: туркор
+			// OcramEmote.Command: окрам
+			// LepusEmote.Command: лепус
 		}
 
 		MusicDisplayCompability: {

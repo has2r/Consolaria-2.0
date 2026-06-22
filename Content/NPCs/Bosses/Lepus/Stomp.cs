@@ -9,8 +9,6 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
         public override string Texture
             => "Consolaria/Assets/Textures/Empty";
 
-        public override string Name => "Lepus Stomp";
-
         public override void SetDefaults() {
             Projectile.width = 30;
             Projectile.height = 30;

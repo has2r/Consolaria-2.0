@@ -209,31 +209,17 @@ Mods: {
 
 			AncientPhantasmalHeadgear: {
 				DisplayName: Ancient Phantasmal Headgear
-				Tooltip:
-					'''
-					Increases maximum mana by 50
-					10% increased magic damage
-					10% increased magic critical strike chance
-					'''
+				Tooltip: "{$Items.PhantasmalHeadgear.Tooltip}"
 			}
 
 			AncientPhantasmalRobe: {
 				DisplayName: Ancient Phantasmal Robe
-				Tooltip:
-					'''
-					Increases maximum mana by 70
-					15% increased magic damage
-					'''
+				Tooltip: "{$Items.PhantasmalRobe.Tooltip}"
 			}
 
 			AncientPhantasmalSubligar: {
 				DisplayName: Ancient Phantasmal Subligar
-				Tooltip:
-					'''
-					Increases maximum mana by 30
-					5% increased magic damage
-					12% increased movement speed
-					'''
+				Tooltip: "{$Items.PhantasmalSubligar.Tooltip}"
 			}
 
 			PhantasmalHeadgear: {
@@ -268,31 +254,17 @@ Mods: {
 
 			AncientDragonBreastplate: {
 				DisplayName: Ancient Dragon Breastplate
-				Tooltip:
-					'''
-					10% increased melee damage
-					10% increased melee critical strike chance
-					15% increased melee speed
-					'''
+				Tooltip: "{$Items.DragonBreastplate.Tooltip}"
 			}
 
 			AncientDragonGreaves: {
 				DisplayName: Ancient Dragon Greaves
-				Tooltip:
-					'''
-					5% increased melee damage
-					5% increased melee critical strike chance
-					20% increased movement speed
-					'''
+				Tooltip: "{$Items.DragonGreaves.Tooltip}"
 			}
 
 			AncientDragonMask: {
 				DisplayName: Ancient Dragon Mask
-				Tooltip:
-					'''
-					15% increased melee damage
-					15% increased melee speed
-					'''
+				Tooltip: "{$Items.DragonMask.Tooltip}"
 			}
 
 			DragonBreastplate: {
@@ -343,32 +315,17 @@ Mods: {
 
 			AncientTitanHelmet: {
 				DisplayName: Ancient Titan Helmet
-				Tooltip:
-					'''
-					10% increased ranged damage
-					10% increased ranged critical strike chance
-					25% chance to not consume ammo
-					'''
+				Tooltip: "{$Items.TitanHelmet.Tooltip}"
 			}
 
 			AncientTitanLeggings: {
 				DisplayName: Ancient Titan Leggings
-				Tooltip:
-					'''
-					10% increased ranged damage
-					18% increased movement speed
-					15% chance to not consume ammo
-					'''
+				Tooltip: "{$Items.TitanLeggings.Tooltip}"
 			}
 
 			AncientTitanMail: {
 				DisplayName: Ancient Titan Mail
-				Tooltip:
-					'''
-					15% increased ranged damage
-					10% increased ranged critical strike chance
-					20% chance to not consume ammo
-					'''
+				Tooltip: "{$Items.TitanMail.Tooltip}"
 			}
 
 			TitanHelmet: {
@@ -408,30 +365,17 @@ Mods: {
 
 			AncientWarlockHood: {
 				DisplayName: Ancient Warlock Hood
-				Tooltip:
-					'''
-					Increases your max number of minions by 1
-					Increases summon damage by 20%
-					'''
+				Tooltip: "{$Items.WarlockHood.Tooltip}"
 			}
 
 			AncientWarlockLeggings: {
 				DisplayName: Ancient Warlock Leggings
-				Tooltip:
-					'''
-					Increases your max number of minions by 1
-					Increases summon damage by 20%
-					15% increased movement speed
-					'''
+				Tooltip: "{$Items.WarlockLeggings.Tooltip}"
 			}
 
 			AncientWarlockRobe: {
 				DisplayName: Ancient Warlock Robe
-				Tooltip:
-					'''
-					Increases your max number of minions by 1
-					Increases summon damage by 20%
-					'''
+				Tooltip: "{$Items.WarlockRobe.Tooltip}"
 			}
 
 			WarlockHood: {
@@ -521,11 +465,6 @@ Mods: {
 			MythicalWyvernBanner: {
 				DisplayName: Mythical Wyvern Banner
 				Tooltip: "{$CommonItemTooltip.BannerBonus}Mythical Wyvern"
-			}
-
-			MythicalWyvern: {
-				DisplayName: Mythical Wyvern Kite
-				Tooltip: ""
 			}
 
 			OrcaBanner: {
@@ -1166,11 +1105,6 @@ Mods: {
 				Tooltip: Smells like a freshly-printed bill!
 			}
 
-			ExampleKite: {
-				DisplayName: Example Kite
-				Tooltip: ""
-			}
-
 			CandiedFruit: {
 				DisplayName: Candied Fruit
 				Tooltip: ""
@@ -1182,13 +1116,13 @@ Mods: {
 			}
 
 			OktoberLocks: {
-				Tooltip: ""
 				DisplayName: Oktober Locks
+				Tooltip: ""
 			}
 
 			PurpleThread: {
-				Tooltip: ""
 				DisplayName: Purple Thread
+				Tooltip: ""
 			}
 
 			OtherworldlyMusicBox1: {
@@ -1218,97 +1152,47 @@ Mods: {
 
 			OldSeraphimChestplate: {
 				DisplayName: Ancient Seraphim Vesture
-				Tooltip:
-					'''
-					30% decreased non-radiant damage
-					20% increased radiant damage
-					20% decreased mana cost
-					Healing spells will heal an additional 3 life
-					'''
+				Tooltip: "{$Items.SeraphimChestplate.Tooltip}"
 			}
 
 			OldSeraphimHelmet: {
 				DisplayName: Ancient Seraphim Visage
-				Tooltip:
-					'''
-					20% decreased non-radiant damage
-					15% increased radiant damage
-					20% decreased mana cost
-					Maximum mana increased by 60
-					Healing spells will heal an additional 2 life
-					'''
+				Tooltip: "{$Items.SeraphimHelmet.Tooltip}"
 			}
 
 			OldSeraphimLegs: {
 				DisplayName: Ancient Seraphim Treads
-				Tooltip:
-					'''
-					20% decreased non-radiant damage
-					15% increased radiant damage
-					15% decreased mana cost
-					Healing spells will heal an additional 2 life
-					15% increased movement speed
-					'''
+				Tooltip: "{$Items.SeraphimLegs.Tooltip}"
 			}
 
 			OldSirenChestplate: {
 				DisplayName: Ancient Siren Chestplate
-				Tooltip:
-					'''
-					10% increased symphonic damage
-					Increases the chance for inspiration notes to drop by 10%
-					Increases the duration of your symphonic empowerments by 6 seconds
-					'''
+				Tooltip: "{$Items.SirenChestplate.Tooltip}"
 			}
 
 			OldSirenHelmet: {
 				DisplayName: Ancient Siren Headgear
-				Tooltip:
-					'''
-					8% increased symphonic playing speed
-					4% increased symphonic critical strike chance
-					Increases inspiration regeneration rate by 20%
-					'''
+				Tooltip: "{$Items.SirenHelmet.Tooltip}"
 			}
 
 			OldSirenLegs: {
 				DisplayName: Ancient Siren Tail
-				Tooltip:
-					'''
-					10% increased symphonic damage
-					6% increased symphonic critical strike chance
-					15% increased movement speed
-					'''
+				Tooltip: "{$Items.SirenLegs.Tooltip}"
 			}
 
 			OldViperChestplate: {
 				DisplayName: Ancient Viper Jacket
-				Tooltip:
-					'''
-					10% increased throwing damage
-					20% increased throwing velocity
-					15% increased throwing speed
-					'''
+				Tooltip: "{$Items.ViperChestplate.Tooltip}"
 			}
 
 			OldViperHelmet: {
 				DisplayName: Ancient Viper Helmet
-				Tooltip:
-					'''
-					20% increased throwing damage
-					33% chance not to consume thrown items
-					Increases your maximum technique points by 2
-					'''
+				Tooltip: "{$Items.ViperHelmet.Tooltip}"
 			}
 
 			OldViperLegs: {
 				DisplayName: Ancient Viper Pants
-				Tooltip:
-					'''
-					20% increased throwing damage
-					25% increased throwing critical strike chance
-					15% increased movement speed
-					'''
+				Tooltip: "{$Items.ViperLegs.Tooltip}"
 			}
 
 			SeraphimChestplate: {
@@ -1758,8 +1642,6 @@ Mods: {
 			TurkeyHead.DisplayName: Weird Turkey
 			VulcanBlast.DisplayName: Vulcan Blast
 			VulcanBolt.DisplayName: Vulcan Bolt
-			"Lepus Stomp.DisplayName": Lepus Stomp
-			.DisplayName: ""
 			TizonaProjectile.DisplayName: Tizona
 			TizonaShoot.DisplayName: Tizona
 			Worm.DisplayName: Worm

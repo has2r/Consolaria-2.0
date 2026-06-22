@@ -1,27 +1,27 @@
 Mods: {
 	Consolaria: {
-		DownloadRoA: Зацените Rise of Ages, от разработчиков Consolaria!
+		DownloadRoA: Зацените Rise of Ages, мод от разработчиков Consolaria!
 		DownloadRoA2: (скрыть)
 		DownloadThorium: Consolaria x Thorium Mod - уже доступно!
 		DownloadThorium2: (скрыть)
-		LepusDropCondition: Падает при отсутствии Лепуса в мире
+		LepusDropCondition: Выпадает при отсутствии Лепуса в мире
 		ValentineRingTooltip1: Подарите его кому-то особенному!
 		ValentineRingTooltip2:
 			'''
 			Медленно восстанавливает здоровье
 			Увеличивает высоту прыжка
 			'''
-		ValentineRingTooltip3: Принадлежит {0}
-		ValentineRingTooltip4: Подарок от {0}
+		ValentineRingTooltip3: Принадлежит игроку {0}
+		ValentineRingTooltip4: Подарок от игрока {0}
 		McMoneypantsInvitationUsage: Приглашение улетает к своему получателю...
-		Munchies.McMoneypantsInvitation.HowToAcquire: Находится в красном конверте
+		Munchies.McMoneypantsInvitation.HowToAcquire: Можно получить из красного конверта
 		McMoneypantsButton1Text: Инвестировать
 		Others.NPCTitle: "{0} {1}"
 
 		Biomes: {
 			RabbitInvasionBiome: {
 				DisplayName: Нашествие кроликов
-				TownNPCDialogueName: Биом нашествия кроликов
+				TownNPCDialogueName: Нашествие кроликов
 			}
 		}
 
@@ -43,7 +43,7 @@ Mods: {
 
 			Drone: {
 				DisplayName: Дрон
-				Description: Дрон следует за вами
+				Description: За вами следует дрон
 			}
 
 			Drunk: {
@@ -57,7 +57,7 @@ Mods: {
 
 			EasterBunny: {
 				DisplayName: Пасхальный зайчик
-				Description: Пасхальный зайчик будет сражаться за вас
+				Description: За вас будет сражаться пасхальный зайчик
 			}
 
 			Elfa: {
@@ -67,12 +67,12 @@ Mods: {
 
 			EyeOfEternity: {
 				DisplayName: Глаз Вечности
-				Description: Глаз Вечности будет сражаться за вас
+				Description: За вас сражается Глаз Вечности
 			}
 
 			FruitfulPlate: {
 				DisplayName: Плодородная тарелка
-				Description: Вы - коронное блюдо
+				Description: Вы - главное блюдо
 			}
 
 			GoldenCarrotDebuff: {
@@ -80,8 +80,8 @@ Mods: {
 				Description:
 					'''
 					Вы больше не можете есть золотую морковь
-					Защита слегка снижена
-					'Я ЖЕ ТЕБЕ ГОВОРИЛ МОРКОВЬ ЗОЛОТАЯ, Я ГОВОРИЛ!!!'
+					Защита незначительно снижена
+					'Я ЖЕ ТЕБЕ ГОВОРИЛ, ЧТО МОРКОВЬ ЗОЛОТАЯ, Я ГОВОРИЛ!!!'
 					'''
 			}
 
@@ -96,18 +96,18 @@ Mods: {
 			}
 
 			Leprechaun: {
-				DisplayName: Лепрекон
+				DisplayName: Лепрекон о'Файф
 				Description: Полон монет
 			}
 
 			LilMarco: {
-				DisplayName: Мелкий Марко
-				Description: Само зло следует за вами
+				DisplayName: Малой Марко
+				Description: За вами следует само зло
 			}
 
 			MythicalWyvernling: {
-				DisplayName: Мифическая Виверна
-				Description: Мифическая Виверна следует за вами
+				DisplayName: Мифическая виверночка
+				Description: За вами следует мифическая виверночка
 			}
 
 			PetTurkey: {
@@ -121,8 +121,8 @@ Mods: {
 			}
 
 			SmallLepus: {
-				DisplayName: Детеныш Лепус
-				Description: Он не может класть яиц... Пока что!
+				DisplayName: Малыш Лепус
+				Description: Он не может откладывать яйца... Пока что!
 			}
 
 			Stunned: {
@@ -137,7 +137,7 @@ Mods: {
 
 			WeirdTurkey: {
 				DisplayName: Странная индейка
-				Description: Странная индейка будет сражаться за вас
+				Description: За вас сражается странная индейка
 			}
 
 			Werewolf: {
@@ -152,7 +152,7 @@ Mods: {
 
 			Fortuned: {
 				DisplayName: Везучий
-				Description: Вы чуствуете себя довольно удачливым
+				Description: Вы чувствуете себя довольно удачливым
 			}
 
 			Worm: {
@@ -171,13 +171,13 @@ Mods: {
 			}
 
 			UtensilPokerDebuff: {
-				DisplayName: Эффект Кухонного протыкателя
-				// Description: Mods.Consolaria.Buffs.UtensilPokerDebuff.Description
+				DisplayName: Дебафф сервировочного пронзателя
+				Description: ""
 			}
 
 			SingerTurkeyBuff: {
-				DisplayName: Поющая индейка
-				// Description: Mods.Consolaria.Buffs.SingerTurkeyBuff.Description
+				DisplayName: Бафф поющей индейки
+				Description: ""
 			}
 
 			SeraphimCooldown: {
@@ -198,46 +198,32 @@ Mods: {
 
 		Items: {
 			SparklyWings: {
-				DisplayName: Блестящие Крылья
+				DisplayName: Блестящие крылья
 				Tooltip: "{$CommonItemTooltip.FlightAndSlowfall}"
 			}
 
 			ValentineRing: {
-				DisplayName: Кольцо Валентина
+				DisplayName: Валентиново кольцо
 				Tooltip: ""
 			}
 
 			AncientPhantasmalHeadgear: {
-				DisplayName: Древний фантазмальный головной убор
-				Tooltip:
-					'''
-					Увеличивает максимальный запас маны на 50
-					Увеличивает магический урон на 10%
-					Увеличивает магический шанс критического удара на 10%
-					'''
+				DisplayName: Древний призрачный головной убор
+				Tooltip: "{$Items.PhantasmalHeadgear.Tooltip}"
 			}
 
 			AncientPhantasmalRobe: {
-				DisplayName: Древняя фантазмальное одеяние
-				Tooltip:
-					'''
-					Увеличивает максимальный запас маны на 70
-					Увеличивает магический урон на 15%
-					'''
+				DisplayName: Древняя призрачная мантия
+				Tooltip: "{$Items.PhantasmalRobe.Tooltip}"
 			}
 
 			AncientPhantasmalSubligar: {
-				DisplayName: Древние фантазмальные штиблеты
-				Tooltip:
-					'''
-					Увеличивает максимальный запас маны на 30
-					Увеличивает магический урон на 5%
-					Увеличивает скорость передвижения на 12%
-					'''
+				DisplayName: Древние призрачные штиблеты
+				Tooltip: "{$Items.PhantasmalSubligar.Tooltip}"
 			}
 
 			PhantasmalHeadgear: {
-				DisplayName: Фантазмальный головной убор
+				DisplayName: Призрачный головной убор
 				Tooltip:
 					'''
 					Увеличивает максимальный запас маны на 50
@@ -248,7 +234,7 @@ Mods: {
 			}
 
 			PhantasmalRobe: {
-				DisplayName: Фантазмальное одеяние
+				DisplayName: Призрачная мантия
 				Tooltip:
 					'''
 					Увеличивает максимальный запас маны на 70
@@ -257,7 +243,7 @@ Mods: {
 			}
 
 			PhantasmalSubligar: {
-				DisplayName: Фантазмальные штиблеты
+				DisplayName: Призрачные штиблеты
 				Tooltip:
 					'''
 					Увеличивает максимальный запас маны на 30
@@ -268,31 +254,17 @@ Mods: {
 
 			AncientDragonBreastplate: {
 				DisplayName: Древний драконий нагрудник
-				Tooltip:
-					'''
-					Увеличивает урон ближнего боя на 10%
-					Увеличивает шанс критического удара ближнего боя на 10%
-					Увеличивает скорость ближнего боя на 15%
-					'''
+				Tooltip: "{$Items.DragonBreastplate.Tooltip}"
 			}
 
 			AncientDragonGreaves: {
 				DisplayName: Древние драконьи поножи
-				Tooltip:
-					'''
-					Увеличивает урон ближнего боя на 5%
-					Увеличивает шанс критического удара ближнего боя на 5%
-					Увеличивает скорость передвижения на 20%
-					'''
+				Tooltip: "{$Items.DragonGreaves.Tooltip}"
 			}
 
 			AncientDragonMask: {
 				DisplayName: Древняя драконья маска
-				Tooltip:
-					'''
-					Увеличивает урон ближнего боя на 15%
-					Увеличивает скорость передвижения на 15%
-					'''
+				Tooltip: "{$Items.DragonMask.Tooltip}"
 			}
 
 			DragonBreastplate: {
@@ -327,7 +299,7 @@ Mods: {
 
 			OstaraBoots: {
 				DisplayName: Ботинки Остары
-				Tooltip: Позволяет владельцу выполнить 5 заячьих прыжков
+				Tooltip: Позволяет совершать 5 заячьих прыжков
 			}
 
 			OstaraHat: {
@@ -337,38 +309,23 @@ Mods: {
 			}
 
 			OstaraJacket: {
-				DisplayName: Куртка Остары
+				DisplayName: Рубашка Остары
 				Tooltip: Увеличивает скорость передвижения на 7%
 			}
 
 			AncientTitanHelmet: {
 				DisplayName: Древний титанический шлем
-				Tooltip:
-					'''
-					Увеличивает стрелковый урон на 10%
-					Увеличивает стрелковый шанс критического удара на 10%
-					Даёт 25% шанс не потратить боеприпас
-					'''
+				Tooltip: "{$Items.TitanHelmet.Tooltip}"
 			}
 
 			AncientTitanLeggings: {
 				DisplayName: Древние титанические поножи
-				Tooltip:
-					'''
-					Увеличивает стрелковый урон на 10%
-					Увеличивает скорость передвижения на 18%
-					Даёт 15% шанс не потратить боеприпас
-					'''
+				Tooltip: "{$Items.TitanLeggings.Tooltip}"
 			}
 
 			AncientTitanMail: {
 				DisplayName: Древний титанический нагрудник
-				Tooltip:
-					'''
-					Увеличивает стрелковый урон на 10%
-					Увеличивает стрелковый шанс критического удара на 10%
-					Увеличивает шанс не потратить боеприпас на 20%
-					'''
+				Tooltip: "{$Items.TitanMail.Tooltip}"
 			}
 
 			TitanHelmet: {
@@ -377,12 +334,12 @@ Mods: {
 					'''
 					Увеличивает стрелковый урон на 10%
 					Увеличивает стрелковый шанс критического удара на 10%
-					Даёт 25% шанс не потратить боеприпас
+					Даёт 25% шанс не потратить боеприпасы
 					'''
 				SetBonus:
 					'''
-					Использование стрелкового вызывает взрыв с отдачей
-					Дважды нажмите {0}, чтобы отключить этот эффект
+					Использование стрелкового оружия периодически вызывает взрывную отдачу
+					Дважды нажмите {0}, чтобы выключить/включить этот эффект
 					'''
 			}
 
@@ -392,7 +349,7 @@ Mods: {
 					'''
 					Увеличивает стрелковый урон на 10%
 					Увеличивает скорость передвижения на 18%
-					Даёт 15% шанс не потратить боеприпас
+					Даёт 15% шанс не потратить боеприпасы
 
 					'''
 			}
@@ -403,36 +360,23 @@ Mods: {
 					'''
 					Увеличивает стрелковый урон на 10%
 					Увеличивает стрелковый шанс критического удара на 10%
-					Увеличивает шанс не потратить боеприпас на 20
+					Даёт 20% шанс не потратить боеприпасы
 					'''
 			}
 
 			AncientWarlockHood: {
 				DisplayName: Древний капюшон чернокнижника
-				Tooltip:
-					'''
-					Увеличивает максимальное количество миньонов на 1
-					Увеличивает урон призывателя на 20%
-					'''
+				Tooltip: "{$Items.WarlockHood.Tooltip}"
 			}
 
 			AncientWarlockLeggings: {
 				DisplayName: Древние поножи чернокнижника
-				Tooltip:
-					'''
-					Увеличивает максимальное количество миньонов на 1
-					Увеличивает урон призывателя на 20%
-					Увеличивает скорость передвижения на 15%
-					'''
+				Tooltip: "{$Items.WarlockLeggings.Tooltip}"
 			}
 
 			AncientWarlockRobe: {
-				DisplayName: Древнее одеяние чернокнижника
-				Tooltip:
-					'''
-					Увеличивает максимальное количество миньонов на 1
-					Увеличивает урон призывателя на 20%
-					'''
+				DisplayName: Древняя мантия чернокнижника
+				Tooltip: "{$Items.WarlockRobe.Tooltip}"
 			}
 
 			WarlockHood: {
@@ -456,7 +400,7 @@ Mods: {
 			}
 
 			WarlockRobe: {
-				DisplayName: Одеяние чернокнижника
+				DisplayName: Мантия чернокнижника
 				Tooltip:
 					'''
 					Увеличивает максимальное количество миньонов на 1
@@ -466,107 +410,102 @@ Mods: {
 
 			AlbinoAntlionBanner: {
 				DisplayName: Знамя муравьиного льва-альбиноса
-				Tooltip: "{$CommonItemTooltip.BannerBonus}Муравьиный лев-альбинос"
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$NPCs.AlbinoAntlion.DisplayName}"
 			}
 
 			AlbinoChargerBanner: {
-				DisplayName: Знамя муравьиного воителя-альбиноса
-				Tooltip: "{$CommonItemTooltip.BannerBonus}Муравьиный воитель-альбинос"
+				DisplayName: Знамя муравьиного налётчика-альбиноса
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$NPCs.AlbinoCharger.DisplayName}"
 			}
 
 			ArchDemonBanner: {
 				DisplayName: Знамя архидемона
-				Tooltip: "{$CommonItemTooltip.BannerBonus}Архидемон"
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$NPCs.ArchDemon.DisplayName}"
 			}
 
 			ArchWyvernBanner: {
 				DisplayName: Знамя архививерны
-				Tooltip: "{$CommonItemTooltip.BannerBonus}Архививерна"
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$NPCs.ArchWyvernHead.DisplayName}"
 			}
 
 			DisasterBunnyBanner: {
 				DisplayName: Знамя пасхального зайца
-				Tooltip: "{$CommonItemTooltip.BannerBonus}Пасхальный заяц"
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$NPCs.DisasterBunny.DisplayName}"
 			}
 
 			DragonHornetBanner: {
 				DisplayName: Знамя драконьего шершня
-				Tooltip: "{$CommonItemTooltip.BannerBonus}Драконий шершень"
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$NPCs.DragonHornet.DisplayName}"
 			}
 
 			DragonSkullBanner: {
 				DisplayName: Знамя драконьего черепа
-				Tooltip: "{$CommonItemTooltip.BannerBonus}Драконий череп"
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$NPCs.DragonSkull.DisplayName}"
 			}
 
 			DragonSnatcherBanner: {
 				DisplayName: Знамя драконьего хватателя
-				Tooltip: "{$CommonItemTooltip.BannerBonus}Драконий хвататель"
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$NPCs.DragonSnatcher.DisplayName}"
 			}
 
 			FleshAxeBanner: {
 				DisplayName: Знамя топора из плоти
-				Tooltip: "{$CommonItemTooltip.BannerBonus}Топор из плоти"
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$NPCs.FleshAxe.DisplayName}"
 			}
 
 			FleshMummyBanner: {
 				DisplayName: Знамя мумии из плоти
-				Tooltip: "{$CommonItemTooltip.BannerBonus}Мумия из плоти"
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$NPCs.FleshMummy.DisplayName}"
 			}
 
 			FleshSlimeBanner: {
 				DisplayName: Знамя слизня из плоти
-				Tooltip: "{$CommonItemTooltip.BannerBonus}Слизень из плоти"
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$NPCs.FleshSlime.DisplayName}"
 			}
 
 			MythicalWyvernBanner: {
 				DisplayName: Знамя мифической виверны
-				Tooltip: "{$CommonItemTooltip.BannerBonus}Мифическая виверна"
-			}
-
-			MythicalWyvern: {
-				DisplayName: Воздушный змей - мифическая виверна
-				Tooltip: ""
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$NPCs.MythicalWyvernHead.DisplayName}"
 			}
 
 			OrcaBanner: {
 				DisplayName: Знамя касатки
-				Tooltip: "{$CommonItemTooltip.BannerBonus}Касатка"
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$NPCs.Orca.DisplayName}"
 			}
 
 			ShadowHammerBanner: {
 				DisplayName: Знамя теневого молота
-				Tooltip: "{$CommonItemTooltip.BannerBonus}Теневой молот"
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$NPCs.ShadowHammer.DisplayName}"
 			}
 
 			ShadowMummyBanner: {
 				DisplayName: Знамя теневой мумии
-				Tooltip: "{$CommonItemTooltip.BannerBonus}Теневая мумия"
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$NPCs.ShadowMummy.DisplayName}"
 			}
 
 			ShadowSlimeBanner: {
 				DisplayName: Знамя теневого слизня
-				Tooltip: "{$CommonItemTooltip.BannerBonus}Теневой слизень"
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$NPCs.ShadowSlime.DisplayName}"
 			}
 
 			SpectralElementalBanner: {
 				DisplayName: Знамя спектрального элементаля
-				Tooltip: "{$CommonItemTooltip.BannerBonus}Спектральный элементаль"
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$NPCs.SpectralElemental.DisplayName}"
 			}
 
 			SpectralGastropodBanner: {
 				DisplayName: Знамя спектрального брюхонога
-				Tooltip: "{$CommonItemTooltip.BannerBonus}Спектральный брюхоног"
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$NPCs.SpectralGastropod.DisplayName}"
 			}
 
 			SpectralMummyBanner: {
 				DisplayName: Знамя спектральной мумии
-				Tooltip: "{$CommonItemTooltip.BannerBonus}Спектральная мумия"
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$NPCs.SpectralMummy.DisplayName}"
 			}
 
 			VampireMinerBanner: {
 				DisplayName: Знамя шахтёра-вампира
-				Tooltip: "{$CommonItemTooltip.BannerBonus}Шахтёр-вампир"
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$NPCs.VampireMiner.DisplayName}"
 			}
 
 			LepusBag: {
@@ -598,8 +537,8 @@ Mods: {
 				DisplayName: Подарок Остары
 				Tooltip:
 					'''
-					У врагов есть шанс оставить шоколадные яйца при смерти
-					Из яиц выпадают сердца жизни и звезды маны
+					С некоторым шансом с убитых врагов будут выпадать шоколадные яйца
+					При разбивании, с этих яиц выпадают сердца жизни и звёзды маны
 					'''
 			}
 
@@ -607,8 +546,8 @@ Mods: {
 				DisplayName: Кроличья лапа
 				Tooltip:
 					'''
-					Призывает детеныша Лепуса
-					'Удача - это иллюзия, но кролик - нет'
+					Призывает малыша Лепуса
+					'Удача - это иллюзия, а вот кролик - нет'
 					'''
 			}
 
@@ -616,13 +555,13 @@ Mods: {
 				DisplayName: Проклятый клык
 				Tooltip:
 					'''
-					Призывает мелкого Марко
-					'Ты теперь мой друг'
+					Призывает малого Марко
+					'You're my friend now'
 					'''
 			}
 
 			EerieOcramMusicBox: {
-				DisplayName: Музыкальная шкатулка (Кровавая луна Окрама)
+				DisplayName: Музыкальная шкатулка (Жуть, Окрам)
 				Tooltip: ""
 			}
 
@@ -656,7 +595,7 @@ Mods: {
 				Tooltip:
 					'''
 					{0} ед. урона ближнего боя
-					Дважды нажмите {1}, чтобы совершить ракетный/взрывной прыжок
+					Дважды нажмите {1}, чтобы совершить взрывной прыжок
 					'''
 			}
 
@@ -671,27 +610,27 @@ Mods: {
 			}
 
 			TurkorBag: {
-				DisplayName: Мешок с сокровищами (Туркор Неблагодарный)
+				DisplayName: Мешок с сокровищами (Индюкор Неблагодарный)
 				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
 			}
 
 			TurkorMask: {
-				DisplayName: Маска Туркора Неблагодарного
+				DisplayName: Маска Индюкора Неблагодарного
 				Tooltip: ""
 			}
 
 			TurkorMusicBox: {
-				DisplayName: Музыкальная шкатулка (Туркор Неблагодарный)
+				DisplayName: Музыкальная шкатулка (Индюкор Неблагодарный)
 				Tooltip: ""
 			}
 
 			TurkorRelic: {
-				DisplayName: Реликвия Туркора Неблагодарного
+				DisplayName: Реликвия Индюкора Неблагодарного
 				Tooltip: ""
 			}
 
 			TurkorTrophy: {
-				DisplayName: Трофей Туркора Неблагодарного
+				DisplayName: Трофей Индюкора Неблагодарного
 				Tooltip: ""
 			}
 
@@ -700,7 +639,7 @@ Mods: {
 				Tooltip:
 					'''
 					Вызывает огромный взрыв, разрушающий большинство блоков
-					'Избранное Господом оружие'
+					'Оружие, избранное Господом'
 					'''
 			}
 
@@ -719,7 +658,7 @@ Mods: {
 			}
 
 			SoulOfBlightInABottle: {
-				DisplayName: Эссенция гниения в бутылке
+				DisplayName: Эссенция гниения в банке
 				Tooltip: ""
 			}
 
@@ -735,12 +674,12 @@ Mods: {
 
 			Wishbone: {
 				DisplayName: Кость желаний
-				Tooltip: Активирует все меньшие сезонные события на один день
+				Tooltip: Активирует все незначительные сезонные события на один день
 			}
 
 			RainbowPiece: {
 				DisplayName: Кусочек радуги
-				Tooltip: Используется для крафта горшка золота
+				Tooltip: Используется для создания горшка золота
 			}
 
 			SoulofBlight: {
@@ -749,7 +688,7 @@ Mods: {
 			}
 
 			WhiteThread: {
-				DisplayName: Белая нить
+				DisplayName: Белые нитки
 				Tooltip: ""
 			}
 
@@ -764,8 +703,8 @@ Mods: {
 			}
 
 			Beeswax: {
-				DisplayName: Пчелинный воск
-				Tooltip: Призывает Тифию
+				DisplayName: Пчелиный воск
+				Tooltip: Призывает тифию
 			}
 
 			Brain: {
@@ -775,11 +714,11 @@ Mods: {
 
 			BrokenHeart: {
 				DisplayName: Разбитое сердце
-				Tooltip: Призывает купидона, излучающего свет
+				Tooltip: Призывает Купидона, излучающего свет
 			}
 
 			Cabbage: {
-				DisplayName: Капуста
+				DisplayName: Кочан капусты
 				Tooltip: Призывает морскую свинку
 			}
 
@@ -804,7 +743,7 @@ Mods: {
 			}
 
 			PetriDish: {
-				DisplayName: Чашка петри
+				DisplayName: Чашка Петри
 				Tooltip: Призывает слизня
 			}
 
@@ -819,12 +758,12 @@ Mods: {
 			}
 
 			TurkeyFeather: {
-				DisplayName: Перо индейки
+				DisplayName: Индюшиное перо
 				Tooltip: Призывает индейку
 			}
 
 			VialOfBlood: {
-				DisplayName: Сосуд крови
+				DisplayName: Пробирка с кровью
 				Tooltip: Призывает летучую мышь
 			}
 
@@ -835,7 +774,7 @@ Mods: {
 
 			CursedStuffing: {
 				DisplayName: Проклятая начинка
-				Tooltip: Призывает Туркора Неблагодарного
+				Tooltip: Призывает Индюкора Неблагодарного
 			}
 
 			SuspiciousLookingEgg: {
@@ -925,17 +864,17 @@ Mods: {
 
 			GeorgesHat: {
 				DisplayName: Шляпа Джорджа
-				Tooltip: "'О божеее!'"
+				Tooltip: "'Oh myyy!'"
 			}
 
 			GeorgesTuxedoPants: {
 				DisplayName: Брюки Джорджа
-				Tooltip: "'О божеее!'"
+				Tooltip: "'Oh myyy!'"
 			}
 
 			GeorgesTuxedoShirt: {
 				DisplayName: Пиджак Джорджа
-				Tooltip: "'О божеее!'"
+				Tooltip: "'Oh myyy!'"
 			}
 
 			HornedGodBoots: {
@@ -999,7 +938,7 @@ Mods: {
 			}
 
 			MythicalRobe: {
-				DisplayName: Мифическая роба
+				DisplayName: Мифическая мантия
 				Tooltip: ""
 			}
 
@@ -1014,7 +953,7 @@ Mods: {
 			}
 
 			ShirenShirt: {
-				DisplayName: Кофта Ширена
+				DisplayName: Рубашка Ширена
 				Tooltip: ""
 			}
 
@@ -1034,10 +973,10 @@ Mods: {
 			}
 
 			HeartArrow: {
-				DisplayName: Сердечная стрела
+				DisplayName: Стрела-сердце
 				Tooltip:
 					'''
-					Может оглушить врага при попадании
+					Может наложить дебафф «{$Buffs.Stunned.DisplayName}» на поражённого врага
 					'Легендарные стрелы самого Купидона'
 					'''
 			}
@@ -1048,7 +987,7 @@ Mods: {
 			}
 
 			VulcanBolt: {
-				DisplayName: Вулканическая стрела
+				DisplayName: Вулканический заряд
 				Tooltip: ""
 			}
 
@@ -1068,7 +1007,7 @@ Mods: {
 			}
 
 			AlbinoMandible: {
-				DisplayName: Челюсть муравьиного льва-альбиноса
+				DisplayName: Жваломеч-альбинос
 				Tooltip: "'Удивительно аэродинамична...'"
 			}
 
@@ -1076,14 +1015,13 @@ Mods: {
 				DisplayName: Большая индюшиная ножка
 				Tooltip:
 					'''
-					Покрывает врагов маслом
-					Подожгите их, чтобы нанести дополнительный урон
-					'Я люблю большую картошку фри, но не жареную индейку'
+					Накладывает на врагов дебафф «{$BuffName.Oiled}»
+					Враги с этим дебаффом получают повышенный урон от огня
 					'''
 			}
 
 			Tizona: {
-				DisplayName: Тизона
+				DisplayName: Тисона
 				Tooltip: ""
 			}
 
@@ -1098,7 +1036,7 @@ Mods: {
 			}
 
 			EggCannon: {
-				DisplayName: Яйце-пушка
+				DisplayName: Яичная пушка
 				Tooltip: "'Чтобы убить гоблина, вам придется разбить несколько яиц'"
 			}
 
@@ -1111,28 +1049,28 @@ Mods: {
 				DisplayName: Острый соус
 				Tooltip:
 					'''
-					Обливает врагов маслом
-					Подожгите их, чтобы нанести дополнительный урон
+					Накладывает на врагов дебафф «{$BuffName.Oiled}»
+					Враги с этим дебаффом получают повышенный урон от огня
 					'''
 			}
 
 			VolcanicRepeater: {
 				DisplayName: Вулканический самострел
-				Tooltip: Превращает стрелы в вулканические болты
+				Tooltip: Превращает стрелы в вулканические заряды
 			}
 
 			EternityStaff: {
-				DisplayName: Посох вечности
-				Tooltip: Призывает глаз вечности, который будет сражаться за вас
+				DisplayName: Посох Вечности
+				Tooltip: Призывает Глаз Вечности сражаться за вас
 			}
 
 			TurkeyStuff: {
 				DisplayName: Посох индейки
-				Tooltip: Призывает странную индейку, которая будет сражаться за вас
+				Tooltip: Призывает странную индейку сражаться за вас
 			}
 
 			McMoneypantsInvitation: {
-				DisplayName: Позолоченное приглашение
+				DisplayName: Золотое приглашение
 				Tooltip: Похоже что, оно было предназначено для кого-то богатого
 			}
 
@@ -1148,27 +1086,22 @@ Mods: {
 
 			WormTombstoneItem: {
 				DisplayName: Подозрительно выглядящее надгробие
-				Tooltip: Надгробие, которое слегка похоже на чевяка, правда?
+				Tooltip: Не кажется, что это надгробие немного похоже на червяка?
 			}
 
 			Topper505: {
-				DisplayName: Верхушка 505
-				Tooltip: ""
+				DisplayName: Ёлочное украшение «505»
+				Tooltip: "{0}"
 			}
 
 			StarTopper4: {
 				DisplayName: Звезда на ёлку 4
-				Tooltip: ""
+				Tooltip: "{0}"
 			}
 
 			PrestigiousTopHat: {
 				DisplayName: Престижный цилиндр
 				Tooltip: Пахнет свежими деньгами!
-			}
-
-			ExampleKite: {
-				DisplayName: Пример воздушного змея
-				Tooltip: ""
 			}
 
 			CandiedFruit: {
@@ -1177,18 +1110,18 @@ Mods: {
 			}
 
 			MythicalWyvernKite: {
-				DisplayName: Воздушный змей «Мифическая виверна»
+				DisplayName: Воздушный змей - мифическая виверна
 				Tooltip: ""
 			}
 
 			OktoberLocks: {
+				DisplayName: Октоберские пряди
 				Tooltip: ""
-				DisplayName: Прическа октоберфеста
 			}
 
 			PurpleThread: {
-				Tooltip: ""
 				DisplayName: Фиолетовые нитки
+				Tooltip: ""
 			}
 
 			OtherworldlyMusicBox1: {
@@ -1197,18 +1130,18 @@ Mods: {
 			}
 
 			OtherworldlyMusicBox2: {
-				DisplayName: Иномирная музыкальная шкатулка (Туркор)
+				DisplayName: Иномирная музыкальная шкатулка (Индюкор)
 				Tooltip: ""
 			}
 
 			OtherworldlyMusicBox3: {
-				DisplayName: Иномирнная музыкальная шкатулка (Окрам)
+				DisplayName: Иномирная музыкальная шкатулка (Окрам)
 				Tooltip: ""
 			}
 
 			EasterBunnyStaff: {
-				DisplayName: Посох пасхального кролика
-				Tooltip: Призывает пасхального кролика, сражающегося за вас
+				DisplayName: Посох пасхального зайчика
+				Tooltip: Призывает пасхального зайчика сражаться за вас
 			}
 
 			Eggplant: {
@@ -1217,102 +1150,52 @@ Mods: {
 			}
 
 			OldSeraphimChestplate: {
-				DisplayName: Древний нагрудник Серафима
-				Tooltip:
-					'''
-					Снижает весь урон, кроме лучезарного, на 30%
-					Увеличивает лучезарный урон на 20%
-					Снижает расход маны на 20%
-					Исцеляющие заклинания восстанавливают дополнительно 3 ед. здоровья
-					'''
+				DisplayName: Древнее одеяние серафима
+				Tooltip: "{$Items.SeraphimChestplate.Tooltip}"
 			}
 
 			OldSeraphimHelmet: {
-				DisplayName: Древний шлем Серафима
-				Tooltip:
-					'''
-					Снижает весь урон, кроме лучезарного, на 20%
-					Увеличивает лучезарный урон на 15%
-					Снижает расход маны на 20%
-					Увеличивает максимальный запас маны на 60 
-					Исцеляющие заклинания восстанавливают дополнительно 2 ед. здоровья
-					'''
+				DisplayName: Древний шлем серафима
+				Tooltip: "{$Items.SeraphimHelmet.Tooltip}"
 			}
 
 			OldSeraphimLegs: {
-				DisplayName: Древние ботинки Серафима
-				Tooltip:
-					'''
-					Снижает весь урон, кроме лучезарного, на 20%
-					Увеличивает лучезарный урон на 15% 
-					Снижает расход маны на 15%
-					Исцеляющие заклинания восстанавливают дополнительно 2 ед. здоровья
-					Увеличивает скорость передвижения на 15%
-					'''
+				DisplayName: Древние ботфорты серафима
+				Tooltip: "{$Items.SeraphimLegs.Tooltip}"
 			}
 
 			OldSirenChestplate: {
 				DisplayName: Древний нагрудник сирены
-				Tooltip:
-					'''
-					Увеличивает симфонический урон на 10% 
-					Увеличивает шанс выпадения нот вдохновения на 10% 
-					Увеличивает продолжительность симфонических усилений на 6 секунд 
-					'''
+				Tooltip: "{$Items.SirenChestplate.Tooltip}"
 			}
 
 			OldSirenHelmet: {
-				DisplayName: Древний шлем сирены
-				Tooltip:
-					'''
-					Увеличивает скорость симфонической игры на инструменте на 8% 
-					Увеличивает симфонический шанс критического удара на 4% 
-					Увеличивает скорость восстановления вдохновения на 20%
-					'''
+				DisplayName: Древний головной убор сирены
+				Tooltip: "{$Items.SirenHelmet.Tooltip}"
 			}
 
 			OldSirenLegs: {
-				DisplayName: Древние ботинки сирены
-				Tooltip:
-					'''
-					Увеличивает симфонический урон на 10% 
-					Увеличивает симфонический шанс критического удара на 6% 
-					Увеличивает скорость передвижения на 15% 
-					'''
+				DisplayName: Древний хвост сирены
+				Tooltip: "{$Items.SirenLegs.Tooltip}"
 			}
 
 			OldViperChestplate: {
-				DisplayName: Древний нагрудник гадюки
-				Tooltip:
-					'''
-					Увеличивает метательный урон на 10% 
-					Увеличивает скорость метательных снарядов на 20% 
-					Увеличивает метательную скорость атаки на 15% 
-					'''
+				DisplayName: Древняя рубашка гадюки
+				Tooltip: "{$Items.ViperChestplate.Tooltip}"
 			}
 
 			OldViperHelmet: {
 				DisplayName: Древний шлем гадюки
-				Tooltip:
-					'''
-					Увеличивает урон метателя на 20% 
-					Даёт 33% шанс не использовать метательный предмет 
-					Увеличивает максимальное число очков техники на 2
-					'''
+				Tooltip: "{$Items.ViperHelmet.Tooltip}"
 			}
 
 			OldViperLegs: {
-				DisplayName: Древние ботинки гадюки
-				Tooltip:
-					'''
-					Увеличивает метательный урон на 20%
-					Увеличивает метательный шанс критического удара на 25% 
-					Увеличивает скорость передвижения на 15% 
-					'''
+				DisplayName: Древние штаны гадюки
+				Tooltip: "{$Items.ViperLegs.Tooltip}"
 			}
 
 			SeraphimChestplate: {
-				DisplayName: Нагрудник Серафима
+				DisplayName: Одеяние серафима
 				Tooltip:
 					'''
 					Снижает весь урон, кроме лучезарного, на 30%
@@ -1323,7 +1206,7 @@ Mods: {
 			}
 
 			SeraphimHelmet: {
-				DisplayName: Шлем Серафима
+				DisplayName: Шлем серафима
 				Tooltip:
 					'''
 					Снижает весь урон, кроме лучезарного, на 20%
@@ -1332,11 +1215,11 @@ Mods: {
 					Увеличивает максимальный запас маны на 60 
 					Исцеляющие заклинания восстанавливают дополнительно 2 ед. здоровья
 					'''
-				SetBonus: Нажатие клавиши 'Способность брони' активирует ангельские объятия, даруя бесконечный полёт и исцеляя союзников при касании на 4 секунды
+				SetBonus: Нажатие клавиши «{$Mods.ThoriumMod.Keybinds.ArmorAbility.DisplayName}» активирует «Ангельские объятия», даруя бесконечный полёт и исцеляя союзников при касании на 4 секунды
 			}
 
 			SeraphimLegs: {
-				DisplayName: Ботинки Серафима
+				DisplayName: Ботфорты серафима
 				Tooltip:
 					'''
 					Снижает весь урон, кроме лучезарного, на 20%
@@ -1358,7 +1241,7 @@ Mods: {
 			}
 
 			SirenHelmet: {
-				DisplayName: Шлем сирены
+				DisplayName: Головной убор сирены
 				Tooltip:
 					'''
 					Увеличивает скорость симфонической игры на инструменте на 8% 
@@ -1369,7 +1252,7 @@ Mods: {
 			}
 
 			SirenLegs: {
-				DisplayName: Ботинки сирены
+				DisplayName: Хвост сирены
 				Tooltip:
 					'''
 					Увеличивает симфонический урон на 10% 
@@ -1379,7 +1262,7 @@ Mods: {
 			}
 
 			ViperChestplate: {
-				DisplayName: Нагрудник гадюки
+				DisplayName: Рубашка гадюки
 				Tooltip:
 					'''
 					Увеличивает метательный урон на 10% 
@@ -1398,13 +1281,13 @@ Mods: {
 					'''
 				SetBonus:
 					'''
-					Метательный урон с 10% шансом может наложить дебафф 'Отравление'
-					Ближайшие враги получают больше урона от дебаффов 'Отравление' и 'Кислотный яд'
+					Нанесение метательного урона с 10% шансом может наложить дебафф «{$BuffName.Poisoned}»
+					Ближайшие враги получают больше урона от дебаффов «{$BuffName.Poisoned} и «{$BuffName.Venom}»
 					'''
 			}
 
 			ViperLegs: {
-				DisplayName: Ботинки гадюки
+				DisplayName: Штаны гадюки
 				Tooltip:
 					'''
 					Увеличивает метательный урон на 20%
@@ -1417,18 +1300,18 @@ Mods: {
 				DisplayName: Коса-фантазма
 				Tooltip:
 					'''
-					Стремительно вращает призрачную косу вокруг вас 
+					Стремительно вращает вокруг вас призрачную косу
 					При нанесении урона призывает самонаводящихся духов
 					'''
 			}
 
 			SpineCracker: {
-				DisplayName: Крушитель хребтов
+				DisplayName: Хребтолом
 				Tooltip:
 					'''
-					Кружится на месте, разбрасывая теневые косы 
-					Чрезмерное использование этого оружия изматывает вас, значительно снижая его урон 
-					Убийство восстанавливает часть изматывания 
+					Кружится на месте, разбрасывая теневые косы
+					Чрезмерное использование этого оружия изматывает вас, значительно снижая его урон
+					Убийство восстанавливает часть изматывания
 					'''
 			}
 
@@ -1447,28 +1330,28 @@ Mods: {
 			}
 
 			PortableSpecialCorn: {
-				DisplayName: Портативная особая кукуруза
+				DisplayName: Особая портативная кукуруза
 				Tooltip: Повторяет каждую четвертую симфоническую атаку, нанося 50% урона
 			}
 
 			UtensilPoker: {
-				DisplayName: Кухонный протыкатель
+				DisplayName: Сервировочный пронзатель
 				Tooltip:
 					'''
-					При нажатии ПКМ подготавливает до 5 метательных вилок 
-					Вилки застревают во врагах, вызывая кровотечение 
+					Нажмите ПКМ, чтобы подготовить до 5 метательных вилок 
+					Вилки застревают во врагах, истощая их здоровье
 					Чрезмерное использование этого оружия изматывает вас, значительно снижая его урон
-					Убийство восстанавливает часть изматывания
+					Убийство врагов восстанавливает часть изматывания
 					'''
 			}
 
 			Chocoplotion: {
-				DisplayName: Шоковзрыв
+				DisplayName: Шоколадный взрыв
 				Tooltip:
 					'''
 					Прыгает в сторону врага и разрывается шоколадными кусочками
 					Чрезмерное использование изматывает вас, значительно снижая его урон
-					Убийство восстанавливает часть изматывания
+					Убийство врагов восстанавливает часть изматывания
 					'''
 			}
 
@@ -1477,17 +1360,17 @@ Mods: {
 				Tooltip:
 					'''
 					Приготавливает до 5 сочных блюд, после чего кормит ими союзников с наименьшим количеством здоровья
-					Если у вас наименьшее количество здоровья, лечит вас с уменьшенной эффективностью
+					Если у вас наименьшее количество здоровья, лечит вас со сниженной эффективностью
 					'''
 			}
 
 			AlbinoSwarmerBanner: {
-				DisplayName: Знамя роевика-альбиноса
-				Tooltip: "{$CommonItemTooltip.BannerBonus}Albino Swarmer"
+				DisplayName: Знамя муравьиной стрекозы-альбиноса
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$NPCs.AlbinoSwarmer.DisplayName}"
 			}
 
 			BleachCanister: {
-				DisplayName: Банка с отбеливателем
+				DisplayName: Канистра отбеливателя
 				Tooltip: Призывает альбиноса-недоростка
 			}
 		}
@@ -1495,17 +1378,17 @@ Mods: {
 		NPCs: {
 			AlbinoAntlion: {
 				DisplayName: Муравьиный лев-альбинос
-				Bestiary: Вид муравьиных львов с редкой мутацией, проявляющий большую агрессивность, возможно, чтобы компенсировать чувствительность к солнечному свету.
+				Bestiary: Эти муравьиные львы, обладающие редкой мутацией, проявляют куда большую агрессивность - вероятно, компенсируя свою уязвимость к лучам солнца.
 			}
 
 			AlbinoCharger: {
-				DisplayName: Муравьиный воитель-альбинос
-				Bestiary: Иногда муравьиные воители мутируют, теряя свою окраску и становясь более свирепыми, чем их собратья по рою.
+				DisplayName: Муравьиный налётчик-альбинос
+				Bestiary: Иногда муравьиные налётчики мутируют, теряя свою окраску и становясь более свирепыми, чем их собратья по рою.
 			}
 
 			ArchDemon: {
 				DisplayName: Архидемон
-				Bestiary: Особенно сильные демоны живут так долго, что их тела превращаются в иссушенную оболочку.
+				Bestiary: Особо могущественные демоны живут так долго, что их тела превращаются в иссохшую оболочку.
 			}
 
 			ArchWyvernHead: {
@@ -1528,11 +1411,11 @@ Mods: {
 
 			Lepus: {
 				DisplayName: Лепус
-				Bestiary: Как будто его размеров было недостаточно, так ещё этот кролик способен размножаться с помощью разноцветных яиц, которые весной разлетаются по всему миру, а глупцы, в свою очередь, могут их подобрать.
+				Bestiary: Как будто его размеров было недостаточно, так ещё этот заяц способен размножаться с помощью разноцветных яиц, которые весной оказываются повсюду, ожидая, что их подберут доверчивые глупцы.
 
 				BossChecklistIntegration: {
-					SpawnInfo: Используйте [i:Consolaria/SuspiciousLookingEgg]
-					DespawnMessage: Лепус упрыгивает в рассвет!
+					SpawnInfo: Используйте [i:Consolaria/SuspiciousLookingEgg].
+					DespawnMessage: Лепус упрыгивает туда, откуда пришёл.
 				}
 			}
 
@@ -1540,11 +1423,11 @@ Mods: {
 
 			Ocram: {
 				DisplayName: Окрам
-				Bestiary: Этот забытый, гниющий демон однажды был императором тьмы. Теперь он ищет мести против всех жителей поверхности.
+				Bestiary: Этот забытый, гниющий демон, в своё время был Императором тьмы. Теперь же он жаждет мести всем обитателям поверхности.
 
 				BossChecklistIntegration: {
-					SpawnInfo: Используйте [i:5643] ночью
-					DespawnMessage: Окрам исчезает обратно в тень!
+					SpawnInfo: Используйте [i:Consolaria/SuspiciousLookingSkull] ночью.
+					DespawnMessage: Окрам обратно исчезает в тени...
 				}
 			}
 
@@ -1553,20 +1436,20 @@ Mods: {
 				Bestiary: Злобные существа, управляемые Окрамом и призванные им же для защиты своего хозяина любыми способами.
 			}
 
-			TurkorNeck.DisplayName: Шея Туркора
+			TurkorNeck.DisplayName: Шея Индюкора
 
 			TurkortheUngrateful: {
-				DisplayName: Туркор Неблагодарный
+				DisplayName: Индюкор Неблагодарный
 				Bestiary: Это чудовище, существующее на чистой злобе, ежегодно проводит вендетту против тех, кто осмеливается откусить кусочек индейки на День благодарения.
 
 				BossChecklistIntegration: {
-					EntryName: Туркор Неблагодарный
-					SpawnInfo: Используйте [i:5641] когда за вами следует Индейка
-					DespawnMessage: Туркор Неблагодарный сбегает с обеденной тарелки!
+					EntryName: Индюкор Неблагодарный
+					SpawnInfo: Используйте [i:Consolaria/CursedStuffing], пока за вами следует питомец-индейка
+					DespawnMessage: Индюкор Неблагодарный сбегает с обеденной тарелки!
 				}
 			}
 
-			TurkortheUngratefulHead.DisplayName: Голова Туркора Неблагодарного
+			TurkortheUngratefulHead.DisplayName: Голова Индюкора Неблагодарного
 
 			DragonHornet: {
 				DisplayName: Драконий шершень
@@ -1580,26 +1463,26 @@ Mods: {
 
 			DragonSnatcher: {
 				DisplayName: Драконий хвататель
-				Bestiary: Эти виды хватателей научились использовать жала шершней, ставших их жертвами, чтобы охотиться на более крупные цели 
+				Bestiary: Этот вид хватателей научился использовать жала шершней, ставших их жертвами, чтобы охотиться на более крупные цели 
 			}
 
 			FleshAxe: {
-				DisplayName: Топор из плоти
-				Bestiary: Заколдованное сущностью багрянца, этот топор передвигается и разркбпнт своих врагов по собственной воле.
+				DisplayName: Позвоночный топор
+				Bestiary: Заколдованное сущностью багрянца, этот топор передвигается и разрубает своих врагов по собственной воле.
 			}
 
 			FleshMummy: {
-				DisplayName: Мумия из плоти
+				DisplayName: Багровая мумия
 				Bestiary: С трансформацией песков внешними силами, те, кто был захоронен в пустыни, будь то добрые или злые, чтобы калечить и убивать.
 			}
 
 			FleshSlime: {
-				DisplayName: Слизень из плоти
+				DisplayName: Мясной слизень
 				Bestiary: Пропитанные силой багрянца, эти слизни могут разбрасывать свои выделения. 
 			}
 
 			GiantAlbinoCharger: {
-				DisplayName: Большой муравьиный воитель-альбинос
+				DisplayName: Большой муравьиный налётчик-альбинос
 				Bestiary: Иногда муравьиные воители мутируют, теряя свою окраску и становясь более свирепыми, чем их собратья по рою.
 			}
 
@@ -1627,7 +1510,6 @@ Mods: {
 			ShadowMummy: {
 				DisplayName: Теневая мумия
 				Bestiary: С трансформацией песков внешними силами, те, кто был захоронен в пустыни, будь то добрые или злые, чтобы калечить и убивать.
-			}
 			}
 
 			ShadowSlime: {
@@ -1691,106 +1573,104 @@ Mods: {
 			}
 
 			AlbinoSwarmer: {
-				DisplayName: Роевик-альбинос
+				DisplayName: Муравьиная стрекоза-альбинос
 				Bestiary: Может муравьиные львы-альбиносы и не могут сливаться с пейзажами дюн, как это делают их более частые собратья, но одного лишь взгляда на их бледные тела уже достаточно, чтобы заставить любую дичь бояться.
 			}
 
 			GiantAlbinoSwarmer: {
-				DisplayName: Большой роевик-альбинос
+				DisplayName: Большая муравьиная стрекоза-альбинос
 				Bestiary: Может муравьиные львы-альбиносы и не могут сливаться с пейзажами дюн, как это делают их более частые собратья, но одного лишь взгляда на их бледные тела уже достаточно, чтобы заставить любую дичь бояться.
 			}
 		}
 
 		Projectiles: {
-			Stomp.DisplayName: Ступ Лепуса
+			Stomp.DisplayName: Топот Лепуса
 			ArchFlames.DisplayName: Архипламя
 			ArchScythe.DisplayName: Архикоса
-			FireTrail.DisplayName: Огненный След
+			FireTrail.DisplayName: Огненный след
 			OcramLaser1.DisplayName: Лазер Окрама
 			OcramLaser2.DisplayName: Лазер Окрама
-			OcramScythe.DisplayName: Высшая Демоническая Коса
-			OcramSkull.DisplayName: Страшный Череп
-			SpectralBomb.DisplayName: Спектральная Бомба
-			SpectrallBall.DisplayName: Спектральный Шар
-			TurkorFeather.DisplayName: Перо Туркора
-			TurkorKnife.DisplayName: Нож Туркора
-			AlbinoMandible.DisplayName: Челюсть Муравьиного Льва-Альбиноса
-			DreadSkull.DisplayName: Страшный Череп
-			EasterBunny.DisplayName: Пасхальный Зайчик
-			EasterEgg.DisplayName: Пасхальное Яйцо
+			OcramScythe.DisplayName: Высшая демоническая коса
+			OcramSkull.DisplayName: Ужасающий череп
+			SpectralBomb.DisplayName: Спектральная бомба
+			SpectrallBall.DisplayName: Спектральный шар
+			TurkorFeather.DisplayName: Перо Индюкора
+			TurkorKnife.DisplayName: Нож Индюкора
+			AlbinoMandible.DisplayName: "{$Items.AlbinoMandible.DisplayName}"
+			DreadSkull.DisplayName: Ужасающий череп
+			EasterBunny.DisplayName: Пасхальный зайчик
+			EasterEgg.DisplayName: Пасхальное яйцо
 			EternalLaser.DisplayName: Лазер Вечности
 			EternalScythe.DisplayName: Коса Вечности
 			EyeOfEternity.DisplayName: Глаз Вечности
-			HeartArrow.DisplayName: Сердечная Стрела
-			HolyHandgrenade.DisplayName: Святая Граната
-			HolyHandgrenade2.DisplayName: Святая Граната II
-			ManaDrain.DisplayName: Высасывание Маны
-			OcramEyeGlow.DisplayName: Свечение Глаза Окрама
-			OcramEyeLaser.DisplayName: Лазер Глаза Окрама
+			HeartArrow.DisplayName: "{$Items.HeartArrow.DisplayName}"
+			HolyHandgrenade.DisplayName: "{$Items.HolyHandgrenade.DisplayName}"
+			HolyHandgrenade2.DisplayName: "{$Items.HolyHandgrenade2.DisplayName}"
+			ManaDrain.DisplayName: Высасывание маны
+			OcramEyeGlow.DisplayName: Свечение глаза Окрама
+			OcramEyeLaser.DisplayName: Лазер глаза Окрама
 			AndroidGuy.DisplayName: Андроид
-			Bat.DisplayName: Летучая Мышь
+			Bat.DisplayName: Летучая мышь
 			Cupid.DisplayName: Купидон
 			Drone.DisplayName: Дрон
 			Elfa.DisplayName: Эльфа
-			GoldenTurtle.DisplayName: Золотая Черепаха
-			GuineaPig.DisplayName: Морская Свинка
+			GoldenTurtle.DisplayName: Золотая черепаха
+			GuineaPig.DisplayName: Морская свинка
 			Leprechaun.DisplayName: Лепрекон
-			LilMarco.DisplayName: Мелкий Марко
-			MythicalWyvernling.DisplayName: Мифическая Виверна
+			LilMarco.DisplayName: Малой Марко
+			MythicalWyvernling.DisplayName: Мифическая виверна
 			PetTurkey.DisplayName: Индейка
 			Slime.DisplayName: Слизень
-			SmallLepus.DisplayName: Детеныш Лепус
+			SmallLepus.DisplayName: Малышь Лепус
 			Tiphia.DisplayName: Тифия
 			Werewolf.DisplayName: Оборотень
 			Zombie.DisplayName: Зомби
-			RomanFlame.DisplayName: Римская Свеча
-			RomanFlameFinal.DisplayName: Римская Свеча Финал
-			RomanFlameMid.DisplayName: Римская Свеча Середина
-			ShadowflameBreath.DisplayName: Дыхание Теневого Пламени
-			ShadowflameBurst.DisplayName: Взрыв Теневого Пламени
-			SharpFeather.DisplayName: Острое Перо
-			SpectralArrow.DisplayName: Спектральная Стрела
-			SpectralSpirit.DisplayName: Спектральный Дух
-			SpicyExplosion.DisplayName: Острый Взрыв
-			SpicySauce.DisplayName: Острый Соус
+			RomanFlame.DisplayName: Римское пламя
+			RomanFlameFinal.DisplayName: Римское пламя
+			RomanFlameMid.DisplayName: Римское пламя
+			ShadowflameBreath.DisplayName: Дыхание теневого пламени
+			ShadowflameBurst.DisplayName: Взрыв теневого пламени
+			SharpFeather.DisplayName: Острое перо
+			SpectralArrow.DisplayName: "{$Items.SpectralArrow.DisplayName}"
+			SpectralSpirit.DisplayName: Спектральный дух
+			SpicyExplosion.DisplayName: Острый взрыв
+			SpicySauce.DisplayName: Острый соус
 			Squib.DisplayName: Петарда
-			TitanBlast.DisplayName: Титанический Взрыв
-			TonbogiriSpear.DisplayName: Тонбогири
-			TurkeyHead.DisplayName: Странная Индейка
-			VulcanBlast.DisplayName: Вулканический Взрыв
-			VulcanBolt.DisplayName: Вулканический Болт
-			"Lepus Stomp.DisplayName": Ступ Лепуса
-			.DisplayName: ""
-			TizonaProjectile.DisplayName: Тизона
-			TizonaShoot.DisplayName: Тизона
+			TitanBlast.DisplayName: Титанический взрыв
+			TonbogiriSpear.DisplayName: "{$Items.Tonbogiri.DisplayName}"
+			TurkeyHead.DisplayName: Странная индейка
+			VulcanBlast.DisplayName: Вулканический взрыв
+			VulcanBolt.DisplayName: "{$Items.VulcanBolt.DisplayName}"
+			TizonaProjectile.DisplayName: "{$Items.Tizona.DisplayName}"
+			TizonaShoot.DisplayName: "{$Items.Tizona.DisplayName}"
 			Worm.DisplayName: Червяк
 			OldLady.DisplayName: Старушка
-			WormTombstone.DisplayName: Подозрительно Выглядящее Надгробие
+			WormTombstone.DisplayName: "{$Items.WormTombstoneItem.DisplayName}"
 			McMoneypantsAttackProjectile.DisplayName: Золотая монета
 			Explosion.DisplayName: Взрыв
-			MythicalWyvernProjectile.DisplayName: Мифическая Виверна
-			MythicalWyvernKiteProjectile.DisplayName: Воздушный змей «Мифическая Виверна»
-			Eggplant_Root.DisplayName: Баклажан
-			Eggplant_Shoot.DisplayName: Баклажан
-			Eggplant_Stem.DisplayName: Баклажан
-			// ScytheFantasma_Use.DisplayName: Scythe Fantasma
-			// ScytheFantasma_Spirit.DisplayName: Phantasm
-			// SpineCracker_Throw.DisplayName: Spine Cracker
-			// SpineCracker_Scythe.DisplayName: Spine Cracker Scythe
-			// JadeSeal_Lamp.DisplayName: Jade Lamp
-			// JadeSeal_GoldenLamp.DisplayName: Golden Lamp
-			// Omunikodo_Shot.DisplayName: Noise Wave
-			// UtensilPoker_Fork.DisplayName: Fork
-			// UtensilPoker_Throw.DisplayName: Utensil Piercer
-			// UtensilPoker_BigFork.DisplayName: Big Fork
-			// PortableSpecialCorn_Summon.DisplayName: Singer Turkey
-			// Chocoplotion_Throw.DisplayName: Choxplosion
-			// FiveStarBuffet_Use.DisplayName: Five Star Buffet
-			// FiveStarBuffet_Food.DisplayName: Five Star Meal
-			// Chocoplotion_Droplet.DisplayName: Chocolate Droplet
-			// SeraphimHeal.DisplayName: Seraphim Heal
-			// SirenSeaCreature.DisplayName: Siren Sea Creature
-			// AlbinoRunt.DisplayName: Albino Runt
+			MythicalWyvernProjectile.DisplayName: Мифическая виверна
+			MythicalWyvernKiteProjectile.DisplayName: "{$Items.MythicalWyvernKite.DisplayName}"
+			Eggplant_Root.DisplayName: "{$Items.Eggplant.DisplayName}"
+			Eggplant_Shoot.DisplayName: "{$Items.Eggplant.DisplayName}"
+			Eggplant_Stem.DisplayName: "{$Items.Eggplant.DisplayName}"
+			ScytheFantasma_Use.DisplayName: "{$Items.ScytheFantasma.DisplayName}"
+			ScytheFantasma_Spirit.DisplayName: Фантазм
+			SpineCracker_Throw.DisplayName: "{$Items.SpineCracker.DisplayName}"
+			SpineCracker_Scythe.DisplayName: "{$Items.SpineCracker.DisplayName}"
+			JadeSeal_Lamp.DisplayName: Нефритовая лампа
+			JadeSeal_GoldenLamp.DisplayName: Залотая лампа
+			Omunikodo_Shot.DisplayName: Звуковая волна
+			UtensilPoker_Fork.DisplayName: Вилка
+			UtensilPoker_Throw.DisplayName: "{$Items.UtensilPoker.DisplayName}"
+			UtensilPoker_BigFork.DisplayName: Большая вилка
+			PortableSpecialCorn_Summon.DisplayName: Поющая индейка
+			Chocoplotion_Throw.DisplayName: "{$Items.Chocoplotion.DisplayName}"
+			FiveStarBuffet_Use.DisplayName: "{$Items.FiveStarBuffet.DisplayName}"
+			FiveStarBuffet_Food.DisplayName: Пятизвёздочное блюдо
+			Chocoplotion_Droplet.DisplayName: Капля шоколада
+			SeraphimHeal.DisplayName: Лечение серафима
+			SirenSeaCreature.DisplayName: Морское существо сирены
+			AlbinoRunt.DisplayName: Альбинос-недоросток
 		}
 
 		Tiles: {
@@ -1799,14 +1679,14 @@ Mods: {
 		}
 
 		Conditions: {
-			SellingDuringThanksgiving: Mods.Consolaria.Conditions.SellingDuringThanksgiving
-			SellingDuringOktoberfest: Mods.Consolaria.Conditions.SellingDuringOktoberfest
-			SellingDuringValentineDay: Mods.Consolaria.Conditions.SellingDuringValentineDay
-			SellingIfMale: Mods.Consolaria.Conditions.SellingIfMale
-			SellingWhenWoman: Mods.Consolaria.Conditions.SellingWhenWoman
-			SellingDuringWishboneCooldown: Mods.Consolaria.Conditions.SellingDuringWishboneCooldown
-			TurkorDowned: Mods.Consolaria.Conditions.TurkorDowned
-			OcramDowned: Mods.Consolaria.Conditions.OcramDowned
+			SellingDuringThanksgiving: Во время Дня благодарения
+			SellingDuringOktoberfest: Во время Октоберфеста
+			SellingDuringValentineDay: Во время Дня святого Валентина
+			SellingIfMale: Если у вас мужской тип персонажа
+			SellingWhenWoman: Если у вас женский тип персонажа
+			SellingDuringWishboneCooldown: Когда Кость желаний находится на перезарядке
+			TurkorDowned: После победы на Индюкором Неблагодарным
+			OcramDowned: После победы над Окрамом
 		}
 
 		Configs: {
@@ -1815,81 +1695,73 @@ Mods: {
 
 				Headers: {
 					SeasonalEvents: Сезонные события
-					Miscellaneous: Разное
+					Miscellaneous: Другое
 					WorldGeneration: Создание мира
 				}
 
 				easterEnabled: {
-					Label: Ограничить сезонный контент по системной дате (Пасха)
-					Tooltip:
-						'''
-						При включении соответствующие предметы и враги будут появляться только в Пасху
-						1 Апреля - 30 Апреля
-						'''
+					Label: Ограничить контент Пасхи по системной дате
+					Tooltip: Предметы и враги, связанные с Пасхой, будут доступны только с 1 по 30 апреля
 				}
 
 				thanksgivingEnabled: {
-					Label: Ограничить сезонный контент по системной дате (День благодарения)
-					Tooltip:
-						'''
-						При включении соответствующие предметы и враги будут появляться только в День благодарения
-						1 Ноября - 30 Ноября
-						'''
+					Label: Ограничить контент Дня благодарения по системной дате
+					Tooltip: Предметы и враги, связанные со Днём благодарения, будут доступны только с 1 по 30 ноября
 				}
 
 				smallEventsEnabled: {
-					Label: Ограничить сезонный контент по системной дате (Другие события)
-					Tooltip: При включении определенные предметы и враги будут появляться только в соответствующие праздники, или после использования Кости Желаний
+					Label: Ограничить другой сезонный контент по системной дате
+					Tooltip: Предметы и враги, связанные с другими событиями, будут доступны только на соответствующие праздники или при использовании Кости желаний.
 				}
 
 				vanillaBossMusicEnabled: {
-					Label: Включить ванильную музыку для боссов из Consolaria
-					Tooltip: При включении музыкальные треки из мода будут заменены на те, которые были изначально использованы в консольных версиях
+					Label: Использовать ванильную музыку для боссов мода
+					Tooltip: Заменяет новые музыкальные треки боссов на те, что были изначально использовались в консольных версиях.
 				}
 
 				tizonaZenithIntegrationEnabled: {
-					Label: Интеграция Тизоны в Зенит
-					Tooltip: При включении Тизона будет использована в рецепте создания Зенита и появится среди его снарядов
+					Label: Интегрировать Тисону в Зенит
+					Tooltip: Тисона будет использоваться в рецепте Зенита, а также её будет видно среди других мечей во время его атаки.
 				}
 
 				oktoberLocksEnabled: {
-					Label: Декоративный предмет - Прическа Октоберфеста
-					Tooltip: При включении Прическа Октоберфеста будет продаваться Портным во время Октоберфеста
+					Label: Октоберские пряди у портного
+					Tooltip: Портной будет продавать октоберские пряди во время Октоберфеса.
 				}
 
 				mythicalWyvernKiteVanillaDropruleEnabled: {
-					Label: Ванильное правило выпадения Воздушного змея «Мифическая Виверна»
-					Tooltip: При включении Воздушный змей «Мифическая Виверна» будет выпадать из Мифической Виверны с 4%-ным шансом, вместо Красного конверта
+					Label: Ванильное выпадение воздушного змея - мифической виверны
+					Tooltip: Вместо красного конвента, воздушный змей - мифическая виверна будет выпадать с 4% шансом из мифической виверны.
 				}
 
 				heartbeatariaIntegrationEnabled: {
 					Label: Интеграция мода Heartbeataria
-					Tooltip: При включении некоторые предметы из Heartbeataria можно получить из Красных конвертов
+					Tooltip: Некоторые предметы из Heartbeataria можно будет получить из красных конвертов.
 				}
 
 				originalAncientHeroSetRecipeEnabled: {
-					Label: Изначальный рецепт создания Древнего набора Героя
-					Tooltip: При включении Древний набор Героя может быть создан из Шелка и Фиолетовой нитки на Ткацком станке вместо шиммера
+					Label: Оригинальный рецепт древнего костюма героя
+					Tooltip: Древний костюм героя будет создаваться из шёлка и фиолетовых ниток на ткацком станке, вместо трансмутации в мерцании.
 				}
 
 				genderRestrictShopEnabled: {
-					Label: Ограничить покупку набора Джорджа и Потрясающего набора по полу персонажа
+					Label: Ограничить продажу розовых костюмов по полу персонажа
 					Tooltip:
 						'''
-						При включении Портной будет продавать эти наборы во время Кровавой луны только если у персонажа определенный пол
-						Мужской - набор Джорджа
-						Женский - Потрясающий набор
+						Во время кровавой луны, портной будет продавать розовые костюмы в зависимости от пола персонажа:
+						Мужской - костюм Джорджа.
+						Женский - Потрясающий костюм.
 						'''
 				}
 
 				pyramidEnabled: {
 					Label: Гарантированная пирамида
-					Tooltip: При включении в мире всегда будет создана как минимум одна пирамида
+					Tooltip: При создании мира всегда будет генерироваться как минимум одна пирамида.
 				}
 
 				pyramidMessageLoot: {
 					Label: Особые предметы в пирамиде
-					Tooltip: При включении в сундуке тайной комнаты пирамиды появится зашифрованное сообщение
+					Tooltip: При включении в сундуке тайной комнаты пирамиды появится зашифрованное сообщение.
 				}
 			}
 		}
@@ -1897,61 +1769,61 @@ Mods: {
 		Achievements: {
 			LepusKillAchievement: {
 				FriendlyName: Двух зайцев одним выстрелом
-				Description: Одолейте Лепуса - пасхального баламута-переростка.
+				Description: Одержать победу над Лепусом - пасхальным баламутом-переростком.
 			}
 
 			OcramKillAchievement: {
 				FriendlyName: Мракобесие
-				Description: Одолейте Окрама - проклятого демона, скрывающегося под покровом ночи.
+				Description: Одержать победу над Окрамом - проклятым демоном, скрывающимся под покровом ночи.
 			}
 
 			TurkorKillAchievement: {
 				FriendlyName: Индейка - и точка
-				Description: Одержите Туркора Неблагодарного - пылающее чудовище Дня Благодарения.
+				Description: Одержать победу над Индюкором Неблагодарным - пылающим чудищем Дня Благодарения.
 			}
 		}
 
 		Emotes: {
-			// McMoneyPantsEmote.Command: mcmoneypants 
-			// TurkorEmote.Command: turkor
-			// OcramEmote.Command: ocram
-			// LepusEmote.Command: lepus
+			McMoneyPantsEmote.Command: mcmoneypants 
+			TurkorEmote.Command: turkor
+			OcramEmote.Command: ocram
+			LepusEmote.Command: lepus
 		}
 
 		MusicDisplayCompability: {
 			Lepus: {
-				Author: Synoxsis
-				DisplayName: Лепус
+				Author: от Synoxsis
+				DisplayName: Лепус: Lepus
 			}
 
 			Ocram: {
-				Author: Synoxsis
-				DisplayName: Окрам
+				Author: от Synoxsis
+				DisplayName: Окрам: Ocram
 			}
 
 			EerieOcram: {
-				Author: Fyerow и Croul
-				DisplayName: Жуткий Окрам
+				Author: от Fyerow и Croul
+				DisplayName: «Жуткий» Окрам: Eerie Ocram
 			}
 
 			Turkor: {
-				Author: Synoxsis
-				DisplayName: Туркор Неблагодарный
+				Author: от Synoxsis
+				DisplayName: Индюкор Неблагодарный
 			}
 
 			AltLepus: {
-				Author: Jteoh
-				DisplayName: Blight of Spring (Иной Лепус)
+				Author: от Jteoh
+				DisplayName: Иномирный Лепус: Blight of Spring
 			}
 
 			AltOcram: {
-				Author: Jteoh
-				DisplayName: Mirror Image (Иной Окрам)
+				Author: от Jteoh
+				DisplayName: Иномирный Окрам: Mirror Image
 			}
 
 			AltTurkor: {
-				Author: Jteoh
-				DisplayName: Ungracious Givings (Иной Туркор)
+				Author: от Jteoh
+				DisplayName: Иномирный Индюкор: Ungracious Givings
 			}
 		}
 	}

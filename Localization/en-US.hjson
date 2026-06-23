@@ -1680,14 +1680,14 @@ Mods: {
 		}
 
 		Conditions: {
-			SellingDuringThanksgiving: Mods.Consolaria.Conditions.SellingDuringThanksgiving
-			SellingDuringOktoberfest: Mods.Consolaria.Conditions.SellingDuringOktoberfest
-			SellingDuringValentineDay: Mods.Consolaria.Conditions.SellingDuringValentineDay
-			SellingIfMale: Mods.Consolaria.Conditions.SellingIfMale
-			SellingWhenWoman: Mods.Consolaria.Conditions.SellingWhenWoman
-			SellingDuringWishboneCooldown: Mods.Consolaria.Conditions.SellingDuringWishboneCooldown
-			TurkorDowned: Mods.Consolaria.Conditions.TurkorDowned
-			OcramDowned: Mods.Consolaria.Conditions.OcramDowned
+			SellingDuringThanksgiving: During Thanksgiving
+			SellingDuringOktoberfest: During Oktoberfest
+			SellingDuringValentineDay: During Valentine's Day
+			SellingIfMale: If the character is male
+			SellingWhenWoman: If the character is female
+			SellingDuringWishboneCooldown: When Wishbone is on cooldown
+			TurkorDowned: If Turkor has been defeated
+			OcramDowned: If Ocram has been defeated
 		}
 
 		Configs: {

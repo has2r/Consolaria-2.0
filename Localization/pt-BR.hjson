@@ -1462,7 +1462,7 @@ Mods: {
 				Tooltip:
 					'''
 					Prepara até cinco refeições suculentas e as serve aos aliados com a menor quantidade de vida
-					Se você tem menos quantidade de vida, te cura por uma quantidade menor
+					Se você tiver pouca vida, a quantidade de cura será menor
 					'''
 			}
 

@@ -299,7 +299,7 @@ Mods: {
 
 			OstaraBoots: {
 				DisplayName: Boots of Ostara
-				Tooltip: Allows wearer to perform up to 5 bunny hops
+				Tooltip: Allows the wearer to perform up to 5 bunny hops
 			}
 
 			OstaraHat: {
@@ -536,7 +536,7 @@ Mods: {
 				DisplayName: Ostara's Gift
 				Tooltip:
 					'''
-					Enemies have a chance of leaving chocolate eggs on death
+					Enemies may leave chocolate eggs on death
 					Eggs drop life hearts and mana stars when broken
 					'''
 			}
@@ -1087,7 +1087,7 @@ Mods: {
 
 			WormTombstoneItem: {
 				DisplayName: Strange Looking Tombstone
-				Tooltip: A Tombstone that kinda looks like a worm, right?
+				Tooltip: A tombstone that kinda looks like a worm, right?
 			}
 
 			Topper505: {
@@ -1102,7 +1102,7 @@ Mods: {
 
 			PrestigiousTopHat: {
 				DisplayName: Prestigious Top Hat
-				Tooltip: Smells like a freshly-printed bill!
+				Tooltip: Smells like a freshly printed bill!
 			}
 
 			CandiedFruit: {
@@ -1564,7 +1564,7 @@ Mods: {
 				Quote1: Honestly, a penny for my thoughts really isn't that much.
 				Quote2: If I had a nickel for every monster I saw last night, I'd be even more rich and a little less scared.
 				Quote3: Those blasted slimes keep trying to swallow my coins!
-				Quote4: If money makes the world go round, this place is looking very poor indeed. Let's change it!
+				Quote4: If money makes the world go round, this place clearly doesn't have enough of it.
 				Quote5: I feel so clean, like a money machine!
 				Quote6: You know what I like about gold? I have a lot of it!
 				Quote7: Hey, one thing I can promise you is that I never ask my clients to judge me on my winners. I ask them to judge me on my losers, because I have so few.
@@ -1730,7 +1730,7 @@ Mods: {
 
 				tizonaZenithIntegrationEnabled: {
 					Label: Tizona integration in Zenith
-					Tooltip: If enabled, Tizona will be added to Zenith's crafting recipe and it's projectiles.
+					Tooltip: If enabled, Tizona will be added to Zenith's crafting recipe and its projectiles
 				}
 
 				oktoberLocksEnabled: {

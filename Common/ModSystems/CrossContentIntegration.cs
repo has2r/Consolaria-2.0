@@ -190,6 +190,8 @@ namespace Consolaria.Common {
                 thoriumMod.Call("AddInsectRepellentNPCID", ModContent.NPCType<GiantAlbinoSwarmer>());
 
                 thoriumMod.Call("AddInsectRepellentNPCID", ModContent.NPCType<DragonHornet>());
+
+                thoriumMod.Call("AddFishRepellentNPCID", ModContent.NPCType<Orca>());
             }
         }
 

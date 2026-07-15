@@ -1,0 +1,5 @@
+- Added Thorium Mod's enemy repellant compatibility to Albino Antlions, Dragon Hornet and Orca
+- Fixed Scythe Phantasma's spirit projectiles dealing classless damage instead of radiant damage
+- Fixed Jade Lantern's description of LMB and RMB abilities being swapped
+- Fixed Music Display's details for Otherworldly Turkor and Otherworldly Ocram themes being swapped
+- Updated localization

@@ -49,10 +49,10 @@ Contributors:
 [*][b]minichibis[/b] - Dragon Hornet sprite
 [*][b]cleo.[/b] - Mythical Wyvern kite sprite
 [*][b]Lion8cake[/b] - Zenith projectile & recipe patch for Tizona
-[*][b]Gaerzi[/b] - calendar code optimisation
+[*][b]Gaerzi[/b] - calendar code optimization
 [*][b]kittenchilly[/b] - multiplayer boss scaling improvement
 [*][b]Efromomr[/b] - some Mc MoneyPants interaction quotes
-[*][b]HenryChe, htoya23[/b] - Russian localization
+[*][b]HenryChe, htoya23, alinahvoshch[/b] - Russian localization
 [*][b]Auraz[/b] - Spanish localization
 [*][b]KaffaZ[/b] - Brazilian Portuguese localization
 [/list]
@@ -62,9 +62,7 @@ Contributors:
 🌐 [url=https://discord.gg/DTABXbd]Discord[/url]
 📖 [url=https://terrariamods.wiki.gg/wiki/Consolaria]Consolaria Wiki[/url]
 🌳 [url=https://forums.terraria.org/index.php?threads/consolaria.62570]Forum post[/url]
-🍂 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3456940039]Rise of Ages[/url] - Our main project
+🍂 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3456940039]Rise of Ages[/url] - our main project
 💻 [url=https://github.com/has2r/Consolaria-2.0]Mod source on GitHub[/url]
 
-💟 [url=https://www.buymeacoffee.com/roagang]Donations[/url]  
-[quote=tModLoader Consolaria]
-Developed By RoA Gang (has2r, peege.on, Serork)[/quote]
+💟 [url=https://www.buymeacoffee.com/roagang]Donations[/url]

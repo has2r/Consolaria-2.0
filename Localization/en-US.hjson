@@ -1320,8 +1320,8 @@ Mods: {
 				DisplayName: Jade Seal
 				Tooltip:
 					'''
-					Left click to summon a jade lantern that boosts damage and defense of allies
-					Right click to summon a golden lantern that hovers in place and heals allies
+					Left click to summon a golden lantern that hovers in place and heals allies
+					Right click to summon a jade lantern that boosts damage and defense of allies
 					'''
 			}
 
@@ -1672,6 +1672,7 @@ Mods: {
 			SeraphimHeal.DisplayName: Seraphim Heal
 			SirenSeaCreature.DisplayName: Siren Sea Creature
 			AlbinoRunt.DisplayName: Albino Runt
+			.DisplayName: ""
 		}
 
 		Tiles: {

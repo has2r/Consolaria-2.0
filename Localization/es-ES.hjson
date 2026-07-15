@@ -523,11 +523,6 @@ Mods: {
 				Tooltip: "{$CommonItemTooltip.BannerBonus}Guiverno mitológico"
 			}
 
-			MythicalWyvern: {
-				DisplayName: Cometa de guiverno mitológico
-				Tooltip: ""
-			}
-
 			OrcaBanner: {
 				DisplayName: Estandarte de orca
 				Tooltip: "{$CommonItemTooltip.BannerBonus}Orca"
@@ -1166,11 +1161,6 @@ Mods: {
 				Tooltip: ¡Huele como un billete fresco!
 			}
 
-			ExampleKite: {
-				DisplayName: Cometa de ejemplo
-				Tooltip: ""
-			}
-
 			CandiedFruit: {
 				DisplayName: Fruta confitada
 				Tooltip: ""
@@ -1182,13 +1172,13 @@ Mods: {
 			}
 
 			OktoberLocks: {
-				// Tooltip: ""
 				DisplayName: Trenzas de Oktober
+				// Tooltip: ""
 			}
 
 			PurpleThread: {
-				// Tooltip: ""
 				DisplayName: Hilo púrpura
+				// Tooltip: ""
 			}
 
 			OtherworldlyMusicBox1: {
@@ -1218,97 +1208,47 @@ Mods: {
 
 			OldSeraphimChestplate: {
 				// DisplayName: Ancient Seraphim Vesture
-				/* Tooltip:
-					'''
-					30% decreased non-radiant damage
-					20% increased radiant damage
-					20% decreased mana cost
-					Healing spells will heal an additional 3 life
-					''' */
+				// Tooltip: "{$Items.SeraphimChestplate.Tooltip}"
 			}
 
 			OldSeraphimHelmet: {
 				// DisplayName: Ancient Seraphim Visage
-				/* Tooltip:
-					'''
-					20% decreased non-radiant damage
-					15% increased radiant damage
-					20% decreased mana cost
-					Maximum mana increased by 60
-					Healing spells will heal an additional 2 life
-					''' */
+				// Tooltip: "{$Items.SeraphimHelmet.Tooltip}"
 			}
 
 			OldSeraphimLegs: {
 				// DisplayName: Ancient Seraphim Treads
-				/* Tooltip:
-					'''
-					20% decreased non-radiant damage
-					15% increased radiant damage
-					15% decreased mana cost
-					Healing spells will heal an additional 2 life
-					15% increased movement speed
-					''' */
+				// Tooltip: "{$Items.SeraphimLegs.Tooltip}"
 			}
 
 			OldSirenChestplate: {
 				// DisplayName: Ancient Siren Chestplate
-				/* Tooltip:
-					'''
-					10% increased symphonic damage
-					Increases the chance for inspiration notes to drop by 10%
-					Increases the duration of your symphonic empowerments by 6 seconds
-					''' */
+				// Tooltip: "{$Items.SirenChestplate.Tooltip}"
 			}
 
 			OldSirenHelmet: {
 				// DisplayName: Ancient Siren Headgear
-				/* Tooltip:
-					'''
-					8% increased symphonic playing speed
-					4% increased symphonic critical strike chance
-					Increases inspiration regeneration rate by 20%
-					''' */
+				// Tooltip: "{$Items.SirenHelmet.Tooltip}"
 			}
 
 			OldSirenLegs: {
 				// DisplayName: Ancient Siren Tail
-				/* Tooltip:
-					'''
-					10% increased symphonic damage
-					6% increased symphonic critical strike chance
-					15% increased movement speed
-					''' */
+				// Tooltip: "{$Items.SirenLegs.Tooltip}"
 			}
 
 			OldViperChestplate: {
 				// DisplayName: Ancient Viper Jacket
-				/* Tooltip:
-					'''
-					10% increased throwing damage
-					20% increased throwing velocity
-					15% increased throwing speed
-					''' */
+				// Tooltip: "{$Items.ViperChestplate.Tooltip}"
 			}
 
 			OldViperHelmet: {
 				// DisplayName: Ancient Viper Helmet
-				/* Tooltip:
-					'''
-					20% increased throwing damage
-					33% chance not to consume thrown items
-					Increases your maximum technique points by 2
-					''' */
+				// Tooltip: "{$Items.ViperHelmet.Tooltip}"
 			}
 
 			OldViperLegs: {
 				// DisplayName: Ancient Viper Pants
-				/* Tooltip:
-					'''
-					20% increased throwing damage
-					25% increased throwing critical strike chance
-					15% increased movement speed
-					''' */
+				// Tooltip: "{$Items.ViperLegs.Tooltip}"
 			}
 
 			SeraphimChestplate: {
@@ -1436,8 +1376,8 @@ Mods: {
 				// DisplayName: Jade Seal
 				/* Tooltip:
 					'''
-					Left click to summon a jade lantern that boosts damage and defense of allies
-					Right click to summon a golden lantern that hovers in place and heals allies
+					Left click to summon a golden lantern that hovers in place and heals allies
+					Right click to summon a jade lantern that boosts damage and defense of allies
 					''' */
 			}
 
@@ -1758,8 +1698,6 @@ Mods: {
 			TurkeyHead.DisplayName: Weird Turkey
 			VulcanBlast.DisplayName: Vulcan Blast
 			VulcanBolt.DisplayName: Vulcan Bolt
-			"Lepus Stomp.DisplayName": Lepus Stomp
-			.DisplayName: ""
 			// TizonaProjectile.DisplayName: Tizona
 			TizonaShoot.DisplayName: Tizona
 			Worm.DisplayName: Worm
@@ -1790,6 +1728,7 @@ Mods: {
 			// SeraphimHeal.DisplayName: Seraphim Heal
 			// SirenSeaCreature.DisplayName: Siren Sea Creature
 			// AlbinoRunt.DisplayName: Albino Runt
+			.DisplayName: ""
 		}
 
 		Tiles: {
@@ -1798,14 +1737,14 @@ Mods: {
 		}
 
 		Conditions: {
-			SellingDuringThanksgiving: Mods.Consolaria.Conditions.SellingDuringThanksgiving
-			SellingDuringOktoberfest: Mods.Consolaria.Conditions.SellingDuringOktoberfest
-			SellingDuringValentineDay: Mods.Consolaria.Conditions.SellingDuringValentineDay
-			SellingIfMale: Mods.Consolaria.Conditions.SellingIfMale
-			SellingWhenWoman: Mods.Consolaria.Conditions.SellingWhenWoman
-			// SellingDuringWishboneCooldown: Mods.Consolaria.Conditions.SellingDuringWishboneCooldown
-			// TurkorDowned: Mods.Consolaria.Conditions.TurkorDowned
-			// OcramDowned: Mods.Consolaria.Conditions.OcramDowned
+			// SellingDuringThanksgiving: During Thanksgiving
+			// SellingDuringOktoberfest: During Oktoberfest
+			// SellingDuringValentineDay: During Valentine's Day
+			// SellingIfMale: If the character is male
+			// SellingWhenWoman: If the character is female
+			// SellingDuringWishboneCooldown: When Wishbone is on cooldown
+			// TurkorDowned: If Turkor has been defeated
+			// OcramDowned: If Ocram has been defeated
 		}
 
 		Configs: {

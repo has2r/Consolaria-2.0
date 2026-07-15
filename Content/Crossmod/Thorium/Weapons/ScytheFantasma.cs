@@ -7,6 +7,8 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
+using ThoriumMod;
+
 namespace Consolaria.Content.Crossmod.Thorium.Weapons;
 
 public sealed class ScytheFantasma : ThoriumItem_ScytheBase {
@@ -124,6 +126,8 @@ public sealed class ScytheFantasma : ThoriumItem_ScytheBase {
             Projectile.localNPCHitCooldown = 10;
 
             Projectile.scale = 2f;
+
+            Projectile.DamageType = ThoriumDamageBase<HealerDamage>.Instance;
         }
 
         public override bool PreDraw(ref Color lightColor) {

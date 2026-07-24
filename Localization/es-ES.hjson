@@ -1426,8 +1426,8 @@ Mods: {
 				DisplayName: Sello de Jade
 				Tooltip:
 					'''
-					Haz clic izquierdo para invocar una linterna de jade que aumenta el daño y la defensa de los aliados
-					Haz clic derecho para invocar una linterna dorada que flota en el lugar y cura a los aliados
+					Haz clic izquierdo para invocar una linterna dorada que flota en el lugar y cura a los aliados
+					Haz clic derecho para invocar una linterna de jade que aumenta el daño y la defensa de los aliados
 					'''
 			}
 

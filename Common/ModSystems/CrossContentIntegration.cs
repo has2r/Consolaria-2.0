@@ -4,6 +4,7 @@ using Consolaria.Content.Items.Mounts;
 using Consolaria.Content.Items.Pets;
 using Consolaria.Content.Items.Placeable;
 using Consolaria.Content.Items.Vanity;
+using Consolaria.Content.NPCs;
 using Consolaria.Content.NPCs.Bosses.Lepus;
 using Consolaria.Content.NPCs.Bosses.Ocram;
 using Consolaria.Content.NPCs.Bosses.Turkor;
@@ -26,6 +27,8 @@ namespace Consolaria.Common {
             DoAchievementModIntegration();
             DoMusicDisplayIntegration();
             DoMunchiesSupport();
+
+            DoThoriumIntegration();
         }
 
         private void DoMunchiesSupport() {
@@ -61,8 +64,8 @@ namespace Consolaria.Common {
             addIntergationFor("Turkor", "Assets/Music/Turkor");
 
             addIntergationFor("AltLepus", "Assets/Music/OtherwordlyLepus");
-            addIntergationFor("AltOcram", "Assets/Music/OtherwordlyTurkor");
-            addIntergationFor("AltTurkor", "Assets/Music/OtherwordlyOcram");
+            addIntergationFor("AltTurkor", "Assets/Music/OtherwordlyTurkor");
+            addIntergationFor("AltOcram", "Assets/Music/OtherwordlyOcram");
         }
 
         private void DoBossChecklistIntegration() {
@@ -175,6 +178,20 @@ namespace Consolaria.Common {
                 fargos.Call("AddSummon", 1.8f, "Consolaria", "SuspiciousLookingEgg", () => DownedBossSystem.downedLepus, 60000);
                 fargos.Call("AddSummon", 5.75f, "Consolaria", "CursedStuffing", () => DownedBossSystem.downedTurkor, 180000);
                 fargos.Call("AddSummon", 12f, "Consolaria", "SuspiciousLookingSkull", () => DownedBossSystem.downedOcram, 500000);
+            }
+        }
+
+        private void DoThoriumIntegration() {
+            if (ModLoader.TryGetMod("ThoriumMod", out Mod thoriumMod)) {
+                thoriumMod.Call("AddInsectRepellentNPCID", ModContent.NPCType<AlbinoAntlion>());
+                thoriumMod.Call("AddInsectRepellentNPCID", ModContent.NPCType<AlbinoCharger>());
+                thoriumMod.Call("AddInsectRepellentNPCID", ModContent.NPCType<AlbinoSwarmer>());
+                thoriumMod.Call("AddInsectRepellentNPCID", ModContent.NPCType<GiantAlbinoCharger>());
+                thoriumMod.Call("AddInsectRepellentNPCID", ModContent.NPCType<GiantAlbinoSwarmer>());
+
+                thoriumMod.Call("AddInsectRepellentNPCID", ModContent.NPCType<DragonHornet>());
+
+                thoriumMod.Call("AddFishRepellentNPCID", ModContent.NPCType<Orca>());
             }
         }
 

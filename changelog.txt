@@ -1,7 +1,5 @@
-- Five-Star Buffet is now less effective when healing yourself and has a maximum range of 30 tiles
-- Disaster Bunny spawn rate now scales with player's luck
-- Fixed Choxplosion sell price
-- Fixed an issue that prevented generating a proper pyramid with Fargo's Souls Mod enabled
-- Fixed the title screen announcement message not being hidden correctly
-- Fixed a crash when loading a glow mask for Sparkly Wings
+- Added Thorium Mod's enemy repellant compatibility to Albino Antlions, Dragon Hornet and Orca
+- Fixed Scythe Phantasma's spirit projectiles dealing classless damage instead of radiant damage
+- Fixed Jade Lantern's description of LMB and RMB abilities being swapped
+- Fixed Music Display's details for Otherworldly Turkor and Otherworldly Ocram themes being swapped
 - Updated localization

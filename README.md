@@ -44,11 +44,11 @@ Contributors:
 - **minichibis** - Dragon Hornet sprite
 - **cleo.** - Mythical Wyvern kite sprite
 - **Lion8cake** - Zenith projectile & recipe patch for Tizona
-- **Gaerzi** - calendar code optimisation
+- **Gaerzi** - calendar code optimization
 - **kittenchilly** - multiplayer boss scaling improvement
 - **Efromomr** - some Mc MoneyPants interaction quotes
-- **HenryChe, htoya23** - Russian localization
-- **Auraz** - Spanish localization
+- **HenryChe, htoya23, alinahvoshch** - Russian localization
+- **Auraz, Ningunomas** - Spanish localization
 - **KaffaZ** - Brazilian Portuguese localization
 
 ## Links
@@ -56,7 +56,7 @@ Contributors:
 🌐 [Discord](https://discord.gg/DTABXbd)
 📖 [Consolaria Wiki](https://terrariamods.wiki.gg/wiki/Consolaria)
 🌳 [Forum post](https://forums.terraria.org/index.php?threads/consolaria.62570)
-🍂 [Rise of Ages](https://steamcommunity.com/sharedfiles/filedetails/?id=3456940039) - Our main project
+🍂 [Rise of Ages](https://steamcommunity.com/sharedfiles/filedetails/?id=3456940039) - our main project
 🖥 [Mod on Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=2864843929)
 
 💟 [Donations](https://www.buymeacoffee.com/roagang)

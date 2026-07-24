@@ -523,11 +523,6 @@ Mods: {
 				Tooltip: "{$CommonItemTooltip.BannerBonus}Guiverno Mitológico"
 			}
 
-			MythicalWyvern: {
-				DisplayName: Cometa de Guiverno Mitológico
-				Tooltip: ""
-			}
-
 			OrcaBanner: {
 				DisplayName: Estandarte de Orca
 				Tooltip: "{$CommonItemTooltip.BannerBonus}Orca"
@@ -1166,11 +1161,6 @@ Mods: {
 				Tooltip: ¡Huele como un billete fresco!
 			}
 
-			ExampleKite: {
-				DisplayName: Cometa de Ejemplo
-				Tooltip: ""
-			}
-
 			CandiedFruit: {
 				DisplayName: Fruta Confitada
 				Tooltip: ""
@@ -1182,13 +1172,13 @@ Mods: {
 			}
 
 			OktoberLocks: {
-				Tooltip: ""
 				DisplayName: Trenzas de Oktober
+				Tooltip: ""
 			}
 
 			PurpleThread: {
-				Tooltip: ""
 				DisplayName: Hilo púrpura
+				Tooltip: ""
 			}
 
 			OtherworldlyMusicBox1: {
@@ -1436,8 +1426,8 @@ Mods: {
 				DisplayName: Sello de Jade
 				Tooltip:
 					'''
-					Haz clic izquierdo para invocar una linterna de jade que aumenta el daño y la defensa de los aliados
-					Haz clic derecho para invocar una linterna dorada que flota en el lugar y cura a los aliados
+					Haz clic izquierdo para invocar una linterna dorada que flota en el lugar y cura a los aliados
+					Haz clic derecho para invocar una linterna de jade que aumenta el daño y la defensa de los aliados
 					'''
 			}
 
@@ -1758,8 +1748,6 @@ Mods: {
 			TurkeyHead.DisplayName: Pavo Raro
 			VulcanBlast.DisplayName: Ráfaga de Vulcano
 			VulcanBolt.DisplayName: Perno de Vulcano
-			"Lepus Stomp.DisplayName": Pisotón de Lepus
-			.DisplayName: ""
 			TizonaProjectile.DisplayName: Tizona
 			TizonaShoot.DisplayName: Tizona
 			Worm.DisplayName: Gusano
@@ -1790,6 +1778,7 @@ Mods: {
 			SeraphimHeal.DisplayName: Curación de Serafín
 			SirenSeaCreature.DisplayName: Criatura Marina de Sirena
 			AlbinoRunt.DisplayName: Cría Albina
+			// .DisplayName: ""
 		}
 
 		Tiles: {
@@ -1798,14 +1787,14 @@ Mods: {
 		}
 
 		Conditions: {
-			SellingDuringThanksgiving: Mods.Consolaria.Conditions.SellingDuringThanksgiving
-			SellingDuringOktoberfest: Mods.Consolaria.Conditions.SellingDuringOktoberfest
-			SellingDuringValentineDay: Mods.Consolaria.Conditions.SellingDuringValentineDay
-			SellingIfMale: Mods.Consolaria.Conditions.SellingIfMale
-			SellingWhenWoman: Mods.Consolaria.Conditions.SellingWhenWoman
-			SellingDuringWishboneCooldown: Mods.Consolaria.Conditions.SellingDuringWishboneCooldown
-			TurkorDowned: Mods.Consolaria.Conditions.TurkorDowned
-			OcramDowned: Mods.Consolaria.Conditions.OcramDowned
+			// SellingDuringThanksgiving: During Thanksgiving
+			// SellingDuringOktoberfest: During Oktoberfest
+			// SellingDuringValentineDay: During Valentine's Day
+			// SellingIfMale: If the character is male
+			// SellingWhenWoman: If the character is female
+			// SellingDuringWishboneCooldown: When Wishbone is on cooldown
+			// TurkorDowned: If Turkor has been defeated
+			// OcramDowned: If Ocram has been defeated
 		}
 
 		Configs: {

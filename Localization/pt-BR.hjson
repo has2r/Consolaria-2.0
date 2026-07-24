@@ -508,11 +508,6 @@ Mods: {
 				Tooltip: "{$CommonItemTooltip.BannerBonus}Serpe Mítica"
 			}
 
-			MythicalWyvern: {
-				DisplayName: Pipa de Serpe Mítica
-				Tooltip: ""
-			}
-
 			OrcaBanner: {
 				DisplayName: Bandeira da Orca
 				Tooltip: "{$CommonItemTooltip.BannerBonus}Orca"
@@ -1151,11 +1146,6 @@ Mods: {
 				Tooltip: Cheira a uma nota fresca!
 			}
 
-			ExampleKite: {
-				DisplayName: Exemplo de Pipa
-				Tooltip: ""
-			}
-
 			CandiedFruit: {
 				DisplayName: Frutas Cristalizadas
 				Tooltip: ""
@@ -1167,13 +1157,13 @@ Mods: {
 			}
 
 			OktoberLocks: {
-				Tooltip: ""
 				DisplayName: Cachos Oktober
+				Tooltip: ""
 			}
 
 			PurpleThread: {
-				Tooltip: ""
 				DisplayName: Fio Roxo
+				Tooltip: ""
 			}
 
 			OtherworldlyMusicBox1: {
@@ -1421,8 +1411,8 @@ Mods: {
 				DisplayName: Selo de Jade
 				Tooltip:
 					'''
-					Botão esquerdo para invocar uma lanterna de jade que aumenta o dano e a defesa dos aliados
-					Botão direito para invocar uma lanterna dourada que paira no ar e cura aliados
+					Botão esquerdo para invocar uma lanterna dourada que paira no ar e cura aliados
+					Botão direito para invocar uma lanterna de jade que aumenta o dano e a defesa dos aliados
 					'''
 			}
 
@@ -1462,7 +1452,7 @@ Mods: {
 				Tooltip:
 					'''
 					Prepara até cinco refeições suculentas e as serve aos aliados com a menor quantidade de vida
-					Se você tem menos quantidade de vida, te cura por uma quantidade menor
+					Se você tiver pouca vida, a quantidade de cura será menor
 					'''
 			}
 
@@ -1743,8 +1733,6 @@ Mods: {
 			TurkeyHead.DisplayName: Peru Estranho
 			VulcanBlast.DisplayName: Explosão Vulcana
 			VulcanBolt.DisplayName: Flecha do Vulcão
-			"Lepus Stomp.DisplayName": Pisar de Lepus
-			.DisplayName: ""
 			TizonaProjectile.DisplayName: Tizona
 			TizonaShoot.DisplayName: Tizona
 			Worm.DisplayName: Verme
@@ -1775,6 +1763,7 @@ Mods: {
 			SeraphimHeal.DisplayName: Cura Serafim
 			SirenSeaCreature.DisplayName: Criatura marinha sereia
 			AlbinoRunt.DisplayName: Albino nanico
+			.DisplayName: ""
 		}
 
 		Tiles: {
@@ -1783,14 +1772,14 @@ Mods: {
 		}
 
 		Conditions: {
-			SellingDuringThanksgiving: Mods.Consolaria.Conditions.SellingDuringThanksgiving
-			SellingDuringOktoberfest: Mods.Consolaria.Conditions.SellingDuringOktoberfest
-			SellingDuringValentineDay: Mods.Consolaria.Conditions.SellingDuringValentineDay
-			SellingIfMale: Mods.Consolaria.Conditions.SellingIfMale
-			SellingWhenWoman: Mods.Consolaria.Conditions.SellingWhenWoman
-			// SellingDuringWishboneCooldown: Mods.Consolaria.Conditions.SellingDuringWishboneCooldown
-			// TurkorDowned: Mods.Consolaria.Conditions.TurkorDowned
-			// OcramDowned: Mods.Consolaria.Conditions.OcramDowned
+			// SellingDuringThanksgiving: During Thanksgiving
+			// SellingDuringOktoberfest: During Oktoberfest
+			// SellingDuringValentineDay: During Valentine's Day
+			// SellingIfMale: If the character is male
+			// SellingWhenWoman: If the character is female
+			// SellingDuringWishboneCooldown: When Wishbone is on cooldown
+			// TurkorDowned: If Turkor has been defeated
+			// OcramDowned: If Ocram has been defeated
 		}
 
 		Configs: {

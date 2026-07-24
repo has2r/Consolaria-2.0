@@ -53,7 +53,7 @@ Contributors:
 [*][b]kittenchilly[/b] - multiplayer boss scaling improvement
 [*][b]Efromomr[/b] - some Mc MoneyPants interaction quotes
 [*][b]HenryChe, htoya23, alinahvoshch[/b] - Russian localization
-[*][b]Auraz[/b] - Spanish localization
+[*][b]Auraz, Ningunomas[/b] - Spanish localization
 [*][b]KaffaZ[/b] - Brazilian Portuguese localization
 [/list]
 

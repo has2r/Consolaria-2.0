@@ -91,7 +91,7 @@ Mods: {
 			}
 
 			GuineaPig: {
-				DisplayName: Cerdo de Guinea
+				DisplayName: Cobaya
 				Description: Simplemente adorable
 			}
 
@@ -775,7 +775,7 @@ Mods: {
 
 			Cabbage: {
 				DisplayName: Repollo
-				Tooltip: Invoca a un cerdo de guinea
+				Tooltip: Invoca a una cobaya
 			}
 
 			GoldenLantern: {
@@ -1722,7 +1722,7 @@ Mods: {
 			Drone.DisplayName: Drone
 			Elfa.DisplayName: Elfa
 			GoldenTurtle.DisplayName: Tortuga Dorada
-			GuineaPig.DisplayName: Cerdo de Guinea
+			GuineaPig.DisplayName: Cobaya
 			Leprechaun.DisplayName: Leprechaun
 			LilMarco.DisplayName: Lil Marco
 			MythicalWyvernling.DisplayName: Cría de Guiverno Mítico
@@ -1778,7 +1778,7 @@ Mods: {
 			SeraphimHeal.DisplayName: Curación de Serafín
 			SirenSeaCreature.DisplayName: Criatura Marina de Sirena
 			AlbinoRunt.DisplayName: Cría Albina
-			// .DisplayName: ""
+			.DisplayName: ""
 		}
 
 		Tiles: {
@@ -1787,14 +1787,14 @@ Mods: {
 		}
 
 		Conditions: {
-			// SellingDuringThanksgiving: During Thanksgiving
-			// SellingDuringOktoberfest: During Oktoberfest
-			// SellingDuringValentineDay: During Valentine's Day
-			// SellingIfMale: If the character is male
-			// SellingWhenWoman: If the character is female
-			// SellingDuringWishboneCooldown: When Wishbone is on cooldown
-			// TurkorDowned: If Turkor has been defeated
-			// OcramDowned: If Ocram has been defeated
+			SellingDuringThanksgiving: Durante el Día de Acción de Gracias
+			SellingDuringOktoberfest: Durante Oktoberfest
+			SellingDuringValentineDay: Durante el Día de San Valentín
+			SellingIfMale: Si el personaje es hombre
+			SellingWhenWoman: Si el personaje es mujer
+			SellingDuringWishboneCooldown: Cuando el Hueso del Deseo está en recarga
+			TurkorDowned: Si Turkor ha sido derrotado
+			OcramDowned: Si Ocram ha sido derrotado
 		}
 
 		Configs: {

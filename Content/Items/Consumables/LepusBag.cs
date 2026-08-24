@@ -45,9 +45,6 @@ namespace Consolaria.Content.Items.Consumables {
             itemLoot.Add(new OneFromRulesRule(1, ItemDropRule.Common(ModContent.ItemType<OstaraHat>()), ItemDropRule.Common(ModContent.ItemType<OstaraJacket>()), ItemDropRule.Common(ModContent.ItemType<OstaraBoots>())));
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<EggCannon>(), 2));
 
-            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<EasterBunnyStaff>(), 3));
-            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Eggplant>(), 3));
-
             bool hasRoa = ModLoader.HasMod("RoA");
             if (ModLoader.HasMod(ThoriumCompat.THORIUMMODNAME)) {
                 if (hasRoa) {

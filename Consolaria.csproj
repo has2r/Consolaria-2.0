@@ -17,7 +17,7 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="ThoriumMod">
-      <HintPath>..\ModAssemblies\ThoriumMod_v1.7.2.6.dll</HintPath>
+      <HintPath>..\ModAssemblies\ThoriumMod_v1.7.2.8.dll</HintPath>
     </Reference>
   </ItemGroup>
 </Project>

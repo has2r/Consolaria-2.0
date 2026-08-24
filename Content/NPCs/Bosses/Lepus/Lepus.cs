@@ -32,6 +32,8 @@ using Terraria.UI;
 namespace Consolaria.Content.NPCs.Bosses.Lepus {
     [AutoloadBossHead]
     internal class Lepus : ConsolariaModBoss {
+        private int _jumpCount_Cap;
+
         public static LocalizedText BestiaryText {
             get; private set;
         }
@@ -676,7 +678,8 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
             NPC.rotation = NPC.velocity.Y / 25f;
             NPC.noTileCollide = false;
             Player player = Main.player[NPC.target];
-            if ((NPC.Center.X > player.Center.X ? (NPC.Center.X - player.Center.X) : (player.Center.X - NPC.Center.X)) < 10 && NPC.Center.Y < player.Center.Y - 150 && JumpCount >= 3) {
+            bool closeToPlayer = (NPC.Center.X > player.Center.X ? (NPC.Center.X - player.Center.X) : (player.Center.X - NPC.Center.X)) < 10 && NPC.Center.Y < player.Center.Y - 150;
+            if ((closeToPlayer || _jumpCount_Cap >= 6) && JumpCount >= 3) {
                 ChangeState(STATE_APPEARANCE, 1f);
                 AdvancedJumpCount = 0;
                 JumpCount = 0;
@@ -684,6 +687,9 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
                 AdvancedJumped = false;
                 AdvancedJumped2 = true;
                 SpawnBigEgg();
+
+                _jumpCount_Cap = 0;
+
                 return;
             }
             if (NPC.velocity.Y != 0f) {
@@ -698,6 +704,8 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
             }
             int rate = (int)MathHelper.Lerp(Main.rand.Next(5, 10), Main.rand.Next(1, 6), NPC.life / (float)NPC.lifeMax);
             if (++StateTimer % rate == 0) {
+                _jumpCount_Cap++;
+
                 if (JumpCount >= 4) {
                     JumpCount = 0;
                 }

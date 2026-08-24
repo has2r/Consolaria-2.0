@@ -477,6 +477,8 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
                     NPC.frame.Y = (NPC.velocity.Y == 0f ? currentFrame : (NPC.velocity.Y < 0f ? (int)Frame.Jump1 : (int)Frame.Jump2)) * frameHeight;
                     break;
             }
+
+            //Dust.NewDustPerfect(_tempPlayerPosition, DustID.Adamantite, Vector2.Zero).noGravity = true;
         }
 
         private void GettingHit() {
@@ -744,7 +746,7 @@ namespace Consolaria.Content.NPCs.Bosses.Lepus {
             JumpCount++;
 
             _jumpCount_Cap++;
-            _tempPlayerPosition = new Vector2(Main.player[NPC.target].Center.X, NPC.Center.Y);
+            _tempPlayerPosition = new Vector2(Main.player[NPC.target].Center.X, NPC.Center.Y - 25);
         }
 
         private void Jump() {

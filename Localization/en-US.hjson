@@ -1582,6 +1582,8 @@ Mods: {
 				Bestiary: Albino antlions may not be suited to blending into the dunes, but the sight of their pale figure is said to instill primal fear in their prey.
 				DisplayName: Giant Albino Swarmer
 			}
+
+			EternalHorror.DisplayName: Eternal Horror
 		}
 
 		Projectiles: {

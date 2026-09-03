@@ -1688,6 +1688,8 @@ Mods: {
 				Bestiary: Puede que las hormigas león albinas no sean aptas para camuflarse en las dunas, pero se dice que la vista de su pálida silueta infunde un miedo primario en sus presas.
 				DisplayName: Enjambrador Albino Gigante
 			}
+
+			// EternalHorror.DisplayName: Eternal Horror
 		}
 
 		Projectiles: {

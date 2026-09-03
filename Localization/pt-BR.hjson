@@ -1673,6 +1673,8 @@ Mods: {
 				Bestiary: Embora formigas-leões albinas não sejam muito adequadas para se camuflarem nas dunas, diz-se que a visão de sua figura pálida instila um medo primitivo em suas presas.
 				DisplayName: Formiga-leão Albina Voadora Gigante
 			}
+
+			// EternalHorror.DisplayName: Eternal Horror
 		}
 
 		Projectiles: {

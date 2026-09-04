@@ -68,9 +68,7 @@ sealed partial class EternalHorror : ModNPC {
             }
         }
 
-        amount *= 2f;
-
-        ScreenObstruction = MathHelper.Lerp(ScreenObstruction, value, amount);
+        ScreenObstruction = Helper.Approach(ScreenObstruction, value, amount);
 
         if (_purpleColorTime == 0f) {
             _purpleColorTime = -Main.rand.NextFloat(Helper.SecondsToFrames(1f), Helper.SecondsToFrames(2.5f));
@@ -106,7 +104,6 @@ sealed partial class EternalHorror : ModNPC {
                 moonColor *= opacity;
                 Color sunColor = _sunAndMoonDrawSettings.SunColor;
                 sunColor = Color.Lerp(sunColor, MainPurpleColor_Dynamic, 0.25f);
-                sunColor *= opacity;
                 Main_DrawSunAndMoon(Main.instance, _sunAndMoonDrawSettings.SceneArea,
                                                    moonColor,
                                                    sunColor,

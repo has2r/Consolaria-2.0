@@ -1,10 +1,22 @@
-﻿using Terraria;
+﻿using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.NPCs.Bosses.EternalHorror;
 
 sealed partial class EternalHorror : ModNPC {
+    public static ushort SelfType => (ushort)ModContent.NPCType<EternalHorror>();
+
+    public static Color MainPurpleColor => new(175, 85, 255);
+    public static Color MainPurpleColor_Dynamic => Color.Lerp(new(175, 85, 255), Color.Lerp(new(198, 123, 173), new(131, 186, 64), 0.5f), Helper.Wave(0f, 1f, 1f, 0f));
+
+    public override void Load() {
+        Load_Background();
+    }
+
+    private partial void Load_Background();
+
     public override void SetStaticDefaults() {
         NPC.SetMaxFrames(count: 6);
 

@@ -53,7 +53,21 @@ public static class Helper_NPCs {
         npc.height = height == 0 ? width : height;
     }
 
+    public static ushort GetCurrentFrame(this NPC npc, ushort frameHeight) => (ushort)(npc.frame.Y / (float)frameHeight);
+
+    public static byte GetCurrentFrameByte(this NPC npc, ushort frameHeight) => (byte)(npc.frame.Y / frameHeight);
+
+    public static byte GetCurrentFrame(this NPC npc, int frameHeight) => npc.GetCurrentFrameByte((ushort)frameHeight);
+
+    public static ushort GetFrameHeight(this NPC npc) => (ushort)(TextureAssets.Npc[npc.type].Height() / Main.npcFrameCount[npc.type]);
+
+    public static void SetCurrentFrame(this NPC npc, byte frame, ushort frameHeight) => npc.frame.Y = frame * frameHeight;
+
+    public static void SetCurrentFrame(this NPC npc, int frame, int frameHeight) => npc.SetCurrentFrame((byte)frame, (ushort)frameHeight);
+
     public static void SetMaxFrames(this NPC npc, byte count) => Main.npcFrameCount[npc.type] = count;
+
+    public static int GetMaxFrames(this NPC npc) => Main.npcFrameCount[npc.type];
 
     public static Texture2D GetTexture(this NPC npc) => TextureAssets.Npc[npc.type].Value;
 

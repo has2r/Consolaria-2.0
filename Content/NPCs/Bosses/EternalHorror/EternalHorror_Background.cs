@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Runtime.CompilerServices;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.GameContent.Events;
@@ -8,8 +9,14 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.NPCs.Bosses.EternalHorror;
 
 sealed partial class EternalHorror : ModNPC {
+    [UnsafeAccessor(UnsafeAccessorKind.Method, Name = "DrawSunAndMoon")]
+    public extern static void Main_DrawSunAndMoon(Main self, Main.SceneArea sceneArea, Color moonColor, Color sunColor, float tempMushroomInfluence);
+
     public static float ScreenObstruction { get; private set; }
     public static Color FrontColor { get; private set; } = new Color(0, 0, 120);
+
+    private record struct SunAndMoonDrawSettings(Main.SceneArea SceneArea, Color MoonColor, Color SunColor, float TempMushroomInfluence);
+    private static SunAndMoonDrawSettings _sunAndMoonDrawSettings;
 
     private float _purpleColorTime, _purpleColorTime2;
     private float _purpleColorStrength;
@@ -19,6 +26,14 @@ sealed partial class EternalHorror : ModNPC {
 
         On_ScreenDarkness.DrawBack += On_ScreenDarkness_DrawBack;
         On_ScreenDarkness.DrawFront += On_ScreenDarkness_DrawFront;
+
+        On_Main.DrawSunAndMoon += On_Main_DrawSunAndMoon;
+    }
+
+    private void On_Main_DrawSunAndMoon(On_Main.orig_DrawSunAndMoon orig, Main self, Main.SceneArea sceneArea, Color moonColor, Color sunColor, float tempMushroomInfluence) {
+        _sunAndMoonDrawSettings = new(sceneArea, moonColor, sunColor, tempMushroomInfluence);
+
+        orig(self, sceneArea, moonColor, sunColor, tempMushroomInfluence);
     }
 
     private void On_ScreenDarkness_Update(On_ScreenDarkness.orig_Update orig) {
@@ -31,6 +46,8 @@ sealed partial class EternalHorror : ModNPC {
         orig(spriteBatch);
 
         DrawDarkness_Back(spriteBatch);
+
+        DrawSunAndMoonAgain();
     }
 
     private void On_ScreenDarkness_DrawFront(On_ScreenDarkness.orig_DrawFront orig, Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch) {
@@ -76,6 +93,25 @@ sealed partial class EternalHorror : ModNPC {
             baseColor = Color.Lerp(baseColor, MainPurpleColor, purpleColorFactor * _purpleColorStrength * 0.5f);
             Color color = baseColor * ScreenObstruction;
             spriteBatch.Draw(TextureAssets.MagicPixel.Value, new Rectangle(-2, -2, Main.screenWidth + 4, Main.screenHeight + 4), new Rectangle(0, 0, 1, 1), color);
+        }
+    }
+
+    private void DrawSunAndMoonAgain() {
+        if (ScreenObstruction != 0f) {
+            if ((double)(Main.screenPosition.Y / 16f) < Main.worldSurface + 2.0) {
+                float opacity = ScreenObstruction;
+                Color lightingColor = Lighting.GetColor(NPC.Center.ToTileCoordinates());
+                Color moonColor = Color.Lerp(_sunAndMoonDrawSettings.MoonColor, lightingColor, 0.5f);
+                moonColor = Color.Lerp(moonColor, MainPurpleColor_Dynamic, 0.25f);
+                moonColor *= opacity;
+                Color sunColor = _sunAndMoonDrawSettings.SunColor;
+                sunColor = Color.Lerp(sunColor, MainPurpleColor_Dynamic, 0.25f);
+                sunColor *= opacity;
+                Main_DrawSunAndMoon(Main.instance, _sunAndMoonDrawSettings.SceneArea,
+                                                   moonColor,
+                                                   sunColor,
+                                                   _sunAndMoonDrawSettings.TempMushroomInfluence);
+            }
         }
     }
 

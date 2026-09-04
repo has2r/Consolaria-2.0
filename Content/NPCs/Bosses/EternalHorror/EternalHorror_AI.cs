@@ -1,4 +1,6 @@
-﻿using Terraria;
+﻿using Microsoft.Xna.Framework;
+using System;
+using Terraria;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.NPCs.Bosses.EternalHorror;
@@ -23,8 +25,24 @@ sealed partial class EternalHorror : ModNPC {
 
             }
         }
+        void updateTime() {
+            float smoothingFactor = 0.025f;
+            float deltaTime = 1f / 60;
+            if (Main.dayTime) {
+                smoothingFactor *= 4;
+                float to = (float)Main.dayLength;
+                float t = 1f - MathF.Exp(-smoothingFactor * 60f * deltaTime);
+                Main.time = MathHelper.Lerp((float)Main.time, to, t);
+            }
+            else {
+                float to = (float)Main.nightLength / 2;
+                float t = 1f - MathF.Exp(-smoothingFactor * 60f * deltaTime);
+                Main.time = MathHelper.Lerp((float)Main.time, to, t);
+            }
+        }
 
         init();
+        updateTime();
     }
 
     public override void PostAI() {

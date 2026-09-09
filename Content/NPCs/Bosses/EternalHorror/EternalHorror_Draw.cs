@@ -1,10 +1,23 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Microsoft.CodeAnalysis;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
+using System;
+using Terraria;
 using Terraria.ModLoader;
+using ThoriumMod.Core.DataClasses;
 
 namespace Consolaria.Content.NPCs.Bosses.EternalHorror;
 
 sealed partial class EternalHorror : ModNPC {
+    private readonly record struct DrawContext(SpriteBatch SpriteBatch, Vector2 Position, Texture2D Texture, Color DrawColor, float Rotation, SpriteEffects Flip, Vector2 ScreenPosition);
+
+    private static Asset<Texture2D> _eyeTexture;
+
+    private partial void Load_Textures() {
+        _eyeTexture = ModContent.Request<Texture2D>(Texture + "_Eyes");
+    }
+
     private static Color MainPurpleColor => new(175, 85, 255);
     private static Color MainPurpleColor_Dynamic => Color.Lerp(new(175, 85, 255), Color.Lerp(new(198, 123, 173), new(131, 186, 64), 0.5f), Helper.Wave(0f, 1f, 1f, 0f));
 
@@ -28,20 +41,59 @@ sealed partial class EternalHorror : ModNPC {
     }
 
     public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
-        DrawItself(spriteBatch, screenPos, drawColor);
+        Draw(spriteBatch, screenPos, drawColor);
 
         return false;
     }
 
-    private void DrawItself(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
+    private void Draw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
         drawColor = NPC.GetNPCColorTintedByBuffs(drawColor);
         drawColor = Color.Lerp(drawColor, Color.White, 0.5f);
         Texture2D texture = NPC.GetTexture();
         SpriteEffects flip = (-NPC.spriteDirection).ToSpriteEffects();
-        NPC.QuickDraw(spriteBatch, screenPos, drawColor, NPC.frame, texture: texture, effect: flip);
+        Vector2 position = NPC.Center;
+        float rotation = NPC.rotation;
+
+        DrawContext drawContext = new(spriteBatch, position, texture, drawColor, rotation, flip, screenPos);
+
+        Draw_Inner(drawContext);
+
+        Texture2D eyesTexture = _eyeTexture.Value;
+        drawContext = drawContext with { Texture = eyesTexture };
+        DrawUnderShadowEffect(drawContext, (newPosition, newColor) => {
+            Draw_Inner(drawContext with {
+                Position = newPosition,
+                DrawColor = newColor,
+            });
+        });
     }
 
-    public override void PostDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) { 
-
+    private void Draw_Inner(DrawContext drawContext) {
+        NPC.QuickDraw(drawContext.SpriteBatch, drawContext.ScreenPosition, drawContext.DrawColor, rotation: drawContext.Rotation, position: drawContext.Position, texture: drawContext.Texture, effect: drawContext.Flip);
     }
+
+    private void DrawUnderShadowEffect(DrawContext drawContext, Action<Vector2, Color> draw) {
+        Vector2 position = drawContext.Position;
+        float rotation = drawContext.Rotation;
+        int shadowCount = 20;
+        for (float k = 0; k < MathHelper.TwoPi; k += MathHelper.TwoPi / 4f) {
+            for (int i = shadowCount; i > 0; i--) {
+                float shadowProgress = i / (float)shadowCount;
+                Vector2 eyesPosition = position;
+                eyesPosition += -Vector2.UnitY.RotatedBy(rotation + k) * shadowCount * 2 * shadowProgress;
+                Color eyesColor = Color.White;
+                eyesColor.A = 0;
+                eyesColor *= 1f - shadowProgress;
+                eyesColor *= 0.5f;
+                eyesColor *= 0.5f;
+                eyesColor *= 0.5f;
+                eyesColor *= 0.5f;
+                eyesColor *= Helper.Wave(0f, 1f, 1f, k + NPC.whoAmI);
+
+                draw(eyesPosition, eyesColor);
+            }
+        }
+    }
+
+    public override void PostDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) { }
 }

@@ -11,7 +11,7 @@ sealed partial class EternalHorror : ModNPC {
         public void OnActiveUpdate(NPC npc, EternalHorror boss);
     }
 
-    private struct MoveToPlayer : IAIState {
+    private readonly struct MoveToPlayer : IAIState {
         void IAIState.OnActiveUpdate(NPC npc, EternalHorror boss) {
             boss.TargetPlayer();
 
@@ -41,7 +41,7 @@ sealed partial class EternalHorror : ModNPC {
                     npc.velocity += npc.DirectionFrom(targetCenter) * 0.25f;
                 }
             }
-            void moveUpwards() {
+            void moveUpwardsIfClose() {
                 if (npc.Center.Y > targetCenter.Y) {
                     npc.velocity -= Vector2.UnitY * 0.25f;
                 }
@@ -51,7 +51,7 @@ sealed partial class EternalHorror : ModNPC {
             makeTargetPositionABitHigher();
             moveToTarget();
             moveFromTargetIfClose();
-            moveUpwards();
+            moveUpwardsIfClose();
         }
     }
 

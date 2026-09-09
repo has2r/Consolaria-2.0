@@ -11,10 +11,16 @@ sealed partial class EternalHorror : ModNPC {
     public EternalHorror Self => NPC.As<EternalHorror>();
 
     public override void Load() {
-        Load_Background();
+        Load_BackgroundHooks();
+
+        if (!Main.dedServ) {
+            Load_Textures();
+        }
     }
 
-    private partial void Load_Background();
+    private partial void Load_BackgroundHooks();
+
+    private partial void Load_Textures();
 
     public override void SetStaticDefaults() {
         NPC.SetMaxFrames(count: 6);

@@ -21,7 +21,7 @@ sealed partial class EternalHorror : ModNPC {
     private static float _purpleColorTime, _purpleColorTime2;
     private static float _purpleColorStrength;
 
-    private partial void Load_Background() {
+    private partial void Load_BackgroundHooks() {
         On_ScreenDarkness.Update += On_ScreenDarkness_Update;
 
         On_ScreenDarkness.DrawBack += On_ScreenDarkness_DrawBack;

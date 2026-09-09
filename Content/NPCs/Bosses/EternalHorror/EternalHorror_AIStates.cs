@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -55,6 +56,18 @@ sealed partial class EternalHorror : ModNPC {
         }
     }
 
+    private readonly struct Phase1LaserAttack : IAIState {
+        public static float LASERATTACKTIME => Helper.SecondsToFrames(3);
+
+        void IAIState.OnActiveUpdate(NPC npc, EternalHorror boss) {
+            if (++boss.AICounter <= LASERATTACKTIME) {
+                return;
+            }
+
+            boss.AICounter = 0f;
+        }
+    }
+
     private Dictionary<Type, IAIState> _states = null!;
     private HashSet<IAIState> _activeStates = null!;
 
@@ -74,5 +87,12 @@ sealed partial class EternalHorror : ModNPC {
     private void DeactivateState<T>() where T : IAIState {
         IAIState stateToDeactivate = _states[typeof(T)];
         _activeStates.Remove(stateToDeactivate);
+    }
+
+    private bool HasActiveState<T>() where T : IAIState {
+        if (_states.TryGetValue(typeof(T), out IAIState state)) {
+            return _activeStates.Contains(state);
+        }
+        return false;
     }
 }

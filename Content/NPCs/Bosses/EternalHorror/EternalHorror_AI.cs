@@ -39,21 +39,21 @@ sealed partial class EternalHorror : ModNPC {
         InitializeStates();
 
         ActivateState<MoveToPlayer>();
+        ActivateState<Phase1LaserAttack>();
     }
 
     private void MakeMidnight() {
-        float smoothingFactor = 0.025f;
-        float deltaTime = 1f / 60;
+        float expFactor = 0.025f;
         if (Main.dayTime) {
-            smoothingFactor *= 4;
+            expFactor *= 4;
             float to = (float)Main.dayLength;
-            float t = 1f - MathF.Exp(-smoothingFactor * 60f * deltaTime);
-            Main.time = MathHelper.Lerp((float)Main.time, to, t);
+            float lerpValue = 1f - MathF.Exp(-expFactor);
+            Main.time = MathHelper.Lerp((float)Main.time, to, lerpValue);
         }
         else {
             float to = (float)Main.nightLength / 2;
-            float t = 1f - MathF.Exp(-smoothingFactor * 60f * deltaTime);
-            Main.time = MathHelper.Lerp((float)Main.time, to, t);
+            float lerpValue = 1f - MathF.Exp(-expFactor);
+            Main.time = MathHelper.Lerp((float)Main.time, to, lerpValue);
         }
     }
 

@@ -1,11 +1,9 @@
-﻿using Microsoft.CodeAnalysis;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using System;
 using Terraria;
 using Terraria.ModLoader;
-using ThoriumMod.Core.DataClasses;
 
 namespace Consolaria.Content.NPCs.Bosses.EternalHorror;
 
@@ -13,6 +11,8 @@ sealed partial class EternalHorror : ModNPC {
     private readonly record struct DrawContext(SpriteBatch SpriteBatch, Vector2 Position, Texture2D Texture, Color DrawColor, float Rotation, SpriteEffects Flip, Vector2 ScreenPosition);
 
     private static Asset<Texture2D> _eyeTexture;
+
+    private float WaveOffset => NPC.whoAmI;
 
     private partial void Load_Textures() {
         _eyeTexture = ModContent.Request<Texture2D>(Texture + "_Eyes");
@@ -76,7 +76,7 @@ sealed partial class EternalHorror : ModNPC {
         Vector2 position = drawContext.Position;
         float rotation = drawContext.Rotation;
         int shadowCount = 20;
-        for (float k = 0; k < MathHelper.TwoPi; k += MathHelper.TwoPi / 4f) {
+        for (float k = 0f; k < MathHelper.TwoPi; k += MathHelper.TwoPi / 4f) {
             for (int i = shadowCount; i > 0; i--) {
                 float shadowProgress = i / (float)shadowCount;
                 Vector2 eyesPosition = position;
@@ -84,11 +84,15 @@ sealed partial class EternalHorror : ModNPC {
                 Color eyesColor = Color.White;
                 eyesColor.A = 0;
                 eyesColor *= 1f - shadowProgress;
+                float getWaveFactor(float waveOffset = 0f) => Helper.Wave(0.25f, 1f, 10f, waveOffset + WaveOffset);
+                eyesColor *= getWaveFactor(0f);
+                eyesColor *= getWaveFactor(2f);
+                eyesColor *= getWaveFactor(4f);
+                eyesColor *= getWaveFactor(6f);
+                float kWaveOffset = (k == MathHelper.PiOver2 || k == MathHelper.Pi + MathHelper.PiOver2).ToInt() * MathHelper.TwoPi * 0.5f;
+                eyesColor *= Helper.Wave(0.5f, 1f, 10f, kWaveOffset + WaveOffset);
+
                 eyesColor *= 0.5f;
-                eyesColor *= 0.5f;
-                eyesColor *= 0.5f;
-                eyesColor *= 0.5f;
-                eyesColor *= Helper.Wave(0f, 1f, 1f, k + NPC.whoAmI);
 
                 draw(eyesPosition, eyesColor);
             }

@@ -59,13 +59,13 @@ sealed partial class EternalHorror : ModNPC {
 
     private void UpdateStates() {
         foreach (IAIState activeState in _activeStates) {
-            activeState.OnActiveUpdate(NPC, Self);
+            activeState.OnActiveUpdate(npc: NPC, boss: Self);
         }
     }
 
     private void TargetPlayer() {
         if (NPC.ShouldTargetPlayer()) {
-            NPC.TargetClosest(false);
+            NPC.TargetClosest(faceTarget: false);
         }
     }
 

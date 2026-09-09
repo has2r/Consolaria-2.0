@@ -57,19 +57,23 @@ sealed partial class EternalHorror : ModNPC {
     }
 
     private readonly struct Phase1LaserAttack : IAIState {
-        public static float LASERATTACKTIME => Helper.SecondsToFrames(3);
+        public static float LASERATTACKTIME => Helper.SecondsToFrames(1);
 
         void IAIState.OnActiveUpdate(NPC npc, EternalHorror boss) {
+            boss._glowOpacity = Helper.Approach(boss._glowOpacity, boss.Phase1LaserAttackProgress, 0.1f);
+
             if (++boss.AICounter <= LASERATTACKTIME) {
                 return;
             }
 
-            boss.AICounter = 0f;
+            boss.AICounter = -LASERATTACKTIME / 2f;
         }
     }
 
     private Dictionary<Type, IAIState> _states = null!;
     private HashSet<IAIState> _activeStates = null!;
+
+    public float Phase1LaserAttackProgress => Helper.Clamp01(AICounter / Phase1LaserAttack.LASERATTACKTIME);
 
     private void InitializeStates() {
         _states = [];

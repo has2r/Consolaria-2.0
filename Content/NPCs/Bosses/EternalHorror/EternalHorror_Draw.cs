@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Newtonsoft.Json.Linq;
 using ReLogic.Content;
 using System;
 using Terraria;
@@ -8,18 +9,24 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.NPCs.Bosses.EternalHorror;
 
 sealed partial class EternalHorror : ModNPC {
-    private readonly record struct DrawContext(SpriteBatch SpriteBatch, Vector2 Position, Texture2D Texture, Color DrawColor, float Rotation, SpriteEffects Flip, Vector2 ScreenPosition);
+    private readonly record struct DrawContext(SpriteBatch SpriteBatch, Vector2 Position, Texture2D Texture, Rectangle Clip, Color DrawColor, float Rotation, SpriteEffects Flip, Vector2 ScreenPosition);
 
-    private static Asset<Texture2D> _eyeTexture;
+    private static Asset<Texture2D> _eyeTexture = null!,
+                                    _glowTexture = null!;
+
+    private float _glowOpacity;
 
     private float WaveOffset => NPC.whoAmI;
 
     private partial void Load_Textures() {
         _eyeTexture = ModContent.Request<Texture2D>(Texture + "_Eyes");
+        _glowTexture = ModContent.Request<Texture2D>(Texture + "_Glow");
     }
 
     private static Color MainPurpleColor => new(175, 85, 255);
     private static Color MainPurpleColor_Dynamic => Color.Lerp(new(175, 85, 255), Color.Lerp(new(198, 123, 173), new(131, 186, 64), 0.5f), Helper.Wave(0f, 1f, 1f, 0f));
+
+    private static Color MainRedColor_Dynamic => Color.Lerp(new(255, 10, 25), MainPurpleColor_Dynamic, Helper.Wave(0f, 1f, 25f, 0f) * 0.25f);
 
     public override void FindFrame(int frameHeight) {
         int phase1LastFrame = 3;
@@ -47,32 +54,68 @@ sealed partial class EternalHorror : ModNPC {
     }
 
     private void Draw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
-        drawColor = NPC.GetNPCColorTintedByBuffs(drawColor);
+        drawColor = NPC.GetNPCColorTintedByBuffs(npcColor: drawColor);
         drawColor = Color.Lerp(drawColor, Color.White, 0.5f);
-        Texture2D texture = NPC.GetTexture();
+        Texture2D texture = NPC.GetTexture(),
+                  glowTexture = _glowTexture.Value;
         SpriteEffects flip = (-NPC.spriteDirection).ToSpriteEffects();
         Vector2 position = NPC.Center;
         float rotation = NPC.rotation;
+        Rectangle clip = NPC.frame,
+                  glowClip = glowTexture.Bounds;
 
-        DrawContext drawContext = new(spriteBatch, position, texture, drawColor, rotation, flip, screenPos);
+        DrawContext drawContext = new(spriteBatch, position, texture, clip, drawColor, rotation, flip, screenPos);
 
-        Draw_Inner(drawContext);
-
-        Texture2D eyesTexture = _eyeTexture.Value;
-        drawContext = drawContext with { Texture = eyesTexture };
-        DrawUnderShadowEffect(drawContext, (newPosition, newColor) => {
-            Draw_Inner(drawContext with {
-                Position = newPosition,
-                DrawColor = newColor,
+        void drawSelf() {
+            Draw_Inner(drawContext);
+        }
+        void drawGlowingEyes() {
+            Texture2D eyesTexture = _eyeTexture.Value;
+            drawContext = drawContext with { Texture = eyesTexture };
+            DrawUnderShadowEffect(drawContext, draw: (newPosition, newColor) => {
+                Draw_Inner(drawContext with {
+                    Position = newPosition,
+                    DrawColor = newColor,
+                });
             });
-        });
+        }
+        void drawLaserGlow() {
+            drawContext = drawContext with { 
+                Texture = glowTexture,
+                Clip = glowClip
+            };
+            DrawUnderShadowEffect(drawContext, draw: (newPosition, newColor) => {
+                newColor = newColor.MultiplyRGBA(MainRedColor_Dynamic);
+                newColor *= _glowOpacity;
+                Draw_Inner(drawContext with {
+                    Position = newPosition,
+                    DrawColor = newColor,
+                });
+            }, sinWaveOffset: MathHelper.Pi,
+               applyOpacity: false,
+               forcedOpacity: 0.25f,
+               kWaveOffset_Base: MathHelper.TwoPi * 0.25f);
+        }
+
+        drawSelf();
+        drawGlowingEyes();
+        drawLaserGlow();
     }
 
     private void Draw_Inner(DrawContext drawContext) {
-        NPC.QuickDraw(drawContext.SpriteBatch, drawContext.ScreenPosition, drawContext.DrawColor, rotation: drawContext.Rotation, position: drawContext.Position, texture: drawContext.Texture, effect: drawContext.Flip);
+        NPC.QuickDraw(drawContext.SpriteBatch, drawContext.ScreenPosition, drawContext.DrawColor, frameBox: drawContext.Clip, 
+                                                                                                  rotation: drawContext.Rotation, 
+                                                                                                  position: drawContext.Position, 
+                                                                                                  texture: drawContext.Texture, 
+                                                                                                  effect: drawContext.Flip);
     }
 
-    private void DrawUnderShadowEffect(DrawContext drawContext, Action<Vector2, Color> draw) {
+    private void DrawUnderShadowEffect(DrawContext drawContext, Action<Vector2, Color> draw, float sinWaveOffset = 0f, 
+                                                                                             bool applyOpacity = true, 
+                                                                                             float forcedOpacity = 1f,
+                                                                                             bool drawX = true,
+                                                                                             bool drawY = true,
+                                                                                             float kWaveOffset_Base = MathHelper.TwoPi * 0.5f) {
         Vector2 position = drawContext.Position;
         float rotation = drawContext.Rotation;
         int shadowCount = 20;
@@ -80,19 +123,32 @@ sealed partial class EternalHorror : ModNPC {
             for (int i = shadowCount; i > 0; i--) {
                 float shadowProgress = i / (float)shadowCount;
                 Vector2 eyesPosition = position;
-                eyesPosition += -Vector2.UnitY.RotatedBy(rotation + k) * shadowCount * 2 * shadowProgress;
+                Vector2 rotationDirection = -Vector2.UnitY.RotatedBy(rotation + k);
+                float rotationOffsetValue = shadowCount * 2 * shadowProgress;
+                eyesPosition += rotationDirection * rotationOffsetValue;
                 Color eyesColor = Color.White;
                 eyesColor.A = 0;
                 eyesColor *= 1f - shadowProgress;
-                float getWaveFactor(float waveOffset = 0f) => Helper.Wave(0.25f, 1f, 10f, waveOffset + WaveOffset);
-                eyesColor *= getWaveFactor(0f);
-                eyesColor *= getWaveFactor(2f);
-                eyesColor *= getWaveFactor(4f);
-                eyesColor *= getWaveFactor(6f);
-                float kWaveOffset = (k == MathHelper.PiOver2 || k == MathHelper.Pi + MathHelper.PiOver2).ToInt() * MathHelper.TwoPi * 0.5f;
-                eyesColor *= Helper.Wave(0.5f, 1f, 10f, kWaveOffset + WaveOffset);
-
-                eyesColor *= 0.5f;
+                bool x = k is MathHelper.PiOver2 or (MathHelper.Pi + MathHelper.PiOver2);
+                if (!drawX && x) {
+                    continue;
+                }
+                if (!drawY && !x) {
+                    continue;
+                }
+                float getWaveFactor(float waveOffset = 0f) => Helper.Wave(0.25f, 1f, 10f, sinWaveOffset + waveOffset + WaveOffset);
+                if (applyOpacity) {
+                    eyesColor *= getWaveFactor(0f);
+                    eyesColor *= getWaveFactor(2f);
+                    eyesColor *= getWaveFactor(4f);
+                    eyesColor *= getWaveFactor(6f);
+                }
+                float kWaveOffset = x.ToInt() * kWaveOffset_Base;
+                eyesColor *= Helper.Wave(0.5f, 1f, 10f, sinWaveOffset + kWaveOffset + WaveOffset);
+                if (applyOpacity) {
+                    eyesColor *= 0.5f;
+                }
+                eyesColor *= forcedOpacity;
 
                 draw(eyesPosition, eyesColor);
             }

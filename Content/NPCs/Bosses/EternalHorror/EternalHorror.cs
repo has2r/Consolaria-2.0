@@ -1,11 +1,12 @@
-﻿using Microsoft.Xna.Framework;
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.NPCs.Bosses.EternalHorror;
 
 sealed partial class EternalHorror : ModNPC {
+    private static string EERIEOCRAM_MUSICPATH => "Assets/Music/EerieOcram";
+
     public static ushort SelfType => (ushort)ModContent.NPCType<EternalHorror>();
 
     public EternalHorror Self => NPC.As<EternalHorror>();
@@ -60,5 +61,11 @@ sealed partial class EternalHorror : ModNPC {
                                        lavaImmune: true);
 
         NPC.SpawnWithHigherTime(timeMult: 30);
+
+        SetMusic();
+    }
+
+    private void SetMusic() {
+        Music = MusicLoader.GetMusicSlot(Mod, EERIEOCRAM_MUSICPATH);
     }
 }

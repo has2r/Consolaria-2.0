@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input.Touch;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.NPCs.Bosses.EternalHorror;

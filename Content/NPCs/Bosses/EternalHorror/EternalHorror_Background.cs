@@ -13,13 +13,13 @@ sealed partial class EternalHorror : ModNPC {
     public extern static void Main_DrawSunAndMoon(Main self, Main.SceneArea sceneArea, Color moonColor, Color sunColor, float tempMushroomInfluence);
 
     public static float ScreenObstruction { get; private set; }
-    public static Color FrontColor { get; private set; } = new Color(0, 0, 120);
+    public static Color FrontColor { get; private set; }
 
     private record struct SunAndMoonDrawSettings(Main.SceneArea SceneArea, Color MoonColor, Color SunColor, float TempMushroomInfluence);
     private static SunAndMoonDrawSettings _sunAndMoonDrawSettings;
 
-    private float _purpleColorTime, _purpleColorTime2;
-    private float _purpleColorStrength;
+    private static float _purpleColorTime, _purpleColorTime2;
+    private static float _purpleColorStrength;
 
     private partial void Load_Background() {
         On_ScreenDarkness.Update += On_ScreenDarkness_Update;

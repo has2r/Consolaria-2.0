@@ -4,10 +4,13 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
+using Terraria.ModLoader;
 
 namespace Consolaria;
 
 public static class Helper_NPCs {
+    public static T As<T>(this NPC npc) where T : ModNPC => npc.ModNPC as T;
+
     public static void SetDefaultsToEnemy(this NPC npc, ushort lifeMax, 
                                                         ushort damage, 
                                                         ushort defense, 
@@ -96,5 +99,4 @@ public static class Helper_NPCs {
         return new DrawData(tex, npc.Center + Vector2.UnitY * yOffset + Vector2.UnitX * xOffset - screenPos + Vector2.UnitY * npc.gfxOffY, sourceRectangle, lightColor,
             npc.rotation + exRot, sourceRectangle.Centered(), npc.scale * scale, effect ?? npc.spriteDirection.ToSpriteEffects(), 0);
     }
-
 }

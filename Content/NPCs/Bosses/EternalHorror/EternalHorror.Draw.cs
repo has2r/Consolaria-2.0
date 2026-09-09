@@ -94,7 +94,7 @@ sealed partial class EternalHorror : ModNPC {
                 });
             }, sinWaveOffset: MathHelper.Pi,
                applyInnerOpacity: false,
-               forcedOpacity: MathHelper.Lerp(0.125f, 0.25f, 0.75f),
+               forcedOpacity: MathHelper.Lerp(0.125f, 0.25f, 1f),
                sinWaveOffset_BasedOnEffectIndex: MathHelper.TwoPi * 0.25f,
                sinStep: AICounter);
         }

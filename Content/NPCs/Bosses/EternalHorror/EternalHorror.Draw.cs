@@ -80,21 +80,23 @@ sealed partial class EternalHorror : ModNPC {
             });
         }
         void drawLaserGlow() {
+            Color getLaserGlowColor(Color drawColor) => drawColor.MultiplyRGBA(MainRedColor_Dynamic) * _glowOpacity;
             drawContext = drawContext with { 
                 Texture = glowTexture,
                 Clip = glowClip
             };
+            Draw_Inner(drawContext with { DrawColor = getLaserGlowColor(drawColor) });
             DrawUnderShadowEffect(drawContext, draw: (newPosition, newColor) => {
-                newColor = newColor.MultiplyRGBA(MainRedColor_Dynamic);
-                newColor *= _glowOpacity;
+                newColor = getLaserGlowColor(newColor);
                 Draw_Inner(drawContext with {
                     Position = newPosition,
                     DrawColor = newColor,
                 });
             }, sinWaveOffset: MathHelper.Pi,
-               applyOpacity: false,
-               forcedOpacity: 0.25f,
-               kWaveOffset_Base: MathHelper.TwoPi * 0.25f);
+               applyInnerOpacity: false,
+               forcedOpacity: MathHelper.Lerp(0.125f, 0.25f, 0.75f),
+               sinWaveOffset_BasedOnEffectIndex: MathHelper.TwoPi * 0.25f,
+               sinStep: AICounter);
         }
 
         drawSelf();
@@ -111,11 +113,14 @@ sealed partial class EternalHorror : ModNPC {
     }
 
     private void DrawUnderShadowEffect(DrawContext drawContext, Action<Vector2, Color> draw, float sinWaveOffset = 0f, 
-                                                                                             bool applyOpacity = true, 
+                                                                                             bool applyInnerOpacity = true, 
                                                                                              float forcedOpacity = 1f,
-                                                                                             bool drawX = true,
-                                                                                             bool drawY = true,
-                                                                                             float kWaveOffset_Base = MathHelper.TwoPi * 0.5f) {
+                                                                                             bool drawXEffect = true,
+                                                                                             bool drawYEffect = true,
+                                                                                             float sinWaveOffset_BasedOnEffectIndex = MathHelper.TwoPi * 0.5f,
+                                                                                             float? sinStep = null) {
+        sinStep ??= Main.GlobalTimeWrappedHourly;
+        float sinStep_Value = sinStep.Value;
         Vector2 position = drawContext.Position;
         float rotation = drawContext.Rotation;
         int shadowCount = 20;
@@ -130,22 +135,22 @@ sealed partial class EternalHorror : ModNPC {
                 eyesColor.A = 0;
                 eyesColor *= 1f - shadowProgress;
                 bool x = k is MathHelper.PiOver2 or (MathHelper.Pi + MathHelper.PiOver2);
-                if (!drawX && x) {
+                if (!drawXEffect && x) {
                     continue;
                 }
-                if (!drawY && !x) {
+                if (!drawYEffect && !x) {
                     continue;
                 }
-                float getWaveFactor(float waveOffset = 0f) => Helper.Wave(0.25f, 1f, 10f, sinWaveOffset + waveOffset + WaveOffset);
-                if (applyOpacity) {
+                float getWaveFactor(float waveOffset = 0f) => Helper.Wave(sinStep_Value, 0.25f, 1f, 10f, sinWaveOffset + waveOffset + WaveOffset);
+                if (applyInnerOpacity) {
                     eyesColor *= getWaveFactor(0f);
                     eyesColor *= getWaveFactor(2f);
                     eyesColor *= getWaveFactor(4f);
                     eyesColor *= getWaveFactor(6f);
                 }
-                float kWaveOffset = x.ToInt() * kWaveOffset_Base;
-                eyesColor *= Helper.Wave(0.5f, 1f, 10f, sinWaveOffset + kWaveOffset + WaveOffset);
-                if (applyOpacity) {
+                float kWaveOffset = x.ToInt() * sinWaveOffset_BasedOnEffectIndex;
+                eyesColor *= Helper.Wave(sinStep_Value, 0.5f, 1f, 10f, sinWaveOffset + kWaveOffset + WaveOffset);
+                if (applyInnerOpacity) {
                     eyesColor *= 0.5f;
                 }
                 eyesColor *= forcedOpacity;

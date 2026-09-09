@@ -5,6 +5,9 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.NPCs.Bosses.EternalHorror;
 
 sealed partial class EternalHorror : ModNPC {
+    private static Color MainPurpleColor => new(175, 85, 255);
+    private static Color MainPurpleColor_Dynamic => Color.Lerp(new(175, 85, 255), Color.Lerp(new(198, 123, 173), new(131, 186, 64), 0.5f), Helper.Wave(0f, 1f, 1f, 0f));
+
     public override void FindFrame(int frameHeight) {
         int phase1LastFrame = 3;
         void playPhase1IdleAnimation() {

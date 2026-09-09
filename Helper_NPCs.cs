@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -9,6 +10,27 @@ using Terraria.ModLoader;
 namespace Consolaria;
 
 public static class Helper_NPCs {
+    public static void MoveTo(this Entity entity, Vector2 position, float speed = 10f, float inertia = 15f) {
+        Vector2 movement = position - entity.position;
+        Vector2 movement2 = movement * (speed / movement.Length());
+        entity.velocity += (movement2 - entity.velocity) / inertia;
+    }
+
+    public static void MoveToWithDeceleration(this Entity entity, Vector2 position, float speed = 5f, float inertia = 15f, float minDistance = 10f, float deceleration = 0.97f) {
+        Vector2 direction = position - entity.Center;
+        if (direction.Length() > minDistance) {
+            direction.Normalize();
+            entity.velocity = (entity.velocity * inertia + direction * speed) / (inertia + 1f);
+        }
+        else {
+            entity.velocity *= MathF.Pow(deceleration, 2f);
+        }
+    }
+
+    public static bool ShouldTargetPlayer(this NPC npc) => npc.target < 0 || npc.target == 255 || npc.GetTargetPlayer().dead || !npc.GetTargetPlayer().active;
+
+    public static Player GetTargetPlayer(this NPC npc) => npc.target >= 0 && npc.target <= Main.player.Length ? Main.player[npc.target] : null!;
+
     public static T As<T>(this NPC npc) where T : ModNPC => npc.ModNPC as T;
 
     public static void SetDefaultsToEnemy(this NPC npc, ushort lifeMax, 

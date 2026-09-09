@@ -8,16 +8,6 @@ namespace Consolaria.Content.NPCs.Bosses.EternalHorror;
 sealed partial class EternalHorror : ModNPC {
     public static ushort SelfType => (ushort)ModContent.NPCType<EternalHorror>();
 
-    public static Color MainPurpleColor => new(175, 85, 255);
-    public static Color MainPurpleColor_Dynamic => Color.Lerp(new(175, 85, 255), Color.Lerp(new(198, 123, 173), new(131, 186, 64), 0.5f), Helper.Wave(0f, 1f, 1f, 0f));
-
-    public ref float InitValue => ref NPC.ai[0];
-
-    public bool Init {
-        get => InitValue != 0f;
-        set => InitValue = value.ToInt();
-    }
-
     public EternalHorror Self => NPC.As<EternalHorror>();
 
     public override void Load() {

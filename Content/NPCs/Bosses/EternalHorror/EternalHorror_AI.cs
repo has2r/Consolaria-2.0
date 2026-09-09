@@ -6,6 +6,15 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.NPCs.Bosses.EternalHorror;
 
 sealed partial class EternalHorror : ModNPC {
+    public ref float InitValue => ref NPC.ai[0];
+
+    public ref float AICounter => ref NPC.ai[1];
+
+    public bool Init {
+        get => InitValue != 0f;
+        set => InitValue = value.ToInt();
+    }
+
     public override bool PreAI() => base.PreAI();
 
     public override void AI() {
@@ -23,11 +32,13 @@ sealed partial class EternalHorror : ModNPC {
 
         Init = true;
 
-        _states = [];
+        TargetPlayer();
 
-        AddState<IdleState>();
+        SpawnFromAbove();
 
-        ChangeState<IdleState>();
+        InitializeStates();
+
+        ActivateState<MoveToPlayer>();
     }
 
     private void MakeMidnight() {
@@ -47,6 +58,19 @@ sealed partial class EternalHorror : ModNPC {
     }
 
     private void UpdateStates() {
-        _activeState.OnActiveUpdate(Self);
+        foreach (IAIState activeState in _activeStates) {
+            activeState.OnActiveUpdate(NPC, Self);
+        }
+    }
+
+    private void TargetPlayer() {
+        if (NPC.ShouldTargetPlayer()) {
+            NPC.TargetClosest(false);
+        }
+    }
+
+    private void SpawnFromAbove() {
+        Vector2 spawnOffset = new(0f, -1150f);
+        NPC.Center = NPC.GetTargetPlayer().Center + spawnOffset;
     }
 }

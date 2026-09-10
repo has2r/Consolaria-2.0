@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.GameContent.Events;
+using Terraria.Graphics.Effects;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.NPCs.Bosses.EternalHorror;
@@ -58,9 +59,11 @@ sealed partial class EternalHorror : ModNPC {
     }
 
     private void ApplyScreenDarkness() {
+        Player player = Main.LocalPlayer;
+
         float value = 0f;
         float amount = 1f / 60f;
-        Vector2 mountedCenter = Main.player[Main.myPlayer].MountedCenter;
+        Vector2 mountedCenter = player.MountedCenter;
         for (int i = 0; i < 200; i++) {
             if (Main.npc[i].active && Main.npc[i].type == SelfType && Main.npc[i].Distance(mountedCenter) < 3000f) {
                 value = 0.95f;

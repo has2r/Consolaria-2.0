@@ -20,12 +20,16 @@ sealed partial class EternalHorror : ModNPC {
             boss.TargetPlayer();
 
             Player target = npc.GetTargetPlayer();
-            Vector2 targetCenter = target.Center;
-            
+            Vector2 targetCenter = target.Center,
+                    baseTargetCenter = targetCenter;
+            float waveOffsetSpeed = 2.5f;
+            Vector2 randomOffset = new Vector2(Helper.Wave(-1f, 1f, waveOffsetSpeed, boss.WaveOffset), Helper.Wave(-1f, 1f, waveOffsetSpeed, MathHelper.Pi + boss.WaveOffset)) * 30f;
+            targetCenter += randomOffset;
+
             const int MinDistanceToTargetInPixels = 300;
 
             void lookAtTarget() {
-                float angleToTarget = npc.AngleTo(targetCenter) - MathHelper.PiOver2;
+                float angleToTarget = npc.AngleTo(baseTargetCenter) - MathHelper.PiOver2;
                 npc.rotation = angleToTarget;
             }
             void makeTargetPositionABitHigher() {
@@ -50,12 +54,16 @@ sealed partial class EternalHorror : ModNPC {
                     npc.velocity -= Vector2.UnitY * 0.5f;
                 }
             }
+            void slowDownWhenCloseToTarget() {
+                npc.velocity *= Helper.Clamp01(npc.Distance(targetCenter) / 60f);
+            }
 
             lookAtTarget();
             makeTargetPositionABitHigher();
             moveToTarget();
             moveFromTargetIfClose();
             moveUpwardsIfClose();
+            slowDownWhenCloseToTarget();
         }
     }
 

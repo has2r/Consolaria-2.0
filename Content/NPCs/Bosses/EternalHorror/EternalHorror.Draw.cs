@@ -14,15 +14,17 @@ sealed partial class EternalHorror : ModNPC {
     public readonly record struct DrawContext(SpriteBatch SpriteBatch, Vector2 Position, Texture2D Texture, Rectangle Clip, Color DrawColor, float Rotation, SpriteEffects Flip, Vector2 ScreenPosition);
 
     private static Asset<Texture2D> _eyeTexture = null!,
-                                    _glowTexture = null!;
+                                    _glowTexture = null!,
+                                    _shadowTexture = null!;
 
     private float _glowOpacity;
 
     private float WaveOffset => NPC.whoAmI;
 
     private partial void Load_Textures() {
-        _eyeTexture = ModContent.Request<Texture2D>(Texture + "_Eyes");
-        _glowTexture = ModContent.Request<Texture2D>(Texture + "_Glow");
+        _eyeTexture = Helper.RequestTexture(Texture + "_Eyes");
+        _glowTexture = Helper.RequestTexture(Texture + "_Glow");
+        _shadowTexture = Helper.RequestTexture(Texture + "_Shadow");
     }
 
     public static Color MainPurpleColor => new(175, 85, 255);
@@ -158,7 +160,7 @@ sealed partial class EternalHorror : ModNPC {
         drawSelf();
         drawGlowingEyes();
         drawLaserGlow();
-        drawLaserLine();
+        //drawLaserLine();
     }
 
     public static Color GetLaserGlowColor(Color drawColor) => drawColor.MultiplyRGBA(MainRedColor_Dynamic);

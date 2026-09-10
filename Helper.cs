@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-
+using ReLogic.Content;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -20,6 +20,8 @@ using static Consolaria.Helper;
 namespace Consolaria;
 
 public static class Helper {
+    public static Asset<Texture2D> RequestTexture(string path) => ModContent.Request<Texture2D>(path);
+
     public static void NewMessage(object text, Color? color = null) {
         if (Main.netMode == NetmodeID.SinglePlayer) {
             Main.NewText(text, color);

@@ -90,7 +90,9 @@ sealed partial class EternalHorror : ModNPC {
                 return;
             }
 
-            boss.AICounter = -(int)(LASERATTACKTIME / 2f);
+            boss.ResetPhase1LaserAttack();
+
+            boss.AttackCount++;
         }
     }
 

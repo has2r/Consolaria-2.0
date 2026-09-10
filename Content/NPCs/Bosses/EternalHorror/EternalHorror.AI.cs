@@ -10,6 +10,8 @@ sealed partial class EternalHorror : ModNPC {
 
     public ref float AICounter => ref NPC.ai[1];
 
+    public ref float AttackCount => ref NPC.localAI[3];
+
     public bool Init {
         get => InitValue != 0f;
         set => InitValue = value.ToInt();
@@ -31,6 +33,8 @@ sealed partial class EternalHorror : ModNPC {
         }
 
         Init = true;
+
+        ResetPhase1LaserAttack(true);
 
         TargetPlayer();
 
@@ -72,5 +76,13 @@ sealed partial class EternalHorror : ModNPC {
     private void SpawnFromAbove() {
         Vector2 spawnOffset = new(0f, -1150f);
         NPC.Center = NPC.GetTargetPlayer().Center + spawnOffset;
+    }
+
+    private void ResetPhase1LaserAttack(bool extraDelay = false) {
+        if (extraDelay) {
+            AICounter = -(int)(Phase1LaserAttack.LASERATTACKTIME / 1f);
+            return;
+        }
+        AICounter = -(int)(Phase1LaserAttack.LASERATTACKTIME / 2f);
     }
 }

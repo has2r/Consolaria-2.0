@@ -9,7 +9,6 @@ sealed partial class EternalHorror : ModNPC {
         NPCID.Sets.BossBestiaryPriority.Add(Type);
     }
 
-    public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
-        
+    public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {       
     }
 }

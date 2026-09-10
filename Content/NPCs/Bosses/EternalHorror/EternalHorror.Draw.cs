@@ -124,7 +124,7 @@ sealed partial class EternalHorror : ModNPC {
         Vector2 position = drawContext.Position;
         float rotation = drawContext.Rotation;
         int shadowCount = 20;
-        for (float k = 0f; k < MathHelper.TwoPi; k += MathHelper.PiOver4) {
+        for (float k = 0f; k < MathHelper.TwoPi; k += MathHelper.TwoPi / 4f) {
             for (int i = shadowCount; i > 0; i--) {
                 float shadowProgress = i / (float)shadowCount;
                 Vector2 eyesPosition = position;

@@ -4,12 +4,14 @@ using Newtonsoft.Json.Linq;
 using ReLogic.Content;
 using System;
 using Terraria;
+using Terraria.GameContent;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Consolaria.Content.NPCs.Bosses.EternalHorror;
 
 sealed partial class EternalHorror : ModNPC {
-    private readonly record struct DrawContext(SpriteBatch SpriteBatch, Vector2 Position, Texture2D Texture, Rectangle Clip, Color DrawColor, float Rotation, SpriteEffects Flip, Vector2 ScreenPosition);
+    public readonly record struct DrawContext(SpriteBatch SpriteBatch, Vector2 Position, Texture2D Texture, Rectangle Clip, Color DrawColor, float Rotation, SpriteEffects Flip, Vector2 ScreenPosition);
 
     private static Asset<Texture2D> _eyeTexture = null!,
                                     _glowTexture = null!;
@@ -23,10 +25,10 @@ sealed partial class EternalHorror : ModNPC {
         _glowTexture = ModContent.Request<Texture2D>(Texture + "_Glow");
     }
 
-    private static Color MainPurpleColor => new(175, 85, 255);
-    private static Color MainPurpleColor_Dynamic => Color.Lerp(new(175, 85, 255), Color.Lerp(new(198, 123, 173), new(131, 186, 64), 0.5f), Helper.Wave(0f, 1f, 1f, 0f));
+    public static Color MainPurpleColor => new(175, 85, 255);
+    public static Color MainPurpleColor_Dynamic => Color.Lerp(new(175, 85, 255), Color.Lerp(new(198, 123, 173), new(131, 186, 64), 0.5f), Helper.Wave(0f, 1f, 1f, 0f));
 
-    private static Color MainRedColor_Dynamic => Color.Lerp(new(255, 10, 25), MainPurpleColor_Dynamic, Helper.Wave(0f, 1f, 25f, 0f) * 0.25f);
+    public static Color MainRedColor_Dynamic => Color.Lerp(new(255, 10, 25), MainPurpleColor_Dynamic, Helper.Wave(0f, 1f, 25f, 0f) * 0.25f);
 
     public override void FindFrame(int frameHeight) {
         int phase1LastFrame = 3;
@@ -77,10 +79,64 @@ sealed partial class EternalHorror : ModNPC {
                     Position = newPosition,
                     DrawColor = newColor,
                 });
-            });
+            }, sinWaveOffset: WaveOffset);
+        }
+        Color getLaserGlowColor(Color color) => GetLaserGlowColor(color) * _glowOpacity;
+        void drawLaserLine() {
+            float rotation = Phase1LaserRotation;
+
+            Vector2 vector = NPC.Center - Main.screenPosition;
+            int num = 40;
+            int num2 = 180 * num;
+            num2 /= 2;
+            Microsoft.Xna.Framework.Color color = MainRedColor_Dynamic;
+            Microsoft.Xna.Framework.Color color2 = color;
+            color.A = 0;
+            color2.A /= 2;
+            Texture2D value = TextureAssets.Extra[ExtrasID.FairyQueenLance].Value;
+            Vector2 origin = value.Frame().Size() * new Vector2(0f, 0.5f);
+            Vector2 scale = new Vector2(num2 / value.Width, 2f);
+            Vector2 scale2 = new Vector2((float)(num2 / value.Width) * 0.5f, 2f);
+            Color color3 = color;
+            //spriteBatch.Draw(value, vector, null, color3, rotation, origin, scale2, SpriteEffects.None, 0f);
+            //spriteBatch.Draw(value, vector, null, color3 * 0.3f, rotation, origin, scale, SpriteEffects.None, 0f);
+            //Microsoft.Xna.Framework.Color color3 = color * Utils.GetLerpValue(60f, 55f, proj.localAI[0], clamped: true) * Utils.GetLerpValue(0f, 10f, proj.localAI[0], clamped: true);
+            drawContext = new DrawContext(spriteBatch, vector, value, value.Bounds, color3, rotation, drawContext.Flip, Main.screenPosition);
+            DrawUnderShadowEffect(drawContext, draw: (newPosition, newColor) => {
+                newColor = getLaserGlowColor(newColor);
+                newColor *= Phase1LaserAttackProgress;
+                spriteBatch.Draw(drawContext.Texture, newPosition, null, newColor, drawContext.Rotation, origin, scale2, drawContext.Flip, 0f);
+                spriteBatch.Draw(drawContext.Texture, newPosition, null, newColor * 0.3f, drawContext.Rotation, origin, scale, drawContext.Flip, 0f);
+            }, sinWaveOffset: WaveOffset + MathHelper.Pi,
+               applyInnerOpacity: false,
+               forcedOpacity: MathHelper.Lerp(0.125f, 0.25f, 1f),
+               sinWaveOffset_BasedOnEffectIndex: MathHelper.TwoPi * 0.25f,
+               sinStep: AICounter);
+            //Texture2D value2 = TextureAssets.Projectile[proj.type].Value;
+            //Vector2 origin2 = value2.Frame().Size() / 2f;
+            //Microsoft.Xna.Framework.Color color4 = Microsoft.Xna.Framework.Color.White * Utils.GetLerpValue(0f, 20f, proj.localAI[0], clamped: true);
+            //color4.A /= 2;
+            //float num3 = MathHelper.Lerp(0.7f, 1f, Utils.GetLerpValue(55f, 60f, proj.localAI[0], clamped: true));
+            //float lerpValue = Utils.GetLerpValue(10f, 60f, proj.localAI[0]);
+            //if (lerpValue > 0f) {
+            //    float lerpValue2 = Utils.GetLerpValue(0f, 1f, proj.velocity.Length(), clamped: true);
+            //    for (float num4 = 1f; num4 > 0f; num4 -= 1f / 6f) {
+            //        Vector2 vector2 = rotation.ToRotationVector2() * -120f * num4 * lerpValue2;
+            //        spriteBatch.Draw(value2, vector + vector2, null, color * lerpValue * (1f - num4), rotation, origin2, num3, SpriteEffects.None, 0f);
+            //        spriteBatch.Draw(value2, vector + vector2, null, new Microsoft.Xna.Framework.Color(255, 255, 255, 0) * 0.15f * lerpValue * (1f - num4), rotation, origin2, num3 * 0.85f, SpriteEffects.None, 0f);
+            //    }
+
+            //    for (float num5 = 0f; num5 < 1f; num5 += 0.25f) {
+            //        Vector2 vector3 = (num5 * ((float)Math.PI * 2f) + rotation).ToRotationVector2() * 2f * num3;
+            //        spriteBatch.Draw(value2, vector + vector3, null, color2 * lerpValue, rotation, origin2, num3, SpriteEffects.None, 0f);
+            //    }
+
+            //    spriteBatch.Draw(value2, vector, null, color2 * lerpValue, rotation, origin2, num3 * 1.1f, SpriteEffects.None, 0f);
+            //}
+
+            //spriteBatch.Draw(value2, vector, null, color4, rotation, origin2, num3, SpriteEffects.None, 0f);
         }
         void drawLaserGlow() {
-            Color getLaserGlowColor(Color drawColor) => drawColor.MultiplyRGBA(MainRedColor_Dynamic) * _glowOpacity;
             drawContext = drawContext with { 
                 Texture = glowTexture,
                 Clip = glowClip
@@ -92,7 +148,7 @@ sealed partial class EternalHorror : ModNPC {
                     Position = newPosition,
                     DrawColor = newColor,
                 });
-            }, sinWaveOffset: MathHelper.Pi,
+            }, sinWaveOffset: WaveOffset + MathHelper.Pi,
                applyInnerOpacity: false,
                forcedOpacity: MathHelper.Lerp(0.125f, 0.25f, 1f),
                sinWaveOffset_BasedOnEffectIndex: MathHelper.TwoPi * 0.25f,
@@ -102,7 +158,10 @@ sealed partial class EternalHorror : ModNPC {
         drawSelf();
         drawGlowingEyes();
         drawLaserGlow();
+        drawLaserLine();
     }
+
+    public static Color GetLaserGlowColor(Color drawColor) => drawColor.MultiplyRGBA(MainRedColor_Dynamic);
 
     private void Draw_Inner(DrawContext drawContext) {
         NPC.QuickDraw(drawContext.SpriteBatch, drawContext.ScreenPosition, drawContext.DrawColor, frameBox: drawContext.Clip, 
@@ -112,13 +171,13 @@ sealed partial class EternalHorror : ModNPC {
                                                                                                   effect: drawContext.Flip);
     }
 
-    private void DrawUnderShadowEffect(DrawContext drawContext, Action<Vector2, Color> draw, float sinWaveOffset = 0f, 
-                                                                                             bool applyInnerOpacity = true, 
-                                                                                             float forcedOpacity = 1f,
-                                                                                             bool drawXEffect = true,
-                                                                                             bool drawYEffect = true,
-                                                                                             float sinWaveOffset_BasedOnEffectIndex = MathHelper.TwoPi * 0.5f,
-                                                                                             float? sinStep = null) {
+    public static void DrawUnderShadowEffect(DrawContext drawContext, Action<Vector2, Color> draw, float sinWaveOffset = 0f, 
+                                                                                                   bool applyInnerOpacity = true, 
+                                                                                                   float forcedOpacity = 1f,
+                                                                                                   bool drawXEffect = true,
+                                                                                                   bool drawYEffect = true,
+                                                                                                   float sinWaveOffset_BasedOnEffectIndex = MathHelper.TwoPi * 0.5f,
+                                                                                                   float? sinStep = null) {
         sinStep ??= Main.GlobalTimeWrappedHourly;
         float sinStep_Value = sinStep.Value;
         Vector2 position = drawContext.Position;
@@ -141,7 +200,7 @@ sealed partial class EternalHorror : ModNPC {
                 if (!drawYEffect && !x) {
                     continue;
                 }
-                float getWaveFactor(float waveOffset = 0f) => Helper.Wave(sinStep_Value, 0.25f, 1f, 10f, sinWaveOffset + waveOffset + WaveOffset);
+                float getWaveFactor(float waveOffset = 0f) => Helper.Wave(sinStep_Value, 0.25f, 1f, 10f, sinWaveOffset + waveOffset);
                 if (applyInnerOpacity) {
                     eyesColor *= getWaveFactor(0f);
                     eyesColor *= getWaveFactor(2f);
@@ -149,7 +208,7 @@ sealed partial class EternalHorror : ModNPC {
                     eyesColor *= getWaveFactor(6f);
                 }
                 float kWaveOffset = x.ToInt() * sinWaveOffset_BasedOnEffectIndex;
-                eyesColor *= Helper.Wave(sinStep_Value, 0.5f, 1f, 10f, sinWaveOffset + kWaveOffset + WaveOffset);
+                eyesColor *= Helper.Wave(sinStep_Value, 0.5f, 1f, 10f, sinWaveOffset + kWaveOffset);
                 if (applyInnerOpacity) {
                     eyesColor *= 0.5f;
                 }

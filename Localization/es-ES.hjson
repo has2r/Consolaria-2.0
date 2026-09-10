@@ -1781,6 +1781,7 @@ Mods: {
 			SirenSeaCreature.DisplayName: Criatura Marina de Sirena
 			AlbinoRunt.DisplayName: Cría Albina
 			// .DisplayName: ""
+			// EternalHorrorLaser1.DisplayName: Eternal Horror Laser1
 		}
 
 		Tiles: {

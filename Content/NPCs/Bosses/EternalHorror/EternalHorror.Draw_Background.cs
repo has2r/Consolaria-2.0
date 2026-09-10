@@ -117,7 +117,7 @@ sealed partial class EternalHorror : ModNPC {
                     float progress = i / (float)count;
                     float sinStep = Main.GlobalTimeWrappedHourly + i * 2;
                     float waveFactor = sinStep % 1f * 0.1f + progress;
-                    color = Color.Lerp(Color.Black, MainPurpleColor_Dynamic, waveFactor);
+                    color = Color.Lerp(new Color(22, 21, 18), MainPurpleColor_Dynamic, waveFactor);
                     float scale_float = waveFactor;
                     scale_float = MathF.Max(0.125f, scale_float);
                     sinStep = MathHelper.TwoPi * waveFactor * 2f;

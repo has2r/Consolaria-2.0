@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Runtime.CompilerServices;
 using Terraria;
 using Terraria.GameContent;
@@ -64,9 +65,11 @@ sealed partial class EternalHorror : ModNPC {
             if (Main.npc[i].active && Main.npc[i].type == SelfType && Main.npc[i].Distance(mountedCenter) < 3000f) {
                 value = 0.95f;
                 FrontColor = new Color(22, 21, 18) * 0.3f;
-                amount = 0.03f;
+                //amount = 0.03f;
             }
         }
+
+        amount /= 1f;
 
         ScreenObstruction = Helper.Approach(ScreenObstruction, value, amount);
 
@@ -81,16 +84,53 @@ sealed partial class EternalHorror : ModNPC {
 
     private void DrawDarkness_Back(SpriteBatch spriteBatch) {
         if (ScreenObstruction != 0f) {
-            float purpleColorFactor = 0f;
-            float purpleColorTime_Min = _purpleColorTime2 * 0.125f * 0.75f;
-            if (_purpleColorTime > purpleColorTime_Min) {
-                purpleColorFactor = Utils.GetLerpValue(purpleColorTime_Min, 0f, _purpleColorTime, true);
+            void drawLightnings() {
+                float purpleColorFactor = 0f;
+                float purpleColorTime_Min = _purpleColorTime2 * 0.125f * 0.75f;
+                if (_purpleColorTime > purpleColorTime_Min) {
+                    purpleColorFactor = Utils.GetLerpValue(purpleColorTime_Min, 0f, _purpleColorTime, true);
+                }
+                Color baseColor = Color.Black;
+                baseColor = Color.Lerp(baseColor, MainPurpleColor_Dynamic, 0.125f * 0.5f);
+                baseColor = Color.Lerp(baseColor, MainPurpleColor, purpleColorFactor * _purpleColorStrength * 0.5f);
+                Color color = baseColor * ScreenObstruction;
+                color *= 0.5f;
+                spriteBatch.Draw(TextureAssets.MagicPixel.Value, new Rectangle(-2, -2, Main.screenWidth + 4, Main.screenHeight + 4), new Rectangle(0, 0, 1, 1), color);
             }
-            Color baseColor = Color.Black;
-            baseColor = Color.Lerp(baseColor, MainPurpleColor_Dynamic, 0.125f * 0.5f);
-            baseColor = Color.Lerp(baseColor, MainPurpleColor, purpleColorFactor * _purpleColorStrength * 0.5f);
-            Color color = baseColor * ScreenObstruction;
-            spriteBatch.Draw(TextureAssets.MagicPixel.Value, new Rectangle(-2, -2, Main.screenWidth + 4, Main.screenHeight + 4), new Rectangle(0, 0, 1, 1), color);
+            void drawReflections() {
+                float screenObstructionFactor = Utils.GetLerpValue(0.5f, 0.95f, ScreenObstruction, true);
+
+                Texture2D background = _backgroundTexture.Value;
+                Rectangle clip = background.Bounds;
+                Vector2 origin = clip.Centered();
+                Color color = Color.White;
+                Vector2 scale = Vector2.One * 10f;
+                Helper.DrawInfo drawInfo = new() {
+                    Clip = clip,
+                    Origin = origin,
+                    Color = color,
+                    Scale = scale
+                };
+                Vector2 position = Main.screenPosition + new Vector2(Main.screenWidth, Main.screenHeight) / 2f;
+                int count = 10;
+                for (int i = 0; i < count; i++) {
+                    float progress = i / (float)count;
+                    float sinStep = Main.GlobalTimeWrappedHourly + i * 2;
+                    float waveFactor = sinStep % 1f * 0.1f + progress;
+                    color = Color.Lerp(Color.Black, MainPurpleColor_Dynamic, waveFactor);
+                    float scale_float = waveFactor;
+                    scale_float = MathF.Max(0.125f, scale_float);
+                    sinStep = MathHelper.TwoPi * waveFactor * 2f;
+                    spriteBatch.Draw(background, position, drawInfo.WithScale(scale_float).
+                                                                    WithColor(color * 0.5f * 1f).
+                                                                    WithColorModifier(screenObstructionFactor).
+                                                                    WithRotation(sinStep));
+                }
+            }
+
+            drawReflections();
+            drawLightnings();
+            drawLightnings();
         }
     }
 

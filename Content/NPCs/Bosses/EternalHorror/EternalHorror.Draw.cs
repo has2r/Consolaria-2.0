@@ -15,7 +15,8 @@ sealed partial class EternalHorror : ModNPC {
 
     private static Asset<Texture2D> _eyeTexture = null!,
                                     _glowTexture = null!,
-                                    _shadowTexture = null!;
+                                    _shadowTexture = null!,
+                                    _backgroundTexture = null!;
 
     private float _glowOpacity;
 
@@ -25,6 +26,7 @@ sealed partial class EternalHorror : ModNPC {
         _eyeTexture = Helper.RequestTexture(Texture + "_Eyes");
         _glowTexture = Helper.RequestTexture(Texture + "_Glow");
         _shadowTexture = Helper.RequestTexture(Texture + "_Shadow");
+        _backgroundTexture = Helper.RequestTexture(Texture + "_Background");
     }
 
     public static Color MainPurpleColor => new(175, 85, 255);

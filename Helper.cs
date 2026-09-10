@@ -120,6 +120,8 @@ public static class Helper {
         public DrawInfo WithColorModifier(float colorModifier) => this with { Color = Color * colorModifier };
         public DrawInfo WithColorRGBModifier(float colorModifier) => this with { Color = Color.ModifyRGB(colorModifier) };
 
+        public DrawInfo WithColorOverride(Color color) => this with { Color = color };
+
         public DrawInfo WithRotation(float rotation) => this with { Rotation = Rotation + rotation };
     }
 

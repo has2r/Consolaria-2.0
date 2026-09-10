@@ -34,7 +34,7 @@ sealed partial class EternalHorror : ModNPC {
 
         Init = true;
 
-        ResetPhase1LaserAttack(true);
+        ResetPhase1LaserAttack(applyIncreasedDelay: true);
 
         TargetPlayer();
 
@@ -78,8 +78,8 @@ sealed partial class EternalHorror : ModNPC {
         NPC.Center = NPC.GetTargetPlayer().Center + spawnOffset;
     }
 
-    private void ResetPhase1LaserAttack(bool extraDelay = false) {
-        if (extraDelay) {
+    private void ResetPhase1LaserAttack(bool applyIncreasedDelay = false) {
+        if (applyIncreasedDelay) {
             AICounter = -(int)(Phase1LaserAttack.LASERATTACKTIME / 1f);
             return;
         }

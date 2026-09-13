@@ -22,9 +22,11 @@ sealed partial class EternalHorror : ModNPC {
             Player target = npc.GetTargetPlayer();
             Vector2 targetCenter = target.Center,
                     baseTargetCenter = targetCenter;
-            float waveOffsetSpeed = 2.5f;
-            Vector2 randomOffset = new Vector2(Helper.Wave(-1f, 1f, waveOffsetSpeed, boss.WaveOffset), Helper.Wave(-1f, 1f, waveOffsetSpeed, MathHelper.Pi + boss.WaveOffset)) * 30f;
-            targetCenter += randomOffset;
+            float waveOffsetSpeed = 1f;
+            float randomOffsetStrength = 10f;
+            Vector2 randomOffset = new(Helper.Wave(-1f, 1f, waveOffsetSpeed, boss.WaveOffset), Helper.Wave(-1f, 1f, waveOffsetSpeed, MathHelper.PiOver2 + boss.WaveOffset));
+            randomOffset *= randomOffsetStrength;
+            //targetCenter += randomOffset;
 
             const int MinDistanceToTargetInPixels = 300;
 
@@ -45,8 +47,15 @@ sealed partial class EternalHorror : ModNPC {
                 npc.velocity = npc.velocity.MoveTowards(targetPosition, 2f / 15f);
             }
             void moveFromTargetIfClose() {
-                if (npc.Distance(targetCenter) < MinDistanceToTargetInPixels / 2f) {
-                    npc.velocity += npc.DirectionFrom(targetCenter) * 0.25f;
+                float distance = npc.Distance(targetCenter);
+                float minDistance = MinDistanceToTargetInPixels / 2f;
+                if (distance < minDistance) {
+                    npc.velocity += npc.DirectionFrom(targetCenter) * (0.25f + 0.75f * Helper.Clamp01(1f - distance / minDistance));
+                }
+                else {
+                    if (npc.velocity.Length() < 1f) {
+                        npc.velocity *= 0.95f;
+                    }
                 }
             }
             void moveUpwardsIfClose() {
@@ -55,7 +64,7 @@ sealed partial class EternalHorror : ModNPC {
                 }
             }
             void slowDownWhenCloseToTarget() {
-                npc.velocity *= Helper.Clamp01(npc.Distance(targetCenter) / 60f);
+                npc.velocity *= Helper.Clamp01(npc.Distance(targetCenter) / (MinDistanceToTargetInPixels / 5f));
             }
 
             lookAtTarget();

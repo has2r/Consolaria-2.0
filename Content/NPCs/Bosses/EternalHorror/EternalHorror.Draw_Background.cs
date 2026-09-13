@@ -124,6 +124,7 @@ sealed partial class EternalHorror : ModNPC {
                     float scale_float = waveFactor;
                     scale_float = MathF.Max(0.125f, scale_float);
                     sinStep = MathHelper.TwoPi * waveFactor * 2f;
+                    //sinStep *= (i % 2 == 0).ToDirectionInt(); 
                     spriteBatch.Draw(background, position, drawInfo.WithScale(scale_float).
                                                                     WithColor(color * 0.5f * 1f).
                                                                     WithColorModifier(screenObstructionFactor).

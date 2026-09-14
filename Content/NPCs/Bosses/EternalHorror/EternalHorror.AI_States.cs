@@ -13,6 +13,9 @@ namespace Consolaria.Content.NPCs.Bosses.EternalHorror;
 sealed partial class EternalHorror : ModNPC {
     private interface IAIState {
         public void OnActiveUpdate(NPC npc, EternalHorror boss);
+
+        public void OnStart(NPC npc, EternalHorror boss) { }
+        public void OnEnd(NPC npc, EternalHorror boss) { }
     }
 
     private readonly struct MoveToPlayer : IAIState {
@@ -130,11 +133,15 @@ sealed partial class EternalHorror : ModNPC {
     private void ActivateState<T>() where T : struct, IAIState {
         AddState<T>();
         IAIState stateToActivate = _states[typeof(T)];
+        if (!_activeStates.Contains(stateToActivate)) {
+            stateToActivate.OnStart(npc: NPC, boss: Self);
+        }
         _activeStates.Add(stateToActivate);
     }
 
     private void DeactivateState<T>() where T : IAIState {
         IAIState stateToDeactivate = _states[typeof(T)];
+        stateToDeactivate.OnEnd(npc: NPC, boss: Self);
         _activeStates.Remove(stateToDeactivate);
     }
 

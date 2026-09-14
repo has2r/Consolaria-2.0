@@ -1,5 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
+using System.Collections;
+using System.Collections.Immutable;
+using System.Linq;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -63,7 +66,8 @@ sealed partial class EternalHorror : ModNPC {
     }
 
     private void UpdateStates() {
-        foreach (IAIState activeState in _activeStates) {
+        IAIState[] states = [.. _activeStates];
+        foreach (IAIState activeState in states) {
             activeState.OnActiveUpdate(npc: NPC, boss: Self);
         }
     }

@@ -9,6 +9,8 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.NPCs.Bosses.EternalHorror;
 
 sealed partial class EternalHorror : ModNPC {
+    private static float ROTATIONLERP => 0.5f;
+
     private interface IAIState {
         public void OnActiveUpdate(NPC npc, EternalHorror boss);
 
@@ -23,17 +25,12 @@ sealed partial class EternalHorror : ModNPC {
             Player target = npc.GetTargetPlayer();
             Vector2 targetCenter = target.Center,
                     baseTargetCenter = targetCenter;
-            float waveOffsetSpeed = 1f;
-            float randomOffsetStrength = 10f;
-            Vector2 randomOffset = new(Helper.Wave(-1f, 1f, waveOffsetSpeed, boss.WaveOffset), Helper.Wave(-1f, 1f, waveOffsetSpeed, MathHelper.PiOver2 + boss.WaveOffset));
-            randomOffset *= randomOffsetStrength;
-            //targetCenter += randomOffset;
 
             const int MinDistanceToTargetInPixels = 300;
 
             void lookAtTarget() {
                 float angleToTarget = npc.AngleTo(baseTargetCenter) - MathHelper.PiOver2;
-                npc.rotation = angleToTarget;
+                npc.rotation = npc.rotation.AngleLerp(angleToTarget, ROTATIONLERP);
             }
             void makeTargetPositionABitHigher() {
                 targetCenter.Y -= 100f;
@@ -79,6 +76,7 @@ sealed partial class EternalHorror : ModNPC {
 
     private readonly struct Phase1LaserAttack : IAIState {
         public static float LASERATTACKTIME => Helper.SecondsToFrames(1);
+        public static byte LASERATTACKCOUNT => 3;
 
         void IAIState.OnActiveUpdate(NPC npc, EternalHorror boss) {
             Player target = npc.GetTargetPlayer();
@@ -86,31 +84,63 @@ sealed partial class EternalHorror : ModNPC {
             float laserProgress = boss.Phase1LaserAttackProgress;
             float laserProgress_ForLaserRotation = laserProgress * Utils.GetLerpValue(1f, 0.5f, laserProgress, true);
 
-            ref float laserRotation = ref boss.Phase1LaserRotation;
-            float newLaserRotation = npc.AngleTo(target.Center);
-            laserRotation = Utils.AngleLerp(laserRotation, newLaserRotation, laserProgress_ForLaserRotation);
-
-            if ((boss.AICounter < 0f && laserProgress > 0f) || boss.AICounter >= LASERATTACKTIME * 0.5f) {
-                if (boss.AICounter % 2 == 0) {
-                    const float Speed = 12f;
-                    Vector2 vector8 = npc.Center;
-                    SoundEngine.PlaySound(SoundID.Item33, vector8);
-                    float rotation = vector8.AngleTo(target.Center + target.velocity * Speed / 2f);
-                    Projectile.NewProjectile(npc.GetSource_FromAI(), vector8.X, vector8.Y, MathF.Cos(rotation) * Speed, MathF.Sin(rotation) * Speed, ModContent.ProjectileType<EternalHorrorLaser1>(),
-                        27, 1.5f);
+            void shootLasers() {
+                if ((boss.AICounter < 0f && laserProgress > 0f) || boss.AICounter >= LASERATTACKTIME * 0.5f) {
+                    if (boss.AICounter % 2 == 0) {
+                        const float Speed = 12f;
+                        Vector2 vector8 = npc.Center;
+                        SoundEngine.PlaySound(SoundID.Item33, vector8);
+                        float rotation = vector8.AngleTo(target.Center + target.velocity * Speed / 2f);
+                        Projectile.NewProjectile(npc.GetSource_FromAI(), vector8.X, vector8.Y, MathF.Cos(rotation) * Speed, MathF.Sin(rotation) * Speed, ModContent.ProjectileType<EternalHorrorLaser1>(),
+                            27, 1.5f);
+                    }
                 }
             }
+            void prepareLasers() {
+                ref float laserRotation = ref boss.Phase1LaserRotation;
+                float newLaserRotation = npc.AngleTo(target.Center);
+                laserRotation = Utils.AngleLerp(laserRotation, newLaserRotation, laserProgress_ForLaserRotation);
 
-            if (++boss.AICounter <= LASERATTACKTIME) {
-                return;
-            }
+                bool shotLaser = ++boss.AICounter >= LASERATTACKTIME;
+                if (!shotLaser) {
+                    return;
+                }
 
-            boss.ResetPhase1LaserAttack();
+                boss.ResetPhase1LaserAttack();
 
-            if (++boss.AttackCount >= 3) {
+                bool shotLasers = ++boss.AttackCount >= LASERATTACKCOUNT;
+                if (!shotLasers) {
+                    return;
+                }
+
                 boss.ResetCounters();
                 boss.DeactivateState<Phase1LaserAttack>();
+                boss.ActivateState<Phase1ShadowSpawn>();
             }
+
+            prepareLasers();
+            shootLasers();
+        }
+    }
+
+    private readonly struct Phase1ShadowSpawn : IAIState {
+        void IAIState.OnActiveUpdate(NPC npc, EternalHorror boss) {
+            void prepareClone() {
+                float lerpValue = 1 / 60f;
+                lerpValue *= 1.5f;
+                npc.velocity = Vector2.Lerp(npc.velocity, Vector2.Zero, lerpValue);
+                npc.rotation = npc.rotation.AngleLerp(npc.velocity.Length() * npc.direction, lerpValue);
+            }
+
+            prepareClone();
+        }
+
+        void IAIState.OnStart(NPC npc, EternalHorror boss) {
+            boss.DeactivateState<MoveToPlayer>();
+        }
+
+        void IAIState.OnEnd(NPC npc, EternalHorror boss) {
+            boss.ActivateState<MoveToPlayer>();
         }
     }
 
@@ -134,11 +164,17 @@ sealed partial class EternalHorror : ModNPC {
         if (!_activeStates.Contains(stateToActivate)) {
             stateToActivate.OnStart(npc: NPC, boss: Self);
         }
+        else {
+            return;
+        }
         _activeStates.Add(stateToActivate);
     }
 
     private void DeactivateState<T>() where T : IAIState {
         IAIState stateToDeactivate = _states[typeof(T)];
+        if (!_activeStates.Contains(stateToDeactivate)) {
+            return;
+        }
         stateToDeactivate.OnEnd(npc: NPC, boss: Self);
         _activeStates.Remove(stateToDeactivate);
     }

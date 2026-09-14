@@ -60,6 +60,8 @@ sealed partial class EternalHorror : ModNPC {
     }
 
     private void Draw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
+        UpdateVisuals();
+
         drawColor = NPC.GetNPCColorTintedByBuffs(npcColor: drawColor);
         drawColor = Color.Lerp(drawColor, Color.White, 0.5f);
         Texture2D texture = NPC.GetTexture(),
@@ -163,6 +165,11 @@ sealed partial class EternalHorror : ModNPC {
         drawGlowingEyes();
         drawLaserGlow();
         //drawLaserLine();
+    }
+
+    private void UpdateVisuals() {
+        ref float glowOpacity = ref _glowOpacity;
+        glowOpacity = Helper.Approach(glowOpacity, Phase1LaserAttackProgress, 0.1f);
     }
 
     public static Color GetLaserGlowColor(Color drawColor) => drawColor.MultiplyRGBA(MainRedColor_Dynamic);

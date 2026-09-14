@@ -1,8 +1,6 @@
-﻿using Consolaria.Content.Projectiles.Enemies;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
@@ -83,9 +81,6 @@ sealed partial class EternalHorror : ModNPC {
         public static float LASERATTACKTIME => Helper.SecondsToFrames(1);
 
         void IAIState.OnActiveUpdate(NPC npc, EternalHorror boss) {
-            ref float glowOpacity = ref boss._glowOpacity;
-            glowOpacity = Helper.Approach(glowOpacity, boss.Phase1LaserAttackProgress, 0.1f);
-
             Player target = npc.GetTargetPlayer();
 
             float laserProgress = boss.Phase1LaserAttackProgress;
@@ -112,7 +107,10 @@ sealed partial class EternalHorror : ModNPC {
 
             boss.ResetPhase1LaserAttack();
 
-            boss.AttackCount++;
+            if (++boss.AttackCount >= 3) {
+                boss.ResetCounters();
+                boss.DeactivateState<Phase1LaserAttack>();
+            }
         }
     }
 

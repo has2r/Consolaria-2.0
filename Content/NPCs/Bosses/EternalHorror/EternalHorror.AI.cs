@@ -75,7 +75,7 @@ sealed partial class EternalHorror : ModNPC {
     }
 
     private void SpawnFromAbove() {
-        Vector2 spawnOffset = new(0f, -1150f);
+        Vector2 spawnOffset = new(0f, -850f);
         NPC.Center = NPC.GetTargetPlayer().Center + spawnOffset;
     }
 
@@ -85,5 +85,11 @@ sealed partial class EternalHorror : ModNPC {
             return;
         }
         AICounter = -(int)(Phase1LaserAttack.LASERATTACKTIME / 2f);
+    }
+
+    private void ResetCounters() {
+        AttackCount = 0;
+        AICounter = 0f;
+        InertiaFactor = 0f;
     }
 }

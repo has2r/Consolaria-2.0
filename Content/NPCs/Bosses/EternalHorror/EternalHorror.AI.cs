@@ -14,7 +14,7 @@ sealed partial class EternalHorror : ModNPC {
     public ref float AICounter => ref NPC.ai[1];
 
     public ref float AttackCount => ref NPC.localAI[3];
-    public ref float InertiaFactor => ref NPC.localAI[2];
+    public ref float SmoothFactor => ref NPC.localAI[2];
 
     public bool Init {
         get => InitValue != 0f;
@@ -94,6 +94,5 @@ sealed partial class EternalHorror : ModNPC {
     private void ResetCounters() {
         AttackCount = 0;
         AICounter = 0f;
-        InertiaFactor = 0f;
     }
 }

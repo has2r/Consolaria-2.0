@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Newtonsoft.Json.Linq;
 using ReLogic.Content;
 using System;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.ID;
@@ -18,7 +19,8 @@ sealed partial class EternalHorror : ModNPC {
                                     _shadowTexture = null!,
                                     _backgroundTexture = null!;
 
-    private float _glowOpacity;
+    private float _glowOpacity,
+                  _shadowProgress;
 
     private float WaveOffset => NPC.whoAmI;
 
@@ -65,7 +67,8 @@ sealed partial class EternalHorror : ModNPC {
         drawColor = NPC.GetNPCColorTintedByBuffs(npcColor: drawColor);
         drawColor = Color.Lerp(drawColor, Color.White, 0.5f);
         Texture2D texture = NPC.GetTexture(),
-                  glowTexture = _glowTexture.Value;
+                  glowTexture = _glowTexture.Value,
+                  shadowTexture = _shadowTexture.Value;
         SpriteEffects flip = (-NPC.spriteDirection).ToSpriteEffects();
         Vector2 position = NPC.Center;
         float rotation = NPC.rotation;
@@ -74,13 +77,24 @@ sealed partial class EternalHorror : ModNPC {
 
         DrawContext drawContext = new(spriteBatch, position, texture, clip, drawColor, rotation, flip, screenPos);
 
+        void drawShadows() {
+            drawContext = drawContext with { Texture = shadowTexture };
+            DrawUnderShadowEffect(drawContext, draw: (newPosition, newColor) => {
+                Draw_Inner(drawContext with {
+                    Position = newPosition,
+                    DrawColor = newColor,
+                });
+            }, sinWaveOffset: WaveOffset,
+               progress: _shadowProgress);
+        }
         void drawSelf() {
+            drawContext = drawContext with { Texture = texture };
             Draw_Inner(drawContext);
         }
         void drawGlowingEyes() {
             Texture2D eyesTexture = _eyeTexture.Value;
             drawContext = drawContext with { Texture = eyesTexture };
-            DrawUnderShadowEffect(drawContext, draw: (newPosition, newColor) => {
+            DrawUnderGlowEffect(drawContext, draw: (newPosition, newColor) => {
                 Draw_Inner(drawContext with {
                     Position = newPosition,
                     DrawColor = newColor,
@@ -108,7 +122,7 @@ sealed partial class EternalHorror : ModNPC {
             //spriteBatch.Draw(value, vector, null, color3 * 0.3f, rotation, origin, scale, SpriteEffects.None, 0f);
             //Microsoft.Xna.Framework.Color color3 = color * Utils.GetLerpValue(60f, 55f, proj.localAI[0], clamped: true) * Utils.GetLerpValue(0f, 10f, proj.localAI[0], clamped: true);
             drawContext = new DrawContext(spriteBatch, vector, value, value.Bounds, color3, rotation, drawContext.Flip, Main.screenPosition);
-            DrawUnderShadowEffect(drawContext, draw: (newPosition, newColor) => {
+            DrawUnderGlowEffect(drawContext, draw: (newPosition, newColor) => {
                 newColor = getLaserGlowColor(newColor);
                 newColor *= Phase1LaserAttackProgress;
                 spriteBatch.Draw(drawContext.Texture, newPosition, null, newColor, drawContext.Rotation, origin, scale2, drawContext.Flip, 0f);
@@ -148,7 +162,7 @@ sealed partial class EternalHorror : ModNPC {
                 Clip = glowClip
             };
             Draw_Inner(drawContext with { DrawColor = getLaserGlowColor(drawColor) });
-            DrawUnderShadowEffect(drawContext, draw: (newPosition, newColor) => {
+            DrawUnderGlowEffect(drawContext, draw: (newPosition, newColor) => {
                 newColor = getLaserGlowColor(newColor);
                 Draw_Inner(drawContext with {
                     Position = newPosition,
@@ -161,6 +175,7 @@ sealed partial class EternalHorror : ModNPC {
                sinStep: AICounter);
         }
 
+        drawShadows();
         drawSelf();
         drawGlowingEyes();
         drawLaserGlow();
@@ -168,8 +183,20 @@ sealed partial class EternalHorror : ModNPC {
     }
 
     private void UpdateVisuals() {
-        ref float glowOpacity = ref _glowOpacity;
-        glowOpacity = Helper.Approach(glowOpacity, Phase1LaserAttackProgress, 0.1f);
+        float lerpValue = 0.1f;
+        float glowOpacity = 0f;
+        if (HasActiveState<Phase1LaserAttack>()) {
+            glowOpacity = Phase1LaserAttackProgress;
+        }
+        _glowOpacity = Helper.Approach(_glowOpacity, glowOpacity, lerpValue);
+        float shadowOpacity = 0f;
+        if (HasActiveState<Phase1ShadowSpawn>()) {
+            shadowOpacity = Phase1ShadowSpawnProgress;
+        }
+        else {
+            lerpValue = 1f;
+        }
+        _shadowProgress = Helper.Approach(_shadowProgress, shadowOpacity, lerpValue);
     }
 
     public static Color GetLaserGlowColor(Color drawColor) => drawColor.MultiplyRGBA(MainRedColor_Dynamic);
@@ -182,13 +209,36 @@ sealed partial class EternalHorror : ModNPC {
                                                                                                   effect: drawContext.Flip);
     }
 
-    public static void DrawUnderShadowEffect(DrawContext drawContext, Action<Vector2, Color> draw, float sinWaveOffset = 0f, 
-                                                                                                   bool applyInnerOpacity = true, 
-                                                                                                   float forcedOpacity = 1f,
-                                                                                                   bool drawXEffect = true,
-                                                                                                   bool drawYEffect = true,
-                                                                                                   float sinWaveOffset_BasedOnEffectIndex = MathHelper.TwoPi * 0.5f,
-                                                                                                   float? sinStep = null) {
+    public static void DrawUnderShadowEffect(DrawContext drawContext, Action<Vector2, Color> draw, float sinWaveOffset = 0f,
+                                                                                                   float progress = 0f) {
+        Vector2 position = drawContext.Position;
+        float rotation = drawContext.Rotation;
+        Color color = drawContext.DrawColor;
+        for (int i = 0; i < 1; i++) {
+            for (float k = -MathHelper.Pi; k <= MathHelper.Pi; k += MathHelper.PiOver2) {
+                Vector2 shadowPosition = position;
+                float alpha = (progress >= 0.5f) ? (1f - (progress - 0.5f) / 0.5f) : (progress / 0.5f);
+                float offset = alpha * 32f;
+                float time = Main.GlobalTimeWrappedHourly;
+                shadowPosition += Vector2.UnitX.RotatedBy(k + time + rotation) * (float)(offset + offset * 0.5f
+                    * MathF.Sin(time * 4f));
+                Color shadowColor = color;
+                shadowColor = shadowColor.MultiplyRGBA(MainPurpleColor);
+                shadowColor = Color.Lerp(shadowColor, shadowColor.MultiplyRGBA(MainPurpleColor_Dynamic), 0.5f);
+                shadowColor = shadowColor.MultiplyAlpha(alpha);
+                shadowColor.A /= 1;
+                draw(shadowPosition, shadowColor);
+            }
+        }
+    }
+
+    public static void DrawUnderGlowEffect(DrawContext drawContext, Action<Vector2, Color> draw, float sinWaveOffset = 0f, 
+                                                                                                 bool applyInnerOpacity = true, 
+                                                                                                 float forcedOpacity = 1f,
+                                                                                                 bool drawXEffect = true,
+                                                                                                 bool drawYEffect = true,
+                                                                                                 float sinWaveOffset_BasedOnEffectIndex = MathHelper.TwoPi * 0.5f,
+                                                                                                 float? sinStep = null) {
         sinStep ??= Main.GlobalTimeWrappedHourly;
         float sinStep_Value = sinStep.Value;
         Vector2 position = drawContext.Position;

@@ -28,9 +28,12 @@ sealed partial class EternalHorror : ModNPC {
 
             const int MinDistanceToTargetInPixels = 300;
 
+            void smoothEverything() {
+                boss.SmoothFactor = Helper.Approach(boss.SmoothFactor, 1f, 0.025f);
+            }
             void lookAtTarget() {
                 float angleToTarget = npc.AngleTo(baseTargetCenter) - MathHelper.PiOver2;
-                npc.rotation = npc.rotation.AngleLerp(angleToTarget, ROTATIONLERP);
+                npc.rotation = npc.rotation.AngleLerp(angleToTarget, ROTATIONLERP * boss.SmoothFactor);
             }
             void makeTargetPositionABitHigher() {
                 targetCenter.Y -= 100f;
@@ -39,16 +42,16 @@ sealed partial class EternalHorror : ModNPC {
                 const float Speed = 15f,
                             Inertia = 20f;
                 const float Deceleration = 0.99f;
-                npc.MoveToWithDeceleration(targetCenter, Speed, Inertia, MinDistanceToTargetInPixels, Deceleration);
+                npc.MoveToWithDeceleration(targetCenter, Speed * boss.SmoothFactor, Inertia * boss.SmoothFactor, MinDistanceToTargetInPixels, Deceleration);
 
-                Vector2 targetPosition = Vector2.Zero.MoveTowards(targetCenter - npc.Center, 4f);
-                npc.velocity = npc.velocity.MoveTowards(targetPosition, 2f / 15f);
+                Vector2 targetPosition = Vector2.Zero.MoveTowards(targetCenter - npc.Center, 4f * boss.SmoothFactor);
+                npc.velocity = npc.velocity.MoveTowards(targetPosition, 2f / 15f * boss.SmoothFactor);
             }
             void moveFromTargetIfClose() {
                 float distance = npc.Distance(targetCenter);
                 float minDistance = MinDistanceToTargetInPixels / 2f;
                 if (distance < minDistance) {
-                    npc.velocity += npc.DirectionFrom(targetCenter) * (0.25f + 0.75f * Helper.Clamp01(1f - distance / minDistance));
+                    npc.velocity += npc.DirectionFrom(targetCenter) * (0.25f + 0.75f * Helper.Clamp01(1f - distance / minDistance)) * boss.SmoothFactor;
                 }
                 else {
                     if (npc.velocity.Length() < 1f) {
@@ -58,13 +61,14 @@ sealed partial class EternalHorror : ModNPC {
             }
             void moveUpwardsIfClose() {
                 if (npc.Center.Y > targetCenter.Y) {
-                    npc.velocity -= Vector2.UnitY * 0.5f;
+                    npc.velocity -= Vector2.UnitY * 0.5f * boss.SmoothFactor;
                 }
             }
             void slowDownWhenCloseToTarget() {
                 npc.velocity *= Helper.Clamp01(npc.Distance(targetCenter) / (MinDistanceToTargetInPixels / 5f));
             }
 
+            smoothEverything();
             lookAtTarget();
             makeTargetPositionABitHigher();
             moveToTarget();
@@ -124,23 +128,32 @@ sealed partial class EternalHorror : ModNPC {
     }
 
     private readonly struct Phase1ShadowSpawn : IAIState {
+        public static float SHADOWSPAWNTIME => Helper.SecondsToFrames(1);
+
         void IAIState.OnActiveUpdate(NPC npc, EternalHorror boss) {
             void prepareClone() {
-                float lerpValue = 1 / 60f;
-                lerpValue *= 1.5f;
-                npc.velocity = Vector2.Lerp(npc.velocity, Vector2.Zero, lerpValue);
-                npc.rotation = npc.rotation.AngleLerp(npc.velocity.Length() * npc.direction, lerpValue);
+                //float lerpValue = 1 / 60f;
+                //lerpValue *= 1.5f;
+                //npc.velocity = Vector2.Lerp(npc.velocity, Vector2.Zero, lerpValue);
+                //npc.rotation = npc.rotation.AngleLerp(npc.velocity.Length() * npc.direction, lerpValue);
+
+                bool shadowSpawnProgress = ++boss.AICounter >= SHADOWSPAWNTIME;
+                if (shadowSpawnProgress) {
+                    boss.ResetCounters();
+                    boss.DeactivateState<Phase1ShadowSpawn>();
+                    boss.ActivateState<Phase1LaserAttack>();
+                }
             }
 
             prepareClone();
         }
 
         void IAIState.OnStart(NPC npc, EternalHorror boss) {
-            boss.DeactivateState<MoveToPlayer>();
+            //boss.DeactivateState<MoveToPlayer>();
         }
 
         void IAIState.OnEnd(NPC npc, EternalHorror boss) {
-            boss.ActivateState<MoveToPlayer>();
+            //boss.ActivateState<MoveToPlayer>();
         }
     }
 
@@ -150,6 +163,7 @@ sealed partial class EternalHorror : ModNPC {
     public ref float Phase1LaserRotation => ref NPC.ai[2];
 
     public float Phase1LaserAttackProgress => Helper.Clamp01(AICounter / Phase1LaserAttack.LASERATTACKTIME);
+    public float Phase1ShadowSpawnProgress => Helper.Clamp01(AICounter / Phase1ShadowSpawn.SHADOWSPAWNTIME);
 
     private void InitializeStates() {
         _states = [];
@@ -180,6 +194,9 @@ sealed partial class EternalHorror : ModNPC {
     }
 
     private bool HasActiveState<T>() where T : IAIState {
+        if (!Init) {
+            return false;
+        }
         if (_states.TryGetValue(typeof(T), out IAIState state)) {
             return _activeStates.Contains(state);
         }

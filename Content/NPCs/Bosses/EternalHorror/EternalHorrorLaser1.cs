@@ -55,7 +55,7 @@ sealed class EternalHorrorLaser1 : ModProjectile {
             position = drawPos;
             rotation = (float)Math.Atan2(Projectile.oldPos[k].Y - Projectile.oldPos[k + 1].Y, Projectile.oldPos[k].X - Projectile.oldPos[k + 1].X);
             EternalHorror.DrawContext drawContext = new(spriteBatch, position, texture, clip, drawColor, rotation, flip, screenPos);
-            EternalHorror.DrawUnderShadowEffect(drawContext, (newPosition, newColor) => {
+            EternalHorror.DrawUnderGlowEffect(drawContext, (newPosition, newColor) => {
                 Color color = new Color(60 + k * 4, 20 - k, 10 + k * 4, 60 + k * 4);
                 color = color.MultiplyRGBA(newColor);
                 spriteBatch.Draw(drawContext.Texture, newPosition, null, color, drawContext.Rotation, drawOrigin, (Projectile.scale - k / (float)Projectile.oldPos.Length) * 0.75f, drawContext.Flip, 0f);

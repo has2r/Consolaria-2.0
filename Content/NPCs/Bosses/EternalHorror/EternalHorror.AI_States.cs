@@ -261,6 +261,12 @@ sealed partial class EternalHorror : ModNPC {
                     Vector2 dashDirection = npc.DirectionTo(targetCenter);
                     boss._dashVelocity = dashDirection * dashStrength;
 
+                    boss.OnIterateActiveCloneData((ref CloneInfo cloneInfo) => {
+                        Vector2 clonePosition = cloneInfo.VisualPosition;
+                        dashDirection = clonePosition.DirectionTo(targetCenter);
+                        cloneInfo.Velocity = dashDirection * dashStrength;
+                    });
+
                     boss.Phase1DashAttackCount++;
 
                     boss.SmoothFactor = 0f;
@@ -272,8 +278,10 @@ sealed partial class EternalHorror : ModNPC {
                 }
             }
             void slowDown() {
-                boss._dashVelocity *= 0.98f;
-                boss._dashOpacity = Helper.Approach(boss._dashOpacity, boss._dashVelocity.Length() / dashStrength, 0.5f);
+                float velocityDeceleration = 0.98f;
+                boss._dashVelocity *= velocityDeceleration;
+                boss.OnIterateActiveCloneData((ref CloneInfo cloneInfo) => cloneInfo.Velocity *= velocityDeceleration);
+                boss._dashOpacity = Helper.Approach(boss._dashOpacity, boss._dashVelocity.Length() / dashStrength, 1f);
             }
             bool shouldSlowDownAfterDash() {
                 bool preparingDash = boss.AICounter < 0f;
@@ -297,7 +305,8 @@ sealed partial class EternalHorror : ModNPC {
 
             if (shouldSlowDownAfterDash()) {
                 if (didAtLeastOneDash) {
-                    npc.velocity = Vector2.Lerp(npc.velocity, boss._dashVelocity, 0.25f);
+                    float lerpValue = 0.25f;
+                    npc.velocity = Vector2.Lerp(npc.velocity, boss._dashVelocity, lerpValue);
                 }
 
                 slowDown();

@@ -252,9 +252,9 @@ sealed partial class EternalHorror : ModNPC {
             }
         }
 
-        drawClones();
         drawTrails();
         drawShadows();
+        drawClones();
         drawSelf();
         drawGlowingEyes();
         drawLaserGlow();

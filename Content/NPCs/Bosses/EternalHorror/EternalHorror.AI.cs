@@ -17,7 +17,11 @@ sealed partial class EternalHorror : ModNPC {
         _cloneDataCache = null;
     }
 
-    public record struct CloneInfo(Vector2 Position, Vector2 TargetPosition, ushort TimeLeft, ushort MaxTimeLeft, float Rotation = 0f, Vector2 VisualPosition = default) {
+    public record struct CloneInfo(Vector2 Position, Vector2 TargetPosition, ushort TimeLeft, 
+                                                                             ushort MaxTimeLeft, 
+                                                                             float Rotation = 0f, 
+                                                                             Vector2 VisualPosition = default,
+                                                                             Vector2 Velocity = default) {
         public readonly float TimeLeftProgress => (float)TimeLeft / MaxTimeLeft;
         public readonly bool Active => TimeLeftProgress > 0f;
         public readonly float Opacity {
@@ -98,11 +102,7 @@ sealed partial class EternalHorror : ModNPC {
 
     private void SpawnClone() {
         int nextCloneAddedIndex = 0;
-        for (int i = 0; i < _cloneData.Length; i++) {
-            if (_cloneData[i].TimeLeft > 0) {
-                nextCloneAddedIndex++;
-            }
-        }
+        OnIterateActiveCloneData((ref CloneInfo cloneInfo) => nextCloneAddedIndex++);
         if (nextCloneAddedIndex >= CLONECOUNTAVAILABLE) {
             return;
         }
@@ -149,12 +149,16 @@ sealed partial class EternalHorror : ModNPC {
     private void UpdateClones() {
         for (int i = 0; i < _cloneData.Length; i++) {
             ref CloneInfo cloneInfo = ref _cloneData[i];
-            if (cloneInfo.TimeLeft > 0) {
+            if (cloneInfo.Active) {
                 cloneInfo.TimeLeft--;
             }
 
             Player target = NPC.GetTargetPlayer();
-            cloneInfo.VisualPosition = Vector2.Lerp(cloneInfo.VisualPosition, cloneInfo.GetFinalClonePosition(target), 0.125f);
+
+            if (!HasActiveState<Phase1DashAttack>()) {
+                cloneInfo.VisualPosition = Vector2.Lerp(cloneInfo.VisualPosition, cloneInfo.GetFinalClonePosition(target), 0.125f);
+            }
+            cloneInfo.VisualPosition += cloneInfo.Velocity;
 
             Vector2 targetCenter = target.Center,
                     clonePosition = cloneInfo.VisualPosition;
@@ -179,6 +183,17 @@ sealed partial class EternalHorror : ModNPC {
         }
 
         return clonePositions;
+    }
+
+    private delegate void RefAction<T>(ref T value);
+
+    private void OnIterateActiveCloneData(RefAction<CloneInfo> actionWithClone) {
+        for (int i = 0; i < _cloneData.Length; i++) {
+            ref CloneInfo cloneInfo = ref _cloneData[i];
+            if (cloneInfo.Active) {
+                actionWithClone(ref cloneInfo);
+            }
+        }
     }
 
     private void TargetPlayer() {

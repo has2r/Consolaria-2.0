@@ -217,9 +217,34 @@ sealed partial class EternalHorror : ModNPC {
                    sinStep: _shadowTime);
             }
         }
+        void drawTrails() {
+            int length = NPC.oldPos.Length - 2;
+            for (int num173 = 1; num173 < length; num173 += 2) {
+                _ = ref NPC.oldPos[num173];
+                Color color39 = drawColor;
+                color39 = color39.MultiplyRGBA(MainPurpleColor_Dynamic);
+                color39.R = (byte)(1f * (double)(int)color39.R * (double)(length - num173) / length);
+                color39.G = (byte)(1f * (double)(int)color39.G * (double)(length - num173) / length);
+                color39.B = (byte)(1f * (double)(int)color39.B * (double)(length - num173) / length);
+                color39.A = (byte)(1f * (double)(int)color39.A * (double)(length - num173) / length);
+                color39 *= MathHelper.Clamp(NPC.velocity.Length(), 0f, 9f) / 9f;
+                color39 *= 1f - num173 / length;
+                //color39 *= _trailOpacity;
+                //color39 *= 0.8f;
+                color39 *= 0.75f;
+                Rectangle frame7 = NPC.frame;
+                Vector2 origin = NPC.frame.Centered();
+                Vector2 pos = NPC.oldPos[num173];
+                pos -= screenPos;
+                pos += NPC.Size / 2f;
+                spriteBatch.Draw(shadowTexture,
+                    pos,
+                    frame7, color39 * NPC.Opacity, NPC.rotation, origin, NPC.scale, flip, 0f);
+            }
+        }
 
         drawClones();
-
+        drawTrails();
         drawShadows();
         drawSelf();
         drawGlowingEyes();

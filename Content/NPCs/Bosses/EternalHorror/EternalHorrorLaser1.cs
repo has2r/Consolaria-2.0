@@ -62,7 +62,7 @@ sealed class EternalHorrorLaser1 : ModProjectile {
             Player bossTarget = npc.GetTargetPlayer();
             Vector2 bossTargetCenter = bossTarget.Center + bossTarget.velocity * Projectile.velocity.Length() / 2f;
             foreach (EternalHorror.CloneInfo cloneInfo in cloneData) {
-                if (cloneInfo.Opacity < 1f) {
+                if (cloneInfo.Opacity < 0.5f) {
                     continue;
                 }
                 Rectangle hitbox = Projectile.Hitbox;

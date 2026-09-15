@@ -41,6 +41,7 @@ sealed partial class EternalHorror : ModNPC {
     }
 
     private CloneInfo[] _cloneData = null!;
+    private Vector2 _dashVelocity;
 
     public ref float InitValue => ref NPC.ai[0];
 
@@ -65,7 +66,10 @@ sealed partial class EternalHorror : ModNPC {
         UpdateClones();
     }
 
-    public override void PostAI() { }
+    public override void PostAI() {
+
+        NPC.SetTrail(length: 10);
+    }
 
     private void OnSpawn() {
         if (Init) {

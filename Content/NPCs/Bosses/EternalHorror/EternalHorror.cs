@@ -32,7 +32,7 @@ sealed partial class EternalHorror : ModNPC {
 
     public override void SetStaticDefaults() {
         NPC.SetMaxFrames(count: 6);
-        NPC.SetTrail(length: 10);
+        NPC.SetTrail(length: 20);
 
         SetMiscellaneousProperties();
 

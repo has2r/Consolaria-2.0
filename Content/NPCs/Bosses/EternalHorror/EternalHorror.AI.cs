@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
-using static Consolaria.Content.NPCs.Bosses.EternalHorror.EternalHorror;
 
 namespace Consolaria.Content.NPCs.Bosses.EternalHorror;
 
@@ -49,6 +48,8 @@ sealed partial class EternalHorror : ModNPC {
 
     public ref float AttackCount => ref NPC.localAI[3];
     public ref float SmoothFactor => ref NPC.localAI[2];
+    public ref float Phase1LaserAttackCount => ref NPC.localAI[1];
+    public ref float Phase1DashAttackCount => ref NPC.localAI[1];
 
     public bool Init {
         get => InitValue != 0f;

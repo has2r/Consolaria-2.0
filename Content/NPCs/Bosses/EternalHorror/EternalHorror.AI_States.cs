@@ -36,6 +36,9 @@ sealed partial class EternalHorror : ModNPC {
                 npc.rotation = npc.rotation.AngleLerp(angleToTarget, ROTATIONLERP * boss.SmoothFactor);
             }
             void makeTargetPositionABitHigher() {
+                if (boss.HasActiveState<Phase1DashAttack>()) {
+                    return;
+                }
                 targetCenter.Y -= 100f;
             }
             void moveToTarget() {
@@ -48,6 +51,9 @@ sealed partial class EternalHorror : ModNPC {
                 npc.velocity = npc.velocity.MoveTowards(targetPosition, 2f / 15f * boss.SmoothFactor);
             }
             void moveFromTargetIfClose() {
+                if (boss.HasActiveState<Phase1DashAttack>()) {
+                    return;
+                }
                 float distance = npc.Distance(targetCenter);
                 float minDistance = MinDistanceToTargetInPixels / 2f;
                 if (distance < minDistance) {
@@ -60,6 +66,9 @@ sealed partial class EternalHorror : ModNPC {
                 }
             }
             void moveUpwardsIfClose() {
+                if (boss.HasActiveState<Phase1DashAttack>()) {
+                    return;
+                }
                 if (npc.Center.Y > targetCenter.Y) {
                     npc.velocity -= Vector2.UnitY * 0.5f * boss.SmoothFactor;
                 }
@@ -112,6 +121,8 @@ sealed partial class EternalHorror : ModNPC {
 
                 boss.ResetPhase1LaserAttack();
 
+                boss.Phase1LaserAttackCount++;
+
                 bool shotLasers = ++boss.AttackCount >= LASERATTACKCOUNT;
                 if (!shotLasers) {
                     return;
@@ -119,6 +130,16 @@ sealed partial class EternalHorror : ModNPC {
 
                 boss.ResetCounters();
                 boss.DeactivateState<Phase1LaserAttack>();
+
+                bool shouldDash = boss.Phase1LaserAttackCount > Phase1DashAttack.LASERATTACKCOUNTNEEDED;
+                if (shouldDash) {
+                    boss.ActivateState<Phase1DashAttack>();
+
+                    boss.Phase1LaserAttackCount = 0;
+
+                    return;
+                }
+
                 boss.ActivateState<Phase1ShadowSpawn>();
             }
 
@@ -154,11 +175,79 @@ sealed partial class EternalHorror : ModNPC {
         }
 
         void IAIState.OnStart(NPC npc, EternalHorror boss) {
-            //boss.DeactivateState<MoveToPlayer>();
+
         }
 
         void IAIState.OnEnd(NPC npc, EternalHorror boss) {
-            //boss.ActivateState<MoveToPlayer>();
+
+        }
+    }
+
+    private readonly struct Phase1DashAttack : IAIState {
+        public static float DASHTIME => Helper.SecondsToFrames(1);
+        public static float LASERATTACKCOUNTNEEDED => 5;
+        public static float DASHATTACKCOUNT => 3;
+
+        void IAIState.OnActiveUpdate(NPC npc, EternalHorror boss) {
+            bool shouldDash = ++boss.AICounter >= DASHTIME;
+
+            Player target = npc.GetTargetPlayer();
+            Vector2 targetCenter = target.Center;
+
+            void smoothEverything() {
+                boss.SmoothFactor = Helper.Approach(boss.SmoothFactor, 1f, 0.025f);
+            }
+            void lookAtTarget() {
+                float angleToTarget = npc.AngleTo(targetCenter) - MathHelper.PiOver2;
+                npc.rotation = npc.rotation.AngleLerp(angleToTarget, ROTATIONLERP * boss.SmoothFactor);
+            }
+
+            if (shouldDash) {
+                boss.AICounter = -DASHTIME / 2f;
+
+                boss.DeactivateState<MoveToPlayer>();
+
+                float dashStrength = 30f;
+                Vector2 dashDirection = npc.DirectionTo(targetCenter);
+                npc.velocity = dashDirection * dashStrength;
+
+                boss.Phase1DashAttackCount++;
+
+                boss.SmoothFactor = 0f;
+            }
+
+            bool preparingDash = boss.AICounter < 0f;
+            if (preparingDash) {
+                npc.velocity *= 0.98f;
+
+                //float dashRotation = npc.velocity.ToRotation() - MathHelper.PiOver2;
+                //npc.rotation = npc.rotation.AngleLerp(dashRotation, ROTATIONLERP);
+
+                return;
+            }
+
+            smoothEverything();
+
+            lookAtTarget();
+
+            npc.velocity *= 0.98f;
+
+            if (boss.Phase1DashAttackCount >= DASHATTACKCOUNT) {
+                boss.DeactivateState<Phase1DashAttack>();
+                boss.ActivateState<Phase1LaserAttack>();
+                boss.ResetCounters();
+
+                boss.Phase1DashAttackCount = 0;
+            }
+
+            boss.ActivateState<MoveToPlayer>();
+        }
+
+        void IAIState.OnStart(NPC npc, EternalHorror boss) {
+
+        }
+
+        void IAIState.OnEnd(NPC npc, EternalHorror boss) {
         }
     }
 

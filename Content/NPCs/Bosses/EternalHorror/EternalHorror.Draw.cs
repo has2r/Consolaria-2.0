@@ -244,7 +244,7 @@ sealed partial class EternalHorror : ModNPC {
         }
 
         drawClones();
-        drawTrails();
+        //drawTrails();
         drawShadows();
         drawSelf();
         drawGlowingEyes();

@@ -247,7 +247,7 @@ sealed partial class EternalHorror : ModNPC {
                 ShaderLoader.ApplyEffect(ShaderLoader.DistortShader.Effect, spriteBatch, () => {
                     spriteBatch.Draw(shadowTexture,
                     pos,
-                    frame7, color39 * NPC.Opacity, NPC.rotation, origin, NPC.scale, flip, 0f);
+                    frame7, color39 * NPC.Opacity, NPC.oldRot[num173], origin, NPC.scale, flip, 0f);
                 });
             }
         }

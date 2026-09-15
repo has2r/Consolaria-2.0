@@ -273,7 +273,7 @@ sealed partial class EternalHorror : ModNPC {
             }
             void slowDown() {
                 boss._dashVelocity *= 0.98f;
-                boss._dashOpacity = Helper.Approach(boss._dashOpacity, boss._dashVelocity.Length() / dashStrength, 1f);
+                boss._dashOpacity = Helper.Approach(boss._dashOpacity, boss._dashVelocity.Length() / dashStrength, 0.5f);
             }
             bool shouldSlowDownAfterDash() {
                 bool preparingDash = boss.AICounter < 0f;

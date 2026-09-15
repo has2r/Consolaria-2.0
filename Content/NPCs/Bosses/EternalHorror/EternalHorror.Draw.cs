@@ -219,6 +219,9 @@ sealed partial class EternalHorror : ModNPC {
             }
         }
         void drawTrails() {
+            if (_dashOpacity <= 0f) {
+                return;
+            }
             int length = NPC.oldPos.Length - 1;
             for (int num173 = 1; num173 < length; num173 += 1) {
                 _ = ref NPC.oldPos[num173];
@@ -277,6 +280,7 @@ sealed partial class EternalHorror : ModNPC {
         if (_shadowProgress <= 0f) {
             _shadowTime = 0;
         }
+        _dashOpacity = Helper.Approach(_dashOpacity, 0f, 1 / 60f);
     }
 
     public static Color GetLaserGlowColor(Color drawColor) => drawColor.MultiplyRGBA(MainRedColor_Dynamic);

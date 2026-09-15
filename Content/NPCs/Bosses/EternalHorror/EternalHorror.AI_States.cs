@@ -199,6 +199,8 @@ sealed partial class EternalHorror : ModNPC {
         public static float LASERATTACKCOUNTNEEDED => 5;
         public static float DASHATTACKCOUNT => 5;
 
+        public static SoundStyle DashSound => SoundID.Roar with { PitchVariance = 0.15f, MaxInstances = 0 };
+
         void IAIState.OnActiveUpdate(NPC npc, EternalHorror boss) {
             Player target = npc.GetTargetPlayer();
             Vector2 targetCenter = target.Center,
@@ -210,6 +212,8 @@ sealed partial class EternalHorror : ModNPC {
             float dashProgress = boss.AICounter / DASHTIME;
 
             bool didAtLeastOneDash = boss.Phase1DashAttackCount > 0;
+
+            float dashPreparationFactor = 0.25f;
 
             bool shouldResetState() {
                 if (boss.Phase1DashAttackCount >= DASHATTACKCOUNT) {
@@ -243,7 +247,7 @@ sealed partial class EternalHorror : ModNPC {
                         return;
                     }
 
-                    SoundEngine.PlaySound(SoundID.Roar with { PitchVariance = 0.15f, MaxInstances = 0 }, npc.Center);
+                    SoundEngine.PlaySound(DashSound, npc.Center);
 
                     boss.AICounter = -DASHTIME;
 
@@ -258,7 +262,7 @@ sealed partial class EternalHorror : ModNPC {
                 }
                 else if (!didAtLeastOneDash) {
                     float smoothFactor = dashProgress;
-                    dashProgress *= 1f - Utils.GetLerpValue(0.75f, 1f, smoothFactor, true);
+                    dashProgress *= 1f - Utils.GetLerpValue(1f - dashPreparationFactor, 1f, smoothFactor, true);
                     npc.velocity -= npc.DirectionTo(targetCenter) * 1f * dashProgress;
                 }
             }
@@ -279,7 +283,7 @@ sealed partial class EternalHorror : ModNPC {
 
                 if (didAtLeastOneDash) {
                     float smoothFactor = boss.SmoothFactor;
-                    smoothFactor *= 1f - Utils.GetLerpValue(0.75f, 1f, smoothFactor, true);
+                    smoothFactor *= 1f - Utils.GetLerpValue(1f - dashPreparationFactor, 1f, smoothFactor, true);
                     npc.velocity += npc.DirectionTo(targetCenter) * 1f * smoothFactor;
                 }
             }

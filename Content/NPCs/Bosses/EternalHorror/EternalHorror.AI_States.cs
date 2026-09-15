@@ -222,7 +222,7 @@ sealed partial class EternalHorror : ModNPC {
                     boss.ActivateState<Phase1LaserAttack>();
                     boss.ResetCounters();
 
-                    boss.SmoothFactor = 0f;
+                    boss.SmoothFactor = 0.25f;
                     boss.Phase1DashAttackCount = 0;
 
                     boss._dashVelocity *= 0f;
@@ -249,6 +249,8 @@ sealed partial class EternalHorror : ModNPC {
                     if (shouldResetState()) {
                         return;
                     }
+
+                    npc.ResetTrails();
 
                     SoundEngine.PlaySound(DashSound, npc.Center);
 

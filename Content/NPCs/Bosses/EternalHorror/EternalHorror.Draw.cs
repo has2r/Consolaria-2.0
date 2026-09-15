@@ -219,9 +219,6 @@ sealed partial class EternalHorror : ModNPC {
             }
         }
         void drawTrails() {
-            if (_dashOpacity <= 0f) {
-                return;
-            }
             int length = NPC.oldPos.Length - 1;
             for (int num173 = 1; num173 < length; num173 += 1) {
                 _ = ref NPC.oldPos[num173];
@@ -240,14 +237,17 @@ sealed partial class EternalHorror : ModNPC {
                 Rectangle frame7 = NPC.frame;
                 Vector2 origin = NPC.frame.Centered();
                 Vector2 pos = NPC.oldPos[num173];
-                pos -= screenPos;
                 pos += NPC.Size / 2f;
+
+                pos = Vector2.Lerp(pos, NPC.Center, Ease.SineIn(1f - _dashOpacity));
+
+                pos -= screenPos;
 
                 ShaderLoader.DistortShader.SetDefault(shadowTexture.Width * 2, shadowTexture.Height * 2);
                 ShaderLoader.ApplyEffect(ShaderLoader.DistortShader.Effect, spriteBatch, () => {
                     spriteBatch.Draw(shadowTexture,
                     pos,
-                    frame7, color39 * NPC.Opacity, NPC.oldRot[num173], origin, NPC.scale, flip, 0f);
+                    frame7, color39 * NPC.Opacity, NPC.rotation, origin, NPC.scale, flip, 0f);
                 });
             }
         }

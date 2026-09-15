@@ -10,6 +10,11 @@ using Terraria.ModLoader;
 namespace Consolaria;
 
 public static class Helper_NPCs {
+    public static void ResetTrails(this NPC npc) {
+        Array.Fill(npc.oldPos, npc.position);
+        Array.Fill(npc.oldRot, npc.rotation);
+    }
+
     public static void MoveTo(this Entity entity, Vector2 position, float speed = 10f, float inertia = 15f) {
         Vector2 movement = position - entity.position;
         Vector2 movement2 = movement * (speed / movement.Length());

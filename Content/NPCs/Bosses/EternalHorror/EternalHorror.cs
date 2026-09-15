@@ -45,6 +45,7 @@ sealed partial class EternalHorror : ModNPC {
 
     private void SetMiscellaneousProperties() {
         NPCID.Sets.MPAllowedEnemies[Type] = true;
+        NPCID.Sets.MustAlwaysDraw[Type] = true;
     }
 
     private void SetDebuffImmuneData() {

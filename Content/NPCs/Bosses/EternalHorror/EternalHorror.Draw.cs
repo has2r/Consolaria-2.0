@@ -12,10 +12,10 @@ namespace Consolaria.Content.NPCs.Bosses.EternalHorror;
 sealed partial class EternalHorror : ModNPC {
     public readonly record struct DrawContext(SpriteBatch SpriteBatch, Vector2 Position, Texture2D Texture, Rectangle Clip, Color DrawColor, float Rotation, SpriteEffects Flip, Vector2 ScreenPosition);
 
-    private static Asset<Texture2D> _eyeTexture = null!,
-                                    _glowTexture = null!,
-                                    _shadowTexture = null!,
-                                    _backgroundTexture = null!;
+    private static Asset<Texture2D> _eyeTexture = null,
+                                    _glowTexture = null,
+                                    _shadowTexture = null,
+                                    _backgroundTexture = null;
 
     private float _glowOpacity,
                   _shadowProgress,

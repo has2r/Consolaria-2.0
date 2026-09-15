@@ -325,8 +325,8 @@ sealed partial class EternalHorror : ModNPC {
         }
     }
 
-    private Dictionary<Type, IAIState> _states = null!;
-    private HashSet<IAIState> _activeStates = null!;
+    private Dictionary<Type, IAIState> _states = null;
+    private HashSet<IAIState> _activeStates = null;
 
     public ref float Phase1LaserRotation => ref NPC.ai[2];
 

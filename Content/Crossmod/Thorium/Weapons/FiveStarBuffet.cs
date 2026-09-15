@@ -43,7 +43,7 @@ public sealed class FiveStarBuffet : ThoriumItem_HealerBase {
     }
 
     public sealed class FiveStarBuffet_Food : ThoriumProjectile_HealerBase {
-        public static Asset<Texture2D>[] FoodTextures { get; private set; } = null!;
+        public static Asset<Texture2D>[] FoodTextures { get; private set; } = null;
 
         public override string Texture => "Consolaria/Assets/Textures/Empty";
 
@@ -265,8 +265,8 @@ public sealed class FiveStarBuffet : ThoriumItem_HealerBase {
 
 
     public sealed class FiveStarBuffet_Use : ThoriumProjectile_BardBase {
-        private static Asset<Texture2D> _topTexture = null!,
-                                        _bottomTexture = null!;
+        private static Asset<Texture2D> _topTexture = null,
+                                        _bottomTexture = null;
 
         public override string Texture => "Consolaria/Assets/Textures/Empty";
 

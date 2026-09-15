@@ -34,7 +34,7 @@ public static class Helper_NPCs {
 
     public static bool ShouldTargetPlayer(this NPC npc) => npc.target < 0 || npc.target == 255 || npc.GetTargetPlayer().dead || !npc.GetTargetPlayer().active;
 
-    public static Player GetTargetPlayer(this NPC npc) => npc.target >= 0 && npc.target <= Main.player.Length ? Main.player[npc.target] : null!;
+    public static Player GetTargetPlayer(this NPC npc) => npc.target >= 0 && npc.target <= Main.player.Length ? Main.player[npc.target] : null;
 
     public static T As<T>(this NPC npc) where T : ModNPC => npc.ModNPC as T;
 
@@ -109,7 +109,7 @@ public static class Helper_NPCs {
     }
 
     public static void QuickDraw(this NPC npc, SpriteBatch spriteBatch, Vector2 screenPos, Color lightColor, Rectangle? frameBox = null, float scale = 1f, SpriteEffects? effect = null, float exRot = 0, float yOffset = 0f, float xOffset = 0f, Texture2D? texture = null, Vector2? origin = null,
-         Vector2? position = null!, Vector2? scaleVector2 = null, float? rotation = null) {
+         Vector2? position = null, Vector2? scaleVector2 = null, float? rotation = null) {
         Texture2D tex = texture ?? npc.GetTexture();
         Rectangle sourceRectangle = frameBox ?? npc.frame;
         origin ??= sourceRectangle.Centered();

@@ -44,7 +44,7 @@ sealed partial class EternalHorror : ModNPC {
         }
     }
 
-    private CloneInfo[] _cloneData = null!;
+    private CloneInfo[] _cloneData = null;
     private Vector2 _dashVelocity;
 
     public ref float InitValue => ref NPC.ai[0];

@@ -12,7 +12,7 @@ namespace Consolaria.Content.Crossmod.Thorium.Projectiles;
 public sealed class SeraphimHeal : ThoriumProjectile_HealerBase {
     private record struct RayInfo(float Rotation, float ScaleFactor = 1f, float Opacity = 1f);
 
-    private RayInfo[] _rayInfos = null!;
+    private RayInfo[] _rayInfos = null;
     private bool _onTop;
 
     public ref float HealTime => ref Projectile.localAI[0];

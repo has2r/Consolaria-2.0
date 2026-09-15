@@ -85,7 +85,7 @@ public sealed class JadeSeal : ThoriumItem_HealerBase {
     }
 
     public sealed class JadeSeal_Lamp : ThoriumProjectile_HealerBase {
-        private static Asset<Texture2D> _glowTexture = null!;
+        private static Asset<Texture2D> _glowTexture = null;
 
         public override void SetStaticDefaults() {
             Projectile.SetFrameCount(4);
@@ -182,7 +182,7 @@ public sealed class JadeSeal : ThoriumItem_HealerBase {
     }
 
     public sealed class JadeSeal_GoldenLamp : ThoriumProjectile_HealerBase {
-        private static Asset<Texture2D> _glowTexture = null!;
+        private static Asset<Texture2D> _glowTexture = null;
 
         private Vector2 _mousePosition;
 

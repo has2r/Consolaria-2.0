@@ -233,7 +233,11 @@ sealed partial class EternalHorror : ModNPC {
                 npc.rotation = npc.rotation.AngleLerp(angleToTarget, ROTATIONLERP * boss.SmoothFactor);
             }
             void prepareDash() {
-                bool shouldDash = ++boss.AICounter >= DASHTIME;
+                boss.AICounter += 1f;
+                if (!didAtLeastOneDash) {
+                    boss.AICounter -= 0.25f;
+                }
+                bool shouldDash = boss.AICounter >= DASHTIME;
                 if (shouldDash) {
                     if (shouldResetState()) {
                         return;
@@ -251,6 +255,11 @@ sealed partial class EternalHorror : ModNPC {
                     boss.Phase1DashAttackCount++;
 
                     boss.SmoothFactor = 0f;
+                }
+                else if (!didAtLeastOneDash) {
+                    float smoothFactor = dashProgress;
+                    dashProgress *= 1f - Utils.GetLerpValue(0.75f, 1f, smoothFactor, true);
+                    npc.velocity -= npc.DirectionTo(targetCenter) * 1f * dashProgress;
                 }
             }
             void slowDown() {
@@ -270,7 +279,7 @@ sealed partial class EternalHorror : ModNPC {
 
                 if (didAtLeastOneDash) {
                     float smoothFactor = boss.SmoothFactor;
-                    smoothFactor *= 1f - Utils.GetLerpValue(0.75f, 1f, boss.SmoothFactor, true);
+                    smoothFactor *= 1f - Utils.GetLerpValue(0.75f, 1f, smoothFactor, true);
                     npc.velocity += npc.DirectionTo(targetCenter) * 1f * smoothFactor;
                 }
             }

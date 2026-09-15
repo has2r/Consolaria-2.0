@@ -8,7 +8,7 @@ namespace Consolaria.Content.NPCs.Bosses.EternalHorror;
 
 sealed partial class EternalHorror : ModNPC {
     private static byte CLONECOUNTAVAILABLE => 3;
-    private static ushort CLONEACTIVETIME => Helper.SecondsToFrames(5);
+    private static ushort CLONEACTIVETIME => Helper.SecondsToFrames(10);
 
     private static HashSet<CloneInfo> _cloneDataCache = [];
 

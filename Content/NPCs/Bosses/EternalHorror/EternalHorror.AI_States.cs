@@ -224,6 +224,9 @@ sealed partial class EternalHorror : ModNPC {
 
                     boss.SmoothFactor = 0f;
                     boss.Phase1DashAttackCount = 0;
+
+                    boss._dashVelocity *= 0f;
+
                     return true;
                 }
 

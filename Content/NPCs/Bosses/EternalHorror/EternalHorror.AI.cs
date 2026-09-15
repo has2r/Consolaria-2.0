@@ -186,7 +186,6 @@ sealed partial class EternalHorror : ModNPC {
     }
 
     private delegate void RefAction<T>(ref T value);
-
     private void OnIterateActiveCloneData(RefAction<CloneInfo> actionWithClone) {
         for (int i = 0; i < _cloneData.Length; i++) {
             ref CloneInfo cloneInfo = ref _cloneData[i];

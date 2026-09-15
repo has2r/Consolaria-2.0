@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Diagnostics.Metrics;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -9,6 +9,13 @@ using Terraria.ModLoader;
 namespace Consolaria.Content.NPCs.Bosses.EternalHorror;
 
 sealed class EternalHorrorLaser1 : ModProjectile {
+    public ref float ReflectedValue => ref Projectile.ai[2];
+
+    public bool Reflected {
+        get => ReflectedValue != 0f;
+        set => ReflectedValue = value.ToInt();
+    }
+
     public override void SetStaticDefaults() {
         ProjectileID.Sets.TrailCacheLength[Projectile.type] = 16;
         ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
@@ -35,6 +42,44 @@ sealed class EternalHorrorLaser1 : ModProjectile {
     public override void AI() {
         if (Projectile.timeLeft <= 895) Projectile.alpha = 50;
         Lighting.AddLight(Projectile.Center, 0.6f, 0.1f, 0.1f);
+
+        ReflectFromEternalHorrorClones();
+    }
+
+    private void ReflectFromEternalHorrorClones() {
+        if (Reflected) {
+            return;
+        }
+
+        foreach (NPC npc in Main.ActiveNPCs) {
+            if (npc.type != EternalHorror.SelfType) {
+                return;
+            }
+
+            EternalHorror boss = npc.As<EternalHorror>();
+            HashSet<EternalHorror.CloneInfo> cloneData = boss.GetActiveCloneData();
+            float bossRotation = npc.rotation;
+            Player bossTarget = npc.GetTargetPlayer();
+            Vector2 bossTargetCenter = bossTarget.Center + bossTarget.velocity * Projectile.velocity.Length() / 2f;
+            foreach (EternalHorror.CloneInfo cloneInfo in cloneData) {
+                if (cloneInfo.Opacity < 1f) {
+                    continue;
+                }
+                Rectangle hitbox = Projectile.Hitbox;
+                Vector2 clonePosition = cloneInfo.VisualPosition;
+                float cloneRotation = cloneInfo.Rotation;
+                Vector2 cloneDirection = Vector2.UnitY.RotatedBy(cloneRotation);
+                Vector2 clonePosition_Start = clonePosition + cloneDirection * npc.height / 2f,
+                        clonePosition_End = clonePosition + -cloneDirection * npc.height / 2f;
+                float collisionPoint = 0f;
+                if (Collision.CheckAABBvLineCollision(hitbox.Location.ToVector2(), hitbox.Size(), clonePosition_Start, clonePosition_End, npc.width, ref collisionPoint)) {
+                    Projectile.velocity = Projectile.Center.DirectionTo(bossTargetCenter) * Projectile.velocity.Length();
+
+                    Reflected = true;
+                    return;
+                }
+            }
+        }
     }
 
     public override bool PreDraw(ref Color lightColor) {

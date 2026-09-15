@@ -137,6 +137,11 @@ sealed partial class EternalHorror : ModNPC {
                 //npc.velocity = Vector2.Lerp(npc.velocity, Vector2.Zero, lerpValue);
                 //npc.rotation = npc.rotation.AngleLerp(npc.velocity.Length() * npc.direction, lerpValue);
 
+                bool justStarted = boss.AICounter == 0f;
+                if (justStarted) {
+                    boss.SpawnClone();
+                }
+
                 bool shadowSpawnProgress = ++boss.AICounter >= SHADOWSPAWNTIME;
                 if (shadowSpawnProgress) {
                     boss.ResetCounters();
@@ -165,7 +170,7 @@ sealed partial class EternalHorror : ModNPC {
     public float Phase1LaserAttackProgress => Helper.Clamp01(AICounter / Phase1LaserAttack.LASERATTACKTIME);
     public float Phase1ShadowSpawnProgress => Helper.Clamp01(AICounter / Phase1ShadowSpawn.SHADOWSPAWNTIME);
 
-    private void InitializeStates() {
+    private partial void InitializeStates() {
         _states = [];
         _activeStates = [];
     }
@@ -173,6 +178,9 @@ sealed partial class EternalHorror : ModNPC {
     private void AddState<T>() where T : struct, IAIState => _states.TryAdd(typeof(T), new T());
 
     private void ActivateState<T>() where T : struct, IAIState {
+        if (!Init) {
+            return;
+        }
         AddState<T>();
         IAIState stateToActivate = _states[typeof(T)];
         if (!_activeStates.Contains(stateToActivate)) {
@@ -185,6 +193,9 @@ sealed partial class EternalHorror : ModNPC {
     }
 
     private void DeactivateState<T>() where T : IAIState {
+        if (!Init) {
+            return;
+        }
         IAIState stateToDeactivate = _states[typeof(T)];
         if (!_activeStates.Contains(stateToDeactivate)) {
             return;

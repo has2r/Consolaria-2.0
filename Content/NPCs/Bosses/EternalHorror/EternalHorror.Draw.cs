@@ -1,9 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Newtonsoft.Json.Linq;
 using ReLogic.Content;
 using System;
-using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.ID;
@@ -20,7 +18,8 @@ sealed partial class EternalHorror : ModNPC {
                                     _backgroundTexture = null!;
 
     private float _glowOpacity,
-                  _shadowProgress;
+                  _shadowProgress,
+                  _shadowTime;
 
     private float WaveOffset => NPC.whoAmI;
 
@@ -80,12 +79,18 @@ sealed partial class EternalHorror : ModNPC {
         void drawShadows() {
             drawContext = drawContext with { Texture = shadowTexture };
             DrawUnderShadowEffect(drawContext, draw: (newPosition, newColor) => {
-                Draw_Inner(drawContext with {
-                    Position = newPosition,
-                    DrawColor = newColor,
+                ShaderLoader.DistortShader.SetDefault(shadowTexture.Width * 2, shadowTexture.Height * 2);
+                ShaderLoader.DistortShader.Anxiety = 0.5f + 0.5f * _shadowProgress;
+                ShaderLoader.ApplyEffect(ShaderLoader.DistortShader.Effect, spriteBatch, () => {
+                    Draw_Inner(drawContext with {
+                        Position = newPosition,
+                        DrawColor = newColor,
+                    });
                 });
             }, sinWaveOffset: WaveOffset,
-               progress: _shadowProgress);
+               progress: _shadowProgress,
+               opacity: 0.375f,
+               sinStep: _shadowTime);
         }
         void drawSelf() {
             drawContext = drawContext with { Texture = texture };
@@ -174,6 +179,46 @@ sealed partial class EternalHorror : ModNPC {
                sinWaveOffset_BasedOnEffectIndex: MathHelper.TwoPi * 0.25f,
                sinStep: AICounter);
         }
+        void drawClones() {
+            if (!Init) {
+                return;
+            }
+            foreach (CloneInfo cloneInfo in _cloneData) {
+                if (!cloneInfo.Active) {
+                    continue;
+                }
+
+                Player target = NPC.GetTargetPlayer();
+                Vector2 clonePosition = cloneInfo.VisualPosition;
+                Color cloneColor = drawColor;
+                float timeLeftProgress = cloneInfo.TimeLeftProgress;
+                cloneColor *= cloneInfo.Opacity;
+                DrawContext cloneDrawContext = drawContext with {
+                    Texture = shadowTexture,
+                    Position = clonePosition,
+                    DrawColor = cloneColor
+                };
+                DrawUnderShadowEffect(cloneDrawContext, draw: (newPosition, newColor) => {
+                    Vector2 position = newPosition;
+                    Color color = newColor;
+                    float rotation = cloneInfo.Rotation;
+
+                    ShaderLoader.DistortShader.SetDefault(shadowTexture.Width * 2, shadowTexture.Height * 2);
+                    ShaderLoader.ApplyEffect(ShaderLoader.DistortShader.Effect, spriteBatch, () => {
+                        Draw_Inner(cloneDrawContext with {
+                            Position = position,
+                            DrawColor = color,
+                            Rotation = rotation
+                        });
+                    });
+                }, sinWaveOffset: WaveOffset,
+                   progress: timeLeftProgress * 0.25f,
+                   opacity: 0.375f,
+                   sinStep: _shadowTime);
+            }
+        }
+
+        drawClones();
 
         drawShadows();
         drawSelf();
@@ -197,6 +242,10 @@ sealed partial class EternalHorror : ModNPC {
             lerpValue = 1f;
         }
         _shadowProgress = Helper.Approach(_shadowProgress, shadowOpacity, lerpValue);
+        _shadowTime += 1 / 60f;
+        if (_shadowProgress <= 0f) {
+            _shadowTime = 0;
+        }
     }
 
     public static Color GetLaserGlowColor(Color drawColor) => drawColor.MultiplyRGBA(MainRedColor_Dynamic);
@@ -210,23 +259,29 @@ sealed partial class EternalHorror : ModNPC {
     }
 
     public static void DrawUnderShadowEffect(DrawContext drawContext, Action<Vector2, Color> draw, float sinWaveOffset = 0f,
-                                                                                                   float progress = 0f) {
+                                                                                                   float progress = 0f,
+                                                                                                   float countStep = MathHelper.PiOver2,
+                                                                                                   float opacity = 1f,
+                                                                                                   float sinStep = 0f) {
         Vector2 position = drawContext.Position;
         float rotation = drawContext.Rotation;
         Color color = drawContext.DrawColor;
         for (int i = 0; i < 1; i++) {
-            for (float k = -MathHelper.Pi; k <= MathHelper.Pi; k += MathHelper.PiOver2) {
+            for (float k = -MathHelper.Pi; k <= MathHelper.Pi; k += countStep) {
                 Vector2 shadowPosition = position;
                 float alpha = (progress >= 0.5f) ? (1f - (progress - 0.5f) / 0.5f) : (progress / 0.5f);
                 float offset = alpha * 32f;
-                float time = Main.GlobalTimeWrappedHourly;
+                float time = sinStep == 0f ? Main.GlobalTimeWrappedHourly : sinStep;
                 shadowPosition += Vector2.UnitX.RotatedBy(k + time + rotation) * (float)(offset + offset * 0.5f
                     * MathF.Sin(time * 4f));
+                //shadowPosition.X += Helper.Wave(-1f, -1f, 5f, k + sinWaveOffset) * 10f * progress;
+                //shadowPosition.Y += Helper.Wave(-1f, -1f, 5f, k + MathHelper.Pi + sinWaveOffset) * 10f * progress;
                 Color shadowColor = color;
                 shadowColor = shadowColor.MultiplyRGBA(MainPurpleColor);
                 shadowColor = Color.Lerp(shadowColor, shadowColor.MultiplyRGBA(MainPurpleColor_Dynamic), 0.5f);
                 shadowColor = shadowColor.MultiplyAlpha(alpha);
                 shadowColor.A /= 1;
+                shadowColor *= opacity;
                 draw(shadowPosition, shadowColor);
             }
         }

@@ -26,6 +26,14 @@ using static Terraria.Graphics.FinalFractalHelper;
 
 namespace Consolaria {
     public partial class Consolaria : Mod {
+        private static Consolaria? _instance;
+
+        public Consolaria() {
+            _instance = this;
+        }
+
+        public static Consolaria Instance => _instance ??= ModContent.GetInstance<Consolaria>();
+
         public override void Load() {
             if (Main.dedServ) {
                 return;
@@ -45,7 +53,6 @@ namespace Consolaria {
 
             On_TileDrawing.DrawMultiTileVinesInWind += On_TileDrawing_DrawMultiTileVinesInWind;
         }
-
 
         public override void Unload() {
 

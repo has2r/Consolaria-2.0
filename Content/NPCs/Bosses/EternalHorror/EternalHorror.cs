@@ -2,6 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
+
 namespace Consolaria.Content.NPCs.Bosses.EternalHorror;
 
 sealed partial class EternalHorror : ModNPC {
@@ -18,6 +19,12 @@ sealed partial class EternalHorror : ModNPC {
             Load_Textures();
         }
     }
+
+    public override void Unload() {
+        Unload_Caches();
+    }
+
+    private partial void Unload_Caches();
 
     private partial void Load_BackgroundHooks();
 

@@ -1,23 +1,24 @@
-﻿
-<Project Sdk="Microsoft.NET.Sdk">
-  <Import Project="..\tModLoader.targets" />
-  <PropertyGroup>
-    <AssemblyName>Consolaria</AssemblyName>
-    <LangVersion>latest</LangVersion>
-  </PropertyGroup>
-  <ItemGroup>
-    <AdditionalFiles Remove="Content\Crossmod\Thorium\Food\**" />
-    <AdditionalFiles Remove="Content\Crossmod\Thorium\Miscellaneous\**" />
-    <Compile Remove="Content\Crossmod\Thorium\Food\**" />
-    <Compile Remove="Content\Crossmod\Thorium\Miscellaneous\**" />
-    <EmbeddedResource Remove="Content\Crossmod\Thorium\Food\**" />
-    <EmbeddedResource Remove="Content\Crossmod\Thorium\Miscellaneous\**" />
-    <None Remove="Content\Crossmod\Thorium\Food\**" />
-    <None Remove="Content\Crossmod\Thorium\Miscellaneous\**" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="ThoriumMod">
-      <HintPath>..\ModAssemblies\ThoriumMod_v1.7.2.8.dll</HintPath>
-    </Reference>
-  </ItemGroup>
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<Import Project="..\tModLoader.targets" />
+	<PropertyGroup>
+		<AssemblyName>Consolaria</AssemblyName>
+		<LangVersion>latest</LangVersion>
+	</PropertyGroup>
+	<ItemGroup>
+		<AdditionalFiles Remove="Content\Crossmod\Thorium\Food\**" />
+		<AdditionalFiles Remove="Content\Crossmod\Thorium\Miscellaneous\**" />
+		<Compile Remove="Content\Crossmod\Thorium\Food\**" />
+		<Compile Remove="Content\Crossmod\Thorium\Miscellaneous\**" />
+		<EmbeddedResource Remove="Content\Crossmod\Thorium\Food\**" />
+		<EmbeddedResource Remove="Content\Crossmod\Thorium\Miscellaneous\**" />
+		<None Remove="Content\Crossmod\Thorium\Food\**" />
+		<None Remove="Content\Crossmod\Thorium\Miscellaneous\**" />
+	</ItemGroup>
+	<ItemGroup>
+		<Reference Include="ThoriumMod">
+			<HintPath>..\ModAssemblies\ThoriumMod_v1.7.2.8.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+	<Import Project=".\Assets\Effects\Compiler\KBOFXCTask.props" />
+	<Import Project=".\Assets\Effects\Compiler\KBOFXCTask.targets" />
 </Project>

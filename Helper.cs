@@ -20,6 +20,14 @@ using static Consolaria.Helper;
 namespace Consolaria;
 
 public static class Helper {
+    public static void SpawnDebugDusts(Vector2 position) {
+        Dust.NewDustPerfect(position, DustID.Torch, Vector2.Zero).noGravity = true;
+    }
+
+    public static void SpawnDebugDusts(Vector2 position, int type) {
+        Dust.NewDustPerfect(position, type, Vector2.Zero).noGravity = true;
+    }
+
     public static Asset<Texture2D> RequestTexture(string path) => ModContent.Request<Texture2D>(path);
 
     public static void NewMessage(object text, Color? color = null) {

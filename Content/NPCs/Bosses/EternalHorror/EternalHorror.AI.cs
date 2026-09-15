@@ -1,14 +1,48 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
-using System.Collections;
-using System.Collections.Immutable;
-using System.Linq;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
+using static Consolaria.Content.NPCs.Bosses.EternalHorror.EternalHorror;
 
 namespace Consolaria.Content.NPCs.Bosses.EternalHorror;
 
 sealed partial class EternalHorror : ModNPC {
+    private static byte CLONECOUNTAVAILABLE => 3;
+    private static ushort CLONEACTIVETIME => Helper.SecondsToFrames(5);
+
+    private static HashSet<CloneInfo> _cloneDataCache = [];
+
+    private partial void Unload_Caches() {
+        _cloneDataCache.Clear();
+        _cloneDataCache = null;
+    }
+
+    public record struct CloneInfo(Vector2 Position, Vector2 TargetPosition, ushort TimeLeft, ushort MaxTimeLeft, float Rotation = 0f, Vector2 VisualPosition = default) {
+        public readonly float TimeLeftProgress => (float)TimeLeft / MaxTimeLeft;
+        public readonly bool Active => TimeLeftProgress > 0f;
+        public readonly float Opacity {
+            get {
+                float timeLeftProgress = TimeLeftProgress;
+                float opacity = 1f;
+                opacity *= 1f - Utils.GetLerpValue(0.75f, 1f, timeLeftProgress, true);
+                opacity *= Utils.GetLerpValue(0f, 0.25f, timeLeftProgress, true);
+                return opacity;
+            }
+        }
+
+        public readonly Vector2 GetFinalClonePosition(Player target) {
+            Vector2 targetCenter = target.Center,
+                    clonePosition = Position,
+                    cloneTargetCenter = TargetPosition;
+            Vector2 position = targetCenter;
+            position += clonePosition - cloneTargetCenter;
+            return position;
+        }
+    }
+
+    private CloneInfo[] _cloneData = null!;
+
     public ref float InitValue => ref NPC.ai[0];
 
     public ref float AICounter => ref NPC.ai[1];
@@ -27,6 +61,7 @@ sealed partial class EternalHorror : ModNPC {
         OnSpawn();
         MakeMidnight();
         UpdateStates();
+        UpdateClones();
     }
 
     public override void PostAI() { }
@@ -44,11 +79,45 @@ sealed partial class EternalHorror : ModNPC {
 
         SpawnFromAbove();
 
+        InitializeClones();
+
         InitializeStates();
 
         ActivateState<MoveToPlayer>();
         ActivateState<Phase1LaserAttack>();
     }
+
+    private void InitializeClones() {
+        _cloneData = new CloneInfo[CLONECOUNTAVAILABLE];
+    }
+
+    private void SpawnClone() {
+        int nextCloneAddedIndex = 0;
+        for (int i = 0; i < _cloneData.Length; i++) {
+            if (_cloneData[i].TimeLeft > 0) {
+                nextCloneAddedIndex++;
+            }
+        }
+        if (nextCloneAddedIndex >= CLONECOUNTAVAILABLE) {
+            return;
+        }
+        if (!NPC.HasPlayerTarget) {
+            return;
+        }
+        Player target = NPC.GetTargetPlayer();
+        Vector2 npcCenter = NPC.Center,
+                targetCenter = target.Center;
+        Vector2 clonePosition = targetCenter + (targetCenter - npcCenter);
+        ushort cloneActiveTime = CLONEACTIVETIME;
+        _cloneData[nextCloneAddedIndex] = new CloneInfo(Position: clonePosition,
+                                                        TargetPosition: targetCenter,
+                                                        TimeLeft: cloneActiveTime,
+                                                        MaxTimeLeft: cloneActiveTime,
+                                                        VisualPosition: NPC.Center,
+                                                        Rotation: NPC.rotation);
+    }
+
+    private partial void InitializeStates();
 
     private void MakeMidnight() {
         float expFactor = 0.025f;
@@ -70,6 +139,41 @@ sealed partial class EternalHorror : ModNPC {
         foreach (IAIState activeState in states) {
             activeState.OnActiveUpdate(npc: NPC, boss: Self);
         }
+    }
+
+    private void UpdateClones() {
+        for (int i = 0; i < _cloneData.Length; i++) {
+            ref CloneInfo cloneInfo = ref _cloneData[i];
+            if (cloneInfo.TimeLeft > 0) {
+                cloneInfo.TimeLeft--;
+            }
+
+            Player target = NPC.GetTargetPlayer();
+            cloneInfo.VisualPosition = Vector2.Lerp(cloneInfo.VisualPosition, cloneInfo.GetFinalClonePosition(target), 0.125f);
+
+            Vector2 targetCenter = target.Center,
+                    clonePosition = cloneInfo.VisualPosition;
+            float angleToTarget = clonePosition.AngleTo(targetCenter) - MathHelper.PiOver2;
+            cloneInfo.Rotation = cloneInfo.Rotation.AngleLerp(angleToTarget, ROTATIONLERP);
+
+        }
+    }
+
+    public HashSet<CloneInfo> GetActiveCloneData() {
+        _cloneDataCache.Clear();
+        HashSet<CloneInfo> clonePositions = _cloneDataCache;
+        if (!Init) {
+            return clonePositions;
+        }
+        foreach (CloneInfo cloneInfo in _cloneData) {
+            if (!cloneInfo.Active) {
+                continue;
+            }
+
+            clonePositions.Add(cloneInfo);
+        }
+
+        return clonePositions;
     }
 
     private void TargetPlayer() {
